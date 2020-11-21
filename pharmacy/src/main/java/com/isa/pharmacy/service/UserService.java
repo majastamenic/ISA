@@ -13,15 +13,20 @@ public class UserService {
 	private UserRepository userRepository;
 
 	public User create(User user) {
-		User existingUser = userRepository.findByUsername(user.getUsername());
+		User existingUser = userRepository.findByEmail(user.getEmail());
 		if (existingUser == null) {
 			return userRepository.save(user);
 		}
-		throw new AlreadyExistsException(String.format("User with username %s, already exists", user.getUsername()));
+		throw new AlreadyExistsException(String.format("User with email %s, already exists", user.getEmail()));
 	}
 
 	public User getById(Long id) {
 		User user = userRepository.findUserById(id);
+		return user;
+	}
+	
+	public User getByEmailAndPassword(String email, String password) {
+		User user = userRepository.findByEmailAndPassword(email, password);
 		return user;
 	}
 }

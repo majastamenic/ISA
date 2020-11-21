@@ -1,7 +1,6 @@
 package com.isa.pharmacy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.isa.pharmacy.controller.dto.LoginDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.UserMapper;
@@ -31,8 +31,9 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public User login() {
-		return null;
+	public User login(@RequestBody LoginDto loginDto) {
+		User user = UserMapper.mapLoginDtoToUser(loginDto);
+		return userService.getByEmailAndPassword(user.getEmail(), user.getPassword());
 	}
 	
 	@PostMapping

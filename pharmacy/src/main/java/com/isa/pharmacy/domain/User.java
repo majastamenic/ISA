@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.lang.Nullable;
-
 @Entity
 @Table(name = "app_user")
 public class User implements Serializable{
@@ -25,20 +23,47 @@ public class User implements Serializable{
 	private long id;
 	
 	@Column(unique = true, nullable = false)
-	private String username;
+	private String email;
 	
 	@Column
 	private String password;
 	
+	@Column
+	private String name;
+	
+	@Column
+	private String surname;
+	
+	@Column
+	private String address;
+	
+	@Column
+	private String city;
+	
+	@Column
+	private String country;
+	
+	@Column
+	private String phone;
+	
 	public User() {}
 	
-	public User(long id, String username, String password) {
+	
+	public User(long id, String email, String password, String name, String surname, String address, String city,
+			String country, String phone) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.email = email;
 		this.password = password;
+		this.name = name;
+		this.surname = surname;
+		this.address = address;
+		this.city = city;
+		this.country = country;
+		this.phone = phone;
 	}
-	
+
+
 	public long getId() {
 		return id;
 	}
@@ -47,12 +72,12 @@ public class User implements Serializable{
 		this.id = id;
 	}
 	
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public String getPassword() {
@@ -61,6 +86,66 @@ public class User implements Serializable{
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getSurname() {
+		return surname;
+	}
+
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 	
