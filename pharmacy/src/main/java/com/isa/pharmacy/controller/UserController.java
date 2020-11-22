@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.isa.pharmacy.service.UserService;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(value = "http://localhost:4200")
 public class UserController {
 	
 	@Autowired
@@ -33,7 +35,7 @@ public class UserController {
 	@PostMapping("/login")
 	public User login(@RequestBody LoginDto loginDto) {
 		User user = UserMapper.mapLoginDtoToUser(loginDto);
-		return userService.getByEmailAndPassword(user.getEmail(), user.getPassword());
+		return userService.login(user);
 	}
 	
 	@PostMapping
