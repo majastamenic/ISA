@@ -6,18 +6,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.isa.pharmacy.rabbitmq.*;
 
 @RestController
-@RequestMapping("/rabbitmq")
+@RequestMapping(value = "/rabbitmq/")
 public class RabbitMQController {
 	
 	@Autowired
     RabbitMQService rabbitMQService;
 
-    @GetMapping(value = "/producer")
+    @GetMapping(value = "/actions")
     public String producer(@RequestParam("id") long id,@RequestParam("messageAboutAction") String messageAboutAction) {
 
-    RabbitMQActions action=new RabbitMQActions();
+    ActionsAndBenefits action=new ActionsAndBenefits();
     action.setId(id);
     action.setMessageAboutAction(messageAboutAction);
     rabbitMQService.send(action);

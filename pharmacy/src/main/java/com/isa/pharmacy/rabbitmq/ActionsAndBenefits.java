@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 //Order = Hospital
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = RabbitMQActions.class)
-public class RabbitMQActions {
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = ActionsAndBenefits.class)
+public class ActionsAndBenefits {
 	
 	private long id;
 	private String messageAboutAction;
 	
-	public RabbitMQActions() {}
+	public ActionsAndBenefits() {}
 	
-	public RabbitMQActions(long id, String messageAboutAction) {
+	public ActionsAndBenefits(long id, String messageAboutAction) {
 		super();
 		this.id = id;
 		this.messageAboutAction = messageAboutAction;

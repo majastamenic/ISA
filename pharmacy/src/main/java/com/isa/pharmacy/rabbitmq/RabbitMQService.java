@@ -17,7 +17,7 @@ public class RabbitMQService {
 	    @Value("${javainuse.rabbitmq.routingkey}")
 	    private String routingkey;
 
-	    public void send(RabbitMQActions action) {
+	    public void send(ActionsAndBenefits action) {
 	        rabbitTemplate.convertAndSend(exchange, routingkey, action);
 	        System.out.println("Send msg = " + action);
 
