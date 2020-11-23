@@ -18,7 +18,7 @@ export class HospitalComponent implements OnInit {
 
   registration(): void{
     this.hospitalService.registration(this.hospital).subscribe((returnedHospital: Hospital) => {
-      alert('Hospital with email ' + returnedHospital.email + 'registered');
+      alert('Hospital with email ' + returnedHospital.email + ' registered.\n ApiKey: Apoteka123');
     },
       (err: any) => {
         alert('Error while registered ' + err.error.message);
