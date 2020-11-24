@@ -1,18 +1,36 @@
-<h3>Registration</h3>
-<label>Email</label>
-<input type="email" [(ngModel)]="user.email">
-<label>Password</label>
-<input type="password" [(ngModel)]="user.password">
-<label>Name</label>
-<input type="text" [(ngModel)]="user.name">
-<label>Surname</label>
-<input type="text" [(ngModel)]="user.surname">
-<label>Address</label>
-<input type="text" [(ngModel)]="user.address">
-<label>City</label>
-<input type="text" [(ngModel)]="user.city">
-<label>Country</label>
-<input type="text" [(ngModel)]="user.country">
-<label>Phone</label>
-<input type="tel" [(ngModel)]="user.phone">
-<button (click)="registration()">Register</button>
+<body>
+    <form action="action_page.php">
+        <div class="imgcontainer">
+            <h2>Registration</h2>
+        </div>
+    
+        <div class="container">
+            
+        <label for="email"><b>Email</b></label>
+        <input type="email" [(ngModel)]="user.email" placeholder="Enter email" name="email" required>
+    
+        <label for="password"><b>Password</b></label>
+        <input type="password" [(ngModel)]="user.password" placeholder="Enter Password" name="name" required>
+
+        <label for="text"><b>Name</b></label>
+        <input type="text" [(ngModel)]="user.name" placeholder="Enter name" name="name" required>
+
+        <label for="text"><b>Surname</b></label>
+        <input type="text" [(ngModel)]="user.surname" placeholder="Enter surname" name="surname" required>
+
+        <label for="text"><b>Address</b></label>
+        <input type="text" [(ngModel)]="user.address" placeholder="Enter address" name="address" required>
+
+        <label for="text"><b>City</b></label>
+        <input type="text" [(ngModel)]="user.city" placeholder="Enter city" name="city" required>
+
+        <label for="text"><b>Country</b></label>
+        <input type="text" [(ngModel)]="user.country" placeholder="Enter country" name="country" required>
+
+        <label for="tel"><b>Phone</b></label>
+        <input type="tel" [(ngModel)]="user.phone" placeholder="Enter phone" name="phone" required>
+    
+        <button (click)="registration()">Register</button>
+        </div>
+    </form>
+    </body>

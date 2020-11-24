@@ -1,6 +1,17 @@
-<h3>Login</h3>
-<label>Email</label>
-<input type="email" [(ngModel)]="user.email">
-<label>Password</label>
-<input type="password" [(ngModel)]="user.password">
-<button (click)="login()">Login</button>
+<body>
+  <form action="action_page.php">
+      <div class="imgcontainer">
+          <h2>Login</h2>
+      </div>
+    
+      <div class="container">
+        <label for="email"><b>Email</b></label>
+        <input type="email" [(ngModel)]="user.email" placeholder="Enter email" name="email" required>
+    
+        <label for="password"><b>Password</b></label>
+        <input type="password" [(ngModel)]="user.password" placeholder="Enter Password" name="name" required>
+    
+        <button (click)="login()">Login</button>
+      </div>
+  </form>
+</body>
