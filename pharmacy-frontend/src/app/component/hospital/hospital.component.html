@@ -1,17 +1,24 @@
-<body>
-  <form action="action_page.php">
+
+  <form>
       <div class="imgcontainer">
           <h2>Hospital registration</h2>
       </div>
     
       <div class="container">
-        <label for="email"><b>Email</b></label>
-        <input type="email" [(ngModel)]="hospital.email" placeholder="Enter hospital email" name="email" required>
-    
-        <label for="name"><b>Name</b></label>
-        <input type="text" [(ngModel)]="hospital.name" placeholder="Enter hospital name" name="name" required>
-    
-        <button (click)="registration()">Registration</button>
+        <div class="form-group">
+          <label for="email"><b>Email</b></label>
+          <input type="email" [(ngModel)]="hospital.email" placeholder="Enter hospital email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="name"><b>Name</b></label>
+          <input type="name" [(ngModel)]="hospital.name" placeholder="Enter hospital name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label><b>Select pharmacy</b></label>
+          <select class="form-control" id="pharmacies" [(ngModel)]= "selectedPharmacy">
+            <option *ngFor="let pharmacy of pharmacies" [value]= pharmacy>{{pharmacy}}</option>
+          </select>
+        </div>
+        <button (click)="registration()" class="btn btn-primary">Registration</button>
       </div>
   </form>
- </body>

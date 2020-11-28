@@ -1,5 +1,7 @@
 package com.isa.pharmacy.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +13,7 @@ import com.isa.pharmacy.repository.HospitalRepository;
 public class HospitalService {
 	@Autowired
 	private HospitalRepository hospitalRepository;
-	
+	//Query za promalazak apoteke	
 	public Hospital create(Hospital hospital) {
 		Hospital existingHospital = hospitalRepository.findByEmail(hospital.getEmail());
 		if (existingHospital == null) {
@@ -20,8 +22,8 @@ public class HospitalService {
 		throw new AlreadyExistsException(String.format("Hospital with email %s, already registered", hospital.getEmail()));
 	}
 
-	public Hospital getByApiKey(Long apiKey) {
-		Hospital hospital = hospitalRepository.findHospitalByApiKey(apiKey);
+	public Hospital getById(Long id) {
+		Hospital hospital = hospitalRepository.findHospitalById(id);
 		return hospital;
 	}	
 	
@@ -30,5 +32,8 @@ public class HospitalService {
 		return hospital;
 	}
 	
+	public List<Hospital> getAll(){
+		return hospitalRepository.findAll();
+	}
 
 }

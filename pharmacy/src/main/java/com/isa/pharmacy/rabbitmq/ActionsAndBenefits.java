@@ -7,20 +7,20 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = ActionsAndBenefits.class)
 public class ActionsAndBenefits {
 	
-	private long id;
+	private Long id;
 	private String messageAboutAction;
 	
 	public ActionsAndBenefits() {}
 	
-	public ActionsAndBenefits(long id, String messageAboutAction) {
+	public ActionsAndBenefits(Long id, String messageAboutAction) {
 		super();
 		this.id = id;
 		this.messageAboutAction = messageAboutAction;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getMessageAboutAction() {

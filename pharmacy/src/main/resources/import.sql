@@ -1,4 +1,7 @@
-INSERT INTO public.app_user(email, password, name, surname, address, city, country, phone) VALUES ('gojko', 'gojko', 'Gojko', 'Novcic', 'Futoski put 5.', 'Novi Sad', 'Srbija', '065/2138745');
-INSERT INTO public.app_user(email, password, name, surname, address, city, country, phone) VALUES ('tasa', 'tasa', 'Nastasja', 'Damjanac', 'Suboticka 23.', 'Novi Sad', 'Srbija', '061/2349543');
-INSERT INTO public.app_user(email, password, name, surname, address, city, country, phone) VALUES ('masa', 'masa', 'Marija', 'Milanovic', 'Cankareva 55.', 'Novi Sad', 'Srbija', '063/7652937');
-INSERT INTO public.app_user(email, password, name, surname, address, city, country, phone) VALUES ('maja', 'maja', 'Maja', 'Stamenic', 'Somborska 78.', 'Novi Sad', 'Srbija', '066/5179965');
+insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Suboticka 23', 'Novi Sad', 'Srbija', 'majas@gmail.com', 'maja', 'maja', '076/468965', 'stamenic', 'User');
+insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Rumenacka 23', 'Novi Sad', 'Srbija', 'gojko@gmail.com', 'gojko', 'gojko', '076/468965', 'novcic', 'User');
+insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Temerinska 23', 'Novi Sad', 'Srbija', 'tasa@gmail.com', 'tasa', 'tasa', '076/468965', 'damjanac', 'User');
+insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Ticanova 23', 'Novi Sad', 'Srbija', 'masa@gmail.com', 'masa', 'masa', '076/468965', 'milanovic', 'User');
+insert into Pharmacy (address, api_key, name) values ('Fejes Klare 34.', 'jankovic45', 'jankovic')
+insert into Pharmacy (address, api_key, name) values ('Fejes Klare 34.', 'benu67', 'benu')
+insert into Pharmacy (address, api_key, name) values ('Fejes Klare 34.', 'zdravo', 'zdravlje')

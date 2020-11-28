@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HospitalService } from 'src/app/service/hospital.service.service';
+import { REG_PATH } from 'src/app/util/paths';
 import { HospitalRegistrationDto, Hospital } from './model/hospital-model';
 
 @Component({
@@ -9,16 +10,22 @@ import { HospitalRegistrationDto, Hospital } from './model/hospital-model';
 })
 export class HospitalComponent implements OnInit {
 
-  hospital: HospitalRegistrationDto = {email: '', name: ''}
+  hospital: HospitalRegistrationDto = {email: '', name: ''};
+  selectedPharmacy =  '';
+
+  pharmacies: string[] = ['Jankovic'];
+
 
   constructor(private hospitalService: HospitalService) { }
 
   ngOnInit(): void {
   }
 
+
   registration(): void{
+    this.hospitalService.send(this.hospital)
     this.hospitalService.registration(this.hospital).subscribe((returnedHospital: Hospital) => {
-      alert('Hospital with email ' + returnedHospital.email + ' registered.\n ApiKey: Apoteka123');
+      alert('Welcome ' + returnedHospital.email + ' .\n' + 'Please check you email.');
     },
       (err: any) => {
         alert('Error while registered ' + err.error.message);

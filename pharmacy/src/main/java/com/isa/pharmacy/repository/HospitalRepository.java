@@ -2,6 +2,8 @@ package com.isa.pharmacy.repository;
 
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +14,8 @@ import com.isa.pharmacy.domain.Hospital;
 public interface HospitalRepository extends JpaRepository<Hospital, Long> {
 
 	Hospital findByEmail(String email);
-	Hospital findHospitalByApiKey(Long apiKey);
+	Hospital findHospitalById(Long id);
+	Hospital findHospitalByEmail(String email);
+	List<Hospital> findAll();
 	
 }

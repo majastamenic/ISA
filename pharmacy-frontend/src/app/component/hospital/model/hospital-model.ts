@@ -2,7 +2,7 @@
 export interface Hospital {
     email: string;
     name: string;
-    apiKey: number;
+    id: number;
 }
 
 export interface HospitalRegistrationDto {

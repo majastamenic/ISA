@@ -1,10 +1,11 @@
 package com.isa.pharmacy.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
-import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
 import com.isa.pharmacy.domain.User;
 import com.isa.pharmacy.repository.UserRepository;
@@ -38,5 +39,9 @@ public class UserService {
 	public User getByEmailAndPassword(String email, String password) {
 		User user = userRepository.findByEmailAndPassword(email, password);
 		return user;
+	}
+	
+	public List<User> getAll(){
+		return userRepository.findAll();
 	}
 }
