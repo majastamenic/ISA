@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.isa.pharmacy.controller.dto.HospitalManagerRegistrationDto;
 import com.isa.pharmacy.controller.mapping.HospitalMapper;
 import com.isa.pharmacy.domain.Hospital;
-import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.service.HospitalService;
 

@@ -21,7 +21,7 @@ export class ActionsBenefitsComponent implements OnInit {
   }
 
   send(): void{
-    this.actionsBenefitsService.send(this.actionBenefit).subscribe((returnedAction: ActionsBenefits) => {
+    this.actionsBenefitsService.send(this.actionBenefit).subscribe((returnedAction: string) => {
       alert('Action or benefit send.');
     },
       (err: any) => {

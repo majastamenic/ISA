@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import com.isa.pharmacy.controller.dto.HospitalManagerRegistrationDto;
 import com.isa.pharmacy.domain.Hospital;
-import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
 
 public class HospitalMapper {
