@@ -10,8 +10,8 @@
       </div>
       <div class="form-group">
         <label><b>Select pharmacy</b></label>
-        <select class="form-control" id="pharmacies" [(ngModel)]= "selectedPharmacy">
-          <option *ngFor="let pharmacy of pharmacies" [value]= pharmacy>{{pharmacy}}</option>
+        <select class="form-control" id="pharmacies" [(ngModel)]="hospital.pharmacy" name="pharmacy-dropdown">
+          <option *ngFor="let pharmacy of pharmacies" [ngValue]= pharmacy>{{pharmacy.name}}</option>
         </select>
       </div>
       <button (click)="registration()" class="btn btn-primary">Registration</button>
