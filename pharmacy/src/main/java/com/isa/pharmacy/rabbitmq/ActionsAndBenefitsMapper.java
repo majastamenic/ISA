@@ -7,7 +7,8 @@ public class ActionsAndBenefitsMapper {
 		ActionsAndBenefits action = new ActionsAndBenefits();
 		action.setMessageAboutAction(actionDto.getMessage());
 		action.setStartDate(actionDto.getStartDate());
-		action.setEndDate(actionDto.getEndDate());
+		action.setEndDate(actionDto.getEndDate());	
+		action.setPharmacyName("Jankovic");
 		return action;
 	}
 

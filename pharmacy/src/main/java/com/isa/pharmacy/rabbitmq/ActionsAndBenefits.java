@@ -28,15 +28,18 @@ public class ActionsAndBenefits {
 	private Date startDate;
 	@Column
 	private Date endDate;
+	@Column
+	private String pharmacyName;
 	
 	public ActionsAndBenefits() {}
 	
-	public ActionsAndBenefits(Long id, String messageAboutAction, Date startDate, Date endDate) {
+	public ActionsAndBenefits(Long id, String messageAboutAction, Date startDate, Date endDate, String pharmacyName) {
 		super();
 		this.id = id;
 		this.messageAboutAction = messageAboutAction;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.pharmacyName = pharmacyName;
 	}
 	public Long getId() {
 		return id;
@@ -65,6 +68,15 @@ public class ActionsAndBenefits {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	
+
+	public String getPharmacyName() {
+		return pharmacyName;
+	}
+
+	public void setPharmacyName(String pharmacyName) {
+		this.pharmacyName = pharmacyName;
 	}
 
 	@Override
