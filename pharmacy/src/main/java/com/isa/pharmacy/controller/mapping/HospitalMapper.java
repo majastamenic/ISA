@@ -2,7 +2,6 @@ package com.isa.pharmacy.controller.mapping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.isa.pharmacy.controller.dto.HospitalManagerRegistrationDto;
 import com.isa.pharmacy.domain.Hospital;
