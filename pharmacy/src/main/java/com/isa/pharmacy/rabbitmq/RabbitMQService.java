@@ -11,10 +11,10 @@ public class RabbitMQService {
 	  @Autowired
 	    private AmqpTemplate rabbitTemplate;
 
-	    @Value("${javainuse.rabbitmq.exchange}")
+	    @Value("${pharmacy.rabbitmq.exchange}")
 	    private String exchange;
 
-	    @Value("${javainuse.rabbitmq.routingkey}")
+	    @Value("${pharmacy.rabbitmq.routingkey}")
 	    private String routingkey;
 
 	    public void send(ActionsAndBenefits action) {
