@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.isa.pharmacy.controller.dto.HospitalManagerRegistrationDto;
+import com.isa.pharmacy.domain.Pharmacy;
 
 @Service
 public class EmailService {
@@ -19,13 +20,13 @@ public class EmailService {
 	private JavaMailSender javaMailSender;
 		
 	@Async
-	public void sendNotificaitionsAsync(HospitalManagerRegistrationDto hospital) throws MailException, InterruptedException, MessagingException{
+	public void sendNotificaitionsAsync(HospitalManagerRegistrationDto hospital, Pharmacy pharmacy) throws MailException, InterruptedException, MessagingException{
 		System.out.println("sending email");
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		simpleMailMessage.setFrom("stamenicmaja5@gmail.com");
 		simpleMailMessage.setTo(hospital.getEmail());
 		simpleMailMessage.setSubject("APIKEY");
-		simpleMailMessage.setText("Postovani,\nVas ApiKey je: lalalalal" );
+		simpleMailMessage.setText("Postovani,\nVas ApiKey je:");
 		//+ hospital.getPharmacy().getApiKey());
 		
 		

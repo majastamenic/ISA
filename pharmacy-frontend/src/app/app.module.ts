@@ -9,7 +9,7 @@ import { RegistrationComponent } from './component/user/registration/registratio
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
-import { AdminComponent } from './admin/admin.component';
+import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { AdminComponent } from './admin/admin.component';
     RegistrationComponent,
     HomeComponent,
     HospitalComponent,
-    AdminComponent,
+    ActionsBenefitsComponent,
   ],
   imports: [
     BrowserModule,

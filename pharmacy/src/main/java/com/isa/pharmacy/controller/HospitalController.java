@@ -33,7 +33,7 @@ public class HospitalController {
 	public Hospital registration(@RequestBody HospitalManagerRegistrationDto registrationHospitalDto) {
 		Hospital hospital = this.hospitalService.getByEmail(registrationHospitalDto.getEmail());
 		try {
-			emailService.sendNotificaitionsAsync(registrationHospitalDto);
+			emailService.sendNotificaitionsAsync(registrationHospitalDto, null);
 		}catch( Exception e ){
 			logger.info("Greska prilikom slanja emaila: " + e.getMessage());
 		}
