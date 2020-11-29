@@ -8,4 +8,5 @@ export interface Hospital {
 export interface HospitalRegistrationDto {
     email: string;
     name: string;
+    pharmacy: any;
 }

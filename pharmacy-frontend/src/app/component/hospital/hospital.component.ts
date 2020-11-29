@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HospitalService } from 'src/app/service/hospital.service.service';
+import { PharmacyService } from 'src/app/service/pharmacy.service';
 import { HospitalRegistrationDto, Hospital } from './model/hospital-model';
 
 @Component({
@@ -9,15 +11,18 @@ import { HospitalRegistrationDto, Hospital } from './model/hospital-model';
 })
 export class HospitalComponent implements OnInit {
 
-  hospital: HospitalRegistrationDto = {email: '', name: ''};
-  selectedPharmacy =  '';
+  hospital: HospitalRegistrationDto = {email: '', name: '', pharmacy: {}};
+  selectedPharmacy: any;
 
-  pharmacies: string[] = ['Jankovic'];
+  pharmacies: any;
 
 
-  constructor(private hospitalService: HospitalService) { }
+  constructor(private hospitalService: HospitalService, private pharmacyService: PharmacyService) { }
 
   ngOnInit(): void {
+    this.pharmacyService.getAll().subscribe(listPharmacy => {
+      this.pharmacies = listPharmacy;
+    });
   }
 
 
