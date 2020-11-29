@@ -10,10 +10,14 @@ import { ActionsBenefits, ActionsBenefitsDto } from './model/actions-benefits-mo
 })
 export class ActionsBenefitsComponent implements OnInit {
 
-  actionBenefit!: ActionsBenefitsDto;
-  constructor(private actionsBenefitsService: ActionsBenefitsService) { }
+  actionBenefit: ActionsBenefitsDto = {message: '', startDate: new Date(), endDate: new Date()};
+  hospitals: any;
+  constructor(private actionsBenefitsService: ActionsBenefitsService, private hospitalService: HospitalService) { }
 
   ngOnInit(): void {
+    this.hospitalService.getAll().subscribe(listHospital => {
+      this.hospitals = listHospital;
+    });
   }
 
   send(): void{

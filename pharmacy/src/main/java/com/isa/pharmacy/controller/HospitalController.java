@@ -1,6 +1,9 @@
 package com.isa.pharmacy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.isa.pharmacy.controller.dto.HospitalManagerRegistrationDto;
 import com.isa.pharmacy.controller.mapping.HospitalMapper;
 import com.isa.pharmacy.domain.Hospital;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.service.HospitalService;
 
@@ -42,6 +46,12 @@ public class HospitalController {
 		}
 		return hospital;
 	}
+	
+	@GetMapping
+	public List<Hospital> getAll(){
+		return hospitalService.getAll();
+	}
+	
 	
 	
 }
