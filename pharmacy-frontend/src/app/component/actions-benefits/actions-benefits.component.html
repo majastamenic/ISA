@@ -1,15 +1,19 @@
-<div class="container">
-    <div class="form-group">
-        <label for="message"><b>Message:</b></label>
-        <input type="text" [(ngModel)]="actionBenefit.message" placeholder="Enter message text" name="message" required>
+<div class="action-page">
+    <div class="form">
+        <form class="action-form">
+            <h3>Actions and benefits</h3>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="actionBenefit.message" placeholder="Enter message text" name="message" required>
+            </div>
+            <div class="form-group">
+                <label for="startDate"><b>Valid from: </b></label>
+                <input type="date" [(ngModel)]="actionBenefit.startDate" name="startDate" required>
+            </div>
+            <div class="form-group">
+                <label for="endDate"><b>Valid until:</b></label>
+                <input type="date" [(ngModel)]="actionBenefit.endDate" name="endDate" required>
+            </div>
+            <button (click)="send()" class="btn btn-primary">Send</button>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="startDate"><b>Valid from: </b></label>
-        <input type="date" [(ngModel)]="actionBenefit.startDate" name="startDate" required>
-    </div>
-    <div class="form-group">
-        <label for="endDate"><b>Valid until:</b></label>
-        <input type="date" [(ngModel)]="actionBenefit.endDate" name="endDate" required>
-    </div>
-    <button (click)="send()" class="btn btn-primary">Send</button>
 </div>
