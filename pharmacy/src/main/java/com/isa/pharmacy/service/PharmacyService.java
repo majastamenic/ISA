@@ -18,6 +18,17 @@ public class PharmacyService {
 		return pharmacyRepository.save(p);
 	}
 	
+	public Pharmacy getByApiKey(String apiKey) {
+		if(pharmacyRepository.findPharmacyByApiKey(apiKey).equals(null))
+			return null;
+		else
+			return pharmacyRepository.findPharmacyByApiKey(apiKey);
+	}
+	
+	public Pharmacy getByName(String name) {
+		return pharmacyRepository.findPharmacyByName(name);
+	}
+	
 	
 	public List<Pharmacy> getAll(){
 		return pharmacyRepository.findAll();

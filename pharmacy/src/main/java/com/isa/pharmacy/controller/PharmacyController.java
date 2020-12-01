@@ -2,10 +2,17 @@ package com.isa.pharmacy.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,5 +34,19 @@ public class PharmacyController {
 	@PostMapping
 	public Pharmacy save(Pharmacy p) {
 		return pharmacyService.save(p);
+	}
+	
+	@GetMapping("/{name}")
+	public ResponseEntity<String> sendResponse(@RequestHeader("apiKey") String apiKey) {
+		if (apiKey.equals(null))
+			return new ResponseEntity<String>("", 
+			          HttpStatus.FORBIDDEN);
+		if ((pharmacyService.getByApiKey(apiKey)).equals(null))
+			return new ResponseEntity<String>("Wrong apiKey", 
+			          HttpStatus.BAD_REQUEST);
+		else
+			return new ResponseEntity<String>(
+			          "Welcome", 
+			          HttpStatus.OK);
 	}
 }
