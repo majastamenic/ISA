@@ -39,7 +39,7 @@ public class HospitalController {
 		hospital = HospitalMapper.mapRegistrationDtoToHospital(registrationHospitalDto, hospital);
 		hospital = hospitalService.create(hospital);
 		try {
-			emailService.sendNotificaitionsAsync(hospital.getEmail(), registrationHospitalDto.getPharmacy().getApiKey());
+			emailService.sendApiKey(hospital.getEmail(), registrationHospitalDto.getPharmacy().getApiKey());
 		}catch( Exception e ){
 			logger.info("Greska prilikom slanja emaila: " + e.getMessage());
 		}

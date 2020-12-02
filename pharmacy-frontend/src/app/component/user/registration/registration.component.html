@@ -4,11 +4,20 @@
         <form class="registration-form">
             <h3>Registration</h3>
             <div>
-                <input type="email" [(ngModel)]="user.email" placeholder="Enter email" name="email" required>
+                <input type="email" [(ngModel)]="user.email" placeholder="Enter email" name="email" required #email="ngModel"
+                [class.is-invalid] = "email.invalid && email.touched" pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+                <div *ngIf="email.errors && (email.invalid && email.touched)">
+                    <small class="text-danger" *ngIf = "email.errors.required">Email is required field.</small>
+                    <small class="text-danger" *ngIf = "email.errors.pattern">Enter valid email.</small>
+                </div>
             </div>
 
             <div>
-                <input type="password" [(ngModel)]="user.password" placeholder="Enter Password" name="name" required>
+                <input type="password" [(ngModel)]="user.password" placeholder="Enter Password" name="name" required #password="ngModel"
+                [class.is-invalid] = "password.invalid && password.touched">
+                <div *ngIf="password.invalid && password.touched">
+                    <small class="text-danger">Password is required field.</small>
+                </div>
             </div>
 
             <div>

@@ -1,8 +1,14 @@
 package com.isa.pharmacy.controller.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class LoginDto {
 	
+	@NotEmpty(message = "{validation.email.NotEmpty}")
+	@Email(message = "{validation.email.Type}")
 	private String email;
+	
 	private String password;
 	
 	public LoginDto() {}

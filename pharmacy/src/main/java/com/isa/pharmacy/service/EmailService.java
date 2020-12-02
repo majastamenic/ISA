@@ -10,9 +10,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.isa.pharmacy.controller.dto.HospitalManagerRegistrationDto;
-import com.isa.pharmacy.domain.Hospital;
-import com.isa.pharmacy.domain.Pharmacy;
 
 @Service
 public class EmailService {
@@ -24,7 +21,7 @@ public class EmailService {
 	private String mailSender;
 
 	@Async
-	public void sendNotificaitionsAsync(String hospitalEmail, String apiKey)
+	public void sendApiKey(String hospitalEmail, String apiKey)
 			throws MailException, InterruptedException, MessagingException {
 		System.out.println("sending email");
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
@@ -35,6 +32,20 @@ public class EmailService {
 
 		javaMailSender.send(simpleMailMessage);
 		System.out.println("send email");
+	}
+	
+	@Async
+	public void sendEmail(String email)
+			throws MailException, InterruptedException, MessagingException{
+		System.out.println("Sending email");
+		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+		simpleMailMessage.setFrom(mailSender);
+		simpleMailMessage.setTo(email);
+		simpleMailMessage.setSubject("APIKEY");
+		simpleMailMessage.setText("");
+
+		javaMailSender.send(simpleMailMessage);
+		System.out.println("Send email");
 	}
 
 }

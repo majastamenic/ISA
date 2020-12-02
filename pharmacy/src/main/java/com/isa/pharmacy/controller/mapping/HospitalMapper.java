@@ -2,6 +2,7 @@ package com.isa.pharmacy.controller.mapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import com.isa.pharmacy.controller.dto.HospitalManagerRegistrationDto;
@@ -17,6 +18,7 @@ public class HospitalMapper {
 			hospital.setPharmacies(new ArrayList<>());
 			hospital.setName(hospitalDto.getName());
 			hospital.setEmail(hospitalDto.getEmail());
+			hospital.setId(new Random().nextLong());
 		}
 		
 		//Kupi sve id-jeve apoteka i stavlja ih u listu
@@ -24,7 +26,7 @@ public class HospitalMapper {
 		if (!(pharmaciesIds.contains(hospitalDto.getPharmacy().getId())))
 			hospital.getPharmacies().add(hospitalDto.getPharmacy());
 
+		
 		return hospital;
 	}
-
 }

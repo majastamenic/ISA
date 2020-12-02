@@ -33,8 +33,14 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public User login(@RequestBody LoginDto loginDto) {
-		User user = UserMapper.mapLoginDtoToUser(loginDto);
+	public User login(@RequestBody LoginDto loginDto) throws Exception {
+		String email = loginDto.getEmail();
+		String password = loginDto.getPassword();
+		User user = null;
+		if((!email.equals(null)) && (!password.equals(null)))
+			user = UserMapper.mapLoginDtoToUser(loginDto);
+		if(user.equals(null))
+			throw new Exception("Bad request");
 		return userService.login(user);
 	}
 	

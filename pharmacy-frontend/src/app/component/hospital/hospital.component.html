@@ -1,18 +1,29 @@
 <div class="hospital-page">
   <div class="form">
     <h3>Hospital registration</h3>
-    <form class = "hospital-form">
+    <form class = "hospital-form" #registrationform="ngForm">
       <div class="form-group">
-        <input type="email" [(ngModel)]="hospital.email" placeholder="Enter hospital email" name="email" required>
+        <input type="email" [(ngModel)]="hospital.email" placeholder="Enter hospital email" name="email" required #email="ngModel"
+        [class.is-invalid] = "email.invalid && email.touched" pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+        <div *ngIf="email.errors && (email.invalid && email.touched)">
+          <small class="text-danger" *ngIf = "email.errors.required">Email is required field.</small>
+          <small class="text-danger" *ngIf = "email.errors.pattern">Enter valid email.</small>
+        </div>
       </div>
       <div class="form-group">
-        <input type="text" [(ngModel)]="hospital.name" placeholder="Enter hospital name" name="name" required>
+        <input type="text" [(ngModel)]="hospital.name" placeholder="Enter hospital name" name="name" required #name="ngModel"
+        [class.is-invalid] = "name.invalid && name.touched">
+        <div *ngIf="name.invalid && name.touched">
+          <small class="text-danger">Name is required field.</small>
+        </div>
       </div>
       <div class="form-group">
         <label><b>Select pharmacy</b></label>
-        <select class="form-control" id="pharmacies" [(ngModel)]="hospital.pharmacy" name="pharmacy-dropdown">
+        <select class="form-control" id="pharmacies" [(ngModel)]="hospital.pharmacy" name="pharmacy-dropdown" #pharmacy="ngModel"
+        [class.is-invalid]=" pharmacy.touched">
           <option *ngFor="let pharmacy of pharmacies" [ngValue]= pharmacy>{{pharmacy.name}}</option>
         </select>
+        <div *ngIf="pharmacy.touched"><small class="text-danger">Pharmacy is required field.</small></div>
       </div>
       <button (click)="registration()" class="btn btn-primary">Registration</button>
     </form>

@@ -14,8 +14,8 @@ public class PharmacyApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(PharmacyApplication.class, args);
-		SftpService sftp = new SftpService();
-		sftp.downloadFile();
+//		SftpService sftp = new SftpService();
+//		sftp.downloadFile();
 	}
 
 }
