@@ -21,7 +21,7 @@ public class SftpService {
 		SSHClient sshClient= setup();
 		SFTPClient sftpClient= sshClient.newSFTPClient();
 		String dir= "src/main/resources/";
-		sftpClient.get("test.txt", dir + "test.txt");
+		sftpClient.get("index.html", dir + "index.html");
 		sftpClient.close();
 		sshClient.disconnect();
 	}

@@ -2,9 +2,16 @@ package com.isa.pharmacy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.isa.pharmacy.controller.dto.MedicineDTO;
+import com.isa.pharmacy.controller.mapping.MedicineMapper;
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.service.MedicineService;
 
 @RestController
@@ -13,4 +20,17 @@ import com.isa.pharmacy.service.MedicineService;
 public class MedicineController {
 	@Autowired
 	private MedicineService medicineService;
+	
+	@PostMapping
+	public Medicine create(@RequestBody MedicineDTO medicineDTO) {
+		MedicineMapper medicineMapper = new MedicineMapper();
+		Medicine medicine = medicineMapper.mapMedicineDtoToMedicine(medicineDTO);
+		return medicineService.create(medicine);
+	}
+	
+	@DeleteMapping
+	public Boolean delete(@RequestParam Long id) {
+		return medicineService.delete(id);
+		
+	}
 }
