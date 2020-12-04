@@ -21,8 +21,13 @@ public class MedicineService {
 		return medicineRepository.save(medicine);
 	}
 
-	public Boolean delete(Long id) {
-		return medicineRepository.delete(id);
+	public void delete(Medicine medicine) {
+		medicineRepository.delete(medicine);
 		
+	}
+	
+
+	public Medicine findById(Long id) {
+		return medicineRepository.findMedicineById(id);
 	}
 }

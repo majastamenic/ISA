@@ -18,6 +18,5 @@ public interface MedicineRepository extends JpaRepository<Medicine, Long> {
 	Medicine findMedicineByTypeOfMedicine(String typeOfMedicine);
 	Medicine findMedicineByFormOfMedicine(String formOfMedicine);
 	Medicine findMedicineByManufactured(String manufactured);
-	Boolean delete(Long id);
 	List<Medicine> findAll();
 }

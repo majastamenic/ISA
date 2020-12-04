@@ -29,8 +29,9 @@ public class MedicineController {
 	}
 	
 	@DeleteMapping
-	public Boolean delete(@RequestParam Long id) {
-		return medicineService.delete(id);
+	public void delete(@RequestParam Long id) {
+		Medicine medicine = medicineService.findById(id);
+		medicineService.delete(medicine);
 		
 	}
 }
