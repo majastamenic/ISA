@@ -16,4 +16,18 @@ public class MedicineService {
 	public List<Medicine> getAll(){
 		return medicineRepository.findAll();
 	}
+	
+	public Medicine create(Medicine medicine) {
+		return medicineRepository.save(medicine);
+	}
+
+	public void delete(Medicine medicine) {
+		medicineRepository.delete(medicine);
+		
+	}
+	
+
+	public Medicine findById(Long id) {
+		return medicineRepository.findMedicineById(id);
+	}
 }

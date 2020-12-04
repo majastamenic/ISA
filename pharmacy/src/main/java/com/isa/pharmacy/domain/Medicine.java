@@ -27,7 +27,7 @@ public class Medicine {
 	@Column 
 	private String typeOfMedicine;
 	@Column
-	private FormOfMedicine formOfMedicine;
+	private String formOfMedicine;
 	@ElementCollection
 	private List<String> composition;
 	@Column
@@ -43,7 +43,7 @@ public class Medicine {
 	
 	public Medicine() {}
 	
-	public Medicine(Long id, Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine,
+	public Medicine(Long id, Long code, String name, String typeOfMedicine, String formOfMedicine,
 			List<String> composition, String manufactured, MedicinePublishingType publishingType,
 			List<String> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy) {
 		super();
@@ -92,11 +92,11 @@ public class Medicine {
 		this.typeOfMedicine = typeOfMedicine;
 	}
 
-	public FormOfMedicine getFormOfMedicine() {
+	public String getFormOfMedicine() {
 		return formOfMedicine;
 	}
 
-	public void setFormOfMedicine(FormOfMedicine formOfMedicine) {
+	public void setFormOfMedicine(String formOfMedicine) {
 		this.formOfMedicine = formOfMedicine;
 	}
 

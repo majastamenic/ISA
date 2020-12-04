@@ -1,6 +1,6 @@
 package com.isa.pharmacy.controller.dto;
 
-public class MedicineDto {
+public class MedicineDtoList {
 	
 	private Long code;
 	private String name;
@@ -8,12 +8,12 @@ public class MedicineDto {
 	private String form;
 	private String manufactured;
 	private String publishingType;
-	private String node;
+	private String note;
 	
-	public MedicineDto() {}
-
-	public MedicineDto(Long code, String name, String type, String form, String manufactured, String publishingType,
-			String node) {
+	public MedicineDtoList() {}
+	
+	public MedicineDtoList(Long code, String name, String type, String form, String manufactured, String publishingType,
+			String note) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -21,63 +21,49 @@ public class MedicineDto {
 		this.form = form;
 		this.manufactured = manufactured;
 		this.publishingType = publishingType;
-		this.node = node;
+		this.note = note;
 	}
-
 	public Long getCode() {
 		return code;
 	}
-
 	public void setCode(Long code) {
 		this.code = code;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getType() {
 		return type;
 	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
-
 	public String getForm() {
 		return form;
 	}
-
 	public void setForm(String form) {
 		this.form = form;
 	}
-
 	public String getManufactured() {
 		return manufactured;
 	}
-
 	public void setManufactured(String manufactured) {
 		this.manufactured = manufactured;
 	}
-
 	public String getPublishingType() {
 		return publishingType;
 	}
-
 	public void setPublishingType(String publishingType) {
 		this.publishingType = publishingType;
 	}
-
-	public String getNode() {
-		return node;
+	public String getNote() {
+		return note;
 	}
-
-	public void setNode(String node) {
-		this.node = node;
+	public void setNote(String note) {
+		this.note = note;
 	}
 	
 	
