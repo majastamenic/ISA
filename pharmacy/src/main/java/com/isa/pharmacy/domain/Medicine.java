@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 
 @Entity

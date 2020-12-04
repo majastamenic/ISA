@@ -1,0 +1,32 @@
+<div class="ePrescription-page">
+    <div class="form">
+      <form class="ePrescription-form">
+        <h3>ePrescription</h3>
+        <table>
+          <tbody>
+            <tr>
+              <td><label>Code</label></td>
+              <td><label>{{ePrescription.code}}</label></td>
+            </tr>
+            <tr>
+              <td><label>Patient name</label></td>
+              <td><label>{{ePrescription.patientName}}</label></td>
+            </tr>
+            <tr>
+              <td><label>Date of issue</label></td>
+              <td><label>{{ePrescription.date}}</label></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <form class="action-form">
+            <h3 class="h32">Medicine</h3>
+            <ul name="hospital-list" class="list">
+                <li *ngFor="let medicine of medicinesList">{{medicine.name}}</li>
+            </ul>
+        </form>
+          <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        </form>
+    </div>
+  </div>
+  

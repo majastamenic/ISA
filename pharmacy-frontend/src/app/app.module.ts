@@ -11,6 +11,8 @@ import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
+import { EPrescriptionComponent } from './component/e-prescription/e-prescription.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import { MedicineComponent } from './component/medicine/medicine.component';
     HospitalComponent,
     ActionsBenefitsComponent,
     MedicineComponent,
+    EPrescriptionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    QRCodeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
