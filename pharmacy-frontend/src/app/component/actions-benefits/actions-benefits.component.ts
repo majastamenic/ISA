@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionsBenefitsService } from 'src/app/service/actions-benefits.service';
-import { HospitalService } from 'src/app/service/hospital.service.service';
+import { HospitalService } from 'src/app/service/hospital.service';
 import { ActionsBenefits, ActionsBenefitsDto } from './model/actions-benefits-model';
 
 @Component({

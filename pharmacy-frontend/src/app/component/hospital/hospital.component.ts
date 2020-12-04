@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HospitalService } from 'src/app/service/hospital.service.service';
+import { HospitalService } from 'src/app/service/hospital.service';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
 import { HospitalRegistrationDto, Hospital } from './model/hospital-model';
 
