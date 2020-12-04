@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
+import { MedicineComponent } from './component/medicine/medicine.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
     HomeComponent,
     HospitalComponent,
     ActionsBenefitsComponent,
+    MedicineComponent,
   ],
   imports: [
     BrowserModule,

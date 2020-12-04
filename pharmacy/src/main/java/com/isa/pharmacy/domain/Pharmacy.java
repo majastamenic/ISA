@@ -17,6 +17,7 @@ public class Pharmacy {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	//TODO: Ime i apikey jedinstveni?
 	@Column
 	private String name;
 	@OneToMany

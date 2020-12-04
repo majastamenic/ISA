@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 
 @Entity
@@ -26,7 +27,7 @@ public class Medicine {
 	@Column 
 	private String typeOfMedicine;
 	@Column
-	private String formOfMedicine;
+	private FormOfMedicine formOfMedicine;
 	@ElementCollection
 	private List<String> composition;
 	@Column
@@ -42,7 +43,7 @@ public class Medicine {
 	
 	public Medicine() {}
 	
-	public Medicine(Long id, Long code, String name, String typeOfMedicine, String formOfMedicine,
+	public Medicine(Long id, Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine,
 			List<String> composition, String manufactured, MedicinePublishingType publishingType,
 			List<String> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy) {
 		super();
@@ -91,11 +92,11 @@ public class Medicine {
 		this.typeOfMedicine = typeOfMedicine;
 	}
 
-	public String getFormOfMedicine() {
+	public FormOfMedicine getFormOfMedicine() {
 		return formOfMedicine;
 	}
 
-	public void setFormOfMedicine(String formOfMedicine) {
+	public void setFormOfMedicine(FormOfMedicine formOfMedicine) {
 		this.formOfMedicine = formOfMedicine;
 	}
 

@@ -13,7 +13,9 @@ import com.isa.pharmacy.repository.HospitalRepository;
 public class HospitalService {
 	@Autowired
 	private HospitalRepository hospitalRepository;
+	
 	//Query za promalazak apoteke	
+	
 	public Hospital create(Hospital hospital) {
 		Hospital existingHospital = hospitalRepository.findByEmail(hospital.getEmail());
 		if (existingHospital == null) {
