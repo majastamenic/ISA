@@ -1,5 +1,6 @@
 package com.isa.pharmacy.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,8 +14,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table 
-public class ePrescription {
+public class EPrescription implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -27,9 +32,9 @@ public class ePrescription {
 	@ElementCollection		//TODO: Umesto liste stringova, lista objekata?
 	private List<String> listOfMedication; //Sifra leka, naziv i kolicina
 	
-	public ePrescription() {}	
+	public EPrescription() {}	
 	
-	public ePrescription(Long id, String code, String patientName, Date dateOfIssue, List<String> listOfMedication) {
+	public EPrescription(Long id, String code, String patientName, Date dateOfIssue, List<String> listOfMedication) {
 		super();
 		this.id = id;
 		this.code = code;

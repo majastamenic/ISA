@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.ePrescription;
-import com.isa.pharmacy.service.ePrescriptionService;
+import com.isa.pharmacy.domain.EPrescription;
+import com.isa.pharmacy.service.EPrescriptionService;
+
 
 @RestController
 @RequestMapping("/ePrescription")
@@ -19,20 +20,22 @@ import com.isa.pharmacy.service.ePrescriptionService;
 public class ePrescriptionController {
 	
 	@Autowired
-	private ePrescriptionService ePrescriptionService;
+	private EPrescriptionService ePrescriptionService;
 	
 	@GetMapping
-	public List<ePrescription> getAll(){
+	public List<EPrescription> getAll(){
 		return ePrescriptionService.getAll();
 	}
+
 	
 	@GetMapping("/{id}")
-	public ePrescription getEPrescription(@PathVariable("id") Long id) {
-		ePrescription ePrescription = ePrescriptionService.getById(id);
+	public EPrescription getEPrescription(@PathVariable("id") Long id) {
+		EPrescription ePrescription = ePrescriptionService.getById(id);
 		if(ePrescription == null) {
 			throw new NotFoundException(String.format("User with id %s not found", id));
 		}
 		return ePrescription;
 	}
+	
 
 }
