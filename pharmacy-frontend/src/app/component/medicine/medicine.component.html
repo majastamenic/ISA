@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2>Medicine list</h2>
+    </div>
+    <div class="panel-body">
+        <table id="medicine" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Form</th>
+                    <th>Manufactured</th>
+                    <th>Publishing type</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medicine of medicines">
+                    <td>{{medicine.code}}</td>
+                    <td>{{medicine.name}}</td>
+                    <td>{{medicine.type}}</td>
+                    <td>{{medicine.form}}</td>
+                    <td>{{medicine.manufactured}}</td>
+                    <td>{{medicine.publishingType}</td>
+                    <td>{{medicine.note}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
