@@ -8,9 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.isa.pharmacy.service.QRService;
 import com.isa.pharmacy.service.SftpService;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @SpringBootApplication
+@EnableScheduling
 public class PharmacyApplication {
 
 	public static void main(String[] args) throws Exception {
