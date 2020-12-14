@@ -22,5 +22,7 @@ public class ScheduledTasks {
                 UUID.randomUUID().toString()).setRandomInteger(ThreadLocalRandom.current().nextInt(1, 101)).build();
         final MessageResponseProto response = this.stub.transfer(message);
         System.out.println("Response: " + response.getResponse() + "; " + response.getStatus());
+        System.out.println(message);
+        System.out.println("");
     }
 }

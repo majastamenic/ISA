@@ -23,8 +23,8 @@ public class PharmacyApplication {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(PharmacyApplication.class, args);
-//		SftpService sftp = new SftpService();
-//		sftp.downloadFile();
+		SftpService sftp = new SftpService();
+		sftp.downloadFile();
 		QRService.generateQRCodeImage("This is my first QR Code", 350, 350, QRService.QR_CODE_IMAGE_PATH);
 	}
 
