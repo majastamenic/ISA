@@ -30,7 +30,7 @@ export class UploadQRComponent implements OnInit {
       this.uploadQrService.uploadFiled(this.file).subscribe((returnedEPrescription: EPrescription) => {
         this.ePrescription = returnedEPrescription;
         localStorage.setItem('ePrescription', JSON.stringify(returnedEPrescription));
- //       this.router.navigate(['ePrescription']);
+        this.router.navigate(['ePrescription']);
       }, 
       (err: any) => {
         alert('Error while reading QRcode ' + err.error.message);

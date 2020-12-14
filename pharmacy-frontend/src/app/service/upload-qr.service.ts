@@ -14,12 +14,7 @@ export class UploadQrSevice {
     const formData: FormData = new FormData();
 
     formData.append('file', file);
-    const req = new HttpRequest('POST', UPLOADQR_PATH, formData, {
-      reportProgress: true,
-      responseType: 'json'
-    });
-
-    return this.http.request(req);
+    return this.http.post(UPLOADQR_PATH, formData);
   }
 
 

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.EPrescriptionMapper;
 import com.isa.pharmacy.domain.EPrescription;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.service.EPrescriptionService;
@@ -36,6 +38,7 @@ public class EPrescriptionController {
 	@Autowired
 	private QRService qrService;
 
+
 	private String baseFileDestination = null;
 
 	public EPrescriptionController() throws FileNotFoundException {
@@ -44,10 +47,6 @@ public class EPrescriptionController {
 		// ResourceUtils.get("classpath:application.properties").getAbsolutePath();
 	}
 
-	@GetMapping
-	public List<EPrescription> getAll() {
-		return ePrescriptionService.getAll();
-	}
 
 	@GetMapping("/{id}")
 	public EPrescription getEPrescription(@PathVariable("id") Long id) {
@@ -59,36 +58,35 @@ public class EPrescriptionController {
 	}
 
 	@PostMapping("/uploadQr")
-	public ResponseEntity<?> searchQrCode(@RequestParam("file") MultipartFile file) throws IOException, com.google.zxing.NotFoundException {
+	public ResponseEntity<EPrescription> searchQrCode(@RequestParam("file") MultipartFile file) throws IOException, ParseException {
 		if (file.isEmpty()) {
 			throw new RuntimeException("File is empty!");
 		}
 		byte[] bytes = file.getBytes();
-        BufferedOutputStream stream =
-                new BufferedOutputStream(new FileOutputStream(new File(baseFileDestination + file.getOriginalFilename())));
-        stream.write(bytes);
-        stream.close();
-        
-        String text = qrService.readQrCode(baseFileDestination + file.getOriginalFilename());
-        System.out.println(text);
-        
-//        EPrescription ePrescription = ePrescriptionService.getByText(text);
-        
-		return ResponseEntity.ok().build();
+		BufferedOutputStream stream =
+				new BufferedOutputStream(new FileOutputStream(new File(baseFileDestination + file.getOriginalFilename())));
+		stream.write(bytes);
+		stream.close();
+
+		String text = qrService.readQrCode(baseFileDestination + file.getOriginalFilename());
+		System.out.println(text);
+
+		EPrescription ePrescription = ePrescriptionService.getByText(text);
+
+		return ResponseEntity.ok(ePrescription);
 	}
 
 	@GetMapping("/pharmacyWithMedicine")
 	public List<Pharmacy> getPharmaciesWithMedicine() {
 		List<Pharmacy> listPharmacies = new ArrayList<Pharmacy>();
-
 		return listPharmacies;
 	}
-	
+
 	@PostMapping
-	public EPrescription registration(@RequestBody String jsonObject) {
-		EPrescription ePrescription = new EPrescription();
+	public EPrescription saveByText(@RequestBody String text) throws ParseException {
+		EPrescription ePrescription = EPrescriptionMapper.mapStringToEPrescription(text);
+		ePrescription = ePrescriptionService.save(ePrescription);
 		return ePrescription;
-		//TODO: 
 	}
 
 }
