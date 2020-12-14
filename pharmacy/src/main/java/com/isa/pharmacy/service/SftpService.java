@@ -11,8 +11,8 @@ public class SftpService {
 	private SSHClient setup() throws IOException{
 		SSHClient sshClient= new SSHClient();
 		sshClient.addHostKeyVerifier(new PromiscuousVerifier());
-		sshClient.connect("192.168.0.16", 22);
-		sshClient.authPassword("user", "password");
+		sshClient.connect("192.168.1.12", 22);
+		sshClient.authPassword("tester", "password");
 		return sshClient;
 	};
 	
@@ -21,7 +21,7 @@ public class SftpService {
 		SSHClient sshClient= setup();
 		SFTPClient sftpClient= sshClient.newSFTPClient();
 		String dir= "src/main/resources/";
-		sftpClient.get("index.html", dir + "index.html");
+		sftpClient.get("example.txt", dir + "example.txt");
 		sftpClient.close();
 		sshClient.disconnect();
 	}

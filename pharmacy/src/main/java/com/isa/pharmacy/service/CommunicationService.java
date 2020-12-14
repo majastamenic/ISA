@@ -21,5 +21,6 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
 
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
+        System.out.println("uslo u communication");
     }
 }
