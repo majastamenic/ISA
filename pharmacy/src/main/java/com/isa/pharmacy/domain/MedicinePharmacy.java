@@ -32,12 +32,13 @@ public class MedicinePharmacy implements Serializable{
 	
 	public MedicinePharmacy() {}
 	
-	public MedicinePharmacy(long id, double price, Medicine medicine, Pharmacy pharmacy) {
+	public MedicinePharmacy(long id, double price, Medicine medicine, Pharmacy pharmacy, int quantity) {
 		super();
 		this.id = id;
 		this.price = price;
 		this.medicine = medicine;
 		this.pharmacy = pharmacy;
+		this.quantity = quantity;
 	}
 
 	public Long getId() {
@@ -71,7 +72,14 @@ public class MedicinePharmacy implements Serializable{
 	public void setPharmacy(Pharmacy pharmacy) {
 		this.pharmacy = pharmacy;
 	}
-	
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	
 	
 	

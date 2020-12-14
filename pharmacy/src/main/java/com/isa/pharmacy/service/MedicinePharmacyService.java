@@ -16,4 +16,8 @@ public class MedicinePharmacyService {
 	public List<MedicinePharmacy> getAll(){
 		return medicinePharmacyRepository.findAll();
 	}
+	
+	public MedicinePharmacy create(MedicinePharmacy medicinePharmacy) {
+		return medicinePharmacyRepository.save(medicinePharmacy);
+	}
 }

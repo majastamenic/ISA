@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table 
 public class EPrescription implements Serializable{
@@ -28,20 +30,29 @@ public class EPrescription implements Serializable{
 	@Column
 	private String patientName;	//Ime i prezime
 	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfIssue;
-	@ElementCollection		//TODO: Umesto liste stringova, lista objekata?
-	private List<String> listOfMedication; //Sifra leka, naziv i kolicina
+	@ElementCollection		
+	private List<MedicineEPrescription> listOfMedication; //Sifra leka, naziv i kolicina
+	
+	@Column
+	private String fileText;
 	
 	public EPrescription() {}	
 	
-	public EPrescription(Long id, String code, String patientName, Date dateOfIssue, List<String> listOfMedication) {
+	
+	public EPrescription(Long id, String code, String patientName, Date dateOfIssue, List<MedicineEPrescription> listOfMedication,
+			String fileText) {
 		super();
 		this.id = id;
 		this.code = code;
 		this.patientName = patientName;
 		this.dateOfIssue = dateOfIssue;
 		this.listOfMedication = listOfMedication;
+		this.fileText = fileText;
 	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -66,13 +77,19 @@ public class EPrescription implements Serializable{
 	public void setDateOfIssue(Date dateOfIssue) {
 		this.dateOfIssue = dateOfIssue;
 	}
-	public List<String> getListOfMedication() {
+	public List<MedicineEPrescription> getListOfMedication() {
 		return listOfMedication;
 	}
-	public void setListOfMedication(List<String> listOfMedication) {
+	public void setListOfMedication(List<MedicineEPrescription> listOfMedication) {
 		this.listOfMedication = listOfMedication;
 	}
-	
-	
+
+	public String getFileText() {
+		return fileText;
+	}
+
+	public void setFileText(String fileText) {
+		this.fileText = fileText;
+	}	
 
 }

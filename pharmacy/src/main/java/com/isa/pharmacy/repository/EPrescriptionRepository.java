@@ -12,5 +12,6 @@ public interface EPrescriptionRepository extends JpaRepository<EPrescription, Lo
 	
 	List<EPrescription> findAll();
 	EPrescription findEPrescriptionById(Long id);
+	EPrescription findEPrescriptionByFileText(String fileText);
 
 }

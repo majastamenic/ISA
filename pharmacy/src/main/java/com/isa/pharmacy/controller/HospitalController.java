@@ -1,12 +1,10 @@
 package com.isa.pharmacy.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +20,7 @@ import com.isa.pharmacy.service.HospitalService;
 
 @RestController
 @RequestMapping("/hospital")
-@CrossOrigin(value = "http://localhost:4200")
+//@CrossOrigin(value = "http://localhost:4200")
 public class HospitalController {
 	
 	@Autowired

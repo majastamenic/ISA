@@ -2,27 +2,32 @@ package com.isa.pharmacy.controller.dto;
 
 import java.util.List;
 
+import com.isa.pharmacy.domain.Pharmacy;
 
-
-import com.isa.pharmacy.domain.enums.MedicinePublishingType;
-
-public class MedicineDTO {
+public class MedicineDto {
 	private Long code;	
 	private String name;	
 	private String typeOfMedicine;	
 	private String formOfMedicine;	
 	private List<String> composition;	
 	private String manufactured;	
-	private MedicinePublishingType publishingType;	
+	private String publishingType;	
 	private List<String> replacementMedicines;
+	private double price;
+	private int quantity;
+	private Pharmacy pharmacy;
+	private String note;
+	private List<String> replacementMedicine;
 
 	
-	public MedicineDTO() {
+	public MedicineDto() {
 		super();
 	}
-	
-	public MedicineDTO(Long code, String name, String typeOfMedicine, String formOfMedicine, List<String> composition,
-			String manufactured, MedicinePublishingType publishingType, List<String> replacementMedicines) {
+
+
+	public MedicineDto(Long code, String name, String typeOfMedicine, String formOfMedicine, List<String> composition,
+			String manufactured, String publishingType, List<String> replacementMedicines, double price,
+			int quantity, Pharmacy pharmacy, String note, List<String> replacementMedicine) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -32,7 +37,16 @@ public class MedicineDTO {
 		this.manufactured = manufactured;
 		this.publishingType = publishingType;
 		this.replacementMedicines = replacementMedicines;
+		this.price = price;
+		this.quantity = quantity;
+		this.pharmacy = pharmacy;
+		this.note = note;
+		this.replacementMedicine = replacementMedicine;
 	}
+
+	
+	
+
 	public Long getCode() {
 		return code;
 	}
@@ -93,12 +107,12 @@ public class MedicineDTO {
 	}
 
 
-	public MedicinePublishingType getPublishingType() {
+	public String getPublishingType() {
 		return publishingType;
 	}
 
 
-	public void setPublishingType(MedicinePublishingType publishingType) {
+	public void setPublishingType(String publishingType) {
 		this.publishingType = publishingType;
 	}
 
@@ -113,6 +127,57 @@ public class MedicineDTO {
 	}
 
 
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
+	public Pharmacy getPharmacy() {
+		return pharmacy;
+	}
+
+
+	public void setPharmacy(Pharmacy pharmacy) {
+		this.pharmacy = pharmacy;
+	}
+
+
+	public String getNote() {
+		return note;
+	}
+
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+
+	public List<String> getReplacementMedicine() {
+		return replacementMedicine;
+	}
+
+
+	public void setReplacementMedicine(List<String> replacementMedicine) {
+		this.replacementMedicine = replacementMedicine;
+	}
+	
+	
+	
 	
 	
 }

@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.isa.pharmacy.domain.enums.MedicinePublishingType;
-
 @Entity
 @Table
 public class Medicine implements Serializable{
@@ -36,8 +34,8 @@ public class Medicine implements Serializable{
 	private List<String> composition;
 	@Column
 	private String manufactured;
-	@Column
-	private MedicinePublishingType publishingType;
+	@Column	//TODO: staviti enum
+	private String publishingType;
 	@ElementCollection
 	private List<String> replacementMedicines;
 	@Column
@@ -48,7 +46,7 @@ public class Medicine implements Serializable{
 	public Medicine() {}
 	
 	public Medicine(Long id, Long code, String name, String typeOfMedicine, String formOfMedicine,
-			List<String> composition, String manufactured, MedicinePublishingType publishingType,
+			List<String> composition, String manufactured, String publishingType,
 			List<String> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy) {
 		super();
 		this.id = id;
@@ -120,11 +118,11 @@ public class Medicine implements Serializable{
 		this.manufactured = manufactured;
 	}
 
-	public MedicinePublishingType getPublishingType() {
+	public String getPublishingType() {
 		return publishingType;
 	}
 
-	public void setPublishingType(MedicinePublishingType publishingType) {
+	public void setPublishingType(String publishingType) {
 		this.publishingType = publishingType;
 	}
 
