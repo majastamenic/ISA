@@ -48,4 +48,31 @@ public class EmailService {
 		System.out.println("Send email");
 	}
 
+	@Async
+	public void notifyHospitalSftp(String hospitalEmail, String patientName)
+			throws MailException, InterruptedException, MessagingException {
+		System.out.println("sending email");
+		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+		simpleMailMessage.setFrom(mailSender);
+		simpleMailMessage.setTo(hospitalEmail);
+		simpleMailMessage.setSubject("Prescription is received");
+		simpleMailMessage.setText("Dear Hospital,\nPharmacy received prescription with name: " + patientName);
+
+		javaMailSender.send(simpleMailMessage);
+		System.out.println("send email");
+	}
+
+	@Async
+	public void notifyPharmacySftp(String pharmacyEmail)
+			throws MailException, InterruptedException, MessagingException {
+		System.out.println("sending email");
+		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+		simpleMailMessage.setFrom(mailSender);
+		simpleMailMessage.setTo(pharmacyEmail);
+		simpleMailMessage.setSubject("Generated PDF");
+		simpleMailMessage.setText("Dear Pharmacy,\nPDF is generated:");
+
+		javaMailSender.send(simpleMailMessage);
+		System.out.println("send email");
+	}
 }
