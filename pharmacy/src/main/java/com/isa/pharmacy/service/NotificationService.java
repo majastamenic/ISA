@@ -28,9 +28,9 @@ public class NotificationService {
 
         String line = br.readLine();
         if(line == null){
-            System.out.println("File is empty.");
+            //System.out.println("File is empty.");
         }else{
-            System.out.println("File isn't empty.");
+            //System.out.println("File isn't empty.");
             try {
                 System.out.println(line);
                 emailsService.notifyHospitalSftp(hospitalEmail, line);
@@ -42,7 +42,7 @@ public class NotificationService {
                 e.printStackTrace();
             }
             fileDisposer(file);
-            System.out.println("File is now empty.");
+            //System.out.println("File is now empty.");
             br.close();
 
         }

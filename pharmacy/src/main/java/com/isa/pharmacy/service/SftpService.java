@@ -17,7 +17,7 @@ public class SftpService {
 	};
 	
 	public void downloadFile() throws IOException {
-		System.out.println("Usao");
+		//System.out.println("skida fajl sa Rebex-a");
 		SSHClient sshClient= setup();
 		SFTPClient sftpClient= sshClient.newSFTPClient();
 		String dir= "src/main/resources/";

@@ -16,13 +16,13 @@ public class ScheduledTasks {
     @GrpcClient("netgrpcserver")
     private NetGrpcServiceGrpc.NetGrpcServiceBlockingStub stub;
 
-    @Scheduled(fixedRate = 3000)
+    /*@Scheduled(fixedRate = 3300)
     public void sendMessageToServer() {
        MessageProto message = MessageProto.newBuilder().setMessage("Random message from Java client: " +
                 UUID.randomUUID().toString()).setRandomInteger(ThreadLocalRandom.current().nextInt(1, 101)).build();
         final MessageResponseProto response = this.stub.transfer(message);
         System.out.println("Response: " + response.getResponse() + "; " + response.getStatus());
         System.out.println(message);
-        System.out.println("");
-    }
+        System.out.println("uslo u scheduled");
+    }*/
 }

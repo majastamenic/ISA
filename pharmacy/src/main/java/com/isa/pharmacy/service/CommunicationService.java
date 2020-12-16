@@ -14,13 +14,13 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
 
     @Override
     public void communicate(MessageProto request, StreamObserver<MessageResponseProto> responseObserver) {
-        System.out.println("Message: " + request.getMessage() + "; randomInteger: " + request.getRandomInteger());
-
+        System.out.println("You are now communicating with hospital.");
+        System.out.println("Message from Hospital: " + request.getMessage());
+        String poruka = "Hello from Pharmacy, medication you asked for " + request.getMessage() + " we ";
         MessageResponseProto responseMessage = MessageResponseProto.newBuilder()
-                .setResponse("Spring Boot: " + UUID.randomUUID().toString()).setStatus("Status 200").build();
-
+                .setResponse(poruka).setStatus("have it.").build();
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
-        System.out.println("uslo u communication");
+        System.out.println(responseMessage);
     }
 }
