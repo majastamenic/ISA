@@ -27,10 +27,7 @@ public class NotificationService {
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         String line = br.readLine();
-        if(line == null){
-            //System.out.println("File is empty.");
-        }else{
-            //System.out.println("File isn't empty.");
+        if(line != null){
             try {
                 System.out.println(line);
                 emailsService.notifyHospitalSftp(hospitalEmail, line);
@@ -42,9 +39,7 @@ public class NotificationService {
                 e.printStackTrace();
             }
             fileDisposer(file);
-            //System.out.println("File is now empty.");
             br.close();
-
         }
     }
 
