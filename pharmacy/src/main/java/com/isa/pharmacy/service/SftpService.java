@@ -8,11 +8,12 @@ import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
 
 public class SftpService {
 
-	private SSHClient setup() throws IOException{
+	private SSHClient setup() throws IOException {
 		SSHClient sshClient= new SSHClient();
 		sshClient.addHostKeyVerifier(new PromiscuousVerifier());
 		sshClient.connect("192.168.1.12", 22);
 		sshClient.authPassword("tester", "password");
+
 		return sshClient;
 	};
 	

@@ -16,9 +16,15 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
     public void communicate(MessageProto request, StreamObserver<MessageResponseProto> responseObserver) {
         System.out.println("You are now communicating with hospital.");
         System.out.println("Message from Hospital: " + request.getMessage());
-        String poruka = "Hello from Pharmacy, medication you asked for " + request.getMessage() + " we ";
+        boolean status = true;
+        String result;
+        if(status)
+            result = " we have it.";
+        else
+            result = " we don't have it.";
+        String message = "Hello from Pharmacy, medication you asked for " + request.getMessage() + result;
         MessageResponseProto responseMessage = MessageResponseProto.newBuilder()
-                .setResponse(poruka).setStatus("have it.").build();
+                .setResponse(message).setStatus(status).build();
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
         System.out.println(responseMessage);

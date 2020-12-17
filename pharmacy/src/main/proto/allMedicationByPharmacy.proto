@@ -3,11 +3,11 @@ syntax = "proto3";
 option java_multiple_files = true;
 package rs.ac.uns.ftn.grpc;
 
-message MessageProto {
+message ProtoMedication {
   string message = 1;
 }
 
-message MessageResponseProto {
+message ResponseProtoMedication {
   string response = 1;
   bool status = 2;
 }
