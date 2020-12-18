@@ -26,17 +26,14 @@ public class Hospital implements Serializable{
 	private String email;
 	@Column
 	private String name;
-	@OneToMany
-	private List<Pharmacy> pharmacies;
 		
 	public Hospital() {}
 
-	public Hospital(Long id, String email, String name, List<Pharmacy> phamacies) {
+	public Hospital(Long id, String email, String name) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.name = name;
-		this.pharmacies = phamacies;
 	}
 
 	public Long getId() {
@@ -63,13 +60,4 @@ public class Hospital implements Serializable{
 		this.name = name;
 	}
 
-	public List<Pharmacy> getPharmacies() {
-		return pharmacies;
-	}
-
-	public void setPharmacies(List<Pharmacy> pharmacies) {
-		this.pharmacies = pharmacies;
-	}
-	
-	
 }

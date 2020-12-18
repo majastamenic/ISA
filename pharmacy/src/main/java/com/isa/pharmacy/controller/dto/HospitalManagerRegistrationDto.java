@@ -13,16 +13,13 @@ public class HospitalManagerRegistrationDto {
     private String email;
 	@NotEmpty(message = "{validation.name.NotEmpty}")
 	private String name;
-	@NotNull
-	private Pharmacy pharmacy;
 	
 	public HospitalManagerRegistrationDto() {}
 	
-	public HospitalManagerRegistrationDto(String name, String email, Pharmacy pharmacy) {
+	public HospitalManagerRegistrationDto(String name, String email) {
 		super();
 		this.email = email;
 		this.name = name;
-		this.pharmacy = pharmacy;
 	}
 
 	public String getEmail() {
@@ -40,15 +37,5 @@ public class HospitalManagerRegistrationDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Pharmacy getPharmacy() {
-		return pharmacy;
-	}
-
-	public void setPharmacy(Pharmacy pharmacy) {
-		this.pharmacy = pharmacy;
-	}
-	
-	
 
 }

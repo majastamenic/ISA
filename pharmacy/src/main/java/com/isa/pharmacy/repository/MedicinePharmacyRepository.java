@@ -16,10 +16,6 @@ public interface MedicinePharmacyRepository extends JpaRepository<MedicinePharma
 	MedicinePharmacy findMedicinePharmacyByPrice(double price);
 	
 	MedicinePharmacy findMedicinePharmacyByQuantity(int quantity);	
-	
+
 	List<MedicinePharmacy> findAll();
-
-	List<MedicinePharmacy> getMedicinesFromPharmacy(Pharmacy pharmacy);
-
-	Boolean hasPharmacyMedication(String nameOfMedication);
 }

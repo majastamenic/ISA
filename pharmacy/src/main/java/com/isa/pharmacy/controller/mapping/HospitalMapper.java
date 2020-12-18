@@ -15,18 +15,10 @@ public class HospitalMapper {
 		if (hospital == null) 
 		{
 			hospital = new Hospital();
-			hospital.setPharmacies(new ArrayList<>());
 			hospital.setName(hospitalDto.getName());
 			hospital.setEmail(hospitalDto.getEmail());
 			hospital.setId(new Random().nextLong());
 		}
-		
-		//Kupi sve id-jeve apoteka i stavlja ih u listu
-		List<Long> pharmaciesIds = hospital.getPharmacies().stream().map(Pharmacy::getId).collect(Collectors.toList());
-		if (!(pharmaciesIds.contains(hospitalDto.getPharmacy().getId())))
-			hospital.getPharmacies().add(hospitalDto.getPharmacy());
-
-		
 		return hospital;
 	}
 }
