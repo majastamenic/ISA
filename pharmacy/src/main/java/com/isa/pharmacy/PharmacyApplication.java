@@ -29,7 +29,7 @@ public class PharmacyApplication {
 		}catch (Exception e){
 			System.out.println("Rebex doesn't work. Try again later");
 		}
-		QRService.generateQRCodeImage("This is my first QR Code", 350, 350, QRService.QR_CODE_IMAGE_PATH);
+//		QRService.generateQRCodeImage("This is my first QR Code", 350, 350, QRService.QR_CODE_IMAGE_PATH);
 	}
 
 }
