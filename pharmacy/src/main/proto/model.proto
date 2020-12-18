@@ -3,13 +3,24 @@ syntax = "proto3";
 option java_multiple_files = true;
 package rs.ac.uns.ftn.grpc;
 
+// isAvailable
 message MessageProto {
   string message = 1;
+  // name apoteke
 }
 
 message MessageResponseProto {
   string response = 1;
   bool status = 2;
+}
+
+// getMedications
+message ProtoMedications {
+  string pharmacyName = 1;
+}
+
+message ProtoResponseMedications{
+  repeated string medicationName = 1;
 }
 
 
