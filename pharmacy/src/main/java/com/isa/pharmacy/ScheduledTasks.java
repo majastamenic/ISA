@@ -3,8 +3,6 @@ package com.isa.pharmacy;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import rs.ac.uns.ftn.grpc.MessageProto;
-import rs.ac.uns.ftn.grpc.MessageResponseProto;
 import rs.ac.uns.ftn.grpc.NetGrpcServiceGrpc;
 
 import java.util.UUID;

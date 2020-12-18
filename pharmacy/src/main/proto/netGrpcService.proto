@@ -5,6 +5,6 @@ package rs.ac.uns.ftn.grpc;
 import "model.proto";
 
 service NetGrpcService {
-  rpc transfer (MessageProto) returns (MessageResponseProto);
+  rpc transfer (ProtoAvailableMedication) returns (ProtoResponseAvailableMedication);
   rpc transferMedications (ProtoMedications) returns (ProtoResponseMedications);
 }

@@ -5,7 +5,6 @@ package rs.ac.uns.ftn.grpc;
 import "model.proto";
 
 service SpringGrpcService {
-  rpc communicate (MessageProto) returns (MessageResponseProto);
+  rpc communicate (ProtoAvailableMedication) returns (ProtoResponseAvailableMedication);
   rpc communicateMedications (ProtoMedications) returns (ProtoResponseMedications);
-
 }
