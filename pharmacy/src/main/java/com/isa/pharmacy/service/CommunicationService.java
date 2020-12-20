@@ -21,8 +21,7 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
         System.out.println("You are now communicating with hospital.");
         System.out.println("Message from Hospital: " + request.getPharmacyName());
         String result;
-        String name = "Jankovic";        //ispraviti
-        boolean status = medsPharmacy.hasPharmacyMedication(name, request.getMedicationName());
+        boolean status = medsPharmacy.hasPharmacyMedication(request.getPharmacyName(), request.getMedicationName());
         if(status)
             result = " we have it.";
         else
@@ -35,15 +34,20 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
         System.out.println(responseMessage);
     }
 
-    /*@Override
+    @Override
     public void communicateMedications(ProtoMedications request, StreamObserver<ProtoResponseMedications> responseObserver) {
         System.out.println("You are now communicating with hospital.");
         System.out.println("Message from Hospital to pharmacy: " + request.getPharmacyName());
         List<String> medications = new ArrayList<>();
-        ProtoResponseMedications responseMessage = ProtoResponseMedications.newBuilder()
-                .build();
+        medications = medsPharmacy.getMedicinesFromPharmacy(request.getPharmacyName());
+        ProtoResponseMedications.Builder b = ProtoResponseMedications.newBuilder();
+        for (String m: medications) {
+            b.addMedicationName(m);
+            //System.out.println(m);
+        }
+        ProtoResponseMedications responseMessage = b.build();
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
         System.out.println(responseMessage);
-    }*/
+    }
 }
