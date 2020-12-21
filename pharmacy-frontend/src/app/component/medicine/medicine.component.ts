@@ -10,7 +10,28 @@ import { Medicine } from './model/medicine-model';
 })
 export class MedicineComponent implements OnInit {
 
-  medicines: any[] | undefined;
+  medicines: Medicine[] = [
+    {
+    code: 123417,
+    name: "Asprin",
+    type: "A",
+    form: "tablet",
+    manufactured: "Bayer",
+    publishingType: "without prescription",
+    amount: 15,
+    note: "/",
+  },
+  {
+    code: 129897,
+    name: "Brufen",
+    type: "A",
+    form: "tablet",
+    manufactured: "Bayer",
+    publishingType: "without prescription",
+    amount: 20,
+    note: "/",
+  },
+];
 
   constructor(private medicineService: MedicineService) { }
 

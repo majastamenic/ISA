@@ -7,5 +7,6 @@ export interface Medicine{
     form: string;
     manufactured: string;
     publishingType: string;
-    node: string;
+    amount: number;
+    note: string;
 }

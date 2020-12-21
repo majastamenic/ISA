@@ -24,25 +24,22 @@ public class MedicinePharmacyService {
 		return medicinePharmacyRepository.save(medicinePharmacy);
 	}
 
-	public List<String> getMedicinesFromPharmacy(String pharmacyName){
-		List<MedicinePharmacy> medicines = medicinePharmacyRepository.findAll();
-		List<String> medicationNames = new ArrayList<String>();
-		for (MedicinePharmacy medication : medicines) {
+	public List<MedicinePharmacy> getMedicinesFromPharmacy(String pharmacyName){
+		List<MedicinePharmacy> medicationNames = new ArrayList<MedicinePharmacy>();
+		for (MedicinePharmacy medication : medicinePharmacyRepository.findAll()) {
 			if(medication.getPharmacy().getName().equals(pharmacyName)){
-				medicationNames.add(medication.getMedicine().getName());
+				medicationNames.add(medication);
 			}
 		}
 		return medicationNames;
 	}
 
-	public boolean hasPharmacyMedication(String pharmacyName, String nameOfMedication){
-		List<MedicinePharmacy> medicines = medicinePharmacyRepository.findAll();
-		for (MedicinePharmacy medication : medicines) {
+	public int hasPharmacyMedication(String pharmacyName, String nameOfMedication){
+		for (MedicinePharmacy medication : medicinePharmacyRepository.findAll()) {
 			if (medication.getMedicine().getName().equals(nameOfMedication) && medication.getPharmacy().getName().equals(pharmacyName)) {
-				if (medication.getQuantity() > 0)
-					return true;
+				return medication.getQuantity();
 			}
 		}
-		return false;
+		return -1;
 	}
 }

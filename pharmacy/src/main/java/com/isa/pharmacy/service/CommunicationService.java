@@ -1,6 +1,7 @@
 package com.isa.pharmacy.service;
 
 
+import com.isa.pharmacy.domain.MedicinePharmacy;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,11 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
     public void communicate(ProtoAvailableMedication request, StreamObserver<ProtoResponseAvailableMedication> responseObserver) {
         System.out.println("You are now communicating with hospital.");
         System.out.println("Message from Hospital: " + request.getPharmacyName());
-        String result;
-        boolean status = medsPharmacy.hasPharmacyMedication(request.getPharmacyName(), request.getMedicationName());
-        if(status)
-            result = " we have it.";
-        else
-            result = " we do not have it.";
-        String message = "Hello from Pharmacy, medication you asked for " + request.getMedicationName() + result;
+        int quantity = medsPharmacy.hasPharmacyMedication(request.getPharmacyName(), request.getMedicationName());
+
         ProtoResponseAvailableMedication responseMessage = ProtoResponseAvailableMedication.newBuilder()
-                .setResponse(message).setStatus(status).build();
+                .setAmount(quantity).build();
+
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
         System.out.println(responseMessage);
@@ -38,12 +35,10 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
     public void communicateMedications(ProtoMedications request, StreamObserver<ProtoResponseMedications> responseObserver) {
         System.out.println("You are now communicating with hospital.");
         System.out.println("Message from Hospital to pharmacy: " + request.getPharmacyName());
-        List<String> medications = new ArrayList<>();
-        medications = medsPharmacy.getMedicinesFromPharmacy(request.getPharmacyName());
+
         ProtoResponseMedications.Builder b = ProtoResponseMedications.newBuilder();
-        for (String m: medications) {
-            b.addMedicationName(m);
-            //System.out.println(m);
+        for (MedicinePharmacy m: medsPharmacy.getMedicinesFromPharmacy(request.getPharmacyName())) {
+            b.addMedication(ProtoMedication.newBuilder().setName(m.getMedicine().getName()).setAmount(m.getQuantity()));
         }
         ProtoResponseMedications responseMessage = b.build();
         responseObserver.onNext(responseMessage);

@@ -33,7 +33,7 @@ public class HospitalController {
 		hospital = HospitalMapper.mapRegistrationDtoToHospital(registrationHospitalDto, hospital);
 		hospital = hospitalService.create(hospital);
 		try {
-			emailService.sendApiKey(hospital.getEmail(), "PharmacySystem");
+			emailService.sendApiKey(hospital.getEmail(), "1dfre-astfc-hfe5g-a65Sd");
 		}catch( Exception e ){
 			logger.info("Greska prilikom slanja emaila: " + e.getMessage());
 		}

@@ -3,6 +3,7 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.EPrescription;
 import com.isa.pharmacy.domain.Medicine;
+import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,8 @@ public class MedicinePharmacyController {
 	private MedicinePharmacyService medicinePharmacyService;
 
 	@GetMapping("/getAllMedicines/{pharmacyName}")
-	public List<String> getMedicinesFromPharmacy(@PathVariable("pharmacyName") String pharmacyName) {
-		List<String> listMedicines = medicinePharmacyService.getMedicinesFromPharmacy(pharmacyName);
+	public List<MedicinePharmacy> getMedicinesFromPharmacy(@PathVariable("pharmacyName") String pharmacyName) {
+		List<MedicinePharmacy> listMedicines = medicinePharmacyService.getMedicinesFromPharmacy(pharmacyName);
 		if (listMedicines.isEmpty()) {
 			throw new NotFoundException(String.format("Pharmacy %s doesn't have any medicine", pharmacyName));
 		}
@@ -29,7 +30,7 @@ public class MedicinePharmacyController {
 	}
 
 	@PostMapping("/hasPharmacyMedication/{pharmacyName}")
-	public Boolean hasPharmacyMedication(@PathVariable("pharmacyName") String pharmacyName, @RequestBody String medicineName){
+	public int hasPharmacyMedication(@PathVariable("pharmacyName") String pharmacyName, @RequestBody String medicineName){
 		return  medicinePharmacyService.hasPharmacyMedication(pharmacyName, medicineName);
 	}
 
