@@ -36,7 +36,7 @@ public class MedicinePharmacyService {
 
 	public int hasPharmacyMedication(String pharmacyName, String nameOfMedication){
 		for (MedicinePharmacy medication : medicinePharmacyRepository.findAll()) {
-			if (medication.getMedicine().getName().equals(nameOfMedication) && medication.getPharmacy().getName().equals(pharmacyName)) {
+			if (medication.getMedicine().getName().toLowerCase().equals(nameOfMedication.toLowerCase()) && medication.getPharmacy().getName().equals(pharmacyName)) {
 				return medication.getQuantity();
 			}
 		}
