@@ -1,7 +1,9 @@
 package com.isa.pharmacy.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Pharmacy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,7 +17,9 @@ public interface MedicinePharmacyRepository extends JpaRepository<MedicinePharma
 	
 	MedicinePharmacy findMedicinePharmacyByPrice(double price);
 	
-	MedicinePharmacy findMedicinePharmacyByQuantity(int quantity);	
+	MedicinePharmacy findMedicinePharmacyByQuantity(int quantity);
 
 	List<MedicinePharmacy> findAll();
+
+	List<MedicinePharmacy> findMedicinePharmacyByPharmacy(Pharmacy pharmacy);
 }
