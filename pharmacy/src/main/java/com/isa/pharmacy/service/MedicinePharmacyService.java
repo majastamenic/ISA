@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.repository.PharmacyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,15 +16,26 @@ import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 public class MedicinePharmacyService {
 	@Autowired
 	private MedicinePharmacyRepository medicinePharmacyRepository;
+	@Autowired
+	private PharmacyRepository pharmacyRepository;
+
+	
+	public MedicinePharmacy create(MedicinePharmacy medicinePharmacy) {
+		return medicinePharmacyRepository.save(medicinePharmacy);
+	}
 
 	public List<MedicinePharmacy> getMedicinesFromPharmacy(String pharmacyName){
-		List<MedicinePharmacy> medicationNames = new ArrayList<>();
-		for (MedicinePharmacy medication : medicinePharmacyRepository.findAll()) {
-			if(medication.getPharmacy().getName().equals(pharmacyName)){
-				medicationNames.add(medication);
+		List<MedicinePharmacy> medicationNames = new ArrayList<MedicinePharmacy>();
+		List<MedicinePharmacy> medicinePharmacyList = medicinePharmacyRepository.findMedicinePharmacyByPharmacy(pharmacyRepository.findPharmacyByName(pharmacyName));
+		if(!medicinePharmacyList.isEmpty()){
+			for (MedicinePharmacy medication : medicinePharmacyRepository.findAll()) {
+				if(medication.getPharmacy().getName().equals(pharmacyName)){
+					medicationNames.add(medication);
+				}
 			}
+			return medicationNames;
 		}
-		return medicationNames;
+		return null;
 	}
 
 	public int hasPharmacyMedication(String pharmacyName, String nameOfMedication){
