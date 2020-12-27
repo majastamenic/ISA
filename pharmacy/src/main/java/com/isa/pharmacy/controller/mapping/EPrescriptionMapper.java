@@ -1,7 +1,6 @@
 package com.isa.pharmacy.controller.mapping;
 
 import java.sql.Date;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import com.isa.pharmacy.domain.MedicineEPrescription;
 
 public class EPrescriptionMapper {
 
-    public static EPrescription mapStringToEPrescription(String text) throws ParseException {
+    public static EPrescription mapStringToEPrescription(String text){
         EPrescription ePrescription = new EPrescription();
         String[] parts = text.split("\\r?\\n");
         String[] textParts = parts[1].split(":");
@@ -29,7 +28,7 @@ public class EPrescriptionMapper {
         ePrescription.setCode(splitText[2]);
         ePrescription.setDateOfIssue(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
-        List<MedicineEPrescription> listMedicine = new ArrayList<MedicineEPrescription>();
+        List<MedicineEPrescription> listMedicine = new ArrayList<>();
         MedicineEPrescription medicineEPrescription = new MedicineEPrescription();
         medicineEPrescription.setCode(new Random().nextLong());
         medicineEPrescription.setName(splitText[4]);

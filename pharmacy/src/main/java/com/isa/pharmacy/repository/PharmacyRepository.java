@@ -10,10 +10,9 @@ import com.isa.pharmacy.domain.Pharmacy;
 
 @Repository
 public interface PharmacyRepository extends JpaRepository<Pharmacy, Long>{
-	Pharmacy findPharmacyById(Long id);
+
 	Pharmacy findPharmacyByApiKey(String apiKey);
 	Pharmacy findPharmacyByName(String name);
-	@SuppressWarnings("unchecked")
 	Pharmacy save(Pharmacy p);
 	List<Pharmacy> findAll();
 }

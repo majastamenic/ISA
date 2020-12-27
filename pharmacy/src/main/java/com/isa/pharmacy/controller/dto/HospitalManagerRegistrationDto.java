@@ -3,8 +3,6 @@ package com.isa.pharmacy.controller.dto;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-import com.isa.pharmacy.domain.Pharmacy;
-import com.sun.istack.NotNull;
 
 public class HospitalManagerRegistrationDto {
 	

@@ -1,16 +1,12 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.EPrescription;
-import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.isa.pharmacy.service.MedicinePharmacyService;
 
-import javax.swing.text.StyledEditorKit;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

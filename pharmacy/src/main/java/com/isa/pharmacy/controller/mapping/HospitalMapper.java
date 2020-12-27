@@ -1,13 +1,9 @@
 package com.isa.pharmacy.controller.mapping;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import com.isa.pharmacy.controller.dto.HospitalManagerRegistrationDto;
 import com.isa.pharmacy.domain.Hospital;
-import com.isa.pharmacy.domain.Pharmacy;
 
 public class HospitalMapper {
 	

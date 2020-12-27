@@ -7,9 +7,6 @@ import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import rs.ac.uns.ftn.grpc.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @GrpcService
 public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServiceImplBase {

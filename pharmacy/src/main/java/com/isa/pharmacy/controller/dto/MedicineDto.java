@@ -17,7 +17,6 @@ public class MedicineDto {
 	private int quantity;
 	private Pharmacy pharmacy;
 	private String note;
-	private List<String> replacementMedicine;
 
 	
 	public MedicineDto() {
@@ -41,7 +40,6 @@ public class MedicineDto {
 		this.quantity = quantity;
 		this.pharmacy = pharmacy;
 		this.note = note;
-		this.replacementMedicine = replacementMedicine;
 	}
 
 	
@@ -167,17 +165,4 @@ public class MedicineDto {
 	}
 
 
-	public List<String> getReplacementMedicine() {
-		return replacementMedicine;
-	}
-
-
-	public void setReplacementMedicine(List<String> replacementMedicine) {
-		this.replacementMedicine = replacementMedicine;
-	}
-	
-	
-	
-	
-	
 }

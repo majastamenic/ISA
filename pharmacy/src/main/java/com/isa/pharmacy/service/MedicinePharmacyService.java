@@ -1,9 +1,9 @@
 package com.isa.pharmacy.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Pharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,17 +15,9 @@ import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 public class MedicinePharmacyService {
 	@Autowired
 	private MedicinePharmacyRepository medicinePharmacyRepository;
-	
-	public List<MedicinePharmacy> getAll(){
-		return medicinePharmacyRepository.findAll();
-	}
-	
-	public MedicinePharmacy create(MedicinePharmacy medicinePharmacy) {
-		return medicinePharmacyRepository.save(medicinePharmacy);
-	}
 
 	public List<MedicinePharmacy> getMedicinesFromPharmacy(String pharmacyName){
-		List<MedicinePharmacy> medicationNames = new ArrayList<MedicinePharmacy>();
+		List<MedicinePharmacy> medicationNames = new ArrayList<>();
 		for (MedicinePharmacy medication : medicinePharmacyRepository.findAll()) {
 			if(medication.getPharmacy().getName().equals(pharmacyName)){
 				medicationNames.add(medication);
@@ -41,5 +33,37 @@ public class MedicinePharmacyService {
 			}
 		}
 		return -1;
+	}
+
+	public List<Pharmacy> getPharmacyWithMedicines(ArrayList<Medicine> medicine){
+		List<Pharmacy> pharmacyList = new ArrayList<>();
+
+		return pharmacyList;
+	}
+
+	public List<MedicinePharmacy> getAll(){
+		return medicinePharmacyRepository.findAll();
+	}
+
+	public List<MedicinePharmacy> getMedicinePharmacyWithMedicines(ArrayList<Medicine> medicines){
+		List<MedicinePharmacy> medicinePharmacyList = new ArrayList<>();
+		for(MedicinePharmacy medicinePharmacy: medicinePharmacyRepository.findAll()){
+			for(Medicine medicine:medicines){
+				if(medicinePharmacy.getMedicine().equals(medicine))
+					medicinePharmacyList.add(medicinePharmacy);
+			}
+
+		}
+		return  medicinePharmacyList;
+	}
+
+	public List<MedicinePharmacy> getAllWithPharmacyName(String pharmacyName){
+		List<MedicinePharmacy> medicinePharmacyList = new ArrayList<>();
+		for(MedicinePharmacy medicinePharmacy: medicinePharmacyRepository.findAll()){
+			if(medicinePharmacy.getPharmacy().getName().equals(pharmacyName)){
+				medicinePharmacyList.add(medicinePharmacy);
+			}
+		}
+		return medicinePharmacyList;
 	}
 }

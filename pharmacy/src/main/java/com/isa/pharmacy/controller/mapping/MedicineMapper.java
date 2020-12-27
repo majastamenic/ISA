@@ -3,18 +3,20 @@ package com.isa.pharmacy.controller.mapping;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineDtoList;
 import com.isa.pharmacy.domain.Medicine;
+import com.isa.pharmacy.domain.MedicinePharmacy;
+import com.isa.pharmacy.service.MedicinePharmacyService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class MedicineMapper {
-
 	
 	public static MedicineDtoList mapMedicineDtoToMedicine(Medicine medicine) {
 		MedicineDtoList medicineDto = new MedicineDtoList();
 		medicineDto.setCode(medicine.getCode());
-		medicineDto.setForm(medicine.getFormOfMedicine().toString());
+		medicineDto.setForm(medicine.getFormOfMedicine());
 		medicineDto.setManufactured(medicine.getManufactured());
 		medicineDto.setName(medicine.getName());
 		medicineDto.setNote(medicine.getNote());
-		medicineDto.setPublishingType(medicine.getPublishingType().toString());
+		medicineDto.setPublishingType(medicine.getPublishingType());
 		medicineDto.setType(medicine.getTypeOfMedicine());
 		return medicineDto;
 	}

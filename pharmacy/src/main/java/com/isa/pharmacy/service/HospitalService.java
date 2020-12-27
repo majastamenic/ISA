@@ -11,11 +11,10 @@ import com.isa.pharmacy.repository.HospitalRepository;
 
 @Service
 public class HospitalService {
+
 	@Autowired
 	private HospitalRepository hospitalRepository;
-	
-	//Query za promalazak apoteke	
-	
+
 	public Hospital create(Hospital hospital) {
 		Hospital existingHospital = hospitalRepository.findByEmail(hospital.getEmail());
 		if (existingHospital == null) {
@@ -24,14 +23,8 @@ public class HospitalService {
 		throw new AlreadyExistsException(String.format("Hospital with email %s, already registered", hospital.getEmail()));
 	}
 
-	public Hospital getById(Long id) {
-		Hospital hospital = hospitalRepository.findHospitalById(id);
-		return hospital;
-	}	
-	
 	public Hospital getByEmail(String email) {
-		Hospital hospital = hospitalRepository.findByEmail(email);
-		return hospital;
+		return hospitalRepository.findByEmail(email);
 	}
 	
 	public List<Hospital> getAll(){

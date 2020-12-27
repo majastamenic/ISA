@@ -1,6 +1,5 @@
 package com.isa.pharmacy.service;
 
-import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +21,7 @@ public class EmailService {
 
 	@Async
 	public void sendApiKey(String hospitalEmail, String apiKey)
-			throws MailException, InterruptedException, MessagingException {
+			throws MailException{
 		System.out.println("sending email");
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		simpleMailMessage.setFrom(mailSender);
@@ -33,24 +32,11 @@ public class EmailService {
 		javaMailSender.send(simpleMailMessage);
 		System.out.println("send email");
 	}
-	
-	@Async
-	public void sendEmail(String email)
-			throws MailException, InterruptedException, MessagingException{
-		System.out.println("Sending email");
-		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-		simpleMailMessage.setFrom(mailSender);
-		simpleMailMessage.setTo(email);
-		simpleMailMessage.setSubject("APIKEY");
-		simpleMailMessage.setText("");
 
-		javaMailSender.send(simpleMailMessage);
-		System.out.println("Send email");
-	}
 
 	@Async
 	public void notifyHospitalSftp(String hospitalEmail, String patientName)
-			throws MailException, InterruptedException, MessagingException {
+			throws MailException{
 		System.out.println("sending email");
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		simpleMailMessage.setFrom(mailSender);
@@ -64,7 +50,7 @@ public class EmailService {
 
 	@Async
 	public void notifyPharmacySftp(String pharmacyEmail)
-			throws MailException, InterruptedException, MessagingException {
+			throws MailException{
 		System.out.println("sending email");
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		simpleMailMessage.setFrom(mailSender);

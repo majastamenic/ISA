@@ -16,7 +16,6 @@ import com.isa.pharmacy.service.PharmacyService;
 
 @RestController
 @RequestMapping("/pharmacy")
-//@CrossOrigin(value = "http://localhost:4200")
 public class PharmacyController {
 	
 	@Autowired
@@ -33,10 +32,10 @@ public class PharmacyController {
 	
 	@GetMapping("/{name}")
 	public ResponseEntity<String> sendResponse(@RequestHeader("apiKey") String apiKey) {
-		if (apiKey.equals(null))
+		if (apiKey.equals(""))
 			return new ResponseEntity<String>("", 
 			          HttpStatus.FORBIDDEN);
-		if ((pharmacyService.getByApiKey(apiKey)).equals(null))
+		if ((pharmacyService.getByApiKey(apiKey)).equals(""))
 			return new ResponseEntity<String>("Wrong apiKey", 
 			          HttpStatus.BAD_REQUEST);
 		else

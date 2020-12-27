@@ -14,8 +14,6 @@ import com.isa.pharmacy.domain.Hospital;
 public interface HospitalRepository extends JpaRepository<Hospital, Long> {
 
 	Hospital findByEmail(String email);
-	Hospital findHospitalById(Long id);
-	Hospital findHospitalByEmail(String email);
 	List<Hospital> findAll();
 	
 }

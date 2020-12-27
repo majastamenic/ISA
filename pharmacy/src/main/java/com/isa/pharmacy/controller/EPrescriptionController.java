@@ -2,12 +2,9 @@ package com.isa.pharmacy.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.EPrescriptionMapper;
 import com.isa.pharmacy.domain.EPrescription;
-import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.service.EPrescriptionService;
 import com.isa.pharmacy.service.QRService;
 
@@ -39,14 +35,11 @@ public class EPrescriptionController {
 	private QRService qrService;
 
 
-	private String baseFileDestination = null;
+	private final String baseFileDestination;
 
-	public EPrescriptionController() throws FileNotFoundException {
+	public EPrescriptionController() {
 		baseFileDestination = new File("").getAbsolutePath().concat("/qrcodes/");
-		// baseFileDestination =
-		// ResourceUtils.get("classpath:application.properties").getAbsolutePath();
 	}
-
 
 	@GetMapping("/{id}")
 	public EPrescription getEPrescription(@PathVariable("id") Long id) {
@@ -76,14 +69,8 @@ public class EPrescriptionController {
 		return ResponseEntity.ok(ePrescription);
 	}
 
-	@GetMapping("/pharmacyWithMedicine")
-	public List<Pharmacy> getPharmaciesWithMedicine() {
-		List<Pharmacy> listPharmacies = new ArrayList<Pharmacy>();
-		return listPharmacies;
-	}
-
 	@PostMapping
-	public EPrescription saveByText(@RequestBody String text) throws ParseException {
+	public EPrescription saveByText(@RequestBody String text){
 		EPrescription ePrescription = EPrescriptionMapper.mapStringToEPrescription(text);
 		ePrescription = ePrescriptionService.save(ePrescription);
 		return ePrescription;

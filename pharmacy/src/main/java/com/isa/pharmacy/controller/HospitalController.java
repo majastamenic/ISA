@@ -1,7 +1,12 @@
 package com.isa.pharmacy.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.isa.pharmacy.controller.dto.MedicineDto;
+import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
+import com.isa.pharmacy.domain.MedicinePharmacy;
+import com.isa.pharmacy.service.MedicinePharmacyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +20,16 @@ import com.isa.pharmacy.service.HospitalService;
 
 
 @RestController
-@RequestMapping("/hospital")
+@RequestMapping("/HospitalApi")
 @CrossOrigin(value = "http://localhost:4200")
 public class HospitalController {
 	
 	@Autowired
 	private HospitalService hospitalService;
+	@Autowired
+	private MedicinePharmacyService medicinePharmacyService;
 	
-	private Logger logger = LoggerFactory.getLogger(UserController.class);
+	private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private EmailService emailService;
@@ -43,6 +50,15 @@ public class HospitalController {
 	@GetMapping
 	public List<Hospital> getAll(){
 		return hospitalService.getAll();
+	}
+
+	@GetMapping("/{pharmacyName}")
+	public List<MedicineDto> getAllMedicineInPharmacy(@PathVariable("pharmacyName") String pharmacyName){
+		List<MedicineDto> medicineDtoList = new ArrayList<>();
+		for(MedicinePharmacy medicinePharmacy: medicinePharmacyService.getAllWithPharmacyName(pharmacyName)){
+			medicineDtoList.add(MedicinePharmacyMapper.mapMedicinePharmacyToMedicineDto(medicinePharmacy));
+		}
+		return medicineDtoList;
 	}
 	
 	

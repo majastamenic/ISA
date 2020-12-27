@@ -27,8 +27,6 @@ public class UserController {
 	@GetMapping
 	public ModelAndView getUsers() {
 		return null;
-//		Collection<User> users;
-//		return new ModelAndView("listUser", "users", users);
 	}
 	
 	@PostMapping("/login")
@@ -36,7 +34,7 @@ public class UserController {
 		String email = loginDto.getEmail();
 		String password = loginDto.getPassword();
 		User user = null;
-		if((!email.equals(null)) && (!password.equals(null)))
+		if((!email.equals("")) && (!password.equals("")))
 			user = UserMapper.mapLoginDtoToUser(loginDto);
 		if(user.equals(null))
 			throw new Exception("Bad request");
