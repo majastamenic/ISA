@@ -52,7 +52,7 @@ public class HospitalController {
 		return hospitalService.getAll();
 	}
 
-	@GetMapping("/{pharmacyName}")
+	@GetMapping("/getAllMedications/{pharmacyName}")
 	public List<MedicineDto> getAllMedicineInPharmacy(@PathVariable("pharmacyName") String pharmacyName){
 		List<MedicineDto> medicineDtoList = new ArrayList<>();
 		for(MedicinePharmacy medicinePharmacy: medicinePharmacyService.getAllWithPharmacyName(pharmacyName)){
@@ -60,7 +60,10 @@ public class HospitalController {
 		}
 		return medicineDtoList;
 	}
-	
-	
+
+	@GetMapping("/checkAvailability/{medicineName}/{pharmacyName}")
+	public Boolean checkAvailability(@PathVariable("medicineName") String medicineName, @PathVariable("pharmacyName") String pharmacyName){
+		return hospitalService.checkAvailability(medicineName, pharmacyName);
+	}
 	
 }

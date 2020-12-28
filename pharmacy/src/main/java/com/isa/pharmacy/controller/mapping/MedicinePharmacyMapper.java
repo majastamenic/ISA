@@ -18,9 +18,9 @@ public class MedicinePharmacyMapper {
         medicineDto.setComposition(medicinePharmacy.getMedicine().getComposition());
         medicineDto.setCode(medicinePharmacy.getMedicine().getCode());
         medicineDto.setPublishingType(medicinePharmacy.getMedicine().getPublishingType());
-        medicineDto.setQuantity(medicinePharmacy.getQuantity());
+        medicineDto.setAmount(medicinePharmacy.getQuantity());
         medicineDto.setTypeOfMedicine(medicinePharmacy.getMedicine().getTypeOfMedicine());
-        medicineDto.setReplacementMedicines(medicinePharmacy.getMedicine().getReplacementMedicine());
+        medicineDto.setAlternative(medicinePharmacy.getMedicine().getReplacementMedicine());
         return medicineDto;
     }
 }

@@ -72,7 +72,7 @@ public class MedicinePharmacyService {
 	public List<MedicinePharmacy> getAllWithPharmacyName(String pharmacyName){
 		List<MedicinePharmacy> medicinePharmacyList = new ArrayList<>();
 		for(MedicinePharmacy medicinePharmacy: medicinePharmacyRepository.findAll()){
-			if(medicinePharmacy.getPharmacy().getName().equals(pharmacyName)){
+			if(medicinePharmacy.getPharmacy().getName().toLowerCase().equals(pharmacyName.toLowerCase())){
 				medicinePharmacyList.add(medicinePharmacy);
 			}
 		}
