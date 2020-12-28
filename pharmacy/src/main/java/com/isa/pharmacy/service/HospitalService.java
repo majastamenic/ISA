@@ -2,6 +2,7 @@ package com.isa.pharmacy.service;
 
 import java.util.List;
 
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +35,12 @@ public class HospitalService {
 		return hospitalRepository.findAll();
 	}
 
-	public Boolean checkAvailability(String medicineName, String pharmacyName){
+	public MedicinePharmacy checkAvailability(String medicineName, String pharmacyName){
 		for(MedicinePharmacy medicinePharmacy: medicinePharmacyService.getAllWithPharmacyName(pharmacyName)){
 			if(medicinePharmacy.getMedicine().getName().toLowerCase().equals(medicineName.toLowerCase()))
-				return true;
+				return medicinePharmacy;
 		}
-		return false;
+		return null;
 	}
 
 }

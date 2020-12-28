@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.isa.pharmacy.controller.dto.MedicineDto;
+import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.service.MedicinePharmacyService;
@@ -62,8 +63,12 @@ public class HospitalController {
 	}
 
 	@GetMapping("/checkAvailability/{medicineName}/{pharmacyName}")
-	public Boolean checkAvailability(@PathVariable("medicineName") String medicineName, @PathVariable("pharmacyName") String pharmacyName){
-		return hospitalService.checkAvailability(medicineName, pharmacyName);
+	public MedicineDto checkAvailability(@PathVariable("medicineName") String medicineName, @PathVariable("pharmacyName") String pharmacyName){
+		MedicinePharmacy medicinePharmacy = hospitalService.checkAvailability(medicineName, pharmacyName);
+		if(medicinePharmacy != null)
+			return MedicinePharmacyMapper.mapMedicinePharmacyToMedicineDto(medicinePharmacy);
+		else
+			return null;
 	}
 	
 }

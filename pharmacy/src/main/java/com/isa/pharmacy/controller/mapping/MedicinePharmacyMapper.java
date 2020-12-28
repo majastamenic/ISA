@@ -10,7 +10,6 @@ public class MedicinePharmacyMapper {
     public static MedicineDto mapMedicinePharmacyToMedicineDto(MedicinePharmacy medicinePharmacy) {
         MedicineDto medicineDto = new MedicineDto();
         medicineDto.setPrice(medicinePharmacy.getPrice());
-        medicineDto.setPharmacy(medicinePharmacy.getPharmacy());
         medicineDto.setNote(medicinePharmacy.getMedicine().getNote());
         medicineDto.setName(medicinePharmacy.getMedicine().getName());
         medicineDto.setManufactured(medicinePharmacy.getMedicine().getManufactured());

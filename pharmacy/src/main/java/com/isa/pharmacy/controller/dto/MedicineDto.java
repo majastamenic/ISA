@@ -15,7 +15,6 @@ public class MedicineDto {
 	private List<String> alternative;
 	private double price;
 	private int amount;
-	private Pharmacy pharmacy;
 	private String note;
 
 	
@@ -26,7 +25,7 @@ public class MedicineDto {
 
 	public MedicineDto(Long code, String name, String typeOfMedicine, String formOfMedicine, List<String> composition,
 			String manufactured, String publishingType, List<String> replacementMedicines, double price,
-			int amount, Pharmacy pharmacy, String note, List<String> alternative) {
+			int amount, String note, List<String> alternative) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -38,7 +37,6 @@ public class MedicineDto {
 		this.alternative = alternative;
 		this.price = price;
 		this.amount = amount;
-		this.pharmacy = pharmacy;
 		this.note = note;
 	}
 
@@ -142,16 +140,6 @@ public class MedicineDto {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
-	}
-
-
-	public Pharmacy getPharmacy() {
-		return pharmacy;
-	}
-
-
-	public void setPharmacy(Pharmacy pharmacy) {
-		this.pharmacy = pharmacy;
 	}
 
 
