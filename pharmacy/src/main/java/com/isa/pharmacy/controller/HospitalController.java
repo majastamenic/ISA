@@ -67,8 +67,12 @@ public class HospitalController {
 		MedicinePharmacy medicinePharmacy = hospitalService.checkAvailability(medicineName, pharmacyName);
 		if(medicinePharmacy != null)
 			return MedicinePharmacyMapper.mapMedicinePharmacyToMedicineDto(medicinePharmacy);
-		else
-			return null;
+		return null;
+	}
+
+	@GetMapping("/orderMedicine/{pharmacyName}")
+	public MedicineDto orderMedicine(@RequestParam String medicineName,@RequestParam int amount, @PathVariable String pharmacyName){
+		return hospitalService.orderMedicine(medicineName, amount,pharmacyName);
 	}
 	
 }
