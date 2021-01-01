@@ -12,7 +12,7 @@ import com.isa.pharmacy.domain.MedicineEPrescription;
 
 public class EPrescriptionMapper {
 
-    public static EPrescription mapStringToEPrescription(String text){
+    public static EPrescription mapStringToEPrescription(String text) {
         EPrescription ePrescription = new EPrescription();
         String[] parts = text.split("\\r?\\n");
         String[] textParts = parts[1].split(":");
@@ -21,7 +21,7 @@ public class EPrescriptionMapper {
 
         String[] splitText = textObj.split(" ");
 
-        String note = splitText[0]+" "+splitText[1]+"\n"+splitText[2]+"\n"+splitText[3]+"\n"+splitText[4]+"\n"+splitText[5];
+        String note = splitText[0] + " " + splitText[1] + "\n" + splitText[2] + "\n" + splitText[3] + "\n" + splitText[4] + "\n" + splitText[5];
 
         ePrescription.setFileText(note);
         ePrescription.setPatientName(splitText[0] + " " + splitText[1]);

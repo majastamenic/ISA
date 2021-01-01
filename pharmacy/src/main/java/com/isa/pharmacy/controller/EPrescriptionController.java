@@ -29,51 +29,52 @@ import com.isa.pharmacy.service.QRService;
 @CrossOrigin(value = "http://localhost:4200")
 public class EPrescriptionController {
 
-	@Autowired
-	private EPrescriptionService ePrescriptionService;
-	@Autowired
-	private QRService qrService;
+    @Autowired
+    private EPrescriptionService ePrescriptionService;
+    @Autowired
+    private QRService qrService;
 
 
-	private final String baseFileDestination;
+    private final String baseFileDestination;
 
-	public EPrescriptionController() {
-		baseFileDestination = new File("").getAbsolutePath().concat("/qrcodes/");
-	}
+    public EPrescriptionController() {
+        baseFileDestination = new File("").getAbsolutePath().concat("/qrcodes/");
+    }
 
-	@GetMapping("/{id}")
-	public EPrescription getEPrescription(@PathVariable("id") Long id) {
-		EPrescription ePrescription = ePrescriptionService.getById(id);
-		if (ePrescription == null) {
-			throw new NotFoundException(String.format("User with id %s not found", id));
-		}
-		return ePrescription;
-	}
+    @GetMapping("/{id}")
+    public EPrescription getEPrescription(@PathVariable("id") Long id) {
+        EPrescription ePrescription = ePrescriptionService.getById(id);
+        if (ePrescription == null) {
+            throw new NotFoundException(String.format("User with id %s not found", id));
+        }
+        return ePrescription;
+    }
 
-	@PostMapping("/uploadQr")
-	public ResponseEntity<EPrescription> searchQrCode(@RequestParam("file") MultipartFile file) throws IOException, ParseException {
-		if (file.isEmpty()) {
-			throw new RuntimeException("File is empty!");
-		}
-		byte[] bytes = file.getBytes();
-		BufferedOutputStream stream =
-				new BufferedOutputStream(new FileOutputStream(new File(baseFileDestination + file.getOriginalFilename())));
-		stream.write(bytes);
-		stream.close();
+    @PostMapping
+    public EPrescription saveByText(@RequestBody String text) {
+        EPrescription ePrescription = EPrescriptionMapper.mapStringToEPrescription(text);
+        ePrescription = ePrescriptionService.save(ePrescription);
+        return ePrescription;
+    }
 
-		String text = qrService.readQrCode(baseFileDestination + file.getOriginalFilename());
-		System.out.println(text);
+    @PostMapping("/uploadQr")
+    public ResponseEntity<EPrescription> searchQrCode(@RequestParam("file") MultipartFile file) throws IOException, ParseException {
+        if (file.isEmpty()) {
+            throw new RuntimeException("File is empty!");
+        }
+        byte[] bytes = file.getBytes();
+        BufferedOutputStream stream =
+                new BufferedOutputStream(new FileOutputStream(new File(baseFileDestination + file.getOriginalFilename())));
+        stream.write(bytes);
+        stream.close();
 
-		EPrescription ePrescription = ePrescriptionService.getByText(text);
+        String text = qrService.readQrCode(baseFileDestination + file.getOriginalFilename());
+        System.out.println(text);
 
-		return ResponseEntity.ok(ePrescription);
-	}
+        EPrescription ePrescription = ePrescriptionService.getByText(text);
 
-	@PostMapping
-	public EPrescription saveByText(@RequestBody String text){
-		EPrescription ePrescription = EPrescriptionMapper.mapStringToEPrescription(text);
-		ePrescription = ePrescriptionService.save(ePrescription);
-		return ePrescription;
-	}
+        return ResponseEntity.ok(ePrescription);
+    }
+
 
 }

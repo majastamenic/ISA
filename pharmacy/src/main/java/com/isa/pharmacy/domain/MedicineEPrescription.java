@@ -10,66 +10,67 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table 
-public class MedicineEPrescription implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@Table
+public class MedicineEPrescription implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(unique = true)
-	private Long code;
-	
-	@Column
-	private String name;
-	
-	@Column
-	private int quantity;
-	
-	public MedicineEPrescription() {}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public MedicineEPrescription(Long id, Long code, String name, int quantity) {
-		super();
-		this.id = id;
-		this.code = code;
-		this.name = name;
-		this.quantity = quantity;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(unique = true)
+    private Long code;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column
+    private String name;
 
-	public Long getCode() {
-		return code;
-	}
+    @Column
+    private int quantity;
 
-	public void setCode(Long code) {
-		this.code = code;
-	}
+    public MedicineEPrescription() {
+    }
 
-	public String getName() {
-		return name;
-	}
+    public MedicineEPrescription(Long id, Long code, String name, int quantity) {
+        super();
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.quantity = quantity;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

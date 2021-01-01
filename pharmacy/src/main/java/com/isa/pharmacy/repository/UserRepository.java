@@ -9,13 +9,13 @@ import com.isa.pharmacy.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-	
-	User findByEmailAndPassword(String email, String password);
-	
-	User findByEmail(String email);
-	
-	User findUserById(Long id);
-	
-	List<User> findAll();
-	
+
+    User findUserById(Long id);
+
+    User findByEmailAndPassword(String email, String password);
+
+    User findByEmail(String email);
+
+    List<User> findAll();
+
 }

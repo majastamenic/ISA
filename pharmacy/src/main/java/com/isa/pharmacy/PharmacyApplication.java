@@ -21,14 +21,14 @@ import com.isa.pharmacy.service.CommunicationService;
 @Import(CommunicationService.class)
 public class PharmacyApplication {
 
-	public static void main(String[] args) throws Exception {
-		SpringApplication.run(PharmacyApplication.class, args);
-		try {
-			SftpService sftp = new SftpService();
-			sftp.downloadFile();
-		}catch (Exception e){
-			System.out.println("Rebex doesn't work. Try again later");
-		}
-	}
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(PharmacyApplication.class, args);
+        try {
+            SftpService sftp = new SftpService();
+            sftp.downloadFile();
+        } catch (Exception e) {
+            System.out.println("Rebex doesn't work. Try again later");
+        }
+    }
 
 }

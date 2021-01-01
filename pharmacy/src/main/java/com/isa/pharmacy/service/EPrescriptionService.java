@@ -13,34 +13,34 @@ import com.isa.pharmacy.repository.EPrescriptionRepository;
 @Service
 public class EPrescriptionService {
 
-	@Autowired
-	private EPrescriptionRepository ePrescriptionRepository;
-	@Autowired
-	private MedicineEPrescriptionService medicineEService;
+    @Autowired
+    private EPrescriptionRepository ePrescriptionRepository;
+    @Autowired
+    private MedicineEPrescriptionService medicineEService;
 
-	public List<EPrescription> getAll(){
-		return ePrescriptionRepository.findAll();
-	}
+    public EPrescription save(EPrescription ePrescription) {
+        for (MedicineEPrescription m : ePrescription.getListOfMedication()) {
+            MedicineEPrescription med = medicineEService.create(m);
+        }
+        return ePrescriptionRepository.save(ePrescription);
+    }
 
-	public EPrescription getByText(String text) throws ParseException {
+    public EPrescription getById(Long id) {
+        return ePrescriptionRepository.findEPrescriptionById(id);
+    }
 
-		for(EPrescription ePrescription:getAll()){
-			if(ePrescription.getFileText().equals(text)){
-				return ePrescription;
-			}
-		}
-		return null;
-	}
+    public EPrescription getByText(String text) throws ParseException {
 
-	public EPrescription save(EPrescription ePrescription){
-		for(MedicineEPrescription m : ePrescription.getListOfMedication()) {
-			MedicineEPrescription med = medicineEService.create(m);
-		}
-		return ePrescriptionRepository.save(ePrescription);
-	}
+        for (EPrescription ePrescription : getAll()) {
+            if (ePrescription.getFileText().equals(text)) {
+                return ePrescription;
+            }
+        }
+        return null;
+    }
 
-	public EPrescription getById(Long id){
-		return ePrescriptionRepository.findEPrescriptionById(id);
-	}
+    public List<EPrescription> getAll() {
+        return ePrescriptionRepository.findAll();
+    }
 
 }

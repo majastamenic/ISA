@@ -14,142 +14,142 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Medicine implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column(unique = true)
-	private Long code;
-	@Column
-	private String name;
-	@Column 
-	private String typeOfMedicine;
-	@Column
-	private String formOfMedicine;
-	@ElementCollection
-	private List<String> composition;
-	@Column
-	private String manufactured;
-	@Column	//TODO: staviti enum
-	private String publishingType;
-	@ElementCollection
-	private List<String> replacementMedicines;
-	@Column
-	private String note;
-	@OneToMany
-	private List<MedicinePharmacy> medicinePharmacy;
-	
-	public Medicine() {}
-	
-	public Medicine(Long id, Long code, String name, String typeOfMedicine, String formOfMedicine,
-			List<String> composition, String manufactured, String publishingType,
-			List<String> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy) {
-		super();
-		this.id = id;
-		this.code = code;
-		this.name = name;
-		this.typeOfMedicine = typeOfMedicine;
-		this.formOfMedicine = formOfMedicine;
-		this.composition = composition;
-		this.manufactured = manufactured;
-		this.publishingType = publishingType;
-		this.replacementMedicines = replacementMedicines;
-		this.note = note;
-		this.medicinePharmacy = medicinePharmacy;
-	}
+public class Medicine implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
+    private Long code;
+    @Column
+    private String name;
+    @Column
+    private String typeOfMedicine;
+    @Column
+    private String formOfMedicine;
+    @ElementCollection
+    private List<String> composition;
+    @Column
+    private String manufactured;
+    @Column    //TODO: staviti enum
+    private String publishingType;
+    @ElementCollection
+    private List<String> replacementMedicines;
+    @Column
+    private String note;
+    @OneToMany
+    private List<MedicinePharmacy> medicinePharmacy;
 
-	public Long getId() {
-		return id;
-	}
+    public Medicine() {
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Medicine(Long id, Long code, String name, String typeOfMedicine, String formOfMedicine,
+                    List<String> composition, String manufactured, String publishingType,
+                    List<String> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy) {
+        super();
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.typeOfMedicine = typeOfMedicine;
+        this.formOfMedicine = formOfMedicine;
+        this.composition = composition;
+        this.manufactured = manufactured;
+        this.publishingType = publishingType;
+        this.replacementMedicines = replacementMedicines;
+        this.note = note;
+        this.medicinePharmacy = medicinePharmacy;
+    }
 
-	public Long getCode() {
-		return code;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setCode(Long code) {
-		this.code = code;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Long getCode() {
+        return code;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setCode(Long code) {
+        this.code = code;
+    }
 
-	public String getTypeOfMedicine() {
-		return typeOfMedicine;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setTypeOfMedicine(String typeOfMedicine) {
-		this.typeOfMedicine = typeOfMedicine;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getFormOfMedicine() {
-		return formOfMedicine;
-	}
+    public String getTypeOfMedicine() {
+        return typeOfMedicine;
+    }
 
-	public void setFormOfMedicine(String formOfMedicine) {
-		this.formOfMedicine = formOfMedicine;
-	}
+    public void setTypeOfMedicine(String typeOfMedicine) {
+        this.typeOfMedicine = typeOfMedicine;
+    }
 
-	public List<String> getComposition() {
-		return composition;
-	}
+    public String getFormOfMedicine() {
+        return formOfMedicine;
+    }
 
-	public void setComposition(List<String> composition) {
-		this.composition = composition;
-	}
+    public void setFormOfMedicine(String formOfMedicine) {
+        this.formOfMedicine = formOfMedicine;
+    }
 
-	public String getManufactured() {
-		return manufactured;
-	}
+    public List<String> getComposition() {
+        return composition;
+    }
 
-	public void setManufactured(String manufactured) {
-		this.manufactured = manufactured;
-	}
+    public void setComposition(List<String> composition) {
+        this.composition = composition;
+    }
 
-	public String getPublishingType() {
-		return publishingType;
-	}
+    public String getManufactured() {
+        return manufactured;
+    }
 
-	public void setPublishingType(String publishingType) {
-		this.publishingType = publishingType;
-	}
+    public void setManufactured(String manufactured) {
+        this.manufactured = manufactured;
+    }
 
-	public List<String> getReplacementMedicine() {
-		return replacementMedicines;
-	}
+    public String getPublishingType() {
+        return publishingType;
+    }
 
-	public void setReplacementMedicine(List<String> replacementMedicines) {
-		this.replacementMedicines = replacementMedicines;
-	}
+    public void setPublishingType(String publishingType) {
+        this.publishingType = publishingType;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    public List<String> getReplacementMedicine() {
+        return replacementMedicines;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    public void setReplacementMedicine(List<String> replacementMedicines) {
+        this.replacementMedicines = replacementMedicines;
+    }
 
-	public List<MedicinePharmacy> getMedicinePharmacy() {
-		return medicinePharmacy;
-	}
+    public String getNote() {
+        return note;
+    }
 
-	public void setMedicinePharmacy(List<MedicinePharmacy> medicinePharmacy) {
-		this.medicinePharmacy = medicinePharmacy;
-	}
-	
-	
-	
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public List<MedicinePharmacy> getMedicinePharmacy() {
+        return medicinePharmacy;
+    }
+
+    public void setMedicinePharmacy(List<MedicinePharmacy> medicinePharmacy) {
+        this.medicinePharmacy = medicinePharmacy;
+    }
+
+
 }
