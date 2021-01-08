@@ -69,6 +69,7 @@ public class PharmacyService {
             if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName)
                     && medicinePharmacy.getQuantity() >= amount) {
                 medicinePharmacy.setQuantity(medicinePharmacy.getQuantity() - amount);
+                pharmacyRepository.save(pharmacy);
                 return MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), pharmacyName);
             }
         }
