@@ -33,7 +33,7 @@ public class Medicine implements Serializable {
     private List<String> replacementMedicines;
     @Column
     private String note;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     private List<MedicinePharmacy> medicinePharmacy;
 
     public Medicine() {

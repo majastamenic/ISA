@@ -19,27 +19,29 @@ public class Pharmacy implements Serializable {
     //TODO: Ime i apikey jedinstveni?
     @Column
     private String name;
-    @OneToMany
+    @ManyToMany
+    @JoinTable(name = "pharmacy_hospitals", joinColumns = @JoinColumn(name = "pharmacy_id"),
+            inverseJoinColumns = @JoinColumn(name = "hospital_id"))
     private List<Hospital> hospitals;
     @Column
     private String apiKey;
     @Column
     private String address;
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<MedicinePharmacy> medicinePharmaciest;
+    @OneToMany
+    private List<MedicinePharmacy> medicinePharmacy;
 
     public Pharmacy() {
     }
 
     public Pharmacy(Long id, String name, List<Hospital> hospitals, String apiKey, String address,
-                    List<MedicinePharmacy> medicinePharmaciest) {
+                    List<MedicinePharmacy> medicinePharmacy) {
         super();
         this.id = id;
         this.name = name;
         this.hospitals = hospitals;
         this.apiKey = apiKey;
         this.address = address;
-        this.medicinePharmaciest = medicinePharmaciest;
+        this.medicinePharmacy = medicinePharmacy;
     }
 
     public Long getId() {
@@ -59,12 +61,12 @@ public class Pharmacy implements Serializable {
         this.name = name;
     }
 
-    public List<MedicinePharmacy> getMedicinePharmaciest() {
-        return medicinePharmaciest;
+    public List<MedicinePharmacy> getMedicinePharmacy() {
+        return medicinePharmacy;
     }
 
-    public void setMedicinePharmaciest(List<MedicinePharmacy> medicinePharmaciest) {
-        this.medicinePharmaciest = medicinePharmaciest;
+    public void setMedicinePharmacy(List<MedicinePharmacy> medicinePharmacy) {
+        this.medicinePharmacy = medicinePharmacy;
     }
 
     public void setHospitals(List<Hospital> hospitals) {
@@ -96,11 +98,7 @@ public class Pharmacy implements Serializable {
     }
 
     public List<MedicinePharmacy> getMedicinePharmacies() {
-        return medicinePharmaciest;
-    }
-
-    public void setMedicinePharmacies(List<MedicinePharmacy> medicinePharmacies) {
-        this.medicinePharmaciest = medicinePharmacies;
+        return medicinePharmacy;
     }
 
     @Override
@@ -111,7 +109,7 @@ public class Pharmacy implements Serializable {
         result = prime * result + ((apiKey == null) ? 0 : apiKey.hashCode());
         result = prime * result + ((hospitals == null) ? 0 : hospitals.hashCode());
         result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((medicinePharmaciest == null) ? 0 : medicinePharmaciest.hashCode());
+        result = prime * result + ((medicinePharmacy == null) ? 0 : medicinePharmacy.hashCode());
         return result;
     }
 

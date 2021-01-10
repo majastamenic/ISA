@@ -97,6 +97,6 @@ public class PharmacyService {
             if(medicineDto != null)
                 medicineDtoList.add(medicineDto);
         }
-        return null;
+        return medicineDtoList;
     }
 }
