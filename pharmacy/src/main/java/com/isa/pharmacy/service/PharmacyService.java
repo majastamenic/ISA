@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.isa.pharmacy.controller.dto.MedicineDto;
+import com.isa.pharmacy.controller.dto.MedicineOrderDto;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
@@ -63,6 +64,18 @@ public class PharmacyService {
         return null;
     }
 
+    public List<MedicineDto> checkAvailabilities(List<String> medicinesName, String pharmacyName) {
+        Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
+        List<MedicineDto> medicineDtoList = new ArrayList<>();
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
+            for(String medicineName : medicinesName) {
+                if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName))
+                    medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), pharmacyName));
+            }
+        }
+        return medicineDtoList;
+    }
+
     public MedicineDto orderMedicine(String medicineName, int amount, String pharmacyName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
         for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
@@ -70,8 +83,19 @@ public class PharmacyService {
                     && medicinePharmacy.getQuantity() >= amount) {
                 medicinePharmacy.setQuantity(medicinePharmacy.getQuantity() - amount);
                 pharmacyRepository.save(pharmacy);
+                medicinePharmacy.setQuantity(amount);
                 return MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), pharmacyName);
             }
+        }
+        return null;
+    }
+
+    public List<MedicineDto> orderMedicines(List<MedicineOrderDto> medicineOrderDtoList,String pharmacyName) {
+        List<MedicineDto> medicineDtoList = new ArrayList<>();
+        for(MedicineOrderDto medicineOrderDto: medicineOrderDtoList){
+            MedicineDto medicineDto = orderMedicine(medicineOrderDto.getMedicineName(), medicineOrderDto.getAmount(), pharmacyName);
+            if(medicineDto != null)
+                medicineDtoList.add(medicineDto);
         }
         return null;
     }
