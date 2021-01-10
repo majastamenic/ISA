@@ -99,4 +99,13 @@ public class PharmacyService {
         }
         return medicineDtoList;
     }
+
+    public List<MedicineDto> getMedicineListFromPharmacy(String pharmacyName) {
+        Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
+        List<MedicineDto> medicineDtoList = new ArrayList<>();
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
+            medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), pharmacyName));
+        }
+        return medicineDtoList;
+    }
 }

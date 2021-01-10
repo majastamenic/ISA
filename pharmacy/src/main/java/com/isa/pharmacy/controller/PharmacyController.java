@@ -53,6 +53,15 @@ public class PharmacyController {
         return listMedicines;
     }
 
+    @GetMapping("/getMedicines/{pharmacyName}")
+    public List<MedicineDto> getMedicineFromPharmacy(@PathVariable("pharmacyName") String pharmacyName) {
+        List<MedicineDto> medicineDtoList = pharmacyService.getMedicineListFromPharmacy(pharmacyName);
+        if (medicineDtoList.isEmpty()) {
+            throw new NotFoundException(String.format("Pharmacy %s doesn't have any medicine", pharmacyName));
+        }
+        return medicineDtoList;
+    }
+
     @GetMapping("/checkAvailability/{medicineName}/{pharmacyName}")
     public MedicineDto checkAvailability(@PathVariable("medicineName") String medicineName, @PathVariable("pharmacyName") String pharmacyName) {
         Medicine medicine = pharmacyService.checkAvailability(medicineName, pharmacyName);
