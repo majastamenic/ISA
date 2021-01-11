@@ -27,7 +27,7 @@ public class Pharmacy implements Serializable {
     private String apiKey;
     @Column
     private String address;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
 
     public Pharmacy() {

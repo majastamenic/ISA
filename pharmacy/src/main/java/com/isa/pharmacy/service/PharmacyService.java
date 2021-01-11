@@ -47,7 +47,7 @@ public class PharmacyService {
     public int hasPharmacyMedication(String pharmacyName, String medicineName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
         for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
-            if (medicinePharmacy.getMedicine().getName().toLowerCase().equals(medicineName.toLowerCase()))
+            if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName))
                 return medicinePharmacy.getQuantity();
             break;
         }
