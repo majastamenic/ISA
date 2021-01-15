@@ -5,10 +5,13 @@ import java.util.List;
 
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.isa.pharmacy.domain.Pharmacy;
@@ -51,8 +54,7 @@ public class PharmacyService {
                 return medicinePharmacy.getQuantity();
             break;
         }
-        //TODO: Baci exception
-        return 0;
+        throw new NotFoundException(String.format("Pharmacy %s doesn't have %s medicine", pharmacyName, medicineName));
     }
 
     public Medicine checkAvailability(String medicineName, String pharmacyName) {
@@ -107,5 +109,18 @@ public class PharmacyService {
             medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), pharmacyName));
         }
         return medicineDtoList;
+    }
+
+    public ResponseEntity<String> checkApiKey(String apiKey){
+        if (apiKey.equals(""))
+            return new ResponseEntity<String>("",
+                    HttpStatus.FORBIDDEN);
+        if ((getByApiKey(apiKey)).equals(""))
+            return new ResponseEntity<String>("Wrong apiKey",
+                    HttpStatus.BAD_REQUEST);
+        else
+            return new ResponseEntity<String>(
+                    "Welcome",
+                    HttpStatus.OK);
     }
 }

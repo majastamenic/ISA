@@ -45,7 +45,8 @@ public class PharmacyController {
 
 
     @GetMapping("/getAllMedicines/{pharmacyName}")
-    public List<Medicine> getMedicinesFromPharmacy(@PathVariable("pharmacyName") String pharmacyName) {
+    public List<Medicine> getMedicinesFromPharmacy(@PathVariable("pharmacyName") String pharmacyName, @RequestHeader("apiKey") String apiKey) {
+        pharmacyService.checkApiKey(apiKey);
         List<Medicine> listMedicines = pharmacyService.getMedicinesFromPharmacy(pharmacyName);
         if (listMedicines.isEmpty()) {
             throw new NotFoundException(String.format("Pharmacy %s doesn't have any medicine", pharmacyName));
@@ -54,7 +55,9 @@ public class PharmacyController {
     }
 
     @GetMapping("/getMedicines/{pharmacyName}")
-    public List<MedicineDto> getMedicineFromPharmacy(@PathVariable("pharmacyName") String pharmacyName) {
+    public List<MedicineDto> getMedicineFromPharmacy(@PathVariable("pharmacyName") String pharmacyName,
+                                                     @RequestHeader("apiKey") String apiKey) {
+        pharmacyService.checkApiKey(apiKey);
         List<MedicineDto> medicineDtoList = pharmacyService.getMedicineListFromPharmacy(pharmacyName);
         if (medicineDtoList.isEmpty()) {
             throw new NotFoundException(String.format("Pharmacy %s doesn't have any medicine", pharmacyName));
@@ -63,28 +66,36 @@ public class PharmacyController {
     }
 
     @GetMapping("/checkAvailability/{medicineName}/{pharmacyName}")
-    public MedicineDto checkAvailability(@PathVariable("medicineName") String medicineName, @PathVariable("pharmacyName") String pharmacyName) {
+    public MedicineDto checkAvailability(@PathVariable("medicineName") String medicineName,
+                                         @PathVariable("pharmacyName") String pharmacyName, @RequestHeader("apiKey") String apiKey) {
+        pharmacyService.checkApiKey(apiKey);
         Medicine medicine = pharmacyService.checkAvailability(medicineName, pharmacyName);
         if (medicine != null)
             return MedicineMapper.mapMedicineToMedicineDto(medicine, pharmacyName);
-        return null;
+        throw new NotFoundException(String.format("Pharmacy %s doesn't have %s medicine", pharmacyName, medicineName));
     }
 
     @PostMapping("/checkAvailability/{pharmacyName}")
-    public List<MedicineDto> checkAvailability(@RequestBody List<String> medicinesName, @PathVariable("pharmacyName") String pharmacyName) {
+    public List<MedicineDto> checkAvailability(@RequestBody List<String> medicinesName,
+                                               @PathVariable("pharmacyName") String pharmacyName, @RequestHeader("apiKey") String apiKey) {
+        pharmacyService.checkApiKey(apiKey);
         List<MedicineDto> medicineDtoList = pharmacyService.checkAvailabilities(medicinesName, pharmacyName);
         if (!medicineDtoList.isEmpty())
             return medicineDtoList;
-        return null;
+        throw new NotFoundException(String.format("Pharmacy %s doesn't have medicines", pharmacyName));
     }
 
     @GetMapping("/orderMedicine/{pharmacyName}")
-    public MedicineDto orderMedicine(@RequestParam String medicineName, @RequestParam int amount, @PathVariable String pharmacyName) {
+    public MedicineDto orderMedicine(@RequestParam String medicineName, @RequestParam int amount,
+                                     @PathVariable String pharmacyName, @RequestHeader("apiKey") String apiKey) {
+        pharmacyService.checkApiKey(apiKey);
         return pharmacyService.orderMedicine(medicineName, amount, pharmacyName);
     }
 
     @PostMapping("/orderMedicines/{pharmacyName}")
-    public List<MedicineDto> orderMedicines(@RequestBody List<MedicineOrderDto> medicineOrderDtoList, @PathVariable String pharmacyName) {
+    public List<MedicineDto> orderMedicines(@RequestBody List<MedicineOrderDto> medicineOrderDtoList,
+                                            @PathVariable String pharmacyName, @RequestHeader("apiKey") String apiKey) {
+        pharmacyService.checkApiKey(apiKey);
         return pharmacyService.orderMedicines(medicineOrderDtoList, pharmacyName);
     }
 
@@ -94,7 +105,9 @@ public class PharmacyController {
     }
 
     @PostMapping("/hasPharmacyMedication/{pharmacyName}")
-    public int hasPharmacyMedication(@PathVariable("pharmacyName") String pharmacyName, @RequestBody String medicineName) {
+    public int hasPharmacyMedication(@PathVariable("pharmacyName") String pharmacyName,
+                                     @RequestBody String medicineName, @RequestHeader("apiKey") String apiKey) {
+        pharmacyService.checkApiKey(apiKey);
         return pharmacyService.hasPharmacyMedication(pharmacyName, medicineName);
     }
 }
