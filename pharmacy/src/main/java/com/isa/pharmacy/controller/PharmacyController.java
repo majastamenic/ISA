@@ -9,6 +9,7 @@ import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,8 @@ public class PharmacyController {
 
     @Autowired
     private PharmacyService pharmacyService;
+    @Value("{$apiKey}")
+    private String ApiKey;
 
     @GetMapping
     public List<Pharmacy> getAll() {
@@ -32,15 +35,11 @@ public class PharmacyController {
     @GetMapping("/{name}")
     public ResponseEntity<String> sendResponse(@RequestHeader("apiKey") String apiKey) {
         if (apiKey.equals(""))
-            return new ResponseEntity<String>("",
-                    HttpStatus.FORBIDDEN);
-        if ((pharmacyService.getByApiKey(apiKey)).equals(""))
-            return new ResponseEntity<String>("Wrong apiKey",
-                    HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("", HttpStatus.FORBIDDEN);
+        if (!(ApiKey).equals(apiKey))
+            return new ResponseEntity<String>("Wrong apiKey", HttpStatus.BAD_REQUEST);
         else
-            return new ResponseEntity<String>(
-                    "Welcome",
-                    HttpStatus.OK);
+            return new ResponseEntity<String>("Welcome", HttpStatus.OK);
     }
 
 

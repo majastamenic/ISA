@@ -10,6 +10,7 @@ import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
@@ -21,17 +22,11 @@ import com.isa.pharmacy.repository.PharmacyRepository;
 public class PharmacyService {
     @Autowired
     private PharmacyRepository pharmacyRepository;
-
+    @Value("{$apiKey}")
+    private String ApiKey;
 
     public Pharmacy save(Pharmacy p) {
         return pharmacyRepository.save(p);
-    }
-
-    public Pharmacy getByApiKey(String apiKey) {
-        if (pharmacyRepository.findPharmacyByApiKey(apiKey).equals(null))
-            return null;
-        else
-            return pharmacyRepository.findPharmacyByApiKey(apiKey);
     }
 
     public List<Pharmacy> getAll() {
@@ -111,16 +106,10 @@ public class PharmacyService {
         return medicineDtoList;
     }
 
-    public ResponseEntity<String> checkApiKey(String apiKey){
+    public void checkApiKey(String apiKey){
         if (apiKey.equals(""))
-            return new ResponseEntity<String>("",
-                    HttpStatus.FORBIDDEN);
-        if ((getByApiKey(apiKey)).equals(""))
-            return new ResponseEntity<String>("Wrong apiKey",
-                    HttpStatus.BAD_REQUEST);
-        else
-            return new ResponseEntity<String>(
-                    "Welcome",
-                    HttpStatus.OK);
+            new ResponseEntity<String>("", HttpStatus.FORBIDDEN);
+        if (!(ApiKey).equals(apiKey))
+            new ResponseEntity<String>("Wrong apiKey", HttpStatus.BAD_REQUEST);
     }
 }
