@@ -17,12 +17,13 @@ import org.springframework.stereotype.Repository;
 
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.PharmacyRepository;
+import org.springframework.web.server.ResponseStatusException;
 
 @Repository
 public class PharmacyService {
     @Autowired
     private PharmacyRepository pharmacyRepository;
-    @Value("{$apiKey}")
+    @Value("${apiKey}")
     private String ApiKey;
 
     public Pharmacy save(Pharmacy p) {
@@ -107,9 +108,7 @@ public class PharmacyService {
     }
 
     public void checkApiKey(String apiKey){
-        if (apiKey.equals(""))
-            new ResponseEntity<String>("", HttpStatus.FORBIDDEN);
         if (!(ApiKey).equals(apiKey))
-            new ResponseEntity<String>("Wrong apiKey", HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
 }

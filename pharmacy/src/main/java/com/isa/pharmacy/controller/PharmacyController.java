@@ -24,7 +24,7 @@ public class PharmacyController {
 
     @Autowired
     private PharmacyService pharmacyService;
-    @Value("{$apiKey}")
+    @Value("${apiKey}")
     private String ApiKey;
 
     @GetMapping
