@@ -2,5 +2,6 @@ language: java
 jdk: openjdk10
 
 script:
+  - cd pharmacy
   - ./mvnw clean install -B
 
