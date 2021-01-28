@@ -1,5 +1,14 @@
 language: java
-jdk: oraclejdk8
+# use Java 8
+jdk:
+- oraclejdk8
 
-install: true
-script: ./mvnw clean install
+# see https://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure
+sudo: false
+
+script: ./mvnw clean verify
+
+# cache the build tool's caches
+cache:
+  directories:
+  - $HOME/.m2
