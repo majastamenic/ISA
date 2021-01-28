@@ -24,10 +24,7 @@ public class PharmacyService {
     }
 
     public Pharmacy getByApiKey(String apiKey) {
-        if (pharmacyRepository.findPharmacyByApiKey(apiKey).equals(null))
-            return null;
-        else
-            return pharmacyRepository.findPharmacyByApiKey(apiKey);
+        return pharmacyRepository.findPharmacyByApiKey(apiKey);
     }
 
     public List<Pharmacy> getAll() {
