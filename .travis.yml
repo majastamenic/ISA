@@ -4,4 +4,4 @@ jdk:
   - oraclejdk8
   
 init:
-  ./mvnw clean install -DskipTests
+  - ./mvnw clean install -DskipTests
