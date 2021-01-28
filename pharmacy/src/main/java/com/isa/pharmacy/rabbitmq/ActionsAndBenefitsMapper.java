@@ -2,14 +2,15 @@ package com.isa.pharmacy.rabbitmq;
 
 
 public class ActionsAndBenefitsMapper {
-	
-	public static ActionsAndBenefits mapActionDtoToAction(ActionsAndBenefitsDto actionDto) {
-		ActionsAndBenefits action = new ActionsAndBenefits();
-		action.setMessageAboutAction(actionDto.getMessage());
-		action.setStartDate(actionDto.getStartDate());
-		action.setEndDate(actionDto.getEndDate());	
-		action.setPharmacyName("Jankovic");
-		return action;
-	}
+
+    public static ActionsAndBenefits mapActionDtoToAction(ActionsAndBenefitsDto actionDto) {
+        ActionsAndBenefits action = new ActionsAndBenefits();
+        action.setMessageAboutAction(actionDto.getMessage());
+        action.setStartDate(actionDto.getStartDate());
+        action.setEndDate(actionDto.getEndDate());
+        //TODO: Logovana apoteka
+        action.setPharmacyName("Jankovic");
+        return action;
+    }
 
 }

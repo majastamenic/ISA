@@ -1,5 +1,3 @@
 package com.isa.pharmacy.service;
 
-public class AdminService {
-
-}
+public class AdminService { }

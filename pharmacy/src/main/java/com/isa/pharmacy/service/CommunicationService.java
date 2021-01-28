@@ -1,6 +1,8 @@
 package com.isa.pharmacy.service;
 
 
+import com.isa.pharmacy.controller.dto.MedicineDto;
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
@@ -12,13 +14,13 @@ import rs.ac.uns.ftn.grpc.*;
 public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServiceImplBase {
 
     @Autowired
-    private MedicinePharmacyService medsPharmacy;
+    private PharmacyService pharmacyService;
 
     @Override
     public void communicate(ProtoAvailableMedication request, StreamObserver<ProtoResponseAvailableMedication> responseObserver) {
         System.out.println("You are now communicating with hospital.");
         System.out.println("Message from Hospital: " + request.getPharmacyName());
-        int quantity = medsPharmacy.hasPharmacyMedication(request.getPharmacyName(), request.getMedicationName());
+        int quantity = pharmacyService.hasPharmacyMedication(request.getPharmacyName(), request.getMedicationName());
 
         ProtoResponseAvailableMedication responseMessage = ProtoResponseAvailableMedication.newBuilder()
                 .setAmount(quantity).build();
@@ -33,11 +35,11 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
         System.out.println("You are now communicating with hospital.");
         System.out.println("Message from Hospital to pharmacy: " + request.getPharmacyName());
 
-        ProtoResponseMedications.Builder b = ProtoResponseMedications.newBuilder();
-        for (MedicinePharmacy m: medsPharmacy.getMedicinesFromPharmacy(request.getPharmacyName())) {
-            b.addMedication(ProtoMedication.newBuilder().setName(m.getMedicine().getName()).setAmount(m.getQuantity()));
+        ProtoResponseMedications.Builder builder = ProtoResponseMedications.newBuilder();
+        for (MedicineDto medicineDto: pharmacyService.getMedicineListFromPharmacy(request.getPharmacyName())) {
+            builder.addMedication(ProtoMedication.newBuilder().setName(medicineDto.getName()).setAmount(medicineDto.getAmount()));
         }
-        ProtoResponseMedications responseMessage = b.build();
+        ProtoResponseMedications responseMessage = builder.build();
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
         System.out.println(responseMessage);
