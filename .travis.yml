@@ -1,7 +1,5 @@
 language: java
-dist: trusty
-jdk:
-  - oraclejdk8
-  
-init:
-  - ./mvnw clean install -DskipTests
+jdk: oraclejdk8
+
+install: true
+script: ./mvnw clean install
