@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/actions")
 @CrossOrigin(value = "http://localhost:4200")
 public class RabbitMQController {
-	
-	@Autowired
+
+    @Autowired
     RabbitMQService rabbitMQService;
 
     @PostMapping
     public ResponseEntity<String> producer(@RequestBody ActionsAndBenefitsDto actionDto) {
 
-	    ActionsAndBenefits action=new ActionsAndBenefits();
-	    action = ActionsAndBenefitsMapper.mapActionDtoToAction(actionDto);
-	    
-	    rabbitMQService.send(action);
+        ActionsAndBenefits action = new ActionsAndBenefits();
+        action = ActionsAndBenefitsMapper.mapActionDtoToAction(actionDto);
 
-     	return ResponseEntity.ok("Message sent to the RabbitMQ JavaInUse Successfully");
+        rabbitMQService.send(action);
+
+        return ResponseEntity.ok("Message sent to the RabbitMQ JavaInUse Successfully");
     }
 }

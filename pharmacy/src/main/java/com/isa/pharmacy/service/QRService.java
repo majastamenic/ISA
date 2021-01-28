@@ -24,35 +24,19 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 @Service
 public class QRService {
-	
-	public static final String QR_CODE_IMAGE_PATH = "./MyQRCode.png";
-	
-	public static void generateQRCodeImage(String text, int width, int height, String filePath)
-            throws WriterException, IOException {
-        QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
-        Path path = FileSystems.getDefault().getPath(filePath);
-        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
-    }
-	
-	public String readQrCode(String path) throws IOException {
-		
-		try {
-			BufferedImage bufferedImage = ImageIO.read(new FileInputStream(path));
-				
-			BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(
-					new BufferedImageLuminanceSource(bufferedImage)));
-			Result result = new MultiFormatReader().decode(bitmap);
-			return result.getText();			
-		}catch(NotFoundException e) {
-			System.out.println("There is no QR code in the image");
+    public String readQrCode(String path) throws IOException {
+
+        try {
+            BufferedImage bufferedImage = ImageIO.read(new FileInputStream(path));
+
+            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(
+                    new BufferedImageLuminanceSource(bufferedImage)));
+            Result result = new MultiFormatReader().decode(bitmap);
+            return result.getText();
+        } catch (NotFoundException e) {
+            System.out.println("There is no QR code in the image");
             return null;
-		}
-			
-		
-	}
-	
-	
-
+        }
+    }
 }

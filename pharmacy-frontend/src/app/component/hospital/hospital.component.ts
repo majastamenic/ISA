@@ -27,7 +27,6 @@ export class HospitalComponent implements OnInit {
 
 
   registration(): void{
-    this.hospitalService.send(this.hospital);
     this.hospitalService.registration(this.hospital).subscribe((returnedHospital: Hospital) => {
       alert('Welcome ' + returnedHospital.email + ' .\n' + 'Please check you email.');
     },
