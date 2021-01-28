@@ -38,7 +38,7 @@ public class PharmacyService {
             medicineList.add(medicinePharmacy.getMedicine());
         }
         return medicineList;
-    }
+        }
 
     public int hasPharmacyMedication(String pharmacyName, String medicineName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
