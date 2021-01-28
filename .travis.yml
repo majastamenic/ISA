@@ -4,8 +4,6 @@ jdk: openjdk10
 script:
   - cd pharmacy
   - chmod +x mvnw
-  
-build:
   - ./mvnw clean install -DskipTests
   
 
