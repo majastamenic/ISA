@@ -14,6 +14,7 @@ public class ScheduledTasks {
     @GrpcClient("netgrpcserver")
     private NetGrpcServiceGrpc.NetGrpcServiceBlockingStub stub;
 
+    
     /*@Scheduled(fixedRate = 10000)
     public void sendMessageToServer() {
        MessageProto message = MessageProto.newBuilder().setMessage("some message").build();
