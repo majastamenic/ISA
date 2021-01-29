@@ -4,12 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
 public class Dermatologist extends User{
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @OneToMany
     private List<Pharmacy> pharmacy;
     @OneToMany
@@ -21,9 +17,8 @@ public class Dermatologist extends User{
 
     public Dermatologist(){}
 
-    public Dermatologist(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, Long id1, List<Pharmacy> pharmacy, List<Examination> examinations, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules) {
+    public Dermatologist(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, List<Pharmacy> pharmacy, List<Examination> examinations, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules) {
         super(id, email, password, name, surname, address, city, country, phone);
-        this.id = id1;
         this.pharmacy = pharmacy;
         this.examinations = examinations;
         this.workSchedule = workSchedule;
@@ -44,14 +39,6 @@ public class Dermatologist extends User{
 
     public void setExaminations(List<Examination> examinations) {
         this.examinations = examinations;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public List<Pharmacy> getPharmacy() {

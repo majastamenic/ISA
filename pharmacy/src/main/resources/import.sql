@@ -1,14 +1,16 @@
-insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Suboticka 23', 'Novi Sad', 'Srbija', 'maja@gmail.com', 'Maja', 'maja', '076/468965', 'Stamenic', 'User');
-insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Rumenacka 23', 'Novi Sad', 'Srbija', 'gojko@gmail.com', 'Gojko', 'gojko', '076/468965', 'Novcic', 'User');
-insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Temerinska 23', 'Novi Sad', 'Srbija', 'tasa@gmail.com', 'Tasa', 'tasa', '076/468965', 'Damjanac', 'User');
-insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Ticanova 23', 'Novi Sad', 'Srbija', 'masa@gmail.com', 'Masa', 'masa', '076/468965', 'Milanovic', 'User');
-
 insert into pharmacy (id, address, api_key, name) values (1, 'Fejes Klare 34.', 'Jankovic45', 'Jankovic');
 insert into pharmacy (id, address, api_key, name) values (2, 'Fejes Klare 34.', 'Benu67', 'Benu');
 insert into pharmacy (id, address, api_key, name) values (3, 'Fejes Klare 34.', 'Zdravo', 'Zdravlje');
 insert into pharmacy (id, address, api_key, name) values (4, 'Fejes Klare 34.', 'lalala', 'Apoteka+');
 insert into pharmacy (id, address, api_key, name) values (5, 'Fejes Klare 34.', 'lalala', 'Pharmacy');
 insert into pharmacy (id, address, api_key, name) values (6, 'Fejes Klare 34.', 'lalalala', 'Nova');
+
+insert into app_user (address, city, country, email, name, password, phone, surname, dtype, pharmacy_id) values('Suboticka 23', 'Novi Sad', 'Srbija', 'maja@gmail.com', 'Maja', 'maja', '076/468965', 'Stamenic', 'Pharmacist', 2);
+insert into app_user (address, city, country, email, name, password, phone, surname, dtype, pharmacy_id) values('Rumenacka 23', 'Novi Sad', 'Srbija', 'gojko@gmail.com', 'Gojko', 'gojko', '076/468965', 'Novcic', 'Patient',);
+insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Temerinska 23', 'Novi Sad', 'Srbija', 'tasa@gmail.com', 'Tasa', 'tasa', '076/468965', 'Damjanac', 'Pharmacist');
+insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Ticanova 23', 'Novi Sad', 'Srbija', 'masa@gmail.com', 'Masa', 'masa', '076/468965', 'Milanovic', 'Pharmacist');
+
+
 
 INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala');
 
