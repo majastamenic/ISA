@@ -46,6 +46,12 @@ public class User implements Serializable {
     @Column
     private String phone;
 
+    @Column
+    private String verificationCode;
+
+    @Column
+    private Boolean active;
+
     public User() {
     }
 
@@ -149,5 +155,19 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
+    public String getVerificationCode() {
+        return verificationCode;
+    }
 
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }
