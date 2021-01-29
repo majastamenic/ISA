@@ -9,10 +9,13 @@ import org.springframework.stereotype.Repository;
 import com.isa.pharmacy.domain.Pharmacy;
 
 @Repository
-public interface PharmacyRepository extends JpaRepository<Pharmacy, Long>{
+public interface PharmacyRepository extends JpaRepository<Pharmacy, Long> {
 
-	Pharmacy findPharmacyByApiKey(String apiKey);
-	Pharmacy findPharmacyByName(String name);
-	Pharmacy save(Pharmacy p);
-	List<Pharmacy> findAll();
+    Pharmacy save(Pharmacy p);
+
+    Pharmacy findPharmacyByApiKey(String apiKey);
+
+    Pharmacy findPharmacyByName(String name);
+
+    List<Pharmacy> findAll();
 }

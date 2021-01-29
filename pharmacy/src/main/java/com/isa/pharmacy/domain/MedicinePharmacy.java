@@ -2,86 +2,79 @@ package com.isa.pharmacy.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "medicinePharmacy")
-public class MedicinePharmacy implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column
-	private double price;
-	@Column
-	private int quantity;
-	@ManyToOne
-	private Medicine medicine;
-	@ManyToOne
-	private Pharmacy pharmacy;
-	
-	public MedicinePharmacy() {}
-	
-	public MedicinePharmacy(long id, double price, Medicine medicine, Pharmacy pharmacy, int quantity) {
-		super();
-		this.id = id;
-		this.price = price;
-		this.medicine = medicine;
-		this.pharmacy = pharmacy;
-		this.quantity = quantity;
-	}
+public class MedicinePharmacy implements Serializable {
 
-	public Long getId() {
-		return id;
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private double price;
+    @Column
+    private int quantity;
+    @ManyToOne
+    private Medicine medicine;
+    @ManyToOne
+    private Pharmacy pharmacy;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public MedicinePharmacy() {
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public MedicinePharmacy(long id, double price, Medicine medicine, Pharmacy pharmacy, int quantity) {
+        super();
+        this.id = id;
+        this.price = price;
+        this.medicine = medicine;
+        this.pharmacy = pharmacy;
+        this.quantity = quantity;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Medicine getMedicine() {
-		return medicine;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setMedicine(Medicine medicine) {
-		this.medicine = medicine;
-	}
+    public double getPrice() {
+        return price;
+    }
 
-	public Pharmacy getPharmacy() {
-		return pharmacy;
-	}
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-	public void setPharmacy(Pharmacy pharmacy) {
-		this.pharmacy = pharmacy;
-	}
+    public Medicine getMedicine() {
+        return medicine;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public void setMedicine(Medicine medicine) {
+        this.medicine = medicine;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
-	
-	
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
 
 }

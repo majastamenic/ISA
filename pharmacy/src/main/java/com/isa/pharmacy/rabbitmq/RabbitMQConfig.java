@@ -15,8 +15,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-	
-	@Value("${pharmacy.rabbitmq.queue}")
+
+    @Value("${pharmacy.rabbitmq.queue}")
     String queueName;
 
     @Value("${pharmacy.rabbitmq.exchange}")
