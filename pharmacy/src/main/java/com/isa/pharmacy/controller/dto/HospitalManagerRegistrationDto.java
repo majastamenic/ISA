@@ -1,8 +1,8 @@
 package com.isa.pharmacy.controller.dto;
 
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
 
 public class HospitalManagerRegistrationDto {
 	

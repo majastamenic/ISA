@@ -7,20 +7,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RabbitMQService {
-	
-	  @Autowired
-	    private AmqpTemplate rabbitTemplate;
 
-	    @Value("${pharmacy.rabbitmq.exchange}")
-	    private String exchange;
+    @Autowired
+    private AmqpTemplate rabbitTemplate;
 
-	    @Value("${pharmacy.rabbitmq.routingkey}")
-	    private String routingkey;
+    @Value("${pharmacy.rabbitmq.exchange}")
+    private String exchange;
 
-	    public void send(ActionsAndBenefits action) {
-	        rabbitTemplate.convertAndSend(exchange, routingkey, action);
-	        System.out.println("Send msg = " + action);
+    @Value("${pharmacy.rabbitmq.routingkey}")
+    private String routingkey;
 
-	    }
+    public void send(ActionsAndBenefits action) {
+        rabbitTemplate.convertAndSend(exchange, routingkey, action);
+        System.out.println("Send msg = " + action);
+
+    }
 
 }

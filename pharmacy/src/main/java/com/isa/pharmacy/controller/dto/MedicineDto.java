@@ -2,9 +2,8 @@ package com.isa.pharmacy.controller.dto;
 
 import java.util.List;
 
-import com.isa.pharmacy.domain.Pharmacy;
-
 public class MedicineDto {
+
 	private Long code;	
 	private String name;	
 	private String typeOfMedicine;	
@@ -12,10 +11,9 @@ public class MedicineDto {
 	private List<String> composition;	
 	private String manufactured;	
 	private String publishingType;	
-	private List<String> replacementMedicines;
+	private List<String> alternative;
 	private double price;
-	private int quantity;
-	private Pharmacy pharmacy;
+	private int amount;
 	private String note;
 
 	
@@ -26,7 +24,7 @@ public class MedicineDto {
 
 	public MedicineDto(Long code, String name, String typeOfMedicine, String formOfMedicine, List<String> composition,
 			String manufactured, String publishingType, List<String> replacementMedicines, double price,
-			int quantity, Pharmacy pharmacy, String note, List<String> replacementMedicine) {
+			int amount, String note, List<String> alternative) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -35,134 +33,97 @@ public class MedicineDto {
 		this.composition = composition;
 		this.manufactured = manufactured;
 		this.publishingType = publishingType;
-		this.replacementMedicines = replacementMedicines;
+		this.alternative = alternative;
 		this.price = price;
-		this.quantity = quantity;
-		this.pharmacy = pharmacy;
+		this.amount = amount;
 		this.note = note;
 	}
-
-	
-	
 
 	public Long getCode() {
 		return code;
 	}
 
-
 	public void setCode(Long code) {
 		this.code = code;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getTypeOfMedicine() {
 		return typeOfMedicine;
 	}
 
-
 	public void setTypeOfMedicine(String typeOfMedicine) {
 		this.typeOfMedicine = typeOfMedicine;
 	}
-
 
 	public String getFormOfMedicine() {
 		return formOfMedicine;
 	}
 
-
 	public void setFormOfMedicine(String formOfMedicine) {
 		this.formOfMedicine = formOfMedicine;
 	}
-
 
 	public List<String> getComposition() {
 		return composition;
 	}
 
-
 	public void setComposition(List<String> composition) {
 		this.composition = composition;
 	}
-
 
 	public String getManufactured() {
 		return manufactured;
 	}
 
-
 	public void setManufactured(String manufactured) {
 		this.manufactured = manufactured;
 	}
-
 
 	public String getPublishingType() {
 		return publishingType;
 	}
 
-
 	public void setPublishingType(String publishingType) {
 		this.publishingType = publishingType;
 	}
 
-
-	public List<String> getReplacementMedicines() {
-		return replacementMedicines;
+	public List<String> getAlternative() {
+		return alternative;
 	}
 
-
-	public void setReplacementMedicines(List<String> replacementMedicines) {
-		this.replacementMedicines = replacementMedicines;
+	public void setAlternative(List<String> alternative) {
+		this.alternative = alternative;
 	}
-
 
 	public double getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
-
-	public int getQuantity() {
-		return quantity;
+	public int getAmount() {
+		return amount;
 	}
 
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
-
-
-	public Pharmacy getPharmacy() {
-		return pharmacy;
-	}
-
-
-	public void setPharmacy(Pharmacy pharmacy) {
-		this.pharmacy = pharmacy;
-	}
-
 
 	public String getNote() {
 		return note;
 	}
 
-
 	public void setNote(String note) {
 		this.note = note;
 	}
-
-
 }

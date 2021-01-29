@@ -9,7 +9,8 @@ import com.isa.pharmacy.domain.EPrescription;
 
 @Repository
 public interface EPrescriptionRepository extends JpaRepository<EPrescription, Long> {
-	
-	List<EPrescription> findAll();
-	EPrescription findEPrescriptionById(Long id);
+
+    EPrescription findEPrescriptionById(Long id);
+
+    List<EPrescription> findAll();
 }

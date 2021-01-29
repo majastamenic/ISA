@@ -14,38 +14,25 @@ import com.isa.pharmacy.repository.MedicineRepository;
 
 @Repository
 public class MedicineService {
-	@Autowired
-	private MedicineRepository medicineRepository;
-	@Autowired
-	private PharmacyService pharmacyService;
-	@Autowired
-	private MedicinePharmacyService medicinePharmacyService;
-	
-	public List<Medicine> getAll(){
-		return medicineRepository.findAll();
-	}
-	
-	public Medicine create(Medicine medicine) {
-		return medicineRepository.save(medicine);
-	}
+    @Autowired
+    private MedicineRepository medicineRepository;
+    @Autowired
+    private PharmacyService pharmacyService;
 
-	public void delete(Medicine medicine) {
-		medicineRepository.delete(medicine);
-		
-	}
+    public Medicine create(Medicine medicine) {
+        return medicineRepository.save(medicine);
+    }
 
-	public List<Medicine> getAllMedicineInPharmacy(String pharmacyName){
-		Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
-		List<Medicine> medicineList = new ArrayList<>();
-		for(MedicinePharmacy medicinePharmacy: medicinePharmacyService.getAll()){
-			if(medicinePharmacy.getPharmacy().equals(pharmacy)){
-				medicineList.add(medicinePharmacy.getMedicine());
-			}
-		}
-		return medicineList;
-	}
+    public void delete(Medicine medicine) {
+        medicineRepository.delete(medicine);
 
-	public Medicine findById(Long id) {
-		return medicineRepository.findMedicineById(id);
-	}
+    }
+
+    public Medicine findById(Long id) {
+        return medicineRepository.findMedicineById(id);
+    }
+
+    public List<Medicine> getAll() {
+        return medicineRepository.findAll();
+    }
 }

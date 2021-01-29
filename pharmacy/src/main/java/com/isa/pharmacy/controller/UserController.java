@@ -20,40 +20,42 @@ import com.isa.pharmacy.service.UserService;
 @RequestMapping("/user")
 //@CrossOrigin(value = "http://localhost:4200")
 public class UserController {
-	
-	@Autowired
-	private UserService userService;
-	
-	@GetMapping
-	public ModelAndView getUsers() {
-		return null;
-	}
-	
-	@PostMapping("/login")
-	public User login(@RequestBody LoginDto loginDto) throws Exception {
-		String email = loginDto.getEmail();
-		String password = loginDto.getPassword();
-		User user = null;
-		if((!email.equals("")) && (!password.equals("")))
-			user = UserMapper.mapLoginDtoToUser(loginDto);
-		if(user.equals(null))
-			throw new Exception("Bad request");
-		return userService.login(user);
-	}
-	
-	@PostMapping
-	public User registration(@RequestBody RegistrationDto registrationDto) {
-		User user = UserMapper.mapRegistrationDtoToUser(registrationDto);
-		return userService.create(user);
-	}
-	// /user/1
-	@GetMapping("/{id}")
-	public User getUser(@PathVariable("id") Long id) {
-		User user = userService.getById(id);
-		if(user == null) {
-			throw new NotFoundException(String.format("User with id %s not found", id));
-		}
-		return user;
-	}
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping
+    public ModelAndView getUsers() {
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable("id") Long id) {
+        User user = userService.getById(id);
+        if (user == null) {
+            throw new NotFoundException(String.format("User with id %s not found", id));
+        }
+        return user;
+    }
+
+    @PostMapping
+    public User registration(@RequestBody RegistrationDto registrationDto) {
+        User user = UserMapper.mapRegistrationDtoToUser(registrationDto);
+        return userService.create(user);
+    }
+
+
+    @PostMapping("/login")
+    public User login(@RequestBody LoginDto loginDto) throws Exception {
+        String email = loginDto.getEmail();
+        String password = loginDto.getPassword();
+        User user = null;
+        if ((!email.equals("")) && (!password.equals("")))
+            user = UserMapper.mapLoginDtoToUser(loginDto);
+        if (user.equals(null))
+            throw new Exception("Bad request");
+        return userService.login(user);
+    }
+
+
 }
-//user/login 

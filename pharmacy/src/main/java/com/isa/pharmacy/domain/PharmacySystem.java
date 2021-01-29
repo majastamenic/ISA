@@ -17,7 +17,8 @@ public class PharmacySystem implements Serializable {
     @OneToMany
     private List<Pharmacy> pharmacies;
 
-    public PharmacySystem() { }
+    public PharmacySystem() {
+    }
 
     public PharmacySystem(Long id, String apiKey, List<Pharmacy> pharmacies) {
         this.id = id;
