@@ -32,6 +32,7 @@ public class MedicineMapper {
         medicineDto.setNote(medicine.getNote());
         for (MedicinePharmacy medicinePharmacy : medicine.getMedicinePharmacy()) {
             if (medicinePharmacy.getPharmacy().getName().toLowerCase().equals(pharmacyName.toLowerCase())) {
+                medicineDto.setPharmacyName(medicinePharmacy.getPharmacy().getName());
                 medicineDto.setPrice(medicinePharmacy.getPrice());
                 medicineDto.setAmount(medicinePharmacy.getQuantity());
                 break;

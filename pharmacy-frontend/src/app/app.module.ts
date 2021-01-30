@@ -12,6 +12,8 @@ import { HospitalComponent } from './component/hospital/hospital.component';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { VerificationComponent } from './component/user/verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,12 @@ import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.
     ActionsBenefitsComponent,
     MedicineComponent,
     UploadQRComponent,
+<<<<<<< HEAD
+=======
+    EPrescriptionComponent,
+    NavbarComponent,
+    VerificationComponent,
+>>>>>>> S4-registration_login
   ],
   imports: [
     BrowserModule,

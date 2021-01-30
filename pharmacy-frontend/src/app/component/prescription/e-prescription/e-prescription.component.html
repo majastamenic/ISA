@@ -14,17 +14,26 @@
             </tr>
             <tr>
               <td><h6>Date of issue:</h6><p></p></td>
-              <td><label>2020/12/15</label></td>
+              <td><label>{{ePrescriptionObj.date}}</label></td>
             </tr>
           </tbody>
         </table>
 
         <form class="action-form">
-            <h3 class="h32">Medicine</h3>
+            <h3 class="h32">Medicines</h3>
             <ul name="hospital-list" class="list">
                 <li>3 Brufen</li>
             </ul>
+            <br/>
+            <h3 class="h32">Chose pharmacy</h3>
+            <select name="pharmacies" id="pharmacies">
+              <option *ngFor="let pharmacy of pharmacies">{{pharmacy.name}}</option>
+            </select>
+            <br/>
         </form>
+        <br/>
+        <br/>
+        <button>Send</button>
         </form>
     </div>
   </div>

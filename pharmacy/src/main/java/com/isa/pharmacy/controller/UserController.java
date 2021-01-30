@@ -1,15 +1,9 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.isa.pharmacy.controller.dto.LoginDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
@@ -21,11 +15,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-//@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(value = "http://localhost:4200")
 public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping
     public ModelAndView getUsers() {
@@ -41,12 +37,18 @@ public class UserController {
         return user;
     }
 
-    @PostMapping        // verovatno nam nece trebati
-    public User registration(@RequestBody RegistrationDto registrationDto) {
-        User user = UserMapper.mapRegistrationDtoToUser(registrationDto);
-        return userService.save(user);
+
+    @GetMapping("/{email}/{code}")
+    public User activeProfile(@PathVariable("email") String email, @PathVariable("code") String code){
+        return userService.activateProfile(email, code);
     }
 
+    @PostMapping
+    public User registration(@RequestBody RegistrationDto registrationDto) {
+        User user = userService.save(UserMapper.mapRegistrationDtoToUser(registrationDto));
+       // emailService.verificationEmail(user);
+        return user;
+    }
 
     @PostMapping("/login")
     public User login(@RequestBody LoginDto loginDto) throws Exception {

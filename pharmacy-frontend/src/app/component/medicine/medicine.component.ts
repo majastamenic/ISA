@@ -10,34 +10,13 @@ import { Medicine } from './model/medicine-model';
 })
 export class MedicineComponent implements OnInit {
 
-  medicines: Medicine[] = [
-    {
-    code: 123417,
-    name: "Asprin",
-    type: "A",
-    form: "tablet",
-    manufactured: "Bayer",
-    publishingType: "without prescription",
-    amount: 15,
-    note: "/",
-  },
-  {
-    code: 129897,
-    name: "Brufen",
-    type: "A",
-    form: "tablet",
-    manufactured: "Bayer",
-    publishingType: "without prescription",
-    amount: 20,
-    note: "/",
-  },
-];
+  medicinesDtoList: any;
 
   constructor(private medicineService: MedicineService) { }
 
   ngOnInit(): void {
-    this.medicineService.getAll().subscribe(listMedicine => {
-      this.medicines = listMedicine;
+    this.medicineService.getAllMedicinesDto().subscribe(listMedicineDto => {
+      this.medicinesDtoList = listMedicineDto;
     });
   }
 
