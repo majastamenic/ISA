@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.domain.Pharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,10 +39,10 @@ public class UserController {
         return user;
     }
 
-    @PostMapping
+    @PostMapping        // verovatno nam nece trebati
     public User registration(@RequestBody RegistrationDto registrationDto) {
         User user = UserMapper.mapRegistrationDtoToUser(registrationDto);
-        return userService.create(user);
+        return userService.save(user);
     }
 
 
@@ -57,5 +58,10 @@ public class UserController {
         return userService.login(user);
     }
 
+
+    @PostMapping("/registration")
+    public User save(@RequestBody User u) {
+        return userService.save(u);
+    }
 
 }

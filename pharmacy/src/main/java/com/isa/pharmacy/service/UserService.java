@@ -15,7 +15,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User create(User user) {
+    public User save(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser == null) {
             return userRepository.save(user);
