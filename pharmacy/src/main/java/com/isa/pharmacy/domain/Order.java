@@ -13,7 +13,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+    @ElementCollection
     private List<Medicine> medicineList;
     @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
