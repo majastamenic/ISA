@@ -10,9 +10,14 @@ import { Medicine } from './model/medicine-model';
 })
 export class MedicineComponent implements OnInit {
 
+  medicinesDtoList: any;
+
   constructor(private medicineService: MedicineService) { }
 
   ngOnInit(): void {
+    this.medicineService.getAllMedicinesDto().subscribe(listMedicineDto => {
+      this.medicinesDtoList = listMedicineDto;
+    });
   }
 
 }

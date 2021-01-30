@@ -3,13 +3,7 @@ package com.isa.pharmacy.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -26,8 +20,8 @@ public class Pharmacy implements Serializable {
     private String name;
     @Column
     private String address;
-    @OneToMany
-    private List<MedicinePharmacy> medicinePharmaciest;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<MedicinePharmacy> medicinePharmacy;
 
     public Pharmacy() {
     }
@@ -38,7 +32,7 @@ public class Pharmacy implements Serializable {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.medicinePharmaciest = medicinePharmaciest;
+        this.medicinePharmacy = medicinePharmacy;
     }
 
     public Long getId() {
@@ -58,12 +52,12 @@ public class Pharmacy implements Serializable {
         this.name = name;
     }
 
-    public List<MedicinePharmacy> getMedicinePharmaciest() {
-        return medicinePharmaciest;
+    public List<MedicinePharmacy> getMedicinePharmacy() {
+        return medicinePharmacy;
     }
 
-    public void setMedicinePharmaciest(List<MedicinePharmacy> medicinePharmaciest) {
-        this.medicinePharmaciest = medicinePharmaciest;
+    public void setMedicinePharmacy(List<MedicinePharmacy> medicinePharmacy) {
+        this.medicinePharmacy = medicinePharmacy;
     }
 
     public String getAddress() {
@@ -75,11 +69,7 @@ public class Pharmacy implements Serializable {
     }
 
     public List<MedicinePharmacy> getMedicinePharmacies() {
-        return medicinePharmaciest;
-    }
-
-    public void setMedicinePharmacies(List<MedicinePharmacy> medicinePharmacies) {
-        this.medicinePharmaciest = medicinePharmacies;
+        return medicinePharmacy;
     }
 
     @Override
@@ -88,7 +78,7 @@ public class Pharmacy implements Serializable {
         int result = 1;
         result = prime * result + ((address == null) ? 0 : address.hashCode());
         result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((medicinePharmaciest == null) ? 0 : medicinePharmaciest.hashCode());
+        result = prime * result + ((medicinePharmacy == null) ? 0 : medicinePharmacy.hashCode());
         return result;
     }
 
