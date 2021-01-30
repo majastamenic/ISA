@@ -35,15 +35,15 @@ public class Medicine implements Serializable {
     private String note;
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
-    @OneToMany
-    private List<Order> order;
+    @OneToOne
+    private Order order;
 
     public Medicine() {
     }
 
     public Medicine(Long id, Long code, String name, String typeOfMedicine, String formOfMedicine,
                     List<String> composition, String manufactured, String publishingType,
-                    List<String> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy, List<Order> order) {
+                    List<String> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy, Order order) {
         super();
         this.id = id;
         this.code = code;
@@ -147,11 +147,5 @@ public class Medicine implements Serializable {
         this.medicinePharmacy = medicinePharmacy;
     }
 
-    public List<Order> getOrder() {
-        return order;
-    }
 
-    public void setOrder(List<Order> order) {
-        this.order = order;
-    }
 }

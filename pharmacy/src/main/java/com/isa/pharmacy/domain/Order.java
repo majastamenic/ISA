@@ -3,12 +3,13 @@ package com.isa.pharmacy.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity(name = "app_order")
 @Table
-public class Order {
+public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +30,7 @@ public class Order {
         this.medicineList = medicineList;
         this.endDate = endDate;
         this.endTime = endTime;
-        this.pharmacyAdmin = pharmacyAdmin;
+        this.pharmacyAdmin=pharmacyAdmin;
     }
 
     public static long getSerialVersionUID() {

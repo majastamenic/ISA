@@ -1,11 +1,12 @@
 package com.isa.pharmacy.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table
-public class PharmacyAdmin extends User{
+public class PharmacyAdmin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,8 +33,16 @@ public class PharmacyAdmin extends User{
     public PharmacyAdmin(){}
 
     public PharmacyAdmin(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, List<Order> orders) {
-        super(id, email, password, name, surname, address, city, country, phone);
-        this.orders=orders;
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+        this.phone = phone;
+        this.orders= orders;
     }
 
 }
