@@ -16,27 +16,22 @@ public class Examination {
     private Dermatologist dermatologist;
     @OneToOne
     private Patient patient;
-    @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date startDate;
-    @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date endDate;
     @OneToOne
     private Prescription prescription;
     @OneToOne
     private Schedule schedule;
+    @Column
+    private Integer price;
 
     public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Patient patient, Date startDate, Date endDate, Prescription prescription, Schedule schedule) {
+    public Examination(Long id, Dermatologist dermatologist, Patient patient, Prescription prescription, Schedule schedule, Integer price) {
         this.id = id;
         this.dermatologist = dermatologist;
         this.patient = patient;
-        this.startDate = startDate;
-        this.endDate = endDate;
         this.prescription = prescription;
         this.schedule = schedule;
+        this.price=price;
     }
 
     public Schedule getSchedule() {
@@ -79,19 +74,11 @@ public class Examination {
         this.patient = patient;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }
