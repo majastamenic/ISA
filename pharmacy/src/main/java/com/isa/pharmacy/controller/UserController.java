@@ -17,6 +17,8 @@ import com.isa.pharmacy.controller.mapping.UserMapper;
 import com.isa.pharmacy.domain.User;
 import com.isa.pharmacy.service.UserService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 //@CrossOrigin(value = "http://localhost:4200")
@@ -62,6 +64,11 @@ public class UserController {
     @PostMapping("/registration")
     public User save(@RequestBody User u) {
         return userService.save(u);
+    }
+
+    @GetMapping("/all")
+    public List<User> getAll() {
+        return userService.getAll();
     }
 
 }
