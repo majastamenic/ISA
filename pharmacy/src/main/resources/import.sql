@@ -11,14 +11,10 @@ insert into app_user (address, city, country, email, name, password, phone, surn
 insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Temerinska 23', 'Novi Sad', 'Srbija', 'tasa@gmail.com', 'Tasa', 'tasa', '076/468965', 'Damjanac', 'User');
 insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Ticanova 23', 'Novi Sad', 'Srbija', 'masa@gmail.com', 'Masa', 'masa', '076/468965', 'Milanovic', 'User');
 
-
-
-insert into app_user (address, city, country, email, name, password, phone, surname, dtype, pharmacy_id) values('Suboticka 23', 'Novi Sad', 'Srbija', 'maja@gmail.com', 'Maja', 'maja', '076/468965', 'Stamenic', 'User');
-insert into app_user (address, city, country, email, name, password, phone, surname, dtype, pharmacy_id) values('Rumenacka 23', 'Novi Sad', 'Srbija', 'gojko@gmail.com', 'Gojko', 'gojko', '076/468965', 'Novcic', 'User',);
-insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Temerinska 23', 'Novi Sad', 'Srbija', 'tasa@gmail.com', 'Tasa', 'tasa', '076/468965', 'Damjanac', 'User');
-insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Ticanova 23', 'Novi Sad', 'Srbija', 'masa@gmail.com', 'Masa', 'masa', '076/468965', 'Milanovic', 'User');
-
-
+insert into pharmacist(address, city, country, email, name, password, phone, surname,pharmacy_id) values('1300 kaplara 12', 'Novi Sad', 'Srbija', 'mara@gmail.com', 'Mara', 'mara', '064/22785', 'Maric', 1);
+insert into pharmacist(address, city, country, email, name, password, phone, surname,pharmacy_id) values('Bulevar Oslobodjenja 5', 'Novi Sad', 'Srbija', 'pera@gmail.com', 'Pera', 'pera', '061/12384', 'Peric', 2);
+insert into dermatologist(address, city, country, email, name, password, phone, surname) values('Narodnog fronta 80', 'Novi Sad', 'Srbija', 'marko@gmail.com', 'Marko', 'marko', '061/10304', 'Markovic');
+insert into dermatologist_pharmacy(dermatologist_id, pharmacy_id) values(1, 1);
 
 INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala');
 

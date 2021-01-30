@@ -18,4 +18,8 @@ public class PharmacistController {
 
     @PostMapping("/registration")
     public Pharmacist save(@RequestBody Pharmacist p) { return pharmacistService.save(p); }
+
+    @PostMapping("/update")
+    public Pharmacist update(@RequestBody Pharmacist p) { return pharmacistService.update(p); }
+
 }

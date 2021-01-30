@@ -19,4 +19,19 @@ public class PharmacistService {
     public Pharmacist save(Pharmacist p) { return pharmacistRepository.save(p); }
 
     public List<Pharmacist> getAll(){ return pharmacistRepository.findAll(); }
+
+    public Long deletePharmacistById(Long id) {return pharmacistRepository.deletePharmacistById(id);}
+
+    public Pharmacist update(Pharmacist p) {
+        Pharmacist pharmacist = pharmacistRepository.findPharmacistById(p.getId());
+        pharmacist.setName(p.getName());
+        pharmacist.setSurname(p.getSurname());
+        pharmacist.setAddress(p.getAddress());
+        pharmacist.setCity(p.getCity());
+        pharmacist.setCountry(p.getCountry());
+        pharmacist.setPhone(p.getPhone());
+        pharmacist.setEmail(p.getEmail());
+        pharmacistRepository.save(pharmacist);
+        return pharmacist;
+    }
 }
