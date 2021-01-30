@@ -21,7 +21,7 @@ public class Order {
     @Column
     @DateTimeFormat(pattern = "HH:mm:ss")
     private Date endTime;
-    @Column
+    @OneToOne
     private PharmacyAdmin pharmacyAdmin;
 
     public Order(Long id, List<Medicine> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin) {

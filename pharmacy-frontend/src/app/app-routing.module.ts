@@ -8,6 +8,7 @@ import { EPrescriptionComponent } from './component/prescription/e-prescription/
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
+import { VerificationComponent } from './component/user/verification/verification.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'medicine', component: MedicineComponent},
   {path: 'uploadQR', component: UploadQRComponent},
   { path: 'ePrescription', component: EPrescriptionComponent },
+  { path: 'verification', component: VerificationComponent },
 ];
 
 @NgModule({

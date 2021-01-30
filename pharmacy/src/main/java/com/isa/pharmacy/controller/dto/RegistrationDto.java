@@ -4,6 +4,7 @@ public class RegistrationDto {
 
     private String email;
     private String password;
+    private String passwordAgain;
     private String name;
     private String surname;
     private String address;
@@ -93,5 +94,11 @@ public class RegistrationDto {
         this.phone = phone;
     }
 
+    public String getPasswordAgain() {
+        return passwordAgain;
+    }
 
+    public void setPasswordAgain(String passwordAgain) {
+        this.passwordAgain = passwordAgain;
+    }
 }

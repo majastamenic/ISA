@@ -5,32 +5,34 @@ import java.util.List;
 
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.PharmacyRepository;
+import org.springframework.web.server.ResponseStatusException;
 
 @Repository
 public class PharmacyService {
     @Autowired
     private PharmacyRepository pharmacyRepository;
-
+    @Value("${apiKey}")
+    private String ApiKey;
 
     public Pharmacy save(Pharmacy p) {
         return pharmacyRepository.save(p);
     }
 
-    public Pharmacy getByApiKey(String apiKey) {
-        if (pharmacyRepository.findPharmacyByApiKey(apiKey).equals(null))
-            return null;
-        else
-            return pharmacyRepository.findPharmacyByApiKey(apiKey);
+    public Pharmacy getByName(String name) {
+        return pharmacyRepository.findPharmacyByName(name);
     }
-
     public List<Pharmacy> getAll() {
         return pharmacyRepository.findAll();
     }
@@ -51,8 +53,7 @@ public class PharmacyService {
                 return medicinePharmacy.getQuantity();
             break;
         }
-        //TODO: Baci exception
-        return 0;
+        throw new NotFoundException(String.format("Pharmacy %s doesn't have %s medicine", pharmacyName, medicineName));
     }
 
     public Medicine checkAvailability(String medicineName, String pharmacyName) {
@@ -107,5 +108,10 @@ public class PharmacyService {
             medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), pharmacyName));
         }
         return medicineDtoList;
+    }
+
+    public void checkApiKey(String apiKey){
+        if (!(ApiKey).equals(apiKey))
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
 }

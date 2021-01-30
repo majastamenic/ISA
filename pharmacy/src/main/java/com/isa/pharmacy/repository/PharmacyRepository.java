@@ -13,8 +13,6 @@ public interface PharmacyRepository extends JpaRepository<Pharmacy, Long> {
 
     Pharmacy save(Pharmacy p);
 
-    Pharmacy findPharmacyByApiKey(String apiKey);
-
     Pharmacy findPharmacyByName(String name);
 
     List<Pharmacy> findAll();

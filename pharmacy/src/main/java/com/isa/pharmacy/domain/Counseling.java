@@ -14,18 +14,26 @@ public class Counseling {
     @OneToOne
     private Patient patient;
     @OneToOne
-    private Prescription prescription;
-    @OneToOne
     private Schedule schedule;
+    @Column
+    private String note;
 
     public Counseling(){}
 
-    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Prescription prescription, Schedule schedule) {
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, String note) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
-        this.prescription = prescription;
         this.schedule = schedule;
+        this.note = note;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Schedule getSchedule() {
@@ -60,12 +68,4 @@ public class Counseling {
         this.patient = patient;
     }
 
-
-    public Prescription getPrescription() {
-        return prescription;
-    }
-
-    public void setPrescription(Prescription prescription) {
-        this.prescription = prescription;
-    }
 }

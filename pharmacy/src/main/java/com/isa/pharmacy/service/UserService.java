@@ -2,6 +2,7 @@ package com.isa.pharmacy.service;
 
 import java.util.List;
 
+import com.isa.pharmacy.domain.Pharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User create(User user) {
+    public User save(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser == null) {
             return userRepository.save(user);
@@ -25,7 +26,7 @@ public class UserService {
 
     public User login(User user) {
         User existingUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        if (existingUser == null) {
+        if (existingUser == null || !existingUser.getActive()) {
             throw new UnauthorizeException("Can't find user with email and password");
         }
         return existingUser;
@@ -33,6 +34,15 @@ public class UserService {
 
     public User getById(Long id) {
         User user = userRepository.findUserById(id);
+        return user;
+    }
+
+    public List<User> getAll() { return userRepository.findAll(); }
+
+    public User activateProfile(String email, String code){
+        User user = userRepository.findByEmail(email);
+        if(user != null && !user.getActive() && user.getVerificationCode().equals(code))
+            user.setActive(true);
         return user;
     }
 }

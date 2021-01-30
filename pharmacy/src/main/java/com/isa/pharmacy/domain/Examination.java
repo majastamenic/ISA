@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -22,16 +23,27 @@ public class Examination {
     private Schedule schedule;
     @Column
     private Integer price;
+    @ElementCollection
+    private List<Diagnosis> diagnosis;
 
     public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Patient patient, Prescription prescription, Schedule schedule, Integer price) {
+    public Examination(Long id, Dermatologist dermatologist, Patient patient, Date startDate, Date endDate, Prescription prescription, Schedule schedule, Integer price,List<Diagnosis> diagnosis) {
         this.id = id;
         this.dermatologist = dermatologist;
         this.patient = patient;
         this.prescription = prescription;
         this.schedule = schedule;
         this.price=price;
+        this.diagnosis = diagnosis;
+    }
+
+    public List<Diagnosis> getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(List<Diagnosis> diagnosis) {
+        this.diagnosis = diagnosis;
     }
 
     public Schedule getSchedule() {

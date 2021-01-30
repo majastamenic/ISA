@@ -1,6 +1,7 @@
 package com.isa.pharmacy.service;
 
 
+import com.isa.pharmacy.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -18,6 +19,17 @@ public class EmailService {
 
     @Value("${spring.mail.username}")
     private String mailSender;
+
+    @Async
+    public void verificationEmail(User user) throws MailException {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSender);
+        simpleMailMessage.setTo(user.getEmail());
+        simpleMailMessage.setSubject("Registration");
+        simpleMailMessage.setText("Hello,"+user.getName()+"\nWelcome to pharmacy system.\n" +
+                "Your verification code is: " + user.getVerificationCode());
+        javaMailSender.send(simpleMailMessage);
+    }
 
     @Async
     public void sendApiKey(String hospitalEmail, String apiKey)
