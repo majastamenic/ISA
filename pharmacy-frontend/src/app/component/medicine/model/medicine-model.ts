@@ -1,12 +1,15 @@
 import { Observable } from 'rxjs';
 
 export interface Medicine{
+    id: number;
     code: number;
     name: string;
-    type: string;
-    form: string;
+    typeOfMedicine: string;
+    formOfMedicine: string;
+    composition: Observable<string>;
     manufactured: string;
     publishingType: string;
-    amount: number;
+    replacementMedicines: Observable<String>;
     note: string;
 }
+

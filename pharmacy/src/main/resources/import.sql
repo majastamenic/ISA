@@ -3,20 +3,14 @@ insert into app_user (address, city, country, email, name, password, phone, surn
 insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Temerinska 23', 'Novi Sad', 'Srbija', 'tasa@gmail.com', 'Tasa', 'tasa', '076/468965', 'Damjanac', 'User');
 insert into app_user (address, city, country, email, name, password, phone, surname, dtype) values('Ticanova 23', 'Novi Sad', 'Srbija', 'masa@gmail.com', 'Masa', 'masa', '076/468965', 'Milanovic', 'User');
 
-insert into pharmacy (id, address, api_key, name) values (1, 'Fejes Klare 34.', 'Jankovic45', 'Jankovic');
-insert into pharmacy (id, address, api_key, name) values (2, 'Fejes Klare 34.', 'Benu67', 'Benu');
-insert into pharmacy (id, address, api_key, name) values (3, 'Fejes Klare 34.', 'Zdravo', 'Zdravlje');
-insert into pharmacy (id, address, api_key, name) values (4, 'Fejes Klare 34.', 'lalala', 'Apoteka+');
-insert into pharmacy (id, address, api_key, name) values (5, 'Fejes Klare 34.', 'lalala', 'Pharmacy');
-insert into pharmacy (id, address, api_key, name) values (6, 'Fejes Klare 34.', 'lalalala', 'Nova');
+insert into pharmacy (id, address, name) values (1, 'Fejes Klare 34.', 'Jankovic');
+insert into pharmacy (id, address, name) values (2, 'Fejes Klare 34.', 'Benu');
+insert into pharmacy (id, address, name) values (3, 'Fejes Klare 34.', 'Zdravlje');
+insert into pharmacy (id, address, name) values (4, 'Fejes Klare 34.', 'ApotekaPlus');
+insert into pharmacy (id, address, name) values (5, 'Fejes Klare 34.', 'Pharmacy');
+insert into pharmacy (id, address, name) values (6, 'Fejes Klare 34.', 'Nova');
 
 INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala');
-INSERT INTO hospital_pharmacies(hospital_id, pharmacies_id) VALUES (5, 1); 
-INSERT INTO hospital_pharmacies(hospital_id, pharmacies_id) VALUES (5, 2);
-INSERT INTO hospital_pharmacies(hospital_id, pharmacies_id) VALUES (5, 3);
-INSERT INTO hospital_pharmacies(hospital_id, pharmacies_id) VALUES (5, 4);
-INSERT INTO hospital_pharmacies(hospital_id, pharmacies_id) VALUES (5, 5);
-INSERT INTO hospital_pharmacies(hospital_id, pharmacies_id) VALUES (5, 6);
 
 INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine)VALUES (1, 62542, 'lala', 'lalal', 'brufen', 'lala', 'WITHOUT_PRESCRIPTION', 'lalala');
 INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine)VALUES (2, 66042, 'lala', 'lalal', 'panadol', 'lala', 'WITHOUT_PRESCRIPTION', 'lalala');
@@ -40,9 +34,6 @@ INSERT INTO public.medicine_replacement_medicines(medicine_id, replacement_medic
 
 INSERT INTO public.pharmacy_medicine_pharmaciest(pharmacy_id, medicine_pharmaciest_id)VALUES (1, 1);
 INSERT INTO public.pharmacy_medicine_pharmaciest(pharmacy_id, medicine_pharmaciest_id)VALUES (1, 4);
-
-
-INSERT INTO public.pharmacy_hospitals(pharmacy_id, hospitals_id)VALUES (1, 5);
 
 INSERT INTO public.medicineeprescription(id, code, name, quantity)VALUES (1, 2, 'brufen', 123419);
 INSERT INTO public.medicineeprescription(id, code, name, quantity)VALUES (2, 8, 'panadol', 6839093);

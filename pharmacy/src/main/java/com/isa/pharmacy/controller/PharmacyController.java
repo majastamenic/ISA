@@ -27,20 +27,6 @@ public class PharmacyController {
         return pharmacyService.getAll();
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<String> sendResponse(@RequestHeader("apiKey") String apiKey) {
-        if (apiKey.equals(""))
-            return new ResponseEntity<String>("",
-                    HttpStatus.FORBIDDEN);
-        if ((pharmacyService.getByApiKey(apiKey)).equals(""))
-            return new ResponseEntity<String>("Wrong apiKey",
-                    HttpStatus.BAD_REQUEST);
-        else
-            return new ResponseEntity<String>(
-                    "Welcome",
-                    HttpStatus.OK);
-    }
-
 
     @GetMapping("/getAllMedicines/{pharmacyName}")
     public List<Medicine> getMedicinesFromPharmacy(@PathVariable("pharmacyName") String pharmacyName) {
