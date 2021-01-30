@@ -15,6 +15,7 @@ public class MedicineDto {
 	private double price;
 	private int amount;
 	private String note;
+	private String pharmacyName;
 
 	
 	public MedicineDto() {
@@ -125,5 +126,13 @@ public class MedicineDto {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public String getPharmacyName() {
+		return pharmacyName;
+	}
+
+	public void setPharmacyName(String pharmacyName) {
+		this.pharmacyName = pharmacyName;
 	}
 }

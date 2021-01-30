@@ -10,6 +10,8 @@ import { Medicine } from './model/medicine-model';
 })
 export class MedicineComponent implements OnInit {
 
+  medicinesDtoList: any;
+
   medicines: Medicine[] = [
     {
     code: 123417,
@@ -36,8 +38,8 @@ export class MedicineComponent implements OnInit {
   constructor(private medicineService: MedicineService) { }
 
   ngOnInit(): void {
-    this.medicineService.getAll().subscribe(listMedicine => {
-      this.medicines = listMedicine;
+    this.medicineService.getAllMedicinesDto().subscribe(listMedicineDto => {
+      this.medicinesDtoList = listMedicineDto;
     });
   }
 
