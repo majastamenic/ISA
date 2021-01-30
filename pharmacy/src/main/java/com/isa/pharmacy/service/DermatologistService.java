@@ -34,6 +34,7 @@ public class DermatologistService {
         dermatologist.setCountry(d.getCountry());
         dermatologist.setPhone(d.getPhone());
         dermatologist.setEmail(d.getEmail());
+        dermatologist.setFirstLog(false);
         dermatologistRepository.save(dermatologist);
         return dermatologist;
     }

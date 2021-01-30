@@ -31,6 +31,7 @@ public class PharmacistService {
         pharmacist.setCountry(p.getCountry());
         pharmacist.setPhone(p.getPhone());
         pharmacist.setEmail(p.getEmail());
+        pharmacist.setFirstLog(false);
         pharmacistRepository.save(pharmacist);
         return pharmacist;
     }

@@ -30,6 +30,8 @@ public class Pharmacist {
     @Column
     private String phone;
 
+    @Column
+    private boolean isFirstLog = true;
     @OneToOne
     private Pharmacy pharmacy;
     @OneToMany
@@ -41,7 +43,7 @@ public class Pharmacist {
 
     public Pharmacist(){}
 
-    public Pharmacist(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, Pharmacy pharmacy, List<Counseling> counselings, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules) {
+    public Pharmacist(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, boolean isFirstLog, Pharmacy pharmacy, List<Counseling> counselings, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -51,10 +53,19 @@ public class Pharmacist {
         this.city = city;
         this.country = country;
         this.phone = phone;
+        this.isFirstLog = isFirstLog;
         this.pharmacy = pharmacy;
         this.counselings = counselings;
         this.workSchedule = workSchedule;
         this.vacationSchedules = vacationSchedules;
+    }
+
+    public boolean isFirstLog() {
+        return isFirstLog;
+    }
+
+    public void setFirstLog(boolean firstLog) {
+        isFirstLog = firstLog;
     }
 
     public Long getId() {
