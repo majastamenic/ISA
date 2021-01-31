@@ -48,7 +48,7 @@ public class MedicineController {
     public List<MedicineDto> getMedicineFromPharmacy() {
         List<MedicineDto> medicineDtoList = medicineService.getAllMedicines();
         if (medicineDtoList.isEmpty()) {
-            throw new NotFoundException(String.format("Pharmacy system doesn't have any medicine"));
+            throw new NotFoundException("Pharmacy system doesn't have any medicine");
         }
         return medicineDtoList;
     }

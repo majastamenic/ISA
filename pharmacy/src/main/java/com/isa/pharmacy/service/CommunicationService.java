@@ -37,10 +37,8 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
 
         ProtoResponseMedications.Builder builder = ProtoResponseMedications.newBuilder();
 
-        for (MedicineDto medicineDto: pharmacyService.getMedicineListFromPharmacy(request.getPharmacyName())) {
+        for (MedicineDto medicineDto: pharmacyService.getMedicineListFromPharmacy(request.getPharmacyName()))
             builder.addMedication(ProtoMedication.newBuilder().setName(medicineDto.getName()).setAmount(medicineDto.getAmount()));
-
-        }
         ProtoResponseMedications responseMessage = builder.build();
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();

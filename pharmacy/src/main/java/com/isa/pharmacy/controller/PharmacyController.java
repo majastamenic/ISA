@@ -1,22 +1,19 @@
 package com.isa.pharmacy.controller;
 
-import java.util.List;
-
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.MedicinePharmacy;
+import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.service.PharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.service.PharmacyService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/pharmacy")
@@ -25,13 +22,22 @@ public class PharmacyController {
     @Autowired
     private PharmacyService pharmacyService;
     @Value("${apiKey}")
-    private String ApiKey;
+    private String apiKey;
 
     @GetMapping
     public List<Pharmacy> getAll() {
         return pharmacyService.getAll();
     }
 
+    @GetMapping("/{name}")
+    public ResponseEntity<String> sendResponse(@RequestHeader("apiKey") String apiKey) {
+        if (apiKey.equals(""))
+            return new ResponseEntity<>("", HttpStatus.FORBIDDEN);
+        if (!(this.apiKey).equals(apiKey))
+            return new ResponseEntity<>("Wrong apiKey", HttpStatus.BAD_REQUEST);
+        else
+            return new ResponseEntity<>("Welcome", HttpStatus.OK);
+    }
 
     @GetMapping("/getAllMedicines/{pharmacyName}")
     public List<Medicine> getMedicinesFromPharmacy(@PathVariable("pharmacyName") String pharmacyName, @RequestHeader("apiKey") String apiKey) {

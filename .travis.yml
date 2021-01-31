@@ -1,0 +1,18 @@
+language: java
+jdk: openjdk10
+
+cache:
+  directories:
+  - $HOME/.m2
+addons:
+  sonarcloud:
+    organization: "isa-tim25"
+    token:
+      secure: "f/MuHUyMNyCQYD1h5JEvOmPtfuTuez7JfSketXNSgO/D6eVGp39Nu26E8zhH49LEnLBK+HYvjhgoZxZ96LkTAg7dPXNLjGW5UgLrGKK2AWuG69HMd9vibmLGX6YBV6XF6ey+tslC5V+hWhlSDgvXKua6xvuXcjeMcpRq8s13yS/1JamXCB7obxPW1WvyUgoevMDDfnhadq7M+uZkvu+9+/nlGHEgoKZh3+3ou1v1WleDdhlRPFwfofO2ijInbuqvInJ1I02pww+id99rvSXVLY3BMwCdexPVsscYt1k+SsORGMaJ3aAfIHJUVEqVs9LvI7tie13s8eiu6I9fdNnF6ZeYfyqcM5CkMUuyYz2S+FMqBsiem42ccdzjcYfRDJW+pgTx+FGvR8IVRS4xx7vXNAzXoMYtb/z6EWTcPjXlobOfJXwGUHuPURUn3XV/0J9yt0NLG6SjmZQEphbw9Cq/WnkrlotPhwly3sa79GVFMZAEWrTmFSA2OLlP5DXtLDmJ3zHVdzBQqeW0dNzUQlO2/s22UtVgIfkuIiNAGWW797BGUSYxN7umSkso2ugWWGyHy0XYansn1CGtH/opQBN+tj7CPEKWCJGTrO9KdHFmWV01CuwpoxRZfpRFYnE0034RL7pitF0Q1NGxHSqkRSQUKNZvw3Dm4M/qf81Z3m/ls7I=" # encrypted value of your token
+
+script:
+  - cd pharmacy
+  - chmod +x mvnw
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=majastamenic_ISA
+
+
