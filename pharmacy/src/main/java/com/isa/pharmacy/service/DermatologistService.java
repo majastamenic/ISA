@@ -1,7 +1,6 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.Dermatologist;
-import com.isa.pharmacy.domain.Pharmacist;
 import com.isa.pharmacy.repository.DermatologistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

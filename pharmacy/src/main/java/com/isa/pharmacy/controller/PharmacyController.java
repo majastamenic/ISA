@@ -28,7 +28,7 @@ public class PharmacyController {
     public List<Pharmacy> getAll() {
         return pharmacyService.getAll();
     }
-    
+
     @GetMapping("/{name}")
     public ResponseEntity<String> sendResponse(@RequestHeader("apiKey") String apiKey) {
         if (apiKey.equals(""))
@@ -38,8 +38,7 @@ public class PharmacyController {
         else
             return new ResponseEntity<>("Welcome", HttpStatus.OK);
     }
-
-
+    
     @GetMapping("/getAllMedicines/{pharmacyName}")
     public List<Medicine> getMedicinesFromPharmacy(@PathVariable("pharmacyName") String pharmacyName, @RequestHeader("apiKey") String apiKey) {
         pharmacyService.checkApiKey(apiKey);

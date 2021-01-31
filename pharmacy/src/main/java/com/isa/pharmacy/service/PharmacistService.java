@@ -1,6 +1,5 @@
 package com.isa.pharmacy.service;
 
-import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
