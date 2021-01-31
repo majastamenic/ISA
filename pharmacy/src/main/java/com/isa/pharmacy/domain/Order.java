@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity(name = "app_order")
 @Table
 public class Order {
     private static final long serialVersionUID = 1L;

@@ -25,12 +25,9 @@ import { VerificationComponent } from './component/user/verification/verificatio
     ActionsBenefitsComponent,
     MedicineComponent,
     UploadQRComponent,
-<<<<<<< HEAD
-=======
-    EPrescriptionComponent,
+    //EPrescriptionComponent,
     NavbarComponent,
     VerificationComponent,
->>>>>>> S4-registration_login
   ],
   imports: [
     BrowserModule,
