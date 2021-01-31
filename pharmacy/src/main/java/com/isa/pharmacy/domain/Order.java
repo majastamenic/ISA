@@ -1,5 +1,6 @@
 package com.isa.pharmacy.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,15 +18,20 @@ public class Order implements Serializable {
     @OneToMany
     private List<Medicine> medicineList;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     @Column
-    @DateTimeFormat(pattern = "HH:mm:ss")
+    @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
     private Date endTime;
     @OneToOne
     private PharmacyAdmin pharmacyAdmin;
     @OneToMany
     private List<OrderOffer> offers;
+
+    public Order() {
+    }
 
     public Order(Long id, List<Medicine> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin, List<OrderOffer> offers) {
         this.id = id;
