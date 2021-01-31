@@ -39,7 +39,6 @@ export class EPrescriptionComponent implements OnInit {
 
 }
 
-// tslint:disable-next-line: class-name
 export interface ePrescriptionClass {
   code: string;
   patientName: string;
