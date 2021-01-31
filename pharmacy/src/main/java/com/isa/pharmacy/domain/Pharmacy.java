@@ -20,16 +20,19 @@ public class Pharmacy implements Serializable {
     private List<MedicinePharmacy> medicinePharmacy;
     @OneToMany
     private List<Pharmacist> pharmacists;
+    @OneToMany
+    private List<PharmacyAdmin> admins;
 
     public Pharmacy() {
     }
 
-    public Pharmacy(Long id, String name, String address, List<MedicinePharmacy> medicinePharmacy, List<Pharmacist> pharmacists) {
+    public Pharmacy(Long id, String name, String address, List<MedicinePharmacy> medicinePharmacy, List<Pharmacist> pharmacists, List<PharmacyAdmin> admins) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.medicinePharmacy = medicinePharmacy;
         this.pharmacists = pharmacists;
+        this.admins= admins;
     }
 
     public Pharmacy(Long id, String name, String address,
@@ -84,6 +87,14 @@ public class Pharmacy implements Serializable {
 
     public List<MedicinePharmacy> getMedicinePharmacies() {
         return medicinePharmacy;
+    }
+
+    public List<PharmacyAdmin> getAdmins() {
+        return admins;
+    }
+
+    public void setAdmins(List<PharmacyAdmin> admins) {
+        this.admins = admins;
     }
 
     @Override

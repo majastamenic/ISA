@@ -24,13 +24,16 @@ public class Order implements Serializable {
     private Date endTime;
     @OneToOne
     private PharmacyAdmin pharmacyAdmin;
+    @OneToMany
+    private List<OrderOffer> offers;
 
-    public Order(Long id, List<Medicine> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin) {
+    public Order(Long id, List<Medicine> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin, List<OrderOffer> offers) {
         this.id = id;
         this.medicineList = medicineList;
         this.endDate = endDate;
         this.endTime = endTime;
         this.pharmacyAdmin=pharmacyAdmin;
+        this.offers= offers;
     }
 
     public static long getSerialVersionUID() {
@@ -75,5 +78,13 @@ public class Order implements Serializable {
 
     public void setPharmacyAdmin(PharmacyAdmin pharmacyAdmin) {
         this.pharmacyAdmin = pharmacyAdmin;
+    }
+
+    public List<OrderOffer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<OrderOffer> offers) {
+        this.offers = offers;
     }
 }
