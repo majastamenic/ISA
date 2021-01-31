@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.domain.Patient;
 import com.isa.pharmacy.domain.Pharmacist;
 import com.isa.pharmacy.domain.WorkSchedule;
 import com.isa.pharmacy.service.PharmacistService;
@@ -25,5 +26,8 @@ public class PharmacistController {
 
     @GetMapping("/workschedule/{id}")
     public WorkSchedule getWorkScheduleByPharmacist(@PathVariable("id") Long id){return pharmacistService.getWorkScheduleByPharmacist(id);}
+
+    @GetMapping("/patients/{id}")
+    public List<Patient> getPatientsByPharmacist(@PathVariable("id") Long id){return  pharmacistService.getPatientsByPharmacist(id);}
 
 }

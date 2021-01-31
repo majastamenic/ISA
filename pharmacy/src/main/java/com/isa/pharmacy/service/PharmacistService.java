@@ -38,4 +38,16 @@ public class PharmacistService {
         return pharmacist.getWorkSchedule();
     }
 
+    public List<Patient> getPatientsByPharmacist(Long id){
+        Pharmacist pharmacist = pharmacistRepository.findPharmacistById(id);
+        List<Counseling> counselings = pharmacist.getCounselings();
+        List<Patient> patients = null;
+        for(Counseling c : counselings){
+            if(!patients.contains(c.getPatient())){
+                patients.add(c.getPatient());
+            }
+        }
+        return patients;
+    }
+
 }
