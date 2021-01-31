@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.isa.pharmacy.controller.dto.MedicineDto;
+import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,16 @@ public class MedicineService {
 
     public List<Medicine> getAll() {
         return medicineRepository.findAll();
+    }
+
+    public List<MedicineDto> getAllMedicines() {
+        List<Medicine> medicineList = medicineRepository.findAll();
+        List<MedicineDto> medicineDtoList = new ArrayList<>();
+        for(Medicine medicine: medicineList) {
+            for (MedicinePharmacy medicinePharmacy :medicine.getMedicinePharmacy()) {
+                medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), medicinePharmacy.getPharmacy().getName()));
+            }
+        }
+        return medicineDtoList;
     }
 }

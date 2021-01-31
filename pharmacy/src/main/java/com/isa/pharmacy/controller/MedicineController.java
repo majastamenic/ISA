@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import com.isa.pharmacy.service.MedicineService;
 
 @RestController
 @RequestMapping("/medicine")
+@CrossOrigin(value = "http://localhost:4200")
 public class MedicineController {
     @Autowired
     private MedicineService medicineService;
@@ -40,5 +42,14 @@ public class MedicineController {
     public void delete(@RequestParam Long id) {
         Medicine medicine = medicineService.findById(id);
         medicineService.delete(medicine);
+    }
+
+    @GetMapping("/getAllMedicines")
+    public List<MedicineDto> getMedicineFromPharmacy() {
+        List<MedicineDto> medicineDtoList = medicineService.getAllMedicines();
+        if (medicineDtoList.isEmpty()) {
+            throw new NotFoundException("Pharmacy system doesn't have any medicine");
+        }
+        return medicineDtoList;
     }
 }

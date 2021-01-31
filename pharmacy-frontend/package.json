@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "jquery": "^3.5.1",
     "ng2-qrcode-reader": "0.0.1",
+    "ng5-slider": "^1.2.6",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
