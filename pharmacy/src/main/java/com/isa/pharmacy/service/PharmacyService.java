@@ -12,7 +12,6 @@ import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.isa.pharmacy.domain.Pharmacy;
@@ -24,7 +23,7 @@ public class PharmacyService {
     @Autowired
     private PharmacyRepository pharmacyRepository;
     @Value("${apiKey}")
-    private String ApiKey;
+    private String apiKey;
 
     public Pharmacy save(Pharmacy p) {
         return pharmacyRepository.save(p);
@@ -44,7 +43,7 @@ public class PharmacyService {
             medicineList.add(medicinePharmacy.getMedicine());
         }
         return medicineList;
-    }
+        }
 
     public int hasPharmacyMedication(String pharmacyName, String medicineName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
@@ -111,7 +110,7 @@ public class PharmacyService {
     }
 
     public void checkApiKey(String apiKey){
-        if (!(ApiKey).equals(apiKey))
+        if (!(this.apiKey).equals(apiKey))
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
 }

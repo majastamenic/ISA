@@ -35,12 +35,12 @@ INSERT INTO public.medicine_composition(medicine_id, composition)VALUES (2, 'tot
 INSERT INTO public.medicine_composition(medicine_id, composition)VALUES (2, 'ieie');
 
 -- Za apoteku sa id=1
-INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (1, 150, 2345, 1, 1);
-INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (2, 200, 2985, 2, 1);
-INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (3, 175, 1420, 3, 1);
+INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (1, 1.50, 2350, 1, 1);
+INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (2, 2.00, 2985, 2, 1);
+INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (3, 1.75, 1420, 3, 1);
 -- Za apoteku sa id=2
-INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (4, 144, 5, 1, 2);
-INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (5, 190, 8, 2, 2);
+INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (4, 1.44, 15, 1, 2);
+INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (5, 1.90, 18, 2, 2);
 
 INSERT INTO public.medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)VALUES (1, 1);
 INSERT INTO public.medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)VALUES (2, 2);

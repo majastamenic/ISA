@@ -38,8 +38,11 @@ public class EmailService {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(hospitalEmail);
-        simpleMailMessage.setSubject("APIKEY");
-        simpleMailMessage.setText("Postovani,\nVas ApiKey je:" + apiKey);
+        simpleMailMessage.setSubject("Hospital registration");
+        simpleMailMessage.setText("Hello,\nWelcome to pharmacy system.\n" +
+                "Our Api key: " + apiKey +
+                "\nOur endpoint address is: http://localhost:8081/pharmacy/" +
+                "\nFeel free to contact any pharmacy from our system!");
 
         javaMailSender.send(simpleMailMessage);
         System.out.println("send email");
