@@ -1,6 +1,7 @@
 export const BACKEND_PATH = 'http://localhost:8081'
 
 export const USER_PATH = BACKEND_PATH + '/user';
+export const USER_VALID_PATH = USER_PATH + '/valid';
 export const LOGIN_PATH = USER_PATH + '/login';
 
 export const PHARMACY_PATH = BACKEND_PATH + '/pharmacy';

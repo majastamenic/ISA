@@ -13,7 +13,7 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { VerificationComponent } from './component/user/verification/verification.component';
+import { AddMedicinesComponent } from './component/user/profile/system_admin/add-medicines/add-medicines.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +25,8 @@ import { VerificationComponent } from './component/user/verification/verificatio
     ActionsBenefitsComponent,
     MedicineComponent,
     UploadQRComponent,
-<<<<<<< HEAD
-=======
-    EPrescriptionComponent,
     NavbarComponent,
-    VerificationComponent,
->>>>>>> S4-registration_login
+    AddMedicinesComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User save(User user) {
+    public User create(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser == null) {
             return userRepository.save(user);
@@ -38,8 +38,10 @@ public class UserService {
 
     public User activateProfile(String email, String code){
         User user = userRepository.findByEmail(email);
-        if(user != null && !user.getActive() && user.getVerificationCode().equals(code))
+        if(user != null && !user.getActive() && user.getVerificationCode().equals(code)){
             user.setActive(true);
+            userRepository.save(user);
+        }
         return user;
     }
 }

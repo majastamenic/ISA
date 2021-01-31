@@ -26,3 +26,21 @@ input[type=email], input[type=password], input[type=text], input[type = tel], se
     cursor: pointer;
     width: 100%;
   }
+
+  .page{
+    width: 360px;
+      padding: 0% 0 0;
+      margin: auto;
+  }
+  .ngform {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    margin-top: 15px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  
