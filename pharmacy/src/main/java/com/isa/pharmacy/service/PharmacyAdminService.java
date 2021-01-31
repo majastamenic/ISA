@@ -27,6 +27,7 @@ public class PharmacyAdminService {
         admin.setPhone(pharmacyAdmin.getPhone());
         admin.setEmail(pharmacyAdmin.getEmail());
         admin.setFirstLog(false);
+        pharmacyAdminRepository.save(pharmacyAdmin);
         return admin;
     }
 }

@@ -19,6 +19,6 @@ public class PharmacyAdminController {
     public List<PharmacyAdmin> findAll() { return pharmacyAdminService.findAll(); }
 
     @PostMapping("/update")
-    public PharmacyAdmin update (PharmacyAdmin pharmacyAdmin){ return pharmacyAdminService.updateAdmin(pharmacyAdmin);}
+    public PharmacyAdmin update (@RequestBody PharmacyAdmin pharmacyAdmin){ return pharmacyAdminService.updateAdmin(pharmacyAdmin);}
 
 }

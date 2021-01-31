@@ -21,4 +21,16 @@ public class OrderService {
     public List<Order> getAll(){
         return orderRepository.findAll();
     }
+
+    public Order update(Order order){
+        Order o = orderRepository.findOrderById(order.getId());
+        o.setEndDate(order.getEndDate());
+        o.setEndTime(order.getEndTime());
+        o.setOffers(order.getOffers());
+        o.setMedicineList(order.getMedicineList());
+        o.setPharmacyAdmin(order.getPharmacyAdmin());
+        orderRepository.save(o);
+        return o;
+    }
+
 }

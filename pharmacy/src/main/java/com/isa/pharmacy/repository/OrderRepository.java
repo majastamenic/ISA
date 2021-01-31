@@ -11,4 +11,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     Order save(Order offer);
 
     List<Order> findAll();
+
+    Order findOrderById(Long id);
 }
