@@ -29,6 +29,9 @@ public class PharmacyService {
         return pharmacyRepository.save(p);
     }
 
+    public Pharmacy getByName(String name) {
+        return pharmacyRepository.findPharmacyByName(name);
+    }
     public List<Pharmacy> getAll() {
         return pharmacyRepository.findAll();
     }

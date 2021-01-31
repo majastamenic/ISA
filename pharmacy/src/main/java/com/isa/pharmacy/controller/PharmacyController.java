@@ -28,7 +28,7 @@ public class PharmacyController {
     public List<Pharmacy> getAll() {
         return pharmacyService.getAll();
     }
-
+    
     @GetMapping("/{name}")
     public ResponseEntity<String> sendResponse(@RequestHeader("apiKey") String apiKey) {
         if (apiKey.equals(""))

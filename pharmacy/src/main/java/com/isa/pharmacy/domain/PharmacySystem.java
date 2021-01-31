@@ -14,7 +14,7 @@ public class PharmacySystem implements Serializable {
     @Column
     private String apiKey;
 
-    @OneToMany
+    @ElementCollection
     private List<Pharmacy> pharmacies;
 
     public PharmacySystem() {

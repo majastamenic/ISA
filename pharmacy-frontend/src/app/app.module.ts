@@ -11,10 +11,9 @@ import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
-import { QRCodeModule } from 'angularx-qrcode';
-import { EPrescriptionComponent } from './component/e-prescription/e-prescription.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { VerificationComponent } from './component/user/verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -26,15 +25,18 @@ import { NavbarComponent } from './component/navbar/navbar.component';
     ActionsBenefitsComponent,
     MedicineComponent,
     UploadQRComponent,
+<<<<<<< HEAD
+=======
     EPrescriptionComponent,
     NavbarComponent,
+    VerificationComponent,
+>>>>>>> S4-registration_login
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    QRCodeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

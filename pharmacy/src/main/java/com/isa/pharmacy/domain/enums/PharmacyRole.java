@@ -1,7 +1,10 @@
 package com.isa.pharmacy.domain.enums;
 
 public enum PharmacyRole {
-    ADMIN,
-    PATIENT,
-    HOSPITAL
+	ADMIN, 
+	PATIENT, 
+	HOSPITAL,
+	PHARMACIST,
+	DERMATOLOGIST,
+	PHARMACYADMIN
 }

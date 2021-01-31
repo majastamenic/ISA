@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { User, UserRegistrationDto } from '../model/user-model';
 
@@ -9,17 +10,18 @@ import { User, UserRegistrationDto } from '../model/user-model';
 })
 export class RegistrationComponent implements OnInit {
 
-  user: UserRegistrationDto = { email: '', password: '', name: '', surname: '', address: '', city: '',
+  user: UserRegistrationDto = { email: '', password: '', passwordAgain: '',name: '', surname: '', address: '', city: '',
                               country: '', phone: ''};
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   registration(): void {
     this.userService.registration(this.user).subscribe((returnedUser: User) => {
-      alert('User with email ' + returnedUser.email + ' registered');
+      alert('Please check your email.');
+      this.router.navigate(['verification']);
     },
       (err: any) => {
         alert('Registration error ' + err.error.message);
