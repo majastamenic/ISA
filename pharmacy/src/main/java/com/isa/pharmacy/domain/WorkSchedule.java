@@ -33,12 +33,14 @@ public class WorkSchedule implements Serializable {
     private List<Pharmacist> pharmacists;
     @OneToMany
     private List<Dermatologist> dermatologists;
+    @OneToOne
+    private PharmacyAdmin admin;
 
 
     public WorkSchedule() {
     }
 
-    public WorkSchedule(Long id, Date startDate, Date endDate, Date startTime, Date endTime, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists) {
+    public WorkSchedule(Long id, Date startDate, Date endDate, Date startTime, Date endTime, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists,PharmacyAdmin admin) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -46,6 +48,7 @@ public class WorkSchedule implements Serializable {
         this.endTime = endTime;
         this.pharmacists = pharmacists;
         this.dermatologists = dermatologists;
+        this.admin =admin;
     }
 
     public Date getStartTime() {
@@ -103,5 +106,14 @@ public class WorkSchedule implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    public PharmacyAdmin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(PharmacyAdmin admin) {
+        this.admin = admin;
+    }
+
 }
 

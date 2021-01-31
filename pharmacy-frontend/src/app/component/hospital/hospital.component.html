@@ -1,7 +1,7 @@
-<div class="hospital-page">
-  <div class="form">
+<div class="page">
+  <div class="ngform">
     <h3>Hospital registration</h3>
-    <form class = "hospital-form" #registrationform="ngForm">
+    <form class = "form" #registrationform="ngForm">
       <div class="form-group">
         <input type="email" [(ngModel)]="hospital.email" placeholder="Enter hospital email" name="email" required #email="ngModel"
         [class.is-invalid] = "email.invalid && email.touched" pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">

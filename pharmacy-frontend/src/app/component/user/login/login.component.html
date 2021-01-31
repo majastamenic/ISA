@@ -1,6 +1,6 @@
-<div class="login-page">
+<div class="page">
   <div class="form">
-    <form class="login-form" #loginform = "ngForm">
+    <form class="ngform" #loginform = "ngForm">
       <h3>Login</h3>
       <input type="email" [(ngModel)]="user.email" placeholder="Enter email" name="email" required #email="ngModel"
       [class.is-invalid] = "email.invalid && email.touched" pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
