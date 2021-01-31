@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table
-public class Pharmacist {
+public class Pharmacist implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
