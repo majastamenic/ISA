@@ -1,10 +1,7 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
-import com.isa.pharmacy.domain.Dermatologist;
-import com.isa.pharmacy.domain.Diagnosis;
-import com.isa.pharmacy.domain.Pharmacist;
-import com.isa.pharmacy.domain.User;
+import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,4 +32,10 @@ public class PharmacistService {
         pharmacistRepository.save(pharmacist);
         return pharmacist;
     }
+
+    public WorkSchedule getWorkScheduleByPharmacist(Long id){
+        Pharmacist pharmacist = pharmacistRepository.findPharmacistById(id);
+        return pharmacist.getWorkSchedule();
+    }
+
 }

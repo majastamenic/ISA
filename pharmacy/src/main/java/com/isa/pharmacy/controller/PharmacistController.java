@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.domain.Pharmacist;
+import com.isa.pharmacy.domain.WorkSchedule;
 import com.isa.pharmacy.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,5 +22,8 @@ public class PharmacistController {
 
     @PostMapping("/update")
     public Pharmacist update(@RequestBody Pharmacist p) { return pharmacistService.update(p); }
+
+    @GetMapping("/workschedule/{id}")
+    public WorkSchedule getWorkScheduleByPharmacist(@PathVariable("id") Long id){return pharmacistService.getWorkScheduleByPharmacist(id);}
 
 }
