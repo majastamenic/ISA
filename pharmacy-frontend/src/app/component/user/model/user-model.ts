@@ -8,6 +8,8 @@ export interface User {
     city: string;
     country: string;
     phone: string;
+    verificationCode: string;
+    active: boolean;
 }
 
 export interface LoginUserDto {

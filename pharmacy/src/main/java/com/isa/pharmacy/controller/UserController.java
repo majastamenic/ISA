@@ -36,15 +36,15 @@ public class UserController {
         return user;
     }
 
-    @GetMapping("/{email}/{code}")
-    public User activeProfile(@PathVariable("email") String email, @PathVariable("code") String code){
+    @GetMapping("/valid")
+    public User activeProfile(@RequestParam String email, @RequestParam String code){
         return userService.activateProfile(email, code);
     }
 
     @PostMapping
     public User registration(@RequestBody RegistrationDto registrationDto) {
         User user = userService.create(UserMapper.mapRegistrationDtoToUser(registrationDto));
-       // emailService.verificationEmail(user);
+        emailService.verificationEmail(user);
         return user;
     }
 

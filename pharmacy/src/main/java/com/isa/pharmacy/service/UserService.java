@@ -38,8 +38,10 @@ public class UserService {
 
     public User activateProfile(String email, String code){
         User user = userRepository.findByEmail(email);
-        if(user != null && !user.getActive() && user.getVerificationCode().equals(code))
+        if(user != null && !user.getActive() && user.getVerificationCode().equals(code)){
             user.setActive(true);
+            userRepository.save(user);
+        }
         return user;
     }
 }

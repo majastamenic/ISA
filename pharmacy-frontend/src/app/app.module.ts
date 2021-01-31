@@ -15,7 +15,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { EPrescriptionComponent } from './component/e-prescription/e-prescription.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { VerificationComponent } from './component/user/verification/verification.component';
+import { AddMedicinesComponent } from './component/user/profile/system_admin/add-medicines/add-medicines.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { VerificationComponent } from './component/user/verification/verificatio
     UploadQRComponent,
     EPrescriptionComponent,
     NavbarComponent,
-    VerificationComponent,
+    AddMedicinesComponent,
   ],
   imports: [
     BrowserModule,

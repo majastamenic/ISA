@@ -11,6 +11,8 @@ import { User, UserRegistrationDto } from '../model/user-model';
 export class RegistrationComponent implements OnInit {
 
   user: any;
+  verificationCode: string =  '';
+  registered = false;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -22,10 +24,20 @@ export class RegistrationComponent implements OnInit {
   registration(): void {
     this.userService.registration(this.user).subscribe((returnedUser: User) => {
       alert('Please check your email.');
-      this.router.navigate(['/verification']);
+      this.registered = true;
     },
       (err: any) => {
         alert('Registration error ' + err.error.message);
+      });
+  }
+
+  verification(): void {
+    this.userService.verification(this.user, this.verificationCode).subscribe((returnedUser: User) => {
+      alert('User with email ' + returnedUser.email + ' is registered.');
+      this.router.navigate(['/login']);
+    },
+      (err: any) => {
+        alert('Error while verification ' + err.error.message);
       });
   }
 
