@@ -10,6 +10,17 @@ insert into pharmacy (id, address, name) values (4, 'Fejes Klare 34.', 'ApotekaP
 insert into pharmacy (id, address, name) values (5, 'Fejes Klare 34.', 'Pharmacy');
 insert into pharmacy (id, address, name) values (6, 'Fejes Klare 34.', 'Nova');
 
+-- Pharmacist
+insert into pharmacist(address, city, country, email, name, password, phone, surname,pharmacy_id, is_first_log) values('1300 kaplara 12', 'Novi Sad', 'Srbija', 'mara@gmail.com', 'Mara', 'mara', '064/22785', 'Maric', 6, true);
+insert into pharmacist(address, city, country, email, name, password, phone, surname,pharmacy_id, is_first_log) values('Bulevar Oslobodjenja 5', 'Novi Sad', 'Srbija', 'pera@gmail.com', 'Pera', 'pera', '061/12384', 'Peric', 5, true);
+-- Dermatologist
+insert into dermatologist(address, city, country, email, name, password, phone, surname, is_first_log) values('Narodnog fronta 80', 'Novi Sad', 'Srbija', 'marko@gmail.com', 'Marko', 'marko', '061/10304', 'Markovic', true);
+insert into dermatologist_pharmacy(dermatologist_id, pharmacy_id) values(1, 6);
+
+-- WorkSchedule
+insert into work_schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '08:00:00', '14:00:00');
+insert into work_schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '14:00:00', '20:00:00');
+
 INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala');
 
 INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine)VALUES (1, 62542, 'tableta', 'Galenika', 'Brufen', 'Beleska 1', 'WITHOUT_PRESCRIPTION', 'Lek za temperaturu');

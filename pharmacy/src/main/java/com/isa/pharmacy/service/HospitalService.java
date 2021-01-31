@@ -1,12 +1,8 @@
 package com.isa.pharmacy.service;
 
 import java.util.List;
-
-import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.Hospital;
 import com.isa.pharmacy.repository.HospitalRepository;

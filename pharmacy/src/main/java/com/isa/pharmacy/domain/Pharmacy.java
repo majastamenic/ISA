@@ -8,10 +8,6 @@ import javax.persistence.*;
 @Entity
 @Table
 public class Pharmacy implements Serializable {
-
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +18,18 @@ public class Pharmacy implements Serializable {
     private String address;
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
+    @OneToMany
+    private List<Pharmacist> pharmacists;
 
     public Pharmacy() {
+    }
+
+    public Pharmacy(Long id, String name, String address, List<MedicinePharmacy> medicinePharmacy, List<Pharmacist> pharmacists) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.medicinePharmacy = medicinePharmacy;
+        this.pharmacists = pharmacists;
     }
 
     public Pharmacy(Long id, String name, String address,
@@ -33,6 +39,14 @@ public class Pharmacy implements Serializable {
         this.name = name;
         this.address = address;
         this.medicinePharmacy = medicinePharmacy;
+    }
+
+    public List<Pharmacist> getPharmacists() {
+        return pharmacists;
+    }
+
+    public void setPharmacists(List<Pharmacist> pharmacists) {
+        this.pharmacists = pharmacists;
     }
 
     public Long getId() {

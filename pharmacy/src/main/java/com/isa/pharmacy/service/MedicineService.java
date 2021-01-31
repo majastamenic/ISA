@@ -6,10 +6,8 @@ import java.util.List;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.MedicinePharmacy;
-import com.isa.pharmacy.domain.Pharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.repository.MedicineRepository;
 

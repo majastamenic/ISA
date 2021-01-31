@@ -1,18 +1,13 @@
 package com.isa.pharmacy;
 
 
-import java.io.IOException;
-
 import com.isa.pharmacy.service.CommunicationService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.isa.pharmacy.service.QRService;
 import com.isa.pharmacy.service.SftpService;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import com.isa.pharmacy.service.CommunicationService;
 
 
 @SpringBootApplication

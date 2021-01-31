@@ -4,13 +4,14 @@ import com.isa.pharmacy.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.isa.pharmacy.controller.dto.LoginDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.UserMapper;
 import com.isa.pharmacy.domain.User;
 import com.isa.pharmacy.service.UserService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -60,5 +61,10 @@ public class UserController {
         return userService.login(user);
     }
 
+
+    @GetMapping("/all")
+    public List<User> getAll() {
+        return userService.getAll();
+    }
 
 }

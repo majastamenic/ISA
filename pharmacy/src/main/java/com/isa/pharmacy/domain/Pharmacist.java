@@ -1,55 +1,49 @@
 package com.isa.pharmacy.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
-@Inheritance
-@Entity(name = "app_user")
-public class User implements Serializable {
+@Entity
+@Table
+public class Pharmacist implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column
     private String email;
-
     @Column
     private String password;
-
     @Column
     private String name;
-
     @Column
     private String surname;
-
     @Column
     private String address;
-
     @Column
     private String city;
-
     @Column
     private String country;
-
     @Column
     private String phone;
 
     @Column
-    private String verificationCode;
+    private boolean isFirstLog = true;
+    @OneToOne
+    private Pharmacy pharmacy;
+    @OneToMany
+    private List<Counseling> counselings;
+    @OneToOne
+    private WorkSchedule workSchedule;
+    @OneToMany
+    private List<VacationSchedule> vacationSchedules;
 
-    @Column
-    private Boolean active;
+    public Pharmacist(){}
 
-    public User() {
-    }
-
-
-    public User(Long id, String email, String password, String name, String surname, String address, String city,
-                String country, String phone) {
-        super();
+    public Pharmacist(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, boolean isFirstLog, Pharmacy pharmacy, List<Counseling> counselings, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -59,8 +53,20 @@ public class User implements Serializable {
         this.city = city;
         this.country = country;
         this.phone = phone;
+        this.isFirstLog = isFirstLog;
+        this.pharmacy = pharmacy;
+        this.counselings = counselings;
+        this.workSchedule = workSchedule;
+        this.vacationSchedules = vacationSchedules;
     }
 
+    public boolean isFirstLog() {
+        return isFirstLog;
+    }
+
+    public void setFirstLog(boolean firstLog) {
+        isFirstLog = firstLog;
+    }
 
     public Long getId() {
         return id;
@@ -86,79 +92,83 @@ public class User implements Serializable {
         this.password = password;
     }
 
-
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-
     public String getSurname() {
         return surname;
     }
-
 
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
-
     public String getAddress() {
         return address;
     }
-
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-
     public String getCity() {
         return city;
     }
-
 
     public void setCity(String city) {
         this.city = city;
     }
 
-
     public String getCountry() {
         return country;
     }
-
 
     public void setCountry(String country) {
         this.country = country;
     }
 
-
     public String getPhone() {
         return phone;
     }
-
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public String getVerificationCode() {
-        return verificationCode;
+    public List<VacationSchedule> getVacationSchedules() {
+        return vacationSchedules;
     }
 
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
+    public void setVacationSchedules(List<VacationSchedule> vacationSchedules) {
+        this.vacationSchedules = vacationSchedules;
     }
 
-    public Boolean getActive() {
-        return active;
+    public WorkSchedule getWorkSchedule() {
+        return workSchedule;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setWorkSchedule(WorkSchedule workSchedule) {
+        this.workSchedule = workSchedule;
+    }
+
+    public List<Counseling> getCounselings() {
+        return counselings;
+    }
+
+    public void setCounselings(List<Counseling> counselings) {
+        this.counselings = counselings;
+    }
+
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
     }
 }

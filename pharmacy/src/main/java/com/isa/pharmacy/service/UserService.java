@@ -1,10 +1,8 @@
 package com.isa.pharmacy.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
 import com.isa.pharmacy.domain.User;
@@ -35,6 +33,8 @@ public class UserService {
         User user = userRepository.findUserById(id);
         return user;
     }
+
+    public List<User> getAll() { return userRepository.findAll(); }
 
     public User activateProfile(String email, String code){
         User user = userRepository.findByEmail(email);
