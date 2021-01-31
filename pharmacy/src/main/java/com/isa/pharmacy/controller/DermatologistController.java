@@ -1,10 +1,7 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.domain.Dermatologist;
-import com.isa.pharmacy.domain.Diagnosis;
-import com.isa.pharmacy.domain.Pharmacist;
 import com.isa.pharmacy.service.DermatologistService;
-import com.isa.pharmacy.service.DiagnosisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
