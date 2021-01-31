@@ -59,15 +59,20 @@ public class EPrescriptionController {
 
     @PostMapping("/uploadQr")
     public ResponseEntity<EPrescription> searchQrCode(@RequestParam("file") MultipartFile file) throws IOException, ParseException {
-        if (file.isEmpty()) {
-            throw new RuntimeException("File is empty!");
-        }
+        if (file.isEmpty()) throw new RuntimeException("File is empty!");
         byte[] bytes = file.getBytes();
-        BufferedOutputStream stream =
-                new BufferedOutputStream(new FileOutputStream(new File(baseFileDestination + file.getOriginalFilename())));
-        stream.write(bytes);
-        stream.close();
 
+        BufferedOutputStream stream = null;
+        try {
+            stream = new BufferedOutputStream(
+                            new FileOutputStream(
+                                    baseFileDestination + file.getOriginalFilename()));
+            stream.write(bytes);
+        }catch (Exception e){
+            System.err.println(e);
+        }finally {
+            stream.close();
+        }
         String text = qrService.readQrCode(baseFileDestination + file.getOriginalFilename());
         System.out.println(text);
 

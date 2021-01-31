@@ -1,35 +1,45 @@
 package com.isa.pharmacy.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity(name = "app_order")
 @Table
-public class Order {
+public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ElementCollection
+    @OneToMany
     private List<Medicine> medicineList;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     @Column
-    @DateTimeFormat(pattern = "HH:mm:ss")
+    @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
     private Date endTime;
-    @Column
+    @OneToOne
     private PharmacyAdmin pharmacyAdmin;
+    @OneToMany
+    private List<OrderOffer> offers;
 
-    public Order(Long id, List<Medicine> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin) {
+    public Order() {
+    }
+
+    public Order(Long id, List<Medicine> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin, List<OrderOffer> offers) {
         this.id = id;
         this.medicineList = medicineList;
         this.endDate = endDate;
         this.endTime = endTime;
-        this.pharmacyAdmin = pharmacyAdmin;
+        this.pharmacyAdmin=pharmacyAdmin;
+        this.offers= offers;
     }
 
     public static long getSerialVersionUID() {
@@ -74,5 +84,13 @@ public class Order {
 
     public void setPharmacyAdmin(PharmacyAdmin pharmacyAdmin) {
         this.pharmacyAdmin = pharmacyAdmin;
+    }
+
+    public List<OrderOffer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<OrderOffer> offers) {
+        this.offers = offers;
     }
 }
