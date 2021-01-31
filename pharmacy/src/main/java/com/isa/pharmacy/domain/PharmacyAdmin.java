@@ -32,11 +32,13 @@ public class PharmacyAdmin implements Serializable {
     @OneToOne
     private Pharmacy pharmacy;
     @OneToMany
-    List<WorkSchedule> schedule;
+    private List<WorkSchedule> schedule;
+    @Column
+    private Boolean isFirstLog;
 
     public PharmacyAdmin(){}
 
-    public PharmacyAdmin(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, List<Order> orders, Pharmacy pharmacy,List<WorkSchedule> schedule) {
+    public PharmacyAdmin(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, List<Order> orders, Pharmacy pharmacy,List<WorkSchedule> schedule, Boolean isFirstLog) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -49,6 +51,23 @@ public class PharmacyAdmin implements Serializable {
         this.orders= orders;
         this.pharmacy = pharmacy;
         this.schedule =schedule;
+        this.isFirstLog = isFirstLog;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getFirstLog() {
+        return isFirstLog;
+    }
+
+    public void setFirstLog(Boolean firstLog) {
+        isFirstLog = firstLog;
     }
 
     public String getEmail() {
