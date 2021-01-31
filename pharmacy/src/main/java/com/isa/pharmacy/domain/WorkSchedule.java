@@ -1,29 +1,33 @@
 package com.isa.pharmacy.domain;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table
-public class WorkSchedule {
+public class WorkSchedule implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     @Column
-    @DateTimeFormat(pattern = "HH:mm:ss")
+    @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
     private Date startTime;
     @Column
-    @DateTimeFormat(pattern = "HH:mm:ss")
+    @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
     private Date endTime;
     @OneToMany
     private List<Pharmacist> pharmacists;
@@ -33,7 +37,8 @@ public class WorkSchedule {
     private PharmacyAdmin admin;
 
 
-    public WorkSchedule(){}
+    public WorkSchedule() {
+    }
 
     public WorkSchedule(Long id, Date startDate, Date endDate, Date startTime, Date endTime, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists,PharmacyAdmin admin) {
         this.id = id;
@@ -44,6 +49,22 @@ public class WorkSchedule {
         this.pharmacists = pharmacists;
         this.dermatologists = dermatologists;
         this.admin =admin;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public List<Dermatologist> getDermatologists() {
@@ -86,22 +107,6 @@ public class WorkSchedule {
         this.endDate = endDate;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public PharmacyAdmin getAdmin() {
         return admin;
     }
@@ -109,4 +114,6 @@ public class WorkSchedule {
     public void setAdmin(PharmacyAdmin admin) {
         this.admin = admin;
     }
+
 }
+

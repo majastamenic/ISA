@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HospitalRegistrationDto } from '../component/hospital/model/hospital-model';
 import { LoginUserDto, UserRegistrationDto } from '../component/user/model/user-model';
-import { LOGIN_PATH, USER_PATH } from '../util/paths';
+import { LOGIN_PATH, USER_PATH, USER_VALID_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,18 @@ export class UserService {
     return this.httpClient.post(USER_PATH, user);
   }
 
-  verification(code: string): any {
-    return this.httpClient.get(USER_PATH);
+  verification(user: UserRegistrationDto, verificationCode: string): any {
+    let params = new HttpParams().set('email', user.email).set('code', verificationCode)
+    return this.httpClient.get(USER_VALID_PATH, {params});
+  }
+
+  isUserLogin(){
+    let user = sessionStorage.getItem('user');
+    console.log(!(user == null))
+    return !(user == null)
+  }
+
+  logOut(){
+    sessionStorage.removeItem('user');
   }
 }

@@ -2,8 +2,6 @@ package com.isa.pharmacy.service;
 
 
 import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.MedicinePharmacy;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +35,9 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
 
         ProtoResponseMedications.Builder builder = ProtoResponseMedications.newBuilder();
 
-        for (MedicineDto medicineDto: pharmacyService.getMedicineListFromPharmacy(request.getPharmacyName())) {
+        for (MedicineDto medicineDto: pharmacyService.getMedicineListFromPharmacy(request.getPharmacyName()))
             builder.addMedication(ProtoMedication.newBuilder().setName(medicineDto.getName()).setAmount(medicineDto.getAmount()));
 
-        }
         ProtoResponseMedications responseMessage = builder.build();
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();

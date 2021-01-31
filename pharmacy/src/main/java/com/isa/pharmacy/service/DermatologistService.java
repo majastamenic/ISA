@@ -23,4 +23,18 @@ public class DermatologistService {
     public List<Dermatologist> getAll(){
         return dermatologistRepository.findAll();
     }
+
+    public Dermatologist update(Dermatologist d) {
+        Dermatologist dermatologist = dermatologistRepository.findDermatologistById(d.getId());
+        dermatologist.setName(d.getName());
+        dermatologist.setSurname(d.getSurname());
+        dermatologist.setAddress(d.getAddress());
+        dermatologist.setCity(d.getCity());
+        dermatologist.setCountry(d.getCountry());
+        dermatologist.setPhone(d.getPhone());
+        dermatologist.setEmail(d.getEmail());
+        dermatologist.setFirstLog(false);
+        dermatologistRepository.save(dermatologist);
+        return dermatologist;
+    }
 }

@@ -13,4 +13,6 @@ public interface DermatologistRepository extends JpaRepository<Dermatologist, Lo
     List<Dermatologist> findAll();
 
     Dermatologist save(Dermatologist dermatologist);
+
+    Dermatologist findDermatologistById(Long id);
 }

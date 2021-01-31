@@ -1,11 +1,12 @@
 package com.isa.pharmacy.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table
-public class Dermatologist{
+public class Dermatologist implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -29,6 +30,8 @@ public class Dermatologist{
     @Column
     private String phone;
 
+    @Column
+    private boolean isFirstLog = true;
     @OneToMany
     private List<Pharmacy> pharmacy;
     @OneToMany
@@ -40,7 +43,7 @@ public class Dermatologist{
 
     public Dermatologist(){}
 
-    public Dermatologist(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, List<Pharmacy> pharmacy, List<Examination> examinations, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules) {
+    public Dermatologist(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, boolean isFirstLog, List<Pharmacy> pharmacy, List<Examination> examinations, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -50,10 +53,19 @@ public class Dermatologist{
         this.city = city;
         this.country = country;
         this.phone = phone;
+        this.isFirstLog = isFirstLog;
         this.pharmacy = pharmacy;
         this.examinations = examinations;
         this.workSchedule = workSchedule;
         this.vacationSchedules = vacationSchedules;
+    }
+
+    public boolean isFirstLog() {
+        return isFirstLog;
+    }
+
+    public void setFirstLog(boolean firstLog) {
+        isFirstLog = firstLog;
     }
 
     public Long getId() {

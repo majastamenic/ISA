@@ -1,11 +1,8 @@
 package com.isa.pharmacy.service;
 
 import java.util.List;
-
-import com.isa.pharmacy.domain.Pharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
 import com.isa.pharmacy.domain.User;
@@ -16,7 +13,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User save(User user) {
+    public User create(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser == null) {
             return userRepository.save(user);
@@ -41,8 +38,10 @@ public class UserService {
 
     public User activateProfile(String email, String code){
         User user = userRepository.findByEmail(email);
-        if(user != null && !user.getActive() && user.getVerificationCode().equals(code))
+        if(user != null && !user.getActive() && user.getVerificationCode().equals(code)){
             user.setActive(true);
+            userRepository.save(user);
+        }
         return user;
     }
 }
