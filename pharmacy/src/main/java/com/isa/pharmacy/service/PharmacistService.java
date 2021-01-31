@@ -4,15 +4,24 @@ import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class PharmacistService {
     @Autowired
     private PharmacistRepository pharmacistRepository;
 
-    public Pharmacist save(Pharmacist p) { return pharmacistRepository.save(p); }
+    public Pharmacist save(Pharmacist p) {
+        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
+        if(pattern.matcher(p.getEmail()).matches()){
+            for(Pharmacist pha: pharmacistRepository.findAll()){
+                if(pha.getEmail().equalsIgnoreCase(p.getEmail())){return null;}
+            }
+            return pharmacistRepository.save(p);
+        }
+        return null;
+    }
 
     public List<Pharmacist> getAll(){ return pharmacistRepository.findAll(); }
 
@@ -33,20 +42,20 @@ public class PharmacistService {
     }
 
     public WorkSchedule getWorkScheduleByPharmacist(Long id){
-        Pharmacist pharmacist = pharmacistRepository.findPharmacistById(id);
-        return pharmacist.getWorkSchedule();
+        return pharmacistRepository.findPharmacistById(id).getWorkSchedule();
     }
 
     public List<Patient> getPatientsByPharmacist(Long id){
-        Pharmacist pharmacist = pharmacistRepository.findPharmacistById(id);
-        List<Counseling> counselings = pharmacist.getCounselings();
         List<Patient> patients = null;
-        for(Counseling c : counselings){
-            if(!patients.contains(c.getPatient())){
+        for(Counseling c : pharmacistRepository.findPharmacistById(id).getCounselings()){
+            if(patients.contains(c.getPatient()) == false)
                 patients.add(c.getPatient());
-            }
         }
         return patients;
+    }
+
+    public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){
+        return pharmacistRepository.findPharmacistById(id).getVacationSchedules();
     }
 
 }
