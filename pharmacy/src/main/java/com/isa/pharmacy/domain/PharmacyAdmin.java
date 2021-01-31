@@ -31,10 +31,12 @@ public class PharmacyAdmin implements Serializable {
     private List<Order> orders;
     @OneToOne
     private Pharmacy pharmacy;
+    @OneToMany
+    List<WorkSchedule> schedule;
 
     public PharmacyAdmin(){}
 
-    public PharmacyAdmin(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, List<Order> orders, Pharmacy pharmacy) {
+    public PharmacyAdmin(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, List<Order> orders, Pharmacy pharmacy,List<WorkSchedule> schedule) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -46,6 +48,7 @@ public class PharmacyAdmin implements Serializable {
         this.phone = phone;
         this.orders= orders;
         this.pharmacy = pharmacy;
+        this.schedule =schedule;
     }
 
     public String getEmail() {
@@ -126,5 +129,13 @@ public class PharmacyAdmin implements Serializable {
 
     public void setPharmacy(Pharmacy pharmacy) {
         this.pharmacy = pharmacy;
+    }
+
+    public List<WorkSchedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(List<WorkSchedule> schedule) {
+        this.schedule = schedule;
     }
 }

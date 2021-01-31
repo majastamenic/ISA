@@ -29,11 +29,13 @@ public class WorkSchedule {
     private List<Pharmacist> pharmacists;
     @OneToMany
     private List<Dermatologist> dermatologists;
+    @OneToOne
+    private PharmacyAdmin admin;
 
 
     public WorkSchedule(){}
 
-    public WorkSchedule(Long id, Date startDate, Date endDate, Date startTime, Date endTime, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists) {
+    public WorkSchedule(Long id, Date startDate, Date endDate, Date startTime, Date endTime, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists,PharmacyAdmin admin) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -41,6 +43,7 @@ public class WorkSchedule {
         this.endTime = endTime;
         this.pharmacists = pharmacists;
         this.dermatologists = dermatologists;
+        this.admin =admin;
     }
 
     public List<Dermatologist> getDermatologists() {
@@ -97,5 +100,13 @@ public class WorkSchedule {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public PharmacyAdmin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(PharmacyAdmin admin) {
+        this.admin = admin;
     }
 }
