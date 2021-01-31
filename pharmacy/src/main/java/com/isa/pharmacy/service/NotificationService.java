@@ -1,16 +1,11 @@
 package com.isa.pharmacy.service;
 
-import net.bytebuddy.matcher.ElementMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import java.io.*;
-
-import com.isa.pharmacy.service.EmailService;
-
 import javax.mail.MessagingException;
 
 

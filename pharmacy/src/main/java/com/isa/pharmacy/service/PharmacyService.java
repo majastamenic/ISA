@@ -2,7 +2,6 @@ package com.isa.pharmacy.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
-
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.PharmacyRepository;
 import org.springframework.web.server.ResponseStatusException;
@@ -29,6 +27,9 @@ public class PharmacyService {
         return pharmacyRepository.save(p);
     }
 
+    public Pharmacy getByName(String name) {
+        return pharmacyRepository.findPharmacyByName(name);
+    }
     public List<Pharmacy> getAll() {
         return pharmacyRepository.findAll();
     }

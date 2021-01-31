@@ -2,20 +2,11 @@ package com.isa.pharmacy.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Entity
-@Table(name = "app_user")
+@Inheritance
+@Entity(name = "app_user")
 public class User implements Serializable {
-
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -45,6 +36,12 @@ public class User implements Serializable {
 
     @Column
     private String phone;
+
+    @Column
+    private String verificationCode;
+
+    @Column
+    private Boolean active;
 
     public User() {
     }
@@ -149,5 +146,19 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
+    public String getVerificationCode() {
+        return verificationCode;
+    }
 
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }

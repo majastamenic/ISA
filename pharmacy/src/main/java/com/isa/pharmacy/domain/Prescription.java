@@ -1,11 +1,12 @@
 package com.isa.pharmacy.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table
-public class Prescription {
+public class Prescription implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +15,6 @@ public class Prescription {
     private String note;
     @OneToOne
     private Examination examination;
-    @OneToOne
-    private Counseling counseling;
     @ElementCollection
     private List<Diagnosis> diagnoses;
     @ElementCollection
@@ -23,11 +22,10 @@ public class Prescription {
 
     public Prescription(){}
 
-    public Prescription(Long id, String note, Examination examination, Counseling counseling, List<Diagnosis> diagnoses, List<MedicinePharmacy> medicines) {
+    public Prescription(Long id, String note, Examination examination, List<Diagnosis> diagnoses, List<MedicinePharmacy> medicines) {
         this.id = id;
         this.note = note;
         this.examination = examination;
-        this.counseling = counseling;
         this.diagnoses = diagnoses;
         this.medicines = medicines;
     }
@@ -46,14 +44,6 @@ public class Prescription {
 
     public void setDiagnoses(List<Diagnosis> diagnoses) {
         this.diagnoses = diagnoses;
-    }
-
-    public Counseling getCounseling() {
-        return counseling;
-    }
-
-    public void setCounseling(Counseling counseling) {
-        this.counseling = counseling;
     }
 
     public Long getId() {

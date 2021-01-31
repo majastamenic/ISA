@@ -1,14 +1,14 @@
 package com.isa.pharmacy.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table
-public class VacationSchedule {
+public class VacationSchedule implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,24 +22,24 @@ public class VacationSchedule {
     @OneToMany
     private List<Pharmacist> pharmacists;
     @OneToMany
-    private List<VacationSchedule> vacationSchedules;
+    private List<Dermatologist> dermatologists;
 
     public VacationSchedule(){}
 
-    public VacationSchedule(Long id, Date startDate, Date endDate, List<Pharmacist> pharmacists, List<VacationSchedule> vacationSchedules) {
+    public VacationSchedule(Long id, Date startDate, Date endDate, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.pharmacists = pharmacists;
-        this.vacationSchedules = vacationSchedules;
+        this.dermatologists = dermatologists;
     }
 
-    public List<VacationSchedule> getVacationSchedules() {
-        return vacationSchedules;
+    public List<Dermatologist> getDermatologists() {
+        return dermatologists;
     }
 
-    public void setVacationSchedules(List<VacationSchedule> vacationSchedules) {
-        this.vacationSchedules = vacationSchedules;
+    public void setDermatologists(List<Dermatologist> dermatologists) {
+        this.dermatologists = dermatologists;
     }
 
     public List<Pharmacist> getPharmacists() {

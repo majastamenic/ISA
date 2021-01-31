@@ -39,7 +39,6 @@ public class PharmacyController {
             return new ResponseEntity<>("Welcome", HttpStatus.OK);
     }
 
-
     @GetMapping("/getAllMedicines/{pharmacyName}")
     public List<Medicine> getMedicinesFromPharmacy(@PathVariable("pharmacyName") String pharmacyName, @RequestHeader("apiKey") String apiKey) {
         pharmacyService.checkApiKey(apiKey);

@@ -18,4 +18,8 @@ export class UserService {
   registration(user: UserRegistrationDto): any {
     return this.httpClient.post(USER_PATH, user);
   }
+
+  verification(code: string): any {
+    return this.httpClient.get(USER_PATH);
+  }
 }
