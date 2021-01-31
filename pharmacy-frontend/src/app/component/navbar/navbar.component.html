@@ -5,27 +5,29 @@
         </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="'/actions'" routerLinkActive="active">Actions and benefits</a>
+                <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/actions'" routerLinkActive="active">Actions and benefits</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="'/medicine'" routerLinkActive="active">Medicines</a>
+                <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/medicine'" routerLinkActive="active">Medicines</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="'/uploadQR'" routerLinkActive="active">Upload QR-code</a>
+                <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/uploadQR'" routerLinkActive="active">Upload QR-code</a>
             </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item">
-                <a class="nav-link"  [routerLink]="'/login'" routerLinkActive="active">Login</a>
+                <a *ngIf="!userService.isUserLogin()" class="nav-link"  [routerLink]="'/login'" routerLinkActive="active">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="'/user'" routerLinkActive="active">Registration</a>
+                <a *ngIf="!userService.isUserLogin()" class="nav-link" [routerLink]="'/user'" routerLinkActive="active">Registration</a>
             </li>
             <li class="nav-item"> 
-                <a class="nav-link" [routerLink]="'/hospital'" routerLinkActive="active">Hospital registration</a>
+                <a *ngIf="!userService.isUserLogin()" class="nav-link" [routerLink]="'/hospital'" routerLinkActive="active">Hospital registration</a>
+            </li>
+            <li class="nav-item"> 
+                <a (click)="userService.logOut()" *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/login'" routerLinkActive="active">Logout</a>
             </li>
         </ul>
-
     </div>
 </nav>
 

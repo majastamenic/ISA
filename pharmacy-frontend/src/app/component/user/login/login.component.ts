@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { LoginUserDto, User } from '../model/user-model';
 
@@ -9,16 +10,18 @@ import { LoginUserDto, User } from '../model/user-model';
 })
 export class LoginComponent implements OnInit {
 
-  user: LoginUserDto = { email: '', password: '' };
+  user: any;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.user = { email: '', password: '' };
   }
 
   login(): void {
     this.userService.login(this.user).subscribe((returnedUser: User) => {
-      alert('User with email ' + returnedUser.email + ' logged in');
+      sessionStorage.setItem('user', this.user);
+      this.router.navigate(['/home']);
     },
       (err: any) => {
         alert('Error while login ' + err.error.message);

@@ -22,4 +22,14 @@ export class UserService {
   verification(code: string): any {
     return this.httpClient.get(USER_PATH);
   }
+
+  isUserLogin(){
+    let user = sessionStorage.getItem('user');
+    console.log(!(user == null))
+    return !(user == null)
+  }
+
+  logOut(){
+    sessionStorage.removeItem('user');
+  }
 }
