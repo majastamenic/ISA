@@ -38,12 +38,12 @@ public class PharmacyServiceTest {
 		assertEquals(all.size(), 0);
 	}
 
-	@Test
+	/*@Test
 	public void getByApyKeyTestSuccess() {
 		String apiKey = "ApiKey";
 		when(pharmacyRepository.findPharmacyByApiKey(apiKey)).thenReturn(new Pharmacy());
 		Pharmacy pharmacy = pharmacyService.getByApiKey(apiKey);
 		assertNotNull(pharmacy);
-	}
+	}*/
 
 }

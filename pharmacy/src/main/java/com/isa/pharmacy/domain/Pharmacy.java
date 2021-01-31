@@ -3,13 +3,7 @@ package com.isa.pharmacy.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -22,30 +16,28 @@ public class Pharmacy implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //TODO: Ime i apikey jedinstveni?
     @Column
     private String name;
-    @OneToMany
+    @ManyToMany
+    @JoinTable(name = "pharmacy_hospitals", joinColumns = @JoinColumn(name = "pharmacy_id"),
+            inverseJoinColumns = @JoinColumn(name = "hospital_id"))
     private List<Hospital> hospitals;
     @Column
-    private String apiKey;
-    @Column
     private String address;
-    @OneToMany
-    private List<MedicinePharmacy> medicinePharmaciest;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<MedicinePharmacy> medicinePharmacy;
 
     public Pharmacy() {
     }
 
-    public Pharmacy(Long id, String name, List<Hospital> hospitals, String apiKey, String address,
-                    List<MedicinePharmacy> medicinePharmaciest) {
+    public Pharmacy(Long id, String name, List<Hospital> hospitals, String address,
+                    List<MedicinePharmacy> medicinePharmacy) {
         super();
         this.id = id;
         this.name = name;
         this.hospitals = hospitals;
-        this.apiKey = apiKey;
         this.address = address;
-        this.medicinePharmaciest = medicinePharmaciest;
+        this.medicinePharmacy = medicinePharmacy;
     }
 
     public Long getId() {
@@ -65,12 +57,12 @@ public class Pharmacy implements Serializable {
         this.name = name;
     }
 
-    public List<MedicinePharmacy> getMedicinePharmaciest() {
-        return medicinePharmaciest;
+    public List<MedicinePharmacy> getMedicinePharmacy() {
+        return medicinePharmacy;
     }
 
-    public void setMedicinePharmaciest(List<MedicinePharmacy> medicinePharmaciest) {
-        this.medicinePharmaciest = medicinePharmaciest;
+    public void setMedicinePharmacy(List<MedicinePharmacy> medicinePharmacy) {
+        this.medicinePharmacy = medicinePharmacy;
     }
 
     public void setHospitals(List<Hospital> hospitals) {
@@ -85,14 +77,6 @@ public class Pharmacy implements Serializable {
         this.hospitals = hospitals;
     }
 
-    public String getApiKey() {
-        return apiKey;
-    }
-
-    public void setApiKey(String apiKey) {
-        this.apiKey = apiKey;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -102,11 +86,7 @@ public class Pharmacy implements Serializable {
     }
 
     public List<MedicinePharmacy> getMedicinePharmacies() {
-        return medicinePharmaciest;
-    }
-
-    public void setMedicinePharmacies(List<MedicinePharmacy> medicinePharmacies) {
-        this.medicinePharmaciest = medicinePharmacies;
+        return medicinePharmacy;
     }
 
     @Override
@@ -114,10 +94,9 @@ public class Pharmacy implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((address == null) ? 0 : address.hashCode());
-        result = prime * result + ((apiKey == null) ? 0 : apiKey.hashCode());
         result = prime * result + ((hospitals == null) ? 0 : hospitals.hashCode());
         result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((medicinePharmaciest == null) ? 0 : medicinePharmaciest.hashCode());
+        result = prime * result + ((medicinePharmacy == null) ? 0 : medicinePharmacy.hashCode());
         return result;
     }
 

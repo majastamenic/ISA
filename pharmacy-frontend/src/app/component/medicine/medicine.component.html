@@ -32,18 +32,22 @@
                     <th>Form</th>
                     <th>Manufactured</th>
                     <th>Publishing type</th>
+                    <th>Pharmacy</th>
+                    <th>Price</th>
                     <th>Amount</th>
                     <th>Note</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let medicine of medicines">
+                <tr *ngFor="let medicine of medicinesDtoList">
                     <td>{{medicine.code}}</td>
                     <td>{{medicine.name}}</td>
-                    <td>{{medicine.type}}</td>
-                    <td>{{medicine.form}}</td>
+                    <td>{{medicine.typeOfMedicine}}</td>
+                    <td>{{medicine.formOfMedicine}}</td>
                     <td>{{medicine.manufactured}}</td>
                     <td>{{medicine.publishingType}}</td>
+                    <td>{{medicine.pharmacyName}}</td>
+                    <td>{{medicine.price}}</td>
                     <td>{{medicine.amount}}</td>
                     <td>{{medicine.note}}</td>
                 </tr>

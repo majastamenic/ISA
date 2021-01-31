@@ -3,14 +3,7 @@ package com.isa.pharmacy.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -40,7 +33,7 @@ public class Medicine implements Serializable {
     private List<String> replacementMedicines;
     @Column
     private String note;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
 
     public Medicine() {
