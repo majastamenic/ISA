@@ -19,8 +19,8 @@ insert into dermatologist(address, city, country, email, name, password, phone, 
 insert into dermatologist_pharmacy(dermatologist_id, pharmacy_id) values(1, 6);
 
 -- WorkSchedule
-insert into work_schedule(start_date, end_date) values("2021-02-01", "2021-02-07");
-insert into work_schedule(start_date, end_date) values("2021-02-01", "2021-02-07");
+insert into work_schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '08:00:00', '14:00:00');
+insert into work_schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '14:00:00', '20:00:00');
 
 INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala');
 
