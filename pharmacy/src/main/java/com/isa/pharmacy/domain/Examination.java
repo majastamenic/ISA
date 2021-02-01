@@ -24,7 +24,7 @@ public class Examination {
     private Schedule schedule;
     @Column
     private Integer price;
-    @ElementCollection
+    @OneToMany
     private List<Diagnosis> diagnosis;
 
     public Examination(){}

@@ -4,6 +4,8 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import rs.ac.uns.ftn.grpc.*;
 
@@ -11,13 +13,15 @@ import rs.ac.uns.ftn.grpc.*;
 @GrpcService
 public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServiceImplBase {
 
+    private final Logger logger = LoggerFactory.getLogger(CommunicationService.class);
+
     @Autowired
     private PharmacyService pharmacyService;
 
     @Override
     public void communicate(ProtoAvailableMedication request, StreamObserver<ProtoResponseAvailableMedication> responseObserver) {
-        System.out.println("You are now communicating with hospital.");
-        System.out.println("Message from Hospital: " + request.getPharmacyName());
+        logger.info("You are now communicating with hospital.");
+        logger.info("Message from Hospital: %s", request.getPharmacyName());
         int quantity = pharmacyService.hasPharmacyMedication(request.getPharmacyName(), request.getMedicationName());
 
         ProtoResponseAvailableMedication responseMessage = ProtoResponseAvailableMedication.newBuilder()
@@ -25,13 +29,13 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
 
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
-        System.out.println(responseMessage);
+        logger.info("Response message: %s", responseMessage.toString());
     }
 
     @Override
     public void communicateMedications(ProtoMedications request, StreamObserver<ProtoResponseMedications> responseObserver) {
-        System.out.println("You are now communicating with hospital.");
-        System.out.println("Message from Hospital to pharmacy: " + request.getPharmacyName());
+        logger.info("You are now communicating with hospital.");
+        logger.info("Message from Hospital to pharmacy: %s" , request.getPharmacyName());
 
         ProtoResponseMedications.Builder builder = ProtoResponseMedications.newBuilder();
 
@@ -41,6 +45,6 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
         ProtoResponseMedications responseMessage = builder.build();
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
-        System.out.println(responseMessage);
+        logger.info("Response message: %s", responseMessage.toString());
     }
 }

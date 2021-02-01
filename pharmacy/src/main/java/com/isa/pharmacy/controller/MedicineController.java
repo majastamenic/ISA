@@ -33,8 +33,7 @@ public class MedicineController {
 
     @PostMapping
     public Medicine create(@RequestBody MedicineDto medicineDTO) {
-        MedicineMapper medicineMapper = new MedicineMapper();
-        Medicine medicine = medicineMapper.mapMedicineDtoToMedicine(medicineDTO);
+        Medicine medicine = MedicineMapper.mapMedicineDtoToMedicine(medicineDTO);
         return medicineService.create(medicine);
     }
 

@@ -1,7 +1,7 @@
 package com.isa.pharmacy.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
 
 import javax.persistence.*;
 import java.io.Serializable;
