@@ -48,8 +48,7 @@ public class PharmacistService {
     public List<Patient> getPatientsByPharmacist(Long id){
         List<Patient> patients = null;
         for(Counseling c : pharmacistRepository.findPharmacistById(id).getCounselings()){
-            if(patients.contains(c.getPatient()) == false)
-                patients.add(c.getPatient());
+            patients.add(c.getPatient());
         }
         return patients;
     }
