@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.MultiFormatReader;
@@ -15,6 +18,8 @@ import com.google.zxing.common.HybridBinarizer;
 @Service
 public class QRService {
 
+    private final Logger logger = LoggerFactory.getLogger(QRService.class);
+
     public String readQrCode(String path) throws IOException {
 
         try {
@@ -25,7 +30,7 @@ public class QRService {
             Result result = new MultiFormatReader().decode(bitmap);
             return result.getText();
         } catch (NotFoundException e) {
-            System.out.println("There is no QR code in the image");
+            logger.error("There is no QR code in the image");
             return null;
         }
     }

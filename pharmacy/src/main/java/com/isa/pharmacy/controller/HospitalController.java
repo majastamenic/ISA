@@ -1,20 +1,16 @@
 package com.isa.pharmacy.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.domain.MedicinePharmacy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.isa.pharmacy.controller.dto.HospitalManagerRegistrationDto;
 import com.isa.pharmacy.controller.mapping.HospitalMapper;
 import com.isa.pharmacy.domain.Hospital;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.service.HospitalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -43,7 +39,7 @@ public class HospitalController {
         try {
             emailService.sendApiKey(hospital.getEmail(), "1dfre-astfc-hfe5g-a65Sd");
         } catch (Exception e) {
-            logger.info("Greska prilikom slanja emaila: " + e.getMessage());
+            logger.info(String.format("Error has occurred while sending email: %s", e.getMessage()));
         }
         return hospital;
     }
