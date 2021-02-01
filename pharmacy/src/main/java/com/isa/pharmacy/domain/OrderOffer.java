@@ -14,14 +14,17 @@ public class OrderOffer implements Serializable {
     private Order order;
     @OneToOne
     private Supplier supplier;
+    @Column
+    private Boolean isWinner;
 
     public OrderOffer() {
     }
 
-    public OrderOffer(Long id, Order order, Supplier supplier) {
+    public OrderOffer(Long id, Order order, Supplier supplier, Boolean isWinner) {
         this.id = id;
         this.order = order;
         this.supplier = supplier;
+        this.isWinner = isWinner;
     }
 
     public Long getId() {
@@ -46,5 +49,13 @@ public class OrderOffer implements Serializable {
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
+    }
+
+    public Boolean getWinner() {
+        return isWinner;
+    }
+
+    public void setWinner(Boolean winner) {
+        isWinner = winner;
     }
 }

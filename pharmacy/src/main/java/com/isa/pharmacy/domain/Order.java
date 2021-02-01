@@ -28,17 +28,20 @@ public class Order implements Serializable {
     private PharmacyAdmin pharmacyAdmin;
     @OneToMany
     private List<OrderOffer> offers;
+    @Column
+    private Long winnerId;
 
     public Order() {
     }
 
-    public Order(Long id, List<Medicine> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin, List<OrderOffer> offers) {
+    public Order(Long id, List<Medicine> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin, List<OrderOffer> offers,Long winnerId) {
         this.id = id;
         this.medicineList = medicineList;
         this.endDate = endDate;
         this.endTime = endTime;
         this.pharmacyAdmin=pharmacyAdmin;
         this.offers= offers;
+        this.winnerId =winnerId;
     }
 
     public static long getSerialVersionUID() {
@@ -91,5 +94,13 @@ public class Order implements Serializable {
 
     public void setOffers(List<OrderOffer> offers) {
         this.offers = offers;
+    }
+
+    public Long getWinnerId() {
+        return winnerId;
+    }
+
+    public void setWinnerId(Long winnerId) {
+        this.winnerId = winnerId;
     }
 }

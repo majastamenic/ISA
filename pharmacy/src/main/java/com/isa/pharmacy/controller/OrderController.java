@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,8 @@ public class OrderController {
     @PostMapping("/update")
     public Order update (@RequestBody Order order){ return orderService.update(order);}
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id) {
+        orderService.delete(id);
+    }
 }
