@@ -19,7 +19,7 @@ public class NotificationService {
     private EmailService emailsService;
 
     @Scheduled(fixedRate = 20000)
-    public void checkFile() throws IOException, MessagingException, InterruptedException {
+    public void checkFile() throws IOException {
         File file = new File("src/main/resources/example.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
 

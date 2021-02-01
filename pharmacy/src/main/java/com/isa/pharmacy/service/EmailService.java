@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
+    private static final String SENDING_EMAIL = "Sending email...";
+    private static final String EMAIL_SENT = "Email sent";
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -34,7 +36,7 @@ public class EmailService {
     @Async
     public void sendApiKey(String hospitalEmail, String apiKey)
             throws MailException {
-        System.out.println("sending email");
+        System.out.println(SENDING_EMAIL);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(hospitalEmail);
@@ -45,14 +47,14 @@ public class EmailService {
                 "\nFeel free to contact any pharmacy from our system!");
 
         javaMailSender.send(simpleMailMessage);
-        System.out.println("send email");
+        System.out.println(EMAIL_SENT);
     }
 
 
     @Async
     public void notifyHospitalSftp(String hospitalEmail, String patientName)
             throws MailException {
-        System.out.println("sending email");
+        System.out.println(SENDING_EMAIL);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(hospitalEmail);
@@ -60,13 +62,13 @@ public class EmailService {
         simpleMailMessage.setText("Dear Hospital,\nPharmacy received prescription with name: " + patientName);
 
         javaMailSender.send(simpleMailMessage);
-        System.out.println("send email");
+        System.out.println(EMAIL_SENT);
     }
 
     @Async
     public void notifyPharmacySftp(String pharmacyEmail)
             throws MailException {
-        System.out.println("sending email");
+        System.out.println(SENDING_EMAIL);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(pharmacyEmail);
@@ -74,6 +76,6 @@ public class EmailService {
         simpleMailMessage.setText("Dear Pharmacy,\nPDF is generated:");
 
         javaMailSender.send(simpleMailMessage);
-        System.out.println("send email");
+        System.out.println(EMAIL_SENT);
     }
 }

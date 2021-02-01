@@ -44,17 +44,15 @@ public class EPrescriptionController {
     @GetMapping("/{id}")
     public EPrescription getEPrescription(@PathVariable("id") Long id) {
         EPrescription ePrescription = ePrescriptionService.getById(id);
-        if (ePrescription == null) {
+        if (ePrescription == null)
             throw new NotFoundException(String.format("User with id %s not found", id));
-        }
         return ePrescription;
     }
 
     @PostMapping
     public EPrescription saveByText(@RequestBody String text) {
         EPrescription ePrescription = EPrescriptionMapper.mapStringToEPrescription(text);
-        ePrescription = ePrescriptionService.save(ePrescription);
-        return ePrescription;
+        return ePrescriptionService.save(ePrescription);
     }
 
     @PostMapping("/uploadQr")
@@ -62,16 +60,11 @@ public class EPrescriptionController {
         if (file.isEmpty()) throw new RuntimeException("File is empty!");
         byte[] bytes = file.getBytes();
 
-        BufferedOutputStream stream = null;
-        try {
-            stream = new BufferedOutputStream(
-                            new FileOutputStream(
-                                    baseFileDestination + file.getOriginalFilename()));
+        try (BufferedOutputStream stream = new BufferedOutputStream(
+                new FileOutputStream(baseFileDestination + file.getOriginalFilename()))){
             stream.write(bytes);
         }catch (Exception e){
             System.err.println(e);
-        }finally {
-            stream.close();
         }
         String text = qrService.readQrCode(baseFileDestination + file.getOriginalFilename());
         System.out.println(text);
