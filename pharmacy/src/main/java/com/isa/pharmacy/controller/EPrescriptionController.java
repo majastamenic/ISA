@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +30,8 @@ import com.isa.pharmacy.service.QRService;
 @RequestMapping("/ePrescription")
 @CrossOrigin(value = "http://localhost:4200")
 public class EPrescriptionController {
+
+    private final Logger logger = LoggerFactory.getLogger(EPrescriptionController.class);
 
     @Autowired
     private EPrescriptionService ePrescriptionService;
@@ -64,7 +68,7 @@ public class EPrescriptionController {
                 new FileOutputStream(baseFileDestination + file.getOriginalFilename()))){
             stream.write(bytes);
         }catch (Exception e){
-            System.err.println(e);
+            e.printStackTrace();
         }
         String text = qrService.readQrCode(baseFileDestination + file.getOriginalFilename());
         System.out.println(text);

@@ -1,18 +1,23 @@
 package com.isa.pharmacy.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
 import java.io.*;
-import javax.mail.MessagingException;
 
 
 @EnableScheduling
 @SpringBootApplication
 @Component
 public class NotificationService {
+
+    private final Logger logger = LoggerFactory.getLogger(NotificationService.class);
+
     private String pharmacyEmail = "ppharmacy056@gmail.com";
     private String hospitalEmail = "bolnica218@yahoo.com";
     @Autowired
@@ -26,11 +31,11 @@ public class NotificationService {
         String line = br.readLine();
         if (line != null) {
             try {
-                System.out.println(line);
+                logger.info(line);
                 emailsService.notifyHospitalSftp(hospitalEmail, line);
                 emailsService.notifyPharmacySftp(pharmacyEmail);
                 while ((line = br.readLine()) != null) {
-                    System.out.println(line);
+                    logger.info(line);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
