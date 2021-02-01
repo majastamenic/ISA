@@ -1,4 +1,6 @@
-package com.isa.pharmacy.domain;
+package com.isa.pharmacy.domain.Profile;
+
+import com.isa.pharmacy.domain.enums.Role;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,12 +49,13 @@ public class User implements Serializable {
     @Column
     private Boolean active;
 
-    public User() {
-    }
+    @Column
+    private Role role;
 
+    public User() { }
 
     public User(Long id, String email, String password, String name, String surname, String address, String city,
-                String country, String phone) {
+                String country, String phone, Role role) {
         super();
         this.id = id;
         this.email = email;
@@ -63,6 +66,7 @@ public class User implements Serializable {
         this.city = city;
         this.country = country;
         this.phone = phone;
+        this.role = role;
     }
 
 
@@ -164,5 +168,13 @@ public class User implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

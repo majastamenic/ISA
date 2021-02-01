@@ -1,4 +1,8 @@
-package com.isa.pharmacy.domain;
+package com.isa.pharmacy.domain.Profile;
+
+import com.isa.pharmacy.domain.Order;
+import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.domain.WorkSchedule;
 
 import javax.persistence.*;
 import java.io.Serializable;

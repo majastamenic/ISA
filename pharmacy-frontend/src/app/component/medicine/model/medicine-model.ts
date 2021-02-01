@@ -1,3 +1,4 @@
+import { Form } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 export interface Medicine{
@@ -5,11 +6,11 @@ export interface Medicine{
     code: number;
     name: string;
     typeOfMedicine: string;
-    formOfMedicine: string;
-    composition: Observable<string>;
+    formOfMedicine: FormOfMedicine;
+    composition: string;
     manufactured: string;
-    publishingType: string;
-    replacementMedicines: Observable<String>;
+    publishingType: MedicinePublishingType;
+    replacementMedicines: Observable<number>;
     note: string;
 }
 
@@ -17,13 +18,29 @@ export interface MedicineDto{
     code: number;
     name: string;
     typeOfMedicine: string;
-    formOfMedicine: string;
-    composition: Observable<string>;
+    formOfMedicine: FormOfMedicine;
+    composition: string;
     manufactured: string;
-    publishingType: string;
-    alternative: Observable<string>;
+    publishingType: MedicinePublishingType;
+    alternative: Observable<number>;
     pharmacyName: string;
     price: number;
     amount: number;
     note: string;
+}
+
+enum FormOfMedicine {
+    POWDER,
+    CAPSULE,
+    TABLET,
+    GREASE,
+    GEL,
+    PASTE,
+    DILUTION,
+    SYRUP,
+}
+
+enum MedicinePublishingType {
+    WITH_PRESCRIPTION,
+    WITHOUT_PRESCRIPTION,
 }

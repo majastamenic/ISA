@@ -1,7 +1,7 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.Patient;
+import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

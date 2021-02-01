@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
-import com.isa.pharmacy.domain.User;
+import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.repository.UserRepository;
 
 @Service

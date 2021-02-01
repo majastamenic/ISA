@@ -1,4 +1,8 @@
-package com.isa.pharmacy.domain;
+package com.isa.pharmacy.domain.Profile;
+
+import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.domain.Medicine;
 
 import javax.persistence.*;
 import java.io.Serializable;

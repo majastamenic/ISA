@@ -25,7 +25,7 @@ public class EPrescriptionMapper {
 
         ePrescription.setFileText(note);
         ePrescription.setPatientName(splitText[0] + " " + splitText[1]);
-        ePrescription.setCode(splitText[2]);
+        ePrescription.setCode(Long.parseLong(splitText[2]));
         ePrescription.setDateOfIssue(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
         List<MedicineEPrescription> listMedicine = new ArrayList<>();
