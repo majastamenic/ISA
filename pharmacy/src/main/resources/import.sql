@@ -23,15 +23,9 @@ insert into work_schedule(start_date, end_date, start_time, end_time) values('20
 
 INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala');
 
-INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine)VALUES (1, 62542, 'tableta', 'Galenika', 'Brufen', 'Beleska 1', 'WITHOUT_PRESCRIPTION', 'Lek za temperaturu');
-INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine)VALUES (2, 66042, 'tableta', 'Optisorb', 'Panadol', 'Beleska 2', 'WITHOUT_PRESCRIPTION', 'Lek za bolove');
-INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine)VALUES (3, 62217, 'tableta', 'Bayer', 'Aspirin', 'Beleska 3', 'WITHOUT_PRESCRIPTION', 'Lek za bolove i prehladu');
-
-
-INSERT INTO public.medicine_composition(medicine_id, composition)VALUES (1, 'lala');
-INSERT INTO public.medicine_composition(medicine_id, composition)VALUES (1, 'blabla');
-INSERT INTO public.medicine_composition(medicine_id, composition)VALUES (2, 'toto');
-INSERT INTO public.medicine_composition(medicine_id, composition)VALUES (2, 'ieie');
+INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition)VALUES (1, 62542, 0, 'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu', 'sastav1');
+INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition)VALUES (2, 66042, 1, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove', 'sastav2');
+INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition)VALUES (3, 62217, 2, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu', 'sastav3');
 
 -- Za apoteku sa id=1
 INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (1, 1.50, 2350, 1, 1);
@@ -47,8 +41,8 @@ INSERT INTO public.medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)
 INSERT INTO public.medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)VALUES (1, 4);
 INSERT INTO public.medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)VALUES (2, 5);
 
-INSERT INTO public.medicine_replacement_medicines(medicine_id, replacement_medicines)VALUES (1, 'Aspirin');
-INSERT INTO public.medicine_replacement_medicines(medicine_id, replacement_medicines)VALUES (2, 'Nimulid');
+INSERT INTO public.medicine_replacement_medicines(medicine_id, replacement_medicines)VALUES (1, 62217);
+INSERT INTO public.medicine_replacement_medicines(medicine_id, replacement_medicines)VALUES (2, 66042);
 
 INSERT INTO public.pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id)VALUES (1, 1);
 INSERT INTO public.pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id)VALUES (1, 2);
