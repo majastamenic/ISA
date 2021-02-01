@@ -10,6 +10,7 @@ export interface User {
     phone: string;
     verificationCode: string;
     active: boolean;
+    role: Role;
 }
 
 export interface LoginUserDto {
@@ -27,4 +28,13 @@ export interface UserRegistrationDto{
     city: string;
     country: string;
     phone: string;
+    role:Role;
+}
+
+enum Role {
+    PATIENT,
+    ADMIN,
+    DERMATOLOGIST,
+    PHARMACIST,
+    SUPPLIER
 }

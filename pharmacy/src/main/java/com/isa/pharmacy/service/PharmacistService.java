@@ -1,6 +1,8 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.*;
+import com.isa.pharmacy.domain.Profile.Patient;
+import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,9 @@ public class PharmacistService {
 
     public Pharmacist save(Pharmacist p) {
         Pattern pattern = Pattern.compile("^(.+)@(.+)$");
-        if(pattern.matcher(p.getEmail()).matches()){
+        if(pattern.matcher(p.getUser().getEmail()).matches()){
             for(Pharmacist pha: pharmacistRepository.findAll()){
-                if(pha.getEmail().equalsIgnoreCase(p.getEmail())){return null;}
+                if(pha.getUser().getEmail().equalsIgnoreCase(p.getUser().getEmail())){return null;}
             }
             return pharmacistRepository.save(p);
         }
@@ -29,13 +31,7 @@ public class PharmacistService {
 
     public Pharmacist update(Pharmacist p) {
         Pharmacist pharmacist = pharmacistRepository.findPharmacistById(p.getId());
-        pharmacist.setName(p.getName());
-        pharmacist.setSurname(p.getSurname());
-        pharmacist.setAddress(p.getAddress());
-        pharmacist.setCity(p.getCity());
-        pharmacist.setCountry(p.getCountry());
-        pharmacist.setPhone(p.getPhone());
-        pharmacist.setEmail(p.getEmail());
+        pharmacist.setUser(p.getUser());
         pharmacist.setFirstLog(false);
         pharmacistRepository.save(pharmacist);
         return pharmacist;

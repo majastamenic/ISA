@@ -1,5 +1,8 @@
 package com.isa.pharmacy.controller.dto;
 
+import com.isa.pharmacy.domain.enums.FormOfMedicine;
+import com.isa.pharmacy.domain.enums.MedicinePublishingType;
+
 import java.util.List;
 
 public class MedicineDto {
@@ -7,11 +10,11 @@ public class MedicineDto {
 	private Long code;	
 	private String name;	
 	private String typeOfMedicine;	
-	private String formOfMedicine;	
-	private List<String> composition;	
+	private FormOfMedicine formOfMedicine;
+	private String composition;
 	private String manufactured;	
-	private String publishingType;	
-	private List<String> alternative;
+	private MedicinePublishingType publishingType;
+	private List<Long> alternative;
 	private double price;
 	private int amount;
 	private String note;
@@ -22,11 +25,7 @@ public class MedicineDto {
 		super();
 	}
 
-
-	public MedicineDto(Long code, String name, String typeOfMedicine, String formOfMedicine, List<String> composition,
-			String manufactured, String publishingType, List<String> replacementMedicines, double price,
-			int amount, String note, List<String> alternative) {
-		super();
+	public MedicineDto(Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine, String composition, String manufactured, MedicinePublishingType publishingType, List<Long> alternative, double price, int amount, String note, String pharmacyName) {
 		this.code = code;
 		this.name = name;
 		this.typeOfMedicine = typeOfMedicine;
@@ -38,6 +37,7 @@ public class MedicineDto {
 		this.price = price;
 		this.amount = amount;
 		this.note = note;
+		this.pharmacyName = pharmacyName;
 	}
 
 	public Long getCode() {
@@ -64,19 +64,19 @@ public class MedicineDto {
 		this.typeOfMedicine = typeOfMedicine;
 	}
 
-	public String getFormOfMedicine() {
+	public FormOfMedicine getFormOfMedicine() {
 		return formOfMedicine;
 	}
 
-	public void setFormOfMedicine(String formOfMedicine) {
+	public void setFormOfMedicine(FormOfMedicine formOfMedicine) {
 		this.formOfMedicine = formOfMedicine;
 	}
 
-	public List<String> getComposition() {
+	public String getComposition() {
 		return composition;
 	}
 
-	public void setComposition(List<String> composition) {
+	public void setComposition(String composition) {
 		this.composition = composition;
 	}
 
@@ -88,19 +88,19 @@ public class MedicineDto {
 		this.manufactured = manufactured;
 	}
 
-	public String getPublishingType() {
+	public MedicinePublishingType getPublishingType() {
 		return publishingType;
 	}
 
-	public void setPublishingType(String publishingType) {
+	public void setPublishingType(MedicinePublishingType publishingType) {
 		this.publishingType = publishingType;
 	}
 
-	public List<String> getAlternative() {
+	public List<Long> getAlternative() {
 		return alternative;
 	}
 
-	public void setAlternative(List<String> alternative) {
+	public void setAlternative(List<Long> alternative) {
 		this.alternative = alternative;
 	}
 

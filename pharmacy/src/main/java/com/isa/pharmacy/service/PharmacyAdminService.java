@@ -1,7 +1,6 @@
 package com.isa.pharmacy.service;
 
-import com.isa.pharmacy.domain.OrderOffer;
-import com.isa.pharmacy.domain.PharmacyAdmin;
+import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
 import com.isa.pharmacy.repository.PharmacyAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

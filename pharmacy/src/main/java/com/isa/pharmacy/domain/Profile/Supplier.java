@@ -1,4 +1,6 @@
-package com.isa.pharmacy.domain;
+package com.isa.pharmacy.domain.Profile;
+
+import com.isa.pharmacy.domain.OrderOffer;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,16 +12,18 @@ public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
+    private User user;
     @OneToMany
     private List<OrderOffer> offers;
     @Column
     private String email;
 
-    public Supplier() {
-    }
+    public Supplier() {}
 
-    public Supplier(Long id, List<OrderOffer> offers, String email) {
+    public Supplier(Long id, User user, List<OrderOffer> offers, String email) {
         this.id = id;
+        this.user = user;
         this.offers = offers;
         this.email = email;
     }
@@ -30,6 +34,14 @@ public class Supplier {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<OrderOffer> getOffers() {
