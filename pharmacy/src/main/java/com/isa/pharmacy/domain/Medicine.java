@@ -1,5 +1,8 @@
 package com.isa.pharmacy.domain;
 
+import com.isa.pharmacy.domain.enums.FormOfMedicine;
+import com.isa.pharmacy.domain.enums.MedicinePublishingType;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,29 +25,24 @@ public class Medicine implements Serializable {
     @Column
     private String typeOfMedicine;
     @Column
-    private String formOfMedicine;
-    @ElementCollection
-    private List<String> composition;
+    private FormOfMedicine formOfMedicine;
+    @Column
+    private String composition;
     @Column
     private String manufactured;
-    @Column    //TODO: staviti enum
-    private String publishingType;
+    @Column
+    private MedicinePublishingType publishingType;
     @ElementCollection
-    private List<String> replacementMedicines;
+    private List<Long> replacementMedicines;
     @Column
     private String note;
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
-    @OneToOne
-    private Order order;
 
     public Medicine() {
     }
 
-    public Medicine(Long id, Long code, String name, String typeOfMedicine, String formOfMedicine,
-                    List<String> composition, String manufactured, String publishingType,
-                    List<String> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy, Order order) {
-        super();
+    public Medicine(Long id, Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine, String composition, String manufactured, MedicinePublishingType publishingType, List<Long> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -56,7 +54,6 @@ public class Medicine implements Serializable {
         this.replacementMedicines = replacementMedicines;
         this.note = note;
         this.medicinePharmacy = medicinePharmacy;
-        this.order=order;
     }
 
     public Long getId() {
@@ -91,19 +88,19 @@ public class Medicine implements Serializable {
         this.typeOfMedicine = typeOfMedicine;
     }
 
-    public String getFormOfMedicine() {
+    public FormOfMedicine getFormOfMedicine() {
         return formOfMedicine;
     }
 
-    public void setFormOfMedicine(String formOfMedicine) {
+    public void setFormOfMedicine(FormOfMedicine formOfMedicine) {
         this.formOfMedicine = formOfMedicine;
     }
 
-    public List<String> getComposition() {
+    public String getComposition() {
         return composition;
     }
 
-    public void setComposition(List<String> composition) {
+    public void setComposition(String composition) {
         this.composition = composition;
     }
 
@@ -115,19 +112,19 @@ public class Medicine implements Serializable {
         this.manufactured = manufactured;
     }
 
-    public String getPublishingType() {
+    public MedicinePublishingType getPublishingType() {
         return publishingType;
     }
 
-    public void setPublishingType(String publishingType) {
+    public void setPublishingType(MedicinePublishingType publishingType) {
         this.publishingType = publishingType;
     }
 
-    public List<String> getReplacementMedicine() {
+    public List<Long> getReplacementMedicines() {
         return replacementMedicines;
     }
 
-    public void setReplacementMedicine(List<String> replacementMedicines) {
+    public void setReplacementMedicines(List<Long> replacementMedicines) {
         this.replacementMedicines = replacementMedicines;
     }
 
@@ -146,6 +143,4 @@ public class Medicine implements Serializable {
     public void setMedicinePharmacy(List<MedicinePharmacy> medicinePharmacy) {
         this.medicinePharmacy = medicinePharmacy;
     }
-
-
 }

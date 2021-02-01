@@ -1,5 +1,5 @@
 package com.isa.pharmacy.controller;
-import com.isa.pharmacy.domain.PharmacyAdmin;
+import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
 import com.isa.pharmacy.service.PharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,8 @@
 package com.isa.pharmacy.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
+
 
 import javax.persistence.*;
 import java.io.Serializable;

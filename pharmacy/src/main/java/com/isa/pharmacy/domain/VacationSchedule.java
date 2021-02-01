@@ -1,6 +1,9 @@
 package com.isa.pharmacy.domain;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.isa.pharmacy.domain.Profile.Dermatologist;
+import com.isa.pharmacy.domain.Profile.Pharmacist;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -14,10 +17,12 @@ public class VacationSchedule implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date startDate;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date endDate;
     @OneToMany
     private List<Pharmacist> pharmacists;

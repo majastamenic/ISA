@@ -1,44 +1,62 @@
-package com.isa.pharmacy.domain;
+package com.isa.pharmacy.domain.Profile;
 
-import javax.persistence.*;
+import com.isa.pharmacy.domain.enums.Role;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
-@Table
-public class PharmacyAdmin implements Serializable {
+@Table(name = "app_user")
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(unique = true, nullable = false)
     private String email;
+
     @Column
     private String password;
+
     @Column
     private String name;
+
     @Column
     private String surname;
+
     @Column
     private String address;
+
     @Column
     private String city;
+
     @Column
     private String country;
+
     @Column
     private String phone;
-    @OneToMany
-    private List<Order> orders;
-    @OneToOne
-    private Pharmacy pharmacy;
-    @OneToMany
-    private List<WorkSchedule> schedule;
+
     @Column
-    private Boolean isFirstLog;
+    private String verificationCode;
 
-    public PharmacyAdmin(){}
+    @Column
+    private Boolean active;
 
-    public PharmacyAdmin(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, List<Order> orders, Pharmacy pharmacy,List<WorkSchedule> schedule, Boolean isFirstLog) {
+    @Column
+    private Role role;
+
+    public User() { }
+
+    public User(Long id, String email, String password, String name, String surname, String address, String city,
+                String country, String phone, Role role) {
+        super();
         this.id = id;
         this.email = email;
         this.password = password;
@@ -48,11 +66,9 @@ public class PharmacyAdmin implements Serializable {
         this.city = city;
         this.country = country;
         this.phone = phone;
-        this.orders= orders;
-        this.pharmacy = pharmacy;
-        this.schedule =schedule;
-        this.isFirstLog = isFirstLog;
+        this.role = role;
     }
+
 
     public Long getId() {
         return id;
@@ -60,14 +76,6 @@ public class PharmacyAdmin implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Boolean getFirstLog() {
-        return isFirstLog;
-    }
-
-    public void setFirstLog(Boolean firstLog) {
-        isFirstLog = firstLog;
     }
 
     public String getEmail() {
@@ -86,75 +94,87 @@ public class PharmacyAdmin implements Serializable {
         this.password = password;
     }
 
+
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
     }
 
+
     public String getSurname() {
         return surname;
     }
+
 
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+
     public String getAddress() {
         return address;
     }
+
 
     public void setAddress(String address) {
         this.address = address;
     }
 
+
     public String getCity() {
         return city;
     }
+
 
     public void setCity(String city) {
         this.city = city;
     }
 
+
     public String getCountry() {
         return country;
     }
+
 
     public void setCountry(String country) {
         this.country = country;
     }
 
+
     public String getPhone() {
         return phone;
     }
+
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public String getVerificationCode() {
+        return verificationCode;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 
-    public Pharmacy getPharmacy() {
-        return pharmacy;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setPharmacy(Pharmacy pharmacy) {
-        this.pharmacy = pharmacy;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
-    public List<WorkSchedule> getSchedule() {
-        return schedule;
+    public Role getRole() {
+        return role;
     }
 
-    public void setSchedule(List<WorkSchedule> schedule) {
-        this.schedule = schedule;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

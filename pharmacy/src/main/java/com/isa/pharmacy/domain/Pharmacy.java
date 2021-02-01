@@ -1,5 +1,8 @@
 package com.isa.pharmacy.domain;
 
+import com.isa.pharmacy.domain.Profile.Pharmacist;
+import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -105,6 +108,11 @@ public class Pharmacy implements Serializable {
         result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((medicinePharmacy == null) ? 0 : medicinePharmacy.hashCode());
         return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override

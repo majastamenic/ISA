@@ -1,5 +1,7 @@
 package com.isa.pharmacy.domain;
 
+import com.isa.pharmacy.domain.Profile.Dermatologist;
+import com.isa.pharmacy.domain.Profile.Patient;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +23,7 @@ public class Examination {
     private Schedule schedule;
     @Column
     private Integer price;
-    @ElementCollection
+    @OneToMany
     private List<Diagnosis> diagnosis;
 
     public Examination(){}

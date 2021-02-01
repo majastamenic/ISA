@@ -1,6 +1,6 @@
 package com.isa.pharmacy.service;
 
-import com.isa.pharmacy.domain.PharmacyAdmin;
+import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
 import com.isa.pharmacy.repository.PharmacyAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +18,7 @@ public class PharmacyAdminService {
 
     public PharmacyAdmin updateAdmin(PharmacyAdmin pharmacyAdmin){
         PharmacyAdmin admin = pharmacyAdminRepository.findPharmacyAdminById(pharmacyAdmin.getId());
-        admin.setName(pharmacyAdmin.getName());
-        admin.setSurname(pharmacyAdmin.getSurname());
-        admin.setAddress(pharmacyAdmin.getAddress());
-        admin.setCity(pharmacyAdmin.getCity());
-        admin.setCountry(pharmacyAdmin.getCountry());
-        admin.setPhone(pharmacyAdmin.getPhone());
-        admin.setEmail(pharmacyAdmin.getEmail());
+        admin.setUser(pharmacyAdmin.getUser());
         admin.setFirstLog(false);
         pharmacyAdminRepository.save(pharmacyAdmin);
         return admin;

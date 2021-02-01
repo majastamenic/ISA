@@ -1,18 +1,29 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.*;
+import com.isa.pharmacy.domain.Profile.Patient;
+import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class PharmacistService {
     @Autowired
     private PharmacistRepository pharmacistRepository;
 
-    public Pharmacist save(Pharmacist p) { return pharmacistRepository.save(p); }
+    public Pharmacist save(Pharmacist p) {
+        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
+        if(pattern.matcher(p.getUser().getEmail()).matches()){
+            for(Pharmacist pha: pharmacistRepository.findAll()){
+                if(pha.getUser().getEmail().equalsIgnoreCase(p.getUser().getEmail())){return null;}
+            }
+            return pharmacistRepository.save(p);
+        }
+        return null;
+    }
 
     public List<Pharmacist> getAll(){ return pharmacistRepository.findAll(); }
 
@@ -20,21 +31,27 @@ public class PharmacistService {
 
     public Pharmacist update(Pharmacist p) {
         Pharmacist pharmacist = pharmacistRepository.findPharmacistById(p.getId());
-        pharmacist.setName(p.getName());
-        pharmacist.setSurname(p.getSurname());
-        pharmacist.setAddress(p.getAddress());
-        pharmacist.setCity(p.getCity());
-        pharmacist.setCountry(p.getCountry());
-        pharmacist.setPhone(p.getPhone());
-        pharmacist.setEmail(p.getEmail());
+        pharmacist.setUser(p.getUser());
         pharmacist.setFirstLog(false);
         pharmacistRepository.save(pharmacist);
         return pharmacist;
     }
 
     public WorkSchedule getWorkScheduleByPharmacist(Long id){
-        Pharmacist pharmacist = pharmacistRepository.findPharmacistById(id);
-        return pharmacist.getWorkSchedule();
+        return pharmacistRepository.findPharmacistById(id).getWorkSchedule();
+    }
+
+    public List<Patient> getPatientsByPharmacist(Long id){
+        List<Patient> patients = null;
+        for(Counseling c : pharmacistRepository.findPharmacistById(id).getCounselings()){
+            if(patients.contains(c.getPatient()) == false)
+                patients.add(c.getPatient());
+        }
+        return patients;
+    }
+
+    public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){
+        return pharmacistRepository.findPharmacistById(id).getVacationSchedules();
     }
 
 }

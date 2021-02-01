@@ -4,13 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,14 +20,14 @@ public class EPrescription implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
-    private String code;
+    private Long code;
     @Column
-    private String patientName;    //Ime i prezime
+    private String patientName;
     @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfIssue;
-    @ElementCollection
-    private List<MedicineEPrescription> listOfMedication; //Sifra leka, naziv i kolicina
+    @OneToMany
+    private List<MedicineEPrescription> listOfMedication;
 
     @Column
     private String fileText;
@@ -42,7 +36,7 @@ public class EPrescription implements Serializable {
     }
 
 
-    public EPrescription(Long id, String code, String patientName, Date dateOfIssue, List<MedicineEPrescription> listOfMedication,
+    public EPrescription(Long id, Long code, String patientName, Date dateOfIssue, List<MedicineEPrescription> listOfMedication,
                          String fileText) {
         super();
         this.id = id;
@@ -62,11 +56,11 @@ public class EPrescription implements Serializable {
         this.id = id;
     }
 
-    public String getCode() {
+    public Long getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Long code) {
         this.code = code;
     }
 

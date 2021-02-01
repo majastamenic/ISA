@@ -1,7 +1,8 @@
 package com.isa.pharmacy.service;
 
-
-import com.isa.pharmacy.domain.User;
+import com.isa.pharmacy.domain.Profile.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -13,6 +14,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
+    private static final String SENDING_EMAIL = "Sending email...";
+    private static final String EMAIL_SENT = "Email sent";
+
+    private final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -34,7 +39,7 @@ public class EmailService {
     @Async
     public void sendApiKey(String hospitalEmail, String apiKey)
             throws MailException {
-        System.out.println("sending email");
+        logger.info(SENDING_EMAIL);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(hospitalEmail);
@@ -45,14 +50,14 @@ public class EmailService {
                 "\nFeel free to contact any pharmacy from our system!");
 
         javaMailSender.send(simpleMailMessage);
-        System.out.println("send email");
+        logger.info(EMAIL_SENT);
     }
 
 
     @Async
     public void notifyHospitalSftp(String hospitalEmail, String patientName)
             throws MailException {
-        System.out.println("sending email");
+        logger.info(SENDING_EMAIL);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(hospitalEmail);
@@ -60,13 +65,13 @@ public class EmailService {
         simpleMailMessage.setText("Dear Hospital,\nPharmacy received prescription with name: " + patientName);
 
         javaMailSender.send(simpleMailMessage);
-        System.out.println("send email");
+        logger.info(EMAIL_SENT);
     }
 
     @Async
     public void notifyPharmacySftp(String pharmacyEmail)
             throws MailException {
-        System.out.println("sending email");
+        logger.info(SENDING_EMAIL);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(pharmacyEmail);
@@ -74,6 +79,6 @@ public class EmailService {
         simpleMailMessage.setText("Dear Pharmacy,\nPDF is generated:");
 
         javaMailSender.send(simpleMailMessage);
-        System.out.println("send email");
+        logger.info(EMAIL_SENT);
     }
 }

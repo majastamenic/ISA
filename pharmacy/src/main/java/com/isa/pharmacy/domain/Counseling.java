@@ -1,5 +1,8 @@
 package com.isa.pharmacy.domain;
 
+import com.isa.pharmacy.domain.Profile.Patient;
+import com.isa.pharmacy.domain.Profile.Pharmacist;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -16,25 +19,25 @@ public class Counseling implements Serializable {
     private Patient patient;
     @OneToOne
     private Schedule schedule;
-    @Column
-    private String note;
+    @OneToOne
+    private Report report;
 
     public Counseling(){}
 
-    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, String note) {
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
         this.schedule = schedule;
-        this.note = note;
+        this.report = report;
     }
 
-    public String getNote() {
-        return note;
+    public Report getReport() {
+        return report;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setReport(Report report) {
+        this.report = report;
     }
 
     public Schedule getSchedule() {
