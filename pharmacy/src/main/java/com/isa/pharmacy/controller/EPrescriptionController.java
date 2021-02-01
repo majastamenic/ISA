@@ -38,12 +38,9 @@ public class EPrescriptionController {
     @Autowired
     private QRService qrService;
 
+    private final String baseFileDestination = new File("").getAbsolutePath().concat("/qrcodes/");
 
-    private final String baseFileDestination;
-
-    public EPrescriptionController() {
-        baseFileDestination = new File("").getAbsolutePath().concat("/qrcodes/");
-    }
+    public EPrescriptionController() { }
 
     @GetMapping("/{id}")
     public EPrescription getEPrescription(@PathVariable("id") Long id) {
