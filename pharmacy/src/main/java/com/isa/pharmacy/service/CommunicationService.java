@@ -21,7 +21,7 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
     @Override
     public void communicate(ProtoAvailableMedication request, StreamObserver<ProtoResponseAvailableMedication> responseObserver) {
         logger.info("You are now communicating with hospital.");
-        logger.info("Message from Hospital: " + request.getPharmacyName());
+        logger.info("Message from Hospital: %s", request.getPharmacyName());
         int quantity = pharmacyService.hasPharmacyMedication(request.getPharmacyName(), request.getMedicationName());
 
         ProtoResponseAvailableMedication responseMessage = ProtoResponseAvailableMedication.newBuilder()
@@ -29,13 +29,13 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
 
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
-        logger.info(responseMessage.toString());
+        logger.info("Response message: %s", responseMessage.toString());
     }
 
     @Override
     public void communicateMedications(ProtoMedications request, StreamObserver<ProtoResponseMedications> responseObserver) {
         logger.info("You are now communicating with hospital.");
-        logger.info("Message from Hospital to pharmacy: " + request.getPharmacyName());
+        logger.info("Message from Hospital to pharmacy: %s" , request.getPharmacyName());
 
         ProtoResponseMedications.Builder builder = ProtoResponseMedications.newBuilder();
 
@@ -45,6 +45,6 @@ public class CommunicationService extends SpringGrpcServiceGrpc.SpringGrpcServic
         ProtoResponseMedications responseMessage = builder.build();
         responseObserver.onNext(responseMessage);
         responseObserver.onCompleted();
-        logger.info(responseMessage.toString());
+        logger.info("Response message: %s", responseMessage.toString());
     }
 }

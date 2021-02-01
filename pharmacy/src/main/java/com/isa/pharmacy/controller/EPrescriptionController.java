@@ -1,46 +1,36 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.EPrescriptionMapper;
+import com.isa.pharmacy.domain.EPrescription;
+import com.isa.pharmacy.service.EPrescriptionService;
+import com.isa.pharmacy.service.QRService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.controller.mapping.EPrescriptionMapper;
-import com.isa.pharmacy.domain.EPrescription;
-import com.isa.pharmacy.service.EPrescriptionService;
-import com.isa.pharmacy.service.QRService;
-
 @RestController
 @RequestMapping("/ePrescription")
 @CrossOrigin(value = "http://localhost:4200")
 public class EPrescriptionController {
-
-    private final Logger logger = LoggerFactory.getLogger(EPrescriptionController.class);
 
     @Autowired
     private EPrescriptionService ePrescriptionService;
     @Autowired
     private QRService qrService;
 
-    private final String baseFileDestination = new File("").getAbsolutePath().concat("/qrcodes/");
+    private final String baseFileDestination;
 
-    public EPrescriptionController() { }
+    public EPrescriptionController() {
+        baseFileDestination = new File("").getAbsolutePath().concat("/qrcodes/");
+    }
 
     @GetMapping("/{id}")
     public EPrescription getEPrescription(@PathVariable("id") Long id) {

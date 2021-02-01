@@ -23,7 +23,6 @@ public class RabbitMQService {
 
     public void send(ActionsAndBenefits action) {
         rabbitTemplate.convertAndSend(exchange, routingkey, action);
-        logger.info(String.format("Send msg = %s", action.getMessageAboutAction()));
+        logger.info("Send msg = %s", action.getMessageAboutAction());
     }
-
 }
