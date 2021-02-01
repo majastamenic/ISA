@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.domain.Patient;
-import com.isa.pharmacy.domain.Pharmacist;
+import com.isa.pharmacy.domain.Profile.Patient;
+import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.domain.VacationSchedule;
 import com.isa.pharmacy.domain.WorkSchedule;
 import com.isa.pharmacy.service.PharmacistService;

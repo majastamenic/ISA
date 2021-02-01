@@ -1,5 +1,7 @@
 package com.isa.pharmacy.domain;
 
+import com.isa.pharmacy.domain.Profile.Pharmacist;
+
 import java.io.Serializable;
 import java.util.List;
 

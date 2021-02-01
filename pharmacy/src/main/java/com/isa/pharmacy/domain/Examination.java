@@ -1,6 +1,7 @@
 package com.isa.pharmacy.domain;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.isa.pharmacy.domain.Profile.Dermatologist;
+import com.isa.pharmacy.domain.Profile.Patient;
 
 import javax.persistence.*;
 import java.util.Date;

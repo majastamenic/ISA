@@ -1,11 +1,19 @@
-package com.isa.pharmacy.domain;
+package com.isa.pharmacy.domain.Profile;
+
+import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.domain.Examination;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Patient extends User{
+public class Patient implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    private Long id;
+    @OneToOne
+    private User user;
     @OneToMany
     private List<Counseling> counselings;
     @OneToMany
@@ -13,8 +21,9 @@ public class Patient extends User{
 
     public Patient(){}
 
-    public Patient(Long id, String email, String password, String name, String surname, String address, String city, String country, String phone, List<Counseling> counselings, List<Examination> examinations) {
-        super(id, email, password, name, surname, address, city, country, phone);
+    public Patient(Long id, User user, List<Counseling> counselings, List<Examination> examinations) {
+        this.id = id;
+        this.user = user;
         this.counselings = counselings;
         this.examinations = examinations;
     }

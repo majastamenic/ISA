@@ -1,5 +1,8 @@
 package com.isa.pharmacy.domain;
 
+import com.isa.pharmacy.domain.Profile.Patient;
+import com.isa.pharmacy.domain.Profile.Pharmacist;
+
 import javax.persistence.*;
 import java.io.Serializable;
 

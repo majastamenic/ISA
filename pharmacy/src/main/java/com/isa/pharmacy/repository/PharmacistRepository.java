@@ -1,8 +1,7 @@
 package com.isa.pharmacy.repository;
 
 import java.util.List;
-import com.isa.pharmacy.domain.Pharmacist;
-import com.isa.pharmacy.domain.User;
+import com.isa.pharmacy.domain.Profile.Pharmacist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
