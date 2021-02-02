@@ -8,7 +8,6 @@ import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 public class PharmacistService {
