@@ -2,8 +2,10 @@ package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
+import com.isa.pharmacy.controller.dto.PharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
+import com.isa.pharmacy.controller.mapping.PharmacyMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.service.PharmacyService;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pharmacy")
+@CrossOrigin(value = "http://localhost:4200")
 public class PharmacyController {
 
     @Autowired
@@ -27,6 +30,11 @@ public class PharmacyController {
     @GetMapping
     public List<Pharmacy> getAll() {
         return pharmacyService.getAll();
+    }
+
+    @PostMapping
+    public Pharmacy save(@RequestBody PharmacyDto pharmacyDto) {
+        return pharmacyService.save(PharmacyMapper.mapPharmacyDtoToPharmacy(pharmacyDto));
     }
 
     @GetMapping("/{name}")
@@ -92,11 +100,6 @@ public class PharmacyController {
                                             @PathVariable String pharmacyName, @RequestHeader("apiKey") String apiKey) {
         pharmacyService.checkApiKey(apiKey);
         return pharmacyService.orderMedicines(medicineOrderDtoList, pharmacyName);
-    }
-
-    @PostMapping
-    public Pharmacy save(Pharmacy p) {
-        return pharmacyService.save(p);
     }
 
     @PostMapping("/hasPharmacyMedication/{pharmacyName}")

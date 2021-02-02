@@ -19,6 +19,7 @@ import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.c
 import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AddPharmacyAdminComponent } from './system-admin/add-pharmacy-admin/add-pharmacy-admin.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ToastrModule } from 'ngx-toastr';
     SystemAdminComponent,
     AddMedicinesComponent,
     AddPharmacyComponent,
-    RegDermatologistComponent
+    RegDermatologistComponent,
+    AddPharmacyAdminComponent
   ],
   imports: [
     BrowserModule,
