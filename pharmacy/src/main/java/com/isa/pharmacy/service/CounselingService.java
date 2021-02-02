@@ -19,7 +19,7 @@ public class CounselingService {
     private ReportService reportService;
 
     public Counseling save(Counseling counseling) {
-        if(counseling.isDone() != true){ counseling.setDone(false);}
+        if(counseling.isPatientCame() != true){ counseling.setPatientCame(false);}
         scheduleService.save(counseling.getSchedule());
         reportService.save(counseling.getReport());
         return counselingRepository.save(counseling);
@@ -30,7 +30,7 @@ public class CounselingService {
     public Counseling update(Counseling c) {
         Counseling counseling = counselingRepository.findCounselingById(c.getId());
         counseling.setReport(reportService.update(c.getReport()));
-        counseling.setDone(c.isDone());
+        counseling.setPatientCame(c.isPatientCame());
         counselingRepository.save(counseling);
         return counseling;
     }

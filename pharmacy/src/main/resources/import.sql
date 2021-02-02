@@ -20,7 +20,6 @@ insert into pharmacist(user_id, is_first_log) values(8, true);
 -- Dermatologist
 insert into dermatologist(user_id, is_first_log) values(6, true);
 insert into dermatologist_pharmacy(dermatologist_id, pharmacy_id) values(1, 6);
-
 -- WorkSchedule
 insert into work_schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '08:00:00', '14:00:00');
 insert into work_schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '14:00:00', '20:00:00');
