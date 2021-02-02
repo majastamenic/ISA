@@ -44,9 +44,6 @@ public class User implements Serializable {
     private String phone;
 
     @Column
-    private String verificationCode;
-
-    @Column
     private Boolean active;
 
     @Column
@@ -152,14 +149,6 @@ public class User implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
     }
 
     public Boolean getActive() {

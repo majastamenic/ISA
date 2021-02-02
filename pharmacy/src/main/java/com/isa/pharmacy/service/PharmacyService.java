@@ -48,7 +48,6 @@ public class PharmacyService {
         for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
             if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName))
                 return medicinePharmacy.getQuantity();
-            break;
         }
         throw new NotFoundException(String.format("Pharmacy %s doesn't have %s medicine", pharmacyName, medicineName));
     }

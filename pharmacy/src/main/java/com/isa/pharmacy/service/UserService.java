@@ -36,12 +36,7 @@ public class UserService {
 
     public List<User> getAll() { return userRepository.findAll(); }
 
-    public User activateProfile(String email, String code){
-        User user = userRepository.findByEmail(email);
-        if(user != null && !user.getActive() && user.getVerificationCode().equals(code)){
-            user.setActive(true);
-            userRepository.save(user);
-        }
-        return user;
+    public User getByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 }
