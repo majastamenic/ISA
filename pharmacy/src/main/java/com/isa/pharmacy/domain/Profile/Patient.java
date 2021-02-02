@@ -24,14 +24,18 @@ public class Patient implements Serializable {
     private List<Counseling> counselings;
     @OneToMany
     private List<Examination> examinations;
+    @Column
+    private String verificationCode;
 
     public Patient(){}
 
-    public Patient(User user, List<Medicine> medicines, List<Counseling> counselings, List<Examination> examinations) {
+    public Patient(long id, User user, List<Medicine> allergicMedicines, List<Counseling> counselings, List<Examination> examinations, String verificationCode) {
+        this.id = id;
         this.user = user;
-        this.allergicMedicines = medicines;
+        this.allergicMedicines = allergicMedicines;
         this.counselings = counselings;
         this.examinations = examinations;
+        this.verificationCode = verificationCode;
     }
 
     public long getId() {
@@ -72,6 +76,14 @@ public class Patient implements Serializable {
 
     public void setExaminations(List<Examination> examinations) {
         this.examinations = examinations;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 
     public void addAllergy(Medicine medicine){

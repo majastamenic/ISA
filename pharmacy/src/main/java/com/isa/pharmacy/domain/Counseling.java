@@ -1,5 +1,6 @@
 package com.isa.pharmacy.domain;
 
+
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
 

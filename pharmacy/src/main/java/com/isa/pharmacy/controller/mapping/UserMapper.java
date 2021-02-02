@@ -3,12 +3,15 @@ package com.isa.pharmacy.controller.mapping;
 import com.isa.pharmacy.controller.dto.LoginDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.User;
+import com.isa.pharmacy.domain.enums.Role;
 import net.bytebuddy.utility.RandomString;
 
 public class UserMapper {
 
-    public static User mapRegistrationDtoToUser(RegistrationDto registrationDto) {
+    public static Patient mapRegistrationDtoToPatient(RegistrationDto registrationDto) {
+        Patient patient = new Patient();
         User user = new User();
         if(registrationDto.getPassword().equals(registrationDto.getPasswordAgain()))
             user.setPassword(registrationDto.getPassword());
@@ -21,9 +24,12 @@ public class UserMapper {
         user.setCity(registrationDto.getCity());
         user.setCountry(registrationDto.getCountry());
         user.setPhone(registrationDto.getPhone());
-        user.setVerificationCode(RandomString.make(10));
         user.setActive(false);
-        return user;
+        user.setRole(Role.PATIENT);
+
+        patient.setVerificationCode(RandomString.make(10));
+        patient.setUser(user);
+        return patient;
     }
 
     public static User mapLoginDtoToUser(LoginDto loginDto) {

@@ -1,11 +1,9 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.isa.pharmacy.controller.dto.LoginDto;
-import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.UserMapper;
 import com.isa.pharmacy.domain.Profile.User;
@@ -20,8 +18,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private EmailService emailService;
 
     @GetMapping
     public ModelAndView getUsers() {
@@ -37,18 +33,6 @@ public class UserController {
         return user;
     }
 
-    @GetMapping("/valid")
-    public User activeProfile(@RequestParam String email, @RequestParam String code){
-        return userService.activateProfile(email, code);
-    }
-
-    @PostMapping
-    public User registration(@RequestBody RegistrationDto registrationDto) {
-        User user = userService.create(UserMapper.mapRegistrationDtoToUser(registrationDto));
-        emailService.verificationEmail(user);
-        return user;
-    }
-
     @PostMapping("/login")
     public User login(@RequestBody LoginDto loginDto) throws Exception {
         String email = loginDto.getEmail();
@@ -60,7 +44,6 @@ public class UserController {
             throw new Exception("Bad request");
         return userService.login(user);
     }
-
 
     @GetMapping("/all")
     public List<User> getAll() {
