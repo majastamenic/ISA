@@ -4,6 +4,7 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
+import { PatientProfileComponent } from './component/patient-profile/patient-profile.component';
 import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { LoginComponent } from './component/user/login/login.component';
@@ -13,6 +14,7 @@ import { RegistrationComponent } from './component/user/registration/registratio
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'profile/patient', component: PatientProfileComponent},
   {path: 'login', component: LoginComponent},
   {path: 'user', component: RegistrationComponent},
   {path: 'hospital', component: HospitalComponent},

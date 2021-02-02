@@ -14,6 +14,7 @@ import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { AddMedicinesComponent } from './component/user/profile/system_admin/add-medicines/add-medicines.component';
+import { PatientProfileComponent } from './component/patient-profile/patient-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AddMedicinesComponent } from './component/user/profile/system_admin/add
     UploadQRComponent,
     NavbarComponent,
     AddMedicinesComponent,
+    PatientProfileComponent,
   ],
   imports: [
     BrowserModule,

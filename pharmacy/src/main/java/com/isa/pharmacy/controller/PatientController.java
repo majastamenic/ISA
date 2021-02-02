@@ -4,7 +4,6 @@ import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.mapping.UserMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Profile.Patient;
-import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +41,11 @@ public class PatientController {
     @PutMapping("/update")
     public Patient updatePatient(@RequestBody Patient patient){
         return patientService.updatePatient(patient);
+    }
+
+    @GetMapping("/{email}")
+    public Patient getPatientByEmail(@PathVariable("email") String email){
+        return patientService.getPatient(email);
     }
 
     @PutMapping("/updateAllergy")
