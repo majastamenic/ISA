@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UploadQrSevice } from 'src/app/service/upload-qr.service';
 import {  EPrescription } from '../model/e-prescription-model';
 
@@ -13,7 +14,7 @@ export class UploadQRComponent implements OnInit {
   private file: any;
   public  ePrescription!: EPrescription;
 
-  constructor(private uploadQrService: UploadQrSevice, private router: Router) { 
+  constructor(private uploadQrService: UploadQrSevice, private router: Router, private toastrService: ToastrService) { 
     
   }
 
@@ -33,7 +34,7 @@ export class UploadQRComponent implements OnInit {
         this.router.navigate(['ePrescription']);
       }, 
       (err: any) => {
-        alert('Error while reading QRcode ' + err.error.message);
+        this.toastrService.error('Error while reading QRcode ' + err.error.message);
       }); 
     }
   }

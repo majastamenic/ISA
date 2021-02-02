@@ -7,8 +7,11 @@ import { MedicineComponent } from './component/medicine/medicine.component';
 import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { LoginComponent } from './component/user/login/login.component';
-import { AddMedicinesComponent } from './component/user/profile/system_admin/add-medicines/add-medicines.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
+import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
+import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
+import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
+import { SystemAdminComponent } from './system-admin/system-admin.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -20,7 +23,13 @@ const routes: Routes = [
   {path: 'medicine', component: MedicineComponent},
   {path: 'uploadQR', component: UploadQRComponent},
   { path: 'ePrescription', component: EPrescriptionComponent },
-  { path: 'addMedicines', component: AddMedicinesComponent},
+  {path: 'system-admin', component: SystemAdminComponent,
+    children : [
+      { path: 'addMedicines', component: AddMedicinesComponent},
+      { path: 'addPharmacy', component: AddPharmacyComponent},
+      { path: 'regDermatologist', component: RegDermatologistComponent}
+    ]
+  }, 
 ];
 
 @NgModule({

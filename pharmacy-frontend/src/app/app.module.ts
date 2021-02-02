@@ -13,7 +13,12 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { AddMedicinesComponent } from './component/user/profile/system_admin/add-medicines/add-medicines.component';
+import { SystemAdminComponent } from './system-admin/system-admin.component';
+import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
+import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
+import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,13 +31,20 @@ import { AddMedicinesComponent } from './component/user/profile/system_admin/add
     MedicineComponent,
     UploadQRComponent,
     NavbarComponent,
+    SystemAdminComponent,
     AddMedicinesComponent,
+    AddPharmacyComponent,
+    RegDermatologistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
