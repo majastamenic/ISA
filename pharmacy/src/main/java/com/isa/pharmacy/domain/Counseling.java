@@ -22,15 +22,26 @@ public class Counseling implements Serializable {
     private Schedule schedule;
     @OneToOne
     private Report report;
+    @Column
+    private boolean isDone;
 
     public Counseling(){}
 
-    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report) {
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, boolean isDone) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
         this.schedule = schedule;
         this.report = report;
+        this.isDone = isDone;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
     public Report getReport() {

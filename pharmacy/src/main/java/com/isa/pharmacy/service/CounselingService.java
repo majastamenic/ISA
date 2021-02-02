@@ -1,7 +1,9 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.CounselingRepository;
+import com.isa.pharmacy.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +13,24 @@ import java.util.List;
 public class CounselingService {
     @Autowired
     private CounselingRepository counselingRepository;
+    @Autowired
+    private ScheduleService scheduleService;
+    @Autowired
+    private ReportService reportService;
 
-    public Counseling save(Counseling counseling) { return counselingRepository.save(counseling); }
+    public Counseling save(Counseling counseling) {
+        if(counseling.isDone() != true){ counseling.setDone(false);}
+        scheduleService.save(counseling.getSchedule());
+        reportService.save(counseling.getReport());
+        return counselingRepository.save(counseling);
+    }
 
     public List<Counseling> getAll(){ return counselingRepository.findAll(); }
 
     public Counseling update(Counseling c) {
         Counseling counseling = counselingRepository.findCounselingById(c.getId());
-        counseling.setReport(c.getReport());
+        counseling.setReport(reportService.update(c.getReport()));
+        counseling.setDone(c.isDone());
         counselingRepository.save(counseling);
         return counseling;
     }
