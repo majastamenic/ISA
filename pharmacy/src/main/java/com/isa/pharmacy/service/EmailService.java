@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.User;
 import org.slf4j.Logger;
@@ -32,9 +33,26 @@ public class EmailService {
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(patient.getUser().getEmail());
         simpleMailMessage.setSubject("Registration");
-        simpleMailMessage.setText("Hello,"+patient.getUser().getName()+"\nWelcome to pharmacy system.\n" +
+        simpleMailMessage.setText("Hello "+patient.getUser().getName()+",\nWelcome to pharmacy system.\n" +
                 "Your verification code is: " + patient.getVerificationCode());
         javaMailSender.send(simpleMailMessage);
+    }
+
+    @Async
+    public void successfulExamSchedule(Examination examiantion) throws  MailException{
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(mailSender);
+        mailMessage.setTo(examiantion.getPatient().getUser().getEmail());
+        mailMessage.setSubject("Examination");
+        mailMessage.setText("Hello " + examiantion.getPatient().getUser().getName() + ",\n" +
+                            "You have successfully scheduled an appointment with dermatologist.\n" +
+                            "Details: \n" +
+                            "- Dermatologist: " + examiantion.getDermatologist().getUser().getName() + "\n" +
+                            "- Time: " + examiantion.getSchedule().getStartTime() + "\n" +
+                            "- Price: " + examiantion.getPrice() + "€\n" +
+                            "Best regards,\n" +
+                            "ISA Pharmacy");
+        javaMailSender.send(mailMessage);
     }
 
     @Async
