@@ -2,8 +2,8 @@
     <div class="form">
         <form class="ngform">
             <h3>Add pharmacy</h3>
-            <input type="text" [(ngModel)]="pharmacy.name" placeholder="Enter pharmacy name">
-            <input type="text" [(ngModel)]="pharmacy.address" placeholder="Enter pharmacy address">
+            <input type="text" [(ngModel)]="pharmacy.name" placeholder="Enter pharmacy name" name='name'>
+            <input type="text" [(ngModel)]="pharmacy.address" placeholder="Enter pharmacy address" name='address'>
             <button class="btn btn-primary" (click)="addPharmacy()">Add pharmacy</button>
         </form>
     </div>

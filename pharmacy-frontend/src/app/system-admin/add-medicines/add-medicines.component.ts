@@ -10,7 +10,7 @@ import { MedicineService } from 'src/app/service/medicine.service';
   styleUrls: ['./add-medicines.component.css']
 })
 export class AddMedicinesComponent implements OnInit {
-  medicine: any;
+  medicine: any = {};
   constructor(private medicineService: MedicineService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {

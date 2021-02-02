@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-pharmacy.component.css']
 })
 export class AddPharmacyComponent implements OnInit {
-  pharmacy: any;
+  pharmacy: any = {};
   user: any;
   constructor() { }
 

@@ -14,3 +14,4 @@ export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';
 
 export const PATIENT_PATH = BACKEND_PATH + '/patient';
 export const PATIENT_VALID_PATH = PATIENT_PATH + '/valid';
+export const DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologist';

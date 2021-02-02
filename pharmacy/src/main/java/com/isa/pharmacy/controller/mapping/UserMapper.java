@@ -3,6 +3,7 @@ package com.isa.pharmacy.controller.mapping;
 import com.isa.pharmacy.controller.dto.LoginDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.domain.Profile.Dermatologist;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.domain.enums.Role;
@@ -39,5 +40,21 @@ public class UserMapper {
         return user;
     }
 
+    public static Dermatologist mapRegistrationDtoToDermatologist(RegistrationDto registrationDto) {
+        Dermatologist dermatologist = new Dermatologist();
+        User user = new User();
+        user.setPassword(RandomString.make(10));
+        user.setEmail(registrationDto.getEmail());
+        user.setName(registrationDto.getName());
+        user.setSurname(registrationDto.getSurname());
+        user.setAddress(registrationDto.getAddress());
+        user.setCity(registrationDto.getCity());
+        user.setCountry(registrationDto.getCountry());
+        user.setPhone(registrationDto.getPhone());
+        user.setActive(false);
+        user.setRole(Role.DERMATOLOGIST);
+        dermatologist.setUser(user);
+        return dermatologist;
+    }
 
 }

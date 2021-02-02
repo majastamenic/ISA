@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginUserDto, UserRegistrationDto } from '../component/user/model/user-model';
-import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH} from '../util/paths';
+import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH, DERMATOLOGIST_PATH} from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,10 @@ export class UserService {
 
   registration(user: UserRegistrationDto): any {
     return this.httpClient.post(PATIENT_PATH, user);
+  }
+
+  registrationDermatologist(user: UserRegistrationDto): any {
+    return this.httpClient.post(DERMATOLOGIST_PATH, user);
   }
 
   verification(user: UserRegistrationDto, verificationCode: string): any {
