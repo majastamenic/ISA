@@ -101,16 +101,6 @@ public class Pharmacy implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((address == null) ? 0 : address.hashCode());
-        result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((medicinePharmacy == null) ? 0 : medicinePharmacy.hashCode());
-        return result;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
     }

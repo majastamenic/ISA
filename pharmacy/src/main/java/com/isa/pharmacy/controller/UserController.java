@@ -37,10 +37,10 @@ public class UserController {
     public User login(@RequestBody LoginDto loginDto) throws Exception {
         String email = loginDto.getEmail();
         String password = loginDto.getPassword();
-        User user = null;
+        User user = new User();
         if ((!email.equals("")) && (!password.equals("")))
             user = UserMapper.mapLoginDtoToUser(loginDto);
-        if (user.equals(null))
+        if (user == null)
             throw new Exception("Bad request");
         return userService.login(user);
     }
