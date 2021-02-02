@@ -6,6 +6,8 @@ insert into app_user (address, city, country, email, name, password, phone, surn
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Somborska 37', 'Novi Sad', 'Srbija', 'milica@gmail.com', 'Milica', 'milica', '063/468965', 'Milicic', 2, true);
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Futoska 101', 'Novi Sad', 'Srbija', 'luka@gmail.com', 'Luka', 'luka', '067/468965', 'Lukic', 3, true);
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Gagarinova 83', 'Novi Sad', 'Srbija', 'marko@gmail.com', 'Marko', 'marko', '065/468965', 'Markovic', 4, true);
+insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Jevrejska 83', 'Novi Sad', 'Srbija', 'jovan@gmail.com', 'Jovan', 'jovan', '064/468965', 'Jovanovic', 5, true);
+insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Filipa Visnjica 83', 'Novi Sad', 'Srbija', 'saska@gmail.com', 'Saska', 'saska', '063/465965', 'Jankovic', 5, true);
 
 insert into pharmacy (id, address, name) values (1, 'Fejes Klare 34.', 'Jankovic');
 insert into pharmacy (id, address, name) values (2, 'Fejes Klare 34.', 'Benu');
@@ -21,6 +23,12 @@ insert into pharmacist(user_id, is_first_log) values(8, true);
 insert into dermatologist(user_id, is_first_log) values(6, true);
 insert into dermatologist_pharmacy(dermatologist_id, pharmacy_id) values(1, 6);
 
+-- PharmacyAdmin
+
+insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (9,1,true);
+insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (10,2,true);
+
+
 -- WorkSchedule
 insert into work_schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '08:00:00', '14:00:00');
 insert into work_schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '14:00:00', '20:00:00');
@@ -30,6 +38,9 @@ INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala'
 INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition)VALUES (1, 62542, 0, 'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu', 'sastav1');
 INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition)VALUES (2, 66042, 1, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove', 'sastav2');
 INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition)VALUES (3, 62217, 2, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu', 'sastav3');
+
+insert into app_order(id, end_date, end_time) values (1, '2021-02-07', '08:00:00');
+insert into app_order(id, end_date, end_time) values (2, '2021-03-07', '04:00:00');
 
 -- Za apoteku sa id=1
 INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (1, 1.50, 2350, 1, 1);

@@ -20,7 +20,7 @@ public class Order implements Serializable {
     private List<Medicine> medicineList;
     @Column
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date endDate;
     @Column
     @Temporal(TemporalType.TIME)
