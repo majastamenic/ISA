@@ -14,16 +14,18 @@ import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
+import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
 import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
 import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { AddPharmacyAdminComponent } from './system-admin/add-pharmacy-admin/add-pharmacy-admin.component';
+
 import { PharmacyAdminComponent } from './component/pharmacy-admin/pharmacy-admin.component';
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
-import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AddPharmacyAdminComponent } from './system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
+import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AddPharmacyAdminComponent,
     PharmacyAdminComponent,
     PharmacistInitComponent,
-    PharmacistComponent
+    PharmacistComponent,
+    RegSupplierComponent
   ],
   imports: [
     BrowserModule,

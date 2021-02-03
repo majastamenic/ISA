@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddPharmacyAdminComponent } from './add-pharmacy-admin.component';
+import { RegSupplierComponent } from './reg-supplier.component';
 
-describe('AddPharmacyAdminComponent', () => {
-  let component: AddPharmacyAdminComponent;
-  let fixture: ComponentFixture<AddPharmacyAdminComponent>;
+describe('RegSupplierComponent', () => {
+  let component: RegSupplierComponent;
+  let fixture: ComponentFixture<RegSupplierComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddPharmacyAdminComponent ]
+      declarations: [ RegSupplierComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddPharmacyAdminComponent);
+    fixture = TestBed.createComponent(RegSupplierComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,11 +4,11 @@ import { User, UserRegistrationDto } from 'src/app/component/user/model/user-mod
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-reg-dermatologist',
-  templateUrl: './reg-dermatologist.component.html',
-  styleUrls: ['./reg-dermatologist.component.css']
+  selector: 'app-reg-supplier',
+  templateUrl: './reg-supplier.component.html',
+  styleUrls: ['./reg-supplier.component.css']
 })
-export class RegDermatologistComponent implements OnInit {
+export class RegSupplierComponent implements OnInit {
 
   user: UserRegistrationDto = { email: '', password: '', passwordAgain: '', name: '', surname: '', address: '', city: '',
   country: '', phone: '', role: 2};
@@ -18,10 +18,9 @@ export class RegDermatologistComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
   registration(): void {
-    this.userService.registrationDermatologist(this.user).subscribe((returnedUser: User) => {
-      this.toastrService.success('Added new dermatologist.');
+    this.userService.registrationSupplier(this.user).subscribe((returnedUser: User) => {
+      this.toastrService.success('Added new supplier.');
     },
       (err: any) => {
         this.toastrService.error('Registration error ' + err.error.message);

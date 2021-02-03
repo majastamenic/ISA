@@ -11,10 +11,11 @@ import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
 import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
-import { AddPharmacyAdminComponent } from './system-admin/add-pharmacy-admin/add-pharmacy-admin.component';
+import { AddPharmacyAdminComponent } from './system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
 import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
+import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -31,7 +32,8 @@ const routes: Routes = [
       { path: 'addMedicines', component: AddMedicinesComponent},
       { path: 'addPharmacy', component: AddPharmacyComponent},
       { path: 'addPharmacyAdmin', component: AddPharmacyAdminComponent},
-      { path: 'regDermatologist', component: RegDermatologistComponent}
+      { path: 'regDermatologist', component: RegDermatologistComponent},
+      { path: 'regSupplier', component: RegSupplierComponent},
     ]
   }, 
   { path: 'pharmacist', component: PharmacistComponent},

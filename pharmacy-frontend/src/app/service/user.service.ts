@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginUserDto, UserRegistrationDto } from '../component/user/model/user-model';
-import { PharmacyAdminDto } from '../system-admin/add-pharmacy-admin/add-pharmacy-admin.component';
-import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH, DERMATOLOGIST_PATH, PHARMACY_ADMIN_PATH} from '../util/paths';
+import { PharmacyAdminDto } from '../system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
+import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH, DERMATOLOGIST_PATH, PHARMACY_ADMIN_PATH, SUPPLIER_PATH} from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,10 @@ export class UserService {
 
   registrationpharmacyAdmin(admin: PharmacyAdminDto): any{
     return this.httpClient.post(PHARMACY_ADMIN_PATH, admin);
+  }
+
+  registrationSupplier(user: UserRegistrationDto): any{
+    return this.httpClient.post(SUPPLIER_PATH, user);
   }
 
   verification(user: UserRegistrationDto, verificationCode: string): any {

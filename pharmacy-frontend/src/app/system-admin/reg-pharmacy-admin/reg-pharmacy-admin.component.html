@@ -34,7 +34,7 @@
             </div>
             <div>
                 <select [(ngModel)]="admin.pharmacy" class="form-select" aria-label="Default select example">
-                    <option *ngFor="let p of pharmacies" name="pharmacy">{{p.name}}</option>
+                    <option *ngFor="let p of pharmacies" name="pharmacy" [ngValue]="p">{{p.name}}</option>
                 </select>
             </div>
             <button class="btn btn-primary" (click)="registration()">Register</button>

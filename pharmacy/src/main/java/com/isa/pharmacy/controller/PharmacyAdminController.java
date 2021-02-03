@@ -15,7 +15,7 @@ public class PharmacyAdminController {
     @Autowired
     private PharmacyAdminService pharmacyAdminService;
 
-    @PostMapping("/register")
+    @PostMapping
     public PharmacyAdminDto save(@RequestBody PharmacyAdminDto pharmacyAdminDto){
         PharmacyAdmin pharmacyAdmin = pharmacyAdminService.save(PharmacyAdminMapper.mapPharmacyAdminDtoToPharmacyAdmin(pharmacyAdminDto));
         return PharmacyAdminMapper.mapPharmacyAdminToPharmacyAdminDto(pharmacyAdmin);

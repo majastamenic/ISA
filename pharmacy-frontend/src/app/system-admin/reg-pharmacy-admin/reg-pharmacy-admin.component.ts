@@ -6,20 +6,21 @@ import { UserService } from 'src/app/service/user.service';
 import { PharmacyDto } from '../add-pharmacy/model/pharmacy-model';
 
 @Component({
-  selector: 'app-add-pharmacy-admin',
-  templateUrl: './add-pharmacy-admin.component.html',
-  styleUrls: ['./add-pharmacy-admin.component.css']
+  selector: 'app-reg-pharmacy-admin',
+  templateUrl: './reg-pharmacy-admin.component.html',
+  styleUrls: ['./reg-pharmacy-admin.component.css']
 })
 export class AddPharmacyAdminComponent implements OnInit {
 
   user: UserRegistrationDto = { email: '', password: '', passwordAgain: '', name: '', surname: '', address: '', city: '',
   country: '', phone: '', role: 5};
-  pharmacy: PharmacyDto = {name: '', address: ''}
 
   pharmacies: any;
-  admin: PharmacyAdminDto = {user: this.user, pharmacy: this.pharmacy};
+  admin: any;
 
-  constructor(private userService: UserService, private toastrService:ToastrService, private pharmacyService: PharmacyService) { }
+  constructor(private userService: UserService, private toastrService:ToastrService, private pharmacyService: PharmacyService) { 
+    this.admin = {user: this.user, pharmacy:''};
+  }
 
   ngOnInit(): void {
     this.pharmacyService.getAll().subscribe(listPharmacy => {

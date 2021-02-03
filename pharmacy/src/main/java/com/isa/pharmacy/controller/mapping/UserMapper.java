@@ -6,6 +6,7 @@ import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Profile.Dermatologist;
 import com.isa.pharmacy.domain.Profile.Patient;
+import com.isa.pharmacy.domain.Profile.Supplier;
 import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.domain.enums.Role;
 import net.bytebuddy.utility.RandomString;
@@ -74,4 +75,9 @@ public class UserMapper {
         return user;
     }
 
+    public static Supplier mapRegistrationDtoToSupplier(RegistrationDto registrationDto){
+        Supplier supplier = new Supplier();
+        supplier.setUser(mapRegistrationDtoToUser(registrationDto));
+        return supplier;
+    }
 }
