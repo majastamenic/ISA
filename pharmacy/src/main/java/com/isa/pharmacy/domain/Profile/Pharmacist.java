@@ -20,10 +20,7 @@ public class Pharmacist implements Serializable{
 
     @OneToOne
     private User user;
-    @Column
-    private boolean isFirstLog = true;
-    @ManyToOne
-    @JoinColumn(name = "pharmacy_id")
+    @OneToOne
     private Pharmacy pharmacy;
     @OneToMany
     private List<Counseling> counselings;
@@ -31,6 +28,8 @@ public class Pharmacist implements Serializable{
     private List<WorkSchedule> workSchedule;
     @OneToMany
     private List<VacationSchedule> vacationSchedules;
+    @Column
+    private boolean isFirstLog = true;
 
     public Pharmacist(){}
 

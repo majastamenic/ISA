@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         this.changePassword = true;
         this.toastrService.warning("Please change your password");
       }else{
-        sessionStorage.setItem('user', this.user);
+        sessionStorage.setItem('user', this.user.email);
         this.router.navigate(['/home']);
         this.toastrService.success("User logged in successfully")
       }
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
   savePassword():void{
     this.userService.saveUser(this.user).subscribe((returnedUser: User) => {
-      sessionStorage.setItem('user', this.user);
+      sessionStorage.setItem('user', this.user.email);
       this.router.navigate(['/home']);
       this.toastrService.success("User logged in successfully")
     },

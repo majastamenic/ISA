@@ -1,9 +1,9 @@
 package com.isa.pharmacy.service;
 
 import java.util.List;
-
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.enums.Role;
+import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
@@ -18,10 +18,11 @@ public class UserService {
 
     public User create(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
-        if (existingUser == null) {
+        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
+        if(pattern.matcher(user.getEmail()).matches() && existingUser == null){
             return userRepository.save(user);
         }
-        throw new AlreadyExistsException(String.format("User with email %s, already exists", user.getEmail()));
+        throw new AlreadyExistsException(String.format("User with email %s, already exists or is not in required format", user.getEmail()));
     }
 
     public User login(User user) {

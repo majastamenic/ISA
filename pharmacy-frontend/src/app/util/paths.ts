@@ -21,3 +21,6 @@ export const SUPPLIER_PATH = BACKEND_PATH + '/supplier';
 export const SCHEDULE_PATH = BACKEND_PATH + '/workschedule';
 export const PHARMACIST_REGISTRATION_PATH = BACKEND_PATH + '/pharmacist/registration';
 
+
+export const COUNSELING_PATH = BACKEND_PATH + '/counseling';
+export const COUNSELING_ADD_PATH = COUNSELING_PATH + '/add';

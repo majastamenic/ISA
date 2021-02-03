@@ -1,7 +1,6 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
-import com.isa.pharmacy.controller.dto.PharmacistDto;
 import com.isa.pharmacy.controller.mapping.PharmacistMapper;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.domain.Profile.Patient;
@@ -27,15 +26,17 @@ public class PharmacistService {
 
     public CreatePharmacistDto save(CreatePharmacistDto p) {
         Pattern pattern = Pattern.compile("^(.+)@(.+)$");
-        if(pattern.matcher(p.getUser().getEmail()).matches()){
-            for(Pharmacist pha: pharmacistRepository.findAll()){
-                if(pha.getUser().getEmail().equalsIgnoreCase(p.getUser().getEmail())){return null;}
+        if (pattern.matcher(p.getUser().getEmail()).matches()) {
+            for (Pharmacist pha : pharmacistRepository.findAll()) {
+                if (pha.getUser().getEmail().equalsIgnoreCase(p.getUser().getEmail())) {
+                    return null;
+                }
             }
-            User dbUser= userService.create(p.getUser());
+            User dbUser = userService.create(p.getUser());
             Pharmacist pharmacist = PharmacistMapper.mapCreatePharmacistDtoToPharmacist(p);
             pharmacist.setUser(dbUser);
 
-            for (Long id: p.getWorkScheduleIds()) {
+            for (Long id : p.getWorkScheduleIds()) {
                 pharmacist.getWorkSchedule().add(this.workScheduleService.getById(id));
             }
 
@@ -74,6 +75,10 @@ public class PharmacistService {
 
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){
         return pharmacistRepository.findPharmacistById(id).getVacationSchedules();
+    }
+
+    public Pharmacist findUserByEmail(String email){
+        return pharmacistRepository.findPharmacistByUser_Email(email);
     }
 
 }

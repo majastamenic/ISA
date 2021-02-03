@@ -8,6 +8,7 @@ import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-i
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
+import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
 import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
@@ -37,7 +38,9 @@ const routes: Routes = [
     ]
   }, 
   { path: 'pharmacist', component: PharmacistComponent},
-  { path: 'pharmacist/init', component: PharmacistInitComponent}
+  { path: 'pharmacist/init', component: PharmacistInitComponent},
+  { path: 'addMedicines', component: AddMedicinesComponent},
+  { path: 'counseling', component: ScheduleCounselingComponent},
 ];
 
 @NgModule({
