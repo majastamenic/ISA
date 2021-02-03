@@ -43,4 +43,5 @@ enum Role {
     PHARMACIST,
     SUPPLIER,
     PHARMACY_ADMIN,
+    PHARMACY_ADMIN_SYSTEM,
 }

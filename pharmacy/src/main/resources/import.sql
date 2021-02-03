@@ -11,13 +11,13 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 
 -- PharmacyAdmin
 
-insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (9,1,true);
-insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (10,2,true);
+--insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (9,1,true);
+--insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (10,2,true);
 
 
 -- WorkSchedule
-insert into work_schedule(schedule_id) values(1);
-insert into work_schedule(schedule_id) values(2);
+--insert into work_schedule(schedule_id) values(1);
+--insert into work_schedule(schedule_id) values(2);
 
 -- Patient
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Suboticka 23', 'Novi Sad', 'Srbija', 'maja@gmail.com', 'Maja', 'maja', '076/468965', 'Stamenic', 0, true);
@@ -32,7 +32,7 @@ insert into app_user (address, city, country, email, name, password, phone, surn
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Somborska 37', 'Novi Sad', 'Srbija', 'milica@gmail.com', 'Milica', 'milica', '063/468965', 'Milicic', 2, true);
 -- Pharmacist
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Futoska 101', 'Novi Sad', 'Srbija', 'luka@gmail.com', 'Luka', 'luka', '067/468965', 'Lukic', 3, true);
-insert into pharmacist(is_first_log, pharmacy_id, user_id, work_schedule_id) values(true, 5, 8, 1);
+--insert into pharmacist(is_first_log, pharmacy_id, user_id, work_schedule_id) values(true, 5, 8, 1);
 
 -- Hospital
 INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala');
