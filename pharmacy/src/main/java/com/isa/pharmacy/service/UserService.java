@@ -2,6 +2,7 @@ package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.PasswordChangeDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
 import com.isa.pharmacy.domain.Profile.User;
@@ -54,9 +55,9 @@ public class UserService {
         if(dbUser == null)
             throw new NotFoundException("User not found");
         if(!dbUser.getPassword().equals(passwordDto.getOldPass()))
-            throw new RuntimeException("Invalid old password");
+            throw new InvalidActionException("Invalid old password");
         if(!passwordDto.getNewPass().equals(passwordDto.getNewPassRepeat()))
-            throw new RuntimeException("Passwords are not equal");
+            throw new InvalidActionException("Passwords are not equal");
         dbUser.setPassword(passwordDto.getNewPass());
         return userRepository.save(dbUser);
     }
