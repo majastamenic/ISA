@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pharmacy")
 @CrossOrigin(value = "http://localhost:4200")
+@RequestMapping("/pharmacy")
 public class PharmacyController {
 
     @Autowired

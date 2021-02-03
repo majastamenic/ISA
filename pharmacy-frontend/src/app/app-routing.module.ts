@@ -28,6 +28,7 @@ const routes: Routes = [
   {path: 'medicine', component: MedicineComponent},
   {path: 'uploadQR', component: UploadQRComponent},
   { path: 'ePrescription', component: EPrescriptionComponent },
+  { path: 'addMedicines', component: AddMedicinesComponent},
   {path: 'system-admin', component: SystemAdminComponent,
     children : [
       { path: 'addMedicines', component: AddMedicinesComponent},
@@ -36,11 +37,10 @@ const routes: Routes = [
       { path: 'regDermatologist', component: RegDermatologistComponent},
       { path: 'regSupplier', component: RegSupplierComponent},
     ]
-  }, 
+  },
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
-  { path: 'addMedicines', component: AddMedicinesComponent},
-  { path: 'counseling', component: ScheduleCounselingComponent},
+  { path: 'counseling', component: ScheduleCounselingComponent}
 ];
 
 @NgModule({

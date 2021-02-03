@@ -22,6 +22,7 @@ import { PharmacyAdminComponent } from './component/pharmacy-admin/pharmacy-admi
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 import { AddPharmacyAdminComponent } from './system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
@@ -49,6 +50,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PharmacyAdminComponent,
     PharmacistInitComponent,
     PharmacistComponent,
+    OrderInitComponent,
+    ScheduleCounselingComponent,
+    PharmacistComponent,
     RegSupplierComponent,
     ScheduleCounselingComponent,
   ],
@@ -57,6 +61,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgSelectModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
