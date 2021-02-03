@@ -10,5 +10,8 @@ import java.util.List;
 public interface WorkScheduleRepository extends JpaRepository<WorkSchedule, Long> {
     List<WorkSchedule> findAll();
 
+    WorkSchedule findWorkScheduleById(Long id);
+
     WorkSchedule save(WorkSchedule ws);
+    
 }

@@ -22,6 +22,18 @@ export interface MedicineDto{
     composition: string;
     manufactured: string;
     publishingType: MedicinePublishingType;
+    replacementMedicines: Observable<number>;
+    note: string;
+}
+
+export interface MedicinePharmacyDto{
+    code: number;
+    name: string;
+    typeOfMedicine: string;
+    formOfMedicine: FormOfMedicine;
+    composition: string;
+    manufactured: string;
+    publishingType: MedicinePublishingType;
     alternative: Observable<number>;
     pharmacyName: string;
     price: number;

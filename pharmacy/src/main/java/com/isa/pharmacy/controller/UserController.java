@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.PasswordChangeDto;
+import com.isa.pharmacy.controller.dto.RegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,9 +35,16 @@ public class UserController {
         return user;
     }
 
+
     @GetMapping("/all")
     public List<User> getAll() {
         return userService.getAll();
+    }
+
+    @PutMapping
+    public User updateUser(@RequestBody RegistrationDto registrationDto){
+        User user = UserMapper.mapRegistrationDtoToUser(registrationDto);
+        return userService.updateUser(user);
     }
 
     @PostMapping("/login")

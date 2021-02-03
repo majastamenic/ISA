@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.domain.VacationSchedule;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(value = "http://localhost:4200")
 @RequestMapping("/pharmacist")
 public class PharmacistController {
     @Autowired
@@ -20,13 +22,13 @@ public class PharmacistController {
     public List<Pharmacist> getAll() { return pharmacistService.getAll(); }
 
     @PostMapping("/registration")
-    public Pharmacist save(@RequestBody Pharmacist p) { return pharmacistService.save(p); }
+    public CreatePharmacistDto save(@RequestBody CreatePharmacistDto p) { return pharmacistService.save(p); }
 
     @PostMapping("/update")
     public Pharmacist update(@RequestBody Pharmacist p) { return pharmacistService.update(p); }
 
     @GetMapping("/workschedule/{id}")
-    public WorkSchedule getWorkScheduleByPharmacist(@PathVariable("id") Long id){
+    public List<WorkSchedule> getWorkScheduleByPharmacistId(@PathVariable("id") Long id){
         return pharmacistService.getWorkScheduleByPharmacist(id);
     }
 

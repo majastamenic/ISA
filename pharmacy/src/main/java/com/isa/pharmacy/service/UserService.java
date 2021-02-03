@@ -1,15 +1,17 @@
 package com.isa.pharmacy.service;
 
-import java.util.List;
-
 import com.isa.pharmacy.controller.dto.PasswordChangeDto;
-import com.isa.pharmacy.controller.exception.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
 import com.isa.pharmacy.domain.Profile.User;
+import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -18,18 +20,11 @@ public class UserService {
 
     public User create(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
-        if (existingUser == null) {
+        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
+        if(pattern.matcher(user.getEmail()).matches() && existingUser == null){
             return userRepository.save(user);
         }
-        throw new AlreadyExistsException(String.format("User with email %s, already exists", user.getEmail()));
-    }
-
-    public User login(User user) {
-        User existingUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        if (existingUser == null || !existingUser.getActive()) {
-            throw new UnauthorizeException("Can't find user with email and password");
-        }
-        return existingUser;
+        throw new AlreadyExistsException(String.format("User with email %s, already exists or is not in required format", user.getEmail()));
     }
 
     public User updateUser(User user){
@@ -42,7 +37,16 @@ public class UserService {
         dbUser.setCity(user.getCity());
         dbUser.setCountry(user.getCountry());
         dbUser.setPhone(user.getPhone());
+        dbUser.setActive(true);
         return userRepository.save(dbUser);
+    }
+
+    public User login(User user) {
+        User existingUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        if (existingUser == null || (!existingUser.getActive() && existingUser.getRole().equals(Role.PATIENT)) ) {
+            throw new UnauthorizeException("Can't find user with email and password");
+        }
+        return existingUser;
     }
 
     public User updatePassword(PasswordChangeDto passwordDto){
