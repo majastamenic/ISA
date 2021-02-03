@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/diagnosis")
+@CrossOrigin(value = "http://localhost:4200")
 public class DiagnosisController {
     @Autowired
     private DiagnosisService diagnosisService;

@@ -12,19 +12,14 @@ public class PharmacyAdminService {
     @Autowired
     private PharmacyAdminRepository pharmacyAdminRepository;
 
-    public PharmacyAdmin save(PharmacyAdmin pharmacyAdmin){ return pharmacyAdminRepository.save(pharmacyAdmin); }
+    public PharmacyAdmin save(PharmacyAdmin pharmacyAdmin){
+        return pharmacyAdminRepository.save(pharmacyAdmin); }
 
     public List<PharmacyAdmin> findAll(){ return pharmacyAdminRepository.findAll();}
 
     public PharmacyAdmin updateAdmin(PharmacyAdmin pharmacyAdmin){
         PharmacyAdmin admin = pharmacyAdminRepository.findPharmacyAdminById(pharmacyAdmin.getId());
-        admin.setName(pharmacyAdmin.getName());
-        admin.setSurname(pharmacyAdmin.getSurname());
-        admin.setAddress(pharmacyAdmin.getAddress());
-        admin.setCity(pharmacyAdmin.getCity());
-        admin.setCountry(pharmacyAdmin.getCountry());
-        admin.setPhone(pharmacyAdmin.getPhone());
-        admin.setEmail(pharmacyAdmin.getEmail());
+        admin.setUser(pharmacyAdmin.getUser());
         admin.setFirstLog(false);
         pharmacyAdminRepository.save(pharmacyAdmin);
         return admin;

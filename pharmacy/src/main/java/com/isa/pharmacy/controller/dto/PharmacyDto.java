@@ -4,6 +4,8 @@ public class PharmacyDto {
     private String name;
     private String address;
 
+    public PharmacyDto(){}
+
     public PharmacyDto(String name, String address) {
         this.name = name;
         this.address = address;

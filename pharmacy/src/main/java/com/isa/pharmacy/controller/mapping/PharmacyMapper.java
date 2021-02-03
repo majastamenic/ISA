@@ -15,4 +15,10 @@ public class PharmacyMapper {
         pharmacy.setAdmins(null);
         return pharmacy;
     }
+
+    public static PharmacyDto mapPharmacyToPharmacyDto(Pharmacy pharmacy){
+        PharmacyDto pharmacyDto = new PharmacyDto();
+        pharmacyDto.setAddress(pharmacy.getAddress());
+        return pharmacyDto;
+    }
 }

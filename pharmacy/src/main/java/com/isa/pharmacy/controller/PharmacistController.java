@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pharmacist")
+@CrossOrigin(value = "http://localhost:4200")
 public class PharmacistController {
     @Autowired
     private PharmacistService pharmacistService;

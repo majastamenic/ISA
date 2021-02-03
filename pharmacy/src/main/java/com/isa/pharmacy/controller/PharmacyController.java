@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,8 +29,12 @@ public class PharmacyController {
     private String apiKey;
 
     @GetMapping
-    public List<Pharmacy> getAll() {
-        return pharmacyService.getAll();
+    public List<PharmacyDto> getAll() {
+        List<PharmacyDto> pharmacyDtoList = new ArrayList<>();
+        for (Pharmacy pharmacy: pharmacyService.getAll()){
+            pharmacyDtoList.add(PharmacyMapper.mapPharmacyToPharmacyDto(pharmacy));
+        }
+        return pharmacyDtoList;
     }
 
     @PostMapping

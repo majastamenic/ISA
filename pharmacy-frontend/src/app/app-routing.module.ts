@@ -9,6 +9,7 @@ import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
 import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
+import { AddPharmacyAdminComponent } from './system-admin/add-pharmacy-admin/add-pharmacy-admin.component';
 import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
 import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
     children : [
       { path: 'addMedicines', component: AddMedicinesComponent},
       { path: 'addPharmacy', component: AddPharmacyComponent},
+      { path: 'addPharmacyAdmin', component: AddPharmacyAdminComponent},
       { path: 'regDermatologist', component: RegDermatologistComponent}
     ]
   }, 
