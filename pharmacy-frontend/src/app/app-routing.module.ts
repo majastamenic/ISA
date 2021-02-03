@@ -4,6 +4,7 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
+import { PatientProfileComponent } from './component/patient-profile/patient-profile.component';
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
@@ -21,6 +22,7 @@ import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.c
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'profile/patient', component: PatientProfileComponent},
   {path: 'login', component: LoginComponent},
   {path: 'user', component: RegistrationComponent},
   {path: 'hospital', component: HospitalComponent},

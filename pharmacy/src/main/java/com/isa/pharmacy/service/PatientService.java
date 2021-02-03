@@ -5,7 +5,6 @@ import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.repository.PatientRepository;
-import com.isa.pharmacy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +23,8 @@ public class PatientService {
     }
 
     public Patient updatePatient(Patient patient){
-        Patient dbPatient = patientRepository.getOne(patient.getId());
-        if(!dbPatient.getUser().getEmail().equals(patient.getUser().getEmail()))
-            return null;
-        // TODO G: Ne menjati konsultacije i preglede, ne radi bas kako treba
-        //Pa oko moje promeni samo usera :D
-        return patientRepository.save(patient);
+        userService.updateUser(patient.getUser());
+        return patient;
     }
 
     public void updateAllergies(Long patientId, List<Medicine> medicines){
@@ -37,6 +32,11 @@ public class PatientService {
         for(Medicine med : medicines)
             if(!patient.getAllergicMedicines().contains(med))
                 patient.addAllergy(med);
+        patientRepository.save(patient);
+    }
+
+    public Patient getPatient(String email){
+        return patientRepository.findByUser_email(email);
     }
 
     public void deletePatient(long id){
