@@ -18,6 +18,9 @@ insert into work_schedule(schedule_id) values(2);
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Suboticka 23', 'Novi Sad', 'Srbija', 'maja@gmail.com', 'Maja', 'maja', '076/468965', 'Stamenic', 0, true);
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Rumenacka 23', 'Novi Sad', 'Srbija', 'gojko@gmail.com', 'Gojko', 'gojko', '076/468965', 'Novcic', 0, true);
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Temerinska 23', 'Novi Sad', 'Srbija', 'tasa@gmail.com', 'Tasa', 'tasa', '076/468965', 'Damjanac', 0, true);
+insert into patient(user_id) values(1);
+insert into patient(user_id) values(2);
+insert into patient(user_id) values(3);
 -- Supplier
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Ticanova 23', 'Novi Sad', 'Srbija', 'masa@gmail.com', 'Masa', 'masa', '076/468965', 'Milanovic', 4, true);
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Gagarinova 83', 'Novi Sad', 'Srbija', 'marko@gmail.com', 'Marko', 'marko', '065/468965', 'Markovic', 4, true);
@@ -27,7 +30,9 @@ insert into app_user (address, city, country, email, name, password, phone, surn
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Somborska 37', 'Novi Sad', 'Srbija', 'milica@gmail.com', 'Milica', 'milica', '063/468965', 'Milicic', 2, true);
 -- Pharmacist
 insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Futoska 101', 'Novi Sad', 'Srbija', 'luka@gmail.com', 'Luka', 'luka', '067/468965', 'Lukic', 3, true);
+insert into app_user (address, city, country, email, name, password, phone, surname, role, active) values('Bul. Evrope 50', 'Novi Sad', 'Srbija', 'amina@gmail.com', 'Amina', 'amina', '061/5882', 'Ciric', 3, true);
 insert into pharmacist(is_first_log, pharmacy_id, user_id, work_schedule_id) values(true, 5, 8, 1);
+insert into pharmacist(is_first_log, pharmacy_id, user_id, work_schedule_id) values(true, 6, 9, 2);
 
 -- Hospital
 INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala');

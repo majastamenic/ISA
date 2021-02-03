@@ -22,8 +22,6 @@ public class Pharmacist implements Serializable{
     private User user;
     @OneToOne
     private Pharmacy pharmacy;
-    @OneToMany
-    private List<Counseling> counselings;
     @OneToOne
     private WorkSchedule workSchedule;
     @OneToMany
@@ -33,14 +31,13 @@ public class Pharmacist implements Serializable{
 
     public Pharmacist(){}
 
-    public Pharmacist(Long id, User user, boolean isFirstLog, Pharmacy pharmacy, List<Counseling> counselings, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules) {
+    public Pharmacist(Long id, User user, Pharmacy pharmacy, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules, boolean isFirstLog) {
         this.id = id;
         this.user = user;
-        this.isFirstLog = isFirstLog;
         this.pharmacy = pharmacy;
-        this.counselings = counselings;
         this.workSchedule = workSchedule;
         this.vacationSchedules = vacationSchedules;
+        this.isFirstLog = isFirstLog;
     }
 
     public boolean isFirstLog() {
@@ -83,13 +80,6 @@ public class Pharmacist implements Serializable{
         this.workSchedule = workSchedule;
     }
 
-    public List<Counseling> getCounselings() {
-        return counselings;
-    }
-
-    public void setCounselings(List<Counseling> counselings) {
-        this.counselings = counselings;
-    }
 
     public Pharmacy getPharmacy() {
         return pharmacy;

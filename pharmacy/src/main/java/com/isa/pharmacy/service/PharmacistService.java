@@ -7,6 +7,8 @@ import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,6 +17,8 @@ public class PharmacistService {
     private PharmacistRepository pharmacistRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CounselingService counselingService;
 
     public Pharmacist save(Pharmacist p) {
         userService.create(p.getUser());
@@ -37,12 +41,13 @@ public class PharmacistService {
         return pharmacistRepository.findPharmacistById(id).getWorkSchedule();
     }
 
-    public List<Patient> getPatientsByPharmacist(Long id){
-        List<Patient> patients = null;
-        for(Counseling c : pharmacistRepository.findPharmacistById(id).getCounselings()){
-            patients.add(c.getPatient());
+    public List<Counseling> getCounselings(Long id){
+        List<Counseling> counselings = new ArrayList<>();
+        for(Counseling c : counselingService.getAll()){
+            if(c.getPharmacist().getId().equals(id))
+                counselings.add(c);
         }
-        return patients;
+        return counselings;
     }
 
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){
@@ -50,7 +55,7 @@ public class PharmacistService {
     }
 
     public Pharmacist findUserByEmail(String email){
-        return pharmacistRepository.findPharmacistByUser_Email(email);
+        return pharmacistRepository.findPharmacistByUser_email(email);
     }
 
 }

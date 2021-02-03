@@ -18,6 +18,7 @@ import { ScheduleCounselingComponent } from './component/schedule-counseling/sch
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AllPatientsComponent } from './component/all-patients/all-patients.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UploadQRComponent,
     NavbarComponent,
     AddMedicinesComponent,
-    ScheduleCounselingComponent
+    ScheduleCounselingComponent,
+    AllPatientsComponent
   ],
   imports: [
     BrowserModule,
