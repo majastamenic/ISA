@@ -19,6 +19,10 @@ import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-i
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
+import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DpDatePickerModule} from 'ng2-date-picker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,8 @@ import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-
     PharmacyAdminComponent,
     PharmacistInitComponent,
     PharmacistComponent,
-    OrderInitComponent
+    OrderInitComponent,
+    ScheduleCounselingComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,9 @@ import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-
     HttpClientModule,
     FormsModule,
     NgSelectModule,
+    BrowserAnimationsModule,
+    DpDatePickerModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

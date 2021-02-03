@@ -7,10 +7,10 @@ public class WorkScheduleMapper {
     public static WorkScheduleDto mapWorkScheduleToWorkScheduleDto (WorkSchedule workSchedule){
         WorkScheduleDto workScheduleDto = new WorkScheduleDto();
         workScheduleDto.setId(workSchedule.getId());
-        workScheduleDto.setEndDate(workSchedule.getEndDate());
-        workScheduleDto.setEndTime(workSchedule.getEndTime());
-        workScheduleDto.setStartDate(workSchedule.getStartDate());
-        workScheduleDto.setStartTime(workSchedule.getStartTime());
+        workScheduleDto.setEndDate(workSchedule.getSchedule().getEndDate());
+        workScheduleDto.setEndTime(workSchedule.getSchedule().getEndTime());
+        workScheduleDto.setStartDate(workSchedule.getSchedule().getStartDate());
+        workScheduleDto.setStartTime(workSchedule.getSchedule().getStartTime());
         return workScheduleDto;
 
     }

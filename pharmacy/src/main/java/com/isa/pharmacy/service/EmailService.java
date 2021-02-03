@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,13 +27,13 @@ public class EmailService {
     private String mailSender;
 
     @Async
-    public void verificationEmail(User user) throws MailException {
+    public void verificationEmailPatient(Patient patient) throws MailException {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
-        simpleMailMessage.setTo(user.getEmail());
+        simpleMailMessage.setTo(patient.getUser().getEmail());
         simpleMailMessage.setSubject("Registration");
-        simpleMailMessage.setText("Hello,"+user.getName()+"\nWelcome to pharmacy system.\n" +
-                "Your verification code is: " + user.getVerificationCode());
+        simpleMailMessage.setText("Hello,"+patient.getUser().getName()+"\nWelcome to pharmacy system.\n" +
+                "Your verification code is: " + patient.getVerificationCode());
         javaMailSender.send(simpleMailMessage);
     }
 

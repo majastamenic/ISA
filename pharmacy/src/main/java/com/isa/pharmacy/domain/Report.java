@@ -18,13 +18,21 @@ public class Report implements Serializable {
     @ElementCollection
     private List<MedicinePharmacy> medicines;
 
-    public  Report(){}
+    public Report(){}
 
     public Report(Long id, String note, Counseling counseling, List<MedicinePharmacy> medicines) {
         this.id = id;
         this.note = note;
         this.counseling = counseling;
         this.medicines = medicines;
+    }
+
+    public Counseling getCounseling() {
+        return counseling;
+    }
+
+    public void setCounseling(Counseling counseling) {
+        this.counseling = counseling;
     }
 
     public List<MedicinePharmacy> getMedicines() {
@@ -51,11 +59,4 @@ public class Report implements Serializable {
         this.note = note;
     }
 
-    public Counseling getCounseling() {
-        return counseling;
-    }
-
-    public void setCounseling(Counseling counseling) {
-        this.counseling = counseling;
-    }
 }

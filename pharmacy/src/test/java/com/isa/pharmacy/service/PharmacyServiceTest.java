@@ -37,6 +37,7 @@ public class PharmacyServiceTest {
 		when(pharmacyRepository.findAll()).thenReturn(emptyList());
 		List<GetAllPharmaciesDto> all = pharmacyService.getAll();
 		assertEquals(all.size(), 0);
+		System.out.println("test");
 	}
 
 	/*@Test

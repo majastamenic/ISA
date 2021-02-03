@@ -20,8 +20,9 @@ public class WorkScheduleService {
     private WorkScheduleRepository workScheduleRepository;
 
     public WorkSchedule save(WorkSchedule ws) {
-        if((ws.getStartDate().before(ws.getEndDate()) || ws.getStartDate().equals(ws.getEndDate()))
-                && ws.getStartTime().before(ws.getEndTime())){
+        if((ws.getSchedule().getStartDate().before(ws.getSchedule().getEndDate())
+                || ws.getSchedule().getStartDate().equals(ws.getSchedule().getEndDate()))
+                && ws.getSchedule().getStartTime().before(ws.getSchedule().getEndTime())){
             return workScheduleRepository.save(ws);
         }
         return null;

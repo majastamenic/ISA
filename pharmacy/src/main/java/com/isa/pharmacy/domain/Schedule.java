@@ -1,11 +1,9 @@
 package com.isa.pharmacy.domain;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table
@@ -15,41 +13,64 @@ public class Schedule implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date startDateTime;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
+    private Date startDate;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date endDateTime;
-    @OneToMany
-    private List<Examination> examinations;
-    @OneToMany
-    private List<Counseling> counselings;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
+    private Date endDate;
+    @Column
+    @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
+    private Date startTime;
+    @Column
+    @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
+    private Date endTime;
 
     public Schedule(){}
 
-    public Schedule(Long id, Date startDateTime, Date endDateTime, List<Examination> examinations, List<Counseling> counselings) {
+    public Schedule(Long id, Date startDate, Date endDate, Date startTime, Date endTime) {
         this.id = id;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-        this.examinations = examinations;
-        this.counselings = counselings;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    public List<Counseling> getCounselings() {
-        return counselings;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setCounselings(List<Counseling> counselings) {
-        this.counselings = counselings;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public List<Examination> getExaminations() {
-        return examinations;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setExaminations(List<Examination> examinations) {
-        this.examinations = examinations;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
 
     public Long getId() {
         return id;
@@ -59,19 +80,4 @@ public class Schedule implements Serializable {
         this.id = id;
     }
 
-    public Date getStartDateTime() {
-        return startDateTime;
-    }
-
-    public void setStartDateTime(Date startDateTime) {
-        this.startDateTime = startDateTime;
-    }
-
-    public Date getEndDateTime() {
-        return endDateTime;
-    }
-
-    public void setEndDateTime(Date endDateTime) {
-        this.endDateTime = endDateTime;
-    }
 }

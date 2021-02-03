@@ -11,7 +11,6 @@ import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 public class PharmacistService {
@@ -26,11 +25,7 @@ public class PharmacistService {
 
 
     public Pharmacist save(CreatePharmacistDto p) {
-        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
-        if(pattern.matcher(p.getUser().getEmail()).matches()){
-            for(Pharmacist pha: pharmacistRepository.findAll()){
-                if(pha.getUser().getEmail().equalsIgnoreCase(p.getUser().getEmail())){return null;}
-            }
+
             User dbUser= userService.create(p.getUser());
             Pharmacist pharmacist = PharmacistMapper.mapCreatePharmacistDtoToPharmacist(p);
             pharmacist.setUser(dbUser);
@@ -44,8 +39,6 @@ public class PharmacistService {
             pharmacy.getPharmacists().add(savedPharmacist);
             this.pharmacyService.save(pharmacy);
             return savedPharmacist;
-        }
-        return null;
     }
 
     public List<Pharmacist> getAll(){ return pharmacistRepository.findAll(); }
@@ -67,14 +60,17 @@ public class PharmacistService {
     public List<Patient> getPatientsByPharmacist(Long id){
         List<Patient> patients = null;
         for(Counseling c : pharmacistRepository.findPharmacistById(id).getCounselings()){
-            if(patients.contains(c.getPatient()) == false)
-                patients.add(c.getPatient());
+            patients.add(c.getPatient());
         }
         return patients;
     }
 
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){
         return pharmacistRepository.findPharmacistById(id).getVacationSchedules();
+    }
+
+    public Pharmacist findUserByEmail(String email){
+        return pharmacistRepository.findPharmacistByUser_Email(email);
     }
 
 }

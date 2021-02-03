@@ -1,3 +1,9 @@
+export interface Patient{
+    id: number;
+    patient: User;
+    verificationCode: string;
+}
+
 export interface User {
     id: number;
     email: string;
@@ -8,7 +14,6 @@ export interface User {
     city: string;
     country: string;
     phone: string;
-    verificationCode: string;
     active: boolean;
     role: Role;
 }
@@ -28,7 +33,6 @@ export interface UserRegistrationDto{
     city: string;
     country: string;
     phone: string;
-    role:Role;
 }
 
 enum Role {

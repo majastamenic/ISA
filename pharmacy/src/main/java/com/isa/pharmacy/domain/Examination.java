@@ -19,7 +19,7 @@ public class Examination {
     private Patient patient;
     @OneToOne
     private Prescription prescription;
-    @OneToOne
+    @Column
     private Schedule schedule;
     @Column
     private Integer price;
