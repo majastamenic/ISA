@@ -35,7 +35,7 @@ public class PharmacyService {
     }
 
     public Pharmacy getById(Long id) {
-        return pharmacyRepository.findById(id).get();
+        return pharmacyRepository.findPharmacyById(id);
     }
 
     public List<GetAllPharmaciesDto> getAll() {
