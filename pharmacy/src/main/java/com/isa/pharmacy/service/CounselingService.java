@@ -36,11 +36,14 @@ public class CounselingService {
             reportService.save(counseling.getReport());
             return counselingRepository.save(counseling);
         }
-        throw new AlreadyExistsException(String.format("Start date and end date must be on same date"));
+        throw new AlreadyExistsException(String.format("Start date and end date must be on a same date"));
     }
 
     public List<Counseling> getAll(){ return counselingRepository.findAll(); }
 
+    public List<Counseling> getAllByPharmacist(Pharmacist pharmacist) {
+        return counselingRepository.findByPharmacist(pharmacist);
+    }
     public Counseling update(Counseling c) {
         Counseling counseling = counselingRepository.findCounselingById(c.getId());
         if(counseling != null){

@@ -15,4 +15,6 @@ public interface PharmacistRepository extends JpaRepository<Pharmacist, Long> {
     Pharmacist findPharmacistById(Long id);
 
     Long deletePharmacistById(Long id);
+
+    Pharmacist findPharmacistByUser_Email(String email);
 }

@@ -14,6 +14,10 @@ import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { AddMedicinesComponent } from './component/user/profile/system_admin/add-medicines/add-medicines.component';
+import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DpDatePickerModule} from 'ng2-date-picker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,12 +31,17 @@ import { AddMedicinesComponent } from './component/user/profile/system_admin/add
     UploadQRComponent,
     NavbarComponent,
     AddMedicinesComponent,
+    ScheduleCounselingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    DpDatePickerModule,
+    NgbModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

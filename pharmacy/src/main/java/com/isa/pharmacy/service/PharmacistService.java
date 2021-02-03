@@ -49,4 +49,8 @@ public class PharmacistService {
         return pharmacistRepository.findPharmacistById(id).getVacationSchedules();
     }
 
+    public Pharmacist findUserByEmail(String email){
+        return pharmacistRepository.findPharmacistByUser_Email(email);
+    }
+
 }
