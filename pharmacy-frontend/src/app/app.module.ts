@@ -18,6 +18,7 @@ import { PharmacyAdminComponent } from './component/pharmacy-admin/pharmacy-admi
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +34,15 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AddMedicinesComponent,
     PharmacyAdminComponent,
     PharmacistInitComponent,
-    PharmacistComponent
+    PharmacistComponent,
+    OrderInitComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgSelectModule
+    NgSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
