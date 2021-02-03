@@ -12,14 +12,10 @@ import { PharmacyDto } from '../add-pharmacy/model/pharmacy-model';
 })
 export class AddPharmacyAdminComponent implements OnInit {
 
-  user: UserRegistrationDto = { email: '', password: '', passwordAgain: '', name: '', surname: '', address: '', city: '',
-  country: '', phone: '', role: 5};
-
   pharmacies: any;
-  admin: any;
+  user: any = {}
 
   constructor(private userService: UserService, private toastrService:ToastrService, private pharmacyService: PharmacyService) { 
-    this.admin = {user: this.user, pharmacy:''};
   }
 
   ngOnInit(): void {
@@ -29,8 +25,11 @@ export class AddPharmacyAdminComponent implements OnInit {
   }
 
   registration(): void {
-    this.userService.registrationpharmacyAdmin(this.admin).subscribe((returnedAdmin: PharmacyAdminDto) => {
-      this.toastrService.success('Added new phar.');
+    let admin:any = {user: {email: this.user.email, name: this.user.name, surname: this.user.surname ,
+      address: this.user.address, city:this.user.city, country:this.user.country, phone: this.user.phone, active:false}, 
+      pharmacyId: this.user.pharmacy.id}
+    this.userService.registrationpharmacyAdmin(admin).subscribe((returnedAdmin: PharmacyAdminDto) => {
+      this.toastrService.success('Added new pharmacy admin.');
     },
       (err: any) => {
         alert('Registration error ' + err.error.message);

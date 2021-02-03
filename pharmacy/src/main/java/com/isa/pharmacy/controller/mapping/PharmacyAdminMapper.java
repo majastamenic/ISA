@@ -1,22 +1,23 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesPharmacyAdminDto;
-import com.isa.pharmacy.controller.dto.PharmacyAdminDto;
+import com.isa.pharmacy.controller.dto.CreatePhAdminDto;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
 
 public class PharmacyAdminMapper {
-    public static PharmacyAdmin mapPharmacyAdminDtoToPharmacyAdmin(PharmacyAdminDto pharmacyAdminDto){
+    public static PharmacyAdmin mapPharmacyAdminDtoToPharmacyAdmin(CreatePhAdminDto createPhAdminDto, Pharmacy pharmacy){
         PharmacyAdmin pharmacyAdmin = new PharmacyAdmin();
-        pharmacyAdmin.setUser(UserMapper.mapRegistrationDtoToUser(pharmacyAdminDto.getRegistrationDto()));
-        pharmacyAdmin.setPharmacy(PharmacyMapper.mapPharmacyDtoToPharmacy(pharmacyAdminDto.getPharmacyDto()));
+        pharmacyAdmin.setUser(createPhAdminDto.getUser());
+        pharmacyAdmin.setPharmacy(pharmacy);
         return pharmacyAdmin;
     }
 
-    public static PharmacyAdminDto mapPharmacyAdminToPharmacyAdminDto(PharmacyAdmin pharmacyAdmin) {
-        PharmacyAdminDto pharmacyAdminDto = new PharmacyAdminDto();
-        pharmacyAdminDto.setPharmacyDto(PharmacyMapper.mapPharmacyToPharmacyDto(pharmacyAdmin.getPharmacy()));
-        pharmacyAdminDto.setRegistrationDto(UserMapper.mapUserToRegistrationDto(pharmacyAdmin.getUser()));
-        return pharmacyAdminDto;
+    public static CreatePhAdminDto mapPharmacyAdminToPharmacyAdminDto(PharmacyAdmin pharmacyAdmin) {
+        CreatePhAdminDto createPhAdminDto = new CreatePhAdminDto();
+        createPhAdminDto.setPharmacyId(pharmacyAdmin.getPharmacy().getId());
+        createPhAdminDto.setUser(pharmacyAdmin.getUser());
+        return createPhAdminDto;
     }
 
 
