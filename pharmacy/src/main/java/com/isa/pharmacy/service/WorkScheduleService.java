@@ -34,6 +34,6 @@ public class WorkScheduleService {
     }
 
     public WorkSchedule getById(Long id) {
-        return this.workScheduleRepository.findById(id).get();
+        return this.workScheduleRepository.findWorkScheduleById(id);
     }
 }
