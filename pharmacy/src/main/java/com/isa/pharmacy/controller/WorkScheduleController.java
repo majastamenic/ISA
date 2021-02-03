@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(value = "http://localhost:4200")
 @RequestMapping("/workschedule")
 public class WorkScheduleController {
     @Autowired
