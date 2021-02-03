@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/pharmacy")
 public class PharmacyController {
 
@@ -25,7 +27,7 @@ public class PharmacyController {
     private String apiKey;
 
     @GetMapping
-    public List<Pharmacy> getAll() {
+    public List<GetAllPharmaciesDto> getAll() {
         return pharmacyService.getAll();
     }
 

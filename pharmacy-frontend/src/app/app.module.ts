@@ -14,6 +14,10 @@ import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { AddMedicinesComponent } from './component/user/profile/system_admin/add-medicines/add-medicines.component';
+import { PharmacyAdminComponent } from './component/pharmacy-admin/pharmacy-admin.component';
+import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
+import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -27,12 +31,16 @@ import { AddMedicinesComponent } from './component/user/profile/system_admin/add
     UploadQRComponent,
     NavbarComponent,
     AddMedicinesComponent,
+    PharmacyAdminComponent,
+    PharmacistInitComponent,
+    PharmacistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

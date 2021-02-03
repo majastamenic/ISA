@@ -33,9 +33,9 @@ public class WorkSchedule implements Serializable {
     @Temporal(TemporalType.TIME)
     @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
     private Date endTime;
-    @OneToMany
+    @ManyToMany
     private List<Pharmacist> pharmacists;
-    @OneToMany
+    @ManyToMany
     private List<Dermatologist> dermatologists;
     @OneToOne
     private PharmacyAdmin admin;

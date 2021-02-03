@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,8 @@ public class OrderService {
 
     public void delete(Long id){
         Order order = orderRepository.findOrderById(id);
-        if (order.getOffers() != null){
-            System.out.println("You can't delete this order because it has offers");
-            return;
+        if (!order.getOffers().isEmpty()){
+            throw new InvalidActionException("You can't delete this order because it has offers");
         }
         orderRepository.deleteById(id);
     }
