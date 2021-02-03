@@ -27,14 +27,14 @@ public class Dermatologist implements Serializable {
     private List<Pharmacy> pharmacy;
     @OneToMany
     private List<Examination> examinations;
-    @OneToOne
-    private WorkSchedule workSchedule;
+    @ManyToMany
+    private List<WorkSchedule> workSchedule;
     @OneToMany
     private List<VacationSchedule> vacationSchedules;
 
     public Dermatologist(){}
 
-    public Dermatologist(Long id, User user, boolean isFirstLog, List<Pharmacy> pharmacy, List<Examination> examinations, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules) {
+    public Dermatologist(Long id, User user, boolean isFirstLog, List<Pharmacy> pharmacy, List<Examination> examinations, List <WorkSchedule> workSchedule, List<VacationSchedule> vacationSchedules) {
         this.id = id;
         this.user = user;
         this.isFirstLog = isFirstLog;
@@ -68,11 +68,11 @@ public class Dermatologist implements Serializable {
         this.user = user;
     }
 
-    public WorkSchedule getWorkSchedule() {
+    public List<WorkSchedule> getWorkSchedule() {
         return workSchedule;
     }
 
-    public void setWorkSchedule(WorkSchedule workSchedule) {
+    public void setWorkSchedule(List<WorkSchedule> workSchedule) {
         this.workSchedule = workSchedule;
     }
 

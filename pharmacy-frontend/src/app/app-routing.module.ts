@@ -4,6 +4,8 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
+import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
+import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { LoginComponent } from './component/user/login/login.component';
@@ -32,6 +34,8 @@ const routes: Routes = [
       { path: 'regDermatologist', component: RegDermatologistComponent}
     ]
   }, 
+  { path: 'pharmacist', component: PharmacistComponent},
+  { path: 'pharmacist/init', component: PharmacistInitComponent}
 ];
 
 @NgModule({

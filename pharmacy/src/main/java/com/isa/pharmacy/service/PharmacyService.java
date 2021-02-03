@@ -2,6 +2,9 @@ package com.isa.pharmacy.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
+import com.isa.pharmacy.controller.dto.GetAllPharmaciesPharmacyAdminDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
 import com.isa.pharmacy.controller.dto.PharmacyDto;
@@ -33,8 +36,18 @@ public class PharmacyService {
     public Pharmacy getByName(String name) {
         return pharmacyRepository.findPharmacyByName(name);
     }
-    public List<Pharmacy> getAll() {
-        return pharmacyRepository.findAll();
+
+    public Pharmacy getById(Long id) {
+        return pharmacyRepository.findById(id).get();
+    }
+
+    public List<GetAllPharmaciesDto> getAll() {
+        List<Pharmacy> pharmacies = pharmacyRepository.findAll();
+        List<GetAllPharmaciesDto> pharmaciesDtos = new ArrayList<>();
+        for (Pharmacy pharmacy: pharmacies) {
+            pharmaciesDtos.add(PharmacyMapper.mapPharmacyToGetAllPharmaciesDto(pharmacy));
+        }
+        return pharmaciesDtos;
     }
 
     public List<Medicine> getMedicinesFromPharmacy(String pharmacyName) {

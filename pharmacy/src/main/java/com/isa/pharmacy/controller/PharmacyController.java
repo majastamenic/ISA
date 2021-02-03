@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
 import com.isa.pharmacy.controller.dto.PharmacyDto;
@@ -29,12 +30,8 @@ public class PharmacyController {
     private String apiKey;
 
     @GetMapping
-    public List<PharmacyDto> getAll() {
-        List<PharmacyDto> pharmacyDtoList = new ArrayList<>();
-        for (Pharmacy pharmacy: pharmacyService.getAll()){
-            pharmacyDtoList.add(PharmacyMapper.mapPharmacyToPharmacyDto(pharmacy));
-        }
-        return pharmacyDtoList;
+    public List<GetAllPharmaciesDto> getAll() {
+        return pharmacyService.getAll();
     }
 
     @PostMapping

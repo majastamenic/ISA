@@ -27,13 +27,21 @@ public class PharmacyAdmin implements Serializable {
 
     public PharmacyAdmin(){}
 
-    public PharmacyAdmin(Long id, User user, List<Order> orders, Pharmacy pharmacy, List<WorkSchedule> schedule, Boolean isFirstLog) {
+    public PharmacyAdmin(Long id, User user, List<Order> orders, Pharmacy pharmacy,List<WorkSchedule> schedule, Boolean isFirstLog) {
+        this.user =user;
         this.id = id;
-        this.user = user;
-        this.orders = orders;
+        this.orders= orders;
         this.pharmacy = pharmacy;
         this.schedule = schedule;
         this.isFirstLog = isFirstLog;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -50,14 +58,6 @@ public class PharmacyAdmin implements Serializable {
 
     public void setFirstLog(Boolean firstLog) {
         isFirstLog = firstLog;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public List<Order> getOrders() {

@@ -1,5 +1,6 @@
 package com.isa.pharmacy.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,16 +15,29 @@ public class PriceList {
     @Column
     private MedicinePharmacy medicinePharmacy;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateFrom;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateTo;
 
-    public PriceList(MedicinePharmacy medicinePharmacy, Date dateFrom, Date dateTo) {
+    public PriceList(){
+    }
+    public PriceList(Long id, MedicinePharmacy medicinePharmacy, Date dateFrom, Date dateTo) {
+        this.id=id;
         this.medicinePharmacy = medicinePharmacy;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public MedicinePharmacy getMedicinePharmacy() {

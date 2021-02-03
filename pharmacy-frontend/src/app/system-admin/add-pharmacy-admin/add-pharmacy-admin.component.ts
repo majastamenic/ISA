@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserRegistrationDto } from 'src/app/component/user/model/user-model';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
 import { UserService } from 'src/app/service/user.service';
-import { Pharmacy, PharmacyDto } from '../add-pharmacy/model/pharmacy-model';
+import { PharmacyDto } from '../add-pharmacy/model/pharmacy-model';
 
 @Component({
   selector: 'app-add-pharmacy-admin',

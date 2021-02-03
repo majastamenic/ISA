@@ -21,7 +21,7 @@ public class Pharmacy implements Serializable {
     private String address;
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
-    @OneToMany
+    @OneToMany(mappedBy = "pharmacy")
     private List<Pharmacist> pharmacists;
     @OneToMany
     private List<PharmacyAdmin> admins;

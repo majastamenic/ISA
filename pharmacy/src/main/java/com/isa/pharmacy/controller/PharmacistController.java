@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.domain.VacationSchedule;
@@ -21,13 +22,13 @@ public class PharmacistController {
     public List<Pharmacist> getAll() { return pharmacistService.getAll(); }
 
     @PostMapping("/registration")
-    public Pharmacist save(@RequestBody Pharmacist p) { return pharmacistService.save(p); }
+    public Pharmacist save(@RequestBody CreatePharmacistDto p) { return pharmacistService.save(p); }
 
     @PostMapping("/update")
     public Pharmacist update(@RequestBody Pharmacist p) { return pharmacistService.update(p); }
 
     @GetMapping("/workschedule/{id}")
-    public WorkSchedule getWorkScheduleByPharmacist(@PathVariable("id") Long id){
+    public List<WorkSchedule> getWorkScheduleByPharmacistId(@PathVariable("id") Long id){
         return pharmacistService.getWorkScheduleByPharmacist(id);
     }
 

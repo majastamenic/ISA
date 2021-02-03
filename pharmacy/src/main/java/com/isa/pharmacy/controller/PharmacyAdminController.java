@@ -24,7 +24,8 @@ public class PharmacyAdminController {
     @GetMapping
     public List<PharmacyAdmin> findAll() { return pharmacyAdminService.findAll(); }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public PharmacyAdmin update (@RequestBody PharmacyAdmin pharmacyAdmin){ return pharmacyAdminService.updateAdmin(pharmacyAdmin);}
+
 
 }
