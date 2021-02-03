@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginUserDto, UserRegistrationDto } from '../component/user/model/user-model';
 import { PharmacyAdminDto } from '../system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
-import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH, DERMATOLOGIST_PATH, PHARMACY_ADMIN_PATH, SUPPLIER_PATH} from '../util/paths';
+import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH, DERMATOLOGIST_PATH, PHARMACY_ADMIN_PATH, SUPPLIER_PATH, USER_PATH} from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,10 @@ export class UserService {
 
   registration(user: UserRegistrationDto): any {
     return this.httpClient.post(PATIENT_PATH, user);
+  }
+
+  saveUser(user: UserRegistrationDto): any{
+    return this.httpClient.put(USER_PATH, user);
   }
 
   registrationDermatologist(user: UserRegistrationDto): any {
