@@ -14,9 +14,6 @@ public class PriceListController {
     @Autowired
     private PriceListService priceListService;
 
-    @PostMapping("/define")
-    public PriceList save(@RequestBody PriceList priceList){ return priceListService.save(priceList); }
-
     @GetMapping
     public List<PriceList> getAll() { return priceListService.findAll(); }
 }
