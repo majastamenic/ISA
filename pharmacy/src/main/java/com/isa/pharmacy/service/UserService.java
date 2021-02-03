@@ -2,6 +2,7 @@ package com.isa.pharmacy.service;
 
 import java.util.List;
 
+import com.isa.pharmacy.controller.dto.PasswordChangeDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,14 +45,25 @@ public class UserService {
         return userRepository.save(dbUser);
     }
 
-    public User getById(Long id) {
-        User user = userRepository.findUserById(id);
-        return user;
+    public User updatePassword(PasswordChangeDto passwordDto){
+        User dbUser = userRepository.findByEmail(passwordDto.getEmail());
+        if(dbUser == null)
+            throw new NotFoundException("User not found");
+        if(!dbUser.getPassword().equals(passwordDto.getOldPass()))
+            throw new RuntimeException("Invalid old password");
+        if(!passwordDto.getNewPass().equals(passwordDto.getNewPassRepeat()))
+            throw new RuntimeException("Passwords are not equal");
+        dbUser.setPassword(passwordDto.getNewPass());
+        return userRepository.save(dbUser);
     }
 
-    public List<User> getAll() { return userRepository.findAll(); }
+    public User getById(Long id) {
+        return userRepository.findUserById(id);
+    }
 
     public User getByEmail(String email){
         return userRepository.findByEmail(email);
     }
+
+    public List<User> getAll() { return userRepository.findAll(); }
 }

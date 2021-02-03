@@ -35,6 +35,12 @@ export interface UserRegistrationDto{
     phone: string;
 }
 
+export interface PasswordChangeDto{
+    oldPassword: string;
+    newPassword: string;
+    newPasswordRepeat: string;
+}
+
 enum Role {
     PATIENT,
     ADMIN,

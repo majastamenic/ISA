@@ -1,31 +1,9 @@
-<div class="page">
+<div *ngIf='!passwordChange' class="page">
     <div class="form">
         <form class="ngform">
             <h3>Patient profile</h3>
             <div>
                 <input type="email" [(ngModel)]="patient.user.email" placeholder="Enter email" name="email" required #email="ngModel" disabled>
-            </div>
-
-            <div>
-                <input type="password" [(ngModel)]="patient.user.oldPassword" placeholder="Enter Password" name="name" required #password="ngModel"
-                [class.is-invalid] = "password.invalid && password.touched">
-                <div *ngIf="password.invalid && password.touched">
-                    <small class="text-danger">Password is required field.</small>
-                </div>
-            </div>
-            <div>
-                <input type="password" [(ngModel)]="patient.user.password" placeholder="Enter Password" name="name" required #password="ngModel"
-                [class.is-invalid] = "password.invalid && password.touched">
-                <div *ngIf="password.invalid && password.touched">
-                    <small class="text-danger">Password is required field.</small>
-                </div>
-            </div>
-            <div>
-                <input type="password" [(ngModel)]="patient.user.passwordAgain" placeholder="Confirm password" name="name" required #password="ngModel"
-                [class.is-invalid] = "password.invalid && password.touched">
-                <div *ngIf="password.invalid && password.touched">
-                    <small class="text-danger">Password is required field.</small>
-                </div>
             </div>
 
             <div>
@@ -50,6 +28,38 @@
                 <input type="tel" [(ngModel)]="patient.user.phone" placeholder="Enter phone" name="phone" required>
             </div>
             <button class="btn btn-primary" (click)="update()">Update info</button>
+            <a href="javascript: void(0)" (click)="passwordChange = true">Change password</a>
+        </form>
+    </div>
+</div>
+
+<div *ngIf='passwordChange'>
+    <div class="form">
+        <form class="ngform">
+            <h3>Change password</h3>
+            <div>
+                <input type="password" [(ngModel)]="passwordDto.oldPassword" placeholder="Enter current Password" name="name" required #password="ngModel"
+                [class.is-invalid] = "password.invalid && password.touched">
+                <div *ngIf="password.invalid && password.touched">
+                    <small class="text-danger">Password is required field.</small>
+                </div>
+            </div>
+            <div>
+                <input type="password" [(ngModel)]="passwordDto.newPassword" placeholder="Enter new Password" name="name" required #password="ngModel"
+                [class.is-invalid] = "password.invalid && password.touched">
+                <div *ngIf="password.invalid && password.touched">
+                    <small class="text-danger">Password is required field.</small>
+                </div>
+            </div>
+            <div>
+                <input type="password" [(ngModel)]="passwordDto.newPasswordRepeat" placeholder="Confirm new password" name="name" required #password="ngModel"
+                [class.is-invalid] = "password.invalid && password.touched">
+                <div *ngIf="password.invalid && password.touched">
+                    <small class="text-danger">Password is required field.</small>
+                </div>
+            </div>
+            <button class="btn btn-primary" (click)="updatePassword()">Change password</button>
+            <button class="btn btn-secondary" (click)="passwordChange = false">Cancel</button>
         </form>
     </div>
 </div>
