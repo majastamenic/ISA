@@ -33,8 +33,8 @@
                 <input type="tel" [(ngModel)]="admin.user.phone" placeholder="Enter admin phone" name='phone'>
             </div>
             <div>
-                <select [(ngModel)]="admin.pharmacy" class="form-select" aria-label="Default select example">
-                    <option *ngFor="let p of pharmacies" name="pharmacy" [ngValue]="p">{{p.name}}</option>
+                <select [(ngModel)]="admin.pharmacy" class="form-select" aria-label="Default select example" name="pharmacy">
+                    <option *ngFor="let p of pharmacies" name="ph" [ngValue]="p">{{p.name}}</option>
                 </select>
             </div>
             <button class="btn btn-primary" (click)="registration()">Register</button>

@@ -53,6 +53,7 @@ public class UserService {
         dbUser.setCity(user.getCity());
         dbUser.setCountry(user.getCountry());
         dbUser.setPhone(user.getPhone());
+        dbUser.setActive(true);
         return userRepository.save(dbUser);
     }
 }

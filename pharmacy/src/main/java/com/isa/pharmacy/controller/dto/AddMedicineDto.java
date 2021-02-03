@@ -5,7 +5,7 @@ import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 
 import java.util.List;
 
-public class AddMedicineDto {
+public class AddMedicineDto{
     private Long code;
     private String name;
     private String typeOfMedicine;
@@ -13,10 +13,12 @@ public class AddMedicineDto {
     private String composition;
     private String manufactured;
     private MedicinePublishingType publishingType;
-    private List<Long> replacementMedicines;
+    private List<Long> replacementMedicine;
     private String note;
 
-    public AddMedicineDto(Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine, String composition, String manufactured, MedicinePublishingType publishingType, List<Long> replacementMedicines, String note) {
+    public AddMedicineDto(){}
+
+    public AddMedicineDto(Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine, String composition, String manufactured, MedicinePublishingType publishingType, List<Long> replacementMedicine, String note) {
         this.code = code;
         this.name = name;
         this.typeOfMedicine = typeOfMedicine;
@@ -24,7 +26,7 @@ public class AddMedicineDto {
         this.composition = composition;
         this.manufactured = manufactured;
         this.publishingType = publishingType;
-        this.replacementMedicines = replacementMedicines;
+        this.replacementMedicine = replacementMedicine;
         this.note = note;
     }
 
@@ -84,12 +86,12 @@ public class AddMedicineDto {
         this.publishingType = publishingType;
     }
 
-    public List<Long> getReplacementMedicines() {
-        return replacementMedicines;
+    public List<Long> getReplacementMedicine() {
+        return replacementMedicine;
     }
 
-    public void setReplacementMedicines(List<Long> replacementMedicines) {
-        this.replacementMedicines = replacementMedicines;
+    public void setReplacementMedicine(List<Long> replacementMedicine) {
+        this.replacementMedicine = replacementMedicine;
     }
 
     public String getNote() {

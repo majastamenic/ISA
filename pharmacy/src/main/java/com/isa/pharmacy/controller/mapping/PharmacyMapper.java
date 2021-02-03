@@ -13,8 +13,6 @@ public class PharmacyMapper {
         pharmacy.setName(pharmacyDto.getName());
         pharmacy.setAddress(pharmacyDto.getAddress());
         pharmacy.setMedicinePharmacy(null);
-        pharmacy.setPharmacists(null);
-        pharmacy.setAdmins(null);
         return pharmacy;
     }
 
@@ -29,11 +27,7 @@ public class PharmacyMapper {
         dto.setId(pharmacy.getId());
         dto.setName(pharmacy.getName());
         dto.setAddress(pharmacy.getAddress());
-        dto.setPharmacists(pharmacy.getPharmacists());
-        dto.setAdmins(new ArrayList<>());
-        for (PharmacyAdmin pharmacyAdmin:pharmacy.getAdmins()) {
-            dto.getAdmins().add(PharmacyAdminMapper.mapPharmacyAdminToGetAllPharmaciesPharmacyAdminDto(pharmacyAdmin));
-        }
+
         return dto;
     }
 }

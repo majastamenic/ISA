@@ -1,6 +1,7 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
+import com.isa.pharmacy.controller.dto.PharmacistDto;
 import com.isa.pharmacy.controller.mapping.PharmacistMapper;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.domain.Profile.Patient;
@@ -24,7 +25,7 @@ public class PharmacistService {
     private PharmacyService pharmacyService;
 
 
-    public Pharmacist save(CreatePharmacistDto p) {
+    public CreatePharmacistDto save(CreatePharmacistDto p) {
         Pattern pattern = Pattern.compile("^(.+)@(.+)$");
         if(pattern.matcher(p.getUser().getEmail()).matches()){
             for(Pharmacist pha: pharmacistRepository.findAll()){
@@ -38,11 +39,11 @@ public class PharmacistService {
                 pharmacist.getWorkSchedule().add(this.workScheduleService.getById(id));
             }
 
+            pharmacist.setPharmacy(this.pharmacyService.getById(p.getPharmacyId()));
             Pharmacist savedPharmacist = pharmacistRepository.save(pharmacist);
-            Pharmacy pharmacy = this.pharmacyService.getById(p.getPharmacyId());
-            pharmacy.getPharmacists().add(savedPharmacist);
-            this.pharmacyService.save(pharmacy);
-            return savedPharmacist;
+//            Pharmacy pharmacy = this.pharmacyService.getById(p.getPharmacyId());
+//            this.pharmacyService.save(pharmacy);
+            return PharmacistMapper.mapPharmacistToCreatePharmacistDto(savedPharmacist);
         }
         return null;
     }

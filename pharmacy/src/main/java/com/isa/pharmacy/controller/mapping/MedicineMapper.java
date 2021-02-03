@@ -52,7 +52,7 @@ public class MedicineMapper {
         medicine.setComposition(medicineDto.getComposition());
         medicine.setManufactured(medicineDto.getManufactured());
         medicine.setPublishingType(medicineDto.getPublishingType());
-        medicine.setReplacementMedicines(medicineDto.getReplacementMedicines());
+        medicine.setReplacementMedicines(medicineDto.getReplacementMedicine());
         medicine.setNote(medicineDto.getNote());
         return medicine;
     }
