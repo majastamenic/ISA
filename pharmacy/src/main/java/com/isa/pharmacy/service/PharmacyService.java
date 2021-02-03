@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
-import com.isa.pharmacy.controller.dto.GetAllPharmaciesPharmacyAdminDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;

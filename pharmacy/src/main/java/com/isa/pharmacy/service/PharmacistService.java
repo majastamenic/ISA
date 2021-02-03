@@ -1,7 +1,6 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
-import com.isa.pharmacy.controller.dto.WorkScheduleDto;
 import com.isa.pharmacy.controller.mapping.PharmacistMapper;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.domain.Profile.Patient;

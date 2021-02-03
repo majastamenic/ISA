@@ -1,6 +1,5 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.domain.PriceList;
 import com.isa.pharmacy.service.PriceListService;
 import org.springframework.beans.factory.annotation.Autowired;
