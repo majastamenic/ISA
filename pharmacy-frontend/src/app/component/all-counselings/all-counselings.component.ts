@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-counselings',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllCounselingsComponent implements OnInit {
 
-  constructor() { }
+  email: string;
+
+  constructor(private router: Router) {
+    this.email = '';
+   }
 
   ngOnInit(): void {
   }
 
 }
+// [(ngmodel)]=.. - bind
