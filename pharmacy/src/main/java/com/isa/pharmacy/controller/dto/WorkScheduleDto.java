@@ -24,6 +24,14 @@ public class WorkScheduleDto {
     public WorkScheduleDto() {
     }
 
+    public WorkScheduleDto(Long id, Date startDate, Date endDate, Date startTime, Date endTime) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public Long getId() {
         return id;
     }

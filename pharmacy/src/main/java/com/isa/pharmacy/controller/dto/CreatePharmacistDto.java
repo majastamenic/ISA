@@ -14,6 +14,14 @@ public class CreatePharmacistDto {
     public CreatePharmacistDto() {
     }
 
+    public CreatePharmacistDto(Long id, User user, boolean isFirstLog, Long pharmacyId, List<Long> workScheduleIds) {
+        this.id = id;
+        this.user = user;
+        this.isFirstLog = isFirstLog;
+        this.pharmacyId = pharmacyId;
+        this.workScheduleIds = workScheduleIds;
+    }
+
     public Long getId() {
         return id;
     }
