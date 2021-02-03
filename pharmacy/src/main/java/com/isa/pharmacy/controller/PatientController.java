@@ -48,4 +48,7 @@ public class PatientController {
     public void updateAllergy(@RequestBody List<Medicine> allergies, @RequestParam Long patientId){
         patientService.updateAllergies(patientId, allergies);
     }
+
+    @GetMapping
+    public List<Patient> getPatients(){return patientService.getPatients();}
 }

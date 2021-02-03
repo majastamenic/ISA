@@ -13,6 +13,9 @@
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/uploadQR'" routerLinkActive="active">Upload QR-code</a>
             </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/counseling'" routerLinkActive="active">Shedule counseling</a>
+            </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item">

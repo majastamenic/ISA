@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.userService.login(this.user).subscribe((returnedUser: User) => {
-      sessionStorage.setItem('user', this.user);
+      sessionStorage.setItem('user', this.user.email);
       this.router.navigate(['/home']);
     },
       (err: any) => {

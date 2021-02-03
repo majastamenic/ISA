@@ -3,26 +3,22 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
+import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 public class PharmacistService {
     @Autowired
     private PharmacistRepository pharmacistRepository;
+    @Autowired
+    private UserService userService;
 
     public Pharmacist save(Pharmacist p) {
-        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
-        if(pattern.matcher(p.getUser().getEmail()).matches()){
-            for(Pharmacist pha: pharmacistRepository.findAll()){
-                if(pha.getUser().getEmail().equalsIgnoreCase(p.getUser().getEmail())){return null;}
-            }
-            return pharmacistRepository.save(p);
-        }
-        return null;
+        userService.create(p.getUser());
+        return pharmacistRepository.save(p);
     }
 
     public List<Pharmacist> getAll(){ return pharmacistRepository.findAll(); }
@@ -51,6 +47,10 @@ public class PharmacistService {
 
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){
         return pharmacistRepository.findPharmacistById(id).getVacationSchedules();
+    }
+
+    public Pharmacist findUserByEmail(String email){
+        return pharmacistRepository.findPharmacistByUser_Email(email);
     }
 
 }

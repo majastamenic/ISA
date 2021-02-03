@@ -3,7 +3,7 @@ package com.isa.pharmacy.domain;
 
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
-
+import com.isa.pharmacy.domain.enums.ExaminationAndCounselingStatus;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -23,25 +23,36 @@ public class Counseling implements Serializable {
     @OneToOne
     private Report report;
     @Column
-    private boolean isDone;
+    private boolean patientCame;
+    @Column
+    private ExaminationAndCounselingStatus counselingStatus;
 
     public Counseling(){}
 
-    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, boolean isDone) {
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
         this.schedule = schedule;
         this.report = report;
-        this.isDone = isDone;
+        this.patientCame = patientCame;
+        this.counselingStatus = counselingStatus;
     }
 
-    public boolean isDone() {
-        return isDone;
+    public boolean isPatientCame() {
+        return patientCame;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setPatientCame(boolean patientCame) {
+        this.patientCame = patientCame;
+    }
+
+    public ExaminationAndCounselingStatus getCounselingStatus() {
+        return counselingStatus;
+    }
+
+    public void setCounselingStatus(ExaminationAndCounselingStatus counselingStatus) {
+        this.counselingStatus = counselingStatus;
     }
 
     public Report getReport() {
