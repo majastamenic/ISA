@@ -1,5 +1,7 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CounselingDto;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
@@ -39,15 +41,6 @@ public class PharmacistService {
 
     public WorkSchedule getWorkScheduleByPharmacist(Long id){
         return pharmacistRepository.findPharmacistById(id).getWorkSchedule();
-    }
-
-    public List<Counseling> getCounselings(Long id){
-        List<Counseling> counselings = new ArrayList<>();
-        for(Counseling c : counselingService.getAll()){
-            if(c.getPharmacist().getId().equals(id))
-                counselings.add(c);
-        }
-        return counselings;
     }
 
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){

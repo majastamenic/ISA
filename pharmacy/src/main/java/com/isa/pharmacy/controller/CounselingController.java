@@ -34,7 +34,7 @@ public class CounselingController {
     public List<Counseling> getAll() { return counselingService.getAll(); }
 
     @GetMapping("/{email}")
-    public List<Counseling> getAllByPharmacist(@PathVariable("email") String email) {
+    public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
         return counselingService.getAllByPharmacist(pharmacist);
     }

@@ -16,4 +16,15 @@ public class CounselingMapper {
         counseling.setPharmacist(pharmacist);
         return counseling;
     }
+
+    public static CounselingDto mapCounselingToCounselingDto(Counseling counseling) {
+        CounselingDto counselingDto = new CounselingDto();
+        counselingDto.setCounselingStatus(counseling.getCounselingStatus());
+        counselingDto.setPatientCame(counseling.isPatientCame());
+        counselingDto.setReport(counseling.getReport());
+        counselingDto.setSchedule(counseling.getSchedule());
+        counselingDto.setPatient(counseling.getPatient());
+        counselingDto.setEmail(counseling.getPharmacist().getUser().getEmail());
+        return counselingDto;
+    }
 }

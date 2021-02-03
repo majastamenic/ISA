@@ -18,7 +18,7 @@ import { ScheduleCounselingComponent } from './component/schedule-counseling/sch
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AllPatientsComponent } from './component/all-patients/all-patients.component';
+import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { AllPatientsComponent } from './component/all-patients/all-patients.comp
     NavbarComponent,
     AddMedicinesComponent,
     ScheduleCounselingComponent,
-    AllPatientsComponent
+    AllCounselingsComponent
   ],
   imports: [
     BrowserModule,

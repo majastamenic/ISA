@@ -1,5 +1,7 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.CounselingDto;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
@@ -30,13 +32,6 @@ public class PharmacistController {
     public WorkSchedule getWorkScheduleByPharmacist(@PathVariable("id") Long id){
         return pharmacistService.getWorkScheduleByPharmacist(id);
     }
-
-    @GetMapping("/patients/{email}")
-    public List<Counseling> getCounselings(@PathVariable("email") String email){
-        Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
-        return  pharmacistService.getCounselings(pharmacist.getId());
-    }
-    // vraticu neki dto listu koja lici na Counseling ali ce imati samo counselinge tog pharmacista
 
     @GetMapping("/vacationschedule/{id}")
     public List<VacationSchedule> getVacationScheduleByPharmacist(@PathVariable("id") Long id){
