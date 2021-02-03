@@ -2,7 +2,6 @@ package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.mapping.UserMapper;
-import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Supplier;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.service.SupplierService;

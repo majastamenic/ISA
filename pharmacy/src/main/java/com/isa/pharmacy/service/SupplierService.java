@@ -1,7 +1,6 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
-import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Supplier;
 import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.repository.SupplierRepository;

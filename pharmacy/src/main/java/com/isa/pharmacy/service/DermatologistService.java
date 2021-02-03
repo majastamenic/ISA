@@ -2,7 +2,6 @@ package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.Profile.Dermatologist;
-import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.repository.DermatologistRepository;
 import org.springframework.beans.factory.annotation.Autowired;

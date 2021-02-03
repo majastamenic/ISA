@@ -11,8 +11,7 @@ public class CreatePharmacistDto {
     private Long pharmacyId;
     private List<Long> workScheduleIds;
 
-    public CreatePharmacistDto() {
-    }
+    public CreatePharmacistDto() { }
 
     public Long getId() {
         return id;

@@ -1,7 +1,5 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
-
 public class PharmacyAdminDto {
     private RegistrationDto registrationDto;
     private PharmacyDto pharmacyDto;

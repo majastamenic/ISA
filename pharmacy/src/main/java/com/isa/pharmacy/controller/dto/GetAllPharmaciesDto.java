@@ -12,8 +12,7 @@ public class GetAllPharmaciesDto {
     private List<Pharmacist> pharmacists;
     private List<GetAllPharmaciesPharmacyAdminDto> admins;
 
-    public GetAllPharmaciesDto() {
-    }
+    public GetAllPharmaciesDto() { }
 
     public Long getId() {
         return id;
