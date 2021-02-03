@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { HospitalService } from 'src/app/service/hospital.service';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
@@ -17,7 +18,7 @@ export class HospitalComponent implements OnInit {
   pharmacies: any;
 
 
-  constructor(private hospitalService: HospitalService, private pharmacyService: PharmacyService) { }
+  constructor(private hospitalService: HospitalService, private pharmacyService: PharmacyService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.pharmacyService.getAll().subscribe(listPharmacy => {
@@ -28,10 +29,10 @@ export class HospitalComponent implements OnInit {
 
   registration(): void{
     this.hospitalService.registration(this.hospital).subscribe((returnedHospital: Hospital) => {
-      alert('Welcome ' + returnedHospital.email + ' .\n' + 'Please check you email.');
+      this.toastrService.success('Welcome ' + returnedHospital.email + ' .\n' + 'Please check you email.')
     },
       (err: any) => {
-        alert('Error while registered ' + err.error.message);
+        this.toastrService.error('Error while registered ' + err.error.message);
       });
   }
 

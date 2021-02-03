@@ -12,8 +12,7 @@ public class GetAllPharmaciesDto {
     private List<Pharmacist> pharmacists;
     private List<GetAllPharmaciesPharmacyAdminDto> admins;
 
-    public GetAllPharmaciesDto() {
-    }
+    public GetAllPharmaciesDto() { }
 
     public GetAllPharmaciesDto(Long id, String name, String address, List<Pharmacist> pharmacists, List<GetAllPharmaciesPharmacyAdminDto> admins) {
         this.id = id;

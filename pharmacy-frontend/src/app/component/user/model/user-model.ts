@@ -33,6 +33,7 @@ export interface UserRegistrationDto{
     city: string;
     country: string;
     phone: string;
+    role: Role;
 }
 
 enum Role {
@@ -40,5 +41,6 @@ enum Role {
     ADMIN,
     DERMATOLOGIST,
     PHARMACIST,
-    SUPPLIER
+    SUPPLIER,
+    PHARMACY_ADMIN,
 }

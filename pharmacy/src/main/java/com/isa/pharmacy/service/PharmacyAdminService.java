@@ -12,7 +12,8 @@ public class PharmacyAdminService {
     @Autowired
     private PharmacyAdminRepository pharmacyAdminRepository;
 
-    public PharmacyAdmin save(PharmacyAdmin pharmacyAdmin){ return pharmacyAdminRepository.save(pharmacyAdmin); }
+    public PharmacyAdmin save(PharmacyAdmin pharmacyAdmin){
+        return pharmacyAdminRepository.save(pharmacyAdmin); }
 
     public List<PharmacyAdmin> findAll(){ return pharmacyAdminRepository.findAll();}
 

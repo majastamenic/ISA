@@ -1,0 +1,45 @@
+<div  class="page">
+    <div class="form">
+        <form class="ngform">
+            <h3>Registration pharmacy admin</h3>
+            <div>
+                <input type="email" [(ngModel)]="admin.user.email" placeholder="Enter admin email" name="email" required #email="ngModel"
+                [class.is-invalid] = "email.invalid && email.touched" pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+                <div *ngIf="email.errors && (email.invalid && email.touched)">
+                    <small class="text-danger" *ngIf = "email.errors.required">Email is required field.</small>
+                    <small class="text-danger" *ngIf = "email.errors.pattern">Enter valid email.</small>
+                </div>
+            </div>
+
+            <div>
+                <input type="text" [(ngModel)]="admin.user.name" placeholder="Enter admin name" name='name'>
+            </div>
+
+            <div>
+                <input type="text" [(ngModel)]="admin.user.surname" placeholder="Enter admin surname" name='surname'>
+            </div>
+
+            <div>
+                <input type="text" [(ngModel)]="admin.user.address" placeholder="Enter admin address" name='address'>
+            </div>
+
+            <div>
+                <input type="text" [(ngModel)]="admin.user.city" placeholder="Enter admin city" name='city'>
+            </div>
+            <div>
+                <input type="text" [(ngModel)]="admin.user.country" placeholder="Enter admin country" name='country'>
+            </div>
+            <div>    
+                <input type="tel" [(ngModel)]="admin.user.phone" placeholder="Enter admin phone" name='phone'>
+            </div>
+            <div>
+                <select [(ngModel)]="admin.pharmacy" class="form-select" aria-label="Default select example" name="pharmacy">
+                    <option *ngFor="let p of pharmacies" name="ph" [ngValue]="p">{{p.name}}</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" (click)="registration()">Register</button>
+        </form>
+    </div>
+</div>
+
+

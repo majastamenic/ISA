@@ -32,7 +32,7 @@ public class PharmacyAdmin implements Serializable {
         this.id = id;
         this.orders= orders;
         this.pharmacy = pharmacy;
-        this.schedule =schedule;
+        this.schedule = schedule;
         this.isFirstLog = isFirstLog;
     }
 

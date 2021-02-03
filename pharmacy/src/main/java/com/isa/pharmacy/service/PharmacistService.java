@@ -10,6 +10,7 @@ import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class PharmacistService {
@@ -23,21 +24,29 @@ public class PharmacistService {
     private PharmacyService pharmacyService;
 
 
-    public Pharmacist save(CreatePharmacistDto p) {
-
-            User dbUser= userService.create(p.getUser());
+    public CreatePharmacistDto save(CreatePharmacistDto p) {
+        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
+        if (pattern.matcher(p.getUser().getEmail()).matches()) {
+            for (Pharmacist pha : pharmacistRepository.findAll()) {
+                if (pha.getUser().getEmail().equalsIgnoreCase(p.getUser().getEmail())) {
+                    return null;
+                }
+            }
+            User dbUser = userService.create(p.getUser());
             Pharmacist pharmacist = PharmacistMapper.mapCreatePharmacistDtoToPharmacist(p);
             pharmacist.setUser(dbUser);
 
-            for (Long id: p.getWorkScheduleIds()) {
+            for (Long id : p.getWorkScheduleIds()) {
                 pharmacist.getWorkSchedule().add(this.workScheduleService.getById(id));
             }
 
+            pharmacist.setPharmacy(this.pharmacyService.getById(p.getPharmacyId()));
             Pharmacist savedPharmacist = pharmacistRepository.save(pharmacist);
-            Pharmacy pharmacy = this.pharmacyService.getById(p.getPharmacyId());
-            pharmacy.getPharmacists().add(savedPharmacist);
-            this.pharmacyService.save(pharmacy);
-            return savedPharmacist;
+//            Pharmacy pharmacy = this.pharmacyService.getById(p.getPharmacyId());
+//            this.pharmacyService.save(pharmacy);
+            return PharmacistMapper.mapPharmacistToCreatePharmacistDto(savedPharmacist);
+        }
+        return null;
     }
 
     public List<Pharmacist> getAll(){ return pharmacistRepository.findAll(); }

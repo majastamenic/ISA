@@ -22,7 +22,7 @@ public class PharmacistController {
     public List<Pharmacist> getAll() { return pharmacistService.getAll(); }
 
     @PostMapping("/registration")
-    public Pharmacist save(@RequestBody CreatePharmacistDto p) { return pharmacistService.save(p); }
+    public CreatePharmacistDto save(@RequestBody CreatePharmacistDto p) { return pharmacistService.save(p); }
 
     @PostMapping("/update")
     public Pharmacist update(@RequestBody Pharmacist p) { return pharmacistService.update(p); }

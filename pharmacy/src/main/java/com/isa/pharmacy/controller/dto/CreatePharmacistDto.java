@@ -11,8 +11,7 @@ public class CreatePharmacistDto {
     private Long pharmacyId;
     private List<Long> workScheduleIds;
 
-    public CreatePharmacistDto() {
-    }
+    public CreatePharmacistDto() { }
 
     public CreatePharmacistDto(Long id, User user, boolean isFirstLog, Long pharmacyId, List<Long> workScheduleIds) {
         this.id = id;

@@ -1,4 +1,3 @@
--- Pharmacy
 
 insert into pharmacy (id, address, name) values (1, 'Fejes Klare 34.', 'Jankovic');
 insert into pharmacy (id, address, name) values (2, 'Fejes Klare 34.', 'Benu');

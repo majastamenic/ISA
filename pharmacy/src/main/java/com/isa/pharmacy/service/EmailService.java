@@ -1,6 +1,7 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.Profile.Patient;
+import com.isa.pharmacy.domain.Profile.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,17 @@ public class EmailService {
 
     @Value("${spring.mail.username}")
     private String mailSender;
+
+    @Async
+    public void activationEmail(User user) throws MailException {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSender);
+        simpleMailMessage.setTo(user.getEmail());
+        simpleMailMessage.setSubject("Activation profile");
+        simpleMailMessage.setText("Hello,"+user.getName()+"\nWelcome to pharmacy system.\n" +
+                "Your password is: " + user.getPassword());
+        javaMailSender.send(simpleMailMessage);
+    }
 
     @Async
     public void verificationEmailPatient(Patient patient) throws MailException {

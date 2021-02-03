@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { PharmacistService } from 'src/app/service/pharmacist.service';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
 import { WorkScheduleService } from 'src/app/service/work-schedule.service';
@@ -13,7 +14,10 @@ export class PharmacistInitComponent implements OnInit {
   listPharmacies: any = []
   listSchedules: any = []
   selectedWorkSchedules: any=[]
-  constructor( private pharmacyService: PharmacyService, private workSchedule:WorkScheduleService, private pharmacistService:PharmacistService) { }
+  constructor( private pharmacyService: PharmacyService, 
+    private workSchedule:WorkScheduleService, 
+    private pharmacistService:PharmacistService,
+    private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.pharmacyService.getAll().subscribe(response =>{
@@ -36,7 +40,7 @@ export class PharmacistInitComponent implements OnInit {
         userDto.workScheduleIds.push(schedule.id);
       }
       this.pharmacistService.createPharmacist(userDto).subscribe((_ret: any) =>{
-        alert("You added pharmacist successfuly");
+        this.toastrService.success("You added pharmacist successfuly");
       }) 
   }
 }
