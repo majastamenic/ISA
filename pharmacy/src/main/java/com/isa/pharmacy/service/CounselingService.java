@@ -3,20 +3,9 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
-import com.isa.pharmacy.domain.Report;
-import com.isa.pharmacy.domain.Schedule;
-import com.isa.pharmacy.domain.WorkSchedule;
-import com.isa.pharmacy.domain.enums.ExaminationAndCounselingStatus;
 import com.isa.pharmacy.repository.CounselingRepository;
-import com.isa.pharmacy.repository.ScheduleRepository;
-import org.hibernate.dialect.Sybase11Dialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,7 +25,7 @@ public class CounselingService {
             reportService.save(counseling.getReport());
             return counselingRepository.save(counseling);
         }
-        throw new AlreadyExistsException(String.format("Start date and end date must be on a same date"));
+        throw new AlreadyExistsException("Start date and end date must be on a same date");
     }
 
     public List<Counseling> getAll(){ return counselingRepository.findAll(); }
@@ -54,11 +43,4 @@ public class CounselingService {
         }
         return counseling;
     }
-
-    /*public Pharmacist compareWorkScheduleAndCounseling(Counseling counseling){
-        WorkSchedule workSchedule = pharmacistService.getWorkScheduleByPharmacist(counseling.getPharmacist().getId());
-        Schedule counselingSchedule = counseling.getSchedule();
-        if(workSchedule.getSchedule().getStartDate().before(counselingSchedule.getStartDate()) && workSchedule.getSchedule().)
-        return null;
-    }*/
 }

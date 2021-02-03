@@ -2,7 +2,6 @@ package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
-import com.isa.pharmacy.controller.mapping.UserMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.domain.Report;

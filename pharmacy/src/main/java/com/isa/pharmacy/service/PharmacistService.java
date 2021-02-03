@@ -17,7 +17,7 @@ public class PharmacistService {
     private UserService userService;
 
     public Pharmacist save(Pharmacist p) {
-        User u = userService.create(p.getUser());
+        userService.create(p.getUser());
         return pharmacistRepository.save(p);
     }
 
