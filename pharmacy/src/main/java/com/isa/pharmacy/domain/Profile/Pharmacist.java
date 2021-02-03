@@ -20,24 +20,26 @@ public class Pharmacist implements Serializable{
 
     @OneToOne
     private User user;
-    @OneToOne
-    private Pharmacy pharmacy;
-    @OneToOne
-    private WorkSchedule workSchedule;
-    @OneToMany
-    private List<VacationSchedule> vacationSchedules;
     @Column
     private boolean isFirstLog = true;
+    @ManyToOne
+    @JoinColumn(name = "pharmacy_id")
+    private Pharmacy pharmacy;
+    @ManyToMany
+    private List<WorkSchedule> workSchedule;
+    @OneToMany
+    private List<VacationSchedule> vacationSchedules;
 
     public Pharmacist(){}
 
-    public Pharmacist(Long id, User user, Pharmacy pharmacy, WorkSchedule workSchedule, List<VacationSchedule> vacationSchedules, boolean isFirstLog) {
+
+    public Pharmacist(Long id, User user, boolean isFirstLog, Pharmacy pharmacy, List<WorkSchedule> workSchedule, List<VacationSchedule> vacationSchedules) {
         this.id = id;
         this.user = user;
+        this.isFirstLog = isFirstLog;
         this.pharmacy = pharmacy;
         this.workSchedule = workSchedule;
         this.vacationSchedules = vacationSchedules;
-        this.isFirstLog = isFirstLog;
     }
 
     public boolean isFirstLog() {
@@ -72,11 +74,11 @@ public class Pharmacist implements Serializable{
         this.vacationSchedules = vacationSchedules;
     }
 
-    public WorkSchedule getWorkSchedule() {
+    public List<WorkSchedule> getWorkSchedule() {
         return workSchedule;
     }
 
-    public void setWorkSchedule(WorkSchedule workSchedule) {
+    public void setWorkSchedule(List<WorkSchedule> workSchedule) {
         this.workSchedule = workSchedule;
     }
 

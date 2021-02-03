@@ -21,21 +21,8 @@ public class Pharmacy implements Serializable {
     private String address;
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
-    @OneToMany
-    private List<Pharmacist> pharmacists;
-    @OneToMany
-    private List<PharmacyAdmin> admins;
 
     public Pharmacy() {
-    }
-
-    public Pharmacy(Long id, String name, String address, List<MedicinePharmacy> medicinePharmacy, List<Pharmacist> pharmacists, List<PharmacyAdmin> admins) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.medicinePharmacy = medicinePharmacy;
-        this.pharmacists = pharmacists;
-        this.admins= admins;
     }
 
     public Pharmacy(Long id, String name, String address,
@@ -45,14 +32,6 @@ public class Pharmacy implements Serializable {
         this.name = name;
         this.address = address;
         this.medicinePharmacy = medicinePharmacy;
-    }
-
-    public List<Pharmacist> getPharmacists() {
-        return pharmacists;
-    }
-
-    public void setPharmacists(List<Pharmacist> pharmacists) {
-        this.pharmacists = pharmacists;
     }
 
     public Long getId() {
@@ -92,13 +71,6 @@ public class Pharmacy implements Serializable {
         return medicinePharmacy;
     }
 
-    public List<PharmacyAdmin> getAdmins() {
-        return admins;
-    }
-
-    public void setAdmins(List<PharmacyAdmin> admins) {
-        this.admins = admins;
-    }
 
     @Override
     public boolean equals(Object obj) {

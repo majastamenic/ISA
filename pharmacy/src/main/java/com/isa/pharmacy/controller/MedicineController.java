@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.isa.pharmacy.controller.dto.AddMedicineDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,8 @@ public class MedicineController {
     }
 
     @PostMapping
-    public Medicine create(@RequestBody MedicineDto medicineDTO) {
-        Medicine medicine = MedicineMapper.mapMedicineDtoToMedicine(medicineDTO);
+    public Medicine addMedicines(@RequestBody AddMedicineDto medicineDto) {
+        Medicine medicine = MedicineMapper.mapAddMedicineDtoToMedicine(medicineDto);
         return medicineService.create(medicine);
     }
 
