@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.RegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +32,12 @@ public class UserController {
             throw new NotFoundException(String.format("User with id %s not found", id));
         }
         return user;
+    }
+
+    @PutMapping
+    public User updateUser(@RequestBody RegistrationDto registrationDto){
+        User user = UserMapper.mapRegistrationDtoToUser(registrationDto);
+        return userService.updateUser(user);
     }
 
     @PostMapping("/login")

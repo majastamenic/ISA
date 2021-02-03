@@ -1,6 +1,8 @@
 package com.isa.pharmacy.service;
 
 import java.util.List;
+import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.domain.enums.Role;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,7 @@ public class UserService {
 
     public User login(User user) {
         User existingUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        if (existingUser == null || !existingUser.getActive()) {
+        if (existingUser == null || (!existingUser.getActive() && existingUser.getRole().equals(Role.PATIENT)) ) {
             throw new UnauthorizeException("Can't find user with email and password");
         }
         return existingUser;
@@ -40,5 +42,19 @@ public class UserService {
 
     public User getByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+    public User updateUser(User user){
+        User dbUser = userRepository.findByEmail(user.getEmail());
+        if(dbUser == null)
+            throw new NotFoundException("User not found");
+        dbUser.setName(user.getName());
+        dbUser.setSurname(user.getSurname());
+        dbUser.setAddress(user.getAddress());
+        dbUser.setCity(user.getCity());
+        dbUser.setCountry(user.getCountry());
+        dbUser.setPhone(user.getPhone());
+        dbUser.setActive(true);
+        return userRepository.save(dbUser);
     }
 }

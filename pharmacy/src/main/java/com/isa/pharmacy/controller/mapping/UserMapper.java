@@ -1,9 +1,12 @@
 package com.isa.pharmacy.controller.mapping;
 
+
 import com.isa.pharmacy.controller.dto.LoginDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.domain.Profile.Dermatologist;
 import com.isa.pharmacy.domain.Profile.Patient;
+import com.isa.pharmacy.domain.Profile.Supplier;
 import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.domain.enums.Role;
 import net.bytebuddy.utility.RandomString;
@@ -39,5 +42,42 @@ public class UserMapper {
         return user;
     }
 
+    public static Dermatologist mapRegistrationDtoToDermatologist(RegistrationDto registrationDto) {
+        Dermatologist dermatologist = new Dermatologist();
+        dermatologist.setUser(mapRegistrationDtoToUser(registrationDto));
+        return dermatologist;
+    }
 
+
+    public static RegistrationDto mapUserToRegistrationDto(User user){
+        RegistrationDto registrationDto = new RegistrationDto();
+        registrationDto.setEmail(user.getEmail());
+        registrationDto.setPassword(user.getPassword());
+        registrationDto.setCity(user.getCity());
+        registrationDto.setAddress(user.getAddress());
+        registrationDto.setCountry(user.getCountry());
+        registrationDto.setPhone(user.getPhone());
+        return registrationDto;
+    }
+
+    public static User mapRegistrationDtoToUser(RegistrationDto registrationDto){
+        User user = new User();
+        user.setPassword(RandomString.make(10));
+        user.setEmail(registrationDto.getEmail());
+        user.setName(registrationDto.getName());
+        user.setSurname(registrationDto.getSurname());
+        user.setAddress(registrationDto.getAddress());
+        user.setCity(registrationDto.getCity());
+        user.setCountry(registrationDto.getCountry());
+        user.setPhone(registrationDto.getPhone());
+        user.setActive(false);
+        user.setRole(registrationDto.getRole());
+        return user;
+    }
+
+    public static Supplier mapRegistrationDtoToSupplier(RegistrationDto registrationDto){
+        Supplier supplier = new Supplier();
+        supplier.setUser(mapRegistrationDtoToUser(registrationDto));
+        return supplier;
+    }
 }

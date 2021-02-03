@@ -1,4 +1,3 @@
--- Pharmacy
 insert into pharmacy (id, address, name) values (1, 'Fejes Klare 34.', 'Jankovic');
 insert into pharmacy (id, address, name) values (2, 'Fejes Klare 34.', 'Benu');
 insert into pharmacy (id, address, name) values (3, 'Fejes Klare 34.', 'Zdravlje');
@@ -9,6 +8,12 @@ insert into pharmacy (id, address, name) values (6, 'Fejes Klare 34.', 'Nova');
 -- Schedule
 insert into schedule(start_date, end_date, start_time, end_time)values('2021-02-01', '2021-02-07', '08:00:00', '14:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '14:00:00', '20:00:00');
+
+-- PharmacyAdmin
+
+insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (9,1,true);
+insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (10,2,true);
+
 
 -- WorkSchedule
 insert into work_schedule(schedule_id) values(1);
@@ -35,6 +40,9 @@ INSERT INTO hospital(id, email, name) VALUES (5, 'peraperic@gmail.com', 'Lalala'
 INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition)VALUES (1, 62542, 0, 'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu', 'sastav1');
 INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition)VALUES (2, 66042, 1, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove', 'sastav2');
 INSERT INTO public.medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition)VALUES (3, 62217, 2, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu', 'sastav3');
+
+insert into app_order(id, end_date, end_time) values (1, '2021-02-07', '08:00:00');
+insert into app_order(id, end_date, end_time) values (2, '2021-03-07', '04:00:00');
 
 -- Za apoteku sa id=1
 INSERT INTO public.medicine_pharmacy(id, price, quantity, medicine_id, pharmacy_id)VALUES (1, 1.50, 2350, 1, 1);

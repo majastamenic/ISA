@@ -4,12 +4,19 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
+import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
+import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
 import { LoginComponent } from './component/user/login/login.component';
-import { AddMedicinesComponent } from './component/user/profile/system_admin/add-medicines/add-medicines.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
+import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
+import { AddPharmacyAdminComponent } from './system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
+import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
+import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
+import { SystemAdminComponent } from './system-admin/system-admin.component';
+import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -21,6 +28,17 @@ const routes: Routes = [
   {path: 'medicine', component: MedicineComponent},
   {path: 'uploadQR', component: UploadQRComponent},
   { path: 'ePrescription', component: EPrescriptionComponent },
+  {path: 'system-admin', component: SystemAdminComponent,
+    children : [
+      { path: 'addMedicines', component: AddMedicinesComponent},
+      { path: 'addPharmacy', component: AddPharmacyComponent},
+      { path: 'addPharmacyAdmin', component: AddPharmacyAdminComponent},
+      { path: 'regDermatologist', component: RegDermatologistComponent},
+      { path: 'regSupplier', component: RegSupplierComponent},
+    ]
+  }, 
+  { path: 'pharmacist', component: PharmacistComponent},
+  { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'addMedicines', component: AddMedicinesComponent},
   { path: 'counseling', component: ScheduleCounselingComponent},
 ];

@@ -13,11 +13,22 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { AddMedicinesComponent } from './component/user/profile/system_admin/add-medicines/add-medicines.component';
+import { SystemAdminComponent } from './system-admin/system-admin.component';
+import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
+import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
+import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
+import { ToastrModule } from 'ngx-toastr';
+import { PharmacyAdminComponent } from './component/pharmacy-admin/pharmacy-admin.component';
+import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
+import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AddPharmacyAdminComponent } from './system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
+import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {DpDatePickerModule} from 'ng2-date-picker';
+import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -30,8 +41,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MedicineComponent,
     UploadQRComponent,
     NavbarComponent,
+    SystemAdminComponent,
     AddMedicinesComponent,
-    ScheduleCounselingComponent
+    AddPharmacyComponent,
+    RegDermatologistComponent,
+    AddPharmacyAdminComponent,
+    PharmacyAdminComponent,
+    PharmacistInitComponent,
+    PharmacistComponent,
+    RegSupplierComponent,
+    ScheduleCounselingComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +58,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
+    NgSelectModule,
     DpDatePickerModule,
     NgbModule,
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

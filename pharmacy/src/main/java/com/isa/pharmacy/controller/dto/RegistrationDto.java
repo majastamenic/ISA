@@ -1,5 +1,7 @@
 package com.isa.pharmacy.controller.dto;
 
+import com.isa.pharmacy.domain.enums.Role;
+
 public class RegistrationDto {
 
     private String email;
@@ -11,13 +13,14 @@ public class RegistrationDto {
     private String city;
     private String country;
     private String phone;
+    private Role role;
 
 
     public RegistrationDto() {
     }
 
     public RegistrationDto(String email, String password, String name, String surname, String address, String city,
-                           String country, String phone) {
+                           String country, String phone, Role role) {
         super();
         this.email = email;
         this.password = password;
@@ -27,6 +30,7 @@ public class RegistrationDto {
         this.city = city;
         this.country = country;
         this.phone = phone;
+        this.role = role;
     }
 
 
@@ -100,5 +104,13 @@ public class RegistrationDto {
 
     public void setPasswordAgain(String passwordAgain) {
         this.passwordAgain = passwordAgain;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
