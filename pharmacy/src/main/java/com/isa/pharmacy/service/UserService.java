@@ -1,15 +1,18 @@
 package com.isa.pharmacy.service;
 
-import java.util.List;
-import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.enums.Role;
-import java.util.regex.Pattern;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.isa.pharmacy.controller.dto.PasswordChangeDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
 import com.isa.pharmacy.domain.Profile.User;
+import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -25,25 +28,6 @@ public class UserService {
         throw new AlreadyExistsException(String.format("User with email %s, already exists or is not in required format", user.getEmail()));
     }
 
-    public User login(User user) {
-        User existingUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        if (existingUser == null || (!existingUser.getActive() && existingUser.getRole().equals(Role.PATIENT)) ) {
-            throw new UnauthorizeException("Can't find user with email and password");
-        }
-        return existingUser;
-    }
-
-    public User getById(Long id) {
-        User user = userRepository.findUserById(id);
-        return user;
-    }
-
-    public List<User> getAll() { return userRepository.findAll(); }
-
-    public User getByEmail(String email){
-        return userRepository.findByEmail(email);
-    }
-
     public User updateUser(User user){
         User dbUser = userRepository.findByEmail(user.getEmail());
         if(dbUser == null)
@@ -57,4 +41,43 @@ public class UserService {
         dbUser.setActive(true);
         return userRepository.save(dbUser);
     }
+
+    public User updateUserPassword(User user){
+        User dbUser = userRepository.findByEmail(user.getEmail());
+        if(dbUser == null)
+            throw new NotFoundException("User not found");
+        dbUser.setPassword(user.getPassword());
+        dbUser.setActive(true);
+        return userRepository.save(dbUser);
+    }
+
+    public User login(User user) {
+        User existingUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        if (existingUser == null || (!existingUser.getActive() && existingUser.getRole().equals(Role.PATIENT)) ) {
+            throw new UnauthorizeException("Can't find user with email and password");
+        }
+        return existingUser;
+    }
+
+    public User updatePassword(PasswordChangeDto passwordDto){
+        User dbUser = userRepository.findByEmail(passwordDto.getEmail());
+        if(dbUser == null)
+            throw new NotFoundException("User not found");
+        if(!dbUser.getPassword().equals(passwordDto.getOldPass()))
+            throw new InvalidActionException("Invalid old password");
+        if(!passwordDto.getNewPass().equals(passwordDto.getNewPassRepeat()))
+            throw new InvalidActionException("Passwords are not equal");
+        dbUser.setPassword(passwordDto.getNewPass());
+        return userRepository.save(dbUser);
+    }
+
+    public User getById(Long id) {
+        return userRepository.findUserById(id);
+    }
+
+    public User getByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
+    public List<User> getAll() { return userRepository.findAll(); }
 }

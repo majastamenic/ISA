@@ -13,6 +13,7 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { PatientProfileComponent } from './component/patient-profile/patient-profile.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
 import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
+import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-
     NavbarComponent,
     SystemAdminComponent,
     AddMedicinesComponent,
+    PatientProfileComponent,
     AddPharmacyComponent,
     RegDermatologistComponent,
     AddPharmacyAdminComponent,
@@ -57,6 +60,8 @@ import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-
     RegSupplierComponent,
     ScheduleCounselingComponent,
     PriceInitComponent,
+    RegSystemAdminComponent
+
   ],
   imports: [
     BrowserModule,

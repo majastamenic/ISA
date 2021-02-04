@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { UserRegistrationDto } from 'src/app/component/user/model/user-model';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
 import { UserService } from 'src/app/service/user.service';
-import { PharmacyDto } from '../add-pharmacy/model/pharmacy-model';
 
 @Component({
   selector: 'app-reg-pharmacy-admin',
@@ -12,14 +10,11 @@ import { PharmacyDto } from '../add-pharmacy/model/pharmacy-model';
 })
 export class AddPharmacyAdminComponent implements OnInit {
 
-  user: UserRegistrationDto = { email: '', password: '', passwordAgain: '', name: '', surname: '', address: '', city: '',
-  country: '', phone: '', role: 5};
-
+  admin:any = {email: '', name: '', surname: '', address: '', city:'', country:'', phone: '', active:false, role: 6, pharmacyId: 0}
   pharmacies: any;
-  admin: any;
+  pharmacy: any;
 
   constructor(private userService: UserService, private toastrService:ToastrService, private pharmacyService: PharmacyService) { 
-    this.admin = {user: this.user, pharmacy:''};
   }
 
   ngOnInit(): void {
@@ -29,17 +24,13 @@ export class AddPharmacyAdminComponent implements OnInit {
   }
 
   registration(): void {
-    this.userService.registrationpharmacyAdmin(this.admin).subscribe((returnedAdmin: PharmacyAdminDto) => {
-      this.toastrService.success('Added new phar.');
+    this.admin.pharmacyId = this.pharmacy.id;
+    this.userService.registrationpharmacyAdmin(this.admin).subscribe((returnedAdmin: any) => {
+      this.toastrService.success('Added new pharmacy admin.');
     },
       (err: any) => {
         alert('Registration error ' + err.error.message);
       });
   }
 
-}
-
-export interface PharmacyAdminDto{
-  user: UserRegistrationDto,
-  pharmacy: PharmacyDto
 }

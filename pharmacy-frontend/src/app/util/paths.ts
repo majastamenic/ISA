@@ -2,6 +2,7 @@ export const BACKEND_PATH = 'http://localhost:8081'
 
 export const USER_PATH = BACKEND_PATH + '/user';
 export const LOGIN_PATH = USER_PATH + '/login';
+export const PASSWORD_USER_PATH = USER_PATH + '/password';
 
 export const PHARMACY_PATH = BACKEND_PATH + '/pharmacy';
 export const HOSPITAL_PATH = BACKEND_PATH + '/hospital';
@@ -19,6 +20,9 @@ export const PATIENT_VALID_PATH = PATIENT_PATH + '/valid';
 export const DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologist';
 export const PHARMACY_ADMIN_PATH = BACKEND_PATH + '/phadmin';
 export const SUPPLIER_PATH = BACKEND_PATH + '/supplier';
+
+export const SYSTEM_ADMIN_PATH = BACKEND_PATH + '/system_admin';
+
 
 export const PRICELISTDEFINE_PATH = BACKEND_PATH + '/pricelist/define';
 export const COUNSELING_PATH = BACKEND_PATH + '/counseling';
