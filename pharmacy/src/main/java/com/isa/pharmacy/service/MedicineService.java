@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.isa.pharmacy.controller.dto.MedicineDto;
+import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,10 @@ public class MedicineService {
     }
 
     public List<Medicine> getAll() {
-        return medicineRepository.findAll();
+        List<Medicine> medicineList = medicineRepository.findAll();
+        if(medicineList == null)
+            throw new NotFoundException("Pharmacy system doesnt have any medicine");
+        return medicineList;
     }
 
     public List<MedicineDto> getAllMedicines() {
@@ -48,5 +53,14 @@ public class MedicineService {
             }
         }
         return medicineDtoList;
+    }
+
+    public MedicineLoyaltyDto changeLoyalty(MedicineLoyaltyDto medicineLoyaltyDto){
+        Medicine medicine = medicineRepository.findMedicineByCode(medicineLoyaltyDto.getCode());
+        if(medicine == null)
+            throw new NotFoundException("Medicine "+ medicineLoyaltyDto.getName()+" doesnt exist.");
+        medicine.setLoyaltyPoints(medicineLoyaltyDto.getLoyaltyPoints());
+        medicineRepository.save(medicine);
+        return medicineLoyaltyDto;
     }
 }

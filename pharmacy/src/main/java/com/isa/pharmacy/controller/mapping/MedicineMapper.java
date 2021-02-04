@@ -3,6 +3,7 @@ package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.AddMedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
+import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 
@@ -54,6 +55,25 @@ public class MedicineMapper {
         medicine.setPublishingType(medicineDto.getPublishingType());
         medicine.setReplacementMedicines(medicineDto.getReplacementMedicine());
         medicine.setNote(medicineDto.getNote());
+        medicine.setLoyaltyPoints(medicineDto.getLoyaltyPoints());
+        return medicine;
+    }
+
+    public static MedicineLoyaltyDto mapMedicineToMedicineLoyalityDto(Medicine medicine){
+        MedicineLoyaltyDto medicineLoyaltyDto = new MedicineLoyaltyDto();
+        medicineLoyaltyDto.setCode(medicine.getCode());
+        medicineLoyaltyDto.setName(medicine.getName());
+        medicineLoyaltyDto.setLoyaltyPoints(medicine.getLoyaltyPoints());
+
+        return medicineLoyaltyDto;
+    }
+
+    public static Medicine mapMedicineLoyalityDtoToMedicine(MedicineLoyaltyDto medicineLoyaltyDto){
+        Medicine medicine = new Medicine();
+        medicine.setCode(medicineLoyaltyDto.getCode());
+        medicine.setName(medicineLoyaltyDto.getName());
+        medicine.setLoyaltyPoints(medicineLoyaltyDto.getLoyaltyPoints());
+
         return medicine;
     }
 }
