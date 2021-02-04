@@ -1,9 +1,7 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.PasswordChangeDto;
-import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.dto.UserDto;
-import com.isa.pharmacy.domain.Profile.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
