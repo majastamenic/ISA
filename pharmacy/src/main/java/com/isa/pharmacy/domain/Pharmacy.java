@@ -26,7 +26,7 @@ public class Pharmacy implements Serializable {
     }
 
     public Pharmacy(Long id, String name, String address,
-                    List<MedicinePharmacy> medicinePharmaciest) {
+                    List<MedicinePharmacy> medicinePharmacy) {
         super();
         this.id = id;
         this.name = name;

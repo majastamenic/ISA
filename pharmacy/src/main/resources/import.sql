@@ -13,33 +13,58 @@ insert into hospital(email, name) values('integration.adapter@gmail.com', 'WellD
 -- User: Patient
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Maja', 'Stamenic', 'maja@gmail.com', 'maja', 'Suboticka 23', 'Novi Sad', 'Srbija', '066/468965', 0, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Gojko', 'Novcic', 'gojko@gmail.com', 'gojko', 'Rumenacka 23', 'Novi Sad', 'Srbija', '061/558877', 0, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Tasa', 'Damjanac', 'tasa@gmail.com', 'tasa', 'Temerinska 23', 'Novi Sad', 'Srbija', '066/123466', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nastasja', 'Damjanac', 'tasa@gmail.com', 'tasa', 'Temerinska 23', 'Novi Sad', 'Srbija', '066/123466', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Jovana', 'Jakovljevic', 'joxy@gmail.com', 'joxy', 'Lasla Gala 15', 'Novi Sad', 'Srbija', '063/1125455', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Aca', 'Lukas', 'aca@gmail.com', 'aca', 'Vojislava Vuckovica 1', 'Beograd', 'Srbija', '069/5889522', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Toma', 'zdravkovic', 'toma@gmail.com', 'toma', 'Jastrebacka 11', 'Aleksinac', 'Srbija', '065/338799', 0, true);
     -- Patient
     insert into patient(id, verification_code, user_id) values(1, 'bgbhjjgfgggfhouytr', 1);
     insert into patient(id, verification_code, user_id) values(2, 'fdssdsdggsfgfsasgj', 2);
     insert into patient(id, verification_code, user_id) values(3, 'gdfhjgkrterfscvtyu', 3);
+    insert into patient(id, verification_code, user_id) values(4, 'gdfhjgkrterfscvtyu', 4);
+    insert into patient(id, verification_code, user_id) values(5, 'gdfhjgkrterfscvtyu', 5);
+    insert into patient(id, verification_code, user_id) values(6, 'gdfhjgkrterfscvtyu', 6);
 -- User: Pharmacist
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Masa', 'Milanovic', 'masa@gmail.com', 'masa', 'Ticanova 23', 'Novi Sad', 'Srbija', '069/7798654', 3, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Milanovic', 'masa@gmail.com', 'masa', 'Ticanova 23', 'Novi Sad', 'Srbija', '069/7798654', 3, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milan', 'Knezevic', 'milan@gmail.com', 'milan', 'Gagarinova 83', 'Novi Sad', 'Srbija', '065/963565', 3, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Antonic', 'antonic@gmail.com', 'antonic', 'Bulevar Oslobodjenja 78', 'Novi Sad', 'Srbija', '065/789101', 3, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirko', 'Plavsic', 'mirko@gmail.com', 'mirko', 'Pa Pavla 14', 'Novi Sad', 'Srbija', '069/8765432', 3, true);
     -- Pharmacist
-    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(1, true, 5, 4);
-    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(2, true, 6, 5);
+    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(7, true, 5, 7);
+    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(8, true, 6, 8);
+    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(9, true, 4, 9);
+    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(10, true, 5, 10);
 -- User: Admin
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Luburic', 'nikola@uns.ac.rs', 'nikola', 'Marka Kraljevica 2', 'Novi Sad', 'Srbija', '062/468965', 1, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Rade', 'Doroslovacki', 'rade@uns.ac.rs', 'rade', 'Marka Kraljevica 15', 'Novi Sad', 'Srbija', '062/779635', 1, true);
 -- User: Dermatologist
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milica', 'Pavlovic', 'milica@gmail.com', 'milica', 'Somborska 37', 'Novi Sad', 'Srbija', '063/887345', 2, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Darko', 'Milicic', 'dare@gmail.com', 'dare', 'Zmaj Jovina 56', 'Novi Sad', 'Srbija', '061/1116555', 2, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Acim', 'Maravic', 'acim@gmail.com', 'acim', 'Bulevar Cara Lazara 15', 'Novi Sad', 'Srbija', '063/555333', 2, true);
     -- Dermatologist
-    insert into dermatologist(id, user_id, is_first_log) values(7, 7, false);
+    insert into dermatologist(id, user_id, is_first_log) values(13, 13, false);
+    insert into dermatologist(id, user_id, is_first_log) values(14, 14, false);
+    insert into dermatologist(id, user_id, is_first_log) values(15, 15, false);
 -- User: Supplier
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Luka', 'Djurdjevic', 'luka@gmail.com', 'luka', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 4, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Simona', 'Prokic', 'simona@gmail.com', 'simona', 'Fruskogorsa 15', 'Novi Sad', 'Srbija', '067/114885', 4, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Simona', 'Prokic', 'simona@gmail.com', 'simona', 'Fruskogorska 12', 'Novi Sad', 'Srbija', '067/114885', 4, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mitar', 'Miric', 'mitar@gmail.com', 'mitar', 'Futoski put 105', 'Novi Sad', 'Srbija', '067/335658', 4, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Ana', 'Nikolic', 'ana@gmail.com', 'ana', 'Bulevar Cara Dusana 18', 'Novi Sad', 'Srbija', '064/127865', 4, true);
 
 -- User: PharmacyAdmin
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mikica', 'Djurdjevic', 'mikica@gmail.com', 'mikica', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 5, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Vikica', 'Prokic', 'vikica@gmail.com', 'vikica', 'Fruskogorsa 15', 'Novi Sad', 'Srbija', '067/114885', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marko', 'Markovic', 'mare@gmail.com', 'mare', 'Fruskogorska 15', 'Novi Sad', 'Srbija', '067/114885', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milos', 'Djuric', 'milos@gmail.com', 'milos', 'Dunavska 89', 'Novi Sad', 'Srbija', '067/114885', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Vucevic', 'marija@gmail.com', 'marija', 'Narodnog Fronta 78', 'Novi Sad', 'Srbija', '063/659898', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirjana', 'Radojcic', 'mima@gmail.com', 'mima', 'Zeleznicka 18', 'Novi Sad', 'Srbija', '061/1112565', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Ivana', 'Ivanovic', 'ivana@gmail.com', 'ivana', 'Vojvodjanskih Brigada 2', 'Novi Sad', 'Srbija', '069/3355668', 5, true);
     -- PharmacyAdmin
-    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (10,1,true);
-    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (11,2,true);
+    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (20,1,true);
+    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (21,2,true);
+    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (22,3,true);
+    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (23,4,true);
+    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (24,5,true);
+    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (25,6,true);
 -- *********************************************************************************************************
 
 -- Schedule: for work time
@@ -81,19 +106,19 @@ insert into work_schedule(schedule_id) values(9);
 insert into work_schedule(schedule_id) values(10);
 
 -- Examinations
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(1, 15, 11, 7, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(2, 20, 12, 7, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(3, 20, 13, 7, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(4, 15, 14, 7, 1, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(5, 20, 15, 7, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(6, 40, 16, 7, 1, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(7, 30, 17, 7, 1, 3);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(8, 25, 18, 7, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(9, 25, 19, 7, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(10, 25, 20, 7, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(11, 25, 21, 7, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(12, 25, 22, 7, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(13, 25, 23, 7, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(1, 15, 11, 13, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(2, 20, 12, 13, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(3, 20, 13, 13, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(4, 15, 14, 13, 1, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(5, 20, 15, 13, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(6, 40, 16, 13, 1, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(7, 30, 17, 13, 1, 3);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(8, 25, 18, 13, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(9, 25, 19, 13, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(10, 25, 20, 13, 2, 6);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(11, 25, 21, 13, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(12, 25, 22, 13, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(13, 25, 23, 13, 2);
 
 -- Medicines
 insert into medicine(code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(62542, 0, 'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu', 'cochenillrot, laktoza, monohidrat');
