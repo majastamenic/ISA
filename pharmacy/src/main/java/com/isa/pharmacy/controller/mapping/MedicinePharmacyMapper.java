@@ -7,8 +7,8 @@ public class MedicinePharmacyMapper {
 
     public static GetAllMedicinePharmacyDto mapMedicinePharmacyToGetAllMedicinePharmacyDto(MedicinePharmacy medicinePharmacy){
         GetAllMedicinePharmacyDto getAllMedicinePharmacyDto = new GetAllMedicinePharmacyDto();
-        getAllMedicinePharmacyDto.setMedicine(medicinePharmacy.getMedicine());
-        getAllMedicinePharmacyDto.setPharmacy(medicinePharmacy.getPharmacy());
+        getAllMedicinePharmacyDto.setMedicine(MedicineMapper.mapMedicineToMedicineFromPharmacyDto(medicinePharmacy.getMedicine()));
+        getAllMedicinePharmacyDto.setPharmacy(PharmacyMapper.mapPharmacyToPharmacyFromMedicinePharmacyDto(medicinePharmacy.getPharmacy()));
         getAllMedicinePharmacyDto.setPrice(medicinePharmacy.getPrice());
         getAllMedicinePharmacyDto.setId(medicinePharmacy.getId());
         getAllMedicinePharmacyDto.setQuantity(medicinePharmacy.getQuantity());
@@ -17,8 +17,8 @@ public class MedicinePharmacyMapper {
 
     public static MedicinePharmacy mapGetAllMedicinePharmacyDtoToMedicinePharmacy(GetAllMedicinePharmacyDto getAllMedicinePharmacyDto){
         MedicinePharmacy medicinePharmacy = new MedicinePharmacy();
-        medicinePharmacy.setMedicine(getAllMedicinePharmacyDto.getMedicine());
-        medicinePharmacy.setPharmacy(getAllMedicinePharmacyDto.getPharmacy());
+        medicinePharmacy.setMedicine(MedicineMapper.mapMedicineFromPharmacyToMedicine(getAllMedicinePharmacyDto.getMedicine()));
+        medicinePharmacy.setPharmacy(PharmacyMapper.mapPharmacyFromMedicinePharmacyDtoToPharmacy(getAllMedicinePharmacyDto.getPharmacy()));
         medicinePharmacy.setPrice(getAllMedicinePharmacyDto.getPrice());
         medicinePharmacy.setId(getAllMedicinePharmacyDto.getId());
         medicinePharmacy.setQuantity(getAllMedicinePharmacyDto.getQuantity());

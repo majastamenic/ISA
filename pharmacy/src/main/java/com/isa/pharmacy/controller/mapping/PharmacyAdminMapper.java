@@ -5,7 +5,6 @@ import com.isa.pharmacy.controller.dto.CreatePhAdminDto;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
 import com.isa.pharmacy.domain.Profile.User;
-import com.isa.pharmacy.domain.enums.Role;
 import net.bytebuddy.utility.RandomString;
 
 public class PharmacyAdminMapper {

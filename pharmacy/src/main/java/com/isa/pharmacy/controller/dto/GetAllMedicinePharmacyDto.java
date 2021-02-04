@@ -12,14 +12,14 @@ public class GetAllMedicinePharmacyDto {
 
     private int quantity;
 
-    private Medicine medicine;
+    private MedicineFromPharmacyDto medicine;
 
-    private Pharmacy pharmacy;
+    private PharmacyFromMedicinePharmacyDto pharmacy;
 
     public GetAllMedicinePharmacyDto() {
     }
 
-    public GetAllMedicinePharmacyDto(Long id, double price, int quantity, Medicine medicine, Pharmacy pharmacy) {
+    public GetAllMedicinePharmacyDto(Long id, double price, int quantity, MedicineFromPharmacyDto medicine, PharmacyFromMedicinePharmacyDto pharmacy) {
         this.id = id;
         this.price = price;
         this.quantity = quantity;
@@ -51,19 +51,19 @@ public class GetAllMedicinePharmacyDto {
         this.quantity = quantity;
     }
 
-    public Medicine getMedicine() {
+    public MedicineFromPharmacyDto getMedicine() {
         return medicine;
     }
 
-    public void setMedicine(Medicine medicine) {
+    public void setMedicine(MedicineFromPharmacyDto medicine) {
         this.medicine = medicine;
     }
 
-    public Pharmacy getPharmacy() {
+    public PharmacyFromMedicinePharmacyDto getPharmacy() {
         return pharmacy;
     }
 
-    public void setPharmacy(Pharmacy pharmacy) {
+    public void setPharmacy(PharmacyFromMedicinePharmacyDto pharmacy) {
         this.pharmacy = pharmacy;
     }
 }
