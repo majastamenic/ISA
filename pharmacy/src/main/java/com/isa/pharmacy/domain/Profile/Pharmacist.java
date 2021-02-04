@@ -1,6 +1,5 @@
 package com.isa.pharmacy.domain.Profile;
 
-import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.VacationSchedule;
 import com.isa.pharmacy.domain.WorkSchedule;
@@ -25,8 +24,6 @@ public class Pharmacist implements Serializable{
     @ManyToOne
     @JoinColumn(name = "pharmacy_id")
     private Pharmacy pharmacy;
-    @OneToMany
-    private List<Counseling> counselings;
     @ManyToMany
     private List<WorkSchedule> workSchedule;
     @OneToMany
@@ -34,12 +31,12 @@ public class Pharmacist implements Serializable{
 
     public Pharmacist(){}
 
-    public Pharmacist(Long id, User user, boolean isFirstLog, Pharmacy pharmacy, List<Counseling> counselings, List<WorkSchedule> workSchedule, List<VacationSchedule> vacationSchedules) {
+
+    public Pharmacist(Long id, User user, boolean isFirstLog, Pharmacy pharmacy, List<WorkSchedule> workSchedule, List<VacationSchedule> vacationSchedules) {
         this.id = id;
         this.user = user;
         this.isFirstLog = isFirstLog;
         this.pharmacy = pharmacy;
-        this.counselings = counselings;
         this.workSchedule = workSchedule;
         this.vacationSchedules = vacationSchedules;
     }
@@ -84,13 +81,6 @@ public class Pharmacist implements Serializable{
         this.workSchedule = workSchedule;
     }
 
-    public List<Counseling> getCounselings() {
-        return counselings;
-    }
-
-    public void setCounselings(List<Counseling> counselings) {
-        this.counselings = counselings;
-    }
 
     public Pharmacy getPharmacy() {
         return pharmacy;

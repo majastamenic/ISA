@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
+import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
@@ -33,6 +34,8 @@ const routes: Routes = [
   {path: 'uploadQR', component: UploadQRComponent},
   { path: 'ePrescription', component: EPrescriptionComponent },
   { path: 'addMedicines', component: AddMedicinesComponent},
+  { path: 'counseling', component: ScheduleCounselingComponent},
+  { path: 'allcounselings', component: AllCounselingsComponent},
   {path: 'system-admin', component: SystemAdminComponent,
     children : [
       { path: 'addMedicines', component: AddMedicinesComponent},

@@ -31,3 +31,4 @@ export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy/getAl
 export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
 
 export const PHARMACYADMIN_PATH = BACKEND_PATH + '/pharmacyadmin';
+

@@ -3,9 +3,11 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.service.CounselingService;
+import com.isa.pharmacy.service.PatientService;
 import com.isa.pharmacy.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +23,14 @@ public class CounselingController {
     private CounselingService counselingService;
     @Autowired
     private PharmacistService pharmacistService;
+    @Autowired
+    private PatientService patientService;
 
     @PostMapping("/add")
     public Counseling save(@RequestBody CounselingDto counselingDto) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(counselingDto.getEmail());
-        Counseling counseling = CounselingMapper.mapCounselingDtoToCounseling(counselingDto, pharmacist);
+        Patient patient = patientService.getPatient(counselingDto.getPatientEmail());
+        Counseling counseling = CounselingMapper.mapCounselingDtoToCounseling(counselingDto, pharmacist, patient);
         counseling.setReport(new Report());
         return counselingService.save(counseling);
     }
@@ -34,7 +39,7 @@ public class CounselingController {
     public List<Counseling> getAll() { return counselingService.getAll(); }
 
     @GetMapping("/{email}")
-    public List<Counseling> getAllByPharmacist(@PathVariable("email") String email) {
+    public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
         return counselingService.getAllByPharmacist(pharmacist);
     }
