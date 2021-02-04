@@ -22,6 +22,7 @@ import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.c
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
+import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 
 
 const routes: Routes = [
@@ -52,7 +53,8 @@ const routes: Routes = [
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'price/init', component: PriceInitComponent},
   { path: 'counseling', component: ScheduleCounselingComponent},
-  { path: 'order/init', component: OrderInitComponent}
+  { path: 'order/init', component: OrderInitComponent},
+  { path: 'medicine/reserved', component: PublishingReservedMedicineComponent}
 ];
 
 @NgModule({

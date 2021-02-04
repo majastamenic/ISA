@@ -34,6 +34,7 @@ import { AllCounselingsComponent } from './component/all-counselings/all-counsel
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
     ExaminationScheduleComponent,
     UserProfileComponent,
     PriceInitComponent,
+    PublishingReservedMedicineComponent,
   ],
   imports: [
     BrowserModule,
