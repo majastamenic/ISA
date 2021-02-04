@@ -21,6 +21,7 @@ export class PatientProfileComponent implements OnInit {
 
   ngOnInit(): void {
     let loggedUser = sessionStorage.getItem("user");
+    let loggedUserRole = sessionStorage.getItem("role");
     
     if(loggedUser){
       this.patientService.getPatientByEmail(loggedUser)

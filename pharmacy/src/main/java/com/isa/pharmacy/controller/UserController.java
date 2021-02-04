@@ -3,6 +3,7 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.PasswordChangeDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.dto.UserDto;
+import com.isa.pharmacy.domain.Profile.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -63,6 +64,11 @@ public class UserController {
     @PutMapping("/updatePassword")
     public User updatePassword(@RequestBody PasswordChangeDto passwordDto){
         return userService.updatePassword(passwordDto);
+    }
+
+    @GetMapping("/info/{email}")
+    public User getUserByEmail(@PathVariable("email") String email){
+        return userService.getByEmail(email);
     }
 
 }
