@@ -4,6 +4,7 @@ package com.isa.pharmacy.controller.mapping;
 import com.isa.pharmacy.controller.dto.AddMedicineDto;
 import com.isa.pharmacy.controller.dto.AllergyDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
+import com.isa.pharmacy.controller.dto.MedicineFromPharmacyDto;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 
@@ -58,13 +59,27 @@ public class MedicineMapper {
         return medicine;
     }
 
-    public static AllergyDto mapAllergyToAllergyDto(Medicine medicine){
+    public static Medicine mapMedicineFromPharmacyToMedicine(MedicineFromPharmacyDto medicineFromPharmacyDto) {
+        Medicine medicine = new Medicine();
+        medicine.setId(medicineFromPharmacyDto.getId());
+        medicine.setName(medicineFromPharmacyDto.getName());
+        return medicine;
+    }
+
+    public static MedicineFromPharmacyDto mapMedicineToMedicineFromPharmacyDto(Medicine medicine) {
+        MedicineFromPharmacyDto medicineFromPharmacyDto = new MedicineFromPharmacyDto();
+        medicineFromPharmacyDto.setName(medicine.getName());
+        medicineFromPharmacyDto.setId(medicine.getId());
+        return medicineFromPharmacyDto;
+    }
+
+    public static AllergyDto mapAllergyToAllergyDto (Medicine medicine){
         AllergyDto allergyDto = new AllergyDto();
         allergyDto.setName(medicine.getName());
         return allergyDto;
     }
 
-    public static Medicine mapAllergyDtoToAllergy(AllergyDto allergyDto){
+    public static Medicine mapAllergyDtoToAllergy (AllergyDto allergyDto){
         Medicine med = new Medicine();
         med.setName(allergyDto.getName());
         return med;

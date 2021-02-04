@@ -5,6 +5,7 @@ insert into pharmacy (address, name) values('Bulevar Cara Lazara 76, Novi Sad', 
 insert into pharmacy (address, name) values('Bulevar Cara Lazara 88, Novi Sad', 'Galen pharm');
 insert into pharmacy (address, name) values('Rumenacka 13, Novi Sad', 'Irisfarm');
 insert into pharmacy (address, name) values('Futoski Put 85A, Novi Sad', 'Tilia');
+
 -- Hospital
 insert into hospital(email, name) values('integration.adapter@gmail.com', 'WellDevClinic');
 
@@ -32,11 +33,14 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 -- User: Supplier
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Luka', 'Djurdjevic', 'luka@gmail.com', 'luka', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 4, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Simona', 'Prokic', 'simona@gmail.com', 'simona', 'Fruskogorsa 15', 'Novi Sad', 'Srbija', '067/114885', 4, true);
--- *********************************************************************************************************
 
--- PharmacyAdmin
---insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (9,1,true);
---insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (10,2,true);
+-- User: PharmacyAdmin
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mikica', 'Djurdjevic', 'mikica@gmail.com', 'mikica', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Vikica', 'Prokic', 'vikica@gmail.com', 'vikica', 'Fruskogorsa 15', 'Novi Sad', 'Srbija', '067/114885', 5, true);
+    -- PharmacyAdmin
+    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (10,1,true);
+    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (11,2,true);
+-- *********************************************************************************************************
 
 -- Schedule: for work time
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '08:00:00', '14:00:00');
@@ -63,7 +67,6 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '19:00:00', '19:30:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '19:30:00', '20:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-01', '19:30:00', '20:00:00');
-
 
 -- WorkSchedule
 insert into work_schedule(schedule_id) values(1);
@@ -105,27 +108,32 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 15, 1, 2);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 18, 2, 2);
 
+-- Orders
 insert into app_order( end_date, end_time) values ('2021-02-07', '08:00:00');
 insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
 
+-- MedicineReplacement
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(1, 62217);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(2, 66042);
 
+-- ??????????????
 insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 1);
 insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 2);
 insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 3);
 
 insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 4);
 insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 5);
+----------------------
 
 insert into medicineeprescription(code, name, quantity) values(2, 'brufen', 123419);
 insert into medicineeprescription(code, name, quantity) values(8, 'panadol', 6839093);
 
+-- EPrescription
 insert into eprescription(code, date_of_issue, file_text, patient_name) values(24363, null, 'Brufen, Panadol', 'Marko Markovic');
 insert into eprescription(code, date_of_issue, file_text, patient_name) values(246663, null, 'Brufen', 'Petar Petrovic');
-
-insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
-insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
+    -- EPrescription: Medications
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
 
 -- PatientAllergicMedicines
 insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 1);

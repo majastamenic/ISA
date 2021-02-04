@@ -12,4 +12,14 @@ public class PriceListMapper {
         priceList.setMedicinePharmacy(createPriceListDto.getMedicinePharmacy());
         return priceList;
     }
+
+    public  static CreatePriceListDto mapPriceListToCreatePriceListDto(PriceList priceList){
+        CreatePriceListDto createPriceListDto = new CreatePriceListDto();
+        createPriceListDto.setId(priceList.getId());
+        createPriceListDto.setDateFrom(priceList.getDateFrom());
+        createPriceListDto.setDateTo(priceList.getDateTo());
+        createPriceListDto.setMedicinePharmacy(priceList.getMedicinePharmacy());
+        return  createPriceListDto;
+    }
+
 }

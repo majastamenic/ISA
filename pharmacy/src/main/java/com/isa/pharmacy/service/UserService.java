@@ -76,7 +76,11 @@ public class UserService {
     }
 
     public User getByEmail(String email){
-        return userRepository.findByEmail(email);
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new NotFoundException("User not found");
+        }
+        return user;
     }
 
     public List<User> getAll() { return userRepository.findAll(); }

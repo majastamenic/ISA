@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(value = "http://localhost:4200")
 @RequestMapping("/pricelist")
 public class PriceListController {
 
@@ -16,7 +17,7 @@ public class PriceListController {
     private PriceListService priceListService;
 
     @PostMapping("/define")
-    public PriceList save(@RequestBody CreatePriceListDto priceList){ return priceListService.save(priceList); }
+    public CreatePriceListDto save(@RequestBody CreatePriceListDto priceList){ return priceListService.save(priceList); }
 
     @GetMapping
     public List<PriceList> getAll() { return priceListService.findAll(); }

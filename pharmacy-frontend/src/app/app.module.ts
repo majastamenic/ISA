@@ -13,7 +13,6 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { PatientProfileComponent } from './component/patient-profile/patient-profile.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
 import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
@@ -30,9 +29,12 @@ import { ScheduleCounselingComponent } from './component/schedule-counseling/sch
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +51,6 @@ import { ExaminationScheduleComponent } from './component/examination-schedule/e
     AddMedicinesComponent,
     ScheduleCounselingComponent,
     AllCounselingsComponent,
-    PatientProfileComponent,
     AddPharmacyComponent,
     RegDermatologistComponent,
     AddPharmacyAdminComponent,
@@ -61,6 +62,8 @@ import { ExaminationScheduleComponent } from './component/examination-schedule/e
     ScheduleCounselingComponent,
     RegSystemAdminComponent,
     ExaminationScheduleComponent,
+    UserProfileComponent,
+    PriceInitComponent,
   ],
   imports: [
     BrowserModule,

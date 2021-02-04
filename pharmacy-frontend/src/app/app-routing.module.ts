@@ -5,7 +5,7 @@ import { AllCounselingsComponent } from './component/all-counselings/all-counsel
 import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
-import { PatientProfileComponent } from './component/patient-profile/patient-profile.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
@@ -20,11 +20,14 @@ import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-
 import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
+import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
+import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'profile/patient', component: PatientProfileComponent},
+  {path: 'profile', component: UserProfileComponent},
   {path: 'login', component: LoginComponent},
   {path: 'user', component: RegistrationComponent},
   {path: 'hospital', component: HospitalComponent},
@@ -46,7 +49,10 @@ const routes: Routes = [
   },
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
-  { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent}
+  { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
+  { path: 'price/init', component: PriceInitComponent},
+  { path: 'counseling', component: ScheduleCounselingComponent},
+  { path: 'order/init', component: OrderInitComponent}
 ];
 
 @NgModule({

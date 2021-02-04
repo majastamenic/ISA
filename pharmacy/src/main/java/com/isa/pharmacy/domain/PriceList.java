@@ -15,11 +15,11 @@ public class PriceList {
     private MedicinePharmacy medicinePharmacy;
     @Column
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date dateFrom;
     @Column
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date dateTo;
 
     public PriceList(){

@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderInitComponent implements OnInit {
 
+  quantity: any;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  define(){
+
+  }
 }
