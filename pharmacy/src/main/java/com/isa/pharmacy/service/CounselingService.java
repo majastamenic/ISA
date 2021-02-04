@@ -1,11 +1,17 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CounselingDto;
+import com.isa.pharmacy.controller.dto.PatientDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
+import com.isa.pharmacy.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.repository.CounselingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,9 +36,18 @@ public class CounselingService {
 
     public List<Counseling> getAll(){ return counselingRepository.findAll(); }
 
-    public List<Counseling> getAllByPharmacist(Pharmacist pharmacist) {
-        return counselingRepository.findByPharmacist(pharmacist);
+    public List<CounselingDto> getAllByPharmacist(Pharmacist pharmacist) {
+        List<Counseling> counselings = counselingRepository.findByPharmacist(pharmacist);
+        List<CounselingDto> counselingDtos = new ArrayList<>();
+        for(Counseling c : counselings){
+            PatientDto patientDto = PatientMapper.mapPatientToPatientDto(c.getPatient());
+            CounselingDto counselingDto = CounselingMapper.mapCounselingToCounselingDto(c, patientDto);
+            counselingDtos.add(counselingDto);
+        }
+        return counselingDtos;
     }
+
+
     public Counseling update(Counseling c) {
         Counseling counseling = counselingRepository.findCounselingById(c.getId());
         if(counseling != null){

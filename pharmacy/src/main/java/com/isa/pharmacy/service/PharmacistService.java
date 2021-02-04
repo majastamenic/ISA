@@ -3,7 +3,6 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.controller.mapping.PharmacistMapper;
 import com.isa.pharmacy.domain.*;
-import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.repository.PharmacistRepository;
@@ -18,6 +17,8 @@ public class PharmacistService {
     private PharmacistRepository pharmacistRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CounselingService counselingService;
     @Autowired
     private WorkScheduleService workScheduleService;
     @Autowired
@@ -65,20 +66,12 @@ public class PharmacistService {
         return pharmacistRepository.findPharmacistById(id).getWorkSchedule();
     }
 
-    public List<Patient> getPatientsByPharmacist(Long id){
-        List<Patient> patients = null;
-        for(Counseling c : pharmacistRepository.findPharmacistById(id).getCounselings()){
-            patients.add(c.getPatient());
-        }
-        return patients;
-    }
-
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){
         return pharmacistRepository.findPharmacistById(id).getVacationSchedules();
     }
 
     public Pharmacist findUserByEmail(String email){
-        return pharmacistRepository.findPharmacistByUser_Email(email);
+        return pharmacistRepository.findPharmacistByUser_email(email);
     }
 
 }

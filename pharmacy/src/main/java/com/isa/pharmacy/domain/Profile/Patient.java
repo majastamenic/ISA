@@ -1,9 +1,6 @@
 package com.isa.pharmacy.domain.Profile;
 
-import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Medicine;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -20,21 +17,15 @@ public class Patient implements Serializable {
     private User user;
     @OneToMany
     private List<Medicine> allergicMedicines;
-    @OneToMany
-    private List<Counseling> counselings;
-    @OneToMany
-    private List<Examination> examinations;
     @Column
     private String verificationCode;
 
     public Patient(){}
 
-    public Patient(long id, User user, List<Medicine> allergicMedicines, List<Counseling> counselings, List<Examination> examinations, String verificationCode) {
+    public Patient(long id, User user, List<Medicine> allergicMedicines, String verificationCode) {
         this.id = id;
         this.user = user;
         this.allergicMedicines = allergicMedicines;
-        this.counselings = counselings;
-        this.examinations = examinations;
         this.verificationCode = verificationCode;
     }
 
@@ -62,21 +53,6 @@ public class Patient implements Serializable {
         this.user = user;
     }
 
-    public List<Counseling> getCounselings() {
-        return counselings;
-    }
-
-    public void setCounselings(List<Counseling> counselings) {
-        this.counselings = counselings;
-    }
-
-    public List<Examination> getExaminations() {
-        return examinations;
-    }
-
-    public void setExaminations(List<Examination> examinations) {
-        this.examinations = examinations;
-    }
 
     public String getVerificationCode() {
         return verificationCode;

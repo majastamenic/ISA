@@ -30,6 +30,7 @@ import { ScheduleCounselingComponent } from './component/schedule-counseling/sch
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
 
 @NgModule({
@@ -45,6 +46,8 @@ import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-sys
     NavbarComponent,
     SystemAdminComponent,
     AddMedicinesComponent,
+    ScheduleCounselingComponent,
+    AllCounselingsComponent,
     PatientProfileComponent,
     AddPharmacyComponent,
     RegDermatologistComponent,
@@ -53,8 +56,6 @@ import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-sys
     PharmacistInitComponent,
     PharmacistComponent,
     OrderInitComponent,
-    ScheduleCounselingComponent,
-    PharmacistComponent,
     RegSupplierComponent,
     ScheduleCounselingComponent,
     RegSystemAdminComponent,
