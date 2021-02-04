@@ -16,7 +16,7 @@ public class WorkSchedule implements Serializable {
     private Long id;
     @OneToOne
     private Schedule schedule;
-    @OneToMany
+    @ManyToMany
     private List<Pharmacist> pharmacists;
     @ManyToMany
     private List<Dermatologist> dermatologists;

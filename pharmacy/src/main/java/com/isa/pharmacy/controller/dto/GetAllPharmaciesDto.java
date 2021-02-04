@@ -14,6 +14,14 @@ public class GetAllPharmaciesDto {
 
     public GetAllPharmaciesDto() { }
 
+    public GetAllPharmaciesDto(Long id, String name, String address, List<Pharmacist> pharmacists, List<GetAllPharmaciesPharmacyAdminDto> admins) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.pharmacists = pharmacists;
+        this.admins = admins;
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.PasswordChangeDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,18 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable("id") Long id) {
+    public User getUserById(@PathVariable("id") Long id) {
         User user = userService.getById(id);
         if (user == null) {
             throw new NotFoundException(String.format("User with id %s not found", id));
         }
         return user;
+    }
+
+
+    @GetMapping("/all")
+    public List<User> getAll() {
+        return userService.getAll();
     }
 
     @PutMapping("/password")
@@ -53,9 +60,9 @@ public class UserController {
         return userService.login(user);
     }
 
-    @GetMapping("/all")
-    public List<User> getAll() {
-        return userService.getAll();
+    @PutMapping("/updatePassword")
+    public User updatePassword(@RequestBody PasswordChangeDto passwordDto){
+        return userService.updatePassword(passwordDto);
     }
 
 }

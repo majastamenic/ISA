@@ -13,6 +13,7 @@ import { ActionsBenefitsComponent } from './component/actions-benefits/actions-b
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { PatientProfileComponent } from './component/patient-profile/patient-profile.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
 import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
@@ -22,6 +23,7 @@ import { PharmacyAdminComponent } from './component/pharmacy-admin/pharmacy-admi
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 import { AddPharmacyAdminComponent } from './system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
@@ -29,7 +31,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
-
 
 @NgModule({
   declarations: [
@@ -44,11 +45,15 @@ import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-sys
     NavbarComponent,
     SystemAdminComponent,
     AddMedicinesComponent,
+    PatientProfileComponent,
     AddPharmacyComponent,
     RegDermatologistComponent,
     AddPharmacyAdminComponent,
     PharmacyAdminComponent,
     PharmacistInitComponent,
+    PharmacistComponent,
+    OrderInitComponent,
+    ScheduleCounselingComponent,
     PharmacistComponent,
     RegSupplierComponent,
     ScheduleCounselingComponent,
@@ -59,6 +64,7 @@ import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-sys
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgSelectModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'

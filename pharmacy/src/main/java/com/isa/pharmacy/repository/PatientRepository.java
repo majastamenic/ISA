@@ -11,5 +11,7 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     Patient findByUser(User user);
 
+    Patient findByUser_email(String email);
+
     List<Patient> findAll();
 }

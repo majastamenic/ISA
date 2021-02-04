@@ -14,6 +14,13 @@ public class GetAllPharmaciesPharmacyAdminDto {
     public GetAllPharmaciesPharmacyAdminDto() {
     }
 
+    public GetAllPharmaciesPharmacyAdminDto(Long id, User user, List<WorkSchedule> schedule, Boolean isFirstLog) {
+        this.id = id;
+        this.user = user;
+        this.schedule = schedule;
+        this.isFirstLog = isFirstLog;
+    }
+
     public Long getId() {
         return id;
     }
