@@ -19,6 +19,9 @@
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/allcounselings'" routerLinkActive="active">All counseling</a>
             </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/medicine/reserved'" routerLinkActive="active">Publishing reserved medicine</a>
+            </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item">

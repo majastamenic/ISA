@@ -33,6 +33,7 @@ import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
     RegSystemAdminComponent,
     UserProfileComponent,
     PriceInitComponent,
+    PublishingReservedMedicineComponent,
   ],
   imports: [
     BrowserModule,
