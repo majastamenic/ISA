@@ -63,4 +63,5 @@ public class PatientService {
     }
 
     public List<Patient> getPatients(){return patientRepository.findAll();}
+
 }
