@@ -3,7 +3,6 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Profile.Patient;
-import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;

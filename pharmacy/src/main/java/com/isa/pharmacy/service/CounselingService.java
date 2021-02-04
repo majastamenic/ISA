@@ -6,7 +6,6 @@ import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.repository.CounselingRepository;
 import org.springframework.beans.factory.annotation.Autowired;

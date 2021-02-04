@@ -1,6 +1,5 @@
 package com.isa.pharmacy.domain.Profile;
 
-import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.VacationSchedule;
 import com.isa.pharmacy.domain.WorkSchedule;
