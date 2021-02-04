@@ -29,9 +29,11 @@ import { ScheduleCounselingComponent } from './component/schedule-counseling/sch
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
     ScheduleCounselingComponent,
     RegSystemAdminComponent,
     UserProfileComponent,
+    PriceInitComponent,
   ],
   imports: [
     BrowserModule,

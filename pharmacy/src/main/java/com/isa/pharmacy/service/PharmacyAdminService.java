@@ -1,8 +1,9 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CreatePhAdminDto;
+import com.isa.pharmacy.controller.mapping.PharmacyAdminMapper;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
-import com.isa.pharmacy.domain.Profile.Supplier;
 import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.repository.PharmacyAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class PharmacyAdminService {
         admin.setFirstLog(false);
         pharmacyAdminRepository.save(pharmacyAdmin);
         return admin;
+    }
+
+    public CreatePhAdminDto findPharmacyAdminByEmail(String email){
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminRepository.findPharmacyAdminByUser_email(email);
+        return PharmacyAdminMapper.mapPharmacyAdminToPharmacyAdminDto(pharmacyAdmin);
     }
 }

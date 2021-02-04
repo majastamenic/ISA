@@ -1,21 +1,13 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isa.pharmacy.domain.MedicinePharmacy;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.Date;
 
 public class CreatePriceListDto {
 
     private Long id;
     private MedicinePharmacy medicinePharmacy;
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateFrom;
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateTo;
 
     public CreatePriceListDto() {
