@@ -49,4 +49,19 @@ enum Role {
     PHARMACIST,
     SUPPLIER,
     PHARMACY_ADMIN,
+    PHARMACY_ADMIN_SYSTEM,
+}
+
+export interface PharmacyAdminDto{
+    email: string;
+    password: string;
+    passwordAgain: string;
+    name: string;
+    surname: string;
+    address: string;
+    city: string;
+    country: string;
+    phone: string;
+    role: Role;
+    pharmacyId: any; 
 }
