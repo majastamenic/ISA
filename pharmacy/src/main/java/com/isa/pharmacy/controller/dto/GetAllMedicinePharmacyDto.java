@@ -1,10 +1,5 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.Pharmacy;
-
-
-
 public class GetAllMedicinePharmacyDto {
     private Long id;
 

@@ -19,9 +19,7 @@ public class MedicinePharmacyService {
         List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findAll();
         List<GetAllMedicinePharmacyDto> medicineDtoList = new ArrayList<>();
         for(MedicinePharmacy medicine:medicinePharmacies){
-            for(GetAllMedicinePharmacyDto medicinePharmacyDto:medicineDtoList){
                 medicineDtoList.add(MedicinePharmacyMapper.mapMedicinePharmacyToGetAllMedicinePharmacyDto(medicine));
-            }
         }
         return medicineDtoList;
     }

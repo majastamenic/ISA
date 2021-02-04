@@ -8,7 +8,6 @@ import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Repository;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.repository.MedicineRepository;
 import org.springframework.stereotype.Service;
