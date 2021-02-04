@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
         this.toastrService.warning("Please change your password");
       }else{
         sessionStorage.setItem('user', this.user.email);
+        sessionStorage.setItem('role', response.role.toString());
         this.router.navigate(['/home']);
         this.toastrService.success("User logged in successfully")
       }
