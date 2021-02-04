@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { UserRegistrationDto } from 'src/app/component/user/model/user-model';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
 import { UserService } from 'src/app/service/user.service';
-import { PharmacyDto } from '../add-pharmacy/model/pharmacy-model';
 
 @Component({
   selector: 'app-reg-pharmacy-admin',
@@ -12,8 +10,9 @@ import { PharmacyDto } from '../add-pharmacy/model/pharmacy-model';
 })
 export class AddPharmacyAdminComponent implements OnInit {
 
+  admin:any = {email: '', name: '', surname: '', address: '', city:'', country:'', phone: '', active:false, role: 6, pharmacyId: 0}
   pharmacies: any;
-  user: any = {}
+  pharmacy: any;
 
   constructor(private userService: UserService, private toastrService:ToastrService, private pharmacyService: PharmacyService) { 
   }
@@ -25,10 +24,8 @@ export class AddPharmacyAdminComponent implements OnInit {
   }
 
   registration(): void {
-    let admin:any = {user: {email: this.user.email, name: this.user.name, surname: this.user.surname ,
-      address: this.user.address, city:this.user.city, country:this.user.country, phone: this.user.phone, active:false}, 
-      pharmacyId: this.user.pharmacy.id}
-    this.userService.registrationpharmacyAdmin(admin).subscribe((returnedAdmin: PharmacyAdminDto) => {
+    this.admin.pharmacyId = this.pharmacy.id;
+    this.userService.registrationpharmacyAdmin(this.admin).subscribe((returnedAdmin: any) => {
       this.toastrService.success('Added new pharmacy admin.');
     },
       (err: any) => {
@@ -36,9 +33,4 @@ export class AddPharmacyAdminComponent implements OnInit {
       });
   }
 
-}
-
-export interface PharmacyAdminDto{
-  user: UserRegistrationDto,
-  pharmacy: PharmacyDto
 }

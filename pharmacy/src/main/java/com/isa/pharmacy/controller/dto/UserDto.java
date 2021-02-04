@@ -1,33 +1,34 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.domain.enums.Role;
 
-public class CreatePhAdminDto {
+public class UserDto {
     private String email;
+    private String password;
+    private String passwordAgain;
     private String name;
     private String surname;
     private String address;
     private String city;
     private String country;
     private String phone;
-    private Boolean active;
     private Role role;
-    private Long pharmacyId;
+    private Boolean active;
 
-    public CreatePhAdminDto(){}
+    public UserDto(){}
 
-    public CreatePhAdminDto(String email, String name, String surname, String address, String city, String country, String phone, Boolean active, Role role, Long pharmacyId) {
+    public UserDto(String email, String password, String passwordAgain, String name, String surname, String address, String city, String country, String phone, Role role, Boolean active) {
         this.email = email;
+        this.password = password;
+        this.passwordAgain = passwordAgain;
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.city = city;
         this.country = country;
         this.phone = phone;
-        this.active = active;
         this.role = role;
-        this.pharmacyId = pharmacyId;
+        this.active = active;
     }
 
     public String getEmail() {
@@ -36,6 +37,22 @@ public class CreatePhAdminDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordAgain() {
+        return passwordAgain;
+    }
+
+    public void setPasswordAgain(String passwordAgain) {
+        this.passwordAgain = passwordAgain;
     }
 
     public String getName() {
@@ -86,14 +103,6 @@ public class CreatePhAdminDto {
         this.phone = phone;
     }
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
     public Role getRole() {
         return role;
     }
@@ -102,11 +111,11 @@ public class CreatePhAdminDto {
         this.role = role;
     }
 
-    public Long getPharmacyId() {
-        return pharmacyId;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setPharmacyId(Long pharmacyId) {
-        this.pharmacyId = pharmacyId;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

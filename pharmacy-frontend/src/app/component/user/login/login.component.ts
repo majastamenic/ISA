@@ -12,6 +12,7 @@ import { LoginUserDto, User } from '../model/user-model';
 export class LoginComponent implements OnInit {
 
   user: any;
+  returnedUser: any;
   changePassword: boolean = false;
 
   constructor(private userService: UserService, private router: Router, private toastrService: ToastrService) { }
@@ -21,8 +22,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.userService.login(this.user).subscribe((returnedUser: User) => {
-      if(!this.user.active){
+    this.userService.login(this.user).subscribe((response: User) => {
+      if(!response.active){
+        this.returnedUser = response;
         this.changePassword = true;
         this.toastrService.warning("Please change your password");
       }else{
@@ -36,10 +38,11 @@ export class LoginComponent implements OnInit {
       });
   }
   savePassword():void{
-    this.userService.saveUser(this.user).subscribe((returnedUser: User) => {
+    this.userService.changePassword(this.returnedUser).subscribe((returnedUser: User) => {
+      this.changePassword = false;
       sessionStorage.setItem('user', this.user.email);
       this.router.navigate(['/home']);
-      this.toastrService.success("User logged in successfully")
+      this.toastrService.success("User logged in successfully");
     },
     (err: any) => {
       this.toastrService.error(err.error.message)
