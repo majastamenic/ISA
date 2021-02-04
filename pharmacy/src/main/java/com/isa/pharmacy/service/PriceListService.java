@@ -14,9 +14,9 @@ public class PriceListService {
     @Autowired
     private PriceListRepository priceListRepository;
 
-    public PriceList save(CreatePriceListDto priceList){
-        PriceList priceList1= PriceListMapper.mapCreatePriceListDtoToPriceList(priceList);
-        return priceListRepository.save(priceList1);
+    public CreatePriceListDto save(CreatePriceListDto priceListDto){
+        PriceList priceList = priceListRepository.save(PriceListMapper.mapCreatePriceListDtoToPriceList(priceListDto));
+        return PriceListMapper.mapPriceListToCreatePriceListDto(priceList);
     }
 
     public List<PriceList> findAll(){ return priceListRepository.findAll();}

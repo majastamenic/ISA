@@ -19,6 +19,8 @@ import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.c
 import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
+import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
+import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -45,6 +47,9 @@ const routes: Routes = [
   },
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
+  { path: 'price/init', component: PriceInitComponent},
+  { path: 'counseling', component: ScheduleCounselingComponent},
+  { path: 'order/init', component: OrderInitComponent}
 ];
 
 @NgModule({

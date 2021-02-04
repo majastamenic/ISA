@@ -1,1 +1,17 @@
-<p>order-init works!</p>
+<div class="page">
+    <div class="form">
+        <form class="ngform">
+            <h3>Define order</h3>
+
+            <input type="number" [(ngModel)]="quantity" placeholder="Enter quantity" name="price" required>
+            
+            <div class="form-group">
+                <label for="endDate"><b>End date: </b></label>
+                <input type="date" id="endDate"  name="endDate" required>
+            </div>
+
+            <button class="btn btn-primary" (click)="define()">Confirm</button>
+        </form>
+    </div>
+</div>
+
