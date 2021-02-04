@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PatientService } from 'src/app/service/patient.service';
 import { UserService } from 'src/app/service/user.service';
 import { PasswordChangeDto, Patient } from '../user/model/user-model';
@@ -17,7 +18,7 @@ export class PatientProfileComponent implements OnInit {
   loggedUserRole = sessionStorage.getItem("role");
 
 
-  constructor(private patientService: PatientService, private userService: UserService) { 
+  constructor(private patientService: PatientService, private userService: UserService, private router: Router) { 
     this.passwordChange = false;
     this.passwordDto = {oldPassword: "", newPassword: "", newPasswordRepeat: ""}
   }
@@ -34,18 +35,19 @@ export class PatientProfileComponent implements OnInit {
   }
 
   update(){
-    this.patientService.updatePatient(this.patient)
+    this.userService.updateUser(this.user)
     .subscribe(data => {
-      alert("Patient info updated successfully");
+      alert("User info updated successfully");
     }, error => {
-      alert("Something went wrong while updating patient info!");
+      alert("Something went wrong while updating user's infos!");
     });
   }
 
   updatePassword(){
-    this.patientService.updatePassword(this.patient.user.email, this.passwordDto)
+    this.userService.updatePassword(this.user.email, this.passwordDto)
     .subscribe(data => {
       alert("Password change successfully");
+      this.router.navigate(['/profile/patient'])
     }, error => {
       alert("Something went wrong while updating password");
     });

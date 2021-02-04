@@ -71,4 +71,7 @@ public class UserController {
         return userService.getByEmail(email);
     }
 
+    @PutMapping("/update")
+    public User updateUser(@RequestBody User user){return userService.updateUser(user);}
+
 }
