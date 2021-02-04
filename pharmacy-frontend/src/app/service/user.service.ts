@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginUserDto, PharmacyAdminDto, UserRegistrationDto } from '../component/user/model/user-model';
-import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH, DERMATOLOGIST_PATH, PHARMACY_ADMIN_PATH, SUPPLIER_PATH, USER_PATH, SYSTEM_ADMIN_PATH, PASSWORD_USER_PATH} from '../util/paths';
+import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH, DERMATOLOGIST_PATH, PHARMACY_ADMIN_PATH, SUPPLIER_PATH, USER_PATH, SYSTEM_ADMIN_PATH, PASSWORD_USER_PATH, INFO_PATH} from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -56,4 +56,10 @@ export class UserService {
   logOut(){
     sessionStorage.removeItem('user');
   }
+
+
+  getUserByEmail(email:string){
+    return this.httpClient.get(INFO_PATH + '/' + email);
+  }
+
 }
