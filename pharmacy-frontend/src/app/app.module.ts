@@ -31,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
+import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,8 @@ import { AllCounselingsComponent } from './component/all-counselings/all-counsel
     PharmacistComponent,
     OrderInitComponent,
     RegSupplierComponent,
+    ScheduleCounselingComponent,
+    RegSystemAdminComponent,
   ],
   imports: [
     BrowserModule,

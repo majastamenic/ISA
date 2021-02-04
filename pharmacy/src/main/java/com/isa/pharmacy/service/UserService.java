@@ -42,6 +42,15 @@ public class UserService {
         return userRepository.save(dbUser);
     }
 
+    public User updateUserPassword(User user){
+        User dbUser = userRepository.findByEmail(user.getEmail());
+        if(dbUser == null)
+            throw new NotFoundException("User not found");
+        dbUser.setPassword(user.getPassword());
+        dbUser.setActive(true);
+        return userRepository.save(dbUser);
+    }
+
     public User login(User user) {
         User existingUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (existingUser == null || (!existingUser.getActive() && existingUser.getRole().equals(Role.PATIENT)) ) {
