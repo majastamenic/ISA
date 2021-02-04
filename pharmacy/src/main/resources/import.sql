@@ -8,6 +8,10 @@ insert into pharmacy (id, address, name) values(6, 'Futoski Put 85A, Novi Sad', 
 -- Hospital
 insert into hospital(id, email, name) values(5, 'integration.adapter@gmail.com', 'WellDevClinic');
 
+-- WorkSchedule
+insert into work_schedule(schedule_id) values(1);
+insert into work_schedule(schedule_id) values(2);
+
 -- Schedule
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '08:00:00', '14:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-07', '14:00:00', '20:00:00');
@@ -15,14 +19,16 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 -- ********************************  USERS ****************************************************************
 -- Patient
 insert into app_user (id, name, surname, email, password, address, city, country, phone, role, active) values (1, 'Maja', 'Stamenic', 'maja@gmail.com', 'maja', 'Suboticka 23', 'Novi Sad', 'Srbija', '066/468965', 0, true);
+insert into patient(id, verification_code, user_id) values(1, 'bgbhjjgfgggfhouytr', 1);
 insert into app_user (id, name, surname, email, password, address, city, country, phone, role, active) values (2, 'Gojko', 'Novcic', 'gojko@gmail.com', 'gojko', 'Rumenacka 23', 'Novi Sad', 'Srbija', '061/558877', 0, true);
+insert into patient(id, verification_code, user_id) values(2, 'fdssdsdggsfgfsasgj', 2);
 insert into app_user (id, name, surname, email, password, address, city, country, phone, role, active) values (3, 'Tasa', 'Damjanac', 'tasa@gmail.com', 'tasa', 'Temerinska 23', 'Novi Sad', 'Srbija', '066/123466', 0, true);
+insert into patient(id, verification_code, user_id) values(3, 'gdfhjgkrterfscvtyu', 3);
 -- User: Pharmacist
 insert into app_user (id, name, surname, email, password, address, city, country, phone, role, active) values (4, 'Masa', 'Milanovic', 'masa@gmail.com', 'masa', 'Ticanova 23', 'Novi Sad', 'Srbija', '069/7798654', 3, true);
+insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(1, true, 5, 4);
 insert into app_user (id, name, surname, email, password, address, city, country, phone, role, active) values (5, 'Milan', 'Knezevic', 'milan@gmail.com', 'milan', 'Gagarinova 83', 'Novi Sad', 'Srbija', '065/963565', 3, true);
-    -- Pharmacist
-insert into pharmacist(is_first_log, pharmacy_id, user_id) values(true, 5, 4);
-insert into pharmacist(is_first_log, pharmacy_id, user_id) values(true, 6, 5);
+insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(2, true, 6, 5);
 -- Admin
 insert into app_user (id, name, surname, email, password, address, city, country, phone, role, active) values (6, 'Nikola', 'Luburic', 'nikola.luburic@uns.ac.rs', 'nikola', 'Marka Kraljevica 2', 'Novi Sad', 'Srbija', '062/468965', 1, true);
 -- Dermatologist
@@ -36,15 +42,6 @@ insert into app_user (id, name, surname, email, password, address, city, country
 --insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (9,1,true);
 --insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (10,2,true);
 
-
---Patient
-insert into patient(id, verification_code, user_id) values(1, 'bgbhjjgfgggfhouytr', 1);
-insert into patient(id, verification_code, user_id) values(2, 'fdssdsdggsfgfsasgj', 2);
-insert into patient(id, verification_code, user_id) values(3, 'gdfhjgkrterfscvtyu', 3);
-
--- WorkSchedule
-insert into work_schedule(schedule_id) values(1);
-insert into work_schedule(schedule_id) values(2);
 
 insert into medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(1, 62542, 0, 'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu', 'cochenillrot, laktoza, monohidrat');
 insert into medicine(id, code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(2, 66042, 1, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove', 'kalijum-sorbat, prečišćeni talk');
@@ -86,3 +83,7 @@ insert into eprescription(id, code, date_of_issue, file_text, patient_name) valu
 
 insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
 insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
+
+-- PatientAllergicMedicines
+insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 1);
+insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 2);

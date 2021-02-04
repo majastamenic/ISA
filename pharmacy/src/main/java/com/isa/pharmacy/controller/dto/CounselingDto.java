@@ -7,7 +7,8 @@ import com.isa.pharmacy.domain.enums.ExaminationAndCounselingStatus;
 
 public class CounselingDto {
     private String email;
-    private Patient patient;
+    private String patientEmail;
+    private PatientDto patientDto;
     private Schedule schedule;
     private Report report;
     private boolean patientCame;
@@ -15,13 +16,30 @@ public class CounselingDto {
 
     public CounselingDto(){}
 
-    public CounselingDto(String email, Patient patient, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus) {
+    public CounselingDto(String email, String patientEmail, PatientDto patientDto, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus) {
         this.email = email;
-        this.patient = patient;
+        this.patientEmail = patientEmail;
+        this.patientDto = patientDto;
         this.schedule = schedule;
         this.report = report;
         this.patientCame = patientCame;
         this.counselingStatus = counselingStatus;
+    }
+
+    public PatientDto getPatientDto() {
+        return patientDto;
+    }
+
+    public void setPatientDto(PatientDto patientDto) {
+        this.patientDto = patientDto;
+    }
+
+    public String getPatientEmail() {
+        return patientEmail;
+    }
+
+    public void setPatientEmail(String patientEmail) {
+        this.patientEmail = patientEmail;
     }
 
     public String getEmail() {
@@ -32,13 +50,6 @@ public class CounselingDto {
         this.email = email;
     }
 
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
 
     public Schedule getSchedule() {
         return schedule;

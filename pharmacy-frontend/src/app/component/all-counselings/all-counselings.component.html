@@ -1,1 +1,25 @@
-<p>all-counselings works!</p>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Patient</th>
+        <th scope="col">Date & time</th>
+        <th scope="col">Counseling status</th>
+        <th scope="col">Came</th>
+        <th scope="col">Report</th>
+        <th scope="col">Patient's allergies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let counseling of counselings; let i = index;">
+          <td>{{i}}</td>
+          <td>{{counseling.patientDto.user.name}} {{counseling.patientDto.user.surname}}</td>
+          <td>{{counseling.schedule.startDate}}, {{counseling.schedule.startTime}}-{{counseling.schedule.endTime}}</td>
+          <td>{{counseling.counselingStatus}}</td>
+          <td>{{counseling.patientCame}}</td>
+          <td>{{counseling.report.note}}</td> 
+          <td> <span *ngFor="let allergy of counseling.patientDto.allergicMedicines;">{{allergy.name}}, </span> </td>
+      </tr>
+    </tbody>
+  </table>
