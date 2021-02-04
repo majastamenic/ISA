@@ -15,4 +15,6 @@ public interface PharmacyAdminRepository extends JpaRepository<PharmacyAdmin, Lo
     List<PharmacyAdmin> findAll();
 
     PharmacyAdmin findPharmacyAdminById(Long id);
+
+    PharmacyAdmin findPharmacyAdminByUser_email(String email);
 }

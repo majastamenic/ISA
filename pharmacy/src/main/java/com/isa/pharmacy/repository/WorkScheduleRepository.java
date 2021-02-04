@@ -13,5 +13,5 @@ public interface WorkScheduleRepository extends JpaRepository<WorkSchedule, Long
     WorkSchedule findWorkScheduleById(Long id);
 
     WorkSchedule save(WorkSchedule ws);
-    
+
 }

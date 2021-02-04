@@ -11,9 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.repository.MedicineRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-@Repository
+@Service
 public class MedicineService {
     @Autowired
     private MedicineRepository medicineRepository;

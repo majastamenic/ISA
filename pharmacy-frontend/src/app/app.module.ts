@@ -29,6 +29,7 @@ import { ScheduleCounselingComponent } from './component/schedule-counseling/sch
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PharmacistComponent,
     RegSupplierComponent,
     ScheduleCounselingComponent,
+    PriceInitComponent,
   ],
   imports: [
     BrowserModule,

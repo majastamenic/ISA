@@ -27,5 +27,6 @@ public class PharmacyAdminController {
     @PutMapping("/update")
     public PharmacyAdmin update (@RequestBody PharmacyAdmin pharmacyAdmin){ return pharmacyAdminService.updateAdmin(pharmacyAdmin);}
 
-
+    @GetMapping("/{email}")
+    public PharmacyAdminDto findPharmacyAdminByEmail(@PathVariable("email") String email){ return  pharmacyAdminService.findPharmacyAdminByEmail(email);}
 }

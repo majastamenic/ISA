@@ -18,8 +18,12 @@ export const PATIENT_PATH = BACKEND_PATH + '/patient';
 export const PATIENT_VALID_PATH = PATIENT_PATH + '/valid';
 export const DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologist';
 export const PHARMACY_ADMIN_PATH = BACKEND_PATH + '/phadmin';
-export const SUPPLIER_PATH = BACKEND_PATH + '/supplier'
+export const SUPPLIER_PATH = BACKEND_PATH + '/supplier';
 
-
+export const PRICELISTDEFINE_PATH = BACKEND_PATH + '/pricelist/define';
 export const COUNSELING_PATH = BACKEND_PATH + '/counseling';
 export const COUNSELING_ADD_PATH = COUNSELING_PATH + '/add';
+export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy/getAllMedicines';
+export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
+
+export const PHARMACYADMIN_PATH = BACKEND_PATH + '/pharmacyadmin';
