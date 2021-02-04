@@ -25,10 +25,12 @@ public class Examination {
     private Integer price;
     @OneToMany
     private List<Diagnosis> diagnosis;
+    @Column
+    private int loyaltyPoints;
 
     public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Patient patient, Date startDate, Date endDate, Prescription prescription, Schedule schedule, Integer price,List<Diagnosis> diagnosis) {
+    public Examination(Long id, Dermatologist dermatologist, Patient patient, Date startDate, Date endDate, Prescription prescription, Schedule schedule, Integer price,List<Diagnosis> diagnosis, int loyaltyPoints) {
         this.id = id;
         this.dermatologist = dermatologist;
         this.patient = patient;
@@ -36,6 +38,7 @@ public class Examination {
         this.schedule = schedule;
         this.price=price;
         this.diagnosis = diagnosis;
+        this.loyaltyPoints = loyaltyPoints;
     }
 
     public List<Diagnosis> getDiagnosis() {
@@ -92,5 +95,13 @@ public class Examination {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
+    }
+
+    public void setLoyaltyPoints(int loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
     }
 }

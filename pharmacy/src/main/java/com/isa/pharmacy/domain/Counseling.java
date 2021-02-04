@@ -26,10 +26,12 @@ public class Counseling implements Serializable {
     private boolean patientCame;
     @Column
     private ExaminationAndCounselingStatus counselingStatus;
+    @Column
+    private int loyaltyPoints;
 
     public Counseling(){}
 
-    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus) {
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus, int loyaltyPoints) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
@@ -37,6 +39,7 @@ public class Counseling implements Serializable {
         this.report = report;
         this.patientCame = patientCame;
         this.counselingStatus = counselingStatus;
+        this.loyaltyPoints = loyaltyPoints;
     }
 
     public boolean isPatientCame() {
@@ -95,4 +98,11 @@ public class Counseling implements Serializable {
         this.patient = patient;
     }
 
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
+    }
+
+    public void setLoyaltyPoints(int loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
+    }
 }

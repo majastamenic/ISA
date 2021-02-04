@@ -1,6 +1,7 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Profile.Pharmacist;
 import com.isa.pharmacy.repository.CounselingRepository;
@@ -42,5 +43,15 @@ public class CounselingService {
             counselingRepository.save(counseling);
         }
         return counseling;
+    }
+
+    public void updateLoyaltyPoints(int loyaltyPoints){
+        List<Counseling> counselingList = counselingRepository.findAll();
+        if(counselingList == null)
+            throw new NotFoundException("There is no any counseling");
+        for(Counseling counseling: counselingList){
+            counseling.setLoyaltyPoints(loyaltyPoints);
+            counselingRepository.save(counseling);
+        }
     }
 }

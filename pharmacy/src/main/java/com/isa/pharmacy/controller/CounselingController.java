@@ -8,6 +8,8 @@ import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.service.CounselingService;
 import com.isa.pharmacy.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,4 +43,10 @@ public class CounselingController {
 
     @PostMapping("/update")
     public Counseling update(@RequestBody Counseling c) { return counselingService.save(c); }
+
+    @PutMapping("/loyalty")
+    public ResponseEntity<String> updateLoyaltyPoints(@RequestParam int loyaltyPoints){
+        counselingService.updateLoyaltyPoints(loyaltyPoints);
+        return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
 }
