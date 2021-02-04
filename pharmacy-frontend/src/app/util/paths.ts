@@ -25,3 +25,6 @@ export const SYSTEM_ADMIN_PATH = BACKEND_PATH + '/system_admin';
 export const COUNSELING_PATH = BACKEND_PATH + '/counseling';
 export const COUNSELING_ADD_PATH = COUNSELING_PATH + '/add';
 
+export const EXAMINATION_PATH = BACKEND_PATH + '/examination';
+export const FREE_EXAM_TERMS_PATH = EXAMINATION_PATH + '/freeTerms';
+

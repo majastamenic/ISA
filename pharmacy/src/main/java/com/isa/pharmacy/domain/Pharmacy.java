@@ -11,11 +11,11 @@ import javax.persistence.*;
 @Entity
 @Table
 public class Pharmacy implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3863418683331588166L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(unique = true, nullable = false)
     private String name;
     @Column
     private String address;
@@ -42,21 +42,12 @@ public class Pharmacy implements Serializable {
         this.id = id;
     }
 
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<MedicinePharmacy> getMedicinePharmacy() {
-        return medicinePharmacy;
-    }
-
-    public void setMedicinePharmacy(List<MedicinePharmacy> medicinePharmacy) {
-        this.medicinePharmacy = medicinePharmacy;
     }
 
     public String getAddress() {
@@ -67,10 +58,13 @@ public class Pharmacy implements Serializable {
         this.address = address;
     }
 
-    public List<MedicinePharmacy> getMedicinePharmacies() {
+    public List<MedicinePharmacy> getMedicinePharmacy() {
         return medicinePharmacy;
     }
 
+    public void setMedicinePharmacy(List<MedicinePharmacy> medicinePharmacy) {
+        this.medicinePharmacy = medicinePharmacy;
+    }
 
     @Override
     public boolean equals(Object obj) {

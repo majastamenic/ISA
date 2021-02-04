@@ -21,6 +21,11 @@ public class ExaminationController {
         return examService.getAllFreeExaminationTerms();
     }
 
+    @GetMapping("/freeTerms/{pharmacyName}")
+    public List<Examination> getExaminationTermsByPharmacy(@PathVariable String pharmacyName){
+        return examService.getFreeExaminationTermsByPharmacy(pharmacyName);
+    }
+
     @PutMapping
     public void scheduleExamination(Patient patient, Examination examination){
         examService.scheduleExamination(patient,examination);

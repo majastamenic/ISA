@@ -32,6 +32,7 @@ import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
+import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-sys
     RegSupplierComponent,
     ScheduleCounselingComponent,
     RegSystemAdminComponent,
+    ExaminationScheduleComponent,
   ],
   imports: [
     BrowserModule,

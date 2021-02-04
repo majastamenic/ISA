@@ -1,0 +1,29 @@
+<div class="panel panel-primary" style="margin: 20px;">
+    <div class="panel-heading">
+        <h2>Schedule examination</h2>
+    </div>
+    <div class="panel-body">
+        <table id="freeTerms" class="table" style="background-color: rgba(255, 255, 255, 0.8);">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Dermatologist</th>
+                    <th>Price (€)</th>
+                    <th>Date</th>
+                    <th>Start time</th>
+                    <th>End time</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exam of examinations">
+                    <td>dr {{exam.dermatologist.user.name}} {{exam.dermatologist.user.surname}}</td>
+                    <td>{{exam.price}}</td>
+                    <td>{{exam.schedule.startDate}}</td>
+                    <td>{{exam.schedule.startTime}}</td>
+                    <td>{{exam.schedule.endTime}}</td>
+                    <td><button class="btn btn-primary">Schedule</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

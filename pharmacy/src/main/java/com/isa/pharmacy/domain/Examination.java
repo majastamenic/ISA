@@ -19,6 +19,8 @@ public class Examination implements Serializable {
     @OneToOne
     private Dermatologist dermatologist;
     @OneToOne
+    private Pharmacy pharmacy;
+    @OneToOne
     private Patient patient;
     @OneToOne
     private Prescription prescription;
@@ -31,38 +33,15 @@ public class Examination implements Serializable {
 
     public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Patient patient, Date startDate, Date endDate, Prescription prescription, Schedule schedule, Integer price,List<Diagnosis> diagnosis) {
+    public Examination(Long id, Dermatologist dermatologist, Patient patient, Date startDate, Date endDate, Pharmacy pharmacy, Prescription prescription, Schedule schedule, Integer price, List<Diagnosis> diagnosis) {
         this.id = id;
         this.dermatologist = dermatologist;
         this.patient = patient;
+        this.pharmacy = pharmacy;
         this.prescription = prescription;
         this.schedule = schedule;
         this.price=price;
         this.diagnosis = diagnosis;
-    }
-
-    public List<Diagnosis> getDiagnosis() {
-        return diagnosis;
-    }
-
-    public void setDiagnosis(List<Diagnosis> diagnosis) {
-        this.diagnosis = diagnosis;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-    public Prescription getPrescription() {
-        return prescription;
-    }
-
-    public void setPrescription(Prescription prescription) {
-        this.prescription = prescription;
     }
 
     public Long getId() {
@@ -81,6 +60,14 @@ public class Examination implements Serializable {
         this.dermatologist = dermatologist;
     }
 
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
+    }
+
     public Patient getPatient() {
         return patient;
     }
@@ -89,11 +76,35 @@ public class Examination implements Serializable {
         this.patient = patient;
     }
 
+    public Prescription getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(Prescription prescription) {
+        this.prescription = prescription;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
     public Integer getPrice() {
         return price;
     }
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public List<Diagnosis> getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(List<Diagnosis> diagnosis) {
+        this.diagnosis = diagnosis;
     }
 }

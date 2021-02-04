@@ -78,19 +78,19 @@ insert into work_schedule(schedule_id) values(9);
 insert into work_schedule(schedule_id) values(10);
 
 -- Examinations
-insert into examination(id, price, schedule_id, dermatologist_id) values(1, 20, 11, 7);
-insert into examination(id, price, schedule_id, dermatologist_id) values(2, 20, 12, 7);
-insert into examination(id, price, schedule_id, dermatologist_id) values(3, 20, 13, 7);
-insert into examination(id, price, schedule_id, dermatologist_id, patient_id) values(4, 20, 14, 7, 1);
-insert into examination(id, price, schedule_id, dermatologist_id) values(5, 20, 15, 7);
-insert into examination(id, price, schedule_id, dermatologist_id, patient_id) values(6, 20, 16, 7, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, patient_id) values(7, 20, 17, 7, 3);
-insert into examination(id, price, schedule_id, dermatologist_id) values(8, 20, 18, 7);
-insert into examination(id, price, schedule_id, dermatologist_id) values(9, 20, 19, 7);
-insert into examination(id, price, schedule_id, dermatologist_id) values(10, 20, 20, 7);
-insert into examination(id, price, schedule_id, dermatologist_id) values(11, 20, 21, 7);
-insert into examination(id, price, schedule_id, dermatologist_id) values(12, 20, 22, 7);
-insert into examination(id, price, schedule_id, dermatologist_id) values(13, 20, 23, 7);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(1, 15, 11, 7, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(2, 20, 12, 7, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(3, 20, 13, 7, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(4, 15, 14, 7, 1, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(5, 20, 15, 7, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(6, 40, 16, 7, 1, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(7, 30, 17, 7, 1, 3);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(8, 25, 18, 7, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(9, 25, 19, 7, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(10, 25, 20, 7, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(11, 25, 21, 7, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(12, 25, 22, 7, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(13, 25, 23, 7, 2);
 
 -- Medicines
 insert into medicine(code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(62542, 0, 'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu', 'cochenillrot, laktoza, monohidrat');
@@ -105,17 +105,8 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 15, 1, 2);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 18, 2, 2);
 
-
 insert into app_order( end_date, end_time) values ('2021-02-07', '08:00:00');
 insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
-
--- Za apoteku sa id=1
-INSERT INTO public.medicine_pharmacy(price, quantity, medicine_id, pharmacy_id)VALUES (1.50, 2350, 1, 1);
-INSERT INTO public.medicine_pharmacy(price, quantity, medicine_id, pharmacy_id)VALUES (2.00, 2985, 2, 1);
-INSERT INTO public.medicine_pharmacy(price, quantity, medicine_id, pharmacy_id)VALUES (1.75, 1420, 3, 1);
--- Za apoteku sa id=2
-INSERT INTO public.medicine_pharmacy(price, quantity, medicine_id, pharmacy_id)VALUES (1.44, 15, 1, 2);
-INSERT INTO public.medicine_pharmacy(price, quantity, medicine_id, pharmacy_id)VALUES (1.90, 18, 2, 2);
 
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(1, 62217);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(2, 66042);

@@ -1,6 +1,7 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.repository.ExaminationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class ExaminationService {
     private ExaminationRepository examRepository;
 
     @Autowired
+    private PharmacyService pharmacyService;
+
+    @Autowired
     private EmailService emailService;
 
     public List<Examination> getAllFreeExaminationTerms(){
@@ -26,6 +30,17 @@ public class ExaminationService {
                 freeExaminations.add(exam);
         return freeExaminations;
     }
+
+    public List<Examination> getFreeExaminationTermsByPharmacy(String pharmacyName){
+        List<Examination> freeExaminations = new ArrayList<>();
+        for(Examination exam : examRepository.findAll())
+            if(exam.getPharmacy().getName().equals(pharmacyName) &&
+               exam.getPatient() == null &&
+               exam.getSchedule().getStartDate().after(Calendar.getInstance().getTime()))
+                freeExaminations.add(exam);
+        return freeExaminations;
+    }
+
 
     public Examination scheduleExamination(Patient patient, Examination examination){
         examination.setPatient(patient);
