@@ -3,13 +3,16 @@ package com.isa.pharmacy.domain;
 import com.isa.pharmacy.domain.Profile.Dermatologist;
 import com.isa.pharmacy.domain.Profile.Patient;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table
-public class Examination {
-    private static final long serialVersionUID = 1L;
+public class Examination implements Serializable {
+
+    private static final long serialVersionUID = 4298262714187299282L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,7 +22,7 @@ public class Examination {
     private Patient patient;
     @OneToOne
     private Prescription prescription;
-    @Column
+    @OneToOne
     private Schedule schedule;
     @Column
     private Integer price;

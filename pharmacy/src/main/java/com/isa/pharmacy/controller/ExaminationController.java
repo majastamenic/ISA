@@ -4,10 +4,9 @@ import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Profile.Patient;
 import com.isa.pharmacy.service.ExaminationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/examination")
@@ -16,6 +15,11 @@ public class ExaminationController {
 
     @Autowired
     private ExaminationService examService;
+
+    @GetMapping("/freeTerms")
+    public List<Examination> getFreeExaminationTerms(){
+        return examService.getAllFreeExaminationTerms();
+    }
 
     @PutMapping
     public void scheduleExamination(Patient patient, Examination examination){
