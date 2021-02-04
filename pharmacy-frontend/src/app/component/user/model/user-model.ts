@@ -33,6 +33,13 @@ export interface UserRegistrationDto{
     city: string;
     country: string;
     phone: string;
+    role: Role;
+}
+
+export interface PasswordChangeDto{
+    oldPassword: string;
+    newPassword: string;
+    newPasswordRepeat: string;
 }
 
 enum Role {
@@ -40,5 +47,21 @@ enum Role {
     ADMIN,
     DERMATOLOGIST,
     PHARMACIST,
-    SUPPLIER
+    SUPPLIER,
+    PHARMACY_ADMIN,
+    PHARMACY_ADMIN_SYSTEM,
+}
+
+export interface PharmacyAdminDto{
+    email: string;
+    password: string;
+    passwordAgain: string;
+    name: string;
+    surname: string;
+    address: string;
+    city: string;
+    country: string;
+    phone: string;
+    role: Role;
+    pharmacyId: any; 
 }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginUserDto, UserRegistrationDto } from '../component/user/model/user-model';
-import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH} from '../util/paths';
+import { LoginUserDto, PharmacyAdminDto, UserRegistrationDto } from '../component/user/model/user-model';
+import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH, DERMATOLOGIST_PATH, PHARMACY_ADMIN_PATH, SUPPLIER_PATH, USER_PATH, SYSTEM_ADMIN_PATH, PASSWORD_USER_PATH} from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,30 @@ export class UserService {
 
   registration(user: UserRegistrationDto): any {
     return this.httpClient.post(PATIENT_PATH, user);
+  }
+
+  saveUser(user: UserRegistrationDto): any{
+    return this.httpClient.post(USER_PATH, user);
+  }
+
+  changePassword(user: UserRegistrationDto): any{
+    return this.httpClient.put(PASSWORD_USER_PATH, user);
+  }
+
+  registrationDermatologist(user: UserRegistrationDto): any {
+    return this.httpClient.post(DERMATOLOGIST_PATH, user);
+  }
+
+  registrationpharmacyAdmin(admin: PharmacyAdminDto): any{
+    return this.httpClient.post(PHARMACY_ADMIN_PATH, admin);
+  }
+
+  registrationSupplier(user: UserRegistrationDto): any{
+    return this.httpClient.post(SUPPLIER_PATH, user);
+  }
+
+  registrationSystemAdmin(user: UserRegistrationDto): any{
+    return this.httpClient.post(SYSTEM_ADMIN_PATH, user);
   }
 
   verification(user: UserRegistrationDto, verificationCode: string): any {

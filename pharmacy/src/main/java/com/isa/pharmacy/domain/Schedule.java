@@ -1,12 +1,9 @@
 package com.isa.pharmacy.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table
@@ -31,26 +28,15 @@ public class Schedule implements Serializable {
     @Temporal(TemporalType.TIME)
     @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
     private Date endTime;
-    @OneToMany
-    private List<Counseling> counselings;
 
     public Schedule(){}
 
-    public Schedule(Long id, Date startDate, Date endDate, Date startTime, Date endTime, List<Counseling> counselings) {
+    public Schedule(Long id, Date startDate, Date endDate, Date startTime, Date endTime) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.counselings = counselings;
-    }
-
-    public List<Counseling> getCounselings() {
-        return counselings;
-    }
-
-    public void setCounselings(List<Counseling> counselings) {
-        this.counselings = counselings;
     }
 
     public Date getStartDate() {

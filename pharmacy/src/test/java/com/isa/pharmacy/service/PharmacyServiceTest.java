@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.PharmacyRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,8 +35,9 @@ public class PharmacyServiceTest {
 	@Test
 	public void getAllTest() {
 		when(pharmacyRepository.findAll()).thenReturn(emptyList());
-		List<Pharmacy> all = pharmacyService.getAll();
+		List<GetAllPharmaciesDto> all = pharmacyService.getAll();
 		assertEquals(all.size(), 0);
+		System.out.println("test");
 	}
 
 	/*@Test

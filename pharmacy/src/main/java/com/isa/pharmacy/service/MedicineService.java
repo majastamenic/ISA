@@ -7,9 +7,11 @@ import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.repository.MedicineRepository;
+import org.springframework.web.server.ResponseStatusException;
 
 @Repository
 public class MedicineService {
@@ -19,6 +21,8 @@ public class MedicineService {
     private PharmacyService pharmacyService;
 
     public Medicine create(Medicine medicine) {
+        if(medicineRepository.findMedicineById(medicine.getId()) != null)
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
         return medicineRepository.save(medicine);
     }
 

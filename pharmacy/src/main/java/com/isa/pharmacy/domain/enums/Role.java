@@ -5,5 +5,7 @@ public enum Role {
     ADMIN,
     DERMATOLOGIST,
     PHARMACIST,
-    SUPPLIER
+    SUPPLIER,
+    PHARMACY_ADMIN,
+    PHARMACY_ADMIN_SYSTEM,
 }

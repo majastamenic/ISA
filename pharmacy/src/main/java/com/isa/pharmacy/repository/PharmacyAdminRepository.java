@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface PharmacyAdminRepository extends JpaRepository<PharmacyAdmin, Long> {
 
-    PharmacyAdmin save(PharmacyAdmin offer);
+    PharmacyAdmin save(PharmacyAdmin pharmacyAdmin);
 
     List<PharmacyAdmin> findAll();
 
