@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ExaminationRepository extends JpaRepository<Examination, Long> {
+
+    Examination findExaminationById(Long id);
 }

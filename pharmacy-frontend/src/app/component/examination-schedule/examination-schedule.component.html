@@ -21,7 +21,7 @@
                     <td>{{exam.schedule.startDate}}</td>
                     <td>{{exam.schedule.startTime}}</td>
                     <td>{{exam.schedule.endTime}}</td>
-                    <td><button class="btn btn-primary">Schedule</button></td>
+                    <td><button class="btn btn-primary" (click)='scheduleExamination({{exam.id}})'>Schedule</button></td>
                 </tr>
             </tbody>
         </table>

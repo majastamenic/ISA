@@ -35,4 +35,5 @@ export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
 
 export const EXAMINATION_PATH = BACKEND_PATH + '/examination';
 export const FREE_EXAM_TERMS_PATH = EXAMINATION_PATH + '/freeTerms';
+export const SCHEDULE_EXAM_PATH = EXAMINATION_PATH + '/schedule';
 
