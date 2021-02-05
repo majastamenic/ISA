@@ -3,8 +3,6 @@ package com.isa.pharmacy.controller.mapping;
 import com.isa.pharmacy.controller.dto.CreateOrderDto;
 import com.isa.pharmacy.domain.Order;
 
-import java.util.ArrayList;
-
 public class OrderMapper {
 
     public static Order mapCreateOrderDtoToOrder(CreateOrderDto createOrderDto){
