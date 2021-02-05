@@ -17,7 +17,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany
-    private List<Medicine> medicineList;
+    private List<MedicinePharmacy> medicineList;
     @Column
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
@@ -36,7 +36,7 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Long id, List<Medicine> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin, List<OrderOffer> offers,Long winnerId) {
+    public Order(Long id, List<MedicinePharmacy> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin, List<OrderOffer> offers,Long winnerId) {
         this.id = id;
         this.medicineList = medicineList;
         this.endDate = endDate;
@@ -58,11 +58,11 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public List<Medicine> getMedicineList() {
+    public List<MedicinePharmacy> getMedicineList() {
         return medicineList;
     }
 
-    public void setMedicineList(List<Medicine> medicineList) {
+    public void setMedicineList(List<MedicinePharmacy> medicineList) {
         this.medicineList = medicineList;
     }
 

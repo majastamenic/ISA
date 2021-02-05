@@ -32,7 +32,7 @@ export class PriceInitComponent implements OnInit {
     }
 
   ngOnInit(): void {
-
+    let loggedUser = sessionStorage.getItem("user");
     this.medicinePharmacyService.getByPharmacy(this.pharmacyAdmin.pharmacy).subscribe((response: any) =>{
       this.listMedications = response;
     });

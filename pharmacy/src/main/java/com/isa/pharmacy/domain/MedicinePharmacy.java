@@ -18,7 +18,7 @@ public class MedicinePharmacy implements Serializable {
     @Column
     private double price;
     @Column
-    private int quantity;
+    private Integer quantity;
     @ManyToOne
     private Medicine medicine;
     @ManyToOne
