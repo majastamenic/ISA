@@ -1,13 +1,13 @@
-package com.isa.pharmacy.service;
+package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.dto.PasswordChangeDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
-import com.isa.pharmacy.domain.users.User;
-import com.isa.pharmacy.domain.enums.Role;
-import com.isa.pharmacy.repository.UserRepository;
+import com.isa.pharmacy.users.domain.User;
+import com.isa.pharmacy.users.domain.enums.Role;
+import com.isa.pharmacy.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

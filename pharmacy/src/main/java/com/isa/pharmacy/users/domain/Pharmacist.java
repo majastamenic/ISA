@@ -1,4 +1,4 @@
-package com.isa.pharmacy.domain.users;
+package com.isa.pharmacy.users.domain;
 
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.VacationSchedule;

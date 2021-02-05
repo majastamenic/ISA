@@ -1,6 +1,6 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.enums.Role;
+import com.isa.pharmacy.users.domain.enums.Role;
 
 public class CreatePhAdminDto {
     private String email;

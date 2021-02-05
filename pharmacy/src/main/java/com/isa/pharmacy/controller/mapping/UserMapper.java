@@ -5,8 +5,8 @@ import com.isa.pharmacy.controller.dto.LoginDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.dto.UserDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.users.*;
-import com.isa.pharmacy.domain.enums.Role;
+import com.isa.pharmacy.users.domain.enums.Role;
+import com.isa.pharmacy.users.domain.*;
 import net.bytebuddy.utility.RandomString;
 
 public class UserMapper {

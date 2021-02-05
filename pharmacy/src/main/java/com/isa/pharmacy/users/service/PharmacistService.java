@@ -1,11 +1,14 @@
-package com.isa.pharmacy.service;
+package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.controller.mapping.PharmacistMapper;
 import com.isa.pharmacy.domain.*;
-import com.isa.pharmacy.domain.users.Pharmacist;
-import com.isa.pharmacy.domain.users.User;
-import com.isa.pharmacy.repository.PharmacistRepository;
+import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.users.domain.User;
+import com.isa.pharmacy.users.repository.PharmacistRepository;
+import com.isa.pharmacy.service.CounselingService;
+import com.isa.pharmacy.service.PharmacyService;
+import com.isa.pharmacy.service.WorkScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

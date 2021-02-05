@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.domain.Examination;
-import com.isa.pharmacy.domain.users.Patient;
+import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.service.ExaminationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

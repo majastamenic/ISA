@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
-import com.isa.pharmacy.domain.users.Pharmacist;
+import com.isa.pharmacy.users.domain.Pharmacist;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.users.User;
+import com.isa.pharmacy.users.domain.User;
 
 import java.util.List;
 
