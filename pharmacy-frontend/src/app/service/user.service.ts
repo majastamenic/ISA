@@ -58,6 +58,10 @@ export class UserService {
     return (sessionStorage.getItem("role") == 'PHARMACIST');
   }
 
+  isDermatologist(){
+    return (sessionStorage.getItem("role") == 'DERMATOLOGIST');
+  }
+
   logOut(){
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('role');

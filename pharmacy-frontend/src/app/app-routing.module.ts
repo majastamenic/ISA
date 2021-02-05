@@ -22,6 +22,7 @@ import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.c
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
+import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -51,7 +52,8 @@ const routes: Routes = [
   { path: 'price/init', component: PriceInitComponent},
   { path: 'counseling', component: ScheduleCounselingComponent},
   { path: 'order/init', component: OrderInitComponent},
-  { path: 'medicine/reserved', component: PublishingReservedMedicineComponent}
+  { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
+  { path: 'schedule/vacation', component: ScheduleVacationComponent},
 ];
 
 @NgModule({
