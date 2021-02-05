@@ -1,6 +1,6 @@
 package com.isa.pharmacy.repository;
 
-import com.isa.pharmacy.domain.Profile.Supplier;
+import com.isa.pharmacy.domain.users.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

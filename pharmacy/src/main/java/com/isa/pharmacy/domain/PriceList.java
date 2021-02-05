@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 @Entity
 @Table
-public class PriceList {
+public class PriceList {            // TODO Tasa: OBrisati - Polja za datume staviti u medicinepharmacy
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

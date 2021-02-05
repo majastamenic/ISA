@@ -1,8 +1,8 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.Examination;
-import com.isa.pharmacy.domain.Profile.Patient;
-import com.isa.pharmacy.domain.Profile.User;
+import com.isa.pharmacy.domain.users.Patient;
+import com.isa.pharmacy.domain.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;

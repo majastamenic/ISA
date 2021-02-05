@@ -1,6 +1,5 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.Profile.User;
 import com.isa.pharmacy.domain.enums.Role;
 
 public class CreatePhAdminDto {

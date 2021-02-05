@@ -1,6 +1,6 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.domain.Profile.Supplier;
+import com.isa.pharmacy.domain.users.Supplier;
 
 import javax.persistence.*;
 import java.io.Serializable;

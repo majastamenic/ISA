@@ -5,7 +5,7 @@ import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
-import com.isa.pharmacy.domain.Profile.User;
+import com.isa.pharmacy.domain.users.User;
 import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

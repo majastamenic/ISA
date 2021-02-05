@@ -1,4 +1,4 @@
-package com.isa.pharmacy.domain.Profile;
+package com.isa.pharmacy.domain.users;
 
 import com.isa.pharmacy.domain.Medicine;
 import javax.persistence.*;
@@ -52,7 +52,6 @@ public class Patient implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-
 
     public String getVerificationCode() {
         return verificationCode;

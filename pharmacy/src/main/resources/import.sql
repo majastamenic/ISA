@@ -30,10 +30,10 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Antonic', 'antonic@gmail.com', 'antonic', 'Bulevar Oslobodjenja 78', 'Novi Sad', 'Srbija', '065/789101', 3, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirko', 'Plavsic', 'mirko@gmail.com', 'mirko', 'Pa Pavla 14', 'Novi Sad', 'Srbija', '069/8765432', 3, true);
     -- Pharmacist
-    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(7, true, 5, 7);
-    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(8, true, 6, 8);
-    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(9, true, 4, 9);
-    insert into pharmacist(id, is_first_log, pharmacy_id, user_id) values(10, true, 5, 10);
+    insert into pharmacist(id, pharmacy_id, user_id) values(7, 5, 7);
+    insert into pharmacist(id, pharmacy_id, user_id) values(8, 6, 8);
+    insert into pharmacist(id, pharmacy_id, user_id) values(9, 4, 9);
+    insert into pharmacist(id, pharmacy_id, user_id) values(10, 5, 10);
 -- User: Admin
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Luburic', 'nikola@uns.ac.rs', 'nikola', 'Marka Kraljevica 2', 'Novi Sad', 'Srbija', '062/468965', 1, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Rade', 'Doroslovacki', 'rade@uns.ac.rs', 'rade', 'Marka Kraljevica 15', 'Novi Sad', 'Srbija', '062/779635', 1, true);
@@ -42,9 +42,9 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Darko', 'Milicic', 'dare@gmail.com', 'dare', 'Zmaj Jovina 56', 'Novi Sad', 'Srbija', '061/1116555', 2, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Acim', 'Maravic', 'acim@gmail.com', 'acim', 'Bulevar Cara Lazara 15', 'Novi Sad', 'Srbija', '063/555333', 2, true);
     -- Dermatologist
-    insert into dermatologist(id, user_id, is_first_log) values(13, 13, false);
-    insert into dermatologist(id, user_id, is_first_log) values(14, 14, false);
-    insert into dermatologist(id, user_id, is_first_log) values(15, 15, false);
+    insert into dermatologist(id, user_id) values(13, 13);
+    insert into dermatologist(id, user_id) values(14, 14);
+    insert into dermatologist(id, user_id) values(15, 15);
 -- User: Supplier
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Luka', 'Djurdjevic', 'luka@gmail.com', 'luka', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 4, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Simona', 'Prokic', 'simona@gmail.com', 'simona', 'Fruskogorska 12', 'Novi Sad', 'Srbija', '067/114885', 4, true);
@@ -59,12 +59,12 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirjana', 'Radojcic', 'mima@gmail.com', 'mima', 'Zeleznicka 18', 'Novi Sad', 'Srbija', '061/1112565', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Ivana', 'Ivanovic', 'ivana@gmail.com', 'ivana', 'Vojvodjanskih Brigada 2', 'Novi Sad', 'Srbija', '069/3355668', 5, true);
     -- PharmacyAdmin
-    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (20,1,true);
-    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (21,2,true);
-    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (22,3,true);
-    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (23,4,true);
-    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (24,5,true);
-    insert into pharmacy_admin(user_id, pharmacy_id, is_first_log) values (25,6,true);
+    insert into pharmacy_admin(user_id, pharmacy_id) values (20,1);
+    insert into pharmacy_admin(user_id, pharmacy_id) values (21,2);
+    insert into pharmacy_admin(user_id, pharmacy_id) values (22,3);
+    insert into pharmacy_admin(user_id, pharmacy_id) values (23,4);
+    insert into pharmacy_admin(user_id, pharmacy_id) values (24,5);
+    insert into pharmacy_admin(user_id, pharmacy_id) values (25,6);
 -- *********************************************************************************************************
 
 -- Schedule: for work time

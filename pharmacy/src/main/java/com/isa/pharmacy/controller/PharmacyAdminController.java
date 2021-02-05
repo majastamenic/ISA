@@ -2,7 +2,7 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.CreatePhAdminDto;
 import com.isa.pharmacy.controller.mapping.PharmacyAdminMapper;
 import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
+import com.isa.pharmacy.domain.users.PharmacyAdmin;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.service.PharmacyAdminService;
 import com.isa.pharmacy.service.PharmacyService;

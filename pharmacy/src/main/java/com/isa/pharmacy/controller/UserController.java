@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.isa.pharmacy.controller.dto.LoginDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.UserMapper;
-import com.isa.pharmacy.domain.Profile.User;
+import com.isa.pharmacy.domain.users.User;
 import com.isa.pharmacy.service.UserService;
 
 import java.util.List;

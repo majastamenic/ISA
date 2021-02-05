@@ -1,4 +1,4 @@
-package com.isa.pharmacy.domain.Profile;
+package com.isa.pharmacy.domain.users;
 
 import com.isa.pharmacy.domain.enums.Role;
 
@@ -13,39 +13,29 @@ import java.io.Serializable;
 @Entity
 @Table(name = "app_user")
 public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -8480016058014782989L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(unique = true, nullable = false)
     private String email;
-
     @Column
     private String password;
-
     @Column
     private String name;
-
     @Column
     private String surname;
-
     @Column
     private String address;
-
     @Column
     private String city;
-
     @Column
     private String country;
-
     @Column
     private String phone;
-
     @Column
     private Boolean active;
-
     @Column
     private Role role;
 
@@ -91,61 +81,49 @@ public class User implements Serializable {
         this.password = password;
     }
 
-
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-
     public String getSurname() {
         return surname;
     }
-
 
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
-
     public String getAddress() {
         return address;
     }
-
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-
     public String getCity() {
         return city;
     }
-
 
     public void setCity(String city) {
         this.city = city;
     }
 
-
     public String getCountry() {
         return country;
     }
-
 
     public void setCountry(String country) {
         this.country = country;
     }
 
-
     public String getPhone() {
         return phone;
     }
-
 
     public void setPhone(String phone) {
         this.phone = phone;

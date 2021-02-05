@@ -1,6 +1,6 @@
 package com.isa.pharmacy.repository;
 
-import com.isa.pharmacy.domain.Profile.Dermatologist;
+import com.isa.pharmacy.domain.users.Dermatologist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

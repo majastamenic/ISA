@@ -5,7 +5,7 @@ import com.isa.pharmacy.controller.dto.LoginDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.dto.UserDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.Profile.*;
+import com.isa.pharmacy.domain.users.*;
 import com.isa.pharmacy.domain.enums.Role;
 import net.bytebuddy.utility.RandomString;
 

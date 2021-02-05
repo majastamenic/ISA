@@ -1,8 +1,5 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.domain.Profile.Pharmacist;
-import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @Table
 public class Pharmacy implements Serializable {
     private static final long serialVersionUID = 3863418683331588166L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,8 +20,7 @@ public class Pharmacy implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
 
-    public Pharmacy() {
-    }
+    public Pharmacy() { }
 
     public Pharmacy(Long id, String name, String address,
                     List<MedicinePharmacy> medicinePharmacy) {

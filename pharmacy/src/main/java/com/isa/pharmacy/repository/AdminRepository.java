@@ -1,6 +1,6 @@
 package com.isa.pharmacy.repository;
 
-import com.isa.pharmacy.domain.Profile.Admin;
+import com.isa.pharmacy.domain.users.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

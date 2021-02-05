@@ -3,8 +3,8 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.controller.mapping.PharmacistMapper;
 import com.isa.pharmacy.domain.*;
-import com.isa.pharmacy.domain.Profile.Pharmacist;
-import com.isa.pharmacy.domain.Profile.User;
+import com.isa.pharmacy.domain.users.Pharmacist;
+import com.isa.pharmacy.domain.users.User;
 import com.isa.pharmacy.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +57,6 @@ public class PharmacistService {
     public Pharmacist update(Pharmacist p) {
         Pharmacist pharmacist = pharmacistRepository.findPharmacistById(p.getId());
         pharmacist.setUser(p.getUser());
-        pharmacist.setFirstLog(false);
         pharmacistRepository.save(pharmacist);
         return pharmacist;
     }

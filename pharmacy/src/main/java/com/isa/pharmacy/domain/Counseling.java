@@ -1,7 +1,7 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.domain.Profile.Patient;
-import com.isa.pharmacy.domain.Profile.Pharmacist;
+import com.isa.pharmacy.domain.users.Patient;
+import com.isa.pharmacy.domain.users.Pharmacist;
 import com.isa.pharmacy.domain.enums.ExaminationAndCounselingStatus;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,7 +9,8 @@ import java.io.Serializable;
 @Entity
 @Table
 public class Counseling implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -3735212154097668426L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,7 +20,7 @@ public class Counseling implements Serializable {
     private Patient patient;
     @OneToOne
     private Schedule schedule;
-    @OneToOne
+    @OneToOne           // TODO: Obrisati ili odavde ili iz Reporta Counseling
     private Report report;
     @Column
     private boolean patientCame;

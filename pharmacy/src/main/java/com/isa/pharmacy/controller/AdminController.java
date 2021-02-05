@@ -2,7 +2,7 @@ package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.mapping.UserMapper;
-import com.isa.pharmacy.domain.Profile.Admin;
+import com.isa.pharmacy.domain.users.Admin;
 import com.isa.pharmacy.service.AdminService;
 import com.isa.pharmacy.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
