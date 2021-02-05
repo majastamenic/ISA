@@ -1,25 +1,30 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.domain.Profile.Dermatologist;
-import com.isa.pharmacy.domain.Profile.Patient;
+import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.users.domain.Patient;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table
-public class Examination {
-    private static final long serialVersionUID = 1L;
+public class Examination implements Serializable {
+
+    private static final long serialVersionUID = 4298262714187299282L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
     private Dermatologist dermatologist;
     @OneToOne
+    private Pharmacy pharmacy;
+    @OneToOne
     private Patient patient;
     @OneToOne
     private Prescription prescription;
-    @Column
+    @OneToOne
     private Schedule schedule;
     @Column
     private Integer price;
@@ -30,39 +35,16 @@ public class Examination {
 
     public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Patient patient, Date startDate, Date endDate, Prescription prescription, Schedule schedule, Integer price,List<Diagnosis> diagnosis, int loyaltyPoints) {
+    public Examination(Long id, Dermatologist dermatologist, Pharmacy pharmacy, Patient patient, Prescription prescription, Schedule schedule, Integer price, List<Diagnosis> diagnosis, int loyaltyPoints) {
         this.id = id;
         this.dermatologist = dermatologist;
+        this.pharmacy = pharmacy;
         this.patient = patient;
         this.prescription = prescription;
         this.schedule = schedule;
-        this.price=price;
+        this.price = price;
         this.diagnosis = diagnosis;
         this.loyaltyPoints = loyaltyPoints;
-    }
-
-    public List<Diagnosis> getDiagnosis() {
-        return diagnosis;
-    }
-
-    public void setDiagnosis(List<Diagnosis> diagnosis) {
-        this.diagnosis = diagnosis;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-    public Prescription getPrescription() {
-        return prescription;
-    }
-
-    public void setPrescription(Prescription prescription) {
-        this.prescription = prescription;
     }
 
     public Long getId() {
@@ -81,6 +63,14 @@ public class Examination {
         this.dermatologist = dermatologist;
     }
 
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
+    }
+
     public Patient getPatient() {
         return patient;
     }
@@ -89,12 +79,36 @@ public class Examination {
         this.patient = patient;
     }
 
+    public Prescription getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(Prescription prescription) {
+        this.prescription = prescription;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
     public Integer getPrice() {
         return price;
     }
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public List<Diagnosis> getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(List<Diagnosis> diagnosis) {
+        this.diagnosis = diagnosis;
     }
 
     public int getLoyaltyPoints() {

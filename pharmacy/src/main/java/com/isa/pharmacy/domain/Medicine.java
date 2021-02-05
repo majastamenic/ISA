@@ -2,19 +2,15 @@ package com.isa.pharmacy.domain;
 
 import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;
-
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
 @Table
 public class Medicine implements Serializable {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 588135730011427705L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,8 +37,7 @@ public class Medicine implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
 
-    public Medicine() {
-    }
+    public Medicine() { }
 
     public Medicine(Long id, Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine, String composition, String manufactured, int loyalityPoints,MedicinePublishingType publishingType, List<Long> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy) {
         this.id = id;
@@ -52,7 +47,6 @@ public class Medicine implements Serializable {
         this.formOfMedicine = formOfMedicine;
         this.composition = composition;
         this.manufactured = manufactured;
-        this.loyaltyPoints = loyaltyPoints;
         this.publishingType = publishingType;
         this.replacementMedicines = replacementMedicines;
         this.note = note;

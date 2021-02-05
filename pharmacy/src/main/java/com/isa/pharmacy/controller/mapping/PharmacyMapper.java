@@ -1,11 +1,9 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.PharmacyDto;
+import com.isa.pharmacy.controller.dto.PharmacyFromMedicinePharmacyDto;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
-import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
-
-import java.util.ArrayList;
 
 public class PharmacyMapper {
     public static Pharmacy mapPharmacyDtoToPharmacy(PharmacyDto pharmacyDto){
@@ -29,5 +27,21 @@ public class PharmacyMapper {
         dto.setAddress(pharmacy.getAddress());
 
         return dto;
+    }
+    public static PharmacyFromMedicinePharmacyDto mapPharmacyToPharmacyFromMedicinePharmacyDto(Pharmacy pharmacy){
+        PharmacyFromMedicinePharmacyDto pharmacyFromMedicinePharmacyDto = new PharmacyFromMedicinePharmacyDto();
+
+        pharmacyFromMedicinePharmacyDto.setId(pharmacy.getId());
+        pharmacyFromMedicinePharmacyDto.setAddress(pharmacy.getAddress());
+        pharmacyFromMedicinePharmacyDto.setName(pharmacy.getName());
+        return  pharmacyFromMedicinePharmacyDto;
+    }
+
+    public static Pharmacy mapPharmacyFromMedicinePharmacyDtoToPharmacy(PharmacyFromMedicinePharmacyDto pharmacyFromMedicinePharmacyDto){
+        Pharmacy pharmacy = new Pharmacy();
+        pharmacy.setAddress(pharmacyFromMedicinePharmacyDto.getAddress());
+        pharmacy.setName(pharmacyFromMedicinePharmacyDto.getName());
+        pharmacy.setId(pharmacyFromMedicinePharmacyDto.getId());
+        return  pharmacy;
     }
 }

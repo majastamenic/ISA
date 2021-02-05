@@ -1,8 +1,8 @@
 package com.isa.pharmacy.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.isa.pharmacy.domain.Profile.Dermatologist;
-import com.isa.pharmacy.domain.Profile.Pharmacist;
+import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.users.domain.Pharmacist;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,6 +13,7 @@ import java.util.List;
 @Table
 public class VacationSchedule implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,9 +25,9 @@ public class VacationSchedule implements Serializable {
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date endDate;
-    @OneToMany
+    @ManyToMany             // TODO: Obrisati liste ispod?
     private List<Pharmacist> pharmacists;
-    @OneToMany
+    @ManyToMany
     private List<Dermatologist> dermatologists;
 
     public VacationSchedule(){}

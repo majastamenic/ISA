@@ -18,7 +18,7 @@ input[type=email], input[type=password], input[type=text], input[type = tel], in
     box-sizing: border-box;
   }
 
-  
+
   button {
     background-color: rgb(27, 186, 214);
     color: white;
@@ -45,6 +45,11 @@ input[type=email], input[type=password], input[type=text], input[type = tel], in
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
+
+  .transparent{
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
 
   table{
     background-color: white;

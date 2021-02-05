@@ -7,7 +7,8 @@ import java.util.List;
 @Entity
 @Table
 public class Report implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -3931177016160172335L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,7 +16,7 @@ public class Report implements Serializable {
     private String note;
     @OneToOne
     private Counseling counseling;
-    @ElementCollection
+    @OneToMany
     private List<MedicinePharmacy> medicines;
 
     public Report(){}

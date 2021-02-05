@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EXAMINATION_LOYALTY_PATH } from '../util/paths';
+import { EXAMINATION_LOYALTY_PATH, FREE_EXAM_TERMS_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,13 @@ export class ExaminationService {
 
   setLoyaltyPoints(loyaltyPoints: number): any{
     return this.httpClient.put(EXAMINATION_LOYALTY_PATH, loyaltyPoints);
+  }
+
+  getFreeExaminationTerms(){
+    return this.httpClient.get(FREE_EXAM_TERMS_PATH);
+  }
+
+  getFreeExaminationTermsByPharmacy(pharmacyName: string){
+    return this.httpClient.get(FREE_EXAM_TERMS_PATH + "/" + pharmacyName);
   }
 }

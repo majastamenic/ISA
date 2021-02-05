@@ -1,8 +1,8 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.domain.Profile.Dermatologist;
-import com.isa.pharmacy.domain.Profile.Pharmacist;
-import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
+import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,22 +10,21 @@ import java.util.List;
 @Entity
 @Table
 public class WorkSchedule implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7284040064117627747L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
     private Schedule schedule;
-    @ManyToMany
+    @ManyToMany             // TODO: Obrisati liste ispod?
     private List<Pharmacist> pharmacists;
     @ManyToMany
     private List<Dermatologist> dermatologists;
     @OneToOne
     private PharmacyAdmin admin;
 
-
-    public WorkSchedule() {
-    }
+    public WorkSchedule() { }
 
     public WorkSchedule(Long id, Schedule schedule, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists, PharmacyAdmin admin) {
         this.id = id;

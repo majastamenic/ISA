@@ -1,8 +1,7 @@
 package com.isa.pharmacy.domain;
 
-
-import com.isa.pharmacy.domain.Profile.Patient;
-import com.isa.pharmacy.domain.Profile.Pharmacist;
+import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.domain.enums.ExaminationAndCounselingStatus;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +9,8 @@ import java.io.Serializable;
 @Entity
 @Table
 public class Counseling implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -3735212154097668426L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +20,7 @@ public class Counseling implements Serializable {
     private Patient patient;
     @OneToOne
     private Schedule schedule;
-    @OneToOne
+    @OneToOne           // TODO: Obrisati ili odavde ili iz Reporta Counseling
     private Report report;
     @Column
     private boolean patientCame;
@@ -42,6 +42,46 @@ public class Counseling implements Serializable {
         this.loyaltyPoints = loyaltyPoints;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Pharmacist getPharmacist() {
+        return pharmacist;
+    }
+
+    public void setPharmacist(Pharmacist pharmacist) {
+        this.pharmacist = pharmacist;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
+    }
+
     public boolean isPatientCame() {
         return patientCame;
     }
@@ -56,46 +96,6 @@ public class Counseling implements Serializable {
 
     public void setCounselingStatus(ExaminationAndCounselingStatus counselingStatus) {
         this.counselingStatus = counselingStatus;
-    }
-
-    public Report getReport() {
-        return report;
-    }
-
-    public void setReport(Report report) {
-        this.report = report;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-    public Pharmacist getPharmacist() {
-        return pharmacist;
-    }
-
-    public void setPharmacist(Pharmacist pharmacist) {
-        this.pharmacist = pharmacist;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
     }
 
     public int getLoyaltyPoints() {

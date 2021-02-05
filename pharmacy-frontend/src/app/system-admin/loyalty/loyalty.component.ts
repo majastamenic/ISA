@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CounselingService } from 'src/app/service/counseling.service';
+import { AllCounselingsService } from 'src/app/service/all-counselings.service';
 import { ExaminationService } from 'src/app/service/examination.service';
 import { MedicineService } from 'src/app/service/medicine.service';
 
@@ -22,7 +22,7 @@ export class LoyalityComponent implements OnInit {
   counsLoyaltyPoints: number = 0;
 
   constructor(private medicineService: MedicineService, private examService: ExaminationService,
-    private counService: CounselingService ,private toastrService: ToastrService) { }
+    private counService: AllCounselingsService ,private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.medicineService.getAllMedLoyality().subscribe(listMedicineDto => {

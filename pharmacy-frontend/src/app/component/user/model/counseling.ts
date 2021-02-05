@@ -1,6 +1,6 @@
 export interface Counseling{
   user: any;
-  patient: any;
+  patientDto: any;
   schedule: any;
   report: any;
   patientCame: any;

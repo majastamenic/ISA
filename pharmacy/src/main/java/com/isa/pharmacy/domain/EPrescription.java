@@ -11,11 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table
 public class EPrescription implements Serializable {
+    private static final long serialVersionUID = 9111153783414830667L;
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,13 +25,10 @@ public class EPrescription implements Serializable {
     private Date dateOfIssue;
     @OneToMany
     private List<MedicineEPrescription> listOfMedication;
-
     @Column
     private String fileText;
 
-    public EPrescription() {
-    }
-
+    public EPrescription() { }
 
     public EPrescription(Long id, Long code, String patientName, Date dateOfIssue, List<MedicineEPrescription> listOfMedication,
                          String fileText) {
