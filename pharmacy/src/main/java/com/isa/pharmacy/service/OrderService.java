@@ -2,14 +2,11 @@ package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.CreateOrderDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
-import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
 import com.isa.pharmacy.controller.mapping.OrderMapper;
-import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 import com.isa.pharmacy.repository.OrderRepository;
-import com.isa.pharmacy.repository.PharmacyAdminRepository;
+import com.isa.pharmacy.users.repository.PharmacyAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

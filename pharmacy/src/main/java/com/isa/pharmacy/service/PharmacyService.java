@@ -21,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Repository
 public class PharmacyService {
+
     @Autowired
     private PharmacyRepository pharmacyRepository;
     @Value("${apiKey}")
@@ -50,15 +51,15 @@ public class PharmacyService {
     public List<Medicine> getMedicinesFromPharmacy(String pharmacyName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
         List<Medicine> medicineList = new ArrayList<>();
-        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacy()) {
             medicineList.add(medicinePharmacy.getMedicine());
         }
         return medicineList;
-        }
+    }
 
     public int hasPharmacyMedication(String pharmacyName, String medicineName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
-        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacy()) {
             if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName))
                 return medicinePharmacy.getQuantity();
         }
@@ -67,7 +68,7 @@ public class PharmacyService {
 
     public Medicine checkAvailability(String medicineName, String pharmacyName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
-        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacy()) {
             if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName))
                 return medicinePharmacy.getMedicine();
         }
@@ -77,7 +78,7 @@ public class PharmacyService {
     public List<MedicineDto> checkAvailabilities(List<String> medicinesName, String pharmacyName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
         List<MedicineDto> medicineDtoList = new ArrayList<>();
-        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacy()) {
             for(String medicineName : medicinesName) {
                 if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName))
                     medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), pharmacyName));
@@ -88,7 +89,7 @@ public class PharmacyService {
 
     public MedicineDto orderMedicine(String medicineName, int amount, String pharmacyName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
-        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacy()) {
             if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName)
                     && medicinePharmacy.getQuantity() >= amount) {
                 medicinePharmacy.setQuantity(medicinePharmacy.getQuantity() - amount);
@@ -113,7 +114,7 @@ public class PharmacyService {
     public List<MedicineDto> getMedicineListFromPharmacy(String pharmacyName) {
         Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(pharmacyName);
         List<MedicineDto> medicineDtoList = new ArrayList<>();
-        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacies()) {
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacy()) {
             medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), pharmacyName));
         }
         return medicineDtoList;

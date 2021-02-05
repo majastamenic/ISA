@@ -1,7 +1,7 @@
 package com.isa.pharmacy.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
+import com.isa.pharmacy.users.domain.PharmacyAdmin;
 
 
 import javax.persistence.*;
@@ -12,7 +12,8 @@ import java.util.List;
 @Entity(name = "app_order")
 @Table
 public class Order implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2552181062633782965L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,7 +29,7 @@ public class Order implements Serializable {
     private Date endTime;
     @OneToOne
     private PharmacyAdmin pharmacyAdmin;
-    @OneToMany
+    @OneToMany          // TODO: Obrisati?
     private List<OrderOffer> offers;
     @Column
     private Long winnerId;

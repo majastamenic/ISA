@@ -17,7 +17,10 @@
                 <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/counseling'" routerLinkActive="active">Shedule counseling</a>
             </li>
             <li class="nav-item">
-                <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/allcounselings'" routerLinkActive="active">All counselings</a>
+                <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/allcounselings'" routerLinkActive="active">All counseling</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/medicine/reserved'" routerLinkActive="active">Publishing reserved medicine</a>
             </li>
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/price/init'" routerLinkActive="active">Define price</a>
@@ -25,7 +28,7 @@
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item">
-                <a class="nav-link"  [routerLink]="'/profile/patient'" routerLinkActive="active">Profile</a>
+                <a *ngIf="userService.isUserLogin()" class="nav-link"  [routerLink]="'/profile'" routerLinkActive="active">Profile</a>
             </li>
             <li class="nav-item">
                 <a *ngIf="!userService.isUserLogin()" class="nav-link"  [routerLink]="'/login'" routerLinkActive="active">Login</a>

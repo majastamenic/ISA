@@ -12,27 +12,19 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class MedicineEPrescription implements Serializable {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5055561993535812593L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(unique = true)
     private Long code;
-
     @Column
     private String name;
-
     @Column
     private int quantity;
 
-    public MedicineEPrescription() {
-    }
+    public MedicineEPrescription() { }
 
     public MedicineEPrescription(Long id, Long code, String name, int quantity) {
         super();

@@ -7,11 +7,12 @@ import java.util.Date;
 @Entity
 @Table
 public class PriceList {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 8492848936253590889L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column                         // TODO Tasa: Mozda bolje da medicinePharmacy ima Pricelist
     private MedicinePharmacy medicinePharmacy;
     @Column
     @Temporal(TemporalType.DATE)
@@ -22,8 +23,8 @@ public class PriceList {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date dateTo;
 
-    public PriceList(){
-    }
+    public PriceList(){ }
+
     public PriceList(Long id, MedicinePharmacy medicinePharmacy, Date dateFrom, Date dateTo) {
         this.id=id;
         this.medicinePharmacy = medicinePharmacy;
