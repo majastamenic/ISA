@@ -3,6 +3,7 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.PatientDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Counseling;
@@ -57,5 +58,15 @@ public class CounselingService {
             counselingRepository.save(counseling);
         }
         return counseling;
+    }
+
+    public CounselingDto getById(long id){
+        // provera vremena
+        Counseling counseling = counselingRepository.findCounselingById(id);
+        if(counseling != null){
+            PatientDto patientDto = PatientMapper.mapPatientToPatientDto(counseling.getPatient());
+            return CounselingMapper.mapCounselingToCounselingDto(counseling, patientDto);
+        }
+        throw new NotFoundException("Counseling not found");
     }
 }

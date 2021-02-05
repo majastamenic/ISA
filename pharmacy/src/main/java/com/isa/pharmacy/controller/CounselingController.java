@@ -46,4 +46,9 @@ public class CounselingController {
 
     @PostMapping("/update")
     public Counseling update(@RequestBody Counseling c) { return counselingService.save(c); }
+
+    @GetMapping("/start/{id}")
+    public CounselingDto getById(@PathVariable("id") long id) {
+        return counselingService.getById(id);
+    }
 }
