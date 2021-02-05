@@ -27,8 +27,11 @@ export const SUPPLIER_PATH = BACKEND_PATH + '/supplier';
 export const SYSTEM_ADMIN_PATH = BACKEND_PATH + '/system_admin';
 
 export const PRICELISTDEFINE_PATH = BACKEND_PATH + '/pricelist/define';
+
 export const COUNSELING_PATH = BACKEND_PATH + '/counseling';
 export const COUNSELING_ADD_PATH = COUNSELING_PATH + '/add';
+export const COUNSELING_START_PATH = COUNSELING_PATH + '/start';
+
 export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy/getAllMedicines';
 export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
 

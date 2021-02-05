@@ -24,6 +24,7 @@ import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
+import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
+  { path: 'allcounselings/:id', component: StartCounselingComponent},
   { path: 'price/init', component: PriceInitComponent},
   { path: 'counseling', component: ScheduleCounselingComponent},
   { path: 'order/init', component: OrderInitComponent},
