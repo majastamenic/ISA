@@ -35,6 +35,10 @@ import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-sys
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
+import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-profile/pharmacy-profile.component';
+import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
+import { AllDermatologistsComponent } from './component/pharmacy-admin/all-dermatologists/all-dermatologists.component';
+import { AllMedicationsComponent } from './component/pharmacy-admin/all-medications/all-medications.component';
 
 
 @NgModule({
@@ -66,6 +70,10 @@ import { PublishingReservedMedicineComponent } from './component/publishing-rese
     UserProfileComponent,
     PriceInitComponent,
     PublishingReservedMedicineComponent,
+    PharmacyProfileComponent,
+    AllPharmacistsComponent,
+    AllDermatologistsComponent,
+    AllMedicationsComponent,
   ],
   imports: [
     BrowserModule,
