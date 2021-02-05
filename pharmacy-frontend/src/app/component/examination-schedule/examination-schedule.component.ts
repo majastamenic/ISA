@@ -12,15 +12,11 @@ import { ExaminationService } from 'src/app/service/examination.service';
 export class ExaminationScheduleComponent implements OnInit {
 
   loggedUser: any = sessionStorage.getItem('user');
-  examinations: any;
+  examinations: any = [];
   pharmacy: any;
 
   constructor(private examinationService: ExaminationService, 
-    private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService) { 
-      if(!this.loggedUser){
-
-      }
-    }
+    private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService) {}
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => { 
@@ -28,15 +24,22 @@ export class ExaminationScheduleComponent implements OnInit {
       this.examinationService.getFreeExaminationTermsByPharmacy(this.pharmacy).subscribe(freeExaminations =>{
         this.examinations = freeExaminations;
       }, error => {
+        console.error(error);
         this.toastrService.error("Error while loading terms!");
       }); 
     }, error => {
+      console.error(error);
       this.toastrService.error('No pharmacy has been specified!');
     });
   }
 
   scheduleExamination(id: number){
-  
+    this.examinationService.scheduleExamination(this.loggedUser, id).subscribe(noVal =>{
+      // Obrisati iz liste examinations onaj sto je upravo zakazan
+      this.toastrService.success('Examination successfuly scheduled!');
+    }, error =>{
+      this.toastrService.error(error.toString());
+    });
   }
 
 }
