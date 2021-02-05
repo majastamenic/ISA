@@ -1,10 +1,10 @@
-package com.isa.pharmacy.users.service;
+package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.domain.User;
-import com.isa.pharmacy.users.repository.PatientRepository;
+import com.isa.pharmacy.domain.users.Patient;
+import com.isa.pharmacy.domain.users.User;
+import com.isa.pharmacy.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +44,7 @@ public class PatientService {
     }
 
     public Patient registration(Patient patient) {
-        User existingUser = userService.getByEmail(patient.getUser().getEmail());
+        Patient existingUser = patientRepository.findByUser_email(patient.getUser().getEmail());
         if (existingUser == null) {
             userService.create(patient.getUser());
             return patientRepository.save(patient);

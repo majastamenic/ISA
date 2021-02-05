@@ -1,9 +1,9 @@
-package com.isa.pharmacy.users.service;
+package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
-import com.isa.pharmacy.users.domain.Supplier;
-import com.isa.pharmacy.users.domain.User;
-import com.isa.pharmacy.users.repository.SupplierRepository;
+import com.isa.pharmacy.domain.users.Supplier;
+import com.isa.pharmacy.domain.users.User;
+import com.isa.pharmacy.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class SupplierService {
     private SupplierRepository supplierRepository;
 
     public Supplier registration(Supplier supplier) {
-        User existingUser = userService.getByEmail(supplier.getUser().getEmail());
+        Supplier existingUser = supplierRepository.findSupplierByUser_email(supplier.getUser().getEmail());
         if (existingUser == null) {
             userService.create(supplier.getUser());
             return supplierRepository.save(supplier);

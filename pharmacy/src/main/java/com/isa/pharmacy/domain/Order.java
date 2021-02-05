@@ -1,7 +1,7 @@
 package com.isa.pharmacy.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.isa.pharmacy.users.domain.PharmacyAdmin;
+import com.isa.pharmacy.domain.users.PharmacyAdmin;
 
 
 import javax.persistence.*;

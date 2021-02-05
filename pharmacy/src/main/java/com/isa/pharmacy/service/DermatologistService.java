@@ -1,9 +1,9 @@
-package com.isa.pharmacy.users.service;
+package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
-import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.users.domain.User;
-import com.isa.pharmacy.users.repository.DermatologistRepository;
+import com.isa.pharmacy.domain.users.Dermatologist;
+import com.isa.pharmacy.domain.users.User;
+import com.isa.pharmacy.repository.DermatologistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +36,7 @@ public class DermatologistService {
     }
 
     public Dermatologist registration(Dermatologist dermatologist) {
-        User existingUser = userService.getByEmail(dermatologist.getUser().getEmail());
+        Dermatologist existingUser = dermatologistRepository.findDermatologistByUser_email(dermatologist.getUser().getEmail());
         if (existingUser == null) {
             userService.create(dermatologist.getUser());
             return dermatologistRepository.save(dermatologist);

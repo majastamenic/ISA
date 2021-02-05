@@ -18,22 +18,22 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Aca', 'Lukas', 'aca@gmail.com', 'aca', 'Vojislava Vuckovica 1', 'Beograd', 'Srbija', '069/5889522', 0, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Toma', 'zdravkovic', 'toma@gmail.com', 'toma', 'Jastrebacka 11', 'Aleksinac', 'Srbija', '065/338799', 0, true);
     -- Patient
-    insert into patient(id, verification_code, user_id) values(1, 'bgbhjjgfgggfhouytr', 1);
-    insert into patient(id, verification_code, user_id) values(2, 'fdssdsdggsfgfsasgj', 2);
-    insert into patient(id, verification_code, user_id) values(3, 'gdfhjgkrterfscvtyu', 3);
-    insert into patient(id, verification_code, user_id) values(4, 'gdfhjgkrterfscvtyu', 4);
-    insert into patient(id, verification_code, user_id) values(5, 'gdfhjgkrterfscvtyu', 5);
-    insert into patient(id, verification_code, user_id) values(6, 'gdfhjgkrterfscvtyu', 6);
+    insert into patient(verification_code, user_id) values('bgbhjjgfgggfhouytr', 1);
+    insert into patient(verification_code, user_id) values('fdssdsdggsfgfsasgj', 2);
+    insert into patient(verification_code, user_id) values('gdfhjgkrterfscvtyu', 3);
+    insert into patient(verification_code, user_id) values('gdfhjgkrterfscvtyu', 4);
+    insert into patient(verification_code, user_id) values('gdfhjgkrterfscvtyu', 5);
+    insert into patient(verification_code, user_id) values('gdfhjgkrterfscvtyu', 6);
 -- User: Pharmacist
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Milanovic', 'masa@gmail.com', 'masa', 'Ticanova 23', 'Novi Sad', 'Srbija', '069/7798654', 3, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milan', 'Knezevic', 'milan@gmail.com', 'milan', 'Gagarinova 83', 'Novi Sad', 'Srbija', '065/963565', 3, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Antonic', 'antonic@gmail.com', 'antonic', 'Bulevar Oslobodjenja 78', 'Novi Sad', 'Srbija', '065/789101', 3, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirko', 'Plavsic', 'mirko@gmail.com', 'mirko', 'Pa Pavla 14', 'Novi Sad', 'Srbija', '069/8765432', 3, true);
     -- Pharmacist
-    insert into pharmacist(id, pharmacy_id, user_id) values(7, 5, 7);
-    insert into pharmacist(id, pharmacy_id, user_id) values(8, 6, 8);
-    insert into pharmacist(id, pharmacy_id, user_id) values(9, 4, 9);
-    insert into pharmacist(id, pharmacy_id, user_id) values(10, 5, 10);
+    insert into pharmacist(pharmacy_id, user_id) values(5, 7);
+    insert into pharmacist(pharmacy_id, user_id) values(6, 8);
+    insert into pharmacist(pharmacy_id, user_id) values(4, 9);
+    insert into pharmacist(pharmacy_id, user_id) values(5, 10);
 -- User: Admin
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Luburic', 'nikola@uns.ac.rs', 'nikola', 'Marka Kraljevica 2', 'Novi Sad', 'Srbija', '062/468965', 1, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Rade', 'Doroslovacki', 'rade@uns.ac.rs', 'rade', 'Marka Kraljevica 15', 'Novi Sad', 'Srbija', '062/779635', 1, true);
@@ -42,9 +42,9 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Darko', 'Milicic', 'dare@gmail.com', 'dare', 'Zmaj Jovina 56', 'Novi Sad', 'Srbija', '061/1116555', 2, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Acim', 'Maravic', 'acim@gmail.com', 'acim', 'Bulevar Cara Lazara 15', 'Novi Sad', 'Srbija', '063/555333', 2, true);
     -- Dermatologist
-    insert into dermatologist(id, user_id) values(13, 13);
-    insert into dermatologist(id, user_id) values(14, 14);
-    insert into dermatologist(id, user_id) values(15, 15);
+    insert into dermatologist(user_id) values(13);
+    insert into dermatologist(user_id) values(14);
+    insert into dermatologist(user_id) values(15);
 -- User: Supplier
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Luka', 'Djurdjevic', 'luka@gmail.com', 'luka', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 4, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Simona', 'Prokic', 'simona@gmail.com', 'simona', 'Fruskogorska 12', 'Novi Sad', 'Srbija', '067/114885', 4, true);

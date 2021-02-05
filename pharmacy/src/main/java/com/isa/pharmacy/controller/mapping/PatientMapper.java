@@ -3,7 +3,7 @@ package com.isa.pharmacy.controller.mapping;
 import com.isa.pharmacy.controller.dto.AllergyDto;
 import com.isa.pharmacy.controller.dto.PatientDto;
 import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.domain.users.Patient;
 
 import java.util.ArrayList;
 import java.util.List;

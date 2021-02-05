@@ -3,9 +3,9 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.mapping.UserMapper;
 import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.domain.users.Patient;
 import com.isa.pharmacy.service.EmailService;
-import com.isa.pharmacy.users.service.PatientService;
+import com.isa.pharmacy.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

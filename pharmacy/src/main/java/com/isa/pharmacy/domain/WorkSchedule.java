@@ -1,8 +1,8 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.domain.PharmacyAdmin;
+import com.isa.pharmacy.domain.users.Dermatologist;
+import com.isa.pharmacy.domain.users.Pharmacist;
+import com.isa.pharmacy.domain.users.PharmacyAdmin;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;

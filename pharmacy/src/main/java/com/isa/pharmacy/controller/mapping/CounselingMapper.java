@@ -3,8 +3,8 @@ package com.isa.pharmacy.controller.mapping;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.PatientDto;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.domain.users.Patient;
+import com.isa.pharmacy.domain.users.Pharmacist;
 
 public class CounselingMapper {
 

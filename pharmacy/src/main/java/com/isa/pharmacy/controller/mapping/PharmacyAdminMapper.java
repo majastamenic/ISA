@@ -3,8 +3,8 @@ package com.isa.pharmacy.controller.mapping;
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesPharmacyAdminDto;
 import com.isa.pharmacy.controller.dto.CreatePhAdminDto;
 import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.users.domain.PharmacyAdmin;
-import com.isa.pharmacy.users.domain.User;
+import com.isa.pharmacy.domain.users.PharmacyAdmin;
+import com.isa.pharmacy.domain.users.User;
 import net.bytebuddy.utility.RandomString;
 
 public class PharmacyAdminMapper {

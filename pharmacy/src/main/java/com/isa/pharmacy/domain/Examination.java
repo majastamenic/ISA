@@ -1,10 +1,9 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.domain.users.Dermatologist;
+import com.isa.pharmacy.domain.users.Patient;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @Entity

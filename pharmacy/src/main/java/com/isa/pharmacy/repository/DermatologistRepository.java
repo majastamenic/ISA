@@ -1,6 +1,7 @@
-package com.isa.pharmacy.users.repository;
+package com.isa.pharmacy.repository;
 
-import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.domain.users.Admin;
+import com.isa.pharmacy.domain.users.Dermatologist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,6 @@ public interface DermatologistRepository extends JpaRepository<Dermatologist, Lo
     Dermatologist save(Dermatologist dermatologist);
 
     Dermatologist findDermatologistById(Long id);
+
+    Dermatologist findDermatologistByUser_email(String email);
 }

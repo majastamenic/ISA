@@ -11,7 +11,7 @@ import { UserService } from 'src/app/service/user.service';
 export class RegSystemAdminComponent implements OnInit {
 
   user: UserRegistrationDto = { email: '', password: '', passwordAgain: '', name: '', surname: '', address: '', city: '',
-  country: '', phone: '', role: 6};
+  country: '', phone: '', role: 1};
 
   constructor(private userService: UserService, private toastrService: ToastrService) { }
 

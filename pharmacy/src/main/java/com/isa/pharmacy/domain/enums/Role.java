@@ -1,4 +1,4 @@
-package com.isa.pharmacy.users.domain.enums;
+package com.isa.pharmacy.domain.enums;
 
 public enum Role {
     PATIENT,

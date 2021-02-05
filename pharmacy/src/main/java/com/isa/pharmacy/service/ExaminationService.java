@@ -5,7 +5,7 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.repository.ExaminationRepository;
-import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.domain.users.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

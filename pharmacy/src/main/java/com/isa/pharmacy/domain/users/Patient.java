@@ -1,6 +1,7 @@
-package com.isa.pharmacy.users.domain;
+package com.isa.pharmacy.domain.users;
 
 import com.isa.pharmacy.domain.Medicine;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;

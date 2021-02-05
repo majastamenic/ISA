@@ -1,4 +1,4 @@
-package com.isa.pharmacy.users.domain;
+package com.isa.pharmacy.domain.users;
 
 import javax.persistence.*;
 import java.io.Serializable;

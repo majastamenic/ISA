@@ -1,8 +1,8 @@
 package com.isa.pharmacy.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.domain.users.Dermatologist;
+import com.isa.pharmacy.domain.users.Pharmacist;
 
 import javax.persistence.*;
 import java.io.Serializable;

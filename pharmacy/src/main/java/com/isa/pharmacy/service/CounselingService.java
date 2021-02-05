@@ -7,9 +7,8 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.domain.users.Pharmacist;
 import com.isa.pharmacy.repository.CounselingRepository;
-import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
