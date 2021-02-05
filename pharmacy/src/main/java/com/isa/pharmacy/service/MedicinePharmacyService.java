@@ -47,12 +47,10 @@ public class MedicinePharmacyService {
 
     public List<MedicinePharmacyDto> getMedicinesByCounseling(long id){
         Counseling counseling = counselingService.getCounselingById(id);
-        //List<MedicinePharmacy> medicinePharmacy = ;
         List<MedicinePharmacyDto> meds = new ArrayList<>();
-        //List<String> allergies = ;
         for(MedicinePharmacy mp : medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(counseling.getPharmacist().getPharmacy().getId())){
             for(String s : getPatientAllergies(counseling.getPatient().getAllergicMedicines())){
-                if(mp.getMedicine().getName().toLowerCase()!= s.toLowerCase()){
+                if(mp.getMedicine().getName().equalsIgnoreCase(s)){
                     MedicinePharmacyDto mpd = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
                     meds.add(mpd);
                 }
