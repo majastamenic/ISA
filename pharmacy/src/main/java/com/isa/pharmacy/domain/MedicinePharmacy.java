@@ -5,13 +5,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "medicinePharmacy")
+@Table
 public class MedicinePharmacy implements Serializable {
+    private static final long serialVersionUID = -1545045302553043685L;
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,10 +19,9 @@ public class MedicinePharmacy implements Serializable {
     @ManyToOne
     private Medicine medicine;
     @ManyToOne
-    private Pharmacy pharmacy;
+    private Pharmacy pharmacy;      // TODO: Dodati Pricelist
 
-    public MedicinePharmacy() {
-    }
+    public MedicinePharmacy() { }
 
     public MedicinePharmacy(long id, double price, Medicine medicine, Pharmacy pharmacy, int quantity) {
         super();
@@ -75,6 +71,4 @@ public class MedicinePharmacy implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-
 }

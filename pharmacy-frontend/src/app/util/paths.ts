@@ -11,7 +11,8 @@ export const HOSPITAL_PATH = BACKEND_PATH + '/hospital';
 export const ACTION_PATH = BACKEND_PATH + '/actions';
 
 export const MEDICINE_PATH = BACKEND_PATH + '/medicine';
-export const MEDICINEALL_PATH = BACKEND_PATH + '/medicine/getAllMedicines';
+export const MEDICINEALL_PATH = MEDICINE_PATH + '/getAllMedicines';
+
 export const EPRESCRIPTION_PATH = BACKEND_PATH + '/ePrescription';
 export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';
 export const SCHEDULE_PATH = BACKEND_PATH + '/workschedule';
@@ -25,7 +26,6 @@ export const SUPPLIER_PATH = BACKEND_PATH + '/supplier';
 
 export const SYSTEM_ADMIN_PATH = BACKEND_PATH + '/system_admin';
 
-
 export const PRICELISTDEFINE_PATH = BACKEND_PATH + '/pricelist/define';
 export const COUNSELING_PATH = BACKEND_PATH + '/counseling';
 export const COUNSELING_ADD_PATH = COUNSELING_PATH + '/add';
@@ -33,4 +33,7 @@ export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy/getAl
 export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
 
 export const PHARMACYADMIN_PATH = BACKEND_PATH + '/pharmacyadmin';
+
+export const EXAMINATION_PATH = BACKEND_PATH + '/examination';
+export const FREE_EXAM_TERMS_PATH = EXAMINATION_PATH + '/freeTerms';
 

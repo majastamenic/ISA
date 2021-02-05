@@ -4,13 +4,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "hospital")
+@Table
 public class Hospital implements Serializable {
+    private static final long serialVersionUID = -7991547834909543834L;
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,8 +16,7 @@ public class Hospital implements Serializable {
     @Column
     private String name;
 
-    public Hospital() {
-    }
+    public Hospital() { }
 
     public Hospital(Long id, String email, String name) {
         super();

@@ -1,4 +1,4 @@
-package com.isa.pharmacy.domain.Profile;
+package com.isa.pharmacy.users.domain;
 
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.VacationSchedule;
@@ -11,42 +11,29 @@ import java.util.List;
 @Entity
 @Table
 public class Pharmacist implements Serializable{
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 8975129800665804582L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @OneToOne
     private User user;
-    @Column
-    private boolean isFirstLog = true;
     @ManyToOne
     @JoinColumn(name = "pharmacy_id")
     private Pharmacy pharmacy;
     @ManyToMany
     private List<WorkSchedule> workSchedule;
-    @OneToMany
+    @ManyToMany
     private List<VacationSchedule> vacationSchedules;
 
     public Pharmacist(){}
 
-
-    public Pharmacist(Long id, User user, boolean isFirstLog, Pharmacy pharmacy, List<WorkSchedule> workSchedule, List<VacationSchedule> vacationSchedules) {
+    public Pharmacist(Long id, User user, Pharmacy pharmacy, List<WorkSchedule> workSchedule, List<VacationSchedule> vacationSchedules) {
         this.id = id;
         this.user = user;
-        this.isFirstLog = isFirstLog;
         this.pharmacy = pharmacy;
         this.workSchedule = workSchedule;
         this.vacationSchedules = vacationSchedules;
-    }
-
-    public boolean isFirstLog() {
-        return isFirstLog;
-    }
-
-    public void setFirstLog(boolean firstLog) {
-        isFirstLog = firstLog;
     }
 
     public Long getId() {
@@ -80,7 +67,6 @@ public class Pharmacist implements Serializable{
     public void setWorkSchedule(List<WorkSchedule> workSchedule) {
         this.workSchedule = workSchedule;
     }
-
 
     public Pharmacy getPharmacy() {
         return pharmacy;

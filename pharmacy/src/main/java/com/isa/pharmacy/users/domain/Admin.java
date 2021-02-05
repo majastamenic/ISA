@@ -1,4 +1,4 @@
-package com.isa.pharmacy.domain.Profile;
+package com.isa.pharmacy.users.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,10 +7,7 @@ import java.io.Serializable;
 @Table
 public class Admin implements Serializable {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -8446025721048679885L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

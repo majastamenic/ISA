@@ -1,4 +1,4 @@
-package com.isa.pharmacy.domain.enums;
+package com.isa.pharmacy.users.domain.enums;
 
 public enum Role {
     PATIENT,
@@ -6,6 +6,5 @@ public enum Role {
     DERMATOLOGIST,
     PHARMACIST,
     SUPPLIER,
-    PHARMACY_ADMIN,
-    PHARMACY_ADMIN_SYSTEM,
+    PHARMACY_ADMIN
 }

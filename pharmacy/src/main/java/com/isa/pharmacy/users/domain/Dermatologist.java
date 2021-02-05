@@ -1,6 +1,5 @@
-package com.isa.pharmacy.domain.Profile;
+package com.isa.pharmacy.users.domain;
 
-import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.VacationSchedule;
 import com.isa.pharmacy.domain.WorkSchedule;
@@ -12,44 +11,29 @@ import java.util.List;
 @Entity
 @Table
 public class Dermatologist implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 6484283988040527252L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @OneToOne
     private User user;
-
-    @Column
-    private boolean isFirstLog = true;
-    @OneToMany
+    @ManyToMany
     private List<Pharmacy> pharmacy;
-    @OneToMany
-    private List<Examination> examinations;
     @ManyToMany
     private List<WorkSchedule> workSchedule;
-    @OneToMany
+    @ManyToMany
     private List<VacationSchedule> vacationSchedules;
 
     public Dermatologist(){}
 
-    public Dermatologist(Long id, User user, boolean isFirstLog, List<Pharmacy> pharmacy, List<Examination> examinations, List <WorkSchedule> workSchedule, List<VacationSchedule> vacationSchedules) {
+    public Dermatologist(Long id, User user, List<Pharmacy> pharmacy, List <WorkSchedule> workSchedule,
+                         List<VacationSchedule> vacationSchedules) {
         this.id = id;
         this.user = user;
-        this.isFirstLog = isFirstLog;
         this.pharmacy = pharmacy;
-        this.examinations = examinations;
         this.workSchedule = workSchedule;
         this.vacationSchedules = vacationSchedules;
-    }
-
-    public boolean isFirstLog() {
-        return isFirstLog;
-    }
-
-    public void setFirstLog(boolean firstLog) {
-        isFirstLog = firstLog;
     }
 
     public Long getId() {
@@ -74,14 +58,6 @@ public class Dermatologist implements Serializable {
 
     public void setWorkSchedule(List<WorkSchedule> workSchedule) {
         this.workSchedule = workSchedule;
-    }
-
-    public List<Examination> getExaminations() {
-        return examinations;
-    }
-
-    public void setExaminations(List<Examination> examinations) {
-        this.examinations = examinations;
     }
 
     public List<Pharmacy> getPharmacy() {

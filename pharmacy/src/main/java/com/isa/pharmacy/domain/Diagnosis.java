@@ -6,7 +6,8 @@ import java.io.Serializable;
 @Entity
 @Table
 public class Diagnosis implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3336503350882355176L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

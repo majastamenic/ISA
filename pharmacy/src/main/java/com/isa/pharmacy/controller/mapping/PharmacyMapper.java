@@ -4,9 +4,6 @@ import com.isa.pharmacy.controller.dto.PharmacyDto;
 import com.isa.pharmacy.controller.dto.PharmacyFromMedicinePharmacyDto;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
-import com.isa.pharmacy.domain.Profile.PharmacyAdmin;
-
-import java.util.ArrayList;
 
 public class PharmacyMapper {
     public static Pharmacy mapPharmacyDtoToPharmacy(PharmacyDto pharmacyDto){

@@ -1,10 +1,10 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.CreatePharmacistDto;
-import com.isa.pharmacy.domain.Profile.Pharmacist;
+import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.domain.VacationSchedule;
 import com.isa.pharmacy.domain.WorkSchedule;
-import com.isa.pharmacy.service.PharmacistService;
+import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

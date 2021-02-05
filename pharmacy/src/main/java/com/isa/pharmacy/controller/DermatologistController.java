@@ -2,9 +2,8 @@ package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.RegistrationDto;
 import com.isa.pharmacy.controller.mapping.UserMapper;
-import com.isa.pharmacy.domain.Profile.Dermatologist;
-import com.isa.pharmacy.domain.Profile.Patient;
-import com.isa.pharmacy.service.DermatologistService;
+import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.users.service.DermatologistService;
 import com.isa.pharmacy.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
