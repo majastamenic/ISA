@@ -30,10 +30,10 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Antonic', 'antonic@gmail.com', 'antonic', 'Bulevar Oslobodjenja 78', 'Novi Sad', 'Srbija', '065/789101', 3, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirko', 'Plavsic', 'mirko@gmail.com', 'mirko', 'Pa Pavla 14', 'Novi Sad', 'Srbija', '069/8765432', 3, true);
     -- Pharmacist
-    insert into pharmacist(id, pharmacy_id, user_id) values(7, 5, 7);
+    insert into pharmacist(id, pharmacy_id, user_id) values(7, 1, 7);
     insert into pharmacist(id, pharmacy_id, user_id) values(8, 6, 8);
     insert into pharmacist(id, pharmacy_id, user_id) values(9, 4, 9);
-    insert into pharmacist(id, pharmacy_id, user_id) values(10, 5, 10);
+    insert into pharmacist(id, pharmacy_id, user_id) values(10, 2, 10);
 -- User: Admin
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Luburic', 'nikola@uns.ac.rs', 'nikola', 'Marka Kraljevica 2', 'Novi Sad', 'Srbija', '062/468965', 1, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Rade', 'Doroslovacki', 'rade@uns.ac.rs', 'rade', 'Marka Kraljevica 15', 'Novi Sad', 'Srbija', '062/779635', 1, true);

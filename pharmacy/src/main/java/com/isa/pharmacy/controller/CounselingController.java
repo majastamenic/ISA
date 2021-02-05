@@ -51,4 +51,6 @@ public class CounselingController {
     public CounselingDto getById(@PathVariable("id") long id) {
         return counselingService.getById(id);
     }
+
+
 }

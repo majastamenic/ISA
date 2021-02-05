@@ -70,4 +70,8 @@ public class CounselingService {
         }
         throw new NotFoundException("Counseling not found");
     }
+
+    public Counseling getCounselingById(long id){
+        return counselingRepository.findCounselingById(id);
+    }
 }
