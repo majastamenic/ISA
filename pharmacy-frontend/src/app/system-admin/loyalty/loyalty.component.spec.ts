@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoyalityComponent } from './loyality.component';
+import { LoyalityComponent } from './loyalty.component';
 
 describe('LoyalityComponent', () => {
   let component: LoyalityComponent;

@@ -85,3 +85,6 @@ insert into eprescription(code, date_of_issue, file_text, patient_name) values(2
 
 insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
 insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
+
+insert into examination(loyalty_points) values (20);
+insert into counseling(loyalty_points) values (30);

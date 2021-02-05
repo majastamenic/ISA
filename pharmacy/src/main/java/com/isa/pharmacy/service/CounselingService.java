@@ -54,4 +54,9 @@ public class CounselingService {
             counselingRepository.save(counseling);
         }
     }
+
+    public int getLoyaltyPoints(){
+        //TODO: Kako uzeti 1 kad su svi isti?
+        return counselingRepository.getOne(1l).getLoyaltyPoints();
+    }
 }

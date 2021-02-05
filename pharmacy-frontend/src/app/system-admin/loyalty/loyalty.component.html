@@ -1,6 +1,25 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h2>Medicine list</h2>
+        <h2>Loyalty program</h2>
+    </div>
+    <div>
+        <label>Examination loyalty points</label>
+        <br/>
+        <span *ngIf="!enableEditExam">{{examLoyaltyPoints}}</span>
+        <input *ngIf="enableEditExam" [(ngModel)]="examLoyaltyPoints"/>
+        <button *ngIf="enableEditExam" (click)="enableEditExam=false" class="btn page-secondary-action-btn" (click)="cancelExam()">Cancel</button>
+        <button *ngIf="enableEditExam" id="saveExamBtn" class="btn btn-primary btn-smbtn" (click)="saveExamPoints()" type="submit">Save</button>
+        <button *ngIf="!enableEditExam" id="editExamBtn" class="btn page-primary-action-btn" (click)="editExamPoints()" type="submit">Edit</button>
+    </div>
+
+    <div>
+        <label>Counseling loyalty points</label>
+        <br/>
+        <span *ngIf="!enableEditConsu">{{counsLoyaltyPoints}}</span>
+        <input *ngIf="enableEditConsu" [(ngModel)]="counsLoyaltyPoints"/>
+        <button *ngIf="enableEditConsu" (click)="enableEditConsu=false" class="btn page-secondary-action-btn" (click)="cancelCouns()">Cancel</button>
+        <button *ngIf="enableEditConsu" id="saveExamBtn" class="btn page-primary-action-btn" (click)="saveCounsPoints()" type="submit">Save</button>
+        <button *ngIf="!enableEditConsu" id="editExamBtn" class="btn page-primary-action-btn" (click)="editCounsPoints()" type="submit">Edit</button>
     </div>
     <div class="panel-body">
         <table id="medicine" class="table">

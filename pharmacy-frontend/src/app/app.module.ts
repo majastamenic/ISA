@@ -31,7 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
-import { LoyalityComponent } from './system-admin/loyality/loyality.component';
+import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
 
 @NgModule({
   declarations: [

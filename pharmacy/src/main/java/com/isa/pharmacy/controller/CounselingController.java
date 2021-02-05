@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
 @RequestMapping("/counseling")
+@CrossOrigin(value = "http://localhost:4200")
 public class CounselingController {
 
     @Autowired
@@ -45,8 +45,13 @@ public class CounselingController {
     public Counseling update(@RequestBody Counseling c) { return counselingService.save(c); }
 
     @PutMapping("/loyalty")
-    public ResponseEntity<String> updateLoyaltyPoints(@RequestParam int loyaltyPoints){
+    public ResponseEntity<String> updateLoyaltyPoints(@RequestBody Integer loyaltyPoints){
         counselingService.updateLoyaltyPoints(loyaltyPoints);
         return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    @GetMapping("/loyalty")
+    public int getLoyaltyPoints(){
+        return counselingService.getLoyaltyPoints();
     }
 }

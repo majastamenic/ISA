@@ -18,7 +18,7 @@ import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.c
 import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
-import { LoyalityComponent } from './system-admin/loyality/loyality.component';
+import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},

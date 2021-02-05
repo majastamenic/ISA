@@ -24,4 +24,9 @@ public class ExaminationService {
             examinationRepository.save(examination);
         }
     }
+
+    public int getLoyaltyPoints(){
+        //TODO: Kako uzeti 1 kad su svi isti?
+       return examinationRepository.getOne(1l).getLoyaltyPoints();
+    }
 }
