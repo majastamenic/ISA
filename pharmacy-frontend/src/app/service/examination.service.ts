@@ -12,4 +12,8 @@ export class ExaminationService {
   getFreeExaminationTerms(){
     return this.http.get(FREE_EXAM_TERMS_PATH);
   }
+
+  getFreeExaminationTermsByPharmacy(pharmacyName: string){
+    return this.http.get(FREE_EXAM_TERMS_PATH + "/" + pharmacyName);
+  }
 }

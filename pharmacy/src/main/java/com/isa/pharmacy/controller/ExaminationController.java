@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.service.ExaminationService;
@@ -16,13 +17,13 @@ public class ExaminationController {
     @Autowired
     private ExaminationService examService;
 
-    @GetMapping("/freeTerms")
-    public List<Examination> getFreeExaminationTerms(){
+    @GetMapping("/freeTerms")       // Za sada se ne koristi nigde
+    public List<FreeExaminationDto> getFreeExaminationTerms(){
         return examService.getAllFreeExaminationTerms();
     }
 
     @GetMapping("/freeTerms/{pharmacyName}")
-    public List<Examination> getExaminationTermsByPharmacy(@PathVariable String pharmacyName){
+    public List<FreeExaminationDto> getExaminationTermsByPharmacy(@PathVariable String pharmacyName){
         return examService.getFreeExaminationTermsByPharmacy(pharmacyName);
     }
 

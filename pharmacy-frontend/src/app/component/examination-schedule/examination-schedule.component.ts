@@ -19,7 +19,7 @@ export class ExaminationScheduleComponent implements OnInit {
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => { 
       this.pharmacy = params.get('pharmacyName');
-      this.examinationService.getFreeExaminationTerms().subscribe(freeExaminations =>{
+      this.examinationService.getFreeExaminationTermsByPharmacy(this.pharmacy).subscribe(freeExaminations =>{
         this.examinations = freeExaminations;
       }); 
   });

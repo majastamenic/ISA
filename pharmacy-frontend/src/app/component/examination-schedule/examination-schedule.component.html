@@ -3,7 +3,7 @@
         <h2>Schedule examination</h2>
     </div>
     <div class="panel-body">
-        <table id="freeTerms" class="table" style="background-color: rgba(255, 255, 255, 0.8);">
+        <table id="freeTerms" class="table transparent">
             <thead class="thead-dark">
                 <tr>
                     <th>Dermatologist</th>
@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let exam of examinations">
-                    <td>dr {{exam.dermatologist.user.name}} {{exam.dermatologist.user.surname}}</td>
+                    <td>dr {{exam.dermatologist.name}} {{exam.dermatologist.surname}}</td>
                     <td>{{exam.price}}</td>
                     <td>{{exam.schedule.startDate}}</td>
                     <td>{{exam.schedule.startTime}}</td>
