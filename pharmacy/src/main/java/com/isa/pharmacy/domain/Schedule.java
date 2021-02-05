@@ -8,7 +8,8 @@ import java.util.Date;
 @Entity
 @Table
 public class Schedule implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2158829881260056438L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

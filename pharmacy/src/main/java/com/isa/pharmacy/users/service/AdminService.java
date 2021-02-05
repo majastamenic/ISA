@@ -1,9 +1,9 @@
-package com.isa.pharmacy.service;
+package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
-import com.isa.pharmacy.domain.Profile.Admin;
-import com.isa.pharmacy.domain.Profile.User;
-import com.isa.pharmacy.repository.AdminRepository;
+import com.isa.pharmacy.users.domain.Admin;
+import com.isa.pharmacy.users.domain.User;
+import com.isa.pharmacy.users.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

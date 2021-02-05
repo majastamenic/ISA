@@ -7,7 +7,8 @@ import java.util.List;
 @Entity
 @Table
 public class Prescription implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 6680695108133719052L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,9 +16,9 @@ public class Prescription implements Serializable {
     private String note;
     @OneToOne
     private Examination examination;
-    @ElementCollection
+    @OneToMany
     private List<Diagnosis> diagnoses;
-    @ElementCollection
+    @OneToMany
     private List<MedicinePharmacy> medicines;
 
     public Prescription(){}

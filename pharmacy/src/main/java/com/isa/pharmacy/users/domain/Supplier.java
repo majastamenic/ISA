@@ -1,4 +1,4 @@
-package com.isa.pharmacy.domain.Profile;
+package com.isa.pharmacy.users.domain;
 
 import com.isa.pharmacy.domain.OrderOffer;
 

@@ -1,10 +1,10 @@
-package com.isa.pharmacy.service;
+package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.Profile.Patient;
-import com.isa.pharmacy.domain.Profile.User;
-import com.isa.pharmacy.repository.PatientRepository;
+import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.users.domain.User;
+import com.isa.pharmacy.users.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

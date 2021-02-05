@@ -32,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
+import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 
@@ -61,6 +62,7 @@ import { PublishingReservedMedicineComponent } from './component/publishing-rese
     RegSupplierComponent,
     ScheduleCounselingComponent,
     RegSystemAdminComponent,
+    ExaminationScheduleComponent,
     UserProfileComponent,
     PriceInitComponent,
     PublishingReservedMedicineComponent,

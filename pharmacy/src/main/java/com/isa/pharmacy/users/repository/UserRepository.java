@@ -1,11 +1,11 @@
-package com.isa.pharmacy.repository;
+package com.isa.pharmacy.users.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.isa.pharmacy.domain.Profile.User;
+import com.isa.pharmacy.users.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
