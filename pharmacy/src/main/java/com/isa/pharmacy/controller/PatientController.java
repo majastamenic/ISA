@@ -38,11 +38,6 @@ public class PatientController {
         return patientService.createPatient(patient);
     }
 
-    @PutMapping("/update")
-    public Patient updatePatient(@RequestBody Patient patient){
-        return patientService.updatePatient(patient);
-    }
-
     @GetMapping("/{email}")
     public Patient getPatientByEmail(@PathVariable("email") String email){
         return patientService.getPatient(email);

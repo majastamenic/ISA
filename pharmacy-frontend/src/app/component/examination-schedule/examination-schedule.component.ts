@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ExaminationService } from 'src/app/service/examination.service';
 
@@ -16,7 +16,14 @@ export class ExaminationScheduleComponent implements OnInit {
   pharmacy: any;
 
   constructor(private examinationService: ExaminationService, 
-    private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService) {}
+              private _ActivatedRoute: ActivatedRoute,
+              private toastrService: ToastrService,
+              private router: Router) {
+      if(!this.loggedUser){
+        this.router.navigate(['login']);
+        toastrService.info('Please login first!');
+      }
+    }
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => { 
