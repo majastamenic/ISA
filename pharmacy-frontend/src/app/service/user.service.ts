@@ -53,6 +53,10 @@ export class UserService {
     return !(user == null)
   }
 
+  isPharmacyAdmin(){
+    return (sessionStorage.getItem('role')=='PHARMACY_ADMIN');
+  }
+
   logOut(){
     sessionStorage.removeItem('user');
   }
