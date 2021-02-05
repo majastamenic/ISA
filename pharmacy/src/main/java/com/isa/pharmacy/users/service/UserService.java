@@ -16,6 +16,8 @@ import java.util.regex.Pattern;
 
 @Service
 public class UserService {
+    private static final String NOTFOUND = "User not found";
+
     @Autowired
     private UserRepository userRepository;
 
@@ -31,7 +33,7 @@ public class UserService {
     public User updateUser(User user){
         User dbUser = userRepository.findByEmail(user.getEmail());
         if(dbUser == null)
-            throw new NotFoundException("User not found");
+            throw new NotFoundException(NOTFOUND);
         dbUser.setName(user.getName());
         dbUser.setSurname(user.getSurname());
         dbUser.setAddress(user.getAddress());
@@ -45,7 +47,7 @@ public class UserService {
     public User updateUserPassword(User user){
         User dbUser = userRepository.findByEmail(user.getEmail());
         if(dbUser == null)
-            throw new NotFoundException("User not found");
+            throw new NotFoundException(NOTFOUND);
         dbUser.setPassword(user.getPassword());
         dbUser.setActive(true);
         return userRepository.save(dbUser);
@@ -62,7 +64,7 @@ public class UserService {
     public User updatePassword(PasswordChangeDto passwordDto){
         User dbUser = userRepository.findByEmail(passwordDto.getEmail());
         if(dbUser == null)
-            throw new NotFoundException("User not found");
+            throw new NotFoundException(NOTFOUND);
         if(!dbUser.getPassword().equals(passwordDto.getOldPass()))
             throw new InvalidActionException("Invalid old password");
         if(!passwordDto.getNewPass().equals(passwordDto.getNewPassRepeat()))
@@ -77,9 +79,8 @@ public class UserService {
 
     public User getByEmail(String email){
         User user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new NotFoundException("User not found");
-        }
+        if (user == null)
+            throw new NotFoundException(NOTFOUND);
         return user;
     }
 

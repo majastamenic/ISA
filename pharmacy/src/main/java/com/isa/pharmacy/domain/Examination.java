@@ -33,7 +33,9 @@ public class Examination implements Serializable {
 
     public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Patient patient, Date startDate, Date endDate, Pharmacy pharmacy, Prescription prescription, Schedule schedule, Integer price, List<Diagnosis> diagnosis) {
+    public Examination(Long id, Dermatologist dermatologist, Patient patient,
+                       Pharmacy pharmacy, Prescription prescription, Schedule schedule,
+                       Integer price, List<Diagnosis> diagnosis) {
         this.id = id;
         this.dermatologist = dermatologist;
         this.patient = patient;

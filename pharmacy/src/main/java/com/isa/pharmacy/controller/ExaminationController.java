@@ -27,8 +27,8 @@ public class ExaminationController {
         return examService.getFreeExaminationTermsByPharmacy(pharmacyName);
     }
 
-    @PutMapping
-    public void scheduleExamination(Patient patient, Examination examination){
-        examService.scheduleExamination(patient,examination);
-    }
+//    @PutMapping
+//    public void scheduleExamination(Patient patient, Examination examination){
+//        examService.scheduleExamination(patient,examination);
+//    }
 }

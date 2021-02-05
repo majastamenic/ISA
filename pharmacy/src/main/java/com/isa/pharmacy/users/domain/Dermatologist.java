@@ -18,7 +18,7 @@ public class Dermatologist implements Serializable {
     private Long id;
     @OneToOne
     private User user;
-    @OneToMany      // TODO: @ManyToMany?
+    @ManyToMany
     private List<Pharmacy> pharmacy;
     @ManyToMany
     private List<WorkSchedule> workSchedule;

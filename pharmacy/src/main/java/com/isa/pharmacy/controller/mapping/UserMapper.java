@@ -47,8 +47,7 @@ public class UserMapper {
 
     public static Patient mapRegistrationDtoToPatient(RegistrationDto registrationDto) {
         Patient patient = new Patient();
-        User user = new User();
-        user = mapRegistrationDtoToUser(registrationDto);
+        User user = mapRegistrationDtoToUser(registrationDto);
         if(registrationDto.getPassword().equals(registrationDto.getPasswordAgain()))
             user.setPassword(registrationDto.getPassword());
         else

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 
+    private static final String GREETING = "Hello ";
+
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -26,7 +28,7 @@ public class EmailService {
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(user.getEmail());
         simpleMailMessage.setSubject("Activation profile");
-        simpleMailMessage.setText("Hello "+user.getName() + ",\n" +
+        simpleMailMessage.setText(GREETING + user.getName() + ",\n" +
                 "Welcome to pharmacy system.\n" +
                 "Your password is: " + user.getPassword());
         javaMailSender.send(simpleMailMessage);
@@ -38,7 +40,7 @@ public class EmailService {
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(patient.getUser().getEmail());
         simpleMailMessage.setSubject("Registration");
-        simpleMailMessage.setText("Hello "+patient.getUser().getName() + ",\n" +
+        simpleMailMessage.setText(GREETING + patient.getUser().getName() + ",\n" +
                 "Welcome to pharmacy system.\n" +
                 "Your verification code is: " + patient.getVerificationCode());
         javaMailSender.send(simpleMailMessage);
@@ -50,7 +52,7 @@ public class EmailService {
         mailMessage.setFrom(mailSender);
         mailMessage.setTo(examiantion.getPatient().getUser().getEmail());
         mailMessage.setSubject("Examination");
-        mailMessage.setText("Hello " + examiantion.getPatient().getUser().getName() + ",\n" +
+        mailMessage.setText(GREETING + examiantion.getPatient().getUser().getName() + ",\n" +
                             "You have successfully scheduled an appointment with dermatologist.\n" +
                             "Details: \n" +
                             "- Dermatologist: " + examiantion.getDermatologist().getUser().getName() + "\n" +
@@ -68,7 +70,7 @@ public class EmailService {
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(hospitalEmail);
         simpleMailMessage.setSubject("Hospital registration");
-        simpleMailMessage.setText("Hello,\nWelcome to pharmacy system.\n" +
+        simpleMailMessage.setText(GREETING + ",\nWelcome to pharmacy system.\n" +
                 "Our Api key: " + apiKey +
                 "\nOur endpoint address is: http://localhost:8081/pharmacy/" +
                 "\nFeel free to contact any pharmacy from our system!");
