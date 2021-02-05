@@ -62,7 +62,7 @@ const routes: Routes = [
   { path: 'pharmacy/:pharmacyName', component: PharmacyProfileComponent},
   { path: 'pharmacists/:id', component: AllPharmacistsComponent},
   { path: 'dermatologists', component: AllDermatologistsComponent},
-  { path: 'medications', component: AllMedicationsComponent}
+  { path: 'medications/:id', component: AllMedicationsComponent}
 ];
 
 @NgModule({

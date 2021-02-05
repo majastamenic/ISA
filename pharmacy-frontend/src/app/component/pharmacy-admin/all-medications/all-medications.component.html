@@ -1,1 +1,20 @@
-<p>all-medications works!</p>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Price</th>
+        <th scope="col">quantity</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medication of medications; let i = index;">
+          <td>{{i}}</td>
+          <td>{{medication.price}}</td>
+          <td>{{medication.quantity}}</td>
+          <td>{{medication.medicine.name}}</td>
+          <td><button class="btn btn-primary" (click)="define()">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>

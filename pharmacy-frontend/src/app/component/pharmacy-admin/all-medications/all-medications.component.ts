@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MedicinePharmacy } from 'src/app/model/medicinePharmacy';
+import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.service';
 
 @Component({
   selector: 'app-all-medications',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllMedicationsComponent implements OnInit {
 
-  constructor() { }
+  id : any;
+  medications : MedicinePharmacy[]=[];
+  constructor(private medicinePharmacyService : MedicinePharmacyService,private _ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this._ActivatedRoute.paramMap.subscribe(params => { 
+      this.id = params.get('id');
+    });
+
+    this.medicinePharmacyService.getByPharmacy(this.id).subscribe((data: MedicinePharmacy[]) => {
+      this.medications = data;
+    });
   }
 
+  define(){
+    
+  }
 }
