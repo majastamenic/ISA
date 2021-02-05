@@ -53,8 +53,14 @@ export class UserService {
     return !(user == null)
   }
 
+
+  isPharmacist(){
+    return (sessionStorage.getItem("role") == 'PHARMACIST');
+  }
+
   logOut(){
     sessionStorage.removeItem('user');
+    sessionStorage.removeItem('role');
   }
 
 
