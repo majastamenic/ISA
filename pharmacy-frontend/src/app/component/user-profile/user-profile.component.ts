@@ -24,7 +24,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     let loggedUser = sessionStorage.getItem("user");
-    
     if(loggedUser){
       this.userService.getUserByEmail(loggedUser).subscribe((data:any) =>{
         this.user = data;
