@@ -53,13 +53,16 @@ export class UserService {
     return !(user == null)
   }
 
-
   isPharmacist(){
     return (sessionStorage.getItem("role") == 'PHARMACIST');
   }
 
   isDermatologist(){
     return (sessionStorage.getItem("role") == 'DERMATOLOGIST');
+  }
+
+  isPharmacyAdmin(){
+    return (sessionStorage.getItem('role') == 'PHARMACY_ADMIN');
   }
 
   logOut(){

@@ -35,7 +35,6 @@ export const COUNSELING_START_PATH = COUNSELING_PATH + '/start';
 export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy/getAllMedicines';
 export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
 
-export const PHARMACYADMIN_PATH = BACKEND_PATH + '/pharmacyadmin';
 
 export const EXAMINATION_PATH = BACKEND_PATH + '/examination';
 export const FREE_EXAM_TERMS_PATH = EXAMINATION_PATH + '/freeTerms';

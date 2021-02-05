@@ -38,4 +38,5 @@ public class PharmacyAdminController {
 
     @GetMapping("/{email}")
     public CreatePhAdminDto findPharmacyAdminByEmail(@PathVariable("email") String email){ return  pharmacyAdminService.findPharmacyAdminByEmail(email);}
+
 }
