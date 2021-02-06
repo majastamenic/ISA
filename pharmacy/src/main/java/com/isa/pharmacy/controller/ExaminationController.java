@@ -1,8 +1,6 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
-import com.isa.pharmacy.domain.Examination;
-import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.service.ExaminationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +25,8 @@ public class ExaminationController {
         return examService.getFreeExaminationTermsByPharmacy(pharmacyName);
     }
 
-//    @PutMapping
-//    public void scheduleExamination(Patient patient, Examination examination){
-//        examService.scheduleExamination(patient,examination);
-//    }
+    @PutMapping("/schedule/{patientEmail}/{examinationId}")
+    public void scheduleExamination(@PathVariable String patientEmail, @PathVariable Long examinationId){
+        examService.scheduleExamination(patientEmail, examinationId);
+    }
 }

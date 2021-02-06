@@ -7,6 +7,7 @@ public class ExaminationMapper {
 
     public static FreeExaminationDto mapExaminationToFreeExaminationDto(Examination exam){
         FreeExaminationDto freeExam = new FreeExaminationDto();
+        freeExam.setId(exam.getId());
         freeExam.setPrice(exam.getPrice());
         freeExam.setPharmacy(PharmacyMapper.mapPharmacyToPharmacyDto(exam.getPharmacy()));
         freeExam.setDermatologist(UserMapper.mapUserToUserDto(exam.getDermatologist().getUser()));

@@ -22,11 +22,6 @@ public class PatientService {
         return patientRepository.save(patient);
     }
 
-    public Patient updatePatient(Patient patient){
-        userService.updateUser(patient.getUser());
-        return patient;
-    }
-
     public void updateAllergies(Long patientId, List<Medicine> medicines){
         Patient patient = patientRepository.getOne(patientId);
         for(Medicine med : medicines)
