@@ -1,6 +1,9 @@
 package com.isa.pharmacy.controller.dto;
 
+import com.isa.pharmacy.users.controller.dto.UserDto;
+
 public class FreeExaminationDto {
+    private Long id;
     private UserDto dermatologist;
     private PharmacyDto pharmacy;
     private Integer price;
@@ -8,11 +11,20 @@ public class FreeExaminationDto {
 
     public FreeExaminationDto(){ }
 
-    public FreeExaminationDto(UserDto dermatologist, PharmacyDto pharmacy, Integer price, WorkScheduleDto schedule) {
+    public FreeExaminationDto(Long id, UserDto dermatologist, PharmacyDto pharmacy, Integer price, WorkScheduleDto schedule) {
+        this.id = id;
         this.dermatologist = dermatologist;
         this.pharmacy = pharmacy;
         this.price = price;
         this.schedule = schedule;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public UserDto getDermatologist() {

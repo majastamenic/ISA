@@ -1,8 +1,12 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CreateOrderDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
+import com.isa.pharmacy.controller.mapping.OrderMapper;
 import com.isa.pharmacy.domain.Order;
+import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 import com.isa.pharmacy.repository.OrderRepository;
+import com.isa.pharmacy.users.repository.PharmacyAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +16,23 @@ import java.util.List;
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private MedicinePharmacyRepository medicinePharmacyRepository;
+    @Autowired
+    private PharmacyAdminRepository pharmacyAdminRepository;
 
-    public Order save(Order order){ return orderRepository.save(order); }
+    public CreateOrderDto save(CreateOrderDto orderDto){
+
+        Order order = OrderMapper.mapCreateOrderDtoToOrder(orderDto);
+
+        for(Long ids: orderDto.getMedicinePharmacyIds()){
+            order.getMedicineList().add(medicinePharmacyRepository.findMedicinePharmacyById(ids));
+        }
+        order.setPharmacyAdmin(pharmacyAdminRepository.findPharmacyAdminById(orderDto.getPharmacyAdminId()));
+        Order savedOrder = orderRepository.save(order);
+
+        return OrderMapper.mapOrderToCreateOrderDto(savedOrder);
+    }
 
     public void delete(Long id){
         Order order = orderRepository.findOrderById(id);

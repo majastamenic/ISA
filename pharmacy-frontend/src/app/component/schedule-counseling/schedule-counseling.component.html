@@ -1,7 +1,14 @@
 <div class="page">
     <div class="form">
-        <form class="ngform">
+        <form class="ngform" style="width:500px;">
             <h3>Schedule counseling</h3>
+            <br>
+            <!--<div>
+                <input type="text" [(ngModel)]="user.email" placeholder="Pharmacist name" name="surname" required>
+            </div>-->
+            <!--<div>
+                <input type="text" [(ngModel)]="user.email" placeholder="Current patient name" name="surname" required>
+            </div>-->
             <form class="form-inline">
                 <div class="form-group">
                     <div class="input-group">
@@ -17,26 +24,8 @@
             </form>
             <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="startTime" name="timepicker"></ngb-timepicker>
             <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="endTime" name="timepicker"></ngb-timepicker>
-            <button (click)="schedule()"></button>
-
-            <!-- <div>
-                <input type="text" [(ngModel)]="counseling.patient" placeholder="Enter patient" name="surname" required>
-            </div>
-
-            <div>
-                <input type="text" [(ngModel)]="user.address" placeholder="Enter address" name="address" required>
-            </div>
-
-            <div>
-                <input type="text" [(ngModel)]="user.city" placeholder="Enter city" name="city" required>
-            </div>
-            <div>
-                <input type="text" [(ngModel)]="user.country" placeholder="Enter country" name="country" required>
-            </div>
-            <div>    
-                <input type="tel" [(ngModel)]="user.phone" placeholder="Enter phone" name="phone" required>
-            </div> -->
-            <!-- <button class="btn btn-primary" (click)="createScheduleCounseling()">Register</button> -->
+            <br>
+            <button class="btn btn-primary" (click)="schedule()">Schedule counseling</button>
         </form>
     </div>
 </div>

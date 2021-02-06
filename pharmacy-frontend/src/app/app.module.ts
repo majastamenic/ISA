@@ -34,6 +34,8 @@ import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-sys
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
+import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
+import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 
 import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
 
@@ -59,8 +61,6 @@ import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
     PharmacistInitComponent,
     PharmacistComponent,
     OrderInitComponent,
-    ScheduleCounselingComponent,
-    PharmacistComponent,
     RegSupplierComponent,
     ScheduleCounselingComponent,
     RegSystemAdminComponent,
@@ -68,6 +68,8 @@ import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
     UserProfileComponent,
     PriceInitComponent,
     PublishingReservedMedicineComponent,
+    ScheduleVacationComponent,
+    StartCounselingComponent,
     LoyalityComponent,
   ],
   imports: [

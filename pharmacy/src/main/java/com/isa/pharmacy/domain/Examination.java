@@ -1,7 +1,8 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.domain.users.Dermatologist;
-import com.isa.pharmacy.domain.users.Patient;
+import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.users.domain.Patient;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.List;
 @Entity
 @Table
 public class Examination implements Serializable {
-
     private static final long serialVersionUID = 4298262714187299282L;
 
     @Id

@@ -1,4 +1,5 @@
 export interface Counseling{
+  id: any;
   user: any;
   patientDto: any;
   schedule: any;

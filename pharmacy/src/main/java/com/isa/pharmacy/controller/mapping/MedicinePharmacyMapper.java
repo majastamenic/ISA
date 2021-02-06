@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
+import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 
 public class MedicinePharmacyMapper {
@@ -23,5 +24,14 @@ public class MedicinePharmacyMapper {
         medicinePharmacy.setId(getAllMedicinePharmacyDto.getId());
         medicinePharmacy.setQuantity(getAllMedicinePharmacyDto.getQuantity());
         return medicinePharmacy;
+    }
+
+    public static MedicinePharmacyDto mapMedicinePharmacyToMedicinePharmacyDto(MedicinePharmacy medicinePharmacy){
+        MedicinePharmacyDto medicinePharmacyDto = new MedicinePharmacyDto();
+        medicinePharmacyDto.setPrice(medicinePharmacy.getPrice());
+        medicinePharmacyDto.setQuantity(medicinePharmacy.getQuantity());
+        medicinePharmacyDto.setMedicine(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), medicinePharmacy.getPharmacy().getName()));
+        medicinePharmacyDto.setPharmacyName(medicinePharmacy.getPharmacy().getName());
+        return medicinePharmacyDto;
     }
 }

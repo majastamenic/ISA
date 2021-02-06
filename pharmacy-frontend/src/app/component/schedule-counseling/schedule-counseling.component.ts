@@ -18,7 +18,7 @@ export class ScheduleCounselingComponent implements OnInit {
   endTime = { hour: this.startTime.hour, minute: this.startTime.minute};
   minuteStep = 30;
 
-  counseling: Counseling = { counselingStatus: '', user: {}, patientDto: {}, schedule: {}, report: {}, patientCame: false };
+  counseling: Counseling = { id:'', counselingStatus: '', user: {}, patientDto: {}, schedule: {}, report: {}, patientCame: false };
 
   constructor(private scheduleCounseling: ScheduleCounselingService, private router: Router) { }
 

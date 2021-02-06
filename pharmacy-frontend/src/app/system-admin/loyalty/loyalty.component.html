@@ -72,7 +72,7 @@
                         <input *ngIf="enableEdit && enableEditIndex == i" [(ngModel)]="medicine.loyaltyPoints"/>
                     </td>
                     <td>
-                        <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn page-secondary-action-btn" (click)="cancelMedicine()">Cancel</button>
+                        <button *ngIf="enableEdit && enableEditIndex == i" class="btn page-secondary-action-btn" (click)="cancelMedicine(i)">Cancel</button>
                         <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn page-primary-action-btn" (click)="saveMedicine(i)" type="submit">Save</button>
                         <button *ngIf="!enableEdit" id="editBtn" class="btn page-primary-action-btn" (click)="enableEditMethod($event, i)" type="submit">Edit</button>
                     </td>

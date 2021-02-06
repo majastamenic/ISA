@@ -96,11 +96,6 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 -- WorkSchedule
 insert into work_schedule(schedule_id) values(1);
 insert into work_schedule(schedule_id) values(2);
---Medicine
-INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) VALUES (62542, 'cochenillrot, laktoza, monohidrat', 0, 5,'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu');
-INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) VALUES (66042, 'kalijum-sorbat, prečišćeni talk', 1, 10, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove');
-INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) VALUES (62217, 'skrob, trietil-citrat', 2, 15, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu');
--- Lekovi Jankovic
 insert into work_schedule(schedule_id) values(3);
 insert into work_schedule(schedule_id) values(4);
 insert into work_schedule(schedule_id) values(5);
@@ -125,10 +120,10 @@ insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) v
 insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(12, 25, 22, 13, 2);
 insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(13, 25, 23, 13, 2);
 
--- Medicines
-insert into medicine(code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(62542, 0, 'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu', 'cochenillrot, laktoza, monohidrat');
-insert into medicine(code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(66042, 1, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove', 'kalijum-sorbat, prečišćeni talk');
-insert into medicine(code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(62217, 2, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu', 'skrob, trietil-citrat');
+--Medicine
+INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) VALUES (62542, 'cochenillrot, laktoza, monohidrat', 0, 5,'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu');
+INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) VALUES (66042, 'kalijum-sorbat, prečišćeni talk', 1, 10, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove');
+INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) VALUES (62217, 'skrob, trietil-citrat', 2, 15, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu');
 
 -- MedicinePharmacy: Jankovic
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.50, 2350, 1, 1);

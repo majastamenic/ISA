@@ -29,8 +29,8 @@ public class ExaminationController {
         return examinationService.getFreeExaminationTermsByPharmacy(pharmacyName);
     }
 
-//    @PutMapping
-//    public void scheduleExamination(Patient patient, Examination examination){
-//        examService.scheduleExamination(patient,examination);
-//    }
+    @PutMapping("/schedule/{patientEmail}/{examinationId}")
+    public void scheduleExamination(@PathVariable String patientEmail, @PathVariable Long examinationId){
+        examinationService.scheduleExamination(patientEmail, examinationId);
+    }
 }

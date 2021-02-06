@@ -1,4 +1,5 @@
 export interface Examination{
+    id: number,
     dermatologist: any,
     price: number,
     schedule: Schedule,

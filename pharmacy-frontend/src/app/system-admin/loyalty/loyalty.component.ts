@@ -89,6 +89,7 @@ export class LoyalityComponent implements OnInit {
   saveExamPoints():any{
     this.loyaltyGroupService.setLoyaltyPoints(this.examLoyaltyPoints).subscribe((returnedExamPoints: any) => {
       this.enableEditExam = false;
+      this.prevExamPoints = this.examLoyaltyPoints.points;
       this.toastrService.success('Changed examination loyalty points');
     },
       (err: any) => {
@@ -108,6 +109,7 @@ export class LoyalityComponent implements OnInit {
   saveCounsPoints():any{
     this.loyaltyGroupService.setLoyaltyPoints(this.counsLoyaltyPoints).subscribe((returnedCounsPoints: any) => {
       this.enableEditConsu = false;
+      this.prevCounsPoints = this.counsLoyaltyPoints.points;
       this.toastrService.success('Changed counseling loyalty points');
     },
       (err: any) => {
@@ -127,6 +129,7 @@ export class LoyalityComponent implements OnInit {
   saveRegPoints():any{
     this.loyaltyGroupService.setLoyaltyPoints(this.regLoyaltyPoints).subscribe((returnedRegPoints: any) => {
       this.enableEditReg = false;
+      this.prevRegPoints = this.regLoyaltyPoints.points;
       this.toastrService.success('Changed regular loyalty points');
     },
       (err: any) => {
@@ -146,6 +149,7 @@ export class LoyalityComponent implements OnInit {
   saveSilver():any{
     this.loyaltyGroupService.setLoyaltyPoints(this.silLoyaltyPoints).subscribe((returnedSilvPoints: any) => {
       this.enableEditSil = false;
+      this.prevSilPoints = this.silLoyaltyPoints.points;
       this.toastrService.success('Changed silver loyalty points');
     },
       (err: any) => {
@@ -165,6 +169,7 @@ export class LoyalityComponent implements OnInit {
   saveGoldPoints():any{
     this.loyaltyGroupService.setLoyaltyPoints(this.goldLoyaltyPoints).subscribe((returnedGoldPoints: any) => {
       this.enableEditGold = false;
+      this.prevGoldPoints = this.goldLoyaltyPoints.points;
       this.toastrService.success('Changed gold loyalty points');
     },
       (err: any) => {
