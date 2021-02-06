@@ -25,6 +25,7 @@ import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
+import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,7 @@ const routes: Routes = [
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
+  { path: 'allexaminations', component: AllExaminationsComponent},
 ];
 
 @NgModule({

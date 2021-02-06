@@ -37,6 +37,7 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
+import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { StartCounselingComponent } from './component/start-counseling/start-cou
     PublishingReservedMedicineComponent,
     ScheduleVacationComponent,
     StartCounselingComponent,
+    AllExaminationsComponent,
   ],
   imports: [
     BrowserModule,
