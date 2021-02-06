@@ -35,7 +35,8 @@ export class LoyalityComponent implements OnInit {
   prevGoldPoints: any;
 
   constructor(private medicineService: MedicineService, private loyaltyGroupService: LoyaltyGroupService, 
-    private toastrService: ToastrService) { }
+    private toastrService: ToastrService) { 
+    }
 
   ngOnInit(): void {
     this.medicineService.getAllMedLoyality().subscribe(listMedicineDto => {

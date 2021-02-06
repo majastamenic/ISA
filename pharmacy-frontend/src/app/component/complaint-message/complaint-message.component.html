@@ -1,0 +1,25 @@
+<div class="page">
+    <div class="form">
+      <form class="ngform" #complaintform = "ngForm">
+        <h3>Complaint message</h3>
+        <div>
+            <label>I'm complaining about</label>
+            <select name="selectType" [(ngModel)]="subject" >
+                <option *ngFor="let subject of subjects" [ngValue]="subject" name="subjects">
+                    {{subject}}
+                </option>
+            </select>
+        </div>
+        <div>
+          <input type="text" [(ngModel)]="complaintText" placeholder="Enter complaint message" name="name" required #complaint="ngModel"
+          [class.is-invalid] = "complaint.invalid && complaint.touched">
+          <div *ngIf="complaint.invalid && complaint.touched">
+            <small class="text-danger">Message is required field.</small>
+          </div>
+        </div>
+        
+        <button [disabled]="complaintform.form.invalid" (click)="send()" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+  </div>
+  

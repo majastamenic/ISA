@@ -38,6 +38,7 @@ import { ScheduleVacationComponent } from './component/schedule-vacation/schedul
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 
 import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
+import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
     ScheduleVacationComponent,
     StartCounselingComponent,
     LoyalityComponent,
+    ComplaintMessageComponent,
   ],
   imports: [
     BrowserModule,

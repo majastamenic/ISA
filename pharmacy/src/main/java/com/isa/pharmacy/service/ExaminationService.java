@@ -3,8 +3,11 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
+import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.repository.ExaminationRepository;
+import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,4 +53,6 @@ public class ExaminationService {
         Examination scheduledExam = examinationRepository.save(examination);
         emailService.successfulExamSchedule(scheduledExam);
     }
+
+
 }

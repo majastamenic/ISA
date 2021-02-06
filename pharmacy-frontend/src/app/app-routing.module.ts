@@ -28,6 +28,7 @@ import { StartCounselingComponent } from './component/start-counseling/start-cou
 
 import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
+import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -40,7 +41,6 @@ const routes: Routes = [
   { path: 'medicine', component: MedicineComponent },
   { path: 'uploadQR', component: UploadQRComponent },
   { path: 'ePrescription', component: EPrescriptionComponent },
-  //{ path: 'addMedicines', component: AddMedicinesComponent},
   { path: 'counseling', component: ScheduleCounselingComponent },
   { path: 'allcounselings', component: AllCounselingsComponent },
   {
@@ -64,6 +64,7 @@ const routes: Routes = [
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
+  { path: 'add-complaint', component: ComplaintMessageComponent},
 ];
 
 @NgModule({
