@@ -12,7 +12,6 @@ public class HospitalMapper {
             hospital = new Hospital();
             hospital.setName(hospitalDto.getName());
             hospital.setEmail(hospitalDto.getEmail());
-            hospital.setId(new Random().nextLong());
         }
         return hospital;
     }

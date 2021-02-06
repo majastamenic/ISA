@@ -26,15 +26,18 @@ public class DermatologistController {
         emailService.activationEmail(dermatologist.getUser());
         return dermatologist;
     }
-
+    //TODO: Dermatolog
+    /*
     @PostMapping("/registration")
     public Dermatologist save(@RequestBody Dermatologist d) {
         return dermatologistService.save(d);
     }
-
+    */
     @GetMapping
     public List<Dermatologist> getAll() { return dermatologistService.getAll(); }
-
+    //TODO: Dermatolog 1
+    /*
     @PostMapping("/update")
     public Dermatologist update(@RequestBody Dermatologist d) { return dermatologistService.update(d); }
+     */
 }

@@ -32,12 +32,13 @@ public class PatientController {
         emailService.verificationEmailPatient(patient);
         return patient;
     }
-
+    //TODO: Patient - Mislim i da je nepotrebna
+    /*
     @PostMapping("/create")
     public Patient createPatient(@RequestBody Patient patient){
         return patientService.createPatient(patient);
     }
-
+    */
     @GetMapping("/{email}")
     public Patient getPatientByEmail(@PathVariable("email") String email){
         return patientService.getPatient(email);

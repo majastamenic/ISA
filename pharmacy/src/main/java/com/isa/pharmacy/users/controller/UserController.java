@@ -40,13 +40,14 @@ public class UserController {
     public List<User> getAll() {
         return userService.getAll();
     }
-
+    //TODO: User update
+    /*
     @PutMapping("/password")
     public User updateUser(@RequestBody UserDto userDto){
         User user = UserMapper.mapUserDtoToUser(userDto);
         return userService.updateUserPassword(user);
     }
-
+    */
     @PostMapping("/login")
     public User login(@RequestBody LoginDto loginDto) throws Exception {
         String email = loginDto.getEmail();
