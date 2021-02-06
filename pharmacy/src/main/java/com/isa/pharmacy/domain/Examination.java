@@ -29,20 +29,21 @@ public class Examination implements Serializable {
     private Integer price;
     @OneToMany
     private List<Diagnosis> diagnosis;
+    @ManyToOne
+    private LoyaltyGroup loyaltyGroup;
 
     public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Patient patient,
-                       Pharmacy pharmacy, Prescription prescription, Schedule schedule,
-                       Integer price, List<Diagnosis> diagnosis) {
+    public Examination(Long id, Dermatologist dermatologist, Pharmacy pharmacy, Patient patient, Prescription prescription, Schedule schedule, Integer price, List<Diagnosis> diagnosis, LoyaltyGroup loyaltyGroup) {
         this.id = id;
         this.dermatologist = dermatologist;
-        this.patient = patient;
         this.pharmacy = pharmacy;
+        this.patient = patient;
         this.prescription = prescription;
         this.schedule = schedule;
-        this.price=price;
+        this.price = price;
         this.diagnosis = diagnosis;
+        this.loyaltyGroup = loyaltyGroup;
     }
 
     public Long getId() {
@@ -107,5 +108,13 @@ public class Examination implements Serializable {
 
     public void setDiagnosis(List<Diagnosis> diagnosis) {
         this.diagnosis = diagnosis;
+    }
+
+    public LoyaltyGroup getLoyaltyGroup() {
+        return loyaltyGroup;
+    }
+
+    public void setLoyaltyGroup(LoyaltyGroup loyaltyGroup) {
+        this.loyaltyGroup = loyaltyGroup;
     }
 }

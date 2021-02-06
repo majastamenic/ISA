@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/user/login/login.component';
@@ -38,6 +37,7 @@ import { PublishingReservedMedicineComponent } from './component/publishing-rese
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 
+import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +70,7 @@ import { StartCounselingComponent } from './component/start-counseling/start-cou
     PublishingReservedMedicineComponent,
     ScheduleVacationComponent,
     StartCounselingComponent,
+    LoyalityComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PatientRepository;
+import com.isa.pharmacy.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class PatientService {
     }
 
     public Patient registration(Patient patient) {
-        User existingUser = userService.getByEmail(patient.getUser().getEmail());
+        Patient existingUser = patientRepository.findByUser_email(patient.getUser().getEmail());
         if (existingUser == null) {
             userService.create(patient.getUser());
             return patientRepository.save(patient);

@@ -1,11 +1,11 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.CounselingDto;
-import com.isa.pharmacy.controller.dto.PatientDto;
+import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
-import com.isa.pharmacy.controller.mapping.PatientMapper;
+import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.repository.CounselingRepository;

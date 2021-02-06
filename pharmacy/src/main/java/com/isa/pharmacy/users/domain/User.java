@@ -1,6 +1,6 @@
 package com.isa.pharmacy.users.domain;
 
-import com.isa.pharmacy.users.domain.enums.Role;
+import com.isa.pharmacy.domain.enums.Role;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

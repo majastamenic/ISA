@@ -1,10 +1,9 @@
 package com.isa.pharmacy.users.service;
 
-import com.isa.pharmacy.controller.dto.CreatePhAdminDto;
-import com.isa.pharmacy.controller.mapping.PharmacyAdminMapper;
+import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
+import com.isa.pharmacy.users.controller.mapping.PharmacyAdminMapper;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
-import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PharmacyAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class PharmacyAdminService {
     private UserService userService;
 
     public PharmacyAdmin registration(PharmacyAdmin pharmacyAdmin) {
-        User existingUser = userService.getByEmail(pharmacyAdmin.getUser().getEmail());
+        PharmacyAdmin existingUser = pharmacyAdminRepository.findPharmacyAdminByUser_email(pharmacyAdmin.getUser().getEmail());
         if (existingUser == null) {
             userService.create(pharmacyAdmin.getUser());
             return pharmacyAdminRepository.save(pharmacyAdmin);

@@ -10,7 +10,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class AddPharmacyAdminComponent implements OnInit {
 
-  admin:any = {email: '', name: '', surname: '', address: '', city:'', country:'', phone: '', active:false, role: 6, pharmacyId: 0}
+  admin:any = {email: '', name: '', surname: '', address: '', city:'', country:'', phone: '', active:false, role: 5, pharmacyId: 0}
   pharmacies: any;
   pharmacy: any;
 

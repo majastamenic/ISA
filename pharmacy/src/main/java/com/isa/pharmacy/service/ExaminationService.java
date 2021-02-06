@@ -17,7 +17,8 @@ import java.util.List;
 public class ExaminationService {
 
     @Autowired
-    private ExaminationRepository examRepository;
+    private ExaminationRepository examinationRepository;
+
     @Autowired
     private PatientRepository patientRepository;
     @Autowired
@@ -25,7 +26,7 @@ public class ExaminationService {
 
     public List<FreeExaminationDto> getAllFreeExaminationTerms(){
         List<FreeExaminationDto> freeExaminations = new ArrayList<>();
-        for(Examination exam : examRepository.findAll())
+        for(Examination exam : examinationRepository.findAll())
             if(exam.getPatient() == null && exam.getSchedule().getStartDate().after(Calendar.getInstance().getTime()))
                 freeExaminations.add(ExaminationMapper.mapExaminationToFreeExaminationDto(exam));
         return freeExaminations;
@@ -33,7 +34,7 @@ public class ExaminationService {
 
     public List<FreeExaminationDto> getFreeExaminationTermsByPharmacy(String pharmacyName){
         List<FreeExaminationDto> freeExaminations = new ArrayList<>();
-        for(Examination exam : examRepository.findAll())
+        for(Examination exam : examinationRepository.findAll())
             if(exam.getPharmacy().getName().equals(pharmacyName) &&
                exam.getPatient() == null &&
                exam.getSchedule().getStartDate().after(Calendar.getInstance().getTime()))
@@ -42,11 +43,11 @@ public class ExaminationService {
     }
 
     public void scheduleExamination(String patientEmail, Long examinationId){
-        Examination examination = examRepository.findExaminationById(examinationId);
+        Examination examination = examinationRepository.findExaminationById(examinationId);
         if(examination.getPatient() != null || examination.getSchedule().getStartDate().before(Calendar.getInstance().getTime()))
             throw new InvalidActionException("Examination cannot be scheduled!");
         examination.setPatient(patientRepository.findByUser_email(patientEmail));
-        Examination scheduledExam = examRepository.save(examination);
+        Examination scheduledExam = examinationRepository.save(examination);
         emailService.successfulExamSchedule(scheduledExam);
     }
 }

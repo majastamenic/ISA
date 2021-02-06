@@ -2,6 +2,7 @@ package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.users.controller.mapping.UserMapper;
 
 public class ExaminationMapper {
 

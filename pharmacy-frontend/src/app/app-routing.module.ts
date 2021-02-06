@@ -26,28 +26,33 @@ import { PublishingReservedMedicineComponent } from './component/publishing-rese
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 
+import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
+import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'profile', component: UserProfileComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'user', component: RegistrationComponent},
-  {path: 'hospital', component: HospitalComponent},
-  {path: 'actions', component: ActionsBenefitsComponent},
-  {path: 'medicine', component: MedicineComponent},
-  {path: 'uploadQR', component: UploadQRComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'profile', component: UserProfileComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'user', component: RegistrationComponent },
+  { path: 'hospital', component: HospitalComponent },
+  { path: 'actions', component: ActionsBenefitsComponent },
+  { path: 'medicine', component: MedicineComponent },
+  { path: 'uploadQR', component: UploadQRComponent },
   { path: 'ePrescription', component: EPrescriptionComponent },
-  { path: 'addMedicines', component: AddMedicinesComponent},
-  { path: 'counseling', component: ScheduleCounselingComponent},
-  { path: 'allcounselings', component: AllCounselingsComponent},
-  {path: 'system-admin', component: SystemAdminComponent,
-    children : [
-      { path: 'addMedicines', component: AddMedicinesComponent},
-      { path: 'addPharmacy', component: AddPharmacyComponent},
-      { path: 'addPharmacyAdmin', component: AddPharmacyAdminComponent},
-      { path: 'regDermatologist', component: RegDermatologistComponent},
-      { path: 'regSupplier', component: RegSupplierComponent},
+  //{ path: 'addMedicines', component: AddMedicinesComponent},
+  { path: 'counseling', component: ScheduleCounselingComponent },
+  { path: 'allcounselings', component: AllCounselingsComponent },
+  {
+    path: 'system-admin', component: SystemAdminComponent,
+    children: [
+      { path: 'addMedicines', component: AddMedicinesComponent },
+      { path: 'addPharmacy', component: AddPharmacyComponent },
+      { path: 'addPharmacyAdmin', component: AddPharmacyAdminComponent },
+      { path: 'regDermatologist', component: RegDermatologistComponent },
+      { path: 'regSysAdmin', component: RegSystemAdminComponent },
+      { path: 'regSupplier', component: RegSupplierComponent },
+      { path: 'loyality', component: LoyalityComponent },
     ]
   },
   { path: 'pharmacist', component: PharmacistComponent},
