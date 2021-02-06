@@ -39,6 +39,7 @@ import { ScheduleVacationComponent } from './component/schedule-vacation/schedul
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
 import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
+import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { ScheduleExaminationDermatologistComponent } from './component/schedule-
     StartCounselingComponent,
     AllExaminationsComponent,
     ScheduleExaminationDermatologistComponent,
+    DiagnosisComponent,
   ],
   imports: [
     BrowserModule,

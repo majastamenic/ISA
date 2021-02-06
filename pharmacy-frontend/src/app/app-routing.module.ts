@@ -27,7 +27,7 @@ import { ScheduleVacationComponent } from './component/schedule-vacation/schedul
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
 import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
-
+import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -63,6 +63,7 @@ const routes: Routes = [
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
   { path: 'allexaminations', component: AllExaminationsComponent},
   { path: 'examination', component: ScheduleExaminationDermatologistComponent},
+  { path: 'diagnosis', component: DiagnosisComponent},
 ];
 
 @NgModule({
