@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ComplaintService } from 'src/app/service/complaint.service';
+import { ComplaintDto } from './model/complaint';
 
 @Component({
   selector: 'app-complaint-message',
@@ -9,8 +10,8 @@ import { ComplaintService } from 'src/app/service/complaint.service';
 })
 export class ComplaintMessageComponent implements OnInit {
 
-  complaint: any = {patientEmail: '', points: 0};
-  complaintText: string = '';
+  complaint: ComplaintDto = {subject: '', complaintText: '', patientEmail: ''};
+  text: any;
   subject: any;
   subjects: any;
   
@@ -22,10 +23,13 @@ export class ComplaintMessageComponent implements OnInit {
       this.complaintService.getSubjects(email).subscribe((response: any) => {
         this.subjects = response;
       });
+      this.complaint.patientEmail = email;
     }
   }
 
   send(){
+    this.complaint.subject = this.subject;
+    this.complaint.complaintText = this.text;
     this.complaintService.sendComplaint(this.complaint).subscribe((response: any)=>{
       this.toastrService.success("Sent complaint message.")
     },(err: any) => {

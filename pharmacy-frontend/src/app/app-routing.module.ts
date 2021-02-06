@@ -25,6 +25,9 @@ import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
+import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
+import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
+import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
 
 import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
@@ -64,6 +67,9 @@ const routes: Routes = [
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
+  { path: 'allexaminations', component: AllExaminationsComponent},
+  { path: 'examination', component: ScheduleExaminationDermatologistComponent},
+  { path: 'diagnosis', component: DiagnosisComponent},
   { path: 'add-complaint', component: ComplaintMessageComponent},
 ];
 

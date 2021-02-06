@@ -36,6 +36,9 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
+import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
+import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
+import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
 
 import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
 import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
@@ -71,6 +74,9 @@ import { ComplaintMessageComponent } from './component/complaint-message/complai
     PublishingReservedMedicineComponent,
     ScheduleVacationComponent,
     StartCounselingComponent,
+    AllExaminationsComponent,
+    ScheduleExaminationDermatologistComponent,
+    DiagnosisComponent,
     LoyalityComponent,
     ComplaintMessageComponent,
   ],

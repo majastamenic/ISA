@@ -2,6 +2,7 @@ package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.DermatologistRepository;
 import com.isa.pharmacy.users.service.UserService;
@@ -44,5 +45,9 @@ public class DermatologistService {
             return dermatologistRepository.save(dermatologist);
         }
         throw new AlreadyExistsException(String.format("Patient with email %s, already exists", dermatologist.getUser().getEmail()));
+    }
+
+    public Dermatologist findUserByEmail(String email){
+        return dermatologistRepository.findDermatologistByUser_email(email);
     }
 }

@@ -1,8 +1,6 @@
 package com.isa.pharmacy.domain;
 
 import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.domain.User;
-import org.graalvm.compiler.lir.LIRInstruction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,15 +15,15 @@ public class Complaint implements Serializable {
     @Column
     private String responseComplaint;
     @ManyToOne
-    private User user;
+    private Patient patient;
 
     public Complaint(){}
 
-    public Complaint(Long id, String complaintMessage, String responseComplaint, User user) {
+    public Complaint(Long id, String complaintMessage, String responseComplaint, Patient patient) {
         this.id = id;
         this.complaintMessage = complaintMessage;
         this.responseComplaint = responseComplaint;
-        this.user = user;
+        this.patient = patient;
     }
 
     public Long getId() {
@@ -52,11 +50,11 @@ public class Complaint implements Serializable {
         this.responseComplaint = responseComplaint;
     }
 
-    public User getUser() {
-        return user;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }
