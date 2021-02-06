@@ -3,12 +3,13 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.dto.PatientDto;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 import com.isa.pharmacy.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.repository.ExaminationRepository;
+import com.isa.pharmacy.users.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ public class ExaminationService {
 
     @Autowired
     private ExaminationRepository examRepository;
+    @Autowired
+    private PatientRepository patientRepository;
     @Autowired
     private EmailService emailService;
 
@@ -42,13 +45,13 @@ public class ExaminationService {
         return freeExaminations;
     }
 
-
-    public Examination scheduleExamination(Patient patient, Examination examination){
-        examination.setPatient(patient);
+    public void scheduleExamination(String patientEmail, Long examinationId){
+        Examination examination = examRepository.findExaminationById(examinationId);
+        if(examination.getPatient() != null || examination.getSchedule().getStartDate().before(Calendar.getInstance().getTime()))
+            throw new InvalidActionException("Examination cannot be scheduled!");
+        examination.setPatient(patientRepository.findByUser_email(patientEmail));
         Examination scheduledExam = examRepository.save(examination);
-        if(scheduledExam != null)
-            emailService.successfulExamSchedule(scheduledExam);
-        return scheduledExam;
+        emailService.successfulExamSchedule(scheduledExam);
     }
 
     public List<ExamDermatologistDto> getAllByDermatologist(Dermatologist dermatologist) {

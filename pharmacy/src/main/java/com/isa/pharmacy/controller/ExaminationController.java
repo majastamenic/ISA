@@ -30,14 +30,16 @@ public class ExaminationController {
         return examService.getFreeExaminationTermsByPharmacy(pharmacyName);
     }
 
-//    @PutMapping
-//    public void scheduleExamination(Patient patient, Examination examination){
-//        examService.scheduleExamination(patient,examination);
-//    }
 
     @GetMapping("/{email}")
     public List<ExamDermatologistDto> getAllByDermatologist(@PathVariable("email") String email) {
         Dermatologist dermatologist = dermatologistService.findUserByEmail(email);
         return examService.getAllByDermatologist(dermatologist);
+    }
+
+
+    @PutMapping("/schedule/{patientEmail}/{examinationId}")
+    public void scheduleExamination(@PathVariable String patientEmail, @PathVariable Long examinationId){
+        examService.scheduleExamination(patientEmail, examinationId);
     }
 }
