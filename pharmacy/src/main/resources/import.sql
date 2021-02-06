@@ -169,5 +169,8 @@ insert into eprescription(code, date_of_issue, file_text, patient_name) values(2
 insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 1);
 insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 2);
 
-insert into examination(loyalty_points) values (20);
-insert into counseling(loyalty_points) values (30);
+insert into loyalty_group(points, type) values (3, 0);
+insert into loyalty_group(points, type) values (4, 1);
+insert into loyalty_group(points, type) values (10, 2);
+insert into loyalty_group(points, type) values (20, 3);
+insert into loyalty_group(points, type) values (50, 4);

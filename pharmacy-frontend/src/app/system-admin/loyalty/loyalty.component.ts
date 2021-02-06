@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AllCounselingsService } from 'src/app/service/all-counselings.service';
-import { ExaminationService } from 'src/app/service/examination.service';
+import { LoyaltyGroupService } from 'src/app/service/loyalty-group.service';
 import { MedicineService } from 'src/app/service/medicine.service';
+import { LoyaltyGroup, LoyaltyGroupType } from '../model/loyaltyGroup';
 
 @Component({
   selector: 'app-loyalty',
@@ -17,22 +16,50 @@ export class LoyalityComponent implements OnInit {
   enableEditIndex = null;
   enableEditExam = false;
   enableEditConsu = false;
+  enableEditReg = false;
+  enableEditSil = false;
+  enableEditGold = false;
 
-  examLoyaltyPoints: number = 0;
-  counsLoyaltyPoints: number = 0;
+  examLoyaltyPoints: LoyaltyGroup = {type: LoyaltyGroupType.EXAMINATION, points: 0};
+  counsLoyaltyPoints: LoyaltyGroup = {type: LoyaltyGroupType.COUNSELING, points: 0};
 
-  constructor(private medicineService: MedicineService, private examService: ExaminationService,
-    private counService: AllCounselingsService ,private toastrService: ToastrService) { }
+  regLoyaltyPoints: LoyaltyGroup = {type: LoyaltyGroupType.REGULAR, points: 0};
+  silLoyaltyPoints: LoyaltyGroup = {type: LoyaltyGroupType.SILVER, points: 0};
+  goldLoyaltyPoints: LoyaltyGroup = {type: LoyaltyGroupType.GOLD, points: 0};
+
+  prevExamPoints: any;
+  prevCounsPoints: any;
+  prevMedPoints: any;
+  prevRegPoints: any;
+  prevSilPoints: any;
+  prevGoldPoints: any;
+
+  constructor(private medicineService: MedicineService, private loyaltyGroupService: LoyaltyGroupService, 
+    private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.medicineService.getAllMedLoyality().subscribe(listMedicineDto => {
       this.medicinesList = listMedicineDto;
     });
-    this.examService.getLoyaltyPoints().subscribe((loyaltyPoints: number) => {
-      this.examLoyaltyPoints = loyaltyPoints; 
+    this.loyaltyGroupService.getLoyaltyPoints(this.examLoyaltyPoints.type).subscribe((loyaltyPoints: number) => {
+      this.examLoyaltyPoints.points = loyaltyPoints; 
+      this.prevExamPoints = loyaltyPoints;
     });
-    this.counService.getLoyaltyPoints().subscribe((dbLoyaltyPoints: number) => {
-      this.examLoyaltyPoints = dbLoyaltyPoints;
+    this.loyaltyGroupService.getLoyaltyPoints(this.counsLoyaltyPoints.type).subscribe((dbLoyaltyPoints: number) => {
+      this.counsLoyaltyPoints.points = dbLoyaltyPoints;
+      this.prevCounsPoints = dbLoyaltyPoints;
+    });
+    this.loyaltyGroupService.getLoyaltyPoints(this.regLoyaltyPoints.type).subscribe((dbRegPoints: number) =>{
+      this.regLoyaltyPoints.points = dbRegPoints;
+      this.prevRegPoints = dbRegPoints;
+    });
+    this.loyaltyGroupService.getLoyaltyPoints(this.silLoyaltyPoints.type).subscribe((dbSilPoints: number) =>{
+      this.silLoyaltyPoints.points = dbSilPoints;
+      this.prevSilPoints = dbSilPoints;
+    });
+    this.loyaltyGroupService.getLoyaltyPoints(this.goldLoyaltyPoints.type).subscribe((dbGoldPoints: number) =>{
+      this.goldLoyaltyPoints.points = dbGoldPoints;
+      this.prevGoldPoints = dbGoldPoints;
     });
   }
 
@@ -47,7 +74,6 @@ export class LoyalityComponent implements OnInit {
   }
 
   cancelMedicine(){
-    location.reload();
     this.enableEdit = false;
   }
 
@@ -61,7 +87,7 @@ export class LoyalityComponent implements OnInit {
   }
 
   saveExamPoints():any{
-    this.examService.setLoyaltyPoints(this.examLoyaltyPoints).subscribe((returnedExamPoints: any) => {
+    this.loyaltyGroupService.setLoyaltyPoints(this.examLoyaltyPoints).subscribe((returnedExamPoints: any) => {
       this.enableEditExam = false;
       this.toastrService.success('Changed examination loyalty points');
     },
@@ -75,14 +101,14 @@ export class LoyalityComponent implements OnInit {
   }
 
   cancelExam(){
-    location.reload();
+    this.examLoyaltyPoints.points = this.prevExamPoints;
     this.enableEditExam = false;
   }
 
   saveCounsPoints():any{
-    this.counService.setLoyaltyPoints(this.counsLoyaltyPoints).subscribe((returnedCounsPoints: any) => {
+    this.loyaltyGroupService.setLoyaltyPoints(this.counsLoyaltyPoints).subscribe((returnedCounsPoints: any) => {
       this.enableEditConsu = false;
-      this.toastrService.success('Changed examination loyalty points');
+      this.toastrService.success('Changed counseling loyalty points');
     },
       (err: any) => {
         this.toastrService.error('Error ' + err.error.message);
@@ -94,8 +120,64 @@ export class LoyalityComponent implements OnInit {
   }
 
   cancelCouns(){
-    location.reload();
+    this.counsLoyaltyPoints.points = this.prevCounsPoints;
     this.enableEditConsu = false;
   }
 
+  saveRegPoints():any{
+    this.loyaltyGroupService.setLoyaltyPoints(this.regLoyaltyPoints).subscribe((returnedRegPoints: any) => {
+      this.enableEditReg = false;
+      this.toastrService.success('Changed regular loyalty points');
+    },
+      (err: any) => {
+        this.toastrService.error('Error ' + err.error.message);
+      });
+  } 
+
+  editRegPoints(){
+    this.enableEditReg = true;
+  }
+
+  cancelReg(){
+    this.regLoyaltyPoints.points = this.prevRegPoints;
+    this.enableEditReg = false;
+  }
+
+  saveSilver():any{
+    this.loyaltyGroupService.setLoyaltyPoints(this.silLoyaltyPoints).subscribe((returnedSilvPoints: any) => {
+      this.enableEditSil = false;
+      this.toastrService.success('Changed silver loyalty points');
+    },
+      (err: any) => {
+        this.toastrService.error('Error ' + err.error.message);
+      });
+  } 
+
+  editSilvPoints(){
+    this.enableEditSil = true;
+  }
+
+  cancelSilv(){
+    this.silLoyaltyPoints.points = this.prevSilPoints;
+    this.enableEditSil = false;
+  }
+
+  saveGoldPoints():any{
+    this.loyaltyGroupService.setLoyaltyPoints(this.goldLoyaltyPoints).subscribe((returnedGoldPoints: any) => {
+      this.enableEditGold = false;
+      this.toastrService.success('Changed gold loyalty points');
+    },
+      (err: any) => {
+        this.toastrService.error('Error ' + err.error.message);
+      });
+  } 
+
+  editGoldPoints(){
+    this.enableEditGold = true;
+  }
+
+  cancelGold(){
+    this.goldLoyaltyPoints.points = this.prevGoldPoints;
+    this.enableEditGold = false;
+  }
 }

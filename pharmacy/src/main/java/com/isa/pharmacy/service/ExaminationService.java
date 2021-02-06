@@ -22,21 +22,6 @@ public class ExaminationService {
     @Autowired
     private EmailService emailService;
 
-    public void updateLoyaltyPoints(int loyaltyPoints){
-        List<Examination> examinationList = examinationRepository.findAll();
-        if(examinationList == null)
-            throw new NotFoundException("There is no any counseling");
-        for(Examination examination: examinationList){
-            examination.setLoyaltyPoints(loyaltyPoints);
-            examinationRepository.save(examination);
-        }
-    }
-
-    public int getLoyaltyPoints() {
-        //TODO: Kako uzeti 1 kad su svi isti?
-        return examinationRepository.getOne(1l).getLoyaltyPoints();
-    }
-
     public List<FreeExaminationDto> getAllFreeExaminationTerms(){
         List<FreeExaminationDto> freeExaminations = new ArrayList<>();
         for(Examination exam : examinationRepository.findAll())

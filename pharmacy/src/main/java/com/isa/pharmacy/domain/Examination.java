@@ -29,12 +29,12 @@ public class Examination implements Serializable {
     private Integer price;
     @OneToMany
     private List<Diagnosis> diagnosis;
-    @Column
-    private int loyaltyPoints;
+    @ManyToOne
+    private LoyaltyGroup loyaltyGroup;
 
     public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Pharmacy pharmacy, Patient patient, Prescription prescription, Schedule schedule, Integer price, List<Diagnosis> diagnosis, int loyaltyPoints) {
+    public Examination(Long id, Dermatologist dermatologist, Pharmacy pharmacy, Patient patient, Prescription prescription, Schedule schedule, Integer price, List<Diagnosis> diagnosis, LoyaltyGroup loyaltyGroup) {
         this.id = id;
         this.dermatologist = dermatologist;
         this.pharmacy = pharmacy;
@@ -43,7 +43,7 @@ public class Examination implements Serializable {
         this.schedule = schedule;
         this.price = price;
         this.diagnosis = diagnosis;
-        this.loyaltyPoints = loyaltyPoints;
+        this.loyaltyGroup = loyaltyGroup;
     }
 
     public Long getId() {
@@ -110,11 +110,11 @@ public class Examination implements Serializable {
         this.diagnosis = diagnosis;
     }
 
-    public int getLoyaltyPoints() {
-        return loyaltyPoints;
+    public LoyaltyGroup getLoyaltyGroup() {
+        return loyaltyGroup;
     }
 
-    public void setLoyaltyPoints(int loyaltyPoints) {
-        this.loyaltyPoints = loyaltyPoints;
+    public void setLoyaltyGroup(LoyaltyGroup loyaltyGroup) {
+        this.loyaltyGroup = loyaltyGroup;
     }
 }

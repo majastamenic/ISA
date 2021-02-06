@@ -48,15 +48,4 @@ public class CounselingController {
 
     @PostMapping("/update")
     public Counseling update(@RequestBody Counseling c) { return counselingService.save(c); }
-
-    @PutMapping("/loyalty")
-    public ResponseEntity<String> updateLoyaltyPoints(@RequestBody Integer loyaltyPoints){
-        counselingService.updateLoyaltyPoints(loyaltyPoints);
-        return new ResponseEntity<>("Success", HttpStatus.OK);
-    }
-
-    @GetMapping("/loyalty")
-    public int getLoyaltyPoints(){
-        return counselingService.getLoyaltyPoints();
-    }
 }

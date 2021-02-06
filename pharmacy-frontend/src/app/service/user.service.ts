@@ -49,7 +49,6 @@ export class UserService {
 
   isUserLogin(){
     let user = sessionStorage.getItem('user');
-    console.log(!(user == null))
     return !(user == null)
   }
 

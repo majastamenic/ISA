@@ -60,18 +60,4 @@ public class CounselingService {
         return counseling;
     }
 
-    public void updateLoyaltyPoints(int loyaltyPoints){
-        List<Counseling> counselingList = counselingRepository.findAll();
-        if(counselingList == null)
-            throw new NotFoundException("There is no any counseling");
-        for(Counseling counseling: counselingList){
-            counseling.setLoyaltyPoints(loyaltyPoints);
-            counselingRepository.save(counseling);
-        }
-    }
-
-    public int getLoyaltyPoints(){
-        //TODO: Kako uzeti 1 kad su svi isti?
-        return counselingRepository.getOne(1l).getLoyaltyPoints();
-    }
 }
