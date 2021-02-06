@@ -7,6 +7,7 @@ import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 import com.isa.pharmacy.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.domain.Prescription;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.repository.ExaminationRepository;
 import com.isa.pharmacy.users.repository.PatientRepository;
@@ -59,7 +60,10 @@ public class ExaminationService {
         List<ExamDermatologistDto> examDermatologistDtos = new ArrayList<>();
         if(examinations.isEmpty() == false){
             for(Examination e : examinations){
-                if(e.getPatient() != null && e.getPrescription() != null){
+                if(e.getPrescription() == null){
+                    e.setPrescription(new Prescription());
+                }
+                if(e.getPatient() != null){
                     PatientDto patientDto = PatientMapper.mapPatientToPatientDto(e.getPatient());
                     ExamDermatologistDto examDermatologistDto = ExaminationMapper.mapExaminationToExaminationDto(e, patientDto);
                     examDermatologistDtos.add(examDermatologistDto);

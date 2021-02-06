@@ -16,7 +16,7 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nastasja', 'Damjanac', 'tasa@gmail.com', 'tasa', 'Temerinska 23', 'Novi Sad', 'Srbija', '066/123466', 0, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Jovana', 'Jakovljevic', 'joxy@gmail.com', 'joxy', 'Lasla Gala 15', 'Novi Sad', 'Srbija', '063/1125455', 0, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Aca', 'Lukas', 'aca@gmail.com', 'aca', 'Vojislava Vuckovica 1', 'Beograd', 'Srbija', '069/5889522', 0, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Toma', 'zdravkovic', 'toma@gmail.com', 'toma', 'Jastrebacka 11', 'Aleksinac', 'Srbija', '065/338799', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Toma', 'Zdravkovic', 'toma@gmail.com', 'toma', 'Jastrebacka 11', 'Aleksinac', 'Srbija', '065/338799', 0, true);
     -- Patient
     insert into patient(id, verification_code, user_id) values(1, 'bgbhjjgfgggfhouytr', 1);
     insert into patient(id, verification_code, user_id) values(2, 'fdssdsdggsfgfsasgj', 2);
@@ -106,19 +106,32 @@ insert into work_schedule(schedule_id) values(9);
 insert into work_schedule(schedule_id) values(10);
 
 -- Examinations
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(1, 15, 11, 13, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(2, 20, 12, 13, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(3, 20, 13, 13, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(4, 15, 14, 13, 1, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(5, 20, 15, 13, 1);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(6, 40, 16, 13, 1, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(7, 30, 17, 13, 1, 3);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(8, 25, 18, 13, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(9, 25, 19, 13, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id) values(10, 25, 20, 13, 2, 6);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(11, 25, 21, 13, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(12, 25, 22, 13, 2);
-insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id) values(13, 25, 23, 13, 2);
+insert into prescription(id) values(1);
+insert into prescription(id) values(2);
+insert into prescription(id) values(3);
+insert into prescription(id) values(4);
+insert into prescription(id) values(5);
+insert into prescription(id) values(6);
+insert into prescription(id) values(7);
+insert into prescription(id) values(8);
+insert into prescription(id) values(9);
+insert into prescription(id) values(10);
+insert into prescription(id) values(11);
+insert into prescription(id) values(12);
+insert into prescription(id) values(13);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, prescription_id) values(1, 15, 11, 13, 1, 1);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, prescription_id) values(2, 20, 12, 13, 1, 2);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, prescription_id) values(3, 20, 13, 13, 1, 3);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id, prescription_id) values(4, 15, 14, 13, 1, 1, 4);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, prescription_id) values(5, 20, 15, 13, 1, 5);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id, prescription_id) values(6, 40, 16, 13, 1, 2, 6);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id, prescription_id) values(7, 30, 17, 13, 1, 3, 7);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, prescription_id) values(8, 25, 18, 13, 2, 8);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, prescription_id) values(9, 25, 19, 13, 2, 9);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, patient_id, prescription_id) values(10, 25, 20, 13, 2, 6, 10);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, prescription_id) values(11, 25, 21, 13, 2, 11);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, prescription_id) values(12, 25, 22, 13, 2, 12);
+insert into examination(id, price, schedule_id, dermatologist_id, pharmacy_id, prescription_id) values(13, 25, 23, 13, 2, 13);
 
 -- Medicines
 insert into medicine(code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(62542, 0, 'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu', 'cochenillrot, laktoza, monohidrat');

@@ -12,15 +12,17 @@ public class PrescriptionMapper {
 
     public static PrescriptionDto mapPrescriptionToPrescriptionDto(Prescription prescription){
         PrescriptionDto prescriptionDto = new PrescriptionDto();
-        prescriptionDto.setId(prescription.getId());
-        prescriptionDto.setNote(prescription.getNote());
-        prescriptionDto.setDiagnoses(prescription.getDiagnoses());
-        List<MedicinePharmacyDto> meds = new ArrayList<>();
-        for(MedicinePharmacy mp : prescription.getMedicines()){
-            MedicinePharmacyDto mpDto = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
-            meds.add(mpDto);
+        if(prescription != null){
+            prescriptionDto.setId(prescription.getId());
+            prescriptionDto.setDays(prescription.getDays());
+            prescriptionDto.setDiagnoses(prescription.getDiagnoses());
+            List<MedicinePharmacyDto> meds = new ArrayList<>();
+            for(MedicinePharmacy mp : prescription.getMedicines()){
+                MedicinePharmacyDto mpDto = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
+                meds.add(mpDto);
+            }
+            prescriptionDto.setMedicines(meds);
         }
-        prescriptionDto.setMedicines(meds);
         return prescriptionDto;
     }
 }

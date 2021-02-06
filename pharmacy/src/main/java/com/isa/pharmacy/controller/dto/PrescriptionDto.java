@@ -5,17 +5,25 @@ import java.util.List;
 
 public class PrescriptionDto {
     private Long id;
-    private String note;
+    private Integer days;
     private List<Diagnosis> diagnoses;
     private List<MedicinePharmacyDto> medicines;
 
     public PrescriptionDto(){}
 
-    public PrescriptionDto(Long id, String note, List<Diagnosis> diagnoses, List<MedicinePharmacyDto> medicines) {
+    public PrescriptionDto(Long id, Integer days, List<Diagnosis> diagnoses, List<MedicinePharmacyDto> medicines) {
         this.id = id;
-        this.note = note;
+        this.days = days;
         this.diagnoses = diagnoses;
         this.medicines = medicines;
+    }
+
+    public Integer getDays() {
+        return days;
+    }
+
+    public void setDays(Integer days) {
+        this.days = days;
     }
 
     public Long getId() {
@@ -26,13 +34,6 @@ public class PrescriptionDto {
         this.id = id;
     }
 
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
 
     public List<Diagnosis> getDiagnoses() {
         return diagnoses;

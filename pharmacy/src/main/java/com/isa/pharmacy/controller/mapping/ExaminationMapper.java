@@ -4,6 +4,7 @@ import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.dto.PatientDto;
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.domain.Prescription;
 
 public class ExaminationMapper {
 
