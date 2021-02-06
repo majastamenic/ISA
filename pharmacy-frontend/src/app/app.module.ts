@@ -38,6 +38,7 @@ import { PublishingReservedMedicineComponent } from './component/publishing-rese
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
+import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { AllExaminationsComponent } from './component/all-examinations/all-exami
     ScheduleVacationComponent,
     StartCounselingComponent,
     AllExaminationsComponent,
+    ScheduleExaminationDermatologistComponent,
   ],
   imports: [
     BrowserModule,

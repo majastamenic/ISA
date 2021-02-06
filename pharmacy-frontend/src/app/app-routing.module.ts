@@ -26,6 +26,7 @@ import { PublishingReservedMedicineComponent } from './component/publishing-rese
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
+import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
 
 
 const routes: Routes = [
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
   { path: 'allexaminations', component: AllExaminationsComponent},
+  { path: 'examination', component: ScheduleExaminationDermatologistComponent},
 ];
 
 @NgModule({
