@@ -4,8 +4,6 @@ import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Patient;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table
@@ -28,22 +26,28 @@ public class Examination implements Serializable {
     private Schedule schedule;
     @Column
     private Integer price;
-    @OneToMany
-    private List<Diagnosis> diagnosis;
+    @Column
+    private Boolean patientCame;
 
     public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Patient patient,
-                       Pharmacy pharmacy, Prescription prescription, Schedule schedule,
-                       Integer price, List<Diagnosis> diagnosis) {
+    public Examination(Long id, Dermatologist dermatologist, Pharmacy pharmacy, Patient patient, Prescription prescription, Schedule schedule, Integer price, Boolean patientCame) {
         this.id = id;
         this.dermatologist = dermatologist;
-        this.patient = patient;
         this.pharmacy = pharmacy;
+        this.patient = patient;
         this.prescription = prescription;
         this.schedule = schedule;
-        this.price=price;
-        this.diagnosis = diagnosis;
+        this.price = price;
+        this.patientCame = patientCame;
+    }
+
+    public Boolean getPatientCame() {
+        return patientCame;
+    }
+
+    public void setPatientCame(Boolean patientCame) {
+        this.patientCame = patientCame;
     }
 
     public Long getId() {
@@ -102,11 +106,4 @@ public class Examination implements Serializable {
         this.price = price;
     }
 
-    public List<Diagnosis> getDiagnosis() {
-        return diagnosis;
-    }
-
-    public void setDiagnosis(List<Diagnosis> diagnosis) {
-        this.diagnosis = diagnosis;
-    }
 }

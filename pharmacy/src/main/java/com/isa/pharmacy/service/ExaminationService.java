@@ -1,8 +1,12 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
+import com.isa.pharmacy.controller.dto.PatientDto;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
+import com.isa.pharmacy.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.repository.ExaminationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +49,21 @@ public class ExaminationService {
         if(scheduledExam != null)
             emailService.successfulExamSchedule(scheduledExam);
         return scheduledExam;
+    }
+
+    public List<ExamDermatologistDto> getAllByDermatologist(Dermatologist dermatologist) {
+        List<Examination> examinations = examRepository.findByDermatologist(dermatologist);
+        List<ExamDermatologistDto> examDermatologistDtos = new ArrayList<>();
+        if(examinations.isEmpty() == false){
+            for(Examination e : examinations){
+                if(e.getPatient() != null && e.getPrescription() != null){
+                    PatientDto patientDto = PatientMapper.mapPatientToPatientDto(e.getPatient());
+                    ExamDermatologistDto examDermatologistDto = ExaminationMapper.mapExaminationToExaminationDto(e, patientDto);
+                    examDermatologistDtos.add(examDermatologistDto);
+                }
+            }
+        }
+
+        return examDermatologistDtos;
     }
 }

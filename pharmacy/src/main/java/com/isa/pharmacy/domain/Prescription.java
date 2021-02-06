@@ -14,8 +14,6 @@ public class Prescription implements Serializable {
     private Long id;
     @Column
     private String note;
-    @OneToOne
-    private Examination examination;
     @OneToMany
     private List<Diagnosis> diagnoses;
     @OneToMany
@@ -23,10 +21,9 @@ public class Prescription implements Serializable {
 
     public Prescription(){}
 
-    public Prescription(Long id, String note, Examination examination, List<Diagnosis> diagnoses, List<MedicinePharmacy> medicines) {
+    public Prescription(Long id, String note, List<Diagnosis> diagnoses, List<MedicinePharmacy> medicines) {
         this.id = id;
         this.note = note;
-        this.examination = examination;
         this.diagnoses = diagnoses;
         this.medicines = medicines;
     }
@@ -63,11 +60,4 @@ public class Prescription implements Serializable {
         this.note = note;
     }
 
-    public Examination getExamination() {
-        return examination;
-    }
-
-    public void setExamination(Examination examination) {
-        this.examination = examination;
-    }
 }
