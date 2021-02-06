@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { PatientService } from 'src/app/service/patient.service';
 import { UserService } from 'src/app/service/user.service';
 import { PasswordChangeDto } from '../user/model/user-model';
 
@@ -11,7 +12,7 @@ import { PasswordChangeDto } from '../user/model/user-model';
 })
 export class UserProfileComponent implements OnInit {
 
-  patient: any;
+  patientAllergies: any = [];
   passwordChange: boolean;
   passwordDto: PasswordChangeDto;
   user : any;
@@ -19,6 +20,7 @@ export class UserProfileComponent implements OnInit {
 
 
   constructor(private userService: UserService, 
+              private patientService: PatientService,
               private router: Router, 
               private toastrService: ToastrService) { 
     this.passwordChange = false;
@@ -28,9 +30,18 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     let loggedUser = sessionStorage.getItem("user");
     if(loggedUser){
+      let userRole = sessionStorage.getItem("role");
+      if(userRole == 'PATIENT')
+        this.patientService.getPatientByEmail(loggedUser).subscribe(data => {
+          this.patientAllergies = data;
+        }, error => {
+          this.toastrService.error("Unknown error");
+        });
       this.userService.getUserByEmail(loggedUser).subscribe((data:any) =>{
         this.user = data;
         console.log(data);
+      }, error => {
+        this.toastrService.error("Unknown error");
       });
     }
   }

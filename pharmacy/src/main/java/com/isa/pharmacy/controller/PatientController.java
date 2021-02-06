@@ -1,8 +1,9 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.PatientDto;
 import com.isa.pharmacy.controller.dto.RegistrationDto;
+import com.isa.pharmacy.controller.mapping.PatientMapper;
 import com.isa.pharmacy.controller.mapping.UserMapper;
-import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.users.service.PatientService;
@@ -33,21 +34,16 @@ public class PatientController {
         return patient;
     }
 
-    @PostMapping("/create")
-    public Patient createPatient(@RequestBody Patient patient){
-        return patientService.createPatient(patient);
-    }
-
     @GetMapping("/{email}")
-    public Patient getPatientByEmail(@PathVariable("email") String email){
-        return patientService.getPatient(email);
-    }
-
-    @PutMapping("/updateAllergy")
-    public void updateAllergy(@RequestBody List<Medicine> allergies, @RequestParam Long patientId){
-        patientService.updateAllergies(patientId, allergies);
+    public PatientDto getPatientByEmail(@PathVariable("email") String email){
+        return PatientMapper.mapPatientToPatientDto(patientService.getPatient(email));
     }
 
     @GetMapping
-    public List<Patient> getPatients(){return patientService.getPatients();}
+    public List<Patient> getAllPatients(){return patientService.getAllPatients();}
+
+    @PutMapping("/updateAllergy")
+    public void updateAllergy(@RequestBody List<String> allergies, @PathVariable String patientEmail){
+        patientService.updateAllergies(patientEmail, allergies);
+    }
 }

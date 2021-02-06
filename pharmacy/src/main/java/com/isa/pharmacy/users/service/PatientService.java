@@ -2,12 +2,14 @@ package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.Medicine;
+import com.isa.pharmacy.service.MedicineService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,26 +19,8 @@ public class PatientService {
     private PatientRepository patientRepository;
     @Autowired
     private UserService userService;
-
-    public Patient createPatient(Patient patient){
-        return patientRepository.save(patient);
-    }
-
-    public void updateAllergies(Long patientId, List<Medicine> medicines){
-        Patient patient = patientRepository.getOne(patientId);
-        for(Medicine med : medicines)
-            if(!patient.getAllergicMedicines().contains(med))
-                patient.addAllergy(med);
-        patientRepository.save(patient);
-    }
-
-    public Patient getPatient(String email){
-        return patientRepository.findByUser_email(email);
-    }
-
-    public void deletePatient(long id){
-        patientRepository.deleteById(id);
-    }
+    @Autowired
+    private MedicineService medicineService;
 
     public Patient registration(Patient patient) {
         User existingUser = userService.getByEmail(patient.getUser().getEmail());
@@ -57,6 +41,21 @@ public class PatientService {
         return patient;
     }
 
-    public List<Patient> getPatients(){return patientRepository.findAll();}
+    public void updateAllergies(String patientEmail, List<String> allergies){
+        Patient patient = patientRepository.findByUser_email(patientEmail);
+        List<Medicine> patAllergies = new ArrayList<>();
+        for(String allergy : allergies)
+            patAllergies.add(medicineService.findByName(allergy));
+        patient.setAllergicMedicines(patAllergies);
+    }
 
+    public Patient getPatient(String email){
+        return patientRepository.findByUser_email(email);
+    }
+
+    public List<Patient> getAllPatients(){return patientRepository.findAll();}
+
+    public void deletePatient(long id){
+        patientRepository.deleteById(id);
+    }
 }

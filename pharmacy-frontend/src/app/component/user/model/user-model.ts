@@ -48,8 +48,7 @@ enum Role {
     DERMATOLOGIST,
     PHARMACIST,
     SUPPLIER,
-    PHARMACY_ADMIN,
-    PHARMACY_ADMIN_SYSTEM,
+    PHARMACY_ADMIN
 }
 
 export interface PharmacyAdminDto{
