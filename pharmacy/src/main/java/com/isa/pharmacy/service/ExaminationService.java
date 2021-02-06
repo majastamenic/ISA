@@ -1,11 +1,15 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.dto.PatientDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 import com.isa.pharmacy.controller.mapping.PatientMapper;
+import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Prescription;
 import com.isa.pharmacy.users.domain.Dermatologist;
@@ -70,7 +74,17 @@ public class ExaminationService {
                 }
             }
         }
-
         return examDermatologistDtos;
+    }
+
+    public ExamDermatologistDto getById(long id){
+        // provera vremena
+        Examination examination = examRepository.findExaminationById(id);
+        if(examination != null && examination.getPatient() != null && examination.getDermatologist() != null){
+            PatientDto patientDto = PatientMapper.mapPatientToPatientDto(examination.getPatient());
+            return ExaminationMapper.mapExaminationToExaminationDto(examination, patientDto);
+        }else if(examination.getPatient() == null || examination.getDermatologist() == null)
+            throw  new InvalidActionException("Examination with that id exist but no one scheduled it.");
+        throw new NotFoundException("Examination not found");
     }
 }

@@ -176,3 +176,12 @@ insert into eprescription(code, date_of_issue, file_text, patient_name) values(2
 -- PatientAllergicMedicines
 insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 1);
 insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 2);
+
+-- Diagnosis
+insert into diagnosis(name)values('Cholera');
+insert into diagnosis(name)values('Sickness');
+insert into diagnosis(name)values('Infection');
+insert into diagnosis(name)values('Poisoning');
+insert into diagnosis(name)values('Anxiety');
+insert into diagnosis(name)values('Back pain');
+insert into diagnosis(name)values('Hypertension');

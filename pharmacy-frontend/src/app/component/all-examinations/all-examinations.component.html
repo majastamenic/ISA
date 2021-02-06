@@ -22,7 +22,7 @@
           <td>{{examination.patientCame}}</td>
           <td>{{examination.prescription.days}}</td> 
           <td> <span *ngFor="let allergy of examination.patientDto.allergicMedicines;">{{allergy.name}}, </span> </td>
-          <td><button class="btn btn-primary" >Start</button></td>
+          <td><button class="btn btn-primary" [routerLink]="['/allexaminations', examination.id]">Start</button></td>
       </tr>
     </tbody>
   </table>

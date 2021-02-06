@@ -40,6 +40,7 @@ import { StartCounselingComponent } from './component/start-counseling/start-cou
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
 import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
 import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
+import { StartExaminationComponent } from './component/start-examination/start-examination.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
     AllExaminationsComponent,
     ScheduleExaminationDermatologistComponent,
     DiagnosisComponent,
+    StartExaminationComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,6 +28,7 @@ import { StartCounselingComponent } from './component/start-counseling/start-cou
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
 import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
 import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
+import { StartExaminationComponent } from './component/start-examination/start-examination.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'allcounselings/:id', component: StartCounselingComponent},
+  { path: 'allexaminations/:id', component: StartExaminationComponent},
   { path: 'price/init', component: PriceInitComponent},
   { path: 'counseling', component: ScheduleCounselingComponent},
   { path: 'order/init', component: OrderInitComponent},

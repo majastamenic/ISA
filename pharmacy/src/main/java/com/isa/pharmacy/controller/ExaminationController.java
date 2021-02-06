@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.users.domain.Dermatologist;
@@ -41,5 +42,11 @@ public class ExaminationController {
     @PutMapping("/schedule/{patientEmail}/{examinationId}")
     public void scheduleExamination(@PathVariable String patientEmail, @PathVariable Long examinationId){
         examService.scheduleExamination(patientEmail, examinationId);
+    }
+
+
+    @GetMapping("/start/{id}")
+    public ExamDermatologistDto getById(@PathVariable("id") long id) {
+        return examService.getById(id);
     }
 }
