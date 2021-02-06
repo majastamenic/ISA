@@ -10,6 +10,7 @@ public class CounselingMapper {
 
     public static Counseling mapCounselingDtoToCounseling(CounselingDto counselingDto, Pharmacist pharmacist, Patient patient) {
         Counseling counseling = new Counseling();
+        counseling.setId(counselingDto.getId());
         counseling.setCounselingStatus(counselingDto.getCounselingStatus());
         counseling.setPatientCame(counselingDto.isPatientCame());
         counseling.setReport(counselingDto.getReport());
@@ -21,6 +22,7 @@ public class CounselingMapper {
 
     public static CounselingDto mapCounselingToCounselingDto(Counseling counseling, PatientDto patientDto) {
         CounselingDto counselingDto = new CounselingDto();
+        counselingDto.setId(counseling.getId());
         counselingDto.setCounselingStatus(counseling.getCounselingStatus());
         counselingDto.setPatientCame(counseling.isPatientCame());
         counselingDto.setReport(counseling.getReport());
