@@ -74,15 +74,13 @@ export class LoyalityComponent implements OnInit {
       });
   }
 
-  cancelMedicine(){
+  cancelMedicine(i: any){
+    this.medicinesList[i].loyaltyPoints = this.prevMedPoints;
     this.enableEdit = false;
   }
 
-  editMedicine(){
-    this.enableEdit = true;
-  }
-
   enableEditMethod(e:Event, i:any) {
+    this.prevMedPoints = this.medicinesList[i].loyaltyPoints;
     this.enableEdit = true;
     this.enableEditIndex = i;
   }
