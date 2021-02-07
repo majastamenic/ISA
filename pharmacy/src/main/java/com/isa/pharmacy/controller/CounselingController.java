@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
 @RequestMapping("/counseling")
+@CrossOrigin(value = "http://localhost:4200")
 public class CounselingController {
 
     @Autowired
@@ -46,4 +46,11 @@ public class CounselingController {
 
     @PostMapping("/update")
     public Counseling update(@RequestBody Counseling c) { return counselingService.save(c); }
+
+    @GetMapping("/start/{id}")
+    public CounselingDto getById(@PathVariable("id") long id) {
+        return counselingService.getById(id);
+    }
+
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AllCounselingsService } from 'src/app/service/all-counselings.service';
 import { Counseling } from '../user/model/counseling';
 
@@ -12,11 +12,12 @@ export class AllCounselingsComponent implements OnInit {
 
   email: string;
   counselings: Counseling[] = [];
+  counseling: any;
 
-  constructor(private allCounseling: AllCounselingsService, private router: Router) {
+  constructor(private allCounseling: AllCounselingsService, private router: Router,
+    private _ActivatedRoute: ActivatedRoute) {
     this.email = '';
    }
-
 
   ngOnInit(): void {
     let loggedUser = sessionStorage.getItem("user");

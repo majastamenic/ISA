@@ -26,10 +26,12 @@ public class Counseling implements Serializable {
     private boolean patientCame;
     @Column
     private ExaminationAndCounselingStatus counselingStatus;
+    @Column
+    private int loyaltyPoints;
 
     public Counseling(){}
 
-    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus) {
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus, int loyaltyPoints) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
@@ -37,6 +39,47 @@ public class Counseling implements Serializable {
         this.report = report;
         this.patientCame = patientCame;
         this.counselingStatus = counselingStatus;
+        this.loyaltyPoints = loyaltyPoints;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Pharmacist getPharmacist() {
+        return pharmacist;
+    }
+
+    public void setPharmacist(Pharmacist pharmacist) {
+        this.pharmacist = pharmacist;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
     }
 
     public boolean isPatientCame() {
@@ -55,44 +98,11 @@ public class Counseling implements Serializable {
         this.counselingStatus = counselingStatus;
     }
 
-    public Report getReport() {
-        return report;
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
     }
 
-    public void setReport(Report report) {
-        this.report = report;
+    public void setLoyaltyPoints(int loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
     }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-    public Pharmacist getPharmacist() {
-        return pharmacist;
-    }
-
-    public void setPharmacist(Pharmacist pharmacist) {
-        this.pharmacist = pharmacist;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
 }

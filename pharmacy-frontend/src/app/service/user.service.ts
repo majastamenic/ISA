@@ -49,16 +49,24 @@ export class UserService {
 
   isUserLogin(){
     let user = sessionStorage.getItem('user');
-    console.log(!(user == null))
     return !(user == null)
   }
 
+  isPharmacist(){
+    return (sessionStorage.getItem("role") == 'PHARMACIST');
+  }
+
+  isDermatologist(){
+    return (sessionStorage.getItem("role") == 'DERMATOLOGIST');
+  }
+
   isPharmacyAdmin(){
-    return (sessionStorage.getItem('role')=='PHARMACY_ADMIN');
+    return (sessionStorage.getItem('role') == 'PHARMACY_ADMIN');
   }
 
   logOut(){
     sessionStorage.removeItem('user');
+    sessionStorage.removeItem('role');
   }
 
 

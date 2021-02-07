@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.CounselingDto;
-import com.isa.pharmacy.controller.dto.PatientDto;
+import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
@@ -10,6 +10,7 @@ public class CounselingMapper {
 
     public static Counseling mapCounselingDtoToCounseling(CounselingDto counselingDto, Pharmacist pharmacist, Patient patient) {
         Counseling counseling = new Counseling();
+        counseling.setId(counselingDto.getId());
         counseling.setCounselingStatus(counselingDto.getCounselingStatus());
         counseling.setPatientCame(counselingDto.isPatientCame());
         counseling.setReport(counselingDto.getReport());
@@ -21,6 +22,7 @@ public class CounselingMapper {
 
     public static CounselingDto mapCounselingToCounselingDto(Counseling counseling, PatientDto patientDto) {
         CounselingDto counselingDto = new CounselingDto();
+        counselingDto.setId(counseling.getId());
         counselingDto.setCounselingStatus(counseling.getCounselingStatus());
         counselingDto.setPatientCame(counseling.isPatientCame());
         counselingDto.setReport(counseling.getReport());

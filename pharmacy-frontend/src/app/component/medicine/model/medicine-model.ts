@@ -12,6 +12,7 @@ export interface Medicine{
     publishingType: MedicinePublishingType;
     replacementMedicines: Observable<number>;
     note: string;
+    loyaltyPoints: number;
 }
 
 export interface MedicineDto{
@@ -24,6 +25,7 @@ export interface MedicineDto{
     publishingType: MedicinePublishingType;
     replacementMedicines: Observable<number>;
     note: string;
+    loyaltyPoints: number;
 }
 
 export interface MedicinePharmacyDto{

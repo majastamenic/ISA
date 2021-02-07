@@ -3,7 +3,8 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Patient</th>
+        <th scope="col">Patient name</th>
+        <th scope="col">Patient surname</th>
         <th scope="col">Date & time</th>
         <th scope="col">Counseling status</th>
         <th scope="col">Came</th>
@@ -13,13 +14,16 @@
     </thead>
     <tbody>
       <tr *ngFor="let counseling of counselings; let i = index;">
-          <td>{{i}}</td>
-          <td>{{counseling.patientDto.user.name}} {{counseling.patientDto.user.surname}}</td>
+          <td>{{i+1}}</td>
+          <td>{{counseling.patientDto.user.name}} </td>
+          <td>{{counseling.patientDto.user.surname}}</td>
           <td>{{counseling.schedule.startDate}}, {{counseling.schedule.startTime}}-{{counseling.schedule.endTime}}</td>
           <td>{{counseling.counselingStatus}}</td>
           <td>{{counseling.patientCame}}</td>
           <td>{{counseling.report.note}}</td> 
           <td> <span *ngFor="let allergy of counseling.patientDto.allergicMedicines;">{{allergy.name}}, </span> </td>
+          <!--<td><button class="btn btn-primary" (click)="startCounselingClick(counseling.id)">Start</button></td>-->
+          <td><button class="btn btn-primary" [routerLink]="['/allcounselings', counseling.id]">Start</button></td>
       </tr>
     </tbody>
   </table>

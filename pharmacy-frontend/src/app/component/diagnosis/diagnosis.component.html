@@ -1,0 +1,32 @@
+<br>
+<h3>All diagnosis</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let diag of allDiagnosis; let i = index;">
+          <td>{{i+1}}</td>
+          <td>{{diag.name}} </td>
+      </tr>
+    </tbody>
+</table>
+<br>
+
+<div class="page">
+  <div class="form">
+      <form class="ngform" style="width: 350px">
+          <h3>Add new diagnosis</h3>
+          <br>
+          <div>
+              <input type="text" [(ngModel)]="newDiagnosis" placeholder="Diagnosis name" name="newDiagnosis" required>
+          </div>
+          <br>
+
+          <button class="btn btn-primary" (click)="addDiagnosis()">Save</button>
+      </form>
+  </div>
+</div>

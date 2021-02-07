@@ -1,0 +1,67 @@
+<br/>
+<div>
+    <div class='tabs-x tabs-above'>
+      <ul class="nav nav-tabs">
+        <li class="nav-item active">
+            <a class="nav-link" id="addPharmacy-tab" href="#addPharmacy" routerLinkActive="active" data-toggle="tab"
+                                aria-controls="addPharmacy" aria-expanded="true">Add pharmacy</a>
+        </li>       
+        <li class="nav-item">
+            <a class="nav-link" id="medicines-tabs" href="#addMedicines" role="tab" data-toggle="tab"
+        aria-controls="addMedicines">
+        Add medicines</a></li>
+        <li class="nav-item">
+            <a class="nav-link" id="addPharmacyAdmin-tab" href="#addPharmacyAdmin"  role="tab" data-toggle="tab"
+            aria-controls="addPharmacyAdmin">
+            Registration pharmacy admin</a></li>
+        <li class="nav-item">
+            <a class="nav-link" id="regDermatologist-tabs" href="#regDermatologist" role="tab"
+                                data-toggle="tab" aria-controls="regDermatologist" >
+          Registration dermatologist</a></li>
+          <li class="nav-item"><a class="nav-link" id="regSupplier-tabs" href="#regSupplier" role="tab"
+            data-toggle="tab" aria-controls="regSupplier" >
+        Registration supplier</a></li>
+        <li class="nav-item">
+            <a class="nav-link" id="regSysAdmin-tabs" href="#regSysAdmin" role="tab" data-toggle="tab"
+            aria-controls="regSysAdmin">
+            System registration admin</a></li>
+        <li class="nav-item">
+            <a class="nav-link" id="loyality-tabs" href="#loyality"  data-toggle="tab"
+                                aria-controls="loyality" aria-expanded="true">Loyality</a>
+        </li>  
+        <li class="nav-item">
+            <a class="nav-link" id="complaints-tabs" href="#complaints"  data-toggle="tab"
+                                aria-controls="complaints" aria-expanded="true">Complaints</a>
+        </li>  
+      </ul>
+        <div id="myTabContent-tabs-above" class="tab-content">
+            <div class="tab-pane fade" id="addPharmacy" role="tabpanel" aria-labelledby="addPharmacy-tab">
+                <app-add-pharmacy></app-add-pharmacy>
+            </div>
+            <div class="tab-pane fade" id="addPharmacyAdmin" role="tabpanel" aria-labelledby="addPharmacyAdmin-tab">
+                <app-reg-pharmacy-admin></app-reg-pharmacy-admin>
+            </div>
+            <div class="tab-pane fade" id="addMedicines" role="tabpanel" aria-labelledby="medicines-tabs">
+                <app-add-medicines></app-add-medicines>
+            </div>
+            <div class="tab-pane fade" id="regDermatologist" role="tabpanel" aria-labelledby="regDermatologist-tabs">
+                <app-reg-dermatologist></app-reg-dermatologist>
+            </div>
+            <div class="tab-pane fade" id="regSupplier" role="tabpanel" aria-labelledby="regSupplier-tabs">
+                <app-reg-supplier></app-reg-supplier>
+            </div>
+            <div class="tab-pane fade" id="regSysAdmin" role="tabpanel" aria-labelledby="regSysAdmin-tabs">
+                <app-reg-system-admin></app-reg-system-admin>
+            </div>
+            <div class="tab-pane fade" id="loyality" role="tabpanel" aria-labelledby="loyality-tabs">
+                <app-loyalty></app-loyalty>
+            </div>
+            <div class="tab-pane fade" id="complaints" role="tabpanel" aria-labelledby="complaints-tabs">
+                <app-complaints></app-complaints>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    

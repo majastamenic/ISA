@@ -3,8 +3,10 @@ package com.isa.pharmacy.controller.dto;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.domain.Schedule;
 import com.isa.pharmacy.domain.enums.ExaminationAndCounselingStatus;
+import com.isa.pharmacy.users.controller.dto.PatientDto;
 
 public class CounselingDto {
+    private long id;
     private String email;
     private String patientEmail;
     private PatientDto patientDto;
@@ -15,7 +17,8 @@ public class CounselingDto {
 
     public CounselingDto(){}
 
-    public CounselingDto(String email, String patientEmail, PatientDto patientDto, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus) {
+    public CounselingDto(long id, String email, String patientEmail, PatientDto patientDto, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus) {
+        this.id = id;
         this.email = email;
         this.patientEmail = patientEmail;
         this.patientDto = patientDto;
@@ -23,6 +26,14 @@ public class CounselingDto {
         this.report = report;
         this.patientCame = patientCame;
         this.counselingStatus = counselingStatus;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public PatientDto getPatientDto() {
