@@ -18,8 +18,6 @@ public class PharmacyAdmin implements Serializable {
     private Long id;
     @OneToOne
     private User user;
-    @OneToMany          // TODO: Bidirekciona veza? Obrisati?
-    private List<Order> orders;
     @OneToOne
     private Pharmacy pharmacy;
     @OneToMany
@@ -27,10 +25,9 @@ public class PharmacyAdmin implements Serializable {
 
     public PharmacyAdmin(){}
 
-    public PharmacyAdmin(Long id, User user, List<Order> orders, Pharmacy pharmacy,List<WorkSchedule> schedule) {
+    public PharmacyAdmin(Long id, User user, Pharmacy pharmacy,List<WorkSchedule> schedule) {
         this.user =user;
         this.id = id;
-        this.orders= orders;
         this.pharmacy = pharmacy;
         this.schedule = schedule;
     }
@@ -49,14 +46,6 @@ public class PharmacyAdmin implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
     }
 
     public Pharmacy getPharmacy() {

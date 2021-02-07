@@ -147,10 +147,6 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 15, 1, 2);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 18, 2, 2);
 
--- Orders
-insert into app_order( end_date, end_time) values ('2021-02-07', '08:00:00');
-insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
-
 -- MedicineReplacement
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(1, 62217);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(2, 66042);
@@ -178,11 +174,27 @@ insert into eprescription(code, date_of_issue, file_text, patient_name) values(2
 insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 1);
 insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 2);
 
+--Loyalty program
 insert into loyalty_group(points, type) values (3, 0);
 insert into loyalty_group(points, type) values (4, 1);
 insert into loyalty_group(points, type) values (10, 2);
 insert into loyalty_group(points, type) values (20, 3);
 insert into loyalty_group(points, type) values (50, 4);
 
+--Complaints
 insert into complaint(complaint_message, response_complaint, patient_id)values ('Losa usluga', '...', 1);
 insert into complaint(complaint_message, patient_id)values ('Guzva', 2);
+
+-- Orders
+insert into app_order( end_date, end_time, pharmacy_admin_id) values ('2021-02-07', '08:00:00', 1);
+insert into app_order(end_date, end_time, pharmacy_admin_id) values ('2021-03-07', '04:00:00', 1);
+
+-- OrdersOffers
+insert into order_offer(price, quantity, medicine_id)VALUES (2.9, 200, 1);
+insert into order_offer(price, quantity, medicine_id)VALUES (1.0, 100, 2);
+insert into order_offer(price, quantity, medicine_id)VALUES (2.0, 2, 3);
+
+-- Orders - OrdersOffers
+insert into app_order_order_offers(app_order_id, order_offers_id)values (1, 1);
+insert into app_order_order_offers(app_order_id, order_offers_id)values (1, 2);
+insert into app_order_order_offers(app_order_id, order_offers_id)values (2, 3);

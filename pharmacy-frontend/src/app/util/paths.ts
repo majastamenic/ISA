@@ -33,8 +33,6 @@ export const COUNSELING_ADD_PATH = COUNSELING_PATH + '/add';
 export const COUNSELING_START_PATH = COUNSELING_PATH + '/start';
 
 export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy/getAllMedicines';
-export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
-
 
 export const EXAMINATION_PATH = BACKEND_PATH + '/examination';
 export const FREE_EXAM_TERMS_PATH = EXAMINATION_PATH + '/freeTerms';
@@ -47,3 +45,6 @@ export const MEDICINE_LOYALTY_PATH = MEDICINE_PATH+'/loyalty';
 export const LOYALTY_GROUP_PATH = BACKEND_PATH + '/loyaltyGroup';
 
 export const COMPLAINT_PATH = BACKEND_PATH + '/complaint';
+
+export const ORDER_PATH = BACKEND_PATH + '/order';
+export const OFFER_PATH = BACKEND_PATH + '/supplier-offer';

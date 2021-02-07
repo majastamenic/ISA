@@ -1,7 +1,5 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.users.domain.Supplier;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,21 +10,20 @@ public class OrderOffer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private Order order;
-    @OneToOne
-    private Supplier supplier;
+    @ManyToOne
+    private Medicine medicine;
     @Column
-    private Boolean isWinner;
+    private Integer quantity;
+    @Column
+    private double price;
 
-    public OrderOffer() {
-    }
+    public OrderOffer(){}
 
-    public OrderOffer(Long id, Order order, Supplier supplier, Boolean isWinner) {
+    public OrderOffer(Long id, Medicine medicine, Integer quantity, double price) {
         this.id = id;
-        this.order = order;
-        this.supplier = supplier;
-        this.isWinner = isWinner;
+        this.medicine = medicine;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public Long getId() {
@@ -37,27 +34,27 @@ public class OrderOffer implements Serializable {
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
+    public Medicine getMedicine() {
+        return medicine;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setMedicine(Medicine medicine) {
+        this.medicine = medicine;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public Boolean getWinner() {
-        return isWinner;
+    public double getPrice() {
+        return price;
     }
 
-    public void setWinner(Boolean winner) {
-        isWinner = winner;
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

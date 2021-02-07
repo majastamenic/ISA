@@ -63,4 +63,17 @@ public class MedicineService {
         medicineRepository.save(medicine);
         return medicineLoyaltyDto;
     }
+
+    public List<Medicine> getMedicinesByNames(List<String> medicinesNames){
+        List<Medicine> medicineList = new ArrayList<>();
+        List<Medicine> dbMedicines = medicineRepository.findAll();
+        for(Medicine medicine: dbMedicines){
+            for(String name: medicinesNames){
+                if(medicine.getName().equals(name)){
+                    medicineList.add(medicine);
+                }
+            }
+        }
+        return medicineList;
+    }
 }

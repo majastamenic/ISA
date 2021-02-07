@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
-import { HomeComponent } from './component/home/home.component';
+import { HomeComponent } from '../../home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
@@ -32,6 +32,7 @@ import { RegSystemAdminComponent } from './component/system-admin/reg-system-adm
 import { RegDermatologistComponent } from './component/system-admin/reg-dermatologist/reg-dermatologist.component';
 import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
+import { AddOrderComponent } from './component/add-order/add-order.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -72,6 +73,7 @@ const routes: Routes = [
   { path: 'examination', component: ScheduleExaminationDermatologistComponent},
   { path: 'diagnosis', component: DiagnosisComponent},
   { path: 'add-complaint', component: ComplaintMessageComponent},
+  { path: 'order', component: AddOrderComponent},
 ];
 
 @NgModule({

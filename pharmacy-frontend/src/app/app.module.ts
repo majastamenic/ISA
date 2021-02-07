@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './component/home/home.component';
+import { HomeComponent } from '../../home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
@@ -42,6 +42,8 @@ import { RegSupplierComponent } from './component/system-admin/reg-supplier/reg-
 import { RegSystemAdminComponent } from './component/system-admin/reg-system-admin/reg-system-admin.component';
 import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.component';
 import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
+import { SupplierComponent } from './component/supplier/supplier.component';
+import { AddOrderComponent } from './component/add-order/add-order.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { ComplaintsComponent } from './component/system-admin/complaints/complai
     LoyalityComponent,
     ComplaintMessageComponent,
     ComplaintsComponent,
+    SupplierComponent,
+    AddOrderComponent,
   ],
   imports: [
     BrowserModule,
