@@ -1,26 +1,38 @@
 <div class="page">
     <div class="form">
         <form class="ngform" style="width: 600px">
-            <h3>Examination</h3>
+            <h2>EXAMINATION</h2>
             <br>
             <div>
                 <table>
-                    <tr><h5><td>Date & time:</td><td>&nbsp; &nbsp;{{examination.schedule.startDate}}, {{examination.schedule.startTime}}-{{examination.schedule.endTime}}</td></h5></tr>
-                    <tr><h5><td>Patient:</td><td>&nbsp; &nbsp;{{examination.patientDto.user.name}} {{examination.patientDto.user.surname}}</td></h5></tr>
-                    <tr><h5><td>Allergic medicines: </td><td>&nbsp; &nbsp;<span *ngFor="let allergy of examination.patientDto.allergicMedicines;">{{allergy.name}}, </span></td></h5></tr>
+                    <tr><h5><td style="color:gray">Patient:</td><td>&nbsp;{{examination.patientDto.user.name}} {{examination.patientDto.user.surname}}</td></h5></tr>
+                    <tr><h5><td style="color:gray">Allergic medicines:</td><td>&nbsp;<span *ngFor="let allergy of examination.patientDto.allergicMedicines;">{{allergy.name}}, </span></td></h5></tr>
                 </table>
+                <hr>
             </div>
             <br>
+
             <div>
                 <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="examination.prescription.days" name="report" style="width:100px" required>
             </div>
             <br>
-            
-            
-            <button class="btn btn-primary" style="width:200px;">Save </button>
+
+            <div>
+                <p style="color:springgreen;font-size:15px;float:right;">Pharmacy: <b>{{examination.pharmacyName}}</b>
+                    <br>Pharmacist: <b>{{examination.email}}</b>
+                    <br>{{examination.schedule.startDate}}, {{examination.schedule.startTime}}-{{examination.schedule.endTime}}
+                </p>
+            </div>
+            <br><br><br><br>
+            <div>
+                <button class="btn btn-secondary" style="width:200px;">Cancel</button>&nbsp;
+                <button class="btn btn-primary" style="width:200px;">Save</button>
+            </div>
         </form>
     </div>
 </div>
+
+<h3>Medicine specification</h3>
 
 
 

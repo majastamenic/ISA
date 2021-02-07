@@ -38,6 +38,17 @@ public class MedicinePharmacyService {
         return medicineDtoList;
     }
 
+    public List<MedicinePharmacyDto> getMedicinesByPharmacy(Long id) {
+        List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(id);
+        List<MedicinePharmacyDto> meds = new ArrayList<>();
+        for(MedicinePharmacy mp : medicinePharmacies){
+            MedicinePharmacyDto mpDto = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
+            meds.add(mpDto);
+        }
+        return meds;
+    }
+
+
     public List<String> getPatientAllergies(List<Medicine> allergis){
         List<String> meds = new ArrayList<>();
         for(Medicine m: allergis)
