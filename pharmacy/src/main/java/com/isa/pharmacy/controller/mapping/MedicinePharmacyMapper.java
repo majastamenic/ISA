@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller.mapping;
 
-import com.isa.pharmacy.controller.dto.medicine.GetAllMedicinePharmacyDto;
-import com.isa.pharmacy.controller.dto.medicine.MedicinePharmacyDto;
+import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
+import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 
 public class MedicinePharmacyMapper {

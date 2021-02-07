@@ -1,6 +1,6 @@
 package com.isa.pharmacy.controller.mapping;
 
-import com.isa.pharmacy.controller.dto.medicine.MedicinePharmacyDto;
+import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.controller.dto.PrescriptionDto;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Prescription;

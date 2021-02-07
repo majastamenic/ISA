@@ -1,4 +1,4 @@
-package com.isa.pharmacy.controller.dto.complaint;
+package com.isa.pharmacy.controller.dto;
 
 public class CreateComplaintDto {
 

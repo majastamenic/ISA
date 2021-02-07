@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.controller.dto.complaint.CreateComplaintDto;
-import com.isa.pharmacy.controller.dto.complaint.ShowComplaintDto;
+import com.isa.pharmacy.controller.dto.CreateComplaintDto;
+import com.isa.pharmacy.controller.dto.ShowComplaintDto;
 import com.isa.pharmacy.controller.mapping.ComplaintMapper;
 import com.isa.pharmacy.domain.Complaint;
 import com.isa.pharmacy.service.ComplaintService;

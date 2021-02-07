@@ -1,6 +1,4 @@
-package com.isa.pharmacy.controller.dto.medicine;
-
-import com.isa.pharmacy.controller.dto.PharmacyFromMedicinePharmacyDto;
+package com.isa.pharmacy.controller.dto;
 
 public class GetAllMedicinePharmacyDto {
     private Long id;

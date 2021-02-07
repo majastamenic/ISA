@@ -1,14 +1,10 @@
 package com.isa.pharmacy.service;
 
-import com.isa.pharmacy.controller.dto.complaint.ShowComplaintDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Complaint;
-import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.ComplaintRepository;
 import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.service.PatientService;
-import com.isa.pharmacy.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
