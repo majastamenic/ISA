@@ -18,8 +18,6 @@ public class MedicinePharmacyController {
 
     @Autowired
     private MedicinePharmacyService medicinePharmacyService;
-    @Autowired
-    private PharmacyService pharmacyService;
 
     @GetMapping("/getAllMedicines")
     public List<GetAllMedicinePharmacyDto> getAll() {
@@ -39,13 +37,9 @@ public class MedicinePharmacyController {
         return medicineDtoList;
     }
 
-    @GetMapping("/all/{pharmacyName}")
-    public List<MedicinePharmacyDto> getMedicinesByPharmacy(@PathVariable("pharmacyName")String pharmacyName) {
-        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
-        if(pharmacy == null){
-            throw  new NotFoundException("Pharmacy doesn't exist in this pharmacy system.");
-        }
-        return medicinePharmacyService.getMedicinesByPharmacy(pharmacy.getId());
+    @GetMapping("/all/{pharmacyName}/{email}")
+    public List<MedicinePharmacyDto> getMedicinesByPharmacy(@PathVariable("pharmacyName")String pharmacyName, @PathVariable("email")String email) {
+        return medicinePharmacyService.getMedicinesByPharmacy(pharmacyName, email);
     }
 
     @GetMapping("/{id}")

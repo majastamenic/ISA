@@ -33,6 +33,10 @@
 </div>
 
 <h3>Medicine specification</h3>
-
+<input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>&nbsp;
+<button class="btn btn-primary" style="width:100px;">Search</button>
+<br>
+<pre>Model: {{ model | json }}</pre>
+<br><br><br>
 
 

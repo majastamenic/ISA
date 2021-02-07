@@ -2,11 +2,15 @@ package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
 import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.MedicinePharmacyRepository;
+import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.users.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,10 @@ public class MedicinePharmacyService {
     private MedicinePharmacyRepository medicinePharmacyRepository;
     @Autowired
     private CounselingService counselingService;
+    @Autowired
+    private PatientService patientService;
+    @Autowired
+    private PharmacyService pharmacyService;
 
     public List<GetAllMedicinePharmacyDto> getAllMedicinePharmacies() {
         List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findAll();
@@ -38,12 +46,26 @@ public class MedicinePharmacyService {
         return medicineDtoList;
     }
 
-    public List<MedicinePharmacyDto> getMedicinesByPharmacy(Long id) {
-        List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(id);
+    public List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email) {
+        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        Patient patient = patientService.getPatient(email);
+        if(pharmacy == null)
+            throw  new NotFoundException("Pharmacy doesn't exist in this pharmacy system.");
+        if(patient == null)
+            throw  new NotFoundException("Patient doesn't exist in this pharmacy system.");
+        List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(pharmacy.getId());
         List<MedicinePharmacyDto> meds = new ArrayList<>();
+        List<Medicine> medicines = new ArrayList<>();
         for(MedicinePharmacy mp : medicinePharmacies){
-            MedicinePharmacyDto mpDto = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
-            meds.add(mpDto);
+            boolean find = false;
+            for(Medicine m: patient.getAllergicMedicines()){
+                if(mp.getMedicine().getName().equals(m.getName()))
+                    find = true;
+            }
+            if(find == false){
+                MedicinePharmacyDto mpDto = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
+                meds.add(mpDto);
+            }
         }
         return meds;
     }

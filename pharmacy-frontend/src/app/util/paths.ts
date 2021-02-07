@@ -32,8 +32,10 @@ export const COUNSELING_PATH = BACKEND_PATH + '/counseling';
 export const COUNSELING_ADD_PATH = COUNSELING_PATH + '/add';
 export const COUNSELING_START_PATH = COUNSELING_PATH + '/start';
 
-export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy/getAllMedicines';
+export const MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy';
+export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/getAllMedicines';
 export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
+export const MEDICINES_PHARMACY_PATH = MEDICINEPHARMACY_PATH + '/all';
 
 
 export const EXAMINATION_PATH = BACKEND_PATH + '/examination';
