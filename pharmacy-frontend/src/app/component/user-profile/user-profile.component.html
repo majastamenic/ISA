@@ -34,7 +34,7 @@
                 <span *ngIf="patientAllergies.count == 0"> No allegies </span>
             </div>
             <button class="btn btn-primary" (click)="update()">Update info</button>
-            <a href="javascript: void(0)" (click)="passwordChange = true">Change password</a>
+            <a href="javascript: void(0)" (click)="passwordChange = true; allergyChange = false;">Change password</a>
         </form>
     </div>
 </div>
@@ -85,6 +85,7 @@
                 </tr>
             </table>
             <button class='btn btn-primary' (click)='updatePatientAllergies()'>Save changes</button>
+            <button class="btn btn-secondary" (click)="allergyChange = false">Cancel</button>
         </form>
     </div>
 </div>

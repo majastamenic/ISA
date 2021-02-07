@@ -72,7 +72,7 @@ public class Patient implements Serializable {
     }
 
     public void addAllergy(String medicine){
-        if(!allergicMedicines.contains(medicine))
+        if(!allergicMedicines.contains(medicine) && !medicine.trim().equals(""))
             allergicMedicines.add(medicine);
     }
 }

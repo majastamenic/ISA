@@ -42,7 +42,9 @@ export class UserProfileComponent implements OnInit {
       this.userService.getUserByEmail(loggedUser).subscribe((data:any) =>{
         this.user = data;
       }, error => {
-        this.toastrService.error("Unknown error");
+        sessionStorage.clear();
+        this.router.navigate(['login']);
+        this.toastrService.error("Unknown error, please log in again");
       });
     }else {
       this.router.navigate(['login']);
