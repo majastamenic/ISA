@@ -55,10 +55,10 @@ public class MedicineService {
     public List<AvailabilityMedicineDto> checkAvailabilityMedicines(String pharmacyName, List<String> meds){
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
-        AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
         for(String med: meds){
             for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
                 if(med.equalsIgnoreCase(mp.getMedicine().getName())){
+                    AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
                     if(mp.getQuantity()>0)
                         availMed.setAvailable(true);
                     else

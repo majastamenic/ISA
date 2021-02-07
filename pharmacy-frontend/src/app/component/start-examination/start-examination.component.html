@@ -12,11 +12,6 @@
             </div>
             <br>
 
-            <div>
-                <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="examination.prescription.days" name="report" style="width:100px" required>
-            </div>
-            <br>
-
             <div style="width: 250px;">
                 <ng-select [items]="medicines"
                     bindLabel="label"
@@ -26,10 +21,14 @@
                     [(ngModel)]="selectedMeds"
                     name="selectedMeds">
                 </ng-select>
-                <button class="btn btn-secondary" style="width:100px;">Check</button>&nbsp;
+                <button class="btn btn-secondary" style="width:100px;" (click)="checkAvailability()">Check</button>&nbsp;
             </div>
 
-
+            <div>
+                <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="examination.prescription.days" name="report" style="width:100px" required>
+            </div>
+            <br>
+            
             <div>
                 <p style="color:springgreen;font-size:15px;float:right;">Pharmacy: <b>{{examination.pharmacyName}}</b>
                     <br>Dermatologist: <b>{{examination.email}}</b>
@@ -38,7 +37,7 @@
             </div>
             <br><br><br><br>
             <div>
-                <button class="btn btn-secondary" style="width:200px;">Cancel</button>&nbsp;
+                <button class="btn btn-secondary" style="width:200px;" (click)="cancelExamination()">Cancel</button>&nbsp;
                 <button class="btn btn-primary" style="width:200px;">Save</button>
             </div>
         </form>

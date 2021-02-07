@@ -12,6 +12,7 @@ export const ACTION_PATH = BACKEND_PATH + '/actions';
 
 export const MEDICINE_PATH = BACKEND_PATH + '/medicine';
 export const MEDICINEALL_PATH = MEDICINE_PATH + '/getAllMedicines';
+export const MEDICINES_CHECK_PATH = MEDICINE_PATH + '/check';
 
 export const EPRESCRIPTION_PATH = BACKEND_PATH + '/ePrescription';
 export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ExaminationService } from 'src/app/service/examination.service';
 import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.service';
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import { MedicineService } from 'src/app/service/medicine.service';
 
 
 @Component({
@@ -19,8 +20,11 @@ export class StartExaminationComponent implements OnInit {
   medicines: any[]=[];
   names: any[]=[];
   selectedMeds: any[]=[];
+  available: any[]=[];
+  meds: any[]=[];
 
-  constructor(private examinationService: ExaminationService,private  medicinePharmacyService: MedicinePharmacyService,  private _ActivatedRoute: ActivatedRoute) { }
+  constructor(private examinationService: ExaminationService,private  medicinePharmacyService: MedicinePharmacyService, 
+    private medicineService: MedicineService, private _ActivatedRoute: ActivatedRoute, private router: Router) { }
 
   public model: any;
 
@@ -49,5 +53,19 @@ export class StartExaminationComponent implements OnInit {
       map(term => term.length < 2 ? []
         : this.names.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
+
+    checkAvailability(){
+      this.meds = [];
+      for(let med of this.selectedMeds){
+        this.meds.push(med.medicine.name);
+      }
+      this.medicineService.checkAvailabilityMeds(this.examination.pharmacyName, this.meds).subscribe((data:any[]) => {
+        this.available = data;
+      })
+    }
+
+    cancelExamination(){
+      this.router.navigate(['allexaminations']);
+    }
 
 }
