@@ -190,5 +190,16 @@ insert into eprescription(code, date_of_issue, file_text, patient_name) values(2
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
 
+
+-- Diagnosis
+insert into diagnosis(name)values('Cholera');
+insert into diagnosis(name)values('Sickness');
+insert into diagnosis(name)values('Infection');
+insert into diagnosis(name)values('Poisoning');
+insert into diagnosis(name)values('Anxiety');
+insert into diagnosis(name)values('Back pain');
+insert into diagnosis(name)values('Hypertension');
+
+-- Complaints
 insert into complaint(complaint_message, response_complaint, patient_id)values ('Losa usluga', '...', 1);
 insert into complaint(complaint_message, patient_id)values ('Guzva', 2);

@@ -1,18 +1,13 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
-
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
-import com.isa.pharmacy.domain.Examination;
-import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.service.ExaminationService;
+import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.service.DermatologistService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @RestController
@@ -45,5 +40,11 @@ public class ExaminationController {
     @PutMapping("/schedule/{patientEmail}/{examinationId}")
     public void scheduleExamination(@PathVariable String patientEmail, @PathVariable Long examinationId){
         examinationService.scheduleExamination(patientEmail, examinationId);
+    }
+
+
+    @GetMapping("/start/{id}")
+    public ExamDermatologistDto getById(@PathVariable("id") long id) {
+        return examinationService.getById(id);
     }
 }

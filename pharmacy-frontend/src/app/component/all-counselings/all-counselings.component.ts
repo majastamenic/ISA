@@ -14,8 +14,7 @@ export class AllCounselingsComponent implements OnInit {
   counselings: Counseling[] = [];
   counseling: any;
 
-  constructor(private allCounseling: AllCounselingsService, private router: Router,
-    private _ActivatedRoute: ActivatedRoute) {
+  constructor(private allCounseling: AllCounselingsService, private router: Router) {
     this.email = '';
    }
 

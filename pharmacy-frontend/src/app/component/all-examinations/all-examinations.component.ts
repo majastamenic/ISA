@@ -12,7 +12,7 @@ export class AllExaminationsComponent implements OnInit {
   email: string;
   examinations: any[] = [];
 
-  constructor(private examinationService: ExaminationService, private _ActivatedRoute: ActivatedRoute) { 
+  constructor(private examinationService: ExaminationService) { 
     this.email = '';
   }
 

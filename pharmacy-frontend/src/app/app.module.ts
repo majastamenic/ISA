@@ -36,6 +36,7 @@ import { StartCounselingComponent } from './component/start-counseling/start-cou
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
 import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
 import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
+import { StartExaminationComponent } from './component/start-examination/start-examination.component';
 import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
 import { SystemAdminComponent } from './component/system-admin/system-admin.component';
 import { AddMedicinesComponent } from './component/system-admin/add-medicines/add-medicines.component';
@@ -85,6 +86,7 @@ import { ComplaintsComponent } from './component/system-admin/complaints/complai
     AllExaminationsComponent,
     ScheduleExaminationDermatologistComponent,
     DiagnosisComponent,
+    StartExaminationComponent,
     LoyalityComponent,
     ComplaintMessageComponent,
     ComplaintsComponent

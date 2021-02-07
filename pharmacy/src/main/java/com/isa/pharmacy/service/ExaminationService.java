@@ -3,16 +3,16 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
-import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Prescription;
+import com.isa.pharmacy.repository.ExaminationRepository;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.repository.ExaminationRepository;
 import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.repository.PatientRepository;
+import com.isa.pharmacy.users.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class ExaminationService {
     private ExaminationRepository examinationRepository;
 
     @Autowired
-    private PatientRepository patientRepository;
+    private PatientService patientService;
     @Autowired
     private EmailService emailService;
 
@@ -53,7 +53,7 @@ public class ExaminationService {
         Examination examination = examinationRepository.findExaminationById(examinationId);
         if(examination.getPatient() != null || examination.getSchedule().getStartDate().before(Calendar.getInstance().getTime()))
             throw new InvalidActionException("Examination cannot be scheduled!");
-        examination.setPatient(patientRepository.findByUser_email(patientEmail));
+        examination.setPatient(patientService.getPatient(patientEmail));
         Examination scheduledExam = examinationRepository.save(examination);
         emailService.successfulExamSchedule(scheduledExam);
     }
@@ -73,8 +73,21 @@ public class ExaminationService {
                 }
             }
         }
-
         return examDermatologistDtos;
+    }
+
+
+    public ExamDermatologistDto getById(long id) {
+        // provera vremena
+        Examination examination = examinationRepository.findExaminationById(id);
+        if(examination == null)
+            throw new NotFoundException("Examination is not found.");
+        if (examination.getPatient() != null && examination.getDermatologist() != null) {
+            PatientDto patientDto = PatientMapper.mapPatientToPatientDto(examination.getPatient());
+            return ExaminationMapper.mapExaminationToExaminationDto(examination, patientDto);
+        } else if (examination.getPatient() == null || examination.getDermatologist() == null)
+            throw new InvalidActionException("Examination with that id exist but no one scheduled it.");
+        throw new NotFoundException("Examination not found");
     }
 
     public List<String> getDermatologistNameByPatient(Patient patient){
@@ -89,4 +102,5 @@ public class ExaminationService {
         }
         return dermatologistNames;
     }
+
 }
