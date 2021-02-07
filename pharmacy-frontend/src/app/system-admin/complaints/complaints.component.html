@@ -6,14 +6,14 @@
                 <label>{{complaint.message}}</label>
                 <br/>
                 <label>{{complaint.response}}</label>
-                <button *ngIf="!showAddResponse" (click)="addResponse($event, i)" class="btn btn-primary">Edit</button>
-                <button *ngIf="!showAddResponse" (click)="delete(i)" class="btn btn-primary">Delete</button>
+                <button *ngIf="!showAddResponse" (click)="addResponse($event, i)" class="btn btn-info">Edit</button>
+                <button *ngIf="!showAddResponse" (click)="delete(i)" class="btn btn-outline-dark">Delete</button>
             </div>
             <div *ngIf="showAddResponse && enableEditIndex == i">
                 <br/>
                 <input type="text" name="response" [(ngModel)]="complaint.response"/>
                 <button (click)="sendResponse(i)" class="btn btn-primary">Send</button>
-                <button (click)="cancel(i)" class="btn btn-primary">Cancel</button>
+                <button (click)="cancel(i)" class="btn btn-secondary">Cancel</button>
             </div>
         </form>
     </div>
