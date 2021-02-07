@@ -6,7 +6,7 @@
             <div>
                 <table>
                     <tr><h5><td style="color:gray">Patient:</td><td>&nbsp;{{examination.patientDto.user.name}} {{examination.patientDto.user.surname}}</td></h5></tr>
-                    <tr><h5><td style="color:gray">Allergic medicines:</td><td>&nbsp;<span *ngFor="let allergy of examination.patientDto.allergicMedicines;">{{allergy.name}}, </span></td></h5></tr>
+                    <tr><h5><td style="color:gray">Allergic medicines:</td><td>&nbsp;<span *ngFor="let allergy of examination.patientDto.allergicMedicines;">{{allergy}}, </span></td></h5></tr>
                 </table>
                 <hr>
             </div>
@@ -28,7 +28,7 @@
                 <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="examination.prescription.days" name="report" style="width:100px" required>
             </div>
             <br>
-            
+
             <div>
                 <p style="color:springgreen;font-size:15px;float:right;">Pharmacy: <b>{{examination.pharmacyName}}</b>
                     <br>Dermatologist: <b>{{examination.email}}</b>

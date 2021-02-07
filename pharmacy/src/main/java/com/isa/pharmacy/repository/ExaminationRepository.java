@@ -1,6 +1,7 @@
 package com.isa.pharmacy.repository;
 
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -17,4 +18,5 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
     Examination save(Examination examination);
 
     Examination findExaminationById(Long id);
+    List<Examination> findByPatient(Patient patient);
 }

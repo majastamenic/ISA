@@ -21,7 +21,7 @@
           <td>{{counseling.counselingStatus}}</td>
           <td>{{counseling.patientCame}}</td>
           <td>{{counseling.report.note}}</td> 
-          <td> <span *ngFor="let allergy of counseling.patientDto.allergicMedicines;">{{allergy.name}}, </span> </td>
+          <td> <span *ngFor="let allergy of counseling.patientDto.allergicMedicines;">{{allergy}}, </span> </td>
           <!--<td><button class="btn btn-primary" (click)="startCounselingClick(counseling.id)">Start</button></td>-->
           <td><button class="btn btn-primary" [routerLink]="['/allcounselings', counseling.id]">Start</button></td>
       </tr>

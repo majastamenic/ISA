@@ -1,13 +1,14 @@
 package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
-import com.isa.pharmacy.domain.Medicine;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,28 +19,8 @@ public class PatientService {
     @Autowired
     private UserService userService;
 
-    public Patient createPatient(Patient patient){
-        return patientRepository.save(patient);
-    }
-
-    public void updateAllergies(Long patientId, List<Medicine> medicines){
-        Patient patient = patientRepository.getOne(patientId);
-        for(Medicine med : medicines)
-            if(!patient.getAllergicMedicines().contains(med))
-                patient.addAllergy(med);
-        patientRepository.save(patient);
-    }
-
-    public Patient getPatient(String email){
-        return patientRepository.findByUser_email(email);
-    }
-
-    public void deletePatient(long id){
-        patientRepository.deleteById(id);
-    }
-
     public Patient registration(Patient patient) {
-        User existingUser = userService.getByEmail(patient.getUser().getEmail());
+        Patient existingUser = patientRepository.findByUser_email(patient.getUser().getEmail());
         if (existingUser == null) {
             userService.create(patient.getUser());
             return patientRepository.save(patient);
@@ -57,6 +38,24 @@ public class PatientService {
         return patient;
     }
 
-    public List<Patient> getPatients(){return patientRepository.findAll();}
+    public void updateAllergies(String patientEmail, List<String> allergies){
+        Patient patient = patientRepository.findByUser_email(patientEmail);
+        patient.setAllergicMedicines(new ArrayList<>());
+        for(String allergy : allergies)
+            patient.addAllergy(allergy);
+        patientRepository.save(patient);
+    }
 
+    public Patient getPatient(String email){
+        Patient patient = patientRepository.findByUser_email(email);
+        if(patient == null)
+            throw new NotFoundException("Patient with email "+ email + " doesn't exists.");
+        return patient;
+    }
+
+    public List<Patient> getAllPatients(){return patientRepository.findAll();}
+
+    public void deletePatient(long id){
+        patientRepository.deleteById(id);
+    }
 }

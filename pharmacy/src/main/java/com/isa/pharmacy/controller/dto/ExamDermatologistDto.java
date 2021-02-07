@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller.dto;
 
 import com.isa.pharmacy.domain.Schedule;
+import com.isa.pharmacy.users.controller.dto.PatientDto;
 
 
 public class ExamDermatologistDto {

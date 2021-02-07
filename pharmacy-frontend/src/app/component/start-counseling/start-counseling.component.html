@@ -7,7 +7,7 @@
                 <table>
                     <tr><h5><td>Date & time:</td><td>&nbsp; &nbsp;{{counseling.schedule.startDate}}, {{counseling.schedule.startTime}}-{{counseling.schedule.endTime}}</td></h5></tr>
                     <tr><h5><td>Patient:</td><td>&nbsp; &nbsp;{{counseling.patientDto.user.name}} {{counseling.patientDto.user.surname}}</td></h5></tr>
-                    <tr><h5><td>Allergic medicines: </td><td>&nbsp; &nbsp;<span *ngFor="let allergy of counseling.patientDto.allergicMedicines;">{{allergy.name}}, </span></td></h5></tr>
+                    <tr><h5><td>Allergic medicines: </td><td>&nbsp; &nbsp;<span *ngFor="let allergy of counseling.patientDto.allergicMedicines;">{{allergy}}, </span></td></h5></tr>
                 </table>
             </div>
             <br>

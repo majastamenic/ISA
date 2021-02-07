@@ -1,20 +1,18 @@
 package com.isa.pharmacy.service;
 
-import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
-import com.isa.pharmacy.controller.dto.PatientDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
-import com.isa.pharmacy.controller.mapping.PatientMapper;
-import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Prescription;
-import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.repository.ExaminationRepository;
-import com.isa.pharmacy.users.repository.PatientRepository;
+import com.isa.pharmacy.users.controller.dto.PatientDto;
+import com.isa.pharmacy.users.controller.mapping.PatientMapper;
+import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.users.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,15 +24,16 @@ import java.util.List;
 public class ExaminationService {
 
     @Autowired
-    private ExaminationRepository examRepository;
+    private ExaminationRepository examinationRepository;
+
     @Autowired
-    private PatientRepository patientRepository;
+    private PatientService patientService;
     @Autowired
     private EmailService emailService;
 
     public List<FreeExaminationDto> getAllFreeExaminationTerms(){
         List<FreeExaminationDto> freeExaminations = new ArrayList<>();
-        for(Examination exam : examRepository.findAll())
+        for(Examination exam : examinationRepository.findAll())
             if(exam.getPatient() == null && exam.getSchedule().getStartDate().after(Calendar.getInstance().getTime()))
                 freeExaminations.add(ExaminationMapper.mapExaminationToFreeExaminationDto(exam));
         return freeExaminations;
@@ -42,7 +41,7 @@ public class ExaminationService {
 
     public List<FreeExaminationDto> getFreeExaminationTermsByPharmacy(String pharmacyName){
         List<FreeExaminationDto> freeExaminations = new ArrayList<>();
-        for(Examination exam : examRepository.findAll())
+        for(Examination exam : examinationRepository.findAll())
             if(exam.getPharmacy().getName().equals(pharmacyName) &&
                exam.getPatient() == null &&
                exam.getSchedule().getStartDate().after(Calendar.getInstance().getTime()))
@@ -51,16 +50,16 @@ public class ExaminationService {
     }
 
     public void scheduleExamination(String patientEmail, Long examinationId){
-        Examination examination = examRepository.findExaminationById(examinationId);
+        Examination examination = examinationRepository.findExaminationById(examinationId);
         if(examination.getPatient() != null || examination.getSchedule().getStartDate().before(Calendar.getInstance().getTime()))
             throw new InvalidActionException("Examination cannot be scheduled!");
-        examination.setPatient(patientRepository.findByUser_email(patientEmail));
-        Examination scheduledExam = examRepository.save(examination);
+        examination.setPatient(patientService.getPatient(patientEmail));
+        Examination scheduledExam = examinationRepository.save(examination);
         emailService.successfulExamSchedule(scheduledExam);
     }
 
     public List<ExamDermatologistDto> getAllByDermatologist(Dermatologist dermatologist) {
-        List<Examination> examinations = examRepository.findByDermatologist(dermatologist);
+        List<Examination> examinations = examinationRepository.findByDermatologist(dermatologist);
         List<ExamDermatologistDto> examDermatologistDtos = new ArrayList<>();
         if(examinations.isEmpty() == false){
             for(Examination e : examinations){
@@ -77,14 +76,29 @@ public class ExaminationService {
         return examDermatologistDtos;
     }
 
-    public ExamDermatologistDto getById(long id){
+
+    public ExamDermatologistDto getById(long id) {
         // provera vremena
-        Examination examination = examRepository.findExaminationById(id);
-        if(examination != null && examination.getPatient() != null && examination.getDermatologist() != null){
+        Examination examination = examinationRepository.findExaminationById(id);
+        if (examination != null && examination.getPatient() != null && examination.getDermatologist() != null) {
             PatientDto patientDto = PatientMapper.mapPatientToPatientDto(examination.getPatient());
             return ExaminationMapper.mapExaminationToExaminationDto(examination, patientDto);
-        }else if(examination.getPatient() == null || examination.getDermatologist() == null)
-            throw  new InvalidActionException("Examination with that id exist but no one scheduled it.");
+        } else if (examination.getPatient() == null || examination.getDermatologist() == null)
+            throw new InvalidActionException("Examination with that id exist but no one scheduled it.");
         throw new NotFoundException("Examination not found");
     }
+
+    public List<String> getDermatologistNameByPatient(Patient patient){
+        String dermatologistName;
+        List<String> dermatologistNames = new ArrayList<>();
+        List<Examination> examinationList = examinationRepository.findByPatient(patient);
+        for(Examination examination: examinationList){
+            if(examination.getPatientCame()){
+                dermatologistName = examination.getDermatologist().getUser().getRole().toString() + ": " + examination.getDermatologist().getUser().getName()+" "+ examination.getDermatologist().getUser().getSurname();
+                dermatologistNames.add(dermatologistName);
+            }
+        }
+        return dermatologistNames;
+    }
+
 }

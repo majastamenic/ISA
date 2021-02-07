@@ -14,9 +14,9 @@ public class Medicine implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private Long code;
-    @Column
+    @Column(nullable = false)
     private String name;
     @Column
     private String typeOfMedicine;
@@ -26,6 +26,8 @@ public class Medicine implements Serializable {
     private String composition;
     @Column
     private String manufactured;
+    @Column
+    private int loyaltyPoints;
     @Column
     private MedicinePublishingType publishingType;
     @ElementCollection
@@ -37,9 +39,7 @@ public class Medicine implements Serializable {
 
     public Medicine() { }
 
-    public Medicine(Long id, Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine,
-                    String composition, String manufactured, MedicinePublishingType publishingType,
-                    List<Long> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy) {
+    public Medicine(Long id, Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine, String composition, String manufactured, int loyalityPoints,MedicinePublishingType publishingType, List<Long> replacementMedicines, String note, List<MedicinePharmacy> medicinePharmacy) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -75,6 +75,14 @@ public class Medicine implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
+    }
+
+    public void setLoyaltyPoints(int loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
     }
 
     public String getTypeOfMedicine() {

@@ -1,10 +1,9 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
-import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.service.ExaminationService;
+import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.service.DermatologistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,38 +14,37 @@ import java.util.List;
 @RequestMapping("/examination")
 @CrossOrigin(value = "http://localhost:4200")
 public class ExaminationController {
-
     @Autowired
-    private ExaminationService examService;
+    private ExaminationService examinationService;
     @Autowired
     private DermatologistService dermatologistService;
 
     @GetMapping("/freeTerms")       // Za sada se ne koristi nigde
     public List<FreeExaminationDto> getFreeExaminationTerms(){
-        return examService.getAllFreeExaminationTerms();
+        return examinationService.getAllFreeExaminationTerms();
     }
 
     @GetMapping("/freeTerms/{pharmacyName}")
     public List<FreeExaminationDto> getExaminationTermsByPharmacy(@PathVariable String pharmacyName){
-        return examService.getFreeExaminationTermsByPharmacy(pharmacyName);
+        return examinationService.getFreeExaminationTermsByPharmacy(pharmacyName);
     }
 
 
     @GetMapping("/{email}")
     public List<ExamDermatologistDto> getAllByDermatologist(@PathVariable("email") String email) {
         Dermatologist dermatologist = dermatologistService.findUserByEmail(email);
-        return examService.getAllByDermatologist(dermatologist);
+        return examinationService.getAllByDermatologist(dermatologist);
     }
 
 
     @PutMapping("/schedule/{patientEmail}/{examinationId}")
     public void scheduleExamination(@PathVariable String patientEmail, @PathVariable Long examinationId){
-        examService.scheduleExamination(patientEmail, examinationId);
+        examinationService.scheduleExamination(patientEmail, examinationId);
     }
 
 
     @GetMapping("/start/{id}")
     public ExamDermatologistDto getById(@PathVariable("id") long id) {
-        return examService.getById(id);
+        return examinationService.getById(id);
     }
 }

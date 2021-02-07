@@ -15,10 +15,11 @@ public class AddMedicineDto{
     private MedicinePublishingType publishingType;
     private List<Long> replacementMedicine;
     private String note;
+    private int loyaltyPoints;
 
     public AddMedicineDto(){}
 
-    public AddMedicineDto(Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine, String composition, String manufactured, MedicinePublishingType publishingType, List<Long> replacementMedicine, String note) {
+    public AddMedicineDto(Long code, String name, String typeOfMedicine, FormOfMedicine formOfMedicine, String composition, String manufactured, int loyaltyPoints, MedicinePublishingType publishingType, List<Long> replacementMedicine, String note) {
         this.code = code;
         this.name = name;
         this.typeOfMedicine = typeOfMedicine;
@@ -28,6 +29,7 @@ public class AddMedicineDto{
         this.publishingType = publishingType;
         this.replacementMedicine = replacementMedicine;
         this.note = note;
+        this.loyaltyPoints = loyaltyPoints;
     }
 
     public Long getCode() {
@@ -100,5 +102,13 @@ public class AddMedicineDto{
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
+    }
+
+    public void setLoyaltyPoints(int loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
     }
 }

@@ -1,5 +1,7 @@
 package com.isa.pharmacy.controller.dto;
 
+import com.isa.pharmacy.users.controller.dto.UserDto;
+
 public class FreeExaminationDto {
     private Long id;
     private UserDto dermatologist;

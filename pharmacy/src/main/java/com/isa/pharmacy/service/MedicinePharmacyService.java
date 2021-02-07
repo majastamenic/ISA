@@ -5,7 +5,6 @@ import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.MedicinePharmacyRepository;
@@ -46,6 +45,7 @@ public class MedicinePharmacyService {
         return medicineDtoList;
     }
 
+
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email) {
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
         Patient patient = patientService.getPatient(email);
@@ -55,11 +55,10 @@ public class MedicinePharmacyService {
             throw  new NotFoundException("Patient doesn't exist in this pharmacy system.");
         List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(pharmacy.getId());
         List<MedicinePharmacyDto> meds = new ArrayList<>();
-        List<Medicine> medicines = new ArrayList<>();
         for(MedicinePharmacy mp : medicinePharmacies){
             boolean find = false;
-            for(Medicine m: patient.getAllergicMedicines()){
-                if(mp.getMedicine().getName().equals(m.getName()))
+            for(String m: patient.getAllergicMedicines()){
+                if(mp.getMedicine().getName().equals(m))
                     find = true;
             }
             if(find == false){
@@ -71,18 +70,11 @@ public class MedicinePharmacyService {
     }
 
 
-    public List<String> getPatientAllergies(List<Medicine> allergis){
-        List<String> meds = new ArrayList<>();
-        for(Medicine m: allergis)
-            meds.add(m.getName());
-        return meds;
-    }
-
     public List<MedicinePharmacyDto> getMedicinesByCounseling(long id){
         Counseling counseling = counselingService.getCounselingById(id);
         List<MedicinePharmacyDto> meds = new ArrayList<>();
         for(MedicinePharmacy mp : medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(counseling.getPharmacist().getPharmacy().getId())){
-            for(String s : getPatientAllergies(counseling.getPatient().getAllergicMedicines())){
+            for(String s : counseling.getPatient().getAllergicMedicines()){
                 if(mp.getMedicine().getName().equalsIgnoreCase(s)){
                     MedicinePharmacyDto mpd = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
                     meds.add(mpd);

@@ -52,12 +52,12 @@ public class EmailService {
         mailMessage.setFrom(mailSender);
         mailMessage.setTo(examiantion.getPatient().getUser().getEmail());
         mailMessage.setSubject("Examination");
-        mailMessage.setText(GREETING + examiantion.getPatient().getUser().getName() + ",\n" +
+        mailMessage.setText(GREETING + examiantion.getPatient().getUser().getName() + ",\n\n" +
                             "You have successfully scheduled an appointment with dermatologist.\n" +
                             "Details: \n" +
-                            "- Dermatologist: " + examiantion.getDermatologist().getUser().getName() + "\n" +
+                            "- Dermatologist: " + examiantion.getDermatologist().getUser().getName() + " " + examiantion.getDermatologist().getUser().getSurname() + "\n" +
                             "- Time: " + examiantion.getSchedule().getStartTime() + "\n" +
-                            "- Price: " + examiantion.getPrice() + "€\n" +
+                            "- Price: " + examiantion.getPrice() + "€\n\n" +
                             "Best regards,\n" +
                             "ISA Pharmacy");
         javaMailSender.send(mailMessage);

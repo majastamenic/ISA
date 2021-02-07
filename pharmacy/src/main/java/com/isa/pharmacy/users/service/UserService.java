@@ -1,12 +1,12 @@
 package com.isa.pharmacy.users.service;
 
-import com.isa.pharmacy.controller.dto.PasswordChangeDto;
+import com.isa.pharmacy.users.controller.dto.PasswordChangeDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
 import com.isa.pharmacy.users.domain.User;
-import com.isa.pharmacy.users.domain.enums.Role;
+import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,11 +23,14 @@ public class UserService {
 
     public User create(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
-        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
-        if(pattern.matcher(user.getEmail()).matches() && existingUser == null){
+        Pattern pattern = Pattern.compile("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
+        Pattern patternPass = Pattern.compile("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}");
+        if(existingUser != null)
+            throw new AlreadyExistsException(String.format("User with email %s, already exists", user.getEmail()));
+        if(pattern.matcher(user.getEmail()).matches() && patternPass.matcher(user.getPassword()).matches()){
             return userRepository.save(user);
         }
-        throw new AlreadyExistsException(String.format("User with email %s, already exists or is not in required format", user.getEmail()));
+        throw new UnauthorizeException("Email or passowrd is not in required format");
     }
 
     public User updateUser(User user){

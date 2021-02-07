@@ -1,0 +1,91 @@
+<div class="panel panel-primary">
+    <div class="row">
+        <div class="column page">
+            <div>
+                <form class="ngform">
+                <h3>Examination loyalty points</h3>
+                <br/>
+                <span *ngIf="!enableEditExam">{{examLoyaltyPoints.points}}</span>
+                <input type="text" *ngIf="enableEditExam" [(ngModel)]="examLoyaltyPoints.points"/>
+                <button *ngIf="enableEditExam" class="btn btn-secondary" (click)="cancelExam()">Cancel</button>
+                <button *ngIf="enableEditExam" id="saveExamBtn" class="btn btn-primary" (click)="saveExamPoints()" type="submit">Save</button>
+                <button *ngIf="!enableEditExam" id="editExamBtn" class="btn btn-outline-info" (click)="editExamPoints()" type="submit">Edit</button>
+                </form>
+            </div>
+            <div>
+                <form class="ngform">
+                <h3>Counseling loyalty points</h3>
+                <br/>
+                <span *ngIf="!enableEditConsu">{{counsLoyaltyPoints.points}}</span>
+                <input type="text" *ngIf="enableEditConsu" [(ngModel)]="counsLoyaltyPoints.points"/>
+                <button *ngIf="enableEditConsu" class="btn btn-secondary" (click)="cancelCouns()">Cancel</button>
+                <button *ngIf="enableEditConsu" id="saveCounBtn" class="btn btn-primary" (click)="saveCounsPoints()" type="submit">Save</button>
+                <button *ngIf="!enableEditConsu" id="editCounBtn" class="btn btn-outline-info" (click)="editCounsPoints()" type="submit">Edit</button>
+                </form>
+            </div>
+        </div>
+        <div class="column page">
+            <form class="ngform">
+            <h3>Loyalty level</h3>
+            <br/>
+            <div>
+                <h5>Regular:</h5>
+                <br/>
+                <span *ngIf="!enableEditReg">{{regLoyaltyPoints.points}}</span>
+                    <input type="text" *ngIf="enableEditReg" [(ngModel)]="regLoyaltyPoints.points"/>
+                    <button *ngIf="enableEditReg" class="btn btn-secondary" (click)="cancelReg()">Cancel</button>
+                    <button *ngIf="enableEditReg" id="saveRegBtn" class="btn btn-primary" (click)="saveRegPoints()" type="submit">Save</button>
+                    <button *ngIf="!enableEditReg" id="editRegBtn" class="btn btn-outline-info" (click)="editRegPoints()" type="submit">Edit</button>
+            </div>
+            <div>
+                <br/>
+                <h5>Silver:</h5>
+                <br/>
+                <span *ngIf="!enableEditSil">{{silLoyaltyPoints.points}}</span>
+                    <input type="text" *ngIf="enableEditSil" [(ngModel)]="silLoyaltyPoints.points"/>
+                    <button *ngIf="enableEditSil" class="btn btn-secondary" (click)="cancelSilv()">Cancel</button>
+                    <button *ngIf="enableEditSil" id="saveSilBtn" class="btn btn-primary" (click)="saveSilver()" type="submit">Save</button>
+                    <button *ngIf="!enableEditSil" id="editSilBtn" class="btn btn-outline-info" (click)="editSilvPoints()" type="submit">Edit</button>
+            </div>
+            <div>
+                <br/>
+                <h5>Gold:</h5>
+                <br/>
+                <span *ngIf="!enableEditGold">{{goldLoyaltyPoints.points}}</span>
+                    <input type="text" *ngIf="enableEditGold" [(ngModel)]="goldLoyaltyPoints.points"/>
+                    <button *ngIf="enableEditGold" class="btn btn-secondary" (click)="cancelGold()">Cancel</button>
+                    <button *ngIf="enableEditGold" id="saveGoldBtn" class="btn btn-primary" (click)="saveGoldPoints()" type="submit">Save</button>
+                    <button *ngIf="!enableEditGold" id="editGoldBtn" class="btn btn-outline-info" (click)="editGoldPoints()" type="submit">Edit</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table id="medicine" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Loyalty points</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medicine of medicinesList; index as i;">
+                    <td>{{medicine.code}}</td>
+                    <td>{{medicine.name}}</td>
+                    <td>
+                        <span *ngIf="!enableEdit">{{medicine.loyaltyPoints}}</span>
+                        <input type="text" *ngIf="enableEdit && enableEditIndex == i" [(ngModel)]="medicine.loyaltyPoints"/>
+                    </td>
+                    <td>
+                        <button *ngIf="enableEdit && enableEditIndex == i" class="btn btn-secondary" (click)="cancelMedicine(i)">Cancel</button>
+                        <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn btn-primary" (click)="saveMedicine(i)" type="submit">Save</button>
+                        <button *ngIf="!enableEdit" id="editBtn" class="btn btn-outline-info" (click)="enableEditMethod($event, i)" type="submit">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

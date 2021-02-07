@@ -5,6 +5,7 @@ import com.isa.pharmacy.users.domain.Patient;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table
@@ -28,10 +29,14 @@ public class Examination implements Serializable {
     private Integer price;
     @Column
     private Boolean patientCame;
+    @OneToMany
+    private List<Diagnosis> diagnosis;
+    @ManyToOne
+    private LoyaltyGroup loyaltyGroup;
 
-    public Examination(){}
+   public Examination(){}
 
-    public Examination(Long id, Dermatologist dermatologist, Pharmacy pharmacy, Patient patient, Prescription prescription, Schedule schedule, Integer price, Boolean patientCame) {
+    public Examination(Long id, Dermatologist dermatologist, Pharmacy pharmacy, Patient patient, Prescription prescription, Schedule schedule, Integer price, Boolean patientCame, List<Diagnosis> diagnosis, LoyaltyGroup loyaltyGroup) {
         this.id = id;
         this.dermatologist = dermatologist;
         this.pharmacy = pharmacy;
@@ -40,14 +45,8 @@ public class Examination implements Serializable {
         this.schedule = schedule;
         this.price = price;
         this.patientCame = patientCame;
-    }
-
-    public Boolean getPatientCame() {
-        return patientCame;
-    }
-
-    public void setPatientCame(Boolean patientCame) {
-        this.patientCame = patientCame;
+        this.diagnosis = diagnosis;
+        this.loyaltyGroup = loyaltyGroup;
     }
 
     public Long getId() {
@@ -106,4 +105,27 @@ public class Examination implements Serializable {
         this.price = price;
     }
 
+    public Boolean getPatientCame() {
+        return patientCame;
+    }
+
+    public void setPatientCame(Boolean patientCame) {
+        this.patientCame = patientCame;
+    }
+
+    public List<Diagnosis> getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(List<Diagnosis> diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    public LoyaltyGroup getLoyaltyGroup() {
+        return loyaltyGroup;
+    }
+
+    public void setLoyaltyGroup(LoyaltyGroup loyaltyGroup) {
+        this.loyaltyGroup = loyaltyGroup;
+    }
 }
