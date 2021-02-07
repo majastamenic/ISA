@@ -6,6 +6,9 @@ import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExaminationMapper {
 
     public static FreeExaminationDto mapExaminationToFreeExaminationDto(Examination exam){
@@ -29,5 +32,12 @@ public class ExaminationMapper {
         examDermatologistDto.setPrice(examination.getPrice());
         examDermatologistDto.setPatientCame(examination.getPatientCame());
         return examDermatologistDto;
+    }
+
+    public static List<FreeExaminationDto> mapExaminationListToFreeExaminationDto(List<Examination> examinations){
+        List<FreeExaminationDto> freeExaminations = new ArrayList<>();
+        for(Examination exam : examinations)
+            freeExaminations.add(mapExaminationToFreeExaminationDto(exam));
+        return freeExaminations;
     }
 }

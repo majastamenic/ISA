@@ -1,7 +1,6 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
-import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
@@ -25,28 +24,32 @@ public class ExaminationService {
 
     @Autowired
     private ExaminationRepository examinationRepository;
-
     @Autowired
     private PatientService patientService;
     @Autowired
     private EmailService emailService;
 
-    public List<FreeExaminationDto> getAllFreeExaminationTerms(){
-        List<FreeExaminationDto> freeExaminations = new ArrayList<>();
+
+    public List<Examination> getAllFreeExaminationTerms(){
+        List<Examination> freeExaminations = new ArrayList<>();
         for(Examination exam : examinationRepository.findAll())
             if(exam.getPatient() == null && exam.getSchedule().getStartDate().after(Calendar.getInstance().getTime()))
-                freeExaminations.add(ExaminationMapper.mapExaminationToFreeExaminationDto(exam));
+                freeExaminations.add(exam);
         return freeExaminations;
     }
 
-    public List<FreeExaminationDto> getFreeExaminationTermsByPharmacy(String pharmacyName){
-        List<FreeExaminationDto> freeExaminations = new ArrayList<>();
+    public List<Examination> getFreeExaminationTermsByPharmacy(String pharmacyName){
+        List<Examination> freeExaminations = new ArrayList<>();
         for(Examination exam : examinationRepository.findAll())
             if(exam.getPharmacy().getName().equals(pharmacyName) &&
                exam.getPatient() == null &&
                exam.getSchedule().getStartDate().after(Calendar.getInstance().getTime()))
-                freeExaminations.add(ExaminationMapper.mapExaminationToFreeExaminationDto(exam));
+                freeExaminations.add(exam);
         return freeExaminations;
+    }
+
+    public List<Examination> getExaminationByPatient(String email){
+        return examinationRepository.findByPatient(patientService.getPatient(email));
     }
 
     public void scheduleExamination(String patientEmail, Long examinationId){
@@ -76,7 +79,6 @@ public class ExaminationService {
         return examDermatologistDtos;
     }
 
-
     public ExamDermatologistDto getById(long id) {
         // provera vremena
         Examination examination = examinationRepository.findExaminationById(id);
@@ -102,5 +104,4 @@ public class ExaminationService {
         }
         return dermatologistNames;
     }
-
 }
