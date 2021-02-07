@@ -1,0 +1,24 @@
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Pharmacist</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pharmacist of pharmacists; let i = index;">
+          <td>{{i}}</td>
+          <td>{{pharmacist.user.name}} {{pharmacist.user.surname}}</td>
+          <td>{{pharmacist.user.email}}</td>
+          <td>{{pharmacist.user.address}}</td>
+          <td>{{pharmacist.user.phone}}</td>
+          <td>{{pharmacist.user.country}}</td> 
+          <td><button class="btn btn-primary" (click)="define()">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>

@@ -8,8 +8,6 @@ public class ActionsAndBenefitsMapper {
         action.setMessageAboutAction(actionDto.getMessage());
         action.setStartDate(actionDto.getStartDate());
         action.setEndDate(actionDto.getEndDate());
-        //TODO: Logovana apoteka
-        action.setPharmacyName("Jankovic");
         return action;
     }
 
