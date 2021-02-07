@@ -5,7 +5,8 @@ import { ExaminationService } from 'src/app/service/examination.service';
 @Component({
   selector: 'app-start-examination',
   templateUrl: './start-examination.component.html',
-  styleUrls: ['./start-examination.component.css']
+  styleUrls: ['./start-examination.component.css'],
+  styles: ['.card { overflow:hidden }']
 })
 export class StartExaminationComponent implements OnInit {
 
@@ -17,9 +18,9 @@ export class StartExaminationComponent implements OnInit {
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params =>{
       this.id = params.get('id');
-      this.examinationService.start(this.id).subscribe(startCoun =>{
-        this.counseling = startCoun;
-        console.log(startCoun);
+      this.examinationService.startExamination(this.id).subscribe(startExam =>{
+        this.examination = startExam;
+        console.log(startExam);
       })
     })
   }

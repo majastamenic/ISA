@@ -1,1 +1,26 @@
-<p>start-examination works!</p>
+<div class="page">
+    <div class="form">
+        <form class="ngform" style="width: 600px">
+            <h3>Examination</h3>
+            <br>
+            <div>
+                <table>
+                    <tr><h5><td>Date & time:</td><td>&nbsp; &nbsp;{{examination.schedule.startDate}}, {{examination.schedule.startTime}}-{{examination.schedule.endTime}}</td></h5></tr>
+                    <tr><h5><td>Patient:</td><td>&nbsp; &nbsp;{{examination.patientDto.user.name}} {{examination.patientDto.user.surname}}</td></h5></tr>
+                    <tr><h5><td>Allergic medicines: </td><td>&nbsp; &nbsp;<span *ngFor="let allergy of examination.patientDto.allergicMedicines;">{{allergy.name}}, </span></td></h5></tr>
+                </table>
+            </div>
+            <br>
+            <div>
+                <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="examination.prescription.days" name="report" style="width:100px" required>
+            </div>
+            <br>
+            
+            
+            <button class="btn btn-primary" style="width:200px;">Save </button>
+        </form>
+    </div>
+</div>
+
+
+
