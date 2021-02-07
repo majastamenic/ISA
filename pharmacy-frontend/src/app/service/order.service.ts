@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ORDER_PATH } from '../util/paths';
+import { OFFER_PATH, ORDER_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +20,9 @@ export class OrderService {
 
   delete(id: number): any{
     return this.httpClient.delete(ORDER_PATH+"/"+id);
+  }
+
+  createOffer(newOffer: any): any{
+    return this.httpClient.post(OFFER_PATH, newOffer);
   }
 }

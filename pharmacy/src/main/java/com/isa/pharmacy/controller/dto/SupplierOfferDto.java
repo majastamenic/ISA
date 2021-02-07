@@ -9,13 +9,13 @@ import java.util.List;
 
 public class SupplierOfferDto {
     private Long orderId;
-    private List<OrderOffer> orderOffers;
+    private List<OrderOfferDto> orderOffers;
     private OrderOfferType type;
     private String supplierEmail;
 
     public SupplierOfferDto(){}
 
-    public SupplierOfferDto(Long orderId, List<OrderOffer> orderOffers, OrderOfferType type, String supplierEmail) {
+    public SupplierOfferDto(Long orderId, List<OrderOfferDto> orderOffers, OrderOfferType type, String supplierEmail) {
         this.orderId = orderId;
         this.orderOffers = orderOffers;
         this.type = type;
@@ -30,11 +30,11 @@ public class SupplierOfferDto {
         this.orderId = orderId;
     }
 
-    public List<OrderOffer> getOrderOffers() {
+    public List<OrderOfferDto> getOrderOffers() {
         return orderOffers;
     }
 
-    public void setOrderOffers(List<OrderOffer> orderOffers) {
+    public void setOrderOffers(List<OrderOfferDto> orderOffers) {
         this.orderOffers = orderOffers;
     }
 

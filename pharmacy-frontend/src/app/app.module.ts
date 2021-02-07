@@ -44,6 +44,7 @@ import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.comp
 import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
 import { SupplierComponent } from './component/supplier/supplier.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
+import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { AddOrderComponent } from './component/add-order/add-order.component';
     ComplaintsComponent,
     SupplierComponent,
     AddOrderComponent,
+    ViewOrdersComponent,
   ],
   imports: [
     BrowserModule,

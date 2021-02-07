@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SupplierOfferRepository extends JpaRepository<SupplierOffer, Long> {
+    SupplierOffer save(SupplierOffer supplierOffer);
 }

@@ -15,7 +15,7 @@ export interface OrderOfferDto{
 }
 
 export interface SupplierOfferDto{
-    orderOffers: Observable<OrderOfferDto>;
+    orderOffers: OrderOfferDto[];
     type: OrderOfferType;
     supplierEmail: string
 }

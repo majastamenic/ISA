@@ -31,4 +31,11 @@ public class OrderService {
         orderRepository.delete(order);
     }
 
+    public Order getById(Long id){
+        Order order = orderRepository.findOrderById(id);
+        if(order == null)
+            throw new NotFoundException("Order doesn't exists.");
+        return order;
+    }
+
 }

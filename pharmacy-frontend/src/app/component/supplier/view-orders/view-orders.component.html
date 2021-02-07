@@ -1,0 +1,28 @@
+<div *ngFor="let order of orders; index as i;">
+    <div class="form">
+        <form class="ngform">
+            <h3>Order</h3>
+            <label>End date: {{order.endDate}}</label>
+            <br/>
+            <label>End time: {{order.endTime}}</label>
+            <br/>
+            <div *ngFor="let offer of order.orderOffers">
+                <label>Medicine name: {{offer.medicineName}}</label>
+                <br/>
+                <label>Quantity: {{offer.quantity}}</label>
+                <br/>
+            </div>
+            <button *ngIf="!addOfferView" class="btn btn-outline-dark" (click)="addOffer()">Add offer</button>
+            <div *ngIf="addOfferView">
+                <h3>Create offer</h3>
+                <div *ngFor="let off of order.orderOffers">
+                    <input type="text" [(ngModel)]="newOffer.orderOffers.medicineName" placeholder="{{off.medicineName}}" name='offerMed' id='offerMed' disabled>
+                    <input type="number" [(ngModel)]="newOffer.orderOffers.quantity" placeholder="Enter quantity" name='offerQuantity' name="offerQuantity">
+                    <input type="number" [(ngModel)]="newOffer.orderOffers.price" placeholder="Enter price" name='offerPrice' id='offerPrice'>
+                </div>
+                <button class="btn btn-info" (click)="create()">Create</button>
+                <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -33,6 +33,7 @@ import { RegDermatologistComponent } from './component/system-admin/reg-dermatol
 import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
+import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -74,6 +75,7 @@ const routes: Routes = [
   { path: 'diagnosis', component: DiagnosisComponent},
   { path: 'add-complaint', component: ComplaintMessageComponent},
   { path: 'order', component: AddOrderComponent},
+  { path: 'view-orders', component: ViewOrdersComponent},
 ];
 
 @NgModule({

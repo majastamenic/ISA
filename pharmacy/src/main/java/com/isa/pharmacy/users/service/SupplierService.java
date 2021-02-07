@@ -1,6 +1,7 @@
 package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.domain.Supplier;
 import com.isa.pharmacy.users.repository.SupplierRepository;
 import com.isa.pharmacy.users.service.UserService;
@@ -21,5 +22,12 @@ public class SupplierService {
             return supplierRepository.save(supplier);
         }
         throw new AlreadyExistsException(String.format("Supplier with email %s, already exists", supplier.getUser().getEmail()));
+    }
+
+    public Supplier getByEmail(String email){
+        Supplier supplier = supplierRepository.findSupplierByUser_email(email);
+        if(supplier == null)
+            throw new NotFoundException("Supplier with email "+email+" doesn't exists.");
+        return supplier;
     }
 }
