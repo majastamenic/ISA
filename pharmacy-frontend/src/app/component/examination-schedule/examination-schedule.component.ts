@@ -40,9 +40,9 @@ export class ExaminationScheduleComponent implements OnInit {
     });
   }
 
-  scheduleExamination(id: number){
+  scheduleExamination(id: number, i:number){
     this.examinationService.scheduleExamination(this.loggedUser, id).subscribe(noVal =>{
-      // Obrisati iz liste examinations onaj sto je upravo zakazan
+      this.examinations.splice(i, 1);
       this.toastrService.success('Examination successfuly scheduled!');
     }, error =>{
       this.toastrService.error(error.toString());
