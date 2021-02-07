@@ -13,21 +13,25 @@ import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
-import { AddMedicinesComponent } from './system-admin/add-medicines/add-medicines.component';
-import { AddPharmacyAdminComponent } from './system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
-import { AddPharmacyComponent } from './system-admin/add-pharmacy/add-pharmacy.component';
-import { RegDermatologistComponent } from './system-admin/reg-dermatologist/reg-dermatologist.component';
-import { SystemAdminComponent } from './system-admin/system-admin.component';
-import { RegSupplierComponent } from './system-admin/reg-supplier/reg-supplier.component';
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
-
-import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
-import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
+import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
+import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
+import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
+import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
+import { SystemAdminComponent } from './component/system-admin/system-admin.component';
+import { AddMedicinesComponent } from './component/system-admin/add-medicines/add-medicines.component';
+import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
+import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.component';
+import { RegSupplierComponent } from './component/system-admin/reg-supplier/reg-supplier.component';
+import { RegSystemAdminComponent } from './component/system-admin/reg-system-admin/reg-system-admin.component';
+import { RegDermatologistComponent } from './component/system-admin/reg-dermatologist/reg-dermatologist.component';
+import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
+import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -40,7 +44,6 @@ const routes: Routes = [
   { path: 'medicine', component: MedicineComponent },
   { path: 'uploadQR', component: UploadQRComponent },
   { path: 'ePrescription', component: EPrescriptionComponent },
-  //{ path: 'addMedicines', component: AddMedicinesComponent},
   { path: 'counseling', component: ScheduleCounselingComponent },
   { path: 'allcounselings', component: AllCounselingsComponent },
   {
@@ -53,6 +56,7 @@ const routes: Routes = [
       { path: 'regSysAdmin', component: RegSystemAdminComponent },
       { path: 'regSupplier', component: RegSupplierComponent },
       { path: 'loyality', component: LoyalityComponent },
+      { path: 'complaints', component: ComplaintsComponent},
     ]
   },
   { path: 'pharmacist', component: PharmacistComponent},
@@ -64,6 +68,10 @@ const routes: Routes = [
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
+  { path: 'allexaminations', component: AllExaminationsComponent},
+  { path: 'examination', component: ScheduleExaminationDermatologistComponent},
+  { path: 'diagnosis', component: DiagnosisComponent},
+  { path: 'add-complaint', component: ComplaintMessageComponent},
 ];
 
 @NgModule({

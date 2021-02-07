@@ -1,6 +1,7 @@
 package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
@@ -32,7 +33,10 @@ public class PatientService {
     }
 
     public Patient getPatient(String email){
-        return patientRepository.findByUser_email(email);
+        Patient patient = patientRepository.findByUser_email(email);
+        if(patient == null)
+            throw new NotFoundException("Patient with email "+ email + " doesn't exists.");
+        return patient;
     }
 
     public void deletePatient(long id){

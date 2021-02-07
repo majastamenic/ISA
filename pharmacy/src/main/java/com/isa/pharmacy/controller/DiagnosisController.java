@@ -15,8 +15,15 @@ public class DiagnosisController {
     private DiagnosisService diagnosisService;
 
     @PostMapping("/add")
-    public Diagnosis save(@RequestBody Diagnosis d) {
-        return diagnosisService.save(d);
+    public Diagnosis save(@RequestBody Diagnosis diag) {
+        if(!diag.getName().equals("") && diag != null){
+            for(Diagnosis d: diagnosisService.getAll()){
+                if(d.getName().equals(diag.getName()))
+                    return null;
+            }
+            return diagnosisService.save(diag);
+        }
+        return null;
     }
 
     @GetMapping

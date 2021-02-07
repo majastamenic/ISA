@@ -1,0 +1,33 @@
+<div class="page">
+    <div class="form">
+        <form class="ngform">
+            <h3>Add medicine</h3>
+            <input type="text" [(ngModel)]="medicine.name" placeholder="Enter medicine name" name='name'>
+            <input type="number" [(ngModel)]="medicine.code" placeholder="Enter medicine code" name='number'>
+            <input type="text" [(ngModel)]="medicine.typeOfMedicine" placeholder="Enter medicine type" name='typeOfMedicine'>
+            <select class="form-select" [(ngModel)]="medicine.formOfMedicine" placeholder="Enter medicine form" name='formOfMedicine'>
+                <option selected>Enter medicine form</option>
+                <option value="0">POWDER</option>
+                <option value="1">CAPSULE</option>
+                <option value="2">TABLET</option>
+                <option value="3">GREASE</option>
+                <option value="4">GEL</option>
+                <option value="5">PASTE</option>
+                <option value="6">DILUTION</option>
+                <option value="7">SYRUP</option>
+            </select>
+            <input type="text" [(ngModel)]="medicine.composition" placeholder="Enter medicine composition" name='composition'>
+            <input type="text" [(ngModel)]="medicine.manufactured" placeholder="Enter medicine manufactured" name='manufactured'>
+            <select class="form-select" [(ngModel)]="medicine.publishingType" placeholder="Select publishing type" name='publishingType'>
+                <option selected>Select publishing type</option>
+                <option value="0">with prescription</option>
+                <option value="1">without prescription</option>
+            </select>
+            <input type="number" [(ngModel)]="medicine.replacementMedicine" placeholder="Enter replacement medicine code" name="replacementMedicine">
+            <input type="text" [(ngModel)]="medicine.note" placeholder="Enter note" name="note">
+            <input type="number" [(ngModel)]="medicine.loyaltyPoints" placeholder="Enter loyalty points" name="loyaltyPoints">
+            <button class="btn btn-info" (click)="addMedicine()">Add medicine</button>
+        </form>
+    </div>
+</div>
+

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PharmacyDto } from '../system-admin/add-pharmacy/model/pharmacy-model';
+import { PharmacyDto } from '../component/system-admin/add-pharmacy/model/pharmacy-model';
 import { PHARMACY_PATH } from '../util/paths';
 
 @Injectable({

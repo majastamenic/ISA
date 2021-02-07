@@ -7,7 +7,7 @@
         <div *ngIf="vCode.errors && (vCode.invalid && vCode.touched)">
           <small class="text-danger" *ngIf = "vCode.errors.required">This is required field.</small>
         </div>        
-        <button [disabled]="loginform.form.invalid" (click)="verification()" class="btn btn-primary">Verification</button>
+        <button [disabled]="loginform.form.invalid" (click)="verification()" class="btn btn-info">Verification</button>
         </form>
     </div>
   </div>
@@ -61,7 +61,7 @@
             <div>    
                 <input type="tel" [(ngModel)]="user.phone" placeholder="Enter phone" name="phone" required>
             </div>
-            <button class="btn btn-primary" (click)="registration()">Register</button>
+            <button class="btn btn-info" (click)="registration()">Register</button>
         </form>
     </div>
 </div>
