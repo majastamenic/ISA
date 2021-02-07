@@ -15,7 +15,7 @@ public class Patient implements Serializable {
     private long id;
     @OneToOne
     private User user;
-    @OneToMany
+    @ManyToMany
     private List<Medicine> allergicMedicines;
     @Column
     private String verificationCode;

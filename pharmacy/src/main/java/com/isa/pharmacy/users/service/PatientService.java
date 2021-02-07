@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.service;
 
+import com.isa.pharmacy.controller.dto.AllergyDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.service.MedicineService;
@@ -41,12 +42,13 @@ public class PatientService {
         return patient;
     }
 
-    public void updateAllergies(String patientEmail, List<String> allergies){
+    public void updateAllergies(String patientEmail, List<AllergyDto> allergies){
         Patient patient = patientRepository.findByUser_email(patientEmail);
         List<Medicine> patAllergies = new ArrayList<>();
-        for(String allergy : allergies)
-            patAllergies.add(medicineService.findByName(allergy));
+        for(AllergyDto allergy : allergies)
+            patAllergies.add(medicineService.findByName(allergy.getName()));
         patient.setAllergicMedicines(patAllergies);
+        patientRepository.save(patient);
     }
 
     public Patient getPatient(String email){

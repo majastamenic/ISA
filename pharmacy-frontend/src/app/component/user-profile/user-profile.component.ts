@@ -12,19 +12,20 @@ import { PasswordChangeDto } from '../user/model/user-model';
 })
 export class UserProfileComponent implements OnInit {
 
+  passwordChange: boolean = false;
+  allergyChange: boolean = false;
+  newAllergy: any = {name: ''};
+
+  
   patientAllergies: any = [];
-  passwordChange: boolean;
-  passwordDto: PasswordChangeDto;
+  passwordDto: PasswordChangeDto = {oldPassword: "", newPassword: "", newPasswordRepeat: ""};
   user : any;
   loggedUserRole = sessionStorage.getItem("role");
-
 
   constructor(private userService: UserService, 
               private patientService: PatientService,
               private router: Router, 
               private toastrService: ToastrService) { 
-    this.passwordChange = false;
-    this.passwordDto = {oldPassword: "", newPassword: "", newPasswordRepeat: ""}
   }
 
   ngOnInit(): void {
@@ -32,17 +33,20 @@ export class UserProfileComponent implements OnInit {
     if(loggedUser){
       let userRole = sessionStorage.getItem("role");
       if(userRole == 'PATIENT')
-        this.patientService.getPatientByEmail(loggedUser).subscribe(data => {
-          this.patientAllergies = data;
+        this.patientService.getPatientByEmail(loggedUser).subscribe((data:any) => {
+          this.patientAllergies = data.allergicMedicines;
         }, error => {
           this.toastrService.error("Unknown error");
         });
+
       this.userService.getUserByEmail(loggedUser).subscribe((data:any) =>{
         this.user = data;
-        console.log(data);
       }, error => {
         this.toastrService.error("Unknown error");
       });
+    }else {
+      this.router.navigate(['login']);
+      this.toastrService.info('Please log in first.');
     }
   }
 
@@ -62,6 +66,15 @@ export class UserProfileComponent implements OnInit {
       this.toastrService.success("Password change successfully");
     }, error => {
       this.toastrService.error("Something went wrong while updating password");
+    });
+  }
+
+  updatePatientAllergies(){
+    this.patientService.updateAllergies(this.user.email, this.patientAllergies).subscribe(data => {
+      this.toastrService.success('Allergies succesfully updated');
+      this.allergyChange = false;
+    }, error => {
+      this.toastrService.error('An error has occured while updating allergies');
     });
   }
 }

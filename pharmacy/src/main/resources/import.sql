@@ -125,6 +125,11 @@ insert into medicine(code, form_of_medicine, manufactured, name, note, publishin
 insert into medicine(code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(66042, 1, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove', 'kalijum-sorbat, prečišćeni talk');
 insert into medicine(code, form_of_medicine, manufactured, name, note, publishing_type, type_of_medicine, composition) values(62217, 2, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu', 'skrob, trietil-citrat');
 
+-- Patient Allergies
+insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values (2, 1);
+insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values (2, 2);
+insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values (1, 3);
+
 -- MedicinePharmacy: Jankovic
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.50, 2350, 1, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(2.00, 2985, 2, 1);
@@ -159,7 +164,3 @@ insert into eprescription(code, date_of_issue, file_text, patient_name) values(2
     -- EPrescription: Medications
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
-
--- PatientAllergicMedicines
-insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 1);
-insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 2);
