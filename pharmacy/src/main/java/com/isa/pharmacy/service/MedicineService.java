@@ -30,11 +30,14 @@ public class MedicineService {
 
     public void delete(Medicine medicine) {
         medicineRepository.delete(medicine);
-
     }
 
     public Medicine findById(Long id) {
         return medicineRepository.findMedicineById(id);
+    }
+
+    public Medicine findByName(String name) {
+        return medicineRepository.findMedicineByName(name);
     }
 
     public List<Medicine> getAll() {
@@ -45,9 +48,8 @@ public class MedicineService {
     }
 
     public List<MedicineDto> getAllMedicines() {
-        List<Medicine> medicineList = medicineRepository.findAll();
         List<MedicineDto> medicineDtoList = new ArrayList<>();
-        for(Medicine medicine: medicineList) {
+        for(Medicine medicine: medicineRepository.findAll()) {
             for (MedicinePharmacy medicinePharmacy :medicine.getMedicinePharmacy()) {
                 medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), medicinePharmacy.getPharmacy().getName()));
             }

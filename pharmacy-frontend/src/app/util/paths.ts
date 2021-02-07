@@ -21,6 +21,8 @@ export const PHARMACISTSBYPHARMACY_PATH = BACKEND_PATH + '/pharmacist/pharmacist
 
 export const PATIENT_PATH = BACKEND_PATH + '/patient';
 export const PATIENT_VALID_PATH = PATIENT_PATH + '/valid';
+export const UPDATE_ALLERGY_PATH = PATIENT_PATH + '/updateAllergy';
+
 export const DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologist';
 export const PHARMACY_ADMIN_PATH = BACKEND_PATH + '/phadmin';
 export const SUPPLIER_PATH = BACKEND_PATH + '/supplier';

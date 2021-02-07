@@ -15,13 +15,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let exam of examinations">
+                <tr *ngFor="let exam of examinations; let i = index;">
                     <td>dr {{exam.dermatologist.name}} {{exam.dermatologist.surname}}</td>
                     <td>{{exam.price}}</td>
                     <td>{{exam.schedule.startDate}}</td>
                     <td>{{exam.schedule.startTime}}</td>
                     <td>{{exam.schedule.endTime}}</td>
-                    <td><button class="btn btn-primary" (click)='scheduleExamination(exam.id)'>Schedule</button></td>
+                    <td><button class="btn btn-primary" (click)='scheduleExamination(exam.id, i)'>Schedule</button></td>
                 </tr>
             </tbody>
         </table>

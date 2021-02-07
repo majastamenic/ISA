@@ -14,9 +14,9 @@ public class Medicine implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private Long code;
-    @Column
+    @Column(nullable = false)
     private String name;
     @Column
     private String typeOfMedicine;

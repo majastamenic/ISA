@@ -4,7 +4,6 @@ import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
 import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,18 +37,12 @@ public class MedicinePharmacyService {
         return medicineDtoList;
     }
 
-    public List<String> getPatientAllergies(List<Medicine> allergis){
-        List<String> meds = new ArrayList<>();
-        for(Medicine m: allergis)
-            meds.add(m.getName());
-        return meds;
-    }
 
     public List<MedicinePharmacyDto> getMedicinesByCounseling(long id){
         Counseling counseling = counselingService.getCounselingById(id);
         List<MedicinePharmacyDto> meds = new ArrayList<>();
         for(MedicinePharmacy mp : medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(counseling.getPharmacist().getPharmacy().getId())){
-            for(String s : getPatientAllergies(counseling.getPatient().getAllergicMedicines())){
+            for(String s : counseling.getPatient().getAllergicMedicines()){
                 if(mp.getMedicine().getName().equalsIgnoreCase(s)){
                     MedicinePharmacyDto mpd = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
                     meds.add(mpd);
