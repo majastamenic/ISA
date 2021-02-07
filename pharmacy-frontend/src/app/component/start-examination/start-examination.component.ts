@@ -18,6 +18,7 @@ export class StartExaminationComponent implements OnInit {
   examination: any;
   medicines: any[]=[];
   names: any[]=[];
+  selectedMeds: any[]=[];
 
   constructor(private examinationService: ExaminationService,private  medicinePharmacyService: MedicinePharmacyService,  private _ActivatedRoute: ActivatedRoute) { }
 
@@ -33,6 +34,7 @@ export class StartExaminationComponent implements OnInit {
           this.medicines = data;
           for(let i of this.medicines){
             let med = i.medicine.name;
+            i.label = med;
             this.names.push(med);
           }
         });

@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import com.isa.pharmacy.controller.dto.AddMedicineDto;
+import com.isa.pharmacy.controller.dto.AvailabilityMedicineDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,4 +53,11 @@ public class MedicineController {
         }
         return medicineDtoList;
     }
+
+
+    @PostMapping("/check/{pharmacyName}")
+    public List<AvailabilityMedicineDto> checkAvailabilityMedicines(@PathVariable String pharmacyName, @RequestBody List<String> meds){
+        return medicineService.checkAvailabilityMedicines(pharmacyName, meds);
+    }
+
 }

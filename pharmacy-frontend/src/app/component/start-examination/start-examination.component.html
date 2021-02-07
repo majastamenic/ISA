@@ -1,7 +1,7 @@
 <div class="page">
     <div class="form">
         <form class="ngform" style="width: 600px">
-            <h2>EXAMINATION</h2>
+            <h2>Examination</h2>
             <br>
             <div>
                 <table>
@@ -17,9 +17,22 @@
             </div>
             <br>
 
+            <div style="width: 250px;">
+                <ng-select [items]="medicines"
+                    bindLabel="label"
+                    placeholder="Select medicine"
+                    appendTo="body"
+                    [multiple]="true"
+                    [(ngModel)]="selectedMeds"
+                    name="selectedMeds">
+                </ng-select>
+                <button class="btn btn-secondary" style="width:100px;">Check</button>&nbsp;
+            </div>
+
+
             <div>
                 <p style="color:springgreen;font-size:15px;float:right;">Pharmacy: <b>{{examination.pharmacyName}}</b>
-                    <br>Pharmacist: <b>{{examination.email}}</b>
+                    <br>Dermatologist: <b>{{examination.email}}</b>
                     <br>{{examination.schedule.startDate}}, {{examination.schedule.startTime}}-{{examination.schedule.endTime}}
                 </p>
             </div>
