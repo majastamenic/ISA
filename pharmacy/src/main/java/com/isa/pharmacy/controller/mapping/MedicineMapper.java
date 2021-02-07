@@ -1,11 +1,11 @@
 package com.isa.pharmacy.controller.mapping;
 
 
-import com.isa.pharmacy.controller.dto.AddMedicineDto;
+import com.isa.pharmacy.controller.dto.medicine.AddMedicineDto;
 import com.isa.pharmacy.controller.dto.AllergyDto;
-import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
-import com.isa.pharmacy.controller.dto.MedicineFromPharmacyDto;
+import com.isa.pharmacy.controller.dto.medicine.MedicineDto;
+import com.isa.pharmacy.controller.dto.medicine.MedicineLoyaltyDto;
+import com.isa.pharmacy.controller.dto.medicine.MedicineFromPharmacyDto;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 

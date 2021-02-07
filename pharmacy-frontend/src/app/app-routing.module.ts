@@ -32,6 +32,7 @@ import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
 import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
 import { RegSystemAdminComponent } from './system-admin/reg-system-admin/reg-system-admin.component';
 import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
+import { ComplaintsComponent } from './system-admin/complaints/complaints.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -56,6 +57,7 @@ const routes: Routes = [
       { path: 'regSysAdmin', component: RegSystemAdminComponent },
       { path: 'regSupplier', component: RegSupplierComponent },
       { path: 'loyality', component: LoyalityComponent },
+      { path: 'complaints', component: ComplaintsComponent},
     ]
   },
   { path: 'pharmacist', component: PharmacistComponent},

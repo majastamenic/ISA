@@ -1,8 +1,8 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
-import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.controller.dto.MedicineOrderDto;
+import com.isa.pharmacy.controller.dto.medicine.MedicineDto;
+import com.isa.pharmacy.controller.dto.medicine.MedicineOrderDto;
 import com.isa.pharmacy.controller.dto.PharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;

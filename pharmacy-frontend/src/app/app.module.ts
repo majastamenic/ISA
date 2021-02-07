@@ -42,6 +42,7 @@ import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
 
 import { LoyalityComponent } from './system-admin/loyalty/loyalty.component';
 import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
+import { ComplaintsComponent } from './system-admin/complaints/complaints.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { ComplaintMessageComponent } from './component/complaint-message/complai
     DiagnosisComponent,
     LoyalityComponent,
     ComplaintMessageComponent,
+    ComplaintsComponent,
   ],
   imports: [
     BrowserModule,

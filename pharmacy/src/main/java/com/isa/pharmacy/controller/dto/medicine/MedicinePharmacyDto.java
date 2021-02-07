@@ -1,4 +1,5 @@
-package com.isa.pharmacy.controller.dto;
+package com.isa.pharmacy.controller.dto.medicine;
+
 
 public class MedicinePharmacyDto {
     private double price;

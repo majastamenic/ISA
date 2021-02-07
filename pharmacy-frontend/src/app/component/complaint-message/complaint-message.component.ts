@@ -22,6 +22,9 @@ export class ComplaintMessageComponent implements OnInit {
     if(email){
       this.complaintService.getSubjects(email).subscribe((response: any) => {
         this.subjects = response;
+      },
+      (err: any) => {
+        this.toastrService.error('Error ' + err.error.message);
       });
       this.complaint.patientEmail = email;
     }

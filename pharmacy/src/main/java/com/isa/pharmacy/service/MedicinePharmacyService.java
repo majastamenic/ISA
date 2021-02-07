@@ -1,7 +1,7 @@
 package com.isa.pharmacy.service;
 
-import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
-import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
+import com.isa.pharmacy.controller.dto.medicine.GetAllMedicinePharmacyDto;
+import com.isa.pharmacy.controller.dto.medicine.MedicinePharmacyDto;
 import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Medicine;

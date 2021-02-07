@@ -1,4 +1,4 @@
-package com.isa.pharmacy.controller.dto;
+package com.isa.pharmacy.controller.dto.medicine;
 
 public class MedicineFromPharmacyDto {
     private Long id;

@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller.dto;
 
+import com.isa.pharmacy.controller.dto.medicine.MedicinePharmacyDto;
 import com.isa.pharmacy.domain.Diagnosis;
 import java.util.List;
 

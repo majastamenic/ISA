@@ -1,0 +1,20 @@
+<div *ngFor = "let complaint of complaints; index as i;" class="page">
+    <div class="form">
+        <form class="ngform">
+            <div>
+                <label>{{complaint.patientName}}</label>
+                <label>{{complaint.message}}</label>
+                <br/>
+                <label>{{complaint.response}}</label>
+                <button *ngIf="!showAddResponse" (click)="addResponse($event, i)" class="btn btn-primary">Edit</button>
+                <button *ngIf="!showAddResponse" (click)="delete(i)" class="btn btn-primary">Delete</button>
+            </div>
+            <div *ngIf="showAddResponse && enableEditIndex == i">
+                <br/>
+                <input type="text" name="response" [(ngModel)]="complaint.response"/>
+                <button (click)="sendResponse(i)" class="btn btn-primary">Send</button>
+                <button (click)="cancel(i)" class="btn btn-primary">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

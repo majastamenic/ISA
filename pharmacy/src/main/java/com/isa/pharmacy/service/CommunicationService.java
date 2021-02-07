@@ -1,7 +1,7 @@
 package com.isa.pharmacy.service;
 
 
-import com.isa.pharmacy.controller.dto.MedicineDto;
+import com.isa.pharmacy.controller.dto.medicine.MedicineDto;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.slf4j.Logger;

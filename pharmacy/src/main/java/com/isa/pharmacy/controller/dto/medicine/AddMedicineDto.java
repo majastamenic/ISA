@@ -1,4 +1,4 @@
-package com.isa.pharmacy.controller.dto;
+package com.isa.pharmacy.controller.dto.medicine;
 
 import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;

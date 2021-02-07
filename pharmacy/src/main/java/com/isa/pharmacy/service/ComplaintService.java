@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.complaint.ShowComplaintDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Complaint;
 import com.isa.pharmacy.domain.Pharmacy;
@@ -27,6 +28,13 @@ public class ComplaintService {
     @Autowired
     private PharmacyService pharmacyService;
 
+    public List<Complaint> getAll(){
+        List<Complaint> complaintList = complaintRepository.findAll();
+        if(complaintList.isEmpty())
+            throw new NotFoundException("There is no complaints.");
+        return complaintList;
+    }
+
     public void save(Complaint complaint){
         complaintRepository.save(complaint);
     }
@@ -42,5 +50,18 @@ public class ComplaintService {
             throw new NotFoundException("You were not in contact with either the pharmacy or their employees.");
 
         return types;
+    }
+
+    public Complaint addResponse(Complaint complaint){
+        Complaint dbComplaint = complaintRepository.findComplaintById(complaint.getId());
+        dbComplaint.setResponseComplaint(complaint.getResponseComplaint());
+        return dbComplaint;
+    }
+
+    public void delete(Long id){
+        Complaint complaint = complaintRepository.findComplaintById(id);
+        if(complaint == null)
+            throw new NotFoundException("Complaint doesn't exists already.");
+        complaintRepository.delete(complaint);
     }
 }
