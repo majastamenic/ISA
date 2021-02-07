@@ -61,7 +61,7 @@ public class MedicinePharmacyService {
                 if(mp.getMedicine().getName().equals(m))
                     find = true;
             }
-            if(find == false){
+            if(!find){
                 MedicinePharmacyDto mpDto = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
                 meds.add(mpDto);
             }

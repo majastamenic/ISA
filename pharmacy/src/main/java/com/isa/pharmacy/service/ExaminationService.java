@@ -80,7 +80,9 @@ public class ExaminationService {
     public ExamDermatologistDto getById(long id) {
         // provera vremena
         Examination examination = examinationRepository.findExaminationById(id);
-        if (examination != null && examination.getPatient() != null && examination.getDermatologist() != null) {
+        if(examination == null)
+            throw new NotFoundException("Examination is not found.");
+        if (examination.getPatient() != null && examination.getDermatologist() != null) {
             PatientDto patientDto = PatientMapper.mapPatientToPatientDto(examination.getPatient());
             return ExaminationMapper.mapExaminationToExaminationDto(examination, patientDto);
         } else if (examination.getPatient() == null || examination.getDermatologist() == null)
