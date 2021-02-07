@@ -1,5 +1,7 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.domain.VacationSchedule;
@@ -34,6 +36,15 @@ public class PharmacistController {
     @GetMapping("/vacationschedule/{id}")
     public List<VacationSchedule> getVacationScheduleByPharmacist(@PathVariable("id") Long id){
         return pharmacistService.getVacationScheduleByPharmacist(id);
+    }
+
+    @GetMapping("/pharmacists/{id}")
+    public List<PharmacistByPharmacyDto> getPHarmacistByPharmacyId(@PathVariable("id") Long id){
+        List<PharmacistByPharmacyDto> pharmacistByPharmacyDtos = pharmacistService.findPharmacistsByPharmacyId(id);
+        if (pharmacistByPharmacyDtos.isEmpty()) {
+            throw new NotFoundException("Pharmacy doesn't have pharmacist");
+        }
+        return pharmacistByPharmacyDtos;
     }
 
 }

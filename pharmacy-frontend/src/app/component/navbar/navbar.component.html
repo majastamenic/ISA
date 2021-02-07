@@ -29,6 +29,9 @@
                 <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/price/init'" routerLinkActive="active">Define price</a>
             </li>
             <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/pharmacist/init'" routerLinkActive="active">Register pharmacist</a>
+            </li>
+            <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/allexaminations'" routerLinkActive="active">All examinations</a>
             </li>
             <li class="nav-item">

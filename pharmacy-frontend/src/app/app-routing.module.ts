@@ -17,6 +17,10 @@ import { ExaminationScheduleComponent } from './component/examination-schedule/e
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
+import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-profile/pharmacy-profile.component';
+import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
+import { AllDermatologistsComponent } from './component/pharmacy-admin/all-dermatologists/all-dermatologists.component';
+import { AllMedicationsComponent } from './component/pharmacy-admin/all-medications/all-medications.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
@@ -67,6 +71,10 @@ const routes: Routes = [
   { path: 'counseling', component: ScheduleCounselingComponent},
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
+  { path: 'pharmacy/:pharmacyName', component: PharmacyProfileComponent},
+  { path: 'pharmacists/:id', component: AllPharmacistsComponent},
+  { path: 'dermatologists', component: AllDermatologistsComponent},
+  { path: 'medications/:id', component: AllMedicationsComponent},
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
   { path: 'allexaminations', component: AllExaminationsComponent},
   { path: 'examination', component: ScheduleExaminationDermatologistComponent},

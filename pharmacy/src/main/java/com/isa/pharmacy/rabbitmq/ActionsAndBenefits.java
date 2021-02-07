@@ -2,16 +2,12 @@ package com.isa.pharmacy.rabbitmq;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.isa.pharmacy.domain.Pharmacy;
 
 //Order = Hospital
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = ActionsAndBenefits.class)
@@ -28,19 +24,19 @@ public class ActionsAndBenefits {
     private Date startDate;
     @Column
     private Date endDate;
-    @Column
-    private String pharmacyName;
+    @ManyToOne
+    private Pharmacy pharmacy;
 
     public ActionsAndBenefits() {
     }
 
-    public ActionsAndBenefits(Long id, String messageAboutAction, Date startDate, Date endDate, String pharmacyName) {
+    public ActionsAndBenefits(Long id, String messageAboutAction, Date startDate, Date endDate, Pharmacy pharmacy) {
         super();
         this.id = id;
         this.messageAboutAction = messageAboutAction;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.pharmacyName = pharmacyName;
+        this.pharmacy = pharmacy;
     }
 
     public Long getId() {
@@ -75,13 +71,12 @@ public class ActionsAndBenefits {
         this.endDate = endDate;
     }
 
-
-    public String getPharmacyName() {
-        return pharmacyName;
+    public Pharmacy getPharmacy() {
+        return pharmacy;
     }
 
-    public void setPharmacyName(String pharmacyName) {
-        this.pharmacyName = pharmacyName;
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
     }
 
     @Override

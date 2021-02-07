@@ -27,6 +27,10 @@ import { AllCounselingsComponent } from './component/all-counselings/all-counsel
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
+import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-profile/pharmacy-profile.component';
+import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
+import { AllDermatologistsComponent } from './component/pharmacy-admin/all-dermatologists/all-dermatologists.component';
+import { AllMedicationsComponent } from './component/pharmacy-admin/all-medications/all-medications.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
@@ -72,6 +76,10 @@ import { ComplaintsComponent } from './component/system-admin/complaints/complai
     UserProfileComponent,
     PriceInitComponent,
     PublishingReservedMedicineComponent,
+    PharmacyProfileComponent,
+    AllPharmacistsComponent,
+    AllDermatologistsComponent,
+    AllMedicationsComponent,
     ScheduleVacationComponent,
     StartCounselingComponent,
     AllExaminationsComponent,
@@ -79,7 +87,7 @@ import { ComplaintsComponent } from './component/system-admin/complaints/complai
     DiagnosisComponent,
     LoyalityComponent,
     ComplaintMessageComponent,
-    ComplaintsComponent,
+    ComplaintsComponent
   ],
   imports: [
     BrowserModule,
