@@ -14,7 +14,7 @@ export class UserProfileComponent implements OnInit {
 
   passwordChange: boolean = false;
   allergyChange: boolean = false;
-  newAllergy: any = {name: ''};
+  newAllergy: string = '';
 
   
   patientAllergies: any = [];

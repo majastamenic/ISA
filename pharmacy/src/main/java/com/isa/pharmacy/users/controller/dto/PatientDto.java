@@ -1,17 +1,16 @@
 package com.isa.pharmacy.users.controller.dto;
 
-import com.isa.pharmacy.controller.dto.AllergyDto;
 import com.isa.pharmacy.users.domain.User;
 
 import java.util.List;
 
 public class PatientDto {
     private User user;
-    private List<AllergyDto> allergicMedicines;
+    private List<String> allergicMedicines;
 
     public PatientDto(){}
 
-    public PatientDto(User user, List<AllergyDto> allergicMedicines) {
+    public PatientDto(User user, List<String> allergicMedicines) {
         this.user = user;
         this.allergicMedicines = allergicMedicines;
     }
@@ -24,11 +23,11 @@ public class PatientDto {
         this.user = user;
     }
 
-    public List<AllergyDto> getAllergicMedicines() {
+    public List<String> getAllergicMedicines() {
         return allergicMedicines;
     }
 
-    public void setAllergicMedicines(List<AllergyDto> allergicMedicines) {
+    public void setAllergicMedicines(List<String> allergicMedicines) {
         this.allergicMedicines = allergicMedicines;
     }
 }

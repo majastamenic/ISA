@@ -1,6 +1,5 @@
 package com.isa.pharmacy.users.controller;
 
-import com.isa.pharmacy.controller.dto.AllergyDto;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
@@ -44,7 +43,7 @@ public class PatientController {
     public List<Patient> getAllPatients(){return patientService.getAllPatients();}
 
     @PutMapping("/updateAllergy/{patientEmail}")
-    public void updateAllergy(@RequestBody List<AllergyDto> allergies, @PathVariable String patientEmail){
+    public void updateAllergy(@RequestBody List<String> allergies, @PathVariable String patientEmail){
         patientService.updateAllergies(patientEmail, allergies);
     }
 }

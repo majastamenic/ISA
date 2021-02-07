@@ -1,14 +1,10 @@
 package com.isa.pharmacy.users.service;
 
-import com.isa.pharmacy.controller.dto.AllergyDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.service.MedicineService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PatientRepository;
-import com.isa.pharmacy.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +18,6 @@ public class PatientService {
     private PatientRepository patientRepository;
     @Autowired
     private UserService userService;
-    @Autowired
-    private MedicineService medicineService;
 
     public Patient registration(Patient patient) {
         Patient existingUser = patientRepository.findByUser_email(patient.getUser().getEmail());
@@ -44,12 +38,11 @@ public class PatientService {
         return patient;
     }
 
-    public void updateAllergies(String patientEmail, List<AllergyDto> allergies){
+    public void updateAllergies(String patientEmail, List<String> allergies){
         Patient patient = patientRepository.findByUser_email(patientEmail);
-        List<Medicine> patAllergies = new ArrayList<>();
-        for(AllergyDto allergy : allergies)
-            patAllergies.add(medicineService.findByName(allergy.getName()));
-        patient.setAllergicMedicines(patAllergies);
+        patient.setAllergicMedicines(new ArrayList<>());
+        for(String allergy : allergies)
+            patient.addAllergy(allergy);
         patientRepository.save(patient);
     }
 

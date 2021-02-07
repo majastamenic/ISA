@@ -30,7 +30,7 @@
                     <h5>Allergies</h5>&nbsp;
                     <a href="javascript: void(0)" (click)='allergyChange = true'>Edit</a>
                 </div>
-                <span *ngFor="let allergy of patientAllergies">{{allergy.name}} | </span>
+                <span *ngFor="let allergy of patientAllergies">{{allergy}} | </span>
                 <span *ngIf="patientAllergies.count == 0"> No allegies </span>
             </div>
             <button class="btn btn-primary" (click)="update()">Update info</button>
@@ -75,12 +75,12 @@
         <form class="ngform">
             <h3>Edit allergies</h3>
             <div class="side-layout">
-                <input type="text" [(ngModel)]='newAllergy.name' placeholder="Medicine" name="inpnewAllergy">
+                <input type="text" [(ngModel)]='newAllergy' placeholder="Medicine" name="inpnewAllergy">
                 <button class="btn btn-outline-primary btnCustom" (click)='patientAllergies.push(newAllergy)'>Add</button>
             </div>
             <table>
                 <tr *ngFor='let med of patientAllergies; let i=index;'>
-                    <td>{{med.name}}</td>
+                    <td>{{med}}</td>
                     <td><button class="btn btn-danger btnRemove" (click)='patientAllergies.splice(i, 1);'>x</button></td>
                 </tr>
             </table>

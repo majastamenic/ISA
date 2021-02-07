@@ -135,14 +135,14 @@ insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, presc
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, prescription_id, loyalty_points) values(25, 23, 3, 2, 13, 10);
 
 --Medicine
-INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) VALUES (62542, 'cochenillrot, laktoza, monohidrat', 0, 5,'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu');
-INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) VALUES (66042, 'kalijum-sorbat, prečišćeni talk', 1, 10, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove');
-INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) VALUES (62217, 'skrob, trietil-citrat', 2, 15, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu');
+insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62542, 'cochenillrot, laktoza, monohidrat', 0, 5,'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu');
+insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (66042, 'kalijum-sorbat, prečišćeni talk', 1, 10, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove');
+insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62217, 'skrob, trietil-citrat', 2, 15, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu');
 
 -- Patient Allergies
-insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values (2, 1);
-insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values (2, 2);
-insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values (1, 3);
+insert into patient_allergic_medicines(patient_id, allergic_medicines) values (2, 'Brufen');
+insert into patient_allergic_medicines(patient_id, allergic_medicines) values (2, 'Panadol');
+insert into patient_allergic_medicines(patient_id, allergic_medicines) values (1, 'Aspirin');
 
 -- MedicinePharmacy: Jankovic
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.50, 2350, 1, 1);
@@ -153,7 +153,7 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 18, 2, 2);
 
 -- Orders
-insert into app_order( end_date, end_time) values ('2021-02-07', '08:00:00');
+insert into app_order(end_date, end_time) values ('2021-02-07', '08:00:00');
 insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
 
 -- MedicineReplacement
@@ -178,10 +178,6 @@ insert into eprescription(code, date_of_issue, file_text, patient_name) values(2
     -- EPrescription: Medications
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
-
--- PatientAllergicMedicines
-insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 1);
-insert into patient_allergic_medicines(patient_id, allergic_medicines_id) values(1, 2);
 
 insert into loyalty_group(points, type) values (3, 0);
 insert into loyalty_group(points, type) values (4, 1);
