@@ -13,13 +13,10 @@ export class ViewOrdersComponent implements OnInit {
   orders: any;
   addOfferView: boolean = false;
   newOffer: any;
-  
+
   constructor(private orderService: OrderService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
-    let user = sessionStorage.getItem("user");
-    if(user)
-      this.newOffer.supplierEmail = user;
     this.orderService.getAll().subscribe(ordersList => {
       this.orders = ordersList;
     });

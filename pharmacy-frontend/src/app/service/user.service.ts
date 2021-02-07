@@ -64,6 +64,18 @@ export class UserService {
     return (sessionStorage.getItem('role') == 'PHARMACY_ADMIN');
   }
 
+  isPatient(){
+    return (sessionStorage.getItem('role') == 'PATIENT');
+  }
+
+  isAdmin(){
+    return (sessionStorage.getItem('role') == 'ADMIN');
+  }
+
+  isSupplier(){
+    return (sessionStorage.getItem('role') == 'SUPPLIER');
+  }
+
   logOut(){
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('role');

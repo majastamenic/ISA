@@ -51,16 +51,16 @@ const routes: Routes = [
   {
     path: 'system-admin', component: SystemAdminComponent,
     children: [
-      { path: 'addMedicines', component: AddMedicinesComponent },
-      { path: 'addPharmacy', component: AddPharmacyComponent },
       { path: 'addPharmacyAdmin', component: AddPharmacyAdminComponent },
       { path: 'regDermatologist', component: RegDermatologistComponent },
       { path: 'regSysAdmin', component: RegSystemAdminComponent },
       { path: 'regSupplier', component: RegSupplierComponent },
-      { path: 'loyality', component: LoyalityComponent },
-      { path: 'complaints', component: ComplaintsComponent},
     ]
   },
+  { path: 'add-medicines', component: AddMedicinesComponent },
+  { path: 'add-pharmacy', component: AddPharmacyComponent },
+  { path: 'loyalty', component: LoyalityComponent },
+  { path: 'complaints', component: ComplaintsComponent},
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
