@@ -1,6 +1,7 @@
 package com.isa.pharmacy.users.domain;
 
 import com.isa.pharmacy.domain.Medicine;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -19,14 +20,17 @@ public class Patient implements Serializable {
     private List<Medicine> allergicMedicines;
     @Column
     private String verificationCode;
+    @Column
+    private int loyaltyPoints;
 
     public Patient(){}
 
-    public Patient(long id, User user, List<Medicine> allergicMedicines, String verificationCode) {
+    public Patient(long id, User user, List<Medicine> allergicMedicines, String verificationCode, int loyaltyPoints) {
         this.id = id;
         this.user = user;
         this.allergicMedicines = allergicMedicines;
         this.verificationCode = verificationCode;
+        this.loyaltyPoints = loyaltyPoints;
     }
 
     public long getId() {
@@ -64,5 +68,13 @@ public class Patient implements Serializable {
     public void addAllergy(Medicine medicine){
         if(!allergicMedicines.contains(medicine))
             allergicMedicines.add(medicine);
+    }
+
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
+    }
+
+    public void setLoyaltyPoints(int loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
     }
 }

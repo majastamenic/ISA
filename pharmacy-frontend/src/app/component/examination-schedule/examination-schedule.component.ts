@@ -44,7 +44,7 @@ export class ExaminationScheduleComponent implements OnInit {
     this.examinationService.scheduleExamination(this.loggedUser, id).subscribe(noVal =>{
       this.examinations.splice(i, 1);
       this.toastrService.success('Examination successfuly scheduled!');
-    }, error =>{
+    }, error => {
       this.toastrService.error(error.toString());
     });
   }

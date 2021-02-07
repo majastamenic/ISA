@@ -1,5 +1,8 @@
 package com.isa.pharmacy.controller.dto;
 
+
+import com.isa.pharmacy.controller.dto.MedicineDto;
+
 public class MedicinePharmacyDto {
     private double price;
     private Integer quantity;

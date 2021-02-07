@@ -2,11 +2,13 @@ package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.dto.AllergyDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.service.MedicineService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PatientRepository;
+import com.isa.pharmacy.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,7 @@ public class PatientService {
     private MedicineService medicineService;
 
     public Patient registration(Patient patient) {
-        User existingUser = userService.getByEmail(patient.getUser().getEmail());
+        Patient existingUser = patientRepository.findByUser_email(patient.getUser().getEmail());
         if (existingUser == null) {
             userService.create(patient.getUser());
             return patientRepository.save(patient);
@@ -52,7 +54,10 @@ public class PatientService {
     }
 
     public Patient getPatient(String email){
-        return patientRepository.findByUser_email(email);
+        Patient patient = patientRepository.findByUser_email(email);
+        if(patient == null)
+            throw new NotFoundException("Patient with email "+ email + " doesn't exists.");
+        return patient;
     }
 
     public List<Patient> getAllPatients(){return patientRepository.findAll();}

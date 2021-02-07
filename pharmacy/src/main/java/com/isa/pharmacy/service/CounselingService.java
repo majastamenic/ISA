@@ -1,14 +1,16 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.CounselingDto;
-import com.isa.pharmacy.controller.dto.PatientDto;
+import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
-import com.isa.pharmacy.controller.mapping.PatientMapper;
+import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.repository.CounselingRepository;
+import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,5 +75,18 @@ public class CounselingService {
 
     public Counseling getCounselingById(long id){
         return counselingRepository.findCounselingById(id);
+    }
+
+    public List<String> getPharmacistNameByPatient(Patient patient){
+        String pharmacistName;
+        List<String> pharmacistNames = new ArrayList<>();
+        List<Counseling> counselingList = counselingRepository.findByPatient(patient);
+        for(Counseling counseling: counselingList){
+            if(counseling.isPatientCame()){
+                pharmacistName = counseling.getPharmacist().getUser().getRole().toString() + ": " + counseling.getPharmacist().getUser().getName()+" "+ counseling.getPharmacist().getUser().getSurname();
+                pharmacistNames.add(pharmacistName);
+            }
+        }
+        return pharmacistNames;
     }
 }

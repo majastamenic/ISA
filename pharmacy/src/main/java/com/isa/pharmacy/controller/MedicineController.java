@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import com.isa.pharmacy.controller.dto.AddMedicineDto;
+import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,21 @@ public class MedicineController {
             listMedicineDto.add(MedicineMapper.mapMedicineToMedicineDto(medicine, ""));
         }
         return listMedicineDto;
+    }
+
+    @GetMapping("/loyalty")
+    public List<MedicineLoyaltyDto> getAllMedicines() {
+        List<MedicineLoyaltyDto> listMedicineDto = new ArrayList<>();
+        List<Medicine> listMedicine = medicineService.getAll();
+        for (Medicine medicine : listMedicine) {
+            listMedicineDto.add(MedicineMapper.mapMedicineToMedicineLoyalityDto(medicine));
+        }
+        return listMedicineDto;
+    }
+
+    @PutMapping("/loyalty")
+    public MedicineLoyaltyDto changeLoyalty(@RequestBody MedicineLoyaltyDto medicineLoyaltyDto){
+        return medicineService.changeLoyalty(medicineLoyaltyDto);
     }
 
     @PostMapping

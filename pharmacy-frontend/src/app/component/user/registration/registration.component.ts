@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit {
 
   verification(): void {
     this.userService.verification(this.user, this.verificationCode).subscribe((returnedUser: User) => {
-      this.toastrService.error('User with email ' + returnedUser.email + ' is registered.');
+      this.toastrService.success('User with email ' + returnedUser.email + ' is registered.');
       this.router.navigate(['/login']);
     },
       (err: any) => {
