@@ -13,10 +13,10 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
 
     List<Examination> findAll();
 
+    Examination findExaminationById(Long id);
+
     List<Examination> findByDermatologist(Dermatologist dermatologist);
+    List<Examination> findByPatient(Patient patient);
 
     Examination save(Examination examination);
-
-    Examination findExaminationById(Long id);
-    List<Examination> findByPatient(Patient patient);
 }

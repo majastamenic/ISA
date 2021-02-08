@@ -1,7 +1,6 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
-import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
@@ -27,7 +26,6 @@ public class ExaminationService {
 
     @Autowired
     private ExaminationRepository examinationRepository;
-
     @Autowired
     private PatientService patientService;
     @Autowired
@@ -44,22 +42,26 @@ public class ExaminationService {
         return examinationRepository.save(examination);
     }
 
-    public List<FreeExaminationDto> getAllFreeExaminationTerms(){
-        List<FreeExaminationDto> freeExaminations = new ArrayList<>();
+    public List<Examination> getAllFreeExaminationTerms(){
+        List<Examination> freeExaminations = new ArrayList<>();
         for(Examination exam : examinationRepository.findAll())
             if(exam.getPatient() == null && exam.getSchedule().getStartDate().after(Calendar.getInstance().getTime()))
-                freeExaminations.add(ExaminationMapper.mapExaminationToFreeExaminationDto(exam));
+                freeExaminations.add(exam);
         return freeExaminations;
     }
 
-    public List<FreeExaminationDto> getFreeExaminationTermsByPharmacy(String pharmacyName){
-        List<FreeExaminationDto> freeExaminations = new ArrayList<>();
+    public List<Examination> getFreeExaminationTermsByPharmacy(String pharmacyName){
+        List<Examination> freeExaminations = new ArrayList<>();
         for(Examination exam : examinationRepository.findAll())
             if(exam.getPharmacy().getName().equals(pharmacyName) &&
                exam.getPatient() == null &&
                exam.getSchedule().getStartDate().after(Calendar.getInstance().getTime()))
-                freeExaminations.add(ExaminationMapper.mapExaminationToFreeExaminationDto(exam));
+                freeExaminations.add(exam);
         return freeExaminations;
+    }
+
+    public List<Examination> getExaminationByPatient(String email){
+        return examinationRepository.findByPatient(patientService.getPatient(email));
     }
 
     public void scheduleExamination(String patientEmail, Long examinationId){
@@ -69,6 +71,22 @@ public class ExaminationService {
         examination.setPatient(patientService.getPatient(patientEmail));
         Examination scheduledExam = examinationRepository.save(examination);
         emailService.successfulExamSchedule(scheduledExam);
+    }
+
+    public void cancelExamination(Long examinationId){
+        Examination examination = examinationRepository.findExaminationById(examinationId);
+        Calendar currDateTime = Calendar.getInstance();
+        if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) < 0)
+            throw new InvalidActionException("Examination has finished!");
+        currDateTime.add(Calendar.HOUR, 24);
+        if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) <= 0)
+//            if(currDateTime.getTime().after(examination.getSchedule().getStartTime()))  TODO: Treba porediti i sate/minute
+                throw new InvalidActionException("Too late! Examination can't be canceled!");
+        Examination newExamination = new Examination(examination.getDermatologist(),
+                examination.getPharmacy(), examination.getSchedule(), examination.getPrice(),
+                examination.getLoyaltyGroup());
+        examinationRepository.delete(examination);
+        examinationRepository.save(newExamination);
     }
 
     public List<ExamDermatologistDto> getAllByDermatologist(Dermatologist dermatologist) {
@@ -88,7 +106,6 @@ public class ExaminationService {
         }
         return examDermatologistDtos;
     }
-
 
     public ExamDermatologistDto getById(long id) {
         // provera vremena
@@ -130,5 +147,4 @@ public class ExaminationService {
         }
         return updateExamination;
     }
-
 }

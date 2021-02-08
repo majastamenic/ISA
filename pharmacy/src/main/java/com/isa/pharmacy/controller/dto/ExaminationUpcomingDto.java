@@ -2,16 +2,17 @@ package com.isa.pharmacy.controller.dto;
 
 import com.isa.pharmacy.users.controller.dto.UserDto;
 
-public class FreeExaminationDto {
+public class ExaminationUpcomingDto {
     private Long id;
     private UserDto dermatologist;
     private PharmacyDto pharmacy;
     private Integer price;
     private WorkScheduleDto schedule;
 
-    public FreeExaminationDto(){ }
+    public ExaminationUpcomingDto(){ }
 
-    public FreeExaminationDto(Long id, UserDto dermatologist, PharmacyDto pharmacy, Integer price, WorkScheduleDto schedule) {
+    public ExaminationUpcomingDto(Long id, UserDto dermatologist, PharmacyDto pharmacy,
+                                  Integer price, WorkScheduleDto schedule) {
         this.id = id;
         this.dermatologist = dermatologist;
         this.pharmacy = pharmacy;
