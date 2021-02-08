@@ -47,4 +47,7 @@ public class ExaminationController {
     public ExamDermatologistDto getById(@PathVariable("id") long id) {
         return examinationService.getById(id);
     }
+
+    @PostMapping("/update")
+    public ExamDermatologistDto updateExamination(@RequestBody ExamDermatologistDto examination){return examinationService.updateExamination(examination);}
 }

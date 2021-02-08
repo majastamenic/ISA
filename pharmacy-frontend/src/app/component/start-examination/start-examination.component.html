@@ -1,4 +1,4 @@
-<div class="page">
+<div *ngIf='patientCame' class="page">
     <div class="form">
         <form class="ngform" style="width: 600px">
             <h2>Examination</h2>
@@ -13,6 +13,17 @@
             <br>
 
             <div style="width: 250px;">
+                <ng-select [items]="allDiagnosis"
+                    bindLabel="labelDiag"
+                    placeholder="Select diagnosis"
+                    appendTo="body"
+                    [multiple]="true"
+                    [(ngModel)]="selectedDiag"
+                    name="selectedDiag">
+                </ng-select>
+            </div>
+            <br><br>
+            <div style="width: 250px;">
                 <ng-select [items]="medicines"
                     bindLabel="label"
                     placeholder="Select medicine"
@@ -25,7 +36,7 @@
             </div>
 
             <div>
-                <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="examination.prescription.days" name="report" style="width:100px" required>
+                <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="days" name="days" style="width:100px" required>
             </div>
             <br>
 
@@ -42,13 +53,18 @@
             </div>
         </form>
     </div>
-</div>
-
-<h3>Medicine specification</h3>
+    <h3>Medicine specification</h3>
 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>&nbsp;
 <button class="btn btn-primary" style="width:100px;">Search</button>
 <br>
 <pre>Model: {{ model | json }}</pre>
 <br><br><br>
+</div>
 
 
+
+
+<div *ngIf='!patientCame'  class="page">
+    <button class="btn btn-secondary" style="width:200px;" >Patient didn't came</button>&nbsp;
+    <button class="btn btn-primary" style="width:200px;" (click)="patientIsHere()">Patient came</button>
+</div>
