@@ -15,6 +15,7 @@ import com.isa.pharmacy.users.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,20 +28,18 @@ public class SupplierOfferController {
     @Autowired
     private OrderService orderService;
     @Autowired
-    private MedicineService medicineService;
-    @Autowired
     private SupplierService supplierService;
+
+    @GetMapping("/{email}")
+    private List<SupplierOfferDto> getAllSupplierOffers(@PathVariable String email){
+        return SupplierOfferMapper.mapSupplierOffersToSupplierOffersDto(supplierOfferService.getAllSupplierOffers(email));
+    }
 
     @PostMapping
     private void createOffer(@RequestBody SupplierOfferDto supplierOfferDto){
         Order order = orderService.getById(supplierOfferDto.getOrderId());
-        List<String> medicineNames = new ArrayList<>();
-        List<OrderOfferDto> orderOfferList = supplierOfferDto.getOrderOffers();
-        for(OrderOfferDto orderOfferDto: orderOfferList)
-            medicineNames.add(orderOfferDto.getMedicineName());
-        List<Medicine> medicineList = medicineService.getMedicinesByNames(medicineNames);
         Supplier supplier = supplierService.getByEmail(supplierOfferDto.getSupplierEmail());
-        SupplierOffer supplierOffer = SupplierOfferMapper.mapSupplierOfferDtoToSupplierOffer(supplierOfferDto, order, medicineList, supplier);
+        SupplierOffer supplierOffer = SupplierOfferMapper.mapSupplierOfferDtoToSupplierOffer(supplierOfferDto, order, supplier);
 
         supplierOfferService.createOffer(supplierOffer);
     }

@@ -15,9 +15,11 @@ export interface OrderOfferDto{
 }
 
 export interface SupplierOfferDto{
-    orderOffers: OrderOfferDto[];
+    orderId: number;
     type: OrderOfferType;
-    supplierEmail: string
+    supplierEmail: string;
+    totalPrice: number;
+    deliveryDate: Date;
 }
 
 export enum OrderOfferType{

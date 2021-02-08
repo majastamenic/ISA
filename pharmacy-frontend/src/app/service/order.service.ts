@@ -19,10 +19,14 @@ export class OrderService {
   }
 
   delete(id: number): any{
-    return this.httpClient.delete(ORDER_PATH+"/"+id);
+    return this.httpClient.delete(ORDER_PATH + "/" + id);
   }
 
   createOffer(newOffer: any): any{
     return this.httpClient.post(OFFER_PATH, newOffer);
+  }
+
+  getSupplierOffers(email: string): any{
+    return this.httpClient.get(OFFER_PATH + "/" + email);
   }
 }

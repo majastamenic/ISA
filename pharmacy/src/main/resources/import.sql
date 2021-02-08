@@ -201,7 +201,6 @@ insert into order_offer(price, quantity, medicine_id)VALUES (2.9, 200, 1);
 insert into order_offer(price, quantity, medicine_id)VALUES (1.0, 100, 2);
 insert into order_offer(price, quantity, medicine_id)VALUES (2.0, 2, 3);
 
--- Orders - OrdersOffers
-insert into app_order_order_offers(app_order_id, order_offers_id)values (1, 1);
-insert into app_order_order_offers(app_order_id, order_offers_id)values (1, 2);
-insert into app_order_order_offers(app_order_id, order_offers_id)values (2, 3);
+-- Supplier offers
+
+

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { OrderOfferType, SupplierOfferDto } from 'src/app/model/order';
 import { OrderService } from 'src/app/service/order.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-view-orders',
@@ -11,24 +14,49 @@ import { OrderService } from 'src/app/service/order.service';
 export class ViewOrdersComponent implements OnInit {
 
   orders: any;
+  supplier: any;
+  supplierOffers: any;
+  offers: any;
   addOfferView: boolean = false;
-  newOffer: any;
+  isEditable: boolean = false;
+  newOffer: any = {};
+  enableEditIndex: any;
 
-  constructor(private orderService: OrderService, private toastrService: ToastrService) { }
+  constructor(private orderService: OrderService, private toastrService: ToastrService,
+    private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    if(!this.userService.isSupplier()){
+      this.router.navigate(['home']);
+      this.toastrService.error('Unauthorized access.');
+    }
     this.orderService.getAll().subscribe(ordersList => {
       this.orders = ordersList;
     });
+    let userEmail = sessionStorage.getItem('user');
+    if(userEmail){
+      this.newOffer.supplierEmail = userEmail;
+      this.supplier = userEmail;
+    }
+    this.orderService.getSupplierOffers(this.supplier).subscribe((offersList: Observable<any>) =>{
+      this.offers = offersList;
+    }, (err: any) => {
+      this.toastrService.info(err.error.message);
+    });
+    this.newOffer.type = OrderOfferType.WAITING_FOR_ANSWER;
   }
 
-  addOffer(){
-    this.addOfferView = true;
+  addOffer(e: Event, i: any){
+    this.addOfferView = true; 
+    this.enableEditIndex = i;
   }
 
   create(){
+    this.newOffer.orderId = this.orders[this.enableEditIndex].id;
     this.orderService.createOffer(this.newOffer).subscribe((response: any) =>{
-        this.toastrService.success("Added offer");
+      this.isEditable = false;
+      this.addOfferView = false;
+      this.toastrService.success("Added offer");
     }, (err: any) => {
         this.toastrService.error("Error: "+ err.error.message);
     });
@@ -38,4 +66,9 @@ export class ViewOrdersComponent implements OnInit {
     this.addOfferView = false;
   }
 
+  edit(i: any){
+    if(this.orders[i].endDate < Date.now){
+      this.isEditable = true;
+    }
+  }
 }
