@@ -1,9 +1,8 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
-import com.isa.pharmacy.controller.dto.FreeExaminationDto;
+import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
-import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.service.ExaminationService;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.service.DermatologistService;
@@ -28,14 +27,14 @@ public class ExaminationController {
         return examinationService.getById(id);
     }
 
-    @GetMapping("/freeTerms")       // Za sada se ne koristi nigde
-    public List<FreeExaminationDto> getFreeExaminationTerms(){
-        return ExaminationMapper.mapExaminationListToFreeExaminationDto(examinationService.getAllFreeExaminationTerms());
+    @GetMapping("/freeTerms")       // TODO: Obrisati ako niko ne koristi
+    public List<ExaminationUpcomingDto> getFreeExaminationTerms(){
+        return ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinationService.getAllFreeExaminationTerms());
     }
 
     @GetMapping("/freeTerms/{pharmacyName}")
-    public List<FreeExaminationDto> getExaminationTermsByPharmacy(@PathVariable String pharmacyName){
-        return ExaminationMapper.mapExaminationListToFreeExaminationDto(
+    public List<ExaminationUpcomingDto> getExaminationTermsByPharmacy(@PathVariable String pharmacyName){
+        return ExaminationMapper.mapExaminationListToExaminationUpcomingDto(
                 examinationService.getFreeExaminationTermsByPharmacy(pharmacyName));
     }
 
@@ -46,8 +45,8 @@ public class ExaminationController {
     }
 
     @GetMapping("/scheduled/{email}")
-    public List<FreeExaminationDto> getExaminationByPatient(@PathVariable String email){
-        return ExaminationMapper.mapExaminationListToFreeExaminationDto(
+    public List<ExaminationUpcomingDto> getExaminationByPatient(@PathVariable String email){
+        return ExaminationMapper.mapExaminationListToExaminationUpcomingDto(
                 examinationService.getExaminationByPatient(email));
     }
 

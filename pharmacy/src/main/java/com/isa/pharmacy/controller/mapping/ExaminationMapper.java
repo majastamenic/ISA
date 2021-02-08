@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
-import com.isa.pharmacy.controller.dto.FreeExaminationDto;
+import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.Prescription;
@@ -15,8 +15,8 @@ import java.util.List;
 
 public class ExaminationMapper {
 
-    public static FreeExaminationDto mapExaminationToFreeExaminationDto(Examination exam){
-        FreeExaminationDto freeExam = new FreeExaminationDto();
+    public static ExaminationUpcomingDto mapExaminationToExaminationUpcomingDto(Examination exam){
+        ExaminationUpcomingDto freeExam = new ExaminationUpcomingDto();
         freeExam.setId(exam.getId());
         freeExam.setPrice(exam.getPrice());
         freeExam.setPharmacy(PharmacyMapper.mapPharmacyToPharmacyDto(exam.getPharmacy()));
@@ -51,10 +51,10 @@ public class ExaminationMapper {
         return examination;
     }
 
-    public static List<FreeExaminationDto> mapExaminationListToFreeExaminationDto(List<Examination> examinations) {
-        List<FreeExaminationDto> freeExaminations = new ArrayList<>();
+    public static List<ExaminationUpcomingDto> mapExaminationListToExaminationUpcomingDto(List<Examination> examinations) {
+        List<ExaminationUpcomingDto> freeExaminations = new ArrayList<>();
         for (Examination exam : examinations)
-            freeExaminations.add(mapExaminationToFreeExaminationDto(exam));
+            freeExaminations.add(mapExaminationToExaminationUpcomingDto(exam));
         return freeExaminations;
     }
 

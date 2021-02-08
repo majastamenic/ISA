@@ -17,14 +17,12 @@ import com.isa.pharmacy.users.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 @Service
 public class ExaminationService {
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 
     @Autowired
     private ExaminationRepository examinationRepository;
@@ -43,7 +41,6 @@ public class ExaminationService {
     public Examination save(Examination examination){
         return examinationRepository.save(examination);
     }
-
 
     public List<Examination> getAllFreeExaminationTerms(){
         List<Examination> freeExaminations = new ArrayList<>();
@@ -79,11 +76,11 @@ public class ExaminationService {
     public void cancelExamination(Long examinationId){
         Examination examination = examinationRepository.findExaminationById(examinationId);
         Calendar currDateTime = Calendar.getInstance();
-        if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) <= 0)
+        if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) < 0)
             throw new InvalidActionException("Examination has finished!");
         currDateTime.add(Calendar.HOUR, 24);
         if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) <= 0)
-//            if(currDateTime.getTime().after(examination.getSchedule().getStartTime()))  Treba porediti i sate/minute
+//            if(currDateTime.getTime().after(examination.getSchedule().getStartTime()))  TODO: Treba porediti i sate/minute
                 throw new InvalidActionException("Too late! Examination can't be canceled!");
         Examination newExamination = new Examination(examination.getDermatologist(),
                 examination.getPharmacy(), examination.getSchedule(), examination.getPrice(),

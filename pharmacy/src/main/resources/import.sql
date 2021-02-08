@@ -119,7 +119,7 @@ insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyal
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(15, 11, 1, 1, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 12, 1, 1, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 13, 1, 1, 1);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(15, 20, 1, 1, 1, 2);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(15, 24, 1, 1, 1, 2);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 15, 2, 1, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(40, 16, 2, 1, 1,2);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(30, 17, 2, 1, 1,3);

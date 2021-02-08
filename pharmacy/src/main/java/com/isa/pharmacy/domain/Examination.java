@@ -5,7 +5,6 @@ import com.isa.pharmacy.users.domain.Patient;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table
@@ -36,7 +35,7 @@ public class Examination implements Serializable {
 
     public Examination(Long id, Dermatologist dermatologist, Pharmacy pharmacy, Patient patient,
                        Prescription prescription, Schedule schedule, Integer price, Boolean patientCame,
-                       List<Diagnosis> diagnosis, LoyaltyGroup loyaltyGroup) {
+                       LoyaltyGroup loyaltyGroup) {
         this.id = id;
         this.dermatologist = dermatologist;
         this.pharmacy = pharmacy;
@@ -48,7 +47,8 @@ public class Examination implements Serializable {
         this.loyaltyGroup = loyaltyGroup;
     }
 
-    public Examination(Dermatologist dermatologist, Pharmacy pharmacy, Schedule schedule, Integer price, LoyaltyGroup loyaltyGroup) {
+    public Examination(Dermatologist dermatologist, Pharmacy pharmacy, Schedule schedule,
+                       Integer price, LoyaltyGroup loyaltyGroup) {
         this.dermatologist = dermatologist;
         this.pharmacy = pharmacy;
         this.schedule = schedule;
