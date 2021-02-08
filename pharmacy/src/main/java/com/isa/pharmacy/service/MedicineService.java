@@ -64,15 +64,17 @@ public class MedicineService {
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
         for(String med: meds){
             for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
-                if(med.equalsIgnoreCase(mp.getMedicine().getName())){
-                    AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
-                    if(mp.getQuantity()>0)
-                        availMed.setAvailable(true);
-                    else
-                        availMed.setAvailable(false);
-                    availMed.setName(med);
-                    availabilityMedicineDtos.add(availMed);
-                }
+               if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName)){
+                   if(med.equalsIgnoreCase(mp.getMedicine().getName())){
+                       AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
+                       if(mp.getQuantity()>0)
+                           availMed.setAvailable(true);
+                       else
+                           availMed.setAvailable(false);
+                       availMed.setName(med);
+                       availabilityMedicineDtos.add(availMed);
+                   }
+               }
             }
         }
         return availabilityMedicineDtos;

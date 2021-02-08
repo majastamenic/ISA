@@ -6,12 +6,14 @@ import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.Prescription;
 import com.isa.pharmacy.repository.ExaminationRepository;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.users.service.DermatologistService;
 import com.isa.pharmacy.users.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,17 @@ public class ExaminationService {
     private PatientService patientService;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private DermatologistService dermatologistService;
+    @Autowired
+    private PharmacyService pharmacyService;
+    @Autowired
+    private  PrescriptionService prescriptionService;
+
+
+    public Examination save(Examination examination){
+        return examinationRepository.save(examination);
+    }
 
     public List<FreeExaminationDto> getAllFreeExaminationTerms(){
         List<FreeExaminationDto> freeExaminations = new ArrayList<>();
@@ -101,6 +114,21 @@ public class ExaminationService {
             }
         }
         return dermatologistNames;
+    }
+
+    public ExamDermatologistDto updateExamination(ExamDermatologistDto updateExamination){
+        Examination updated = examinationRepository.findExaminationById(updateExamination.getId());
+        Examination exam = new Examination();
+        if(updated != null){
+            Dermatologist dermatologist = dermatologistService.findUserByEmail(updateExamination.getEmail());
+            Patient patient = patientService.getPatient(updateExamination.getPatientDto().getUser().getEmail());
+            Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
+            Prescription prescription = new Prescription();
+            prescriptionService.save(prescription);
+            exam = ExaminationMapper.mapExaminationDtoToExamination(updateExamination, dermatologist, patient, pharmacy, prescription);
+            examinationRepository.save(exam);
+        }
+        return updateExamination;
     }
 
 }

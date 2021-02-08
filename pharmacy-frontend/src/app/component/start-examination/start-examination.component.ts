@@ -5,6 +5,8 @@ import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.servi
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { MedicineService } from 'src/app/service/medicine.service';
+import { Diagnosis } from 'src/app/model/diagnosis';
+import { DiagnosisService } from 'src/app/service/diagnosis.service';
 
 
 @Component({
@@ -20,11 +22,17 @@ export class StartExaminationComponent implements OnInit {
   medicines: any[]=[];
   names: any[]=[];
   selectedMeds: any[]=[];
+  selectedDiag: any[]=[];
   available: any[]=[];
   meds: any[]=[];
+  allDiagnosis: any[]=[];
+  diagnosis: Diagnosis={name:''};
+  patientCame: boolean = false;
+  days: any;
 
   constructor(private examinationService: ExaminationService,private  medicinePharmacyService: MedicinePharmacyService, 
-    private medicineService: MedicineService, private _ActivatedRoute: ActivatedRoute, private router: Router) { }
+    private medicineService: MedicineService, private diagnosisService: DiagnosisService, 
+    private _ActivatedRoute: ActivatedRoute, private router: Router) { }
 
   public model: any;
 
@@ -44,6 +52,15 @@ export class StartExaminationComponent implements OnInit {
         });
       })
     })
+    this.diagnosisService.getDiagnosis().subscribe((data: any[]) => {
+      this.allDiagnosis = data;
+      console.log(this.allDiagnosis);
+      for(let i of this.allDiagnosis){
+        let diag = i.name;
+        i.labelDiag = diag;
+        this.names.push(diag);
+      }
+    });
   }
 
   search = (text$: Observable<string>) =>
@@ -61,11 +78,22 @@ export class StartExaminationComponent implements OnInit {
       }
       this.medicineService.checkAvailabilityMeds(this.examination.pharmacyName, this.meds).subscribe((data:any[]) => {
         this.available = data;
+        console.log(data);
       })
     }
 
     cancelExamination(){
       this.router.navigate(['allexaminations']);
+    }
+
+    patientIsHere(){
+      this.patientCame = true;
+    }
+
+    patientDidntCame(){
+      this.router.navigate(['allexaminations']);
+      // update-ovati examination samo da se dodeli patientCame = false;
+      // obrisati dugme kod pregleda i kraj
     }
 
 }
