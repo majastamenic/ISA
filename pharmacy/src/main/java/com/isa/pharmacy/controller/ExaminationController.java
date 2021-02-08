@@ -60,4 +60,7 @@ public class ExaminationController {
     public void cancelExamination(@PathVariable Long examinationId){
         examinationService.cancelExamination(examinationId);
     }
+
+    @PostMapping("/update")
+    public ExamDermatologistDto updateExamination(@RequestBody ExamDermatologistDto examination){return examinationService.updateExamination(examination);}
 }

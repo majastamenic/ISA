@@ -3,8 +3,12 @@ package com.isa.pharmacy.controller.mapping;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.domain.Prescription;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
+import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.users.domain.Patient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +31,31 @@ public class ExaminationMapper {
         examDermatologistDto.setEmail(examination.getDermatologist().getUser().getEmail());
         examDermatologistDto.setPatientDto(patientDto);
         examDermatologistDto.setSchedule(examination.getSchedule());
-        examDermatologistDto.setPrescription(PrescriptionMapper.mapPrescriptionToPrescriptionDto(examination.getPrescription()));
+        //examDermatologistDto.setPrescription(PrescriptionMapper.mapPrescriptionToPrescriptionDto(examination.getPrescription()));
         examDermatologistDto.setPharmacyName(examination.getPharmacy().getName());
         examDermatologistDto.setPrice(examination.getPrice());
         examDermatologistDto.setPatientCame(examination.getPatientCame());
         return examDermatologistDto;
     }
 
-    public static List<FreeExaminationDto> mapExaminationListToFreeExaminationDto(List<Examination> examinations){
+    public static Examination mapExaminationDtoToExamination(ExamDermatologistDto examinationDto, Dermatologist dermatologist, Patient patient, Pharmacy pharmacy, Prescription prescription){
+        Examination examination = new Examination();
+        examination.setId(examinationDto.getId());
+        examination.setDermatologist(dermatologist);
+        examination.setPatient(patient);
+        examination.setSchedule(examinationDto.getSchedule());
+        examination.setPrescription(PrescriptionMapper.mapPrescriptionDtoToPrescription(examinationDto.getPrescription(), pharmacy, prescription));
+        examination.setPharmacy(pharmacy);
+        examination.setPrice(examinationDto.getPrice());
+        examination.setPatientCame(examinationDto.getPatientCame());
+        return examination;
+    }
+
+    public static List<FreeExaminationDto> mapExaminationListToFreeExaminationDto(List<Examination> examinations) {
         List<FreeExaminationDto> freeExaminations = new ArrayList<>();
-        for(Examination exam : examinations)
+        for (Examination exam : examinations)
             freeExaminations.add(mapExaminationToFreeExaminationDto(exam));
         return freeExaminations;
     }
+
 }
