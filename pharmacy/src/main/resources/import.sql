@@ -113,35 +113,22 @@ insert into loyalty_group(points, type) values (20, 3);
 insert into loyalty_group(points, type) values (50, 4);
 
 -- Prescriptions
-insert into prescription(id) values(1);
-insert into prescription(id) values(2);
-insert into prescription(id) values(3);
-insert into prescription(id) values(4);
-insert into prescription(id) values(5);
-insert into prescription(id) values(6);
-insert into prescription(id) values(7);
-insert into prescription(id) values(8);
-insert into prescription(id) values(9);
-insert into prescription(id) values(10);
-insert into prescription(id) values(11);
-insert into prescription(id) values(12);
-insert into prescription(id) values(13);
 
 -- Examinations
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id,  prescription_id, patient_came) values(10, 1, 1, 1, 1, 1, 1, false);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(15, 11, 1, 1, 1, 1);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(20, 12, 1, 1, 1, 2);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(20, 13, 1, 1, 1, 3);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id, patient_id) values(15, 2, 1, 1, 1, 4, 1);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(20, 15, 2, 1, 1, 5);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id, patient_id) values(40, 16, 2, 1, 1, 6, 2);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id, patient_id) values(30, 17, 2, 1, 1, 7, 3);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(25, 18, 3, 2, 1, 8);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(25, 19, 3, 2, 1, 9);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id, patient_id) values(25, 20, 3, 2, 1, 10, 6);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(25, 21, 1, 2, 1, 11);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(25, 22, 1, 2, 1, 12);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(25, 23, 3, 2, 1, 13);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 11, 1, 1, 1, 1, false);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(15, 11, 1, 1, 1);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 12, 1, 1, 1);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 13, 1, 1, 1);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(15, 20, 1, 1, 1, 2);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 15, 2, 1, 1);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(40, 16, 2, 1, 1,2);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(30, 17, 2, 1, 1,3);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 18, 3, 2, 1);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 19, 3, 2, 1);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(25, 20, 3, 2, 1, 6);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 21, 1, 2, 1);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 22, 1, 2, 1);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 23, 3, 2, 1);
 
 --Medicine
 insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62542, 'cochenillrot, laktoza, monohidrat', 0, 5,'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu');
@@ -159,9 +146,12 @@ insert into patient_allergic_medicines(patient_id, allergic_medicines) values (1
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.50, 2350, 1, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(2.00, 2985, 2, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.75, 1420, 3, 1);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.00, 0, 4, 1);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.25, 2150, 5, 1);
 -- MedicinePharmacy: Benu
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 15, 1, 2);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 18, 2, 2);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.00, 110, 4, 2);
 
 -- Orders
 insert into app_order(end_date, end_time) values ('2021-02-07', '08:00:00');
