@@ -4,7 +4,6 @@ import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
-import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Prescription;
 import com.isa.pharmacy.users.controller.dto.PatientDto;

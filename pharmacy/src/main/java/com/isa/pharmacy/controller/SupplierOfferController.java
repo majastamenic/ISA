@@ -1,13 +1,9 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.controller.dto.OrderOfferDto;
 import com.isa.pharmacy.controller.dto.SupplierOfferDto;
 import com.isa.pharmacy.controller.mapping.SupplierOfferMapper;
-import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Order;
-import com.isa.pharmacy.domain.OrderOffer;
 import com.isa.pharmacy.domain.SupplierOffer;
-import com.isa.pharmacy.service.MedicineService;
 import com.isa.pharmacy.service.OrderService;
 import com.isa.pharmacy.service.SupplierOfferService;
 import com.isa.pharmacy.users.domain.Supplier;
@@ -15,8 +11,6 @@ import com.isa.pharmacy.users.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

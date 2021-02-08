@@ -1,7 +1,6 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.SupplierOfferDto;
-import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.domain.SupplierOffer;
 import com.isa.pharmacy.users.domain.Supplier;

@@ -7,11 +7,9 @@ import java.util.List;
 import com.isa.pharmacy.controller.dto.AddMedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
 import com.isa.pharmacy.controller.dto.SearchMedicineDto;
-import com.isa.pharmacy.controller.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.service.MedicineService;

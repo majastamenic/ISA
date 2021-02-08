@@ -1,5 +1,4 @@
 package com.isa.pharmacy.controller.dto;
-import com.isa.pharmacy.domain.Order;
 
 import java.util.Date;
 import java.util.List;

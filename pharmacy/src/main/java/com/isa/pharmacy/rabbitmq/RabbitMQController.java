@@ -19,8 +19,7 @@ public class RabbitMQController {
     @PostMapping
     public ResponseEntity<String> producer(@RequestBody ActionsAndBenefitsDto actionDto) {
 
-        ActionsAndBenefits action = new ActionsAndBenefits();
-        action = ActionsAndBenefitsMapper.mapActionDtoToAction(actionDto);
+        ActionsAndBenefits action = ActionsAndBenefitsMapper.mapActionDtoToAction(actionDto);
 
         rabbitMQService.send(action);
 

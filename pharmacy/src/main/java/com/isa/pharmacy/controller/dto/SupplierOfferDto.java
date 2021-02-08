@@ -1,12 +1,8 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.Order;
-import com.isa.pharmacy.domain.OrderOffer;
 import com.isa.pharmacy.domain.enums.OrderOfferType;
-import com.isa.pharmacy.users.domain.Supplier;
 
 import java.util.Date;
-import java.util.List;
 
 public class SupplierOfferDto {
     private Long orderId;

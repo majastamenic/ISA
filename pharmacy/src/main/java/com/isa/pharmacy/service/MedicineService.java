@@ -3,11 +3,8 @@ package com.isa.pharmacy.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.controller.mapping.MedicineMapper;
-import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import com.isa.pharmacy.domain.Medicine;

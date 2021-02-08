@@ -1,10 +1,7 @@
 package com.isa.pharmacy.users.domain;
 
-import com.isa.pharmacy.domain.OrderOffer;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table

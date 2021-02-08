@@ -1,9 +1,7 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.OrderOffer;
 import com.isa.pharmacy.domain.SupplierOffer;
-import com.isa.pharmacy.repository.OrderOfferRepository;
 import com.isa.pharmacy.repository.SupplierOfferRepository;
 import com.isa.pharmacy.users.domain.Supplier;
 import com.isa.pharmacy.users.service.SupplierService;

@@ -2,7 +2,6 @@ package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.OrderOfferDto;
 import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.domain.OrderOffer;
 
 import java.util.ArrayList;
@@ -12,8 +11,8 @@ public class OrderOffersMapper {
     public static OrderOffer mapOrderOfferDtoToOrderOffer(OrderOfferDto orderOfferDto, Medicine medicine){
         OrderOffer orderOffer = new OrderOffer();
         orderOffer.setMedicine(medicine);
-        orderOffer.setPrice(orderOffer.getPrice());
-        orderOffer.setQuantity(orderOffer.getQuantity());
+        orderOffer.setPrice(orderOfferDto.getPrice());
+        orderOffer.setQuantity(orderOfferDto.getQuantity());
         return orderOffer;
     }
 
