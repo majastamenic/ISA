@@ -5,6 +5,7 @@ import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
+import com.isa.pharmacy.domain.Diagnosis;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.Prescription;
@@ -38,6 +39,8 @@ public class ExaminationService {
     private PharmacyService pharmacyService;
     @Autowired
     private  PrescriptionService prescriptionService;
+    @Autowired
+    private DiagnosisService diagnosisService;
 
 
     public Examination save(Examination examination){
@@ -123,9 +126,13 @@ public class ExaminationService {
             Dermatologist dermatologist = dermatologistService.findUserByEmail(updateExamination.getEmail());
             Patient patient = patientService.getPatient(updateExamination.getPatientDto().getUser().getEmail());
             Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
+            List<Diagnosis> diagnosis = diagnosisService.getAllDiagnosisById(updateExamination.getPrescription().getDiagnosis());
             Prescription prescription = new Prescription();
+            prescription.setDiagnosis(diagnosis);
             prescriptionService.save(prescription);
-            exam = ExaminationMapper.mapExaminationDtoToExamination(updateExamination, dermatologist, patient, pharmacy, prescription);
+            exam.setPrescription(prescription);
+            exam = ExaminationMapper.mapExaminationDtoToExamination(updateExamination, dermatologist, patient, pharmacy, prescription, updated.getSchedule());
+            prescriptionService.save(exam.getPrescription());
             examinationRepository.save(exam);
         }
         return updateExamination;

@@ -20,7 +20,7 @@
           <td>{{examination.pharmacyName}}</td>
           <td>{{examination.patientCame}}</td>
           <td> <span *ngFor="let allergy of examination.patientDto.allergicMedicines;">{{allergy}}, </span> </td>
-          <td><button class="btn btn-primary" [routerLink]="['/allexaminations', examination.id]">Start</button></td>
+          <td><button *ngIf='examination.patientCame == null' class="btn btn-primary" [routerLink]="['/allexaminations', examination.id]">Start</button></td>
       </tr>
     </tbody>
   </table>

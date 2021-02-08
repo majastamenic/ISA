@@ -23,21 +23,23 @@
                 </ng-select>
             </div>
             <br><br>
-            <div style="width: 250px;">
-                <ng-select [items]="medicines"
-                    bindLabel="label"
-                    placeholder="Select medicine"
-                    appendTo="body"
-                    [multiple]="true"
-                    [(ngModel)]="selectedMeds"
-                    name="selectedMeds">
-                </ng-select>
-                <button class="btn btn-secondary" style="width:100px;" (click)="checkAvailability()">Check</button>&nbsp;
+            <div style="display: inline-block;">
+                <div style="width: 250px;">
+                    <ng-select [items]="medicines"
+                        bindLabel="label"
+                        placeholder="Select medicine"
+                        appendTo="body"
+                        [multiple]="true"
+                        [(ngModel)]="selectedMeds"
+                        name="selectedMeds">
+                    </ng-select>
+                    <button class="btn btn-secondary" style="width:100px;" (click)="checkAvailability()">Check</button>&nbsp;
+                </div>
+                <div>
+                    <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="updateExam.prescription.days" name="days" style="width:100px" required>
+                </div>
             </div>
 
-            <div>
-                <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="days" name="days" style="width:100px" required>
-            </div>
             <br>
 
             <div>
@@ -49,7 +51,7 @@
             <br><br><br><br>
             <div>
                 <button class="btn btn-secondary" style="width:200px;" (click)="cancelExamination()">Cancel</button>&nbsp;
-                <button class="btn btn-primary" style="width:200px;">Save</button>
+                <button class="btn btn-primary" style="width:200px;" (click)="saveExamination()">Save</button>
             </div>
         </form>
     </div>
@@ -64,7 +66,7 @@
 
 
 
-<div *ngIf='!patientCame'  class="page">
-    <button class="btn btn-secondary" style="width:200px;" >Patient didn't came</button>&nbsp;
+<div *ngIf='!patientCame'  class="page" >
+    <button class="btn btn-secondary" style="width:200px;" (click)="patientIsntHere()">Patient didn't came</button>&nbsp;
     <button class="btn btn-primary" style="width:200px;" (click)="patientIsHere()">Patient came</button>
 </div>

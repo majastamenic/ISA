@@ -15,18 +15,26 @@ public class Prescription implements Serializable {
     @Column
     private Integer days;
     @OneToMany
-    private List<Diagnosis> diagnoses;
+    private List<Diagnosis> diagnosis;
     @OneToMany
     private List<MedicinePharmacy> medicines;
 
     public Prescription(){}
 
 
-    public Prescription(Long id, Integer days, List<Diagnosis> diagnoses, List<MedicinePharmacy> medicines) {
+    public Prescription(Long id, Integer days, List<Diagnosis> diagnosis, List<MedicinePharmacy> medicines) {
         this.id = id;
         this.days = days;
-        this.diagnoses = diagnoses;
+        this.diagnosis = diagnosis;
         this.medicines = medicines;
+    }
+
+    public List<Diagnosis> getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(List<Diagnosis> diagnosis) {
+        this.diagnosis = diagnosis;
     }
 
     public Integer getDays() {
@@ -45,13 +53,6 @@ public class Prescription implements Serializable {
         this.medicines = medicines;
     }
 
-    public List<Diagnosis> getDiagnoses() {
-        return diagnoses;
-    }
-
-    public void setDiagnoses(List<Diagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
-    }
 
     public Long getId() {
         return id;

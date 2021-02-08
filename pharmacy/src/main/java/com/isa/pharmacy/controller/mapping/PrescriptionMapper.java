@@ -16,7 +16,7 @@ public class PrescriptionMapper {
         if(prescription != null){
             prescriptionDto.setId(prescription.getId());
             prescriptionDto.setDays(prescription.getDays());
-            prescriptionDto.setDiagnoses(prescription.getDiagnoses());
+            //prescriptionDto.setDiagnoses(prescription.getDiagnoses());
             List<MedicinePharmacyDto> meds = new ArrayList<>();
             for(MedicinePharmacy mp : prescription.getMedicines()){
                 MedicinePharmacyDto mpDto = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
@@ -31,7 +31,7 @@ public class PrescriptionMapper {
         Prescription prescription = new Prescription();
         prescription.setId(prescriptionSaved.getId());
         prescription.setDays(prescriptionDto.getDays());
-        prescription.setDiagnoses(prescriptionDto.getDiagnoses());
+        //prescription.setDiagnoses(prescriptionDto.getDiagnoses());
         List<MedicinePharmacy> meds = new ArrayList<>();
         if(prescriptionDto.getMedicines() != null){
             for(MedicinePharmacyDto mpDto : prescriptionDto.getMedicines()){

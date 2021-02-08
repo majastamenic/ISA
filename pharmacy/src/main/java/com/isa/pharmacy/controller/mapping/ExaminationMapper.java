@@ -5,6 +5,7 @@ import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.Prescription;
+import com.isa.pharmacy.domain.Schedule;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;
@@ -35,12 +36,12 @@ public class ExaminationMapper {
         return examDermatologistDto;
     }
 
-    public static Examination mapExaminationDtoToExamination(ExamDermatologistDto examinationDto, Dermatologist dermatologist, Patient patient, Pharmacy pharmacy, Prescription prescription){
+    public static Examination mapExaminationDtoToExamination(ExamDermatologistDto examinationDto, Dermatologist dermatologist, Patient patient, Pharmacy pharmacy, Prescription prescription, Schedule schedule){
         Examination examination = new Examination();
         examination.setId(examinationDto.getId());
         examination.setDermatologist(dermatologist);
         examination.setPatient(patient);
-        examination.setSchedule(examinationDto.getSchedule());
+        examination.setSchedule(schedule);
         examination.setPrescription(PrescriptionMapper.mapPrescriptionDtoToPrescription(examinationDto.getPrescription(), pharmacy, prescription));
         examination.setPharmacy(pharmacy);
         examination.setPrice(examinationDto.getPrice());

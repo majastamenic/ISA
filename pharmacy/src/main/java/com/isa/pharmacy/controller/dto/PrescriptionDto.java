@@ -6,15 +6,15 @@ import java.util.List;
 public class PrescriptionDto {
     private Long id;
     private Integer days;
-    private List<Diagnosis> diagnoses;
+    private List<Long> diagnosis;
     private List<MedicinePharmacyDto> medicines;
 
     public PrescriptionDto(){}
 
-    public PrescriptionDto(Long id, Integer days, List<Diagnosis> diagnoses, List<MedicinePharmacyDto> medicines) {
+    public PrescriptionDto(Long id, Integer days, List<Long> diagnosis, List<MedicinePharmacyDto> medicines) {
         this.id = id;
         this.days = days;
-        this.diagnoses = diagnoses;
+        this.diagnosis = diagnosis;
         this.medicines = medicines;
     }
 
@@ -34,20 +34,19 @@ public class PrescriptionDto {
         this.id = id;
     }
 
-
-    public List<Diagnosis> getDiagnoses() {
-        return diagnoses;
-    }
-
-    public void setDiagnoses(List<Diagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
-    }
-
     public List<MedicinePharmacyDto> getMedicines() {
         return medicines;
     }
 
     public void setMedicines(List<MedicinePharmacyDto> medicines) {
         this.medicines = medicines;
+    }
+
+    public List<Long> getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(List<Long> diagnosis) {
+        this.diagnosis = diagnosis;
     }
 }

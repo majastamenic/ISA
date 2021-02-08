@@ -153,6 +153,18 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 18, 2, 2);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.00, 110, 4, 2);
 
+-- ??????????????
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 1);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 2);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 3);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 4);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 5);
+
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 6);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 7);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 8);
+----------------------
+
 -- Orders
 insert into app_order(end_date, end_time) values ('2021-02-07', '08:00:00');
 insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
@@ -161,15 +173,7 @@ insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(1, 62217);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(2, 66042);
 
--- ??????????????
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 1);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 2);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 3);
-
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 4);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 5);
-----------------------
-
+-- MedicinePrescription
 insert into medicineeprescription(code, name, quantity) values(2, 'brufen', 123419);
 insert into medicineeprescription(code, name, quantity) values(8, 'panadol', 6839093);
 

@@ -7,6 +7,7 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { MedicineService } from 'src/app/service/medicine.service';
 import { Diagnosis } from 'src/app/model/diagnosis';
 import { DiagnosisService } from 'src/app/service/diagnosis.service';
+import { ExaminationDto } from 'src/app/model/examination';
 
 
 @Component({
@@ -29,6 +30,9 @@ export class StartExaminationComponent implements OnInit {
   diagnosis: Diagnosis={name:''};
   patientCame: boolean = false;
   days: any;
+  hideStart: boolean = false;
+  diags:any[]=[];
+  updateExam: ExaminationDto = { id:0, email:'', patientDto:{}, patientEmail: '', schedule: {id:''}, prescription: {days:'', diagnosis:[], medicines:[]}, pharmacyName:'', price:0,  patientCame: false };
 
   constructor(private examinationService: ExaminationService,private  medicinePharmacyService: MedicinePharmacyService, 
     private medicineService: MedicineService, private diagnosisService: DiagnosisService, 
@@ -90,10 +94,49 @@ export class StartExaminationComponent implements OnInit {
       this.patientCame = true;
     }
 
-    patientDidntCame(){
-      this.router.navigate(['allexaminations']);
-      // update-ovati examination samo da se dodeli patientCame = false;
-      // obrisati dugme kod pregleda i kraj
+    patientIsntHere(){
+      const updateExam = {
+        id: this.examination.id,
+        email: this.examination.email,
+        patientDto:{},
+        patientEmail: this.examination.patientDto.user.email,
+        schedule: {
+          id: this.examination.schedule.id
+        },
+        prescription: {
+          diagnosis:[],
+          medicines:[]
+        },
+        pharmacyName: this.examination.pharmacyName,
+        price: this.examination.price,
+        patientCame: false
+      }
+      this.examinationService.updateExamination(updateExam).subscribe(exam => {
+        console.log(exam);
+        this.router.navigate(['allexaminations']);
+      })
+    }
+
+    saveExamination(){
+      this.updateExam.id = this.examination.id;
+      this.updateExam.email = this.examination.email;
+      this.updateExam.patientDto = this.examination.patientDto;
+      this.updateExam.schedule = this.examination.schedule;
+      this.updateExam.pharmacyName = this.examination.pharmacyName;
+      this.updateExam.price = this.examination.price;
+      this.updateExam.patientCame = true;
+      this.updateExam.prescription.diagnosis = [];
+      for(let d of this.selectedDiag){
+        for(let dia of this.allDiagnosis){
+          if(d.name == dia.name){
+            this.updateExam.prescription.diagnosis.push(dia.id);
+          }
+        }
+      }
+      this.examinationService.updateExamination(this.updateExam).subscribe(exam => {
+        console.log(exam);
+        this.router.navigate(['allexaminations']);
+      })
     }
 
 }
