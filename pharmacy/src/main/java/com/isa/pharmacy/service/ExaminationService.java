@@ -69,10 +69,12 @@ public class ExaminationService {
     public void cancelExamination(Long examinationId){
         Examination examination = examinationRepository.findExaminationById(examinationId);
         Calendar currDateTime = Calendar.getInstance();
+        if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) <= 0)
+            throw new InvalidActionException("Examination has finished!");
         currDateTime.add(Calendar.HOUR, 24);
         if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) <= 0)
 //            if(currDateTime.getTime().after(examination.getSchedule().getStartTime()))  Treba porediti i sate/minute
-                throw new InvalidActionException("Examination can't be canceled!");
+                throw new InvalidActionException("Too late! Examination can't be canceled!");
         Examination newExamination = new Examination(examination.getDermatologist(),
                 examination.getPharmacy(), examination.getSchedule(), examination.getPrice(),
                 examination.getLoyaltyGroup());

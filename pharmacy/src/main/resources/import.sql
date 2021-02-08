@@ -79,19 +79,19 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-01', '2021-03-07', '08:00:00', '14:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-01', '2021-03-07', '14:00:00', '20:00:00');
 -- Schedule: Examination
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '14:00:00', '14:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '14:30:00', '15:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '15:00:00', '15:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '15:30:00', '16:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '16:00:00', '16:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '16:30:00', '17:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '17:00:00', '17:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '17:30:00', '18:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '18:00:00', '18:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '18:30:00', '19:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '19:00:00', '19:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '19:30:00', '20:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-22', '19:30:00', '20:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '14:00:00', '14:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '14:30:00', '15:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '15:00:00', '15:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '15:30:00', '16:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '16:00:00', '16:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '16:30:00', '17:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '17:00:00', '17:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '17:30:00', '18:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '18:00:00', '18:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '18:30:00', '19:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '19:00:00', '19:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '19:30:00', '20:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-15', '19:30:00', '20:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-08', '2021-02-08', '19:30:00', '20:00:00');
 
 -- WorkSchedule

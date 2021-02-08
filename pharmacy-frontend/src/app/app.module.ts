@@ -47,6 +47,7 @@ import { RegSupplierComponent } from './component/system-admin/reg-supplier/reg-
 import { RegSystemAdminComponent } from './component/system-admin/reg-system-admin/reg-system-admin.component';
 import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.component';
 import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
+import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { ComplaintsComponent } from './component/system-admin/complaints/complai
     StartExaminationComponent,
     LoyalityComponent,
     ComplaintMessageComponent,
-    ComplaintsComponent
+    ComplaintsComponent,
+    PatientExaminationsComponent
   ],
   imports: [
     BrowserModule,

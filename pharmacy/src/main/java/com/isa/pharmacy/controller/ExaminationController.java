@@ -46,8 +46,9 @@ public class ExaminationController {
     }
 
     @GetMapping("/scheduled/{email}")
-    public List<Examination> getExaminationByPatient(@PathVariable String email){
-        return examinationService.getExaminationByPatient(email);
+    public List<FreeExaminationDto> getExaminationByPatient(@PathVariable String email){
+        return ExaminationMapper.mapExaminationListToFreeExaminationDto(
+                examinationService.getExaminationByPatient(email));
     }
 
     @PutMapping("/schedule/{patientEmail}/{examinationId}")
