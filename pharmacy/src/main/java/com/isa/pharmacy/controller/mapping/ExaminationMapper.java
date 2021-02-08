@@ -28,7 +28,6 @@ public class ExaminationMapper {
         examDermatologistDto.setEmail(examination.getDermatologist().getUser().getEmail());
         examDermatologistDto.setPatientDto(patientDto);
         examDermatologistDto.setSchedule(examination.getSchedule());
-        //examDermatologistDto.setPrescription(PrescriptionMapper.mapPrescriptionToPrescriptionDto(examination.getPrescription()));
         examDermatologistDto.setPharmacyName(examination.getPharmacy().getName());
         examDermatologistDto.setPrice(examination.getPrice());
         examDermatologistDto.setPatientCame(examination.getPatientCame());

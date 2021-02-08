@@ -118,14 +118,13 @@ public class ExaminationService {
 
     public ExamDermatologistDto updateExamination(ExamDermatologistDto updateExamination){
         Examination updated = examinationRepository.findExaminationById(updateExamination.getId());
-        Examination exam = new Examination();
         if(updated != null){
             Dermatologist dermatologist = dermatologistService.findUserByEmail(updateExamination.getEmail());
             Patient patient = patientService.getPatient(updateExamination.getPatientDto().getUser().getEmail());
             Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
             Prescription prescription = new Prescription();
             prescriptionService.save(prescription);
-            exam = ExaminationMapper.mapExaminationDtoToExamination(updateExamination, dermatologist, patient, pharmacy, prescription);
+            Examination exam = ExaminationMapper.mapExaminationDtoToExamination(updateExamination, dermatologist, patient, pharmacy, prescription);
             examinationRepository.save(exam);
         }
         return updateExamination;
