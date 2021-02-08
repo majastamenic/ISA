@@ -22,6 +22,12 @@ public class ExaminationController {
     @Autowired
     private DermatologistService dermatologistService;
 
+
+    @GetMapping("/start/{id}")
+    public ExamDermatologistDto getById(@PathVariable("id") long id) {
+        return examinationService.getById(id);
+    }
+
     @GetMapping("/freeTerms")       // Za sada se ne koristi nigde
     public List<FreeExaminationDto> getFreeExaminationTerms(){
         return ExaminationMapper.mapExaminationListToFreeExaminationDto(examinationService.getAllFreeExaminationTerms());
@@ -49,8 +55,8 @@ public class ExaminationController {
         examinationService.scheduleExamination(patientEmail, examinationId);
     }
 
-    @GetMapping("/start/{id}")
-    public ExamDermatologistDto getById(@PathVariable("id") long id) {
-        return examinationService.getById(id);
+    @PutMapping("/cancel/{examinationId}")
+    public void cancelExamination(@PathVariable Long examinationId){
+        examinationService.cancelExamination(examinationId);
     }
 }

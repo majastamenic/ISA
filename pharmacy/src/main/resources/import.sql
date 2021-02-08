@@ -92,6 +92,7 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '19:00:00', '19:30:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '19:30:00', '20:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-22', '19:30:00', '20:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-08', '2021-02-08', '19:30:00', '20:00:00');
 
 -- WorkSchedule
 insert into work_schedule(schedule_id) values(1);
@@ -128,7 +129,7 @@ insert into prescription(id) values(12);
 insert into prescription(id) values(13);
 
 -- Examinations
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id,  prescription_id, patient_came) values(10, 1, 1, 1, 1, 1, 1, false);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id, patient_id, patient_came) values(10, 11, 2, 1, 1, 1, 1, false);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(15, 11, 1, 1, 1, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(20, 12, 1, 1, 1, 2);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, prescription_id) values(20, 13, 1, 1, 1, 3);
@@ -201,5 +202,5 @@ insert into diagnosis(name)values('Back pain');
 insert into diagnosis(name)values('Hypertension');
 
 -- Complaints
-insert into complaint(complaint_message, response_complaint, patient_id)values ('Losa usluga', '...', 1);
-insert into complaint(complaint_message, patient_id)values ('Guzva', 2);
+insert into complaint(complaint_message, response_complaint, patient_id)values ('Bad service', 'Please tell us more to improve our service.', 1);
+insert into complaint(complaint_message, patient_id)values ('Too crowded', 2);

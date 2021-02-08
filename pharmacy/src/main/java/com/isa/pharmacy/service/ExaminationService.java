@@ -15,12 +15,17 @@ import com.isa.pharmacy.users.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class ExaminationService {
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 
     @Autowired
     private ExaminationRepository examinationRepository;
@@ -59,6 +64,20 @@ public class ExaminationService {
         examination.setPatient(patientService.getPatient(patientEmail));
         Examination scheduledExam = examinationRepository.save(examination);
         emailService.successfulExamSchedule(scheduledExam);
+    }
+
+    public void cancelExamination(Long examinationId){
+        Examination examination = examinationRepository.findExaminationById(examinationId);
+        Calendar currDateTime = Calendar.getInstance();
+        currDateTime.add(Calendar.HOUR, 24);
+        if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) <= 0)
+//            if(currDateTime.getTime().after(examination.getSchedule().getStartTime()))  Treba porediti i sate/minute
+                throw new InvalidActionException("Examination can't be canceled!");
+        Examination newExamination = new Examination(examination.getDermatologist(),
+                examination.getPharmacy(), examination.getSchedule(), examination.getPrice(),
+                examination.getLoyaltyGroup());
+        examinationRepository.delete(examination);
+        examinationRepository.save(newExamination);
     }
 
     public List<ExamDermatologistDto> getAllByDermatologist(Dermatologist dermatologist) {
