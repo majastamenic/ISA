@@ -14,9 +14,9 @@ public class Prescription implements Serializable {
     private Long id;
     @Column
     private Integer days;
-    @OneToMany
+    @ManyToMany
     private List<Diagnosis> diagnosis;
-    @OneToMany
+    @ManyToMany
     private List<MedicinePharmacy> medicines;
 
     public Prescription(){}

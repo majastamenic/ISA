@@ -5,10 +5,7 @@ import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
-import com.isa.pharmacy.domain.Diagnosis;
-import com.isa.pharmacy.domain.Examination;
-import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.domain.Prescription;
+import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.ExaminationRepository;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.PatientMapper;
@@ -41,6 +38,8 @@ public class ExaminationService {
     private  PrescriptionService prescriptionService;
     @Autowired
     private DiagnosisService diagnosisService;
+    @Autowired
+    private MedicineService medicineService;
 
 
     public Examination save(Examination examination){
@@ -127,12 +126,15 @@ public class ExaminationService {
             Patient patient = patientService.getPatient(updateExamination.getPatientDto().getUser().getEmail());
             Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
             List<Diagnosis> diagnosis = diagnosisService.getAllDiagnosisById(updateExamination.getPrescription().getDiagnosis());
+            List<Medicine> medicines = medicineService.getAllMedicinesById(updateExamination.getPrescription().getMedicines());
             Prescription prescription = new Prescription();
+            //prescription.setMedicines(medicines);
             prescription.setDiagnosis(diagnosis);
+            prescription.setDays(updateExamination.getPrescription().getDays());
             prescriptionService.save(prescription);
             exam.setPrescription(prescription);
             exam = ExaminationMapper.mapExaminationDtoToExamination(updateExamination, dermatologist, patient, pharmacy, prescription, updated.getSchedule());
-            prescriptionService.save(exam.getPrescription());
+            prescriptionService.save(prescription);
             examinationRepository.save(exam);
         }
         return updateExamination;

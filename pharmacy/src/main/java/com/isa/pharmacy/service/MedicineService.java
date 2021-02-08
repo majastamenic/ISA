@@ -8,6 +8,7 @@ import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
+import com.isa.pharmacy.domain.Diagnosis;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,5 +88,17 @@ public class MedicineService {
         medicineRepository.save(medicine);
         return medicineLoyaltyDto;
     }
+
+    public List<Medicine> getAllMedicinesById(List<Long> ids){
+        List<Medicine> medicines = new ArrayList<>();
+        for(Long i : ids){
+            for(Medicine m: getAll()){
+                if(m.getId() == i)
+                    medicines.add(m);
+            }
+        }
+        return  medicines;
+    }
+
 
 }

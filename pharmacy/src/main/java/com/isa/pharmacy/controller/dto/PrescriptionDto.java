@@ -7,14 +7,22 @@ public class PrescriptionDto {
     private Long id;
     private Integer days;
     private List<Long> diagnosis;
-    private List<MedicinePharmacyDto> medicines;
+    private List<Long> medicines;
 
     public PrescriptionDto(){}
 
-    public PrescriptionDto(Long id, Integer days, List<Long> diagnosis, List<MedicinePharmacyDto> medicines) {
+    public PrescriptionDto(Long id, Integer days, List<Long> diagnosis, List<Long> medicines) {
         this.id = id;
         this.days = days;
         this.diagnosis = diagnosis;
+        this.medicines = medicines;
+    }
+
+    public List<Long> getMedicines() {
+        return medicines;
+    }
+
+    public void setMedicines(List<Long> medicines) {
         this.medicines = medicines;
     }
 
@@ -32,14 +40,6 @@ public class PrescriptionDto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<MedicinePharmacyDto> getMedicines() {
-        return medicines;
-    }
-
-    public void setMedicines(List<MedicinePharmacyDto> medicines) {
-        this.medicines = medicines;
     }
 
     public List<Long> getDiagnosis() {

@@ -32,6 +32,7 @@ export class StartExaminationComponent implements OnInit {
   days: any;
   hideStart: boolean = false;
   diags:any[]=[];
+  toSchedule: boolean = false;
   updateExam: ExaminationDto = { id:0, email:'', patientDto:{}, patientEmail: '', schedule: {id:''}, prescription: {days:'', diagnosis:[], medicines:[]}, pharmacyName:'', price:0,  patientCame: false };
 
   constructor(private examinationService: ExaminationService,private  medicinePharmacyService: MedicinePharmacyService, 
@@ -133,9 +134,16 @@ export class StartExaminationComponent implements OnInit {
           }
         }
       }
+      for(let m of this.selectedMeds){
+        for(let mia of this.medicines){
+          if(m.name == mia.name){
+            this.updateExam.prescription.medicines.push(mia.id);
+          }
+        }
+      }
       this.examinationService.updateExamination(this.updateExam).subscribe(exam => {
         console.log(exam);
-        this.router.navigate(['allexaminations']);
+        this.toSchedule = true;
       })
     }
 
