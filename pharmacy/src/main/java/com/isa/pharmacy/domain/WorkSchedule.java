@@ -1,11 +1,9 @@
 package com.isa.pharmacy.domain;
 
-import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table
@@ -17,45 +15,15 @@ public class WorkSchedule implements Serializable {
     private Long id;
     @OneToOne
     private Schedule schedule;
-    @ManyToMany             // TODO: Obrisati liste ispod?
-    private List<Pharmacist> pharmacists;
-    @ManyToMany
-    private List<Dermatologist> dermatologists;
     @OneToOne
     private PharmacyAdmin admin;
 
     public WorkSchedule() { }
 
-    public WorkSchedule(Long id, Schedule schedule, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists, PharmacyAdmin admin) {
+    public WorkSchedule(Long id, Schedule schedule, PharmacyAdmin admin) {
         this.id = id;
         this.schedule = schedule;
-        this.pharmacists = pharmacists;
-        this.dermatologists = dermatologists;
         this.admin = admin;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-    public List<Dermatologist> getDermatologists() {
-        return dermatologists;
-    }
-
-    public void setDermatologists(List<Dermatologist> dermatologists) {
-        this.dermatologists = dermatologists;
-    }
-
-    public List<Pharmacist> getPharmacists() {
-        return pharmacists;
-    }
-
-    public void setPharmacists(List<Pharmacist> pharmacists) {
-        this.pharmacists = pharmacists;
     }
 
     public Long getId() {
@@ -66,6 +34,14 @@ public class WorkSchedule implements Serializable {
         this.id = id;
     }
 
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
     public PharmacyAdmin getAdmin() {
         return admin;
     }
@@ -73,6 +49,5 @@ public class WorkSchedule implements Serializable {
     public void setAdmin(PharmacyAdmin admin) {
         this.admin = admin;
     }
-
 }
 

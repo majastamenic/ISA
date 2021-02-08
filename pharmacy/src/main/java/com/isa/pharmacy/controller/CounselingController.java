@@ -26,6 +26,21 @@ public class CounselingController {
     @Autowired
     private PatientService patientService;
 
+
+    @GetMapping
+    public List<Counseling> getAll() { return counselingService.getAll(); }
+
+    @GetMapping("/start/{id}")
+    public CounselingDto getById(@PathVariable("id") long id) {
+        return counselingService.getById(id);
+    }
+
+    @GetMapping("/{email}")
+    public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
+        Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
+        return counselingService.getAllByPharmacist(pharmacist);
+    }
+
     @PostMapping("/add")
     public Counseling save(@RequestBody CounselingDto counselingDto) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(counselingDto.getEmail());
@@ -35,22 +50,6 @@ public class CounselingController {
         return counselingService.save(counseling);
     }
 
-    @GetMapping
-    public List<Counseling> getAll() { return counselingService.getAll(); }
-
-    @GetMapping("/{email}")
-    public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
-        Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
-        return counselingService.getAllByPharmacist(pharmacist);
-    }
-
     @PostMapping("/update")
     public Counseling update(@RequestBody Counseling c) { return counselingService.save(c); }
-
-    @GetMapping("/start/{id}")
-    public CounselingDto getById(@PathVariable("id") long id) {
-        return counselingService.getById(id);
-    }
-
-
 }

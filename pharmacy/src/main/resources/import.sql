@@ -94,7 +94,7 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-15', '19:30:00', '20:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-08', '2021-02-08', '19:30:00', '20:00:00');
 
--- WorkSchedule
+-- WorkSchedule //////////////////////////////////////////////////////////
 insert into work_schedule(schedule_id) values(1);
 insert into work_schedule(schedule_id) values(2);
 insert into work_schedule(schedule_id) values(3);
@@ -106,7 +106,51 @@ insert into work_schedule(schedule_id) values(8);
 insert into work_schedule(schedule_id) values(9);
 insert into work_schedule(schedule_id) values(10);
 
---Loyalty group
+-- WorkSchedule: Dermatologist
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 1);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 3);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 5);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 7);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 9);
+
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 2);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 4);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 6);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 8);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 10);
+
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 1);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 4);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 5);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 8);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 9);
+
+--WorkSchedule: Pharmacist
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 2);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 3);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 6);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 7);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 10);
+
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (2, 1);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (2, 5);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (2, 9);
+
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 1);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 3);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 6);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 8);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 9);
+
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 1);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 4);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 5);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 8);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 9);
+
+-- ////////////////////////////////////////////////////////////////////////////
+
+-- Loyalty group
 insert into loyalty_group(points, type) values (3, 0);
 insert into loyalty_group(points, type) values (4, 1);
 insert into loyalty_group(points, type) values (10, 2);

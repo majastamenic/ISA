@@ -1,16 +1,15 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.CounselingDto;
-import com.isa.pharmacy.users.controller.dto.PatientDto;
-import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
-import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.repository.CounselingRepository;
+import com.isa.pharmacy.users.controller.dto.PatientDto;
+import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.repository.CounselingRepository;
-import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +19,10 @@ import java.util.List;
 
 @Service
 public class CounselingService {
+
     @Autowired
     private CounselingRepository counselingRepository;
+
     @Autowired
     private ScheduleService scheduleService;
     @Autowired
@@ -29,16 +30,21 @@ public class CounselingService {
     @Autowired
     private PharmacistService pharmacistService;
 
-    public Counseling save(Counseling counseling) {
-        if(counseling.getSchedule().getStartDate().equals(counseling.getSchedule().getEndDate())){
-            scheduleService.save(counseling.getSchedule());
-            reportService.save(counseling.getReport());
-            return counselingRepository.save(counseling);
-        }
-        throw new AlreadyExistsException("Start date and end date must be on a same date");
-    }
 
     public List<Counseling> getAll(){ return counselingRepository.findAll(); }
+
+    public Counseling getCounselingById(long id){
+        return counselingRepository.findCounselingById(id);
+    }
+
+    public CounselingDto getById(long id){
+        // provera vremena
+        Counseling counseling = counselingRepository.findCounselingById(id);
+        if(counseling == null)
+            throw new NotFoundException("Counseling not found");
+        PatientDto patientDto = PatientMapper.mapPatientToPatientDto(counseling.getPatient());
+        return CounselingMapper.mapCounselingToCounselingDto(counseling, patientDto);
+    }
 
     public List<CounselingDto> getAllByPharmacist(Pharmacist pharmacist) {
         List<Counseling> counselings = counselingRepository.findByPharmacist(pharmacist);
@@ -49,6 +55,14 @@ public class CounselingService {
             counselingDtos.add(counselingDto);
         }
         return counselingDtos;
+    }
+
+    public Counseling save(Counseling counseling) {
+        if(!counseling.getSchedule().getStartDate().equals(counseling.getSchedule().getEndDate()))
+            throw new InvalidActionException("Start date and end date must be on a same date");
+        scheduleService.save(counseling.getSchedule());
+        reportService.save(counseling.getReport());
+        return counselingRepository.save(counseling);
     }
 
 
@@ -63,27 +77,11 @@ public class CounselingService {
         return counseling;
     }
 
-    public CounselingDto getById(long id){
-        // provera vremena
-        Counseling counseling = counselingRepository.findCounselingById(id);
-        if(counseling != null){
-            PatientDto patientDto = PatientMapper.mapPatientToPatientDto(counseling.getPatient());
-            return CounselingMapper.mapCounselingToCounselingDto(counseling, patientDto);
-        }
-        throw new NotFoundException("Counseling not found");
-    }
-
-    public Counseling getCounselingById(long id){
-        return counselingRepository.findCounselingById(id);
-    }
-
     public List<String> getPharmacistNameByPatient(Patient patient){
-        String pharmacistName;
         List<String> pharmacistNames = new ArrayList<>();
-        List<Counseling> counselingList = counselingRepository.findByPatient(patient);
-        for(Counseling counseling: counselingList){
+        for(Counseling counseling: counselingRepository.findByPatient(patient)){
             if(counseling.isPatientCame()){
-                pharmacistName = counseling.getPharmacist().getUser().getRole().toString() + ": " + counseling.getPharmacist().getUser().getName()+" "+ counseling.getPharmacist().getUser().getSurname();
+                String pharmacistName = counseling.getPharmacist().getUser().getRole().toString() + ": " + counseling.getPharmacist().getUser().getName()+" "+ counseling.getPharmacist().getUser().getSurname();
                 pharmacistNames.add(pharmacistName);
             }
         }
