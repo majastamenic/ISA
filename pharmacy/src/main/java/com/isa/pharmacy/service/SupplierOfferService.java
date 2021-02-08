@@ -42,7 +42,7 @@ public class SupplierOfferService {
     public SupplierOffer getOffer(Long orderId, String supplierEmail){
         List<SupplierOffer> supplierOfferList = getAllSupplierOffers(supplierEmail);
         for(SupplierOffer supplierOffer: supplierOfferList){
-            if(supplierOffer.getOrder().getId() == orderId)
+            if(supplierOffer.getOrder().getId().equals(orderId))
                 return supplierOffer;
         }
         throw new NotFoundException("Suppler dosen't have offer for order "+orderId);

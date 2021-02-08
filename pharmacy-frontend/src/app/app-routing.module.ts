@@ -34,6 +34,7 @@ import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -43,7 +44,7 @@ const routes: Routes = [
   { path: 'user', component: RegistrationComponent },
   { path: 'hospital', component: HospitalComponent },
   { path: 'actions', component: ActionsBenefitsComponent },
-  { path: 'medicine', component: MedicineComponent },
+  { path: 'medicines', component: MedicineComponent },
   { path: 'uploadQR', component: UploadQRComponent },
   { path: 'ePrescription', component: EPrescriptionComponent },
   { path: 'counseling', component: ScheduleCounselingComponent },
@@ -79,7 +80,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), CommonModule],
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

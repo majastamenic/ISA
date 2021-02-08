@@ -44,17 +44,6 @@ public class MedicineService {
         return medicineList;
     }
 
-    public List<MedicineDto> getAllMedicines() {
-        List<Medicine> medicineList = medicineRepository.findAll();
-        List<MedicineDto> medicineDtoList = new ArrayList<>();
-        for(Medicine medicine: medicineList) {
-            for (MedicinePharmacy medicinePharmacy :medicine.getMedicinePharmacy()) {
-                medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), medicinePharmacy.getPharmacy().getName()));
-            }
-        }
-        return medicineDtoList;
-    }
-
     public MedicineLoyaltyDto changeLoyalty(MedicineLoyaltyDto medicineLoyaltyDto){
         Medicine medicine = medicineRepository.findMedicineByCode(medicineLoyaltyDto.getCode());
         if(medicine == null)

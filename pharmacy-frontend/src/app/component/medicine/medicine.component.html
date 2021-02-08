@@ -1,37 +1,30 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h2>Medicine list</h2>
-    </div>
-    <div class="panel-body">
-        <table id="medicine" class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Form</th>
-                    <th>Manufactured</th>
-                    <th>Publishing type</th>
-                    <th>Pharmacy</th>
-                    <th>Price</th>
-                    <th>Amount</th>
-                    <th>Note</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let medicine of medicinesDtoList">
-                    <td>{{medicine.code}}</td>
-                    <td>{{medicine.name}}</td>
-                    <td>{{medicine.typeOfMedicine}}</td>
-                    <td>{{medicine.formOfMedicine}}</td>
-                    <td>{{medicine.manufactured}}</td>
-                    <td>{{medicine.publishingType}}</td>
-                    <td>{{medicine.pharmacyName}}</td>
-                    <td>{{medicine.price}}</td>
-                    <td>{{medicine.amount}}</td>
-                    <td>{{medicine.note}}</td>
-                </tr>
-            </tbody>
-        </table>
+<div *ngFor="let medicine of medicinesDtoList; index as i" class="page">
+    <div class="form">
+      <form class="ngform">
+        <h3>{{medicine.name}}</h3>
+        <label>Type: {{medicine.typeOfMedicine}}</label>
+        <hr/>
+        <p>Pharmacies:</p>
+        <div *ngFor="let p of medicine.pharmacyPriceDtos">
+            <label>Pharmacy name: {{p.pharmacyName}}</label>
+            <br/>
+            <label>Price: {{p.price}}</label>
+        </div>
+        <button *ngIf="!viewSpec" class="btn btn-info" (click)="viewSpecification($event, i)">Specification</button>
+        <div *ngIf="viewSpec && enableViewIndex==i">
+            <hr/>
+            <label>Code: {{medicine.code}}</label>
+            <br/>
+            <label>Form: {{medicine.formOfMedicine}}</label>
+            <br/>
+            <label>Composition: {{medicine.composition}}</label>
+            <br/>
+            <label>Manufactured: {{medicine.manufactured}}</label>
+            <br/>
+            <label>Publishing type: {{medicine.publishingType}}</label>
+            <br/>
+            <button class="btn btn-info" (click)="cancel()">Cancel</button>
+        </div>
+        </form>
     </div>
 </div>

@@ -31,12 +31,12 @@ public class SupplierOfferController {
     private SupplierService supplierService;
 
     @GetMapping("/{email}")
-    private List<SupplierOfferDto> getAllSupplierOffers(@PathVariable String email){
+    public List<SupplierOfferDto> getAllSupplierOffers(@PathVariable String email){
         return SupplierOfferMapper.mapSupplierOffersToSupplierOffersDto(supplierOfferService.getAllSupplierOffers(email));
     }
 
     @PostMapping
-    private void createOffer(@RequestBody SupplierOfferDto supplierOfferDto){
+    public void createOffer(@RequestBody SupplierOfferDto supplierOfferDto){
         Order order = orderService.getById(supplierOfferDto.getOrderId());
         Supplier supplier = supplierService.getByEmail(supplierOfferDto.getSupplierEmail());
         SupplierOffer supplierOffer = SupplierOfferMapper.mapSupplierOfferDtoToSupplierOffer(supplierOfferDto, order, supplier);

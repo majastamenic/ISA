@@ -150,22 +150,20 @@ INSERT INTO medicine(code, composition, form_of_medicine, loyalty_points, manufa
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.50, 2350, 1, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(2.00, 2985, 2, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.75, 1420, 3, 1);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 1);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (2, 2);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (3, 3);
+
 -- MedicinePharmacy: Benu
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 15, 1, 2);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 18, 2, 2);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 4);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (2, 5);
 
 -- MedicineReplacement
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(1, 62217);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(2, 66042);
 
--- ??????????????
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 1);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 2);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 3);
-
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 4);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 5);
-----------------------
 
 insert into medicineeprescription(code, name, quantity) values(2, 'brufen', 123419);
 insert into medicineeprescription(code, name, quantity) values(8, 'panadol', 6839093);
@@ -200,7 +198,5 @@ insert into app_order(end_date, end_time, pharmacy_admin_id) values ('2021-03-07
 insert into order_offer(price, quantity, medicine_id)VALUES (2.9, 200, 1);
 insert into order_offer(price, quantity, medicine_id)VALUES (1.0, 100, 2);
 insert into order_offer(price, quantity, medicine_id)VALUES (2.0, 2, 3);
-
--- Supplier offers
 
 

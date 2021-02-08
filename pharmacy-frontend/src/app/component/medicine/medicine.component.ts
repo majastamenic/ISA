@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { MedicineService } from 'src/app/service/medicine.service';
-import { Medicine } from './model/medicine-model';
 
 @Component({
   selector: 'app-medicine',
@@ -10,6 +8,8 @@ import { Medicine } from './model/medicine-model';
 })
 export class MedicineComponent implements OnInit {
 
+  viewSpec: boolean = false;
+  enableViewIndex: any;
   medicinesDtoList: any;
 
   constructor(private medicineService: MedicineService) { }
@@ -18,6 +18,15 @@ export class MedicineComponent implements OnInit {
     this.medicineService.getAllMedicinesDto().subscribe(listMedicineDto => {
       this.medicinesDtoList = listMedicineDto;
     });
+  }
+
+  viewSpecification(e: Event, i: any){
+    this.enableViewIndex = i;
+    this.viewSpec = true;
+  }
+
+  cancel(){
+    this.viewSpec = false;
   }
 
 }

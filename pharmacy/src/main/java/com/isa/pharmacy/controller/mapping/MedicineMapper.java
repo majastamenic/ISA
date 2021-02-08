@@ -1,13 +1,12 @@
 package com.isa.pharmacy.controller.mapping;
 
 
-import com.isa.pharmacy.controller.dto.AddMedicineDto;
-import com.isa.pharmacy.controller.dto.AllergyDto;
-import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
-import com.isa.pharmacy.controller.dto.MedicineFromPharmacyDto;
+import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MedicineMapper {
 
@@ -103,5 +102,33 @@ public class MedicineMapper {
         Medicine med = new Medicine();
         med.setName(allergyDto.getName());
         return med;
+    }
+
+    public static List<SearchMedicineDto> mapMedicinesToSearchMedicinesDto(List<Medicine> medicines){
+        List<SearchMedicineDto> searchMedicineDtos = new ArrayList<>();
+        for(Medicine medicine: medicines){
+            searchMedicineDtos.add(mapMedicineToSearchMedicineDto(medicine));
+        }
+        return searchMedicineDtos;
+    }
+
+    public static SearchMedicineDto mapMedicineToSearchMedicineDto(Medicine medicine){
+        SearchMedicineDto searchMedicineDto = new SearchMedicineDto();
+        searchMedicineDto.setCode(medicine.getCode());
+        searchMedicineDto.setName(medicine.getName());
+        searchMedicineDto.setComposition(medicine.getComposition());
+        searchMedicineDto.setManufactured(medicine.getManufactured());
+        searchMedicineDto.setFormOfMedicine(medicine.getFormOfMedicine());
+        searchMedicineDto.setTypeOfMedicine(medicine.getTypeOfMedicine());
+        searchMedicineDto.setPublishingType(medicine.getPublishingType());
+        List<SearchMedPhDto> searchMedPhDtos = new ArrayList<>();
+        SearchMedPhDto searchMedPhDto = new SearchMedPhDto();
+        for(MedicinePharmacy medicinePharmacy: medicine.getMedicinePharmacy()){
+            searchMedPhDto.setPharmacyName(medicinePharmacy.getPharmacy().getName());
+            searchMedPhDto.setPrice(medicinePharmacy.getPrice());
+            searchMedPhDtos.add(searchMedPhDto);
+        }
+        searchMedicineDto.setPharmacyPriceDtos(searchMedPhDtos);
+        return searchMedicineDto;
     }
 }

@@ -29,13 +29,13 @@ public class OrderController {
     private MedicineService medicineService;
 
     @GetMapping
-    private List<OrderDto> getAll(){
+    public List<OrderDto> getAll(){
         List<Order> orders = orderService.getAll();
         return OrderMapper.mapOrdersToOrdersDto(orders);
     }
 
    @PostMapping
-    private void createOrder(@RequestBody OrderDto orderDto){
+    public void createOrder(@RequestBody OrderDto orderDto){
        PharmacyAdmin pharmacyAdmin = pharmacyAdminService.getByEmail(orderDto.getPharmacyAdminEmail());
        List<String> medicineNames = new ArrayList<>();
        for(OrderOfferDto orderOfferDto: orderDto.getOrderOffers()){
@@ -47,7 +47,7 @@ public class OrderController {
    }
 
    @DeleteMapping("/{id}")
-    private void deleteOrder(@PathVariable Long id){
+    public void deleteOrder(@PathVariable Long id){
         orderService.deleteOrder(id);
    }
 }
