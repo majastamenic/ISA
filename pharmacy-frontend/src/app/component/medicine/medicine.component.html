@@ -1,30 +1,45 @@
-<div *ngFor="let medicine of medicinesDtoList; index as i" class="page">
-    <div class="form">
-      <form class="ngform">
-        <h3>{{medicine.name}}</h3>
-        <label>Type: {{medicine.typeOfMedicine}}</label>
-        <hr/>
-        <p>Pharmacies:</p>
-        <div *ngFor="let p of medicine.pharmacyPriceDtos">
-            <label>Pharmacy name: {{p.pharmacyName}}</label>
-            <br/>
-            <label>Price: {{p.price}}</label>
+<div class="page">
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <input type="text" [(ngModel)]="name" name="searchBtn">
+            <button (click) = search()>Search</button>
         </div>
-        <button *ngIf="!viewSpec" class="btn btn-info" (click)="viewSpecification($event, i)">Specification</button>
-        <div *ngIf="viewSpec && enableViewIndex==i">
+    </nav>
+
+    <div *ngFor="let medicine of medicinesDtoList | paginate: {id: 'server', itemsPerPage: itemsPerPage, currentPage: page, totalItems: total }; index as i" class="page">
+        <div class="form">
+        <form class="ngform">
+            <h3>{{medicine.name}}</h3>
+            <label>Type: {{medicine.typeOfMedicine}}</label>
             <hr/>
-            <label>Code: {{medicine.code}}</label>
-            <br/>
-            <label>Form: {{medicine.formOfMedicine}}</label>
-            <br/>
-            <label>Composition: {{medicine.composition}}</label>
-            <br/>
-            <label>Manufactured: {{medicine.manufactured}}</label>
-            <br/>
-            <label>Publishing type: {{medicine.publishingType}}</label>
-            <br/>
-            <button class="btn btn-info" (click)="cancel()">Cancel</button>
+            <p>Pharmacies:</p>
+            <div *ngFor="let p of medicine.pharmacyPriceDtos">
+                <label>Pharmacy name: {{p.pharmacyName}}</label>
+                <br/>
+                <label>Price: {{p.price}}</label>
+            </div>
+            <button *ngIf="!viewSpec" class="btn btn-info" (click)="viewSpecification($event, i)">Specification</button>
+            <div *ngIf="viewSpec && enableViewIndex==i">
+                <hr/>
+                <p>Specification</p>
+                <br/>
+                <label>Code: {{medicine.code}}</label>
+                <br/>
+                <label>Form: {{medicine.formOfMedicine}}</label>
+                <br/>
+                <label>Composition: {{medicine.composition}}</label>
+                <br/>
+                <label>Manufactured: {{medicine.manufactured}}</label>
+                <br/>
+                <label>Publishing type: {{medicine.publishingType}}</label>
+                <br/>
+                <button class="btn btn-info" (click)="cancel()">Cancel</button>
+            </div>
+            </form>
         </div>
-        </form>
+    </div>
+    <div class="has-text-centered">
+        <pagination-controls (pageChange)="onPageChanged($event)" id="server"></pagination-controls>
     </div>
 </div>

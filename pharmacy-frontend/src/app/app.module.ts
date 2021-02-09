@@ -45,6 +45,7 @@ import { ComplaintsComponent } from './component/system-admin/complaints/complai
 import { SupplierComponent } from './component/supplier/supplier.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { ViewOrdersComponent } from './component/supplier/view-orders/view-order
     NgSelectModule,
     DpDatePickerModule,
     NgbModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

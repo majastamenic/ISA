@@ -7,6 +7,7 @@ import com.isa.pharmacy.domain.MedicinePharmacy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MedicineMapper {
 
@@ -128,7 +129,7 @@ public class MedicineMapper {
             searchMedPhDto.setPrice(medicinePharmacy.getPrice());
             searchMedPhDtos.add(searchMedPhDto);
         }
-        searchMedicineDto.setPharmacyPriceDtos(searchMedPhDtos);
+        searchMedicineDto.setPharmacyPriceDtos(searchMedPhDtos.stream().distinct().collect(Collectors.toList()));
         return searchMedicineDto;
     }
 }

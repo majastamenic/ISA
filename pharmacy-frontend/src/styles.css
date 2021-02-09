@@ -31,8 +31,8 @@ input, select{
 
   .page{
     width: 360px;
-      padding: 0% 0 0;
-      margin: auto;
+    padding: 0% 0 0;
+    margin: auto;
   }
   .ngform {
     position: relative;
@@ -44,6 +44,10 @@ input, select{
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  .card{
+    margin: 20px;
   }
 
   .transparent{
