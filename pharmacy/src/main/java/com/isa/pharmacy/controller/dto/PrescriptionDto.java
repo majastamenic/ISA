@@ -1,6 +1,5 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.Diagnosis;
 import java.util.List;
 
 public class PrescriptionDto {

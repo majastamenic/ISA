@@ -23,7 +23,7 @@ public class DiagnosisService {
         List<Diagnosis> diagnosis = new ArrayList<>();
         for(Long i: id){
             for(Diagnosis d: getAll()){
-                if(d.getId() == i)
+                if(d.getId().equals(i))
                     diagnosis.add(d);
             }
         }

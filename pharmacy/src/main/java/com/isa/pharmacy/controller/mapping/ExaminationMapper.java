@@ -45,7 +45,7 @@ public class ExaminationMapper {
         examination.setDermatologist(dermatologist);
         examination.setPatient(patient);
         examination.setSchedule(schedule);
-        examination.setPrescription(PrescriptionMapper.mapPrescriptionDtoToPrescription(examinationDto.getPrescription(), pharmacy, prescription));
+        examination.setPrescription(PrescriptionMapper.mapPrescriptionDtoToPrescription(examinationDto.getPrescription(), prescription));
         examination.setPharmacy(pharmacy);
         examination.setPrice(examinationDto.getPrice());
         examination.setPatientCame(examinationDto.getPatientCame());
