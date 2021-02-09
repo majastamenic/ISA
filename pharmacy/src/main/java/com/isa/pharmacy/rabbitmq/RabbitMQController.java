@@ -16,7 +16,10 @@ public class RabbitMQController {
     @Autowired
     RabbitMQService rabbitMQService;
 
-    @PostMapping
+    @Autowired
+    ActionsAndBenefitsService actionsAndBenefitsService;
+
+    /*@PostMapping
     public ResponseEntity<String> producer(@RequestBody ActionsAndBenefitsDto actionDto) {
 
         ActionsAndBenefits action = ActionsAndBenefitsMapper.mapActionDtoToAction(actionDto);
@@ -24,5 +27,10 @@ public class RabbitMQController {
         rabbitMQService.send(action);
 
         return ResponseEntity.ok("Message sent to the RabbitMQ JavaInUse Successfully");
+    }*/
+
+    @PostMapping
+    public ActionsAndBenefits save(@RequestBody ActionsAndBenefitsDto actionsAndBenefitsDto){
+        return actionsAndBenefitsService.save(ActionsAndBenefitsMapper.mapActionDtoToAction(actionsAndBenefitsDto));
     }
 }

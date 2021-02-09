@@ -1,45 +1,43 @@
-package com.isa.pharmacy.domain;
+package com.isa.pharmacy.scheduling.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.domain.PharmacyAdmin;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table
-public class WorkSchedule implements Serializable {
-    private static final long serialVersionUID = 7284040064117627747L;
+public class VacationSchedule implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private Schedule schedule;
+    @Column
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
+    private Date startDate;
+    @Column
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
+    private Date endDate;
     @ManyToMany             // TODO: Obrisati liste ispod?
     private List<Pharmacist> pharmacists;
     @ManyToMany
     private List<Dermatologist> dermatologists;
-    @OneToOne
-    private PharmacyAdmin admin;
 
-    public WorkSchedule() { }
+    public VacationSchedule(){}
 
-    public WorkSchedule(Long id, Schedule schedule, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists, PharmacyAdmin admin) {
+    public VacationSchedule(Long id, Date startDate, Date endDate, List<Pharmacist> pharmacists, List<Dermatologist> dermatologists) {
         this.id = id;
-        this.schedule = schedule;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.pharmacists = pharmacists;
         this.dermatologists = dermatologists;
-        this.admin = admin;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
     }
 
     public List<Dermatologist> getDermatologists() {
@@ -66,13 +64,19 @@ public class WorkSchedule implements Serializable {
         this.id = id;
     }
 
-    public PharmacyAdmin getAdmin() {
-        return admin;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setAdmin(PharmacyAdmin admin) {
-        this.admin = admin;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 }
-

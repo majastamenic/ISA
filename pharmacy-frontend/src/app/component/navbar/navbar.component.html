@@ -39,13 +39,19 @@
             </li>
             <!--Dermatologist-->
             <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/pharmacist/init'" routerLinkActive="active">Register pharmacist</a>
+            </li>
+            <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/allexaminations'" routerLinkActive="active">All examinations</a>
             </li>
             <li class="nav-item">
-                <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/examination'" routerLinkActive="active">Schedule examination</a>
+                <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/diagnosis'" routerLinkActive="active">Diagnosis</a>
             </li>
             <li class="nav-item">
-                <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/diagnosis'" routerLinkActive="active">Diagnosis</a>
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/scheduledExaminations'" routerLinkActive="active">Examinations</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/patient/counselings'" routerLinkActive="active">Counselings</a>
             </li>
             <!--Admin-->
             <li class="nav-item">
@@ -78,10 +84,10 @@
             <li class="nav-item">
                 <a *ngIf="!userService.isUserLogin()" class="nav-link" [routerLink]="'/user'" routerLinkActive="active">Registration</a>
             </li>
-            <li class="nav-item"> 
+            <li class="nav-item">
                 <a *ngIf="!userService.isUserLogin()" class="nav-link" [routerLink]="'/hospital'" routerLinkActive="active">Hospital registration</a>
             </li>
-            <li class="nav-item"> 
+            <li class="nav-item">
                 <a (click)="userService.logOut()" *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/login'" routerLinkActive="active">Logout</a>
             </li>
         </ul>

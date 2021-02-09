@@ -1,8 +1,9 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
+import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
+import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 
-import com.isa.pharmacy.controller.dto.FreeExaminationDto;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.service.ExaminationService;
 import com.isa.pharmacy.users.service.DermatologistService;
@@ -20,16 +21,22 @@ public class ExaminationController {
     @Autowired
     private DermatologistService dermatologistService;
 
-    @GetMapping("/freeTerms")       // Za sada se ne koristi nigde
-    public List<FreeExaminationDto> getFreeExaminationTerms(){
-        return examinationService.getAllFreeExaminationTerms();
+
+    @GetMapping("/start/{id}")
+    public ExamDermatologistDto getById(@PathVariable("id") long id) {
+        return examinationService.getById(id);
+    }
+
+    @GetMapping("/freeTerms")       // TODO: Obrisati ako niko ne koristi
+    public List<ExaminationUpcomingDto> getFreeExaminationTerms(){
+        return ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinationService.getAllFreeExaminationTerms());
     }
 
     @GetMapping("/freeTerms/{pharmacyName}")
-    public List<FreeExaminationDto> getExaminationTermsByPharmacy(@PathVariable String pharmacyName){
-        return examinationService.getFreeExaminationTermsByPharmacy(pharmacyName);
+    public List<ExaminationUpcomingDto> getExaminationTermsByPharmacy(@PathVariable String pharmacyName){
+        return ExaminationMapper.mapExaminationListToExaminationUpcomingDto(
+                examinationService.getFreeExaminationTermsByPharmacy(pharmacyName));
     }
-
 
     @GetMapping("/{email}")
     public List<ExamDermatologistDto> getAllByDermatologist(@PathVariable("email") String email) {
@@ -37,9 +44,22 @@ public class ExaminationController {
         return examinationService.getAllByDermatologist(dermatologist);
     }
 
+    @GetMapping("/scheduled/{email}")
+    public List<ExaminationUpcomingDto> getExaminationByPatient(@PathVariable String email){
+        return ExaminationMapper.mapExaminationListToExaminationUpcomingDto(
+                examinationService.getExaminationByPatient(email));
+    }
 
     @PutMapping("/schedule/{patientEmail}/{examinationId}")
     public void scheduleExamination(@PathVariable String patientEmail, @PathVariable Long examinationId){
         examinationService.scheduleExamination(patientEmail, examinationId);
     }
+
+    @PutMapping("/cancel/{examinationId}")
+    public void cancelExamination(@PathVariable Long examinationId){
+        examinationService.cancelExamination(examinationId);
+    }
+
+    @PostMapping("/update")
+    public ExamDermatologistDto updateExamination(@RequestBody ExamDermatologistDto examination){return examinationService.updateExamination(examination);}
 }

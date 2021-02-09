@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.service';
 import { PriceListService } from 'src/app/service/price-list.service';
-import { PharmacyAdmin } from '../../user/model/pharmacy-admin';
+import { PharmacyAdmin } from '../../../model/pharmacy-admin';
 
 @Component({
   selector: 'app-price-init',
@@ -17,6 +17,7 @@ export class PriceInitComponent implements OnInit {
   endDate: any;
   price: number;
   pharmacyAdmin: PharmacyAdmin;
+  loggedUser: any = sessionStorage.getItem("user");
 
   constructor(private priceListService: PriceListService, 
     private toastrService: ToastrService,
@@ -32,7 +33,6 @@ export class PriceInitComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    let loggedUser = sessionStorage.getItem("user");
     this.medicinePharmacyService.getByPharmacy(this.pharmacyAdmin.pharmacy).subscribe((response: any) =>{
       this.listMedications = response;
     });

@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     private static final String GREETING = "Hello ";
+    private static final String CLOSE_PHASE = "Best regards,\n";
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -52,14 +54,31 @@ public class EmailService {
         mailMessage.setFrom(mailSender);
         mailMessage.setTo(examiantion.getPatient().getUser().getEmail());
         mailMessage.setSubject("Examination");
-        mailMessage.setText(GREETING + examiantion.getPatient().getUser().getName() + ",\n" +
+        mailMessage.setText(GREETING + examiantion.getPatient().getUser().getName() + ",\n\n" +
                             "You have successfully scheduled an appointment with dermatologist.\n" +
                             "Details: \n" +
-                            "- Dermatologist: " + examiantion.getDermatologist().getUser().getName() + "\n" +
+                            "- Dermatologist: " + examiantion.getDermatologist().getUser().getName() + " " + examiantion.getDermatologist().getUser().getSurname() + "\n" +
                             "- Time: " + examiantion.getSchedule().getStartTime() + "\n" +
-                            "- Price: " + examiantion.getPrice() + "€\n" +
-                            "Best regards,\n" +
+                            "- Price: " + examiantion.getPrice() + "€\n\n" +
+                            CLOSE_PHASE +
                             "ISA Pharmacy");
+        javaMailSender.send(mailMessage);
+    }
+
+    @Async
+    public void successfulCounselingSchedule(Counseling counseling) throws  MailException{
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(mailSender);
+        mailMessage.setTo(counseling.getPatient().getUser().getEmail());
+        mailMessage.setSubject("Counseling");
+        mailMessage.setText(GREETING + counseling.getPatient().getUser().getName() + ",\n\n" +
+                "You have successfully scheduled a counseling with pharmacist.\n" +
+                "Details: \n" +
+                "- Pharmacist: " + counseling.getPharmacist().getUser().getName() + " " + counseling.getPharmacist().getUser().getSurname() + "\n" +
+                "- Time: " + counseling.getSchedule().getStartTime() + "\n" +
+                "- Price: " + counseling.getPharmacist().getPharmacy().getCounselingPrice() + "€\n\n" +
+                CLOSE_PHASE +
+                "ISA Pharmacy");
         javaMailSender.send(mailMessage);
     }
 
@@ -101,6 +120,19 @@ public class EmailService {
         simpleMailMessage.setSubject("Generated PDF");
         simpleMailMessage.setText("Dear Pharmacy,\n" +
                 "PDF is generated:");
+
+        javaMailSender.send(simpleMailMessage);
+    }
+
+    public void notifyAdminPharmacyAboutMedicine(String adminEmail, String pharmacyAdmin, String medName)throws MailException{
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSender);
+        simpleMailMessage.setTo(adminEmail);
+        simpleMailMessage.setSubject("Medicine is out of stock!");
+        simpleMailMessage.setText("Dear " + pharmacyAdmin + ",\n" +
+                "Pharmacy don't have " + medName + " on stock. Please order it.\n\n" +
+                CLOSE_PHASE +
+                "Health Worker.");
 
         javaMailSender.send(simpleMailMessage);
     }

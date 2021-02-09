@@ -1,6 +1,5 @@
 package com.isa.pharmacy.controller.mapping;
 
-
 import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
@@ -91,18 +90,6 @@ public class MedicineMapper {
         medicineFromPharmacyDto.setName(medicine.getName());
         medicineFromPharmacyDto.setId(medicine.getId());
         return medicineFromPharmacyDto;
-    }
-
-    public static AllergyDto mapAllergyToAllergyDto (Medicine medicine){
-        AllergyDto allergyDto = new AllergyDto();
-        allergyDto.setName(medicine.getName());
-        return allergyDto;
-    }
-
-    public static Medicine mapAllergyDtoToAllergy (AllergyDto allergyDto){
-        Medicine med = new Medicine();
-        med.setName(allergyDto.getName());
-        return med;
     }
 
     public static List<SearchMedicineDto> mapMedicinesToSearchMedicinesDto(List<Medicine> medicines){

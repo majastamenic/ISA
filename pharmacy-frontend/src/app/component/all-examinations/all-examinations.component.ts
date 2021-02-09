@@ -11,8 +11,9 @@ export class AllExaminationsComponent implements OnInit {
 
   email: string;
   examinations: any[] = [];
+  hideStart: boolean = false;
 
-  constructor(private examinationService: ExaminationService, private _ActivatedRoute: ActivatedRoute) { 
+  constructor(private examinationService: ExaminationService) { 
     this.email = '';
   }
 

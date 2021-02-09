@@ -1,0 +1,16 @@
+.side-layout {
+    display: flex;
+    justify-content: center;
+}
+
+.btnCustom{
+    width: auto;
+    margin-left: 15px;
+}
+
+.btnRemove{
+    width: 30;
+    height: 30px;
+    padding: 0px;
+    margin-left: 15px;
+}

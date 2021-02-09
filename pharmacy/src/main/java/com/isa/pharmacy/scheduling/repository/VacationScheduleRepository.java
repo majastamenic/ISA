@@ -1,6 +1,6 @@
-package com.isa.pharmacy.repository;
+package com.isa.pharmacy.scheduling.repository;
 
-import com.isa.pharmacy.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

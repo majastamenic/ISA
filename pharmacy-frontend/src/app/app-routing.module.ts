@@ -17,11 +17,16 @@ import { ExaminationScheduleComponent } from './component/examination-schedule/e
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
+import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-profile/pharmacy-profile.component';
+import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
+import { AllDermatologistsComponent } from './component/pharmacy-admin/all-dermatologists/all-dermatologists.component';
+import { AllMedicationsComponent } from './component/pharmacy-admin/all-medications/all-medications.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
 import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
 import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
+import { StartExaminationComponent } from './component/start-examination/start-examination.component';
 import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
 import { SystemAdminComponent } from './component/system-admin/system-admin.component';
 import { AddMedicinesComponent } from './component/system-admin/add-medicines/add-medicines.component';
@@ -32,6 +37,8 @@ import { RegSystemAdminComponent } from './component/system-admin/reg-system-adm
 import { RegDermatologistComponent } from './component/system-admin/reg-dermatologist/reg-dermatologist.component';
 import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
+import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
+import { CounselingsComponent } from './component/patient/counselings/counselings.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 import { CommonModule } from '@angular/common';
@@ -62,14 +69,23 @@ const routes: Routes = [
   { path: 'add-pharmacy', component: AddPharmacyComponent },
   { path: 'loyalty', component: LoyalityComponent },
   { path: 'complaints', component: ComplaintsComponent},
+
+  { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
+  { path: 'scheduledExaminations', component: PatientExaminationsComponent},
+  { path: 'patient/counselings', component: CounselingsComponent},
+
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
-  { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'allcounselings/:id', component: StartCounselingComponent},
+  { path: 'allexaminations/:id', component: StartExaminationComponent},
   { path: 'price/init', component: PriceInitComponent},
   { path: 'counseling', component: ScheduleCounselingComponent},
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
+  { path: 'pharmacy/:pharmacyName', component: PharmacyProfileComponent},
+  { path: 'pharmacists/:id', component: AllPharmacistsComponent},
+  { path: 'dermatologists', component: AllDermatologistsComponent},
+  { path: 'medications/:id', component: AllMedicationsComponent},
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
   { path: 'allexaminations', component: AllExaminationsComponent},
   { path: 'examination', component: ScheduleExaminationDermatologistComponent},

@@ -27,11 +27,16 @@ import { AllCounselingsComponent } from './component/all-counselings/all-counsel
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
+import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-profile/pharmacy-profile.component';
+import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
+import { AllDermatologistsComponent } from './component/pharmacy-admin/all-dermatologists/all-dermatologists.component';
+import { AllMedicationsComponent } from './component/pharmacy-admin/all-medications/all-medications.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
 import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
 import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
 import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
 import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
+import { StartExaminationComponent } from './component/start-examination/start-examination.component';
 import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
 import { SystemAdminComponent } from './component/system-admin/system-admin.component';
 import { AddMedicinesComponent } from './component/system-admin/add-medicines/add-medicines.component';
@@ -42,6 +47,8 @@ import { RegSupplierComponent } from './component/system-admin/reg-supplier/reg-
 import { RegSystemAdminComponent } from './component/system-admin/reg-system-admin/reg-system-admin.component';
 import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.component';
 import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
+import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
+import { CounselingsComponent } from './component/patient/counselings/counselings.component';
 import { SupplierComponent } from './component/supplier/supplier.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
@@ -76,17 +83,24 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UserProfileComponent,
     PriceInitComponent,
     PublishingReservedMedicineComponent,
+    PharmacyProfileComponent,
+    AllPharmacistsComponent,
+    AllDermatologistsComponent,
+    AllMedicationsComponent,
     ScheduleVacationComponent,
     StartCounselingComponent,
     AllExaminationsComponent,
     ScheduleExaminationDermatologistComponent,
     DiagnosisComponent,
+    StartExaminationComponent,
     LoyalityComponent,
     ComplaintMessageComponent,
     ComplaintsComponent,
     SupplierComponent,
     AddOrderComponent,
     ViewOrdersComponent,
+    PatientExaminationsComponent,
+    CounselingsComponent
   ],
   imports: [
     BrowserModule,

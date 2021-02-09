@@ -1,16 +1,23 @@
 package com.isa.pharmacy.users.service;
 
+
+import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.service.VacationScheduleService;
 import com.isa.pharmacy.users.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacistMapper;
-import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.service.CounselingService;
 import com.isa.pharmacy.service.PharmacyService;
-import com.isa.pharmacy.service.WorkScheduleService;
+import com.isa.pharmacy.scheduling.service.WorkScheduleService;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PharmacistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -24,6 +31,8 @@ public class PharmacistService {
     private CounselingService counselingService;
     @Autowired
     private WorkScheduleService workScheduleService;
+    @Autowired
+    private VacationScheduleService vacationScheduleService;
     @Autowired
     private PharmacyService pharmacyService;
 
@@ -76,4 +85,24 @@ public class PharmacistService {
         return pharmacistRepository.findPharmacistByUser_email(email);
     }
 
+    public List<PharmacistByPharmacyDto> findPharmacistsByPharmacyId(Long id){
+        List<Pharmacist> pharmacists = pharmacistRepository.findPharmacistByPharmacy_id(id);
+        List<PharmacistByPharmacyDto> pharmacistByPharmacyDtos = new ArrayList<>();
+        for(Pharmacist pharmacist:pharmacists){
+            pharmacistByPharmacyDtos.add(PharmacistMapper.mapPharmacistToPharmacistByPharmacyDto(pharmacist));
+        }
+        return pharmacistByPharmacyDtos;
+    }
+
+    public List<Pharmacist> getFreePharmacistByDate(Date eagerDate){
+        List<Pharmacist> freePharmacists = new ArrayList<>();
+        for(Pharmacist pharmacist : pharmacistRepository.findAll()){
+            if(counselingService.isPharmacistOccupied(pharmacist, eagerDate) ||
+               vacationScheduleService.isEmployeeOnVacation(pharmacist.getVacationSchedules(), eagerDate))
+                continue;
+            if(workScheduleService.isEmployeeWorking(pharmacist.getWorkSchedule(), eagerDate))
+                freePharmacists.add(pharmacist);
+        }
+        return freePharmacists;
+    }
 }

@@ -1,7 +1,7 @@
 package com.isa.pharmacy.users.domain;
 
 import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,16 +19,13 @@ public class PharmacyAdmin implements Serializable {
     private User user;
     @OneToOne
     private Pharmacy pharmacy;
-    @OneToMany
-    private List<WorkSchedule> schedule;
 
     public PharmacyAdmin(){}
 
-    public PharmacyAdmin(Long id, User user, Pharmacy pharmacy,List<WorkSchedule> schedule) {
+    public PharmacyAdmin(Long id, User user, Pharmacy pharmacy) {
         this.user =user;
         this.id = id;
         this.pharmacy = pharmacy;
-        this.schedule = schedule;
     }
 
     public User getUser() {
@@ -53,13 +50,5 @@ public class PharmacyAdmin implements Serializable {
 
     public void setPharmacy(Pharmacy pharmacy) {
         this.pharmacy = pharmacy;
-    }
-
-    public List<WorkSchedule> getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(List<WorkSchedule> schedule) {
-        this.schedule = schedule;
     }
 }

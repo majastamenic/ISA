@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ScheduleCounselingService } from 'src/app/service/schedule-counseling.service';
 import { PharmacistService } from 'src/app/service/pharmacist.service';
-import { Counseling } from '../user/model/counseling';
+import { Counseling } from '../../model/counseling';
 import { IDatePickerConfig } from 'ng2-date-picker';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';

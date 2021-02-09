@@ -3,10 +3,17 @@ package com.isa.pharmacy.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.isa.pharmacy.controller.dto.AvailabilityMedicineDto;
+import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;
+import com.isa.pharmacy.controller.mapping.MedicineMapper;
+import com.isa.pharmacy.domain.MedicinePharmacy;
+import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.users.domain.PharmacyAdmin;
+import com.isa.pharmacy.users.service.PharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +31,12 @@ public class MedicineService {
     private MedicineRepository medicineRepository;
     @Autowired
     private PharmacyService pharmacyService;
+    @Autowired
+    private MedicinePharmacyService medicinePharmacyService;
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private PharmacyAdminService pharmacyAdminService;
 
     public Medicine create(Medicine medicine) {
         if (medicineRepository.findMedicineById(medicine.getId()) != null)
@@ -33,7 +46,6 @@ public class MedicineService {
 
     public void delete(Medicine medicine) {
         medicineRepository.delete(medicine);
-
     }
 
     public Page<Medicine> filterMedicines(int pageSize, int numPage, String name, Double startPrice, Double endPrice,
@@ -46,6 +58,10 @@ public class MedicineService {
 
     public Medicine findById(Long id) {
         return medicineRepository.findMedicineById(id);
+    }
+
+    public Medicine findByName(String name) {
+        return medicineRepository.findMedicineByName(name);
     }
 
     public Page<Medicine> getAll(int numPage, int pageSize) {
@@ -61,6 +77,45 @@ public class MedicineService {
         if(medicineList == null)
             throw new NotFoundException("Pharmacy system doesnt have any medicine");
         return medicineList;
+    }
+
+    public List<MedicineDto> getAllMedicines() {
+        List<MedicineDto> medicineDtoList = new ArrayList<>();
+        for(Medicine medicine: medicineRepository.findAll()) {
+            for (MedicinePharmacy medicinePharmacy :medicine.getMedicinePharmacy()) {
+                medicineDtoList.add(MedicineMapper.mapMedicineToMedicineDto(medicinePharmacy.getMedicine(), medicinePharmacy.getPharmacy().getName()));
+            }
+        }
+        return medicineDtoList;
+    }
+
+    public List<AvailabilityMedicineDto> checkAvailabilityMedicines(String pharmacyName, List<String> meds){
+        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
+        for(String med: meds){
+            for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
+               if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName) && med.equalsIgnoreCase(mp.getMedicine().getName())){
+                   AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
+                   if(mp.getQuantity()>0){
+                       availMed.setAvailable(true);
+                   }
+                   else{
+                       List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacyName);
+                       for(PharmacyAdmin pa: pharmacyAdmins){
+                           String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
+                           emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, mp.getMedicine().getName());
+                       }
+                       availMed.setAvailable(false);
+                       List<String> alternative = getAllMedicinesById(mp.getMedicine().getReplacementMedicines());
+                       availMed.setAlternative(alternative);
+                   }
+                   availMed.setId(mp.getId());
+                   availMed.setName(med);
+                   availabilityMedicineDtos.add(availMed);
+               }
+            }
+        }
+        return availabilityMedicineDtos;
     }
 
     public MedicineLoyaltyDto changeLoyalty(MedicineLoyaltyDto medicineLoyaltyDto) {
@@ -84,4 +139,48 @@ public class MedicineService {
         }
         return medicineList;
     }
+
+    public List<Medicine> getAllMedicinesByCode(List<Long> codes){
+        List<Medicine> medicines = new ArrayList<>();
+        if(codes != null){
+            for(Long i : codes){
+                for(Medicine m: getAll()){
+                    if(m.getCode().equals(i))
+                        medicines.add(m);
+                }
+            }
+        }
+        return  medicines;
+    }
+
+    public List<String> getAllMedicinesById(List<Long> ids){
+        List<String> medNames = new ArrayList<>();
+        if(ids != null){
+            for(Long i : ids){
+                for(Medicine m: getAll()){
+                    if(m.getCode().equals(i))
+                        medNames.add(m.getName());
+                }
+            }
+        }
+        return  medNames;
+    }
+
+    public List<Medicine> decreaseQuantityInPharmacy(List<Medicine> meds, String pharmacyName){
+        List<Medicine> medicines = new ArrayList<>();
+        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        if(meds != null && pharmacyName !=null){
+            for(Medicine m: meds){
+                for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
+                    if(pharmacyName.equalsIgnoreCase(mp.getPharmacy().getName()) && mp.getMedicine().getName().equals(m.getName()) && mp.getQuantity()-1>=0){
+                        mp.setQuantity(mp.getQuantity()-1);
+                        medicinePharmacyService.save(mp);
+                        medicines.add(mp.getMedicine());
+                    }
+                }
+            }
+        }
+        return medicines;
+    }
+
 }
