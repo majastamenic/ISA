@@ -88,64 +88,47 @@ export class StartExaminationComponent implements OnInit {
     }
 
     cancelExamination(){
-      this.router.navigate(['allexaminations']);
+      this.router.navigate(['/allexaminations']);
     }
 
     patientIsHere(){
       this.patientCame = true;
     }
 
-    // TODO: srediti ovu metodu
-    patientIsntHere(){
-      const updateExam = {
-        id: this.examination.id,
-        email: this.examination.email,
-        patientDto:{},
-        patientEmail: this.examination.patientDto.user.email,
-        schedule: {
-          id: this.examination.schedule.id
-        },
-        prescription: {
-          diagnosis:[],
-          medicines:[]
-        },
-        pharmacyName: this.examination.pharmacyName,
-        price: this.examination.price,
-        patientCame: false
-      }
-      this.examinationService.updateExamination(updateExam).subscribe(exam => {
-        console.log(exam);
-        this.router.navigate(['allexaminations']);
-      })
-    }
-
-    saveExamination(){
+    saveExamination(came: boolean){
       this.updateExam.id = this.examination.id;
       this.updateExam.email = this.examination.email;
       this.updateExam.patientDto = this.examination.patientDto;
       this.updateExam.schedule = this.examination.schedule;
       this.updateExam.pharmacyName = this.examination.pharmacyName;
       this.updateExam.price = this.examination.price;
-      this.updateExam.patientCame = true;
+      this.updateExam.patientCame = came;
       this.updateExam.prescription.diagnosis = [];
-      for(let d of this.selectedDiag){
-        for(let dia of this.allDiagnosis){
-          if(d.name == dia.name){
-            this.updateExam.prescription.diagnosis.push(dia.id);
-          }
-        }
-      }
       this.updateExam.prescription.medicines = [];
-      for(let m of this.selectedMeds){
-        for(let mia of this.medicines){
-          if(m.medicine.name == mia.medicine.name){
-            this.updateExam.prescription.medicines.push(mia.medicine.code);
+      if(came == true){
+        for(let d of this.selectedDiag){
+          for(let dia of this.allDiagnosis){
+            if(d.name == dia.name){
+              this.updateExam.prescription.diagnosis.push(dia.id);
+            }
           }
         }
+        for(let m of this.selectedMeds){
+          for(let mia of this.medicines){
+            if(m.medicine.name == mia.medicine.name){
+              this.updateExam.prescription.medicines.push(mia.medicine.code);
+            }
+          }
+        }    
       }
+
       this.examinationService.updateExamination(this.updateExam).subscribe(exam => {
         console.log(exam);
-        this.toSchedule = true;
+        if(came == true){
+          this.toSchedule = true;
+        }else{
+          this.router.navigate(['/home']);
+        }
       })
     }
 

@@ -51,7 +51,7 @@
             <br><br><br><br>
             <div>
                 <button class="btn btn-secondary" style="width:200px;" (click)="cancelExamination()">Cancel</button>&nbsp;
-                <button class="btn btn-primary" style="width:200px;" (click)="saveExamination()">Save</button>
+                <button class="btn btn-primary" style="width:200px;" (click)="saveExamination(true)">Save</button>
             </div>
         </form>
     </div>
@@ -67,6 +67,6 @@
 
 
 <div *ngIf='!patientCame'  class="page" >
-    <button class="btn btn-secondary" style="width:200px;" (click)="saveExamination()">Patient didn't came</button>&nbsp;
+    <button class="btn btn-secondary" style="width:200px;" (click)="saveExamination(false)">Patient didn't came</button>&nbsp;
     <button class="btn btn-primary" style="width:200px;" (click)="patientIsHere()">Patient came</button>
 </div>
