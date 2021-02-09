@@ -1,7 +1,6 @@
 package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacyAdminMapper;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;

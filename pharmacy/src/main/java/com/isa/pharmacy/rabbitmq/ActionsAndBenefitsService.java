@@ -1,21 +1,16 @@
 package com.isa.pharmacy.rabbitmq;
 
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.service.EmailService;
-import com.isa.pharmacy.service.PharmacyService;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.service.PharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Email;
 import java.util.List;
 
 @Service
 public class ActionsAndBenefitsService {
-    @Autowired
-    private PharmacyService pharmacyService;
     @Autowired
     private PharmacyAdminService pharmacyAdminService;
     @Autowired

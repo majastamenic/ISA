@@ -22,7 +22,7 @@ public class Pharmacy implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
     @ElementCollection
-    List<String> subscribedEmails;
+    private List<String> subscribedEmails;
 
     public Pharmacy() { }
 

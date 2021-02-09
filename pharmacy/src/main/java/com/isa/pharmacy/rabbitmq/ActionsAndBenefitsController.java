@@ -1,12 +1,8 @@
 package com.isa.pharmacy.rabbitmq;
 
-import com.isa.pharmacy.service.EmailService;
-import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Email;
 
 @RestController
 @RequestMapping(value = "/actions")
