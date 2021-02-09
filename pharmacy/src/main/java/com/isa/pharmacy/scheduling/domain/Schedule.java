@@ -1,6 +1,9 @@
 package com.isa.pharmacy.scheduling.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.ParseException;
@@ -11,6 +14,8 @@ import java.util.Date;
 @Table
 public class Schedule implements Serializable {
     private static final long serialVersionUID = -2158829881260056438L;
+
+    private static final Logger logger = LoggerFactory.getLogger(Schedule.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,6 +93,7 @@ public class Schedule implements Serializable {
         try {
             res = sdf.parse(this.startDate.toString() + " " + this.startTime.toString());
         } catch (ParseException e) {
+            logger.error("Error while parsing date to: yyyy-MM-dd HH:mm:ss");
         }
         return res;
     }
@@ -98,6 +104,7 @@ public class Schedule implements Serializable {
         try {
             res = sdf.parse(this.endDate.toString() + " " + this.endTime.toString());
         } catch (ParseException e) {
+            logger.error("Error while parsing date to: yyyy-MM-dd HH:mm:ss");
         }
         return res;
     }
