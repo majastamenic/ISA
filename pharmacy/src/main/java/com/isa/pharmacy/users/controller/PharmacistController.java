@@ -1,6 +1,7 @@
 package com.isa.pharmacy.users.controller;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.controller.dto.CreatePharmacistDto;
@@ -44,7 +45,7 @@ public class PharmacistController {
     }
 
     @GetMapping("/pharmacists/{id}")
-    public List<PharmacistByPharmacyDto> getPHarmacistByPharmacyId(@PathVariable("id") Long id){
+    public List<PharmacistByPharmacyDto> getPharmacistByPharmacyId(@PathVariable("id") Long id){
         List<PharmacistByPharmacyDto> pharmacistByPharmacyDtos = pharmacistService.findPharmacistsByPharmacyId(id);
         if (pharmacistByPharmacyDtos.isEmpty()) {
             throw new NotFoundException("Pharmacy doesn't have pharmacist");
@@ -52,10 +53,9 @@ public class PharmacistController {
         return pharmacistByPharmacyDtos;
     }
 
-    @GetMapping("/free")
-    public List<PharmacistDto> getFreePharmacist(@RequestParam("date")
-                                                 @JsonFormat(pattern = "yyyy-MM-ddTHH:mm:ss", timezone = "GMT+01:00")
-                                                 Date date){
+    @PutMapping("/free")
+    public List<PharmacistDto> getFreePharmacist(@RequestBody DateTimeDto date){
         return PharmacistMapper.mapPharmacistListToPharmacistDto(pharmacistService.getFreePharmacistByDate(date));
     }
+
 }

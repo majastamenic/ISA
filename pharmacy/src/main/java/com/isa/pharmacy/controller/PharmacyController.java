@@ -1,9 +1,6 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
-import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.controller.dto.MedicineOrderDto;
-import com.isa.pharmacy.controller.dto.PharmacyDto;
+import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
@@ -107,5 +104,10 @@ public class PharmacyController {
                                      @RequestBody String medicineName, @RequestHeader("apiKey") String apiKey) {
         pharmacyService.checkApiKey(apiKey);
         return pharmacyService.hasPharmacyMedication(pharmacyName, medicineName);
+    }
+
+    @PostMapping("/availablePharmacies")
+    public List<PharmacyDto> getPharmaciesForCounseling(@RequestBody DateTimeDto date){
+        return PharmacyMapper.mapListPharmacyToPharmacyDto(pharmacyService.getPharmaciesForCounseling(date));
     }
 }

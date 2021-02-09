@@ -1,8 +1,10 @@
 package com.isa.pharmacy.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
@@ -11,6 +13,9 @@ import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
+import com.isa.pharmacy.scheduling.DateConvert;
+import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -24,6 +29,8 @@ public class PharmacyService {
 
     @Autowired
     private PharmacyRepository pharmacyRepository;
+    @Autowired
+    private PharmacistService pharmacistService;
     @Value("${apiKey}")
     private String apiKey;
 
@@ -129,7 +136,19 @@ public class PharmacyService {
         List<String> pharmacyNames = new ArrayList<>();
         List<Pharmacy> pharmacyList = pharmacyRepository.findAll();
         for(Pharmacy pharmacy: pharmacyList)
-            pharmacyNames.add("APOTEKA: "+ pharmacy.getName());
+            pharmacyNames.add("Pharmacy: "+ pharmacy.getName());
         return pharmacyNames;
+    }
+
+    public List<Pharmacy> getPharmaciesForCounseling(DateTimeDto eagerDate){
+        List<Pharmacy> availablePharmacies = new ArrayList<>();
+        List<String> addedPharmacies = new ArrayList<>();
+        for(Pharmacist ph : pharmacistService.getFreePharmacistByDate(eagerDate)){
+            if(!addedPharmacies.contains(ph.getPharmacy().getName())){
+                availablePharmacies.add(pharmacyRepository.findPharmacyByName(ph.getPharmacy().getName()));
+                addedPharmacies.add(ph.getPharmacy().getName());
+            }
+        }
+        return availablePharmacies;
     }
 }
