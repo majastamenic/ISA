@@ -4,7 +4,6 @@ import com.isa.pharmacy.controller.dto.OrderDto;
 import com.isa.pharmacy.controller.dto.ViewOrderOfferDto;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Order;
-import com.isa.pharmacy.domain.SupplierOffer;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 
 import java.util.ArrayList;

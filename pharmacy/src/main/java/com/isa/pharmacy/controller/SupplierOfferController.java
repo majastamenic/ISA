@@ -33,7 +33,7 @@ public class SupplierOfferController {
         List<SupplierOffer> supplierOfferList = supplierOfferService.getAllSupplierOffers(email);
         List<ViewOrderOfferDto> viewOrderOfferDtos = SupplierOfferMapper.mapSupplierOffersAndOrdersToViewOrderOfferDtos(supplierOfferList);
         List<Order> orders = orderService.findOrderWithoutSupplierOffer(email);
-        if(!orders.isEmpty() && orders != null)
+        if(!orders.isEmpty())
             viewOrderOfferDtos.addAll(OrderMapper.mapOrdersToViewOrderOffersDto(orders).stream().distinct().collect(Collectors.toList()));
         return viewOrderOfferDtos;
     }

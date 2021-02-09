@@ -26,7 +26,7 @@ public class SupplierOfferService {
     public void createOffer(SupplierOffer supplierOffer){
         SupplierOffer dbsupplierOffer = supplierOfferRepository.findSupplierOfferByOrder(supplierOffer.getOrder());
         Order order = orderService.getById(supplierOffer.getOrder().getId());
-        if(supplierOffer.getTotalPrice() <= 0 || supplierOffer.getDeliveryDate().equals(null))
+        if(supplierOffer.getTotalPrice() <= 0 || supplierOffer.getDeliveryDate() == null)
             throw new UnauthorizeException("Enter all fields");
         if(order.getEndDate().before(new Date())){
             throw new UnauthorizeException("You can't change offer for this order.");
