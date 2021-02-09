@@ -25,7 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
-import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { UserProfileComponent } from './component/user/profile/user-profile.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-profile/pharmacy-profile.component';
 import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
@@ -47,7 +47,7 @@ import { RegSupplierComponent } from './component/system-admin/reg-supplier/reg-
 import { RegSystemAdminComponent } from './component/system-admin/reg-system-admin/reg-system-admin.component';
 import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.component';
 import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
-import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
+import { PatientExaminationsComponent } from './component/patient/patient-examinations/patient-examinations.component';
 import { CounselingsComponent } from './component/patient/counselings/counselings.component';
 import { SupplierComponent } from './component/supplier/supplier.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';

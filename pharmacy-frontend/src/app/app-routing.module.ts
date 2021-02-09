@@ -5,7 +5,7 @@ import { AllCounselingsComponent } from './component/all-counselings/all-counsel
 import { HomeComponent } from '../../home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
-import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { UserProfileComponent } from './component/user/profile/user-profile.component';
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
 import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
@@ -37,7 +37,7 @@ import { RegSystemAdminComponent } from './component/system-admin/reg-system-adm
 import { RegDermatologistComponent } from './component/system-admin/reg-dermatologist/reg-dermatologist.component';
 import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
-import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
+import { PatientExaminationsComponent } from './component/patient/patient-examinations/patient-examinations.component';
 import { CounselingsComponent } from './component/patient/counselings/counselings.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';

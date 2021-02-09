@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PatientService } from 'src/app/service/patient.service';
 import { UserService } from 'src/app/service/user.service';
-import { PasswordChangeDto } from '../../model/user-model';
+import { PasswordChangeDto } from '../../../model/user-model';
 
 @Component({
   selector: 'app-user-profile',
