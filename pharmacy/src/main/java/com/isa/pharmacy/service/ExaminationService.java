@@ -130,6 +130,7 @@ public class ExaminationService {
             Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
             List<Diagnosis> diagnosis = diagnosisService.getAllDiagnosisById(updateExamination.getPrescription().getDiagnosis());
             List<Medicine> medicines = medicineService.getAllMedicinesByCode(updateExamination.getPrescription().getMedicines());
+            medicines = medicineService.decreaseQuantityInPharmacy(medicines, updateExamination.getPharmacyName());
             Prescription prescription = new Prescription();
             prescription.setMedicines(medicines);
             prescription.setDiagnosis(diagnosis);

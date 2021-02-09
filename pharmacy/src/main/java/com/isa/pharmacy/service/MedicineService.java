@@ -8,7 +8,6 @@ import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
-import com.isa.pharmacy.domain.Diagnosis;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,8 @@ public class MedicineService {
     private MedicineRepository medicineRepository;
     @Autowired
     private PharmacyService pharmacyService;
+    @Autowired
+    private MedicinePharmacyService medicinePharmacyService;
 
     public Medicine create(Medicine medicine) {
         if(medicineRepository.findMedicineById(medicine.getId()) != null)
@@ -121,5 +122,21 @@ public class MedicineService {
         return  medNames;
     }
 
+    public List<Medicine> decreaseQuantityInPharmacy(List<Medicine> meds, String pharmacyName){
+        List<Medicine> medicines = new ArrayList<>();
+        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        if(meds != null && pharmacyName !=null){
+            for(Medicine m: meds){
+                for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
+                    if(pharmacyName.equalsIgnoreCase(mp.getPharmacy().getName()) && mp.getMedicine().getName().equals(m.getName()) && mp.getQuantity()-1>=0){
+                        mp.setQuantity(mp.getQuantity()-1);
+                        medicinePharmacyService.save(mp);
+                        medicines.add(mp.getMedicine());
+                    }
+                }
+            }
+        }
+        return medicines;
+    }
 
 }
