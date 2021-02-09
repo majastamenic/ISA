@@ -19,16 +19,27 @@ public class Patient implements Serializable {
     @Column
     private String verificationCode;
     @Column
+    private long penal;
+    @Column
     private int loyaltyPoints;
 
     public Patient(){}
 
-    public Patient(long id, User user, List<String> allergicMedicines, String verificationCode, int loyaltyPoints) {
+    public Patient(long id, User user, List<String> allergicMedicines, String verificationCode, long penal, int loyaltyPoints) {
         this.id = id;
         this.user = user;
         this.allergicMedicines = allergicMedicines;
         this.verificationCode = verificationCode;
+        this.penal = penal;
         this.loyaltyPoints = loyaltyPoints;
+    }
+
+    public long getPenal() {
+        return penal;
+    }
+
+    public void setPenal(long penal) {
+        this.penal = penal;
     }
 
     public long getId() {

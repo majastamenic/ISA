@@ -122,4 +122,17 @@ public class EmailService {
 
         javaMailSender.send(simpleMailMessage);
     }
+
+    public void notifyAdminPharmacyAboutMedicine(String adminEmail, String pharmacyAdmin, String medName)throws MailException{
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSender);
+        simpleMailMessage.setTo(adminEmail);
+        simpleMailMessage.setSubject("Medicine is out of stock!");
+        simpleMailMessage.setText("Dear " + pharmacyAdmin + ",\n" +
+                "Pharmacy don't have " + medName + " on stock. Please order it.\n\n" +
+                "Best regards,\n" +
+                "Health Worker.");
+
+        javaMailSender.send(simpleMailMessage);
+    }
 }

@@ -10,6 +10,8 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.users.domain.PharmacyAdmin;
+import com.isa.pharmacy.users.service.PharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import com.isa.pharmacy.domain.Medicine;
@@ -23,6 +25,12 @@ public class MedicineService {
     private MedicineRepository medicineRepository;
     @Autowired
     private PharmacyService pharmacyService;
+    @Autowired
+    private MedicinePharmacyService medicinePharmacyService;
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private PharmacyAdminService pharmacyAdminService;
 
     public Medicine create(Medicine medicine) {
         if(medicineRepository.findMedicineById(medicine.getId()) != null)
@@ -64,16 +72,24 @@ public class MedicineService {
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
         for(String med: meds){
             for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
-               if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName)){
-                   if(med.equalsIgnoreCase(mp.getMedicine().getName())){
-                       AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
-                       if(mp.getQuantity()>0)
-                           availMed.setAvailable(true);
-                       else
-                           availMed.setAvailable(false);
-                       availMed.setName(med);
-                       availabilityMedicineDtos.add(availMed);
+               if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName) && med.equalsIgnoreCase(mp.getMedicine().getName())){
+                   AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
+                   if(mp.getQuantity()>0){
+                       availMed.setAvailable(true);
                    }
+                   else{
+                       List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacyName);
+                       for(PharmacyAdmin pa: pharmacyAdmins){
+                           String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
+                           emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, mp.getMedicine().getName());
+                       }
+                       availMed.setAvailable(false);
+                       List<String> alternative = getAllMedicinesById(mp.getMedicine().getReplacementMedicines());
+                       availMed.setAlternative(alternative);
+                   }
+                   availMed.setId(mp.getId());
+                   availMed.setName(med);
+                   availabilityMedicineDtos.add(availMed);
                }
             }
         }
@@ -88,6 +104,49 @@ public class MedicineService {
         medicine.setLoyaltyPoints(medicineLoyaltyDto.getLoyaltyPoints());
         medicineRepository.save(medicine);
         return medicineLoyaltyDto;
+    }
+
+    public List<Medicine> getAllMedicinesByCode(List<Long> codes){
+        List<Medicine> medicines = new ArrayList<>();
+        if(codes != null){
+            for(Long i : codes){
+                for(Medicine m: getAll()){
+                    if(m.getCode().equals(i))
+                        medicines.add(m);
+                }
+            }
+        }
+        return  medicines;
+    }
+
+    public List<String> getAllMedicinesById(List<Long> ids){
+        List<String> medNames = new ArrayList<>();
+        if(ids != null){
+            for(Long i : ids){
+                for(Medicine m: getAll()){
+                    if(m.getCode().equals(i))
+                        medNames.add(m.getName());
+                }
+            }
+        }
+        return  medNames;
+    }
+
+    public List<Medicine> decreaseQuantityInPharmacy(List<Medicine> meds, String pharmacyName){
+        List<Medicine> medicines = new ArrayList<>();
+        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        if(meds != null && pharmacyName !=null){
+            for(Medicine m: meds){
+                for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
+                    if(pharmacyName.equalsIgnoreCase(mp.getPharmacy().getName()) && mp.getMedicine().getName().equals(m.getName()) && mp.getQuantity()-1>=0){
+                        mp.setQuantity(mp.getQuantity()-1);
+                        medicinePharmacyService.save(mp);
+                        medicines.add(mp.getMedicine());
+                    }
+                }
+            }
+        }
+        return medicines;
     }
 
 }

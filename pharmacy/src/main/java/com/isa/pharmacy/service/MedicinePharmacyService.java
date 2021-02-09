@@ -27,6 +27,10 @@ public class MedicinePharmacyService {
     @Autowired
     private PharmacyService pharmacyService;
 
+
+    public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
+
+
     public List<GetAllMedicinePharmacyDto> getAllMedicinePharmacies() {
         List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findAll();
         List<GetAllMedicinePharmacyDto> medicineDtoList = new ArrayList<>();

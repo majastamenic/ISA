@@ -74,4 +74,5 @@ public class MedicineController {
         return medicineService.checkAvailabilityMedicines(pharmacyName, meds);
     }
 
+
 }

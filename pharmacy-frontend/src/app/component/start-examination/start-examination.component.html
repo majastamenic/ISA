@@ -1,4 +1,4 @@
-<div *ngIf='patientCame' class="page">
+<div *ngIf='patientCame && !toSchedule' class="page">
     <div class="form">
         <form class="ngform" style="width: 600px">
             <h2>Examination</h2>
@@ -23,21 +23,28 @@
                 </ng-select>
             </div>
             <br><br>
-            <div style="width: 250px;">
-                <ng-select [items]="medicines"
-                    bindLabel="label"
-                    placeholder="Select medicine"
-                    appendTo="body"
-                    [multiple]="true"
-                    [(ngModel)]="selectedMeds"
-                    name="selectedMeds">
-                </ng-select>
-                <button class="btn btn-secondary" style="width:100px;" (click)="checkAvailability()">Check</button>&nbsp;
+            <div>
+                <div style="width: 250px;">
+                    <ng-select [items]="medicines"
+                        bindLabel="label"
+                        placeholder="Select medicine"
+                        appendTo="body"
+                        [multiple]="true"
+                        [(ngModel)]="selectedMeds"
+                        name="selectedMeds" [disabled]="isChecked">
+                    </ng-select>
+                    <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="updateExam.prescription.days" name="days" style="width:100px" [disabled]="isChecked" required>
+                </div>
+                <button class="btn btn-secondary" style="width:100px;" (click)="checkAvailability()" [disabled]="isChecked">Check</button>&nbsp;&nbsp;
+                <button *ngIf='isChecked' class="btn btn-secondary" style="width:150px;" (click)="checkAvailabilityCancel()">Cancel check</button>
+            </div>
+            <div *ngIf='isChecked && availableMeds != null'>
+                <div *ngFor="let avail of availableMeds">
+                    <li *ngIf="avail.available">{{avail.name}} is in stock.</li>
+                    <li *ngIf="!avail.available">{{avail.name}} isn't in stock. Alternative medicine/s: <span *ngFor="let alter of avail.alternative;">{{alter}}, </span></li>
+                </div>
             </div>
 
-            <div>
-                <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="days" name="days" style="width:100px" required>
-            </div>
             <br>
 
             <div>
@@ -49,7 +56,7 @@
             <br><br><br><br>
             <div>
                 <button class="btn btn-secondary" style="width:200px;" (click)="cancelExamination()">Cancel</button>&nbsp;
-                <button class="btn btn-primary" style="width:200px;">Save</button>
+                <button class="btn btn-primary" style="width:200px;" (click)="saveExamination(true)" [disabled]="!isChecked">Save</button>
             </div>
         </form>
     </div>
@@ -64,7 +71,13 @@
 
 
 
-<div *ngIf='!patientCame'  class="page">
-    <button class="btn btn-secondary" style="width:200px;" >Patient didn't came</button>&nbsp;
+<div *ngIf='!patientCame && !toSchedule'  class="page" >
+    <button class="btn btn-secondary" style="width:200px;" (click)="saveExamination(false)">Patient didn't came</button>&nbsp;
     <button class="btn btn-primary" style="width:200px;" (click)="patientIsHere()">Patient came</button>
+</div>
+
+<div *ngIf='toSchedule'  class="page" >
+    <h1>Do you want to schedule new Examination?</h1>
+    <button class="btn btn-secondary" style="width:100px;" (click)="cancelExamination()">No</button>&nbsp;
+    <button class="btn btn-primary" style="width:100px;" (click)="scheduleExamination()">Yes</button>
 </div>

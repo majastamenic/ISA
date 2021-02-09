@@ -8,6 +8,7 @@ import com.isa.pharmacy.users.repository.PharmacyAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,5 +39,14 @@ public class PharmacyAdminService {
     public CreatePhAdminDto findPharmacyAdminByEmail(String email){
         PharmacyAdmin pharmacyAdmin = pharmacyAdminRepository.findPharmacyAdminByUser_email(email);
         return PharmacyAdminMapper.mapPharmacyAdminToPharmacyAdminDto(pharmacyAdmin);
+    }
+
+    public List<PharmacyAdmin> findPharmacyAdminByPharmacy(String pharmacyName){
+        List<PharmacyAdmin> pharmacyAdmins = new ArrayList<>();
+        for(PharmacyAdmin pa: findAll()){
+            if(pa.getPharmacy().getName().equalsIgnoreCase(pharmacyName))
+                pharmacyAdmins.add(pa);
+        }
+        return pharmacyAdmins;
     }
 }

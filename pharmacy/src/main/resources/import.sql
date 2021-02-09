@@ -18,12 +18,12 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Aca', 'Lukas', 'aca@gmail.com', 'aca', 'Vojislava Vuckovica 1', 'Beograd', 'Srbija', '069/5889522', 0, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Toma', 'Zdravkovic', 'toma@gmail.com', 'toma', 'Jastrebacka 11', 'Aleksinac', 'Srbija', '065/338799', 0, true);
     -- Patient
-    insert into patient(loyalty_points, verification_code, user_id) values(10, 'AVG-EE-FTG', 1);
-    insert into patient(loyalty_points, verification_code, user_id) values(15, 'A45-RE-BNA', 2);
-    insert into patient(loyalty_points, verification_code, user_id) values(20, '498-WT-B5S', 3);
-    insert into patient(loyalty_points, verification_code, user_id) values(25, 'VB4-QR-5BG', 4);
-    insert into patient(loyalty_points, verification_code, user_id) values(5,  'QPO-4S-VBG', 5);
-    insert into patient(loyalty_points, verification_code, user_id) values(10, 'AS-TRV-T1W', 6);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(10, 'AVG-EE-FTG', 1, 0);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(15, 'A45-RE-BNA', 2, 0);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(20, '498-WT-B5S', 3, 2);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(25, 'VB4-QR-5BG', 4, 1);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(5,  'QPO-4S-VBG', 5, 0);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(10, 'AS-TRV-T1W', 6, 1);
 -- User: Pharmacist
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Milanovic', 'masa@gmail.com', 'masa', 'Ticanova 23', 'Novi Sad', 'Srbija', '069/7798654', 3, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milan', 'Knezevic', 'milan@gmail.com', 'milan', 'Gagarinova 83', 'Novi Sad', 'Srbija', '065/963565', 3, true);
@@ -52,15 +52,15 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Ana', 'Nikolic', 'ana@gmail.com', 'ana', 'Bulevar Cara Dusana 18', 'Novi Sad', 'Srbija', '064/127865', 4, true);
 
 -- User: PharmacyAdmin
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mikica', 'Djurdjevic', 'mikica@gmail.com', 'mikica', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 5, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marko', 'Markovic', 'mare@gmail.com', 'mare', 'Fruskogorska 15', 'Novi Sad', 'Srbija', '067/114885', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mikica', 'Djurdjevic', 'mikica@mailinator.com', 'mikica', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marko', 'Markovic', 'mare@mailinator.com', 'mare', 'Fruskogorska 15', 'Novi Sad', 'Srbija', '067/114885', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milos', 'Djuric', 'milos@gmail.com', 'milos', 'Dunavska 89', 'Novi Sad', 'Srbija', '067/114885', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Vucevic', 'marija@gmail.com', 'marija', 'Narodnog Fronta 78', 'Novi Sad', 'Srbija', '063/659898', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirjana', 'Radojcic', 'mima@gmail.com', 'mima', 'Zeleznicka 18', 'Novi Sad', 'Srbija', '061/1112565', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Ivana', 'Ivanovic', 'ivana@gmail.com', 'ivana', 'Vojvodjanskih Brigada 2', 'Novi Sad', 'Srbija', '069/3355668', 5, true);
     -- PharmacyAdmin
     insert into pharmacy_admin(user_id, pharmacy_id) values (20,1);
-    insert into pharmacy_admin(user_id, pharmacy_id) values (21,2);
+    insert into pharmacy_admin(user_id, pharmacy_id) values (21,1);
     insert into pharmacy_admin(user_id, pharmacy_id) values (22,3);
     insert into pharmacy_admin(user_id, pharmacy_id) values (23,4);
     insert into pharmacy_admin(user_id, pharmacy_id) values (24,5);
@@ -205,6 +205,18 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 18, 2, 2);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.00, 110, 4, 2);
 
+-- ??????????????
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 1);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 2);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 3);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 4);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 5);
+
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 6);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 7);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 8);
+----------------------
+
 -- Orders
 insert into app_order(end_date, end_time) values ('2021-02-07', '08:00:00');
 insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
@@ -212,16 +224,12 @@ insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
 -- MedicineReplacement
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(1, 62217);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(2, 66042);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(3, 66042);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(4, 66042);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(4, 62922);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(5, 66042);
 
--- ??????????????
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 1);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 2);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 3);
-
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 4);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 5);
-----------------------
-
+-- MedicinePrescription
 insert into medicineeprescription(code, name, quantity) values(2, 'brufen', 123419);
 insert into medicineeprescription(code, name, quantity) values(8, 'panadol', 6839093);
 
