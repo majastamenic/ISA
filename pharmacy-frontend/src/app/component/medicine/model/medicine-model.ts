@@ -58,3 +58,19 @@ enum MedicinePublishingType {
     WITH_PRESCRIPTION,
     WITHOUT_PRESCRIPTION,
 }
+
+export interface SearchMedicineDto{
+    code: number,
+    name: string,
+    typeOfMedicine: string,
+    formOfMedicine: FormOfMedicine,
+    composition: string;
+    manufactured: string;
+    publishingType: string;
+    searchMedPhDtos: Observable<SearchMedPhDtos>
+}
+
+export interface SearchMedPhDtos{
+    pharmacyName: string;
+    price: number;
+}

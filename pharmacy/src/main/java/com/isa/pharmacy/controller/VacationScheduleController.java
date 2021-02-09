@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.domain.VacationSchedule;
-import com.isa.pharmacy.service.VacationScheduleService;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.service.VacationScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

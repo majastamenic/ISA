@@ -1,8 +1,8 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
-import com.isa.pharmacy.domain.Schedule;
-import com.isa.pharmacy.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.domain.Schedule;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 
 public class WorkScheduleMapper {
     public static WorkScheduleDto mapWorkScheduleToWorkScheduleDto (WorkSchedule workSchedule){

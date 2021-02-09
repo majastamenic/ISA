@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
-import { HomeComponent } from './component/home/home.component';
+import { HomeComponent } from '../../home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
@@ -39,6 +39,10 @@ import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
 import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
 import { WorkScheduleComponent } from './component/work-schedule/work-schedule.component';
+import { CounselingsComponent } from './component/patient/counselings/counselings.component';
+import { AddOrderComponent } from './component/add-order/add-order.component';
+import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -48,7 +52,7 @@ const routes: Routes = [
   { path: 'user', component: RegistrationComponent },
   { path: 'hospital', component: HospitalComponent },
   { path: 'actions', component: ActionsBenefitsComponent },
-  { path: 'medicine', component: MedicineComponent },
+  { path: 'medicines', component: MedicineComponent },
   { path: 'uploadQR', component: UploadQRComponent },
   { path: 'ePrescription', component: EPrescriptionComponent },
   { path: 'counseling', component: ScheduleCounselingComponent },
@@ -56,20 +60,23 @@ const routes: Routes = [
   {
     path: 'system-admin', component: SystemAdminComponent,
     children: [
-      { path: 'addMedicines', component: AddMedicinesComponent },
-      { path: 'addPharmacy', component: AddPharmacyComponent },
       { path: 'addPharmacyAdmin', component: AddPharmacyAdminComponent },
       { path: 'regDermatologist', component: RegDermatologistComponent },
       { path: 'regSysAdmin', component: RegSystemAdminComponent },
       { path: 'regSupplier', component: RegSupplierComponent },
-      { path: 'loyality', component: LoyalityComponent },
-      { path: 'complaints', component: ComplaintsComponent},
     ]
   },
-  { path: 'pharmacist', component: PharmacistComponent},
-  { path: 'pharmacist/init', component: PharmacistInitComponent},
+  { path: 'add-medicines', component: AddMedicinesComponent },
+  { path: 'add-pharmacy', component: AddPharmacyComponent },
+  { path: 'loyalty', component: LoyalityComponent },
+  { path: 'complaints', component: ComplaintsComponent},
+
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'scheduledExaminations', component: PatientExaminationsComponent},
+  { path: 'patient/counselings', component: CounselingsComponent},
+
+  { path: 'pharmacist', component: PharmacistComponent},
+  { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'allcounselings/:id', component: StartCounselingComponent},
   { path: 'allexaminations/:id', component: StartExaminationComponent},
   { path: 'price/init', component: PriceInitComponent},
@@ -86,11 +93,12 @@ const routes: Routes = [
   { path: 'diagnosis', component: DiagnosisComponent},
   { path: 'add-complaint', component: ComplaintMessageComponent},
   { path: 'work/schedule', component: WorkScheduleComponent},
-  
+  { path: 'order', component: AddOrderComponent},
+  { path: 'view-orders', component: ViewOrdersComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), CommonModule],
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

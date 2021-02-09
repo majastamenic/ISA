@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginUserDto, PasswordChangeDto, PharmacyAdminDto, UserRegistrationDto } from '../component/user/model/user-model';
+import { LoginUserDto, PasswordChangeDto, PharmacyAdminDto, UserRegistrationDto } from '../model/user-model';
 import { LOGIN_PATH, PATIENT_PATH,  PATIENT_VALID_PATH, DERMATOLOGIST_PATH, PHARMACY_ADMIN_PATH, SUPPLIER_PATH, USER_PATH, SYSTEM_ADMIN_PATH, PASSWORD_USER_PATH, INFO_PATH, UPDATE_USER_PATH} from '../util/paths';
 
 @Injectable({
@@ -52,10 +52,6 @@ export class UserService {
     return !(user == null)
   }
 
-  isPatient(){
-    return (sessionStorage.getItem("role") == 'PATIENT');
-  }
-
   isPharmacist(){
     return (sessionStorage.getItem("role") == 'PHARMACIST');
   }
@@ -66,6 +62,18 @@ export class UserService {
 
   isPharmacyAdmin(){
     return (sessionStorage.getItem('role') == 'PHARMACY_ADMIN');
+  }
+
+  isPatient(){
+    return (sessionStorage.getItem('role') == 'PATIENT');
+  }
+
+  isAdmin(){
+    return (sessionStorage.getItem('role') == 'ADMIN');
+  }
+
+  isSupplier(){
+    return (sessionStorage.getItem('role') == 'SUPPLIER');
   }
 
   logOut(){

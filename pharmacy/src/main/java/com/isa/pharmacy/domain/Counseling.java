@@ -1,8 +1,9 @@
 package com.isa.pharmacy.domain;
 
+import com.isa.pharmacy.scheduling.domain.Schedule;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.domain.enums.ExaminationAndCounselingStatus;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -25,20 +26,18 @@ public class Counseling implements Serializable {
     @Column
     private boolean patientCame;
     @Column
-    private ExaminationAndCounselingStatus counselingStatus;
-    @Column
     private int loyaltyPoints;
 
     public Counseling(){}
 
-    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus, int loyaltyPoints) {
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule,
+                      Report report, boolean patientCame, int loyaltyPoints) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
         this.schedule = schedule;
         this.report = report;
         this.patientCame = patientCame;
-        this.counselingStatus = counselingStatus;
         this.loyaltyPoints = loyaltyPoints;
     }
 
@@ -89,15 +88,6 @@ public class Counseling implements Serializable {
     public void setPatientCame(boolean patientCame) {
         this.patientCame = patientCame;
     }
-
-    public ExaminationAndCounselingStatus getCounselingStatus() {
-        return counselingStatus;
-    }
-
-    public void setCounselingStatus(ExaminationAndCounselingStatus counselingStatus) {
-        this.counselingStatus = counselingStatus;
-    }
-
     public int getLoyaltyPoints() {
         return loyaltyPoints;
     }

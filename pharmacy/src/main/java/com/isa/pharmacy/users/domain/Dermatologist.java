@@ -1,8 +1,8 @@
 package com.isa.pharmacy.users.domain;
 
 import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.domain.VacationSchedule;
-import com.isa.pharmacy.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 
 import javax.persistence.*;
 import java.io.Serializable;

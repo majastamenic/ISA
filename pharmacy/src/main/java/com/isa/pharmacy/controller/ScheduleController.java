@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.domain.Schedule;
-import com.isa.pharmacy.service.ScheduleService;
+import com.isa.pharmacy.scheduling.domain.Schedule;
+import com.isa.pharmacy.scheduling.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

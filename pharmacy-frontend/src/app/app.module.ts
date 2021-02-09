@@ -15,7 +15,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './component/home/home.component';
+import { HomeComponent } from '../../home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
@@ -47,6 +47,11 @@ import { RegSystemAdminComponent } from './component/system-admin/reg-system-adm
 import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.component';
 import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
 import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
+import { CounselingsComponent } from './component/patient/counselings/counselings.component';
+import { SupplierComponent } from './component/supplier/supplier.component';
+import { AddOrderComponent } from './component/add-order/add-order.component';
+import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // dermatologist & pharmacist component
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
@@ -109,7 +114,11 @@ FullCalendarModule.registerPlugins([
     ComplaintMessageComponent,
     ComplaintsComponent,
     PatientExaminationsComponent,
-    WorkScheduleComponent
+    WorkScheduleComponent,
+    SupplierComponent,
+    AddOrderComponent,
+    ViewOrdersComponent,
+    CounselingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,6 +134,7 @@ FullCalendarModule.registerPlugins([
     DpDatePickerModule,
     NgbModule,
     FullCalendarModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

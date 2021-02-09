@@ -1,0 +1,41 @@
+<div>
+    <div *ngIf="!showCreateorder">
+        <button class="btn btn-info" (click)="addOrder()">Create order</button>
+        <div *ngFor="let order of listOrders; index as i;">
+            <div class="form">
+                <form class="ngform">
+                    <h3>Order</h3>
+                    <label>End date: {{order.endDate}}</label>
+                    <br/>
+                    <label>End time: {{order.endTime}}</label>
+                    <br/>
+                    <div *ngFor="let necessary of order.orderOffers">
+                        <label>Medicine name: {{necessary.medicineName}}</label>
+                        <br/>
+                        <label>Quantity: {{necessary.quantity}}</label>
+                        <br/>
+                    </div>
+                    <button class="btn btn-outline-dark" (click)="delete(i)">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showCreateorder">
+        <div class="page">
+            <div class="form">
+                <form class="ngform">
+                    <h3>Create order</h3>
+                    <input type="date" [(ngModel)]="newOrder.endDate" placeholder="Enter order end date" name='endDate' id='endDate'>
+                    <input type="time" [(ngModel)]="newOrder.endTime" placeholder="Enter order end time" name='endTime' name="endTime">
+                    <div>
+                        <input type="text" [(ngModel)]="newOrder.orderOffers.medicineName" placeholder="Enter medicine name" name='medicineName' id='medicineName'>
+                        <input type="number" [(ngModel)]="newOrder.orderOffers.quantity" placeholder="Enter quantity" name='quantity' name="quantity">
+                    </div>
+                    <button class="btn btn-info" (click)="create()">Create</button>
+                </form>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
