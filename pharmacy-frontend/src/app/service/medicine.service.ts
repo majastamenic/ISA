@@ -40,7 +40,7 @@ export class MedicineService {
         params = params.append('name', name);
         if (startPrice) { params = params.append('startPrice', startPrice);}
         if (endPrice) {params = params.append('endPrice', endPrice);}
-        if (pharmacies) {params = params.append('pharmacies', pharmacies);}
+        if (pharmacies) {pharmacies.forEach((pharmacy: any) => params = params.append('pharmacies', pharmacy ));}
         if (typeOfMedicine) {params = params.append('typeOfMedicine', typeOfMedicine);}
         if (manufactured) {params = params.append('manufactured', manufactured);}
         if (composition) {params = params.append('composition', composition);}
