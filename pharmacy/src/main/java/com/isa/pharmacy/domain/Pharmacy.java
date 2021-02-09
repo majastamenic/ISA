@@ -17,17 +17,20 @@ public class Pharmacy implements Serializable {
     private String name;
     @Column
     private String address;
+    @Column
+    private Integer counselingPrice;
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
 
     public Pharmacy() { }
 
     public Pharmacy(Long id, String name, String address,
-                    List<MedicinePharmacy> medicinePharmacy) {
+                    Integer counselingPrice, List<MedicinePharmacy> medicinePharmacy) {
         super();
         this.id = id;
         this.name = name;
         this.address = address;
+        this.counselingPrice = counselingPrice;
         this.medicinePharmacy = medicinePharmacy;
     }
 
@@ -55,6 +58,14 @@ public class Pharmacy implements Serializable {
         this.address = address;
     }
 
+    public Integer getCounselingPrice() {
+        return counselingPrice;
+    }
+
+    public void setCounselingPrice(Integer counselingPrice) {
+        this.counselingPrice = counselingPrice;
+    }
+
     public List<MedicinePharmacy> getMedicinePharmacy() {
         return medicinePharmacy;
     }
@@ -72,6 +83,4 @@ public class Pharmacy implements Serializable {
     public String toString() {
         return name;
     }
-
-
 }

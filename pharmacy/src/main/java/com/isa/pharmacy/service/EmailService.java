@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
@@ -60,6 +61,23 @@ public class EmailService {
                             "- Price: " + examiantion.getPrice() + "€\n\n" +
                             "Best regards,\n" +
                             "ISA Pharmacy");
+        javaMailSender.send(mailMessage);
+    }
+
+    @Async
+    public void successfulCounselingSchedule(Counseling counseling) throws  MailException{
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(mailSender);
+        mailMessage.setTo(counseling.getPatient().getUser().getEmail());
+        mailMessage.setSubject("Counseling");
+        mailMessage.setText(GREETING + counseling.getPatient().getUser().getName() + ",\n\n" +
+                "You have successfully scheduled a counseling with pharmacist.\n" +
+                "Details: \n" +
+                "- Pharmacist: " + counseling.getPharmacist().getUser().getName() + " " + counseling.getPharmacist().getUser().getSurname() + "\n" +
+                "- Time: " + counseling.getSchedule().getStartTime() + "\n" +
+                "- Price: " + counseling.getPharmacist().getPharmacy().getCounselingPrice() + "€\n\n" +
+                "Best regards,\n" +
+                "ISA Pharmacy");
         javaMailSender.send(mailMessage);
     }
 
