@@ -4,6 +4,7 @@ import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.repository.CounselingRepository;
+import com.isa.pharmacy.scheduling.service.ScheduleService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.PharmacistService;
@@ -41,6 +42,10 @@ public class CounselingService {
         return counselingRepository.findByPharmacist(pharmacist);
     }
 
+    public List<Counseling> getAllPatientsCounselings(String patientEmail){
+        return counselingRepository.findCounselingByPatient_User_Email(patientEmail);
+    }
+
     public Counseling save(Counseling counseling) {
         if(!counseling.getSchedule().getStartDate().equals(counseling.getSchedule().getEndDate()))
             throw new InvalidActionException("Start date and end date must be on a same date");
@@ -55,7 +60,6 @@ public class CounselingService {
             throw new NotFoundException("Counseling not found");
         counseling.setReport(reportService.update(c.getReport()));
         counseling.setPatientCame(c.isPatientCame());
-        counseling.setCounselingStatus(c.getCounselingStatus());
         counselingRepository.save(counseling);
         return counseling;
     }

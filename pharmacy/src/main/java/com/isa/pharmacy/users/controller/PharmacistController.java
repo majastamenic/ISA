@@ -2,14 +2,13 @@ package com.isa.pharmacy.users.controller;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
-import com.isa.pharmacy.controller.dto.WorkScheduleDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.users.controller.dto.PharmacistDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacistMapper;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.domain.VacationSchedule;
-import com.isa.pharmacy.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

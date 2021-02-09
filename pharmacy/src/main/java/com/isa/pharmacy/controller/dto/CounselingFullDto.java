@@ -1,8 +1,6 @@
 package com.isa.pharmacy.controller.dto;
 
 import com.isa.pharmacy.domain.Report;
-import com.isa.pharmacy.domain.Schedule;
-import com.isa.pharmacy.domain.enums.ExaminationAndCounselingStatus;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.dto.PharmacistDto;
 
@@ -13,19 +11,18 @@ public class CounselingFullDto {
     private WorkScheduleDto schedule;
     private Report report;
     private boolean patientCame;
-    private ExaminationAndCounselingStatus counselingStatus;
     private Integer loyaltyPoints;
 
+    public CounselingFullDto(){}
+
     public CounselingFullDto(long id, PharmacistDto pharmacist, PatientDto patient, WorkScheduleDto schedule,
-                             Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus,
-                             Integer loyaltyPoints) {
+                             Report report, boolean patientCame, Integer loyaltyPoints) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
         this.schedule = schedule;
         this.report = report;
         this.patientCame = patientCame;
-        this.counselingStatus = counselingStatus;
         this.loyaltyPoints = loyaltyPoints;
     }
 
@@ -75,14 +72,6 @@ public class CounselingFullDto {
 
     public void setPatientCame(boolean patientCame) {
         this.patientCame = patientCame;
-    }
-
-    public ExaminationAndCounselingStatus getCounselingStatus() {
-        return counselingStatus;
-    }
-
-    public void setCounselingStatus(ExaminationAndCounselingStatus counselingStatus) {
-        this.counselingStatus = counselingStatus;
     }
 
     public Integer getLoyaltyPoints() {

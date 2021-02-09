@@ -2,8 +2,7 @@ package com.isa.pharmacy.users.controller.dto;
 
 import com.isa.pharmacy.controller.dto.PharmacyDto;
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
-import com.isa.pharmacy.domain.VacationSchedule;
-import com.isa.pharmacy.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 
 import java.util.List;
 

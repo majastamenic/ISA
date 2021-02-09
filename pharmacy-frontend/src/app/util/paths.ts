@@ -35,6 +35,7 @@ export const PRICELISTDEFINE_PATH = BACKEND_PATH + '/pricelist/define';
 export const COUNSELING_PATH = BACKEND_PATH + '/counseling';
 export const COUNSELING_ADD_PATH = COUNSELING_PATH + '/add';
 export const COUNSELING_START_PATH = COUNSELING_PATH + '/start';
+export const PATIENT_COUNSELINGS_PATH = COUNSELING_PATH + '/patient';
 
 export const MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy';
 export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/getAllMedicines';

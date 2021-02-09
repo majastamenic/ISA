@@ -1,9 +1,9 @@
-package com.isa.pharmacy.service;
+package com.isa.pharmacy.scheduling.service;
 
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
 import com.isa.pharmacy.controller.mapping.WorkScheduleMapper;
-import com.isa.pharmacy.domain.WorkSchedule;
-import com.isa.pharmacy.repository.WorkScheduleRepository;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.repository.WorkScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

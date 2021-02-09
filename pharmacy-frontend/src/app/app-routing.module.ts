@@ -38,6 +38,7 @@ import { RegDermatologistComponent } from './component/system-admin/reg-dermatol
 import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
 import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
+import { CounselingsComponent } from './component/patient/counselings/counselings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -65,10 +66,13 @@ const routes: Routes = [
       { path: 'complaints', component: ComplaintsComponent},
     ]
   },
-  { path: 'pharmacist', component: PharmacistComponent},
-  { path: 'pharmacist/init', component: PharmacistInitComponent},
+
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'scheduledExaminations', component: PatientExaminationsComponent},
+  { path: 'patient/counselings', component: CounselingsComponent},
+
+  { path: 'pharmacist', component: PharmacistComponent},
+  { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'allcounselings/:id', component: StartCounselingComponent},
   { path: 'allexaminations/:id', component: StartExaminationComponent},
   { path: 'price/init', component: PriceInitComponent},

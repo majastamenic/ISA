@@ -1,4 +1,4 @@
-package com.isa.pharmacy.domain;
+package com.isa.pharmacy.scheduling.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;

@@ -1,8 +1,8 @@
-package com.isa.pharmacy.service;
+package com.isa.pharmacy.scheduling.service;
 
 import com.isa.pharmacy.controller.exception.InvalidActionException;
-import com.isa.pharmacy.domain.VacationSchedule;
-import com.isa.pharmacy.repository.VacationScheduleRepository;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.repository.VacationScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

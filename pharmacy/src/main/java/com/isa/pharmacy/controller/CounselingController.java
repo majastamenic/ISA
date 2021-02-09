@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.CounselingDto;
+import com.isa.pharmacy.controller.dto.CounselingFullDto;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Report;
@@ -39,6 +40,11 @@ public class CounselingController {
     public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
         return CounselingMapper.mapCounselingListToCounselingDto(counselingService.getAllByPharmacist(pharmacist));
+    }
+
+    @GetMapping("/patient/{email}")
+    public List<CounselingFullDto> getAllCounselingsByPatient(@PathVariable String email){
+        return CounselingMapper.mapListCounselingToCounsellingFullDto(counselingService.getAllPatientsCounselings(email));
     }
 
     @PostMapping("/add")
