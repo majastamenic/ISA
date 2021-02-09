@@ -50,8 +50,8 @@ public class WorkScheduleService {
     }
 
     private boolean isWorking(WorkSchedule ws, Date eagerDate){
-        Date startTime = DateConvert.mergeDateAndTime(eagerDate, ws.getSchedule().getStartTime());
-        Date endTime = DateConvert.mergeDateAndTime(eagerDate, ws.getSchedule().getEndTime());      // Vreme postavi na trenutno
+        Date startTime = new DateConvert().mergeDateAndTime(eagerDate, ws.getSchedule().getStartTime());
+        Date endTime = new DateConvert().mergeDateAndTime(eagerDate, ws.getSchedule().getEndTime());      // Vreme postavi na trenutno
         return (ws.getSchedule().getStartDate().compareTo(eagerDate) >= 0 &&
                 ws.getSchedule().getEndDate().compareTo(eagerDate) <= 0 &&
                 startTime.compareTo(eagerDate) >= 0 &&
