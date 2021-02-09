@@ -3,6 +3,8 @@ package com.isa.pharmacy.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -72,13 +74,32 @@ public class Schedule implements Serializable {
         this.endTime = endTime;
     }
 
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date mergeStartDateAndTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date res = new Date();
+        try {
+            res = sdf.parse(this.startDate.toString() + " " + this.startTime.toString());
+        } catch (ParseException e) {
+        }
+        return res;
+    }
+
+    public Date mergeEndDateAndTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date res = new Date();
+        try {
+            res = sdf.parse(this.endDate.toString() + " " + this.endTime.toString());
+        } catch (ParseException e) {
+        }
+        return res;
     }
 
 }

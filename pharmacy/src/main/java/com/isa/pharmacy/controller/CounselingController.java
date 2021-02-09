@@ -3,10 +3,10 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.service.CounselingService;
+import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.PatientService;
 import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +32,17 @@ public class CounselingController {
 
     @GetMapping("/start/{id}")
     public CounselingDto getById(@PathVariable("id") long id) {
-        return counselingService.getById(id);
+        return CounselingMapper.mapCounselingToCounselingDto(counselingService.getCounselingById(id));
     }
 
     @GetMapping("/{email}")
     public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
-        return counselingService.getAllByPharmacist(pharmacist);
+        return CounselingMapper.mapCounselingListToCounselingDto(counselingService.getAllByPharmacist(pharmacist));
     }
 
     @PostMapping("/add")
-    public Counseling save(@RequestBody CounselingDto counselingDto) {
+    public Counseling createCounseling(@RequestBody CounselingDto counselingDto) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(counselingDto.getEmail());
         Patient patient = patientService.getPatient(counselingDto.getPatientEmail());
         Counseling counseling = CounselingMapper.mapCounselingDtoToCounseling(counselingDto, pharmacist, patient);
@@ -51,5 +51,5 @@ public class CounselingController {
     }
 
     @PostMapping("/update")
-    public Counseling update(@RequestBody Counseling c) { return counselingService.save(c); }
+    public Counseling updateCounseling(@RequestBody Counseling c) { return counselingService.updateCounseling(c); }
 }
