@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
@@ -31,9 +32,8 @@ public class DermatologistController {
     @GetMapping
     public List<Dermatologist> getAll() { return dermatologistService.getAll(); }
 
-    @GetMapping("/work/{email}")
-    public List<WorkSchedulePharmacyDto> getWorkScheduleByDermatologist(@PathVariable("email") String email){
-        return dermatologistService.getWorkScheduleByDermatologist(email);
-    }
+
+
+
 
 }

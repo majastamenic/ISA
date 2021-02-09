@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.service.VacationScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,10 @@ public class VacationScheduleController {
     @PostMapping("/add")
     public VacationSchedule save(@RequestBody VacationSchedule vacationSchedule) {
         return vacationScheduleService.save(vacationSchedule);
+    }
+
+    @GetMapping("/dermatologist/{email}")
+    public List<VacationScheduleDto> getVacationScheduleByDermatologist(@PathVariable("email") String email){
+        return vacationScheduleService.getVacationScheduleByDermatologist(email);
     }
 }

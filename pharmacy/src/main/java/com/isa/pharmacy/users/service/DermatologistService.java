@@ -1,8 +1,11 @@
 package com.isa.pharmacy.users.service;
 
+import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.mapping.VacationScheduleMapper;
 import com.isa.pharmacy.controller.mapping.WorkScheduleMapper;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Pharmacist;
@@ -52,18 +55,6 @@ public class DermatologistService {
 
     public Dermatologist findUserByEmail(String email){
         return dermatologistRepository.findDermatologistByUser_email(email);
-    }
-
-    public List<WorkSchedulePharmacyDto> getWorkScheduleByDermatologist(String email){
-        List<WorkSchedulePharmacyDto> workSchedulesDto = new ArrayList<>();
-        Dermatologist dermatologist = dermatologistRepository.findDermatologistByUser_email(email);
-        List<WorkSchedule> workSchedules = dermatologist.getWorkSchedule();
-        if(workSchedules != null){
-            for(WorkSchedule ws: workSchedules){
-                workSchedulesDto.add(WorkScheduleMapper.mapWorkScheduleToWorkSchedulePharmacyDto(ws, ws.getAdmin().getPharmacy().getName()));
-            }
-        }
-        return workSchedulesDto;
     }
 
 
