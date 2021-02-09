@@ -124,6 +124,9 @@ public class ExaminationService {
         if(updated != null){
             Dermatologist dermatologist = dermatologistService.findUserByEmail(updateExamination.getEmail());
             Patient patient = patientService.getPatient(updateExamination.getPatientDto().getUser().getEmail());
+            if(!updateExamination.getPatientCame()){
+                patient.setPenal(patient.getPenal() + 1);
+            }
             Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
             List<Diagnosis> diagnosis = diagnosisService.getAllDiagnosisById(updateExamination.getPrescription().getDiagnosis());
             List<Medicine> medicines = medicineService.getAllMedicinesByCode(updateExamination.getPrescription().getMedicines());

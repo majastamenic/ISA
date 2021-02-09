@@ -18,12 +18,12 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Aca', 'Lukas', 'aca@gmail.com', 'aca', 'Vojislava Vuckovica 1', 'Beograd', 'Srbija', '069/5889522', 0, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Toma', 'Zdravkovic', 'toma@gmail.com', 'toma', 'Jastrebacka 11', 'Aleksinac', 'Srbija', '065/338799', 0, true);
     -- Patient
-    insert into patient(loyalty_points, verification_code, user_id) values(10, 'AVG-EE-FTG', 1);
-    insert into patient(loyalty_points, verification_code, user_id) values(15, 'A45-RE-BNA', 2);
-    insert into patient(loyalty_points, verification_code, user_id) values(20, '498-WT-B5S', 3);
-    insert into patient(loyalty_points, verification_code, user_id) values(25, 'VB4-QR-5BG', 4);
-    insert into patient(loyalty_points, verification_code, user_id) values(5,  'QPO-4S-VBG', 5);
-    insert into patient(loyalty_points, verification_code, user_id) values(10, 'AS-TRV-T1W', 6);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(10, 'AVG-EE-FTG', 1, 0);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(15, 'A45-RE-BNA', 2, 0);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(20, '498-WT-B5S', 3, 2);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(25, 'VB4-QR-5BG', 4, 1);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(5,  'QPO-4S-VBG', 5, 0);
+    insert into patient(loyalty_points, verification_code, user_id, penal) values(10, 'AS-TRV-T1W', 6, 1);
 -- User: Pharmacist
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Milanovic', 'masa@gmail.com', 'masa', 'Ticanova 23', 'Novi Sad', 'Srbija', '069/7798654', 3, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milan', 'Knezevic', 'milan@gmail.com', 'milan', 'Gagarinova 83', 'Novi Sad', 'Srbija', '065/963565', 3, true);
