@@ -5,22 +5,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateConvert {
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
-    private SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
 
-    public DateConvert(){}
-
-    public Date mergeDateAndTime(Date date, Date time){
+    public static Date mergeDateAndTime(Date date, Date time){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date res = new Date();
         try {
-            res = this.sdf.parse(getDateFromFullDate(date).toString() + " " + getTimeFromDate(time).toString());
+            res = sdf.parse(getDateFromFullDate(date).toString() + " " + getTimeFromDate(time).toString());
         } catch (ParseException e) {
         }
         return res;
     }
 
-    public Date getTimeFromDate(Date date){
+    public static Date getTimeFromDate(Date date){
+        SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
         Date res = new Date();
         try {
             res = sdfTime.parse(sdfTime.format(date));
@@ -29,7 +26,8 @@ public class DateConvert {
         return res;
     }
 
-    public Date getDateFromFullDate(Date date){
+    public static Date getDateFromFullDate(Date date){
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
         Date res = new Date();
         try {
             res = sdfDate.parse(sdfDate.format(date));
