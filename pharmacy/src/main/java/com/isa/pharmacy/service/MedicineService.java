@@ -89,12 +89,14 @@ public class MedicineService {
         return medicineLoyaltyDto;
     }
 
-    public List<Medicine> getAllMedicinesById(List<Long> ids){
+    public List<Medicine> getAllMedicinesByCode(List<Long> codes){
         List<Medicine> medicines = new ArrayList<>();
-        for(Long i : ids){
-            for(Medicine m: getAll()){
-                if(m.getId() == i)
-                    medicines.add(m);
+        if(codes != null){
+            for(Long i : codes){
+                for(Medicine m: getAll()){
+                    if(m.getCode().equals(i))
+                        medicines.add(m);
+                }
             }
         }
         return  medicines;

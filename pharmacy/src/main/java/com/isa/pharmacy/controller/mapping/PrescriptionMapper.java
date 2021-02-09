@@ -32,7 +32,7 @@ public class PrescriptionMapper {
                 meds.add(mp);
             }*/
         }
-        prescription.setMedicines(meds);
+        //prescription.setMedicines(meds);
         return prescription;
     }
 }

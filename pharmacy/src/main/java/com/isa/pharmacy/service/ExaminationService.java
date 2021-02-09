@@ -126,9 +126,9 @@ public class ExaminationService {
             Patient patient = patientService.getPatient(updateExamination.getPatientDto().getUser().getEmail());
             Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
             List<Diagnosis> diagnosis = diagnosisService.getAllDiagnosisById(updateExamination.getPrescription().getDiagnosis());
-            List<Medicine> medicines = medicineService.getAllMedicinesById(updateExamination.getPrescription().getMedicines());
+            List<Medicine> medicines = medicineService.getAllMedicinesByCode(updateExamination.getPrescription().getMedicines());
             Prescription prescription = new Prescription();
-            //prescription.setMedicines(medicines);
+            prescription.setMedicines(medicines);
             prescription.setDiagnosis(diagnosis);
             prescription.setDays(updateExamination.getPrescription().getDays());
             prescriptionService.save(prescription);

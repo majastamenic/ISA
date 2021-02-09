@@ -17,15 +17,22 @@ public class Prescription implements Serializable {
     @ManyToMany
     private List<Diagnosis> diagnosis;
     @ManyToMany
-    private List<MedicinePharmacy> medicines;
+    private List<Medicine> medicines;
 
     public Prescription(){}
 
-
-    public Prescription(Long id, Integer days, List<Diagnosis> diagnosis, List<MedicinePharmacy> medicines) {
+    public Prescription(Long id, Integer days, List<Diagnosis> diagnosis, List<Medicine> medicines) {
         this.id = id;
         this.days = days;
         this.diagnosis = diagnosis;
+        this.medicines = medicines;
+    }
+
+    public List<Medicine> getMedicines() {
+        return medicines;
+    }
+
+    public void setMedicines(List<Medicine> medicines) {
         this.medicines = medicines;
     }
 
@@ -44,15 +51,6 @@ public class Prescription implements Serializable {
     public void setDays(Integer days) {
         this.days = days;
     }
-
-    public List<MedicinePharmacy> getMedicines() {
-        return medicines;
-    }
-
-    public void setMedicines(List<MedicinePharmacy> medicines) {
-        this.medicines = medicines;
-    }
-
 
     public Long getId() {
         return id;

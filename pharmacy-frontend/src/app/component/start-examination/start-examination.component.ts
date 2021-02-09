@@ -95,6 +95,7 @@ export class StartExaminationComponent implements OnInit {
       this.patientCame = true;
     }
 
+    // TODO: srediti ovu metodu
     patientIsntHere(){
       const updateExam = {
         id: this.examination.id,
@@ -134,10 +135,11 @@ export class StartExaminationComponent implements OnInit {
           }
         }
       }
+      this.updateExam.prescription.medicines = [];
       for(let m of this.selectedMeds){
         for(let mia of this.medicines){
-          if(m.name == mia.name){
-            this.updateExam.prescription.medicines.push(mia.id);
+          if(m.medicine.name == mia.medicine.name){
+            this.updateExam.prescription.medicines.push(mia.medicine.code);
           }
         }
       }
