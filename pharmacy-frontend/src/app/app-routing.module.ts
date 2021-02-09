@@ -13,7 +13,7 @@ import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
-import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
+import { ExaminationScheduleComponent } from './component/patient/examination-schedule/examination-schedule.component';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
@@ -42,6 +42,7 @@ import { CounselingsComponent } from './component/patient/counselings/counseling
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 import { CommonModule } from '@angular/common';
+import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -70,9 +71,10 @@ const routes: Routes = [
   { path: 'loyalty', component: LoyalityComponent },
   { path: 'complaints', component: ComplaintsComponent},
 
-  { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
-  { path: 'scheduledExaminations', component: PatientExaminationsComponent},
+  { path: 'patient/examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
+  { path: 'patient/examinations', component: PatientExaminationsComponent},
   { path: 'patient/counselings', component: CounselingsComponent},
+  { path: 'patient/counselingSchedule', component: CounselingSearchComponent},
 
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},

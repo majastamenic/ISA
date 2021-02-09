@@ -52,11 +52,10 @@ public class PharmacistController {
         return pharmacistByPharmacyDtos;
     }
 
-    @GetMapping("/free/{date}")
-    public List<PharmacistDto> getFreePharmacist(@PathVariable
-                                                 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+01:00")
-                                                         Date date){
+    @GetMapping("/free")
+    public List<PharmacistDto> getFreePharmacist(@RequestParam("date")
+                                                 @JsonFormat(pattern = "yyyy-MM-ddTHH:mm:ss", timezone = "GMT+01:00")
+                                                 Date date){
         return PharmacistMapper.mapPharmacistListToPharmacistDto(pharmacistService.getFreePharmacistByDate(date));
     }
-
 }

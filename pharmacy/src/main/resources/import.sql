@@ -157,6 +157,13 @@ insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4,
 
 -- ////////////////////////////////////////////////////////////////////////////
 
+--Loyalty program
+insert into loyalty_group(points, type) values (3, 0);
+insert into loyalty_group(points, type) values (4, 1);
+insert into loyalty_group(points, type) values (10, 2);
+insert into loyalty_group(points, type) values (20, 3);
+insert into loyalty_group(points, type) values (50, 4);
+
 -- Examinations
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 11, 1, 1, 1, 1, false);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(15, 11, 1, 1, 1);
@@ -257,20 +264,9 @@ insert into diagnosis(name)values('Anxiety');
 insert into diagnosis(name)values('Back pain');
 insert into diagnosis(name)values('Hypertension');
 
---Loyalty program
-insert into loyalty_group(points, type) values (3, 0);
-insert into loyalty_group(points, type) values (4, 1);
-insert into loyalty_group(points, type) values (10, 2);
-insert into loyalty_group(points, type) values (20, 3);
-insert into loyalty_group(points, type) values (50, 4);
-
 -- Complaints
 insert into complaint(complaint_message, response_complaint, patient_id)values ('Bad service', 'Please tell us more to improve our service.', 1);
 insert into complaint(complaint_message, patient_id)values ('Too crowded', 2);
-
---Complaints
-insert into complaint(complaint_message, response_complaint, patient_id)values ('Losa usluga', '...', 1);
-insert into complaint(complaint_message, patient_id)values ('Guzva', 2);
 
 -- Orders
 insert into app_order( end_date, end_time, pharmacy_admin_id) values ('2021-02-07', '08:00:00', 1);

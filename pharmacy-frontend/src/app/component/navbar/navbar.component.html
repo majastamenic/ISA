@@ -14,6 +14,12 @@
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/add-complaint'" routerLinkActive="active">Complaints</a>
             </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/patient/examinations'" routerLinkActive="active">Examinations</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/patient/counselings'" routerLinkActive="active">Counselings</a>
+            </li>
             <!--Pharmacist-->
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPharmacist()" class="nav-link" [routerLink]="'/counseling'" routerLinkActive="active">Shedule counseling</a>
@@ -37,21 +43,15 @@
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/order'" routerLinkActive="active">Orders</a>
             </li>
-            <!--Dermatologist-->
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/pharmacist/init'" routerLinkActive="active">Register pharmacist</a>
             </li>
+            <!--Dermatologist-->
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/allexaminations'" routerLinkActive="active">All examinations</a>
             </li>
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/diagnosis'" routerLinkActive="active">Diagnosis</a>
-            </li>
-            <li class="nav-item">
-                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/scheduledExaminations'" routerLinkActive="active">Examinations</a>
-            </li>
-            <li class="nav-item">
-                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/patient/counselings'" routerLinkActive="active">Counselings</a>
             </li>
             <!--Admin-->
             <li class="nav-item">

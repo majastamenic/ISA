@@ -17,7 +17,8 @@ export class CounselingsService {
     return this.httpClient.get(COUNSELING_START_PATH + "/" + id);
   }
 
-  getPatientCounselings(email: string){
-    return this.httpClient.get(PATIENT_COUNSELINGS_PATH + "/" + email);
+  getPatientCounselings(patientEmail: string){
+    return this.httpClient.get(PATIENT_COUNSELINGS_PATH + "/" + patientEmail);
   }
+  
 }

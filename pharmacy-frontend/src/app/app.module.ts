@@ -24,7 +24,7 @@ import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
-import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
+import { ExaminationScheduleComponent } from './component/patient/examination-schedule/examination-schedule.component';
 import { UserProfileComponent } from './component/user/profile/user-profile.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-profile/pharmacy-profile.component';
@@ -53,6 +53,7 @@ import { SupplierComponent } from './component/supplier/supplier.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AddOrderComponent,
     ViewOrdersComponent,
     PatientExaminationsComponent,
-    CounselingsComponent
+    CounselingsComponent,
+    CounselingSearchComponent
   ],
   imports: [
     BrowserModule,
