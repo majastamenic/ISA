@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ExaminationDto } from '../model/examination';
+import { ExaminationDto } from '../src/app/model/examination';
 import { CANCEL_EXAMINATION, EXAMINATION_PATH, EXAMINATION_START_PATH, EXAMINATION_UPDATE_PATH, 
-  PATIENT_EXAMINATIONS, FREE_EXAM_TERMS_PATH, SCHEDULE_EXAM_PATH } from '../util/paths';
+  PATIENT_EXAMINATIONS, FREE_EXAM_TERMS_PATH, SCHEDULE_EXAM_PATH } from '../src/app/util/paths';
 
 @Injectable({
   providedIn: 'root'

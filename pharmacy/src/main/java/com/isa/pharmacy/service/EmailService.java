@@ -2,6 +2,7 @@ package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.rabbitmq.ActionsAndBenefits;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,6 +135,18 @@ public class EmailService {
                 CLOSE_PHASE +
                 "Health Worker.");
 
+        javaMailSender.send(simpleMailMessage);
+    }
+
+    public void sendAction(ActionsAndBenefits action, String email, String phName){
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSender);
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject("New action");
+        simpleMailMessage.setText("Dear " + email + ",\n" +
+                "We have new action: " + action.getMessageAboutAction() + ". Which is valid from "+
+                action.getStartDate()+" to "+action.getEndDate()+" .\n\n" + CLOSE_PHASE +
+                phName);
         javaMailSender.send(simpleMailMessage);
     }
 }

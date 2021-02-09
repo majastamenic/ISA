@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CounselingsService } from 'src/app/service/counselings.service';
+import { CounselingsService } from 'service/counselings.service';
 
 @Component({
   selector: 'app-counselings',

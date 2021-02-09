@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Diagnosis } from 'src/app/model/diagnosis';
-import { DiagnosisService } from 'src/app/service/diagnosis.service';
+import { DiagnosisService } from 'service/diagnosis.service';
 import { sortAndDeduplicateDiagnostics } from 'typescript';
 
 @Component({

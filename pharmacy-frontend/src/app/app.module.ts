@@ -53,6 +53,7 @@ import { SupplierComponent } from './component/supplier/supplier.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AddOrderComponent,
     ViewOrdersComponent,
     PatientExaminationsComponent,
-    CounselingsComponent
+    CounselingsComponent,
+    SubscribeListComponent
   ],
   imports: [
     BrowserModule,

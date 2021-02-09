@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UploadQrSevice } from 'src/app/service/upload-qr.service';
+import { UploadQrSevice } from 'service/upload-qr.service';
 import {  EPrescription } from '../model/e-prescription-model';
 
 @Component({

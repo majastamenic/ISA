@@ -1,17 +1,13 @@
 package com.isa.pharmacy.rabbitmq;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping(value = "/actions")
 @CrossOrigin(value = "http://localhost:4200")
-public class RabbitMQController {
+public class ActionsAndBenefitsController {
 
     @Autowired
     RabbitMQService rabbitMQService;
@@ -19,7 +15,8 @@ public class RabbitMQController {
     @Autowired
     ActionsAndBenefitsService actionsAndBenefitsService;
 
-    /*@PostMapping
+    /*
+    @PostMapping("/rabbitMq")
     public ResponseEntity<String> producer(@RequestBody ActionsAndBenefitsDto actionDto) {
 
         ActionsAndBenefits action = ActionsAndBenefitsMapper.mapActionDtoToAction(actionDto);
@@ -27,10 +24,10 @@ public class RabbitMQController {
         rabbitMQService.send(action);
 
         return ResponseEntity.ok("Message sent to the RabbitMQ JavaInUse Successfully");
-    }*/
-
-    @PostMapping
-    public ActionsAndBenefits save(@RequestBody ActionsAndBenefitsDto actionsAndBenefitsDto){
-        return actionsAndBenefitsService.save(ActionsAndBenefitsMapper.mapActionDtoToAction(actionsAndBenefitsDto));
+    }
+    */
+    @PostMapping("/{email}")
+    public void save(@RequestBody ActionsAndBenefitsDto actionsAndBenefitsDto, @PathVariable String email){
+        actionsAndBenefitsService.send(ActionsAndBenefitsMapper.mapActionDtoToAction(actionsAndBenefitsDto), email);
     }
 }

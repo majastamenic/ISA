@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { COUNSELING_PATH, COUNSELING_START_PATH, PATIENT_COUNSELINGS_PATH } from '../util/paths';
+import { COUNSELING_PATH, COUNSELING_START_PATH, PATIENT_COUNSELINGS_PATH } from '../src/app/util/paths';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { PharmacyService } from 'src/app/service/pharmacy.service';
-import { UserService } from 'src/app/service/user.service';
+import { PharmacyService } from 'service/pharmacy.service';
+import { UserService } from 'service/user.service';
 
 @Component({
   selector: 'app-reg-pharmacy-admin',

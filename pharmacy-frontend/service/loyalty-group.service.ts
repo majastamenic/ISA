@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoyaltyGroup } from '../component/system-admin/model/loyaltyGroup';
-import { LOYALTY_GROUP_PATH } from '../util/paths';
+import { LoyaltyGroup } from '../src/app/component/system-admin/model/loyaltyGroup';
+import { LOYALTY_GROUP_PATH } from '../src/app/util/paths';
 
 @Injectable({
   providedIn: 'root'
