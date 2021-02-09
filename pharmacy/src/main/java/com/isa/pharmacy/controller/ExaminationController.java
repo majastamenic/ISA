@@ -3,8 +3,9 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
-import com.isa.pharmacy.service.ExaminationService;
+
 import com.isa.pharmacy.users.domain.Dermatologist;
+import com.isa.pharmacy.service.ExaminationService;
 import com.isa.pharmacy.users.service.DermatologistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,6 @@ import java.util.List;
 @RequestMapping("/examination")
 @CrossOrigin(value = "http://localhost:4200")
 public class ExaminationController {
-
     @Autowired
     private ExaminationService examinationService;
     @Autowired

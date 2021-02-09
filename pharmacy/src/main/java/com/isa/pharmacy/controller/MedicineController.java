@@ -2,17 +2,21 @@ package com.isa.pharmacy.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.isa.pharmacy.controller.dto.AddMedicineDto;
 import com.isa.pharmacy.controller.dto.AvailabilityMedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
-import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.dto.SearchMedicineDto;
+import com.isa.pharmacy.domain.enums.FormOfMedicine;
+import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.service.MedicineService;
+
 
 @RestController
 @RequestMapping("/medicine")
@@ -20,17 +24,6 @@ import com.isa.pharmacy.service.MedicineService;
 public class MedicineController {
     @Autowired
     private MedicineService medicineService;
-
-    @GetMapping
-    public List<MedicineDto> getAll() {
-        List<MedicineDto> listMedicineDto = new ArrayList<>();
-        List<Medicine> listMedicine = medicineService.getAll();
-        for (Medicine medicine : listMedicine) {
-            //TODO: Treba logovana apoteka
-            listMedicineDto.add(MedicineMapper.mapMedicineToMedicineDto(medicine, ""));
-        }
-        return listMedicineDto;
-    }
 
     @GetMapping("/loyalty")
     public List<MedicineLoyaltyDto> getAllMedicines() {
@@ -60,12 +53,21 @@ public class MedicineController {
     }
 
     @GetMapping("/getAllMedicines")
-    public List<MedicineDto> getMedicineFromPharmacy() {
-        List<MedicineDto> medicineDtoList = medicineService.getAllMedicines();
-        if (medicineDtoList.isEmpty()) {
-            throw new NotFoundException("Pharmacy system doesn't have any medicine");
-        }
-        return medicineDtoList;
+    public Page<SearchMedicineDto> getMedicineFromPharmacy(@RequestParam int pageSize, @RequestParam int pageNumber) {
+        Page<Medicine> medicineList = medicineService.getAll(pageNumber, pageSize);
+        return medicineList.map(MedicineMapper::mapMedicineToSearchMedicineDto);
+    }
+
+    @GetMapping("/search")
+    public Page<SearchMedicineDto> searchMedicine(@RequestParam int pageSize, @RequestParam int pageNumber,
+                                                  @RequestParam String name, @RequestParam(required = false) Double startPrice,
+                                                  @RequestParam(required = false) Double endPrice, @RequestParam(required = false) List<Long> pharmacies,
+                                                  @RequestParam(required = false) String typeOfMedicine, @RequestParam(required = false) String manufactured,
+                                                  @RequestParam(required = false) String composition, @RequestParam(required = false) FormOfMedicine formOfMedicine,
+                                                  @RequestParam(required = false) MedicinePublishingType publishingType ){
+        Page<Medicine> medicines = medicineService.filterMedicines(pageSize, pageNumber, name, startPrice, endPrice,
+                pharmacies, typeOfMedicine, manufactured, composition, formOfMedicine, publishingType);
+        return medicines.map(MedicineMapper::mapMedicineToSearchMedicineDto);
     }
 
 

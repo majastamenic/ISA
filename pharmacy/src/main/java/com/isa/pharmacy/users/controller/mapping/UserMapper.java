@@ -3,6 +3,7 @@ package com.isa.pharmacy.users.controller.mapping;
 
 import com.isa.pharmacy.users.controller.dto.LoginDto;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
+import com.isa.pharmacy.users.controller.dto.UpdateUserDto;
 import com.isa.pharmacy.users.controller.dto.UserDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.domain.*;
@@ -115,5 +116,18 @@ public class UserMapper {
         userDto.setActive(user.getActive());
         userDto.setRole(user.getRole());
         return userDto;
+    }
+
+    public static User mapUpdateUserDtoToUser(UpdateUserDto updateUserDto){
+        User user = new User();
+        user.setEmail(updateUserDto.getEmail());
+        user.setPassword(updateUserDto.getPassword());
+        user.setName(updateUserDto.getName());
+        user.setSurname(updateUserDto.getSurname());
+        user.setAddress(updateUserDto.getAddress());
+        user.setCity(updateUserDto.getCity());
+        user.setCountry(updateUserDto.getCountry());
+        user.setPhone(updateUserDto.getPhone());
+        return user;
     }
 }

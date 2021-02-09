@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+//TODO: Obrisati
+
 public class CreateOrderDto {
 
     private Long id;

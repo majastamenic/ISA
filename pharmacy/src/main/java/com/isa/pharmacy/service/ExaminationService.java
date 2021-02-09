@@ -6,6 +6,8 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.ExaminationRepository;
+import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.domain.Prescription;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;

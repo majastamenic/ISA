@@ -52,10 +52,6 @@ export class UserService {
     return !(user == null)
   }
 
-  isPatient(){
-    return (sessionStorage.getItem("role") == 'PATIENT');
-  }
-
   isPharmacist(){
     return (sessionStorage.getItem("role") == 'PHARMACIST');
   }
@@ -66,6 +62,18 @@ export class UserService {
 
   isPharmacyAdmin(){
     return (sessionStorage.getItem('role') == 'PHARMACY_ADMIN');
+  }
+
+  isPatient(){
+    return (sessionStorage.getItem('role') == 'PATIENT');
+  }
+
+  isAdmin(){
+    return (sessionStorage.getItem('role') == 'ADMIN');
+  }
+
+  isSupplier(){
+    return (sessionStorage.getItem('role') == 'SUPPLIER');
   }
 
   logOut(){
