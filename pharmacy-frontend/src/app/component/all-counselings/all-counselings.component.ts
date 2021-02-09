@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AllCounselingsService } from 'src/app/service/all-counselings.service';
-import { Counseling } from '../user/model/counseling';
+import { CounselingsService } from 'src/app/service/counselings.service';
+import { Counseling } from '../../model/counseling';
 
 @Component({
   selector: 'app-all-counselings',
@@ -14,7 +14,7 @@ export class AllCounselingsComponent implements OnInit {
   counselings: Counseling[] = [];
   counseling: any;
 
-  constructor(private allCounseling: AllCounselingsService, private router: Router) {
+  constructor(private allCounseling: CounselingsService, private router: Router) {
     this.email = '';
    }
 

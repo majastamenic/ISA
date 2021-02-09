@@ -1,10 +1,10 @@
 -- Pharmacies
-insert into pharmacy (address, name) values('Rumenacka 15, Novi Sad', 'Jankovic');
-insert into pharmacy (address, name) values('Hajduk Veljkova 8, Novi Sad', 'Benu');
-insert into pharmacy (address, name) values('Bulevar Cara Lazara 76, Novi Sad', 'Zelena Apoteka');
-insert into pharmacy (address, name) values('Bulevar Cara Lazara 88, Novi Sad', 'Galen pharm');
-insert into pharmacy (address, name) values('Rumenacka 13, Novi Sad', 'Irisfarm');
-insert into pharmacy (address, name) values('Futoski Put 85A, Novi Sad', 'Tilia');
+insert into pharmacy (address, name, counseling_price) values('Rumenacka 15, Novi Sad', 'Jankovic', 10);
+insert into pharmacy (address, name, counseling_price) values('Hajduk Veljkova 8, Novi Sad', 'Benu', 5);
+insert into pharmacy (address, name, counseling_price) values('Bulevar Cara Lazara 76, Novi Sad', 'Zelena Apoteka', 0);
+insert into pharmacy (address, name, counseling_price) values('Bulevar Cara Lazara 88, Novi Sad', 'Galen pharm', 7);
+insert into pharmacy (address, name, counseling_price) values('Rumenacka 13, Novi Sad', 'Irisfarm', 8);
+insert into pharmacy (address, name, counseling_price) values('Futoski Put 85A, Novi Sad', 'Tilia', 3);
 
 -- Hospital
 insert into hospital(email, name) values('integration.adapter@gmail.com', 'WellDevClinic');
@@ -94,7 +94,7 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-15', '19:30:00', '20:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-08', '2021-02-08', '19:30:00', '20:00:00');
 
--- WorkSchedule
+-- WorkSchedule //////////////////////////////////////////////////////////
 insert into work_schedule(schedule_id) values(1);
 insert into work_schedule(schedule_id) values(2);
 insert into work_schedule(schedule_id) values(3);
@@ -106,7 +106,51 @@ insert into work_schedule(schedule_id) values(8);
 insert into work_schedule(schedule_id) values(9);
 insert into work_schedule(schedule_id) values(10);
 
---Loyalty group
+-- WorkSchedule: Dermatologist
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 1);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 3);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 5);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 7);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 9);
+
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 2);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 4);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 6);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 8);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (2, 10);
+
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 1);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 4);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 5);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 8);
+insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (3, 9);
+
+--WorkSchedule: Pharmacist
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 2);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 3);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 6);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 7);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (1, 10);
+
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (2, 1);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (2, 5);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (2, 9);
+
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 1);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 3);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 6);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 8);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (3, 9);
+
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 1);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 4);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 5);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 8);
+insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 9);
+
+-- ////////////////////////////////////////////////////////////////////////////
+
+-- Loyalty group
 insert into loyalty_group(points, type) values (3, 0);
 insert into loyalty_group(points, type) values (4, 1);
 insert into loyalty_group(points, type) values (10, 2);
@@ -130,7 +174,15 @@ insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyal
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 22, 1, 2, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 23, 3, 2, 1);
 
---Medicine
+-- Counselings
+insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (11, 1, 1, false, 10);
+insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (15, 2, 1, false, 10);
+insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (22, 3, 1, false, 10);
+
+insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (13, 1, 2, false, 10);
+insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (16, 3, 2, false, 10);
+
+-- Medicines
 insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62542, 'cochenillrot, laktoza, monohidrat', 0, 5,'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu');
 insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (66042, 'kalijum-sorbat, prečišćeni talk', 1, 10, 'Optisorb', 'Panadol', 'Beleska 2', 1, 'Lek za bolove');
 insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62217, 'skrob, trietil-citrat', 2, 15, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu');

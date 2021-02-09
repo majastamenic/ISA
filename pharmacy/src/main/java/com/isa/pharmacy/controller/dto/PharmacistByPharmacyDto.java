@@ -2,6 +2,7 @@ package com.isa.pharmacy.controller.dto;
 
 import com.isa.pharmacy.users.domain.User;
 
+    // TODO: ???? Koristiti klasu UserDto umesto ovoga
 public class PharmacistByPharmacyDto {
     private User user;
 

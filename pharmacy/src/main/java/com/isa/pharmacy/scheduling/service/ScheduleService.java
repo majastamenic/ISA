@@ -1,7 +1,7 @@
-package com.isa.pharmacy.service;
+package com.isa.pharmacy.scheduling.service;
 
-import com.isa.pharmacy.domain.Schedule;
-import com.isa.pharmacy.repository.ScheduleRepository;
+import com.isa.pharmacy.scheduling.domain.Schedule;
+import com.isa.pharmacy.scheduling.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class ScheduleService {
+
     @Autowired
     private ScheduleRepository scheduleRepository;
 

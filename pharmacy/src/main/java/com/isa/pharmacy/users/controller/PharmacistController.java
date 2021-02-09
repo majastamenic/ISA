@@ -1,14 +1,19 @@
 package com.isa.pharmacy.users.controller;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.controller.dto.CreatePharmacistDto;
+import com.isa.pharmacy.users.controller.dto.PharmacistDto;
+import com.isa.pharmacy.users.controller.mapping.PharmacistMapper;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.domain.VacationSchedule;
-import com.isa.pharmacy.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -45,6 +50,13 @@ public class PharmacistController {
             throw new NotFoundException("Pharmacy doesn't have pharmacist");
         }
         return pharmacistByPharmacyDtos;
+    }
+
+    @GetMapping("/free/{date}")
+    public List<PharmacistDto> getFreePharmacist(@PathVariable
+                                                 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+01:00")
+                                                         Date date){
+        return PharmacistMapper.mapPharmacistListToPharmacistDto(pharmacistService.getFreePharmacistByDate(date));
     }
 
 }

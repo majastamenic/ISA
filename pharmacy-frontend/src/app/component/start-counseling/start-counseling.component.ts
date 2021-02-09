@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AllCounselingsService } from 'src/app/service/all-counselings.service';
+import { CounselingsService } from 'src/app/service/counselings.service';
 
 @Component({
   selector: 'app-start-counseling',
@@ -13,7 +13,7 @@ export class StartCounselingComponent implements OnInit {
   counseling: any;
 
 
-  constructor(private allCounseling: AllCounselingsService,
+  constructor(private allCounseling: CounselingsService,
     private _ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {

@@ -5,7 +5,7 @@ import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.Prescription;
-import com.isa.pharmacy.domain.Schedule;
+import com.isa.pharmacy.scheduling.domain.Schedule;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;

@@ -1,8 +1,8 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
-import com.isa.pharmacy.domain.WorkSchedule;
-import com.isa.pharmacy.service.WorkScheduleService;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.service.WorkScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
