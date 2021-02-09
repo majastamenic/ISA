@@ -11,6 +11,7 @@ export const HOSPITAL_PATH = BACKEND_PATH + '/hospital';
 export const ACTION_PATH = BACKEND_PATH + '/actions';
 
 export const MEDICINE_PATH = BACKEND_PATH + '/medicine';
+export const MEDICINE_SEARCH_PATH = BACKEND_PATH + '/medicine/search';
 export const MEDICINEALL_PATH = MEDICINE_PATH + '/getAllMedicines';
 export const MEDICINES_CHECK_PATH = MEDICINE_PATH + '/check';
 
@@ -57,3 +58,10 @@ export const MEDICINE_LOYALTY_PATH = MEDICINE_PATH+'/loyalty';
 export const LOYALTY_GROUP_PATH = BACKEND_PATH + '/loyaltyGroup';
 
 export const COMPLAINT_PATH = BACKEND_PATH + '/complaint';
+
+export const ORDER_PATH = BACKEND_PATH + '/order';
+export const OFFER_PATH = BACKEND_PATH + '/supplier-offer';
+
+export const SUBSCRIBE_PATH = PHARMACY_PATH + '/subscribe';
+export const UNSUBSCRIBE_PATH = PHARMACY_PATH + '/unsubscribe';
+export const PHARMACY_SUB_PATH = PHARMACY_PATH + '/sub_pharmacy';

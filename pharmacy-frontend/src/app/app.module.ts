@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './component/home/home.component';
+import { HomeComponent } from '../../home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
@@ -49,6 +49,11 @@ import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.comp
 import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
 import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
 import { CounselingsComponent } from './component/patient/counselings/counselings.component';
+import { SupplierComponent } from './component/supplier/supplier.component';
+import { AddOrderComponent } from './component/add-order/add-order.component';
+import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
 
 @NgModule({
   declarations: [
@@ -92,8 +97,12 @@ import { CounselingsComponent } from './component/patient/counselings/counseling
     LoyalityComponent,
     ComplaintMessageComponent,
     ComplaintsComponent,
+    SupplierComponent,
+    AddOrderComponent,
+    ViewOrdersComponent,
     PatientExaminationsComponent,
-    CounselingsComponent
+    CounselingsComponent,
+    SubscribeListComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +117,7 @@ import { CounselingsComponent } from './component/patient/counselings/counseling
     NgSelectModule,
     DpDatePickerModule,
     NgbModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

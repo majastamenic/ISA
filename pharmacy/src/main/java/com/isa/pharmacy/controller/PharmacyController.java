@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -107,5 +109,23 @@ public class PharmacyController {
                                      @RequestBody String medicineName, @RequestHeader("apiKey") String apiKey) {
         pharmacyService.checkApiKey(apiKey);
         return pharmacyService.hasPharmacyMedication(pharmacyName, medicineName);
+    }
+
+    @PutMapping("/subscribe/{phName}/{email}")
+    public void subscribe(@PathVariable String phName, @PathVariable String email){
+        pharmacyService.addSubscribe(email, phName);
+    }
+
+    @PutMapping("/unsubscribe/{phName}/{email}")
+    public void unsubscribe(@PathVariable String phName, @PathVariable String email){
+        pharmacyService.unsubscribe(email, phName);
+    }
+
+    @GetMapping("/sub_pharmacy/{email}")
+    public List<String> getSubPharmacies(@PathVariable String email){
+        List<String> phNames = new ArrayList<>();
+        for(Pharmacy p: pharmacyService.findPharmaciesBySubEmail(email))
+            phNames.add(p.getName());
+        return phNames;
     }
 }

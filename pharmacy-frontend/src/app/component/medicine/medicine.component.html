@@ -1,37 +1,80 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h2>Medicine list</h2>
+<div class="page">
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <input type="text" [(ngModel)]="name" name="searchBtn">
+            <button *ngIf="!filterView" (click) = search()>Search</button>
+            <div *ngIf="filterView">
+                <input type="number" name="startPrice" [(ngModel)] = "startPrice" placeholder="From price">
+                <input type="number" name="endPrice" [(ngModel)] = "endPrice" placeholder="To price">
+                <!--Pharmacies-->
+                <div>
+                    <ng-select [items]="allPharmacies"
+                        placeholder="Select pharmacies"
+                        appendTo="body"
+                        bindLabel="name"
+                        [multiple]="true"
+                        [(ngModel)]="selectedPharmacies"
+                        name="pharmacies">
+                    </ng-select>
+                </div>
+                <input type="text" name="typeOfMedicine" [(ngModel)] = "typeOfMedicine" placeholder="Type of medicine">
+                <input type="text" name="manufactured" [(ngModel)] = "manufactured" placeholder="Manufacture">
+                <input type="text" name="composition" [(ngModel)] = "composition" placeholder="Composition">
+                <select class="form-select" [(ngModel)]="formOfMedicine" placeholder="Enter medicine form" name='formOfMedicine'>
+                    <option selected value="">Enter medicine form</option>
+                    <option value="POWDER">Powder</option>
+                    <option value="CAPSULE">Capsule</option>
+                    <option value="TABLET">Tablet</option>
+                    <option value="GREASE">Grease</option>
+                    <option value="GEL">Gel</option>
+                    <option value="PASTE">Paste</option>
+                    <option value="DILUTION">Dilution</option>
+                    <option value="SYRUP">Syrup</option>
+                </select>
+                <select class="form-select" [(ngModel)]="publishingType" placeholder="Select publishing type" name='publishingType'>
+                    <option selected value="">Select publishing type</option>
+                    <option value="WITH_PRESCRIPTION">With prescription</option>
+                    <option value="WITHOUT_PRESCRIPTION">Without prescription</option>
+                </select>
+            </div>
+            <button *ngIf="filterView" (click) =search()>Filter</button>
+        </div>
+    </nav>
+
+    <div *ngFor="let medicine of medicinesDtoList | paginate: {id: 'server', itemsPerPage: itemsPerPage, currentPage: page, totalItems: total }; index as i" class="page">
+        <div class="form">
+        <form class="ngform">
+            <h3>{{medicine.name}}</h3>
+            <label>Type: {{medicine.typeOfMedicine}}</label>
+            <hr/>
+            <p>Pharmacies:</p>
+            <div *ngFor="let p of medicine.pharmacyPriceDtos">
+                <label>Pharmacy name: {{p.pharmacyName}}</label>
+                <br/>
+                <label>Price: {{p.price}}</label>
+            </div>
+            <button *ngIf="!viewSpec" class="btn btn-info" (click)="viewSpecification($event, i)">Specification</button>
+            <div *ngIf="viewSpec && enableViewIndex==i">
+                <hr/>
+                <p>Specification</p>
+                <br/>
+                <label>Code: {{medicine.code}}</label>
+                <br/>
+                <label>Form: {{medicine.formOfMedicine}}</label>
+                <br/>
+                <label>Composition: {{medicine.composition}}</label>
+                <br/>
+                <label>Manufactured: {{medicine.manufactured}}</label>
+                <br/>
+                <label>Publishing type: {{medicine.publishingType}}</label>
+                <br/>
+                <button class="btn btn-info" (click)="cancel()">Cancel</button>
+            </div>
+            </form>
+        </div>
     </div>
-    <div class="panel-body">
-        <table id="medicine" class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Form</th>
-                    <th>Manufactured</th>
-                    <th>Publishing type</th>
-                    <th>Pharmacy</th>
-                    <th>Price</th>
-                    <th>Amount</th>
-                    <th>Note</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let medicine of medicinesDtoList">
-                    <td>{{medicine.code}}</td>
-                    <td>{{medicine.name}}</td>
-                    <td>{{medicine.typeOfMedicine}}</td>
-                    <td>{{medicine.formOfMedicine}}</td>
-                    <td>{{medicine.manufactured}}</td>
-                    <td>{{medicine.publishingType}}</td>
-                    <td>{{medicine.pharmacyName}}</td>
-                    <td>{{medicine.price}}</td>
-                    <td>{{medicine.amount}}</td>
-                    <td>{{medicine.note}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="has-text-centered">
+        <pagination-controls (pageChange)="onPageChanged($event)" id="server"></pagination-controls>
     </div>
 </div>

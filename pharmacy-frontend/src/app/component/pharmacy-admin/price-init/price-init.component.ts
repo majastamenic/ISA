@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.service';
-import { PriceListService } from 'src/app/service/price-list.service';
+import { MedicinePharmacyService } from 'service/medicine-pharmacy.service';
+import { PriceListService } from 'service/price-list.service';
 import { PharmacyAdmin } from '../../../model/pharmacy-admin';
 
 @Component({

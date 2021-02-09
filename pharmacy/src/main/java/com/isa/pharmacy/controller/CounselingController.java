@@ -56,6 +56,10 @@ public class CounselingController {
         return counselingService.save(counseling);
     }
 
+    //TODO: Masa
+    /*
     @PostMapping("/update")
     public Counseling updateCounseling(@RequestBody CounselingDto c) { return counselingService.updateCounseling(c); }
+    */
+
 }

@@ -1,0 +1,25 @@
+<div class="page">
+    <div class="form">
+        <form class="ngform">
+            <h3>Subscribe list</h3>
+            <div class="panel-body">
+                <table id="subscribes" class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Pharmacy name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pharmacy of pharmacies; index as i;">
+                            <td>{{pharmacy}}</td>
+                            <td>
+                                <button class="btn btn-secondary" (click)="unsubsribe(i)">Unsubscibe</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>

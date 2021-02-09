@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { PharmacistService } from 'src/app/service/pharmacist.service';
-import { PharmacyService } from 'src/app/service/pharmacy.service';
-import { WorkScheduleService } from 'src/app/service/work-schedule.service';
+import { PharmacistService } from 'service/pharmacist.service';
+import { PharmacyService } from 'service/pharmacy.service';
+import { WorkScheduleService } from 'service/work-schedule.service';
 @Component({
   selector: 'app-pharmacist-init',
   templateUrl: './pharmacist-init.component.html',

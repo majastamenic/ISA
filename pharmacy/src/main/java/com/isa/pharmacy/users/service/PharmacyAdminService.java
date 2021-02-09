@@ -1,5 +1,7 @@
 package com.isa.pharmacy.users.service;
 
+import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacyAdminMapper;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
@@ -48,5 +50,12 @@ public class PharmacyAdminService {
                 pharmacyAdmins.add(pa);
         }
         return pharmacyAdmins;
+    }
+
+    public PharmacyAdmin getByEmail(String email){
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminRepository.findPharmacyAdminByUser_email(email);
+        if(pharmacyAdmin == null)
+            throw new NotFoundException("PharmacyAdmin with email "+email+" doesn't exists.");
+        return pharmacyAdmin;
     }
 }

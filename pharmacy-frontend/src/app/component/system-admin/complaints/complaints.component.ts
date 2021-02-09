@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ComplaintService } from 'src/app/service/complaint.service';
+import { ComplaintService } from 'service/complaint.service';
+import { UserService } from 'service/user.service';
 
 @Component({
   selector: 'app-complaints',
@@ -14,13 +16,17 @@ export class ComplaintsComponent implements OnInit {
   enableEditIndex = null;
   prevResponse = '';
 
-  constructor(private complaintService: ComplaintService, private toastrService: ToastrService) { }
+  constructor(private complaintService: ComplaintService, private toastrService: ToastrService,
+    private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
+    if(!this.userService.isAdmin()){
+      this.router.navigate(['home']);
+      this.toastrService.error('Unauthorized access.');
+    }
     this.complaintService.getAll().subscribe((listComplaints: any) => {
       this.complaints = listComplaints;
-    },
-    (err: any) => {
+    }, (err: any) => {
       this.toastrService.error('Error ' + err.error.message);
     });
   }
