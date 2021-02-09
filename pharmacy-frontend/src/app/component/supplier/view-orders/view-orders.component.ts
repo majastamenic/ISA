@@ -13,14 +13,14 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ViewOrdersComponent implements OnInit {
 
-  orders: any;
+  orders: any = [];
   supplier: any;
   supplierOffers: any;
-  offers: any;
   addOfferView: boolean = false;
   isEditable: boolean = false;
   newOffer: any = {};
   enableEditIndex: any;
+  offerType: any;
 
   constructor(private orderService: OrderService, private toastrService: ToastrService,
     private userService: UserService, private router: Router) { }
@@ -30,20 +30,15 @@ export class ViewOrdersComponent implements OnInit {
       this.router.navigate(['home']);
       this.toastrService.error('Unauthorized access.');
     }
-    this.orderService.getAll().subscribe(ordersList => {
-      this.orders = ordersList;
-    });
     let userEmail = sessionStorage.getItem('user');
     if(userEmail){
-      this.newOffer.supplierEmail = userEmail;
       this.supplier = userEmail;
     }
     this.orderService.getSupplierOffers(this.supplier).subscribe((offersList: Observable<any>) =>{
-      this.offers = offersList;
+      this.orders = offersList;
     }, (err: any) => {
       this.toastrService.info(err.error.message);
     });
-    this.newOffer.type = OrderOfferType.WAITING_FOR_ANSWER;
   }
 
   addOffer(e: Event, i: any){
@@ -52,10 +47,13 @@ export class ViewOrdersComponent implements OnInit {
   }
 
   create(){
+    this.newOffer.supplierEmail = this.supplier;
+    this.newOffer.type = OrderOfferType.WAITING_FOR_ANSWER;
     this.newOffer.orderId = this.orders[this.enableEditIndex].id;
     this.orderService.createOffer(this.newOffer).subscribe((response: any) =>{
       this.isEditable = false;
       this.addOfferView = false;
+      this.router.navigate(['/']);
       this.toastrService.success("Added offer");
     }, (err: any) => {
         this.toastrService.error("Error: "+ err.error.message);
@@ -70,5 +68,13 @@ export class ViewOrdersComponent implements OnInit {
     if(this.orders[i].endDate < Date.now){
       this.isEditable = true;
     }
+  }
+
+  filter(){
+    this.orderService.filter(this.supplier, this.offerType).subscribe((offersList: Observable<any>) =>{
+      this.orders = offersList;
+    }, (err: any) => {
+      this.toastrService.info(err.error.message);
+    });
   }
 }

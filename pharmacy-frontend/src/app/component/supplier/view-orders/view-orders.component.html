@@ -1,37 +1,52 @@
-<div *ngFor="let order of orders; index as i;">
-    <div class="form">
-        <form class="ngform">
-            <h2>Order {{order.id}}</h2>
-            <label>End date: {{order.endDate}}</label>
-            <br/>
-            <label>End time: {{order.endTime}}</label>
-            <br/>
-            <div *ngFor="let offer of order.orderOffers">
-                <label>Medicine name: {{offer.medicineName}}</label>
+<div class="page">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <select class="form-select" [(ngModel)]="offerType" placeholder="Select offer type" name='offerType'>
+                <option selected value="">Select offer type</option>
+                <option value="ACCEPTED">ACCEPTED</option>
+                <option value="REJECTED">REJECTED</option>
+                <option value="WAITING_FOR_ANSWER">WAITING_FOR_ANSWER</option>
+            </select>
+            <button (click) = filter()>Search</button>
+        </div>
+    </nav>
+    <div *ngFor="let order of orders; index as i;">
+        <div class="form">
+            <form class="ngform">
+                <h2>Order {{order.id}}</h2>
+                <label>End date: {{order.endDate}}</label>
                 <br/>
-                <label>Quantity: {{offer.quantity}}</label>
+                <label>End time: {{order.endTime}}</label>
                 <br/>
-            </div>
-            <button *ngIf="!addOfferView" class="btn btn-outline-dark" (click)="addOffer($event, i)">Offer</button>
-            <div *ngIf="addOfferView && isEditable && enableEditIndex == i">
-                <hr/>
-                <h3>Offer</h3>
-                <p>Delivery date:</p>
-                <input type="date" [(ngModel)]="newOffer.deliveryDate" placeholder="Enter delivery date" name='deliveryDate' id='deliveryDate'>
-                <p>Total price:</p>
-                <input type="number" [(ngModel)]="newOffer.totalPrice" placeholder="Enter total price" name='totalPrice' id='totalPrice'>
-                <button class="btn btn-info" (click)="create()">Save</button>
-                <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
-            </div>
-            <div *ngIf="addOfferView && !isEditable && enableEditIndex == i">
-                <hr/>
-                <h3>Offer</h3>
-                <p>Delivery date:</p>
-                <small>{{newOffer.deliveryDate}}</small>
-                <p>Total price:</p>
-                <small>{{newOffer.totalPrice}}</small>
-                <button  class="btn btn-info" (click)="edit(i)">Edit</button>
-            </div>
-        </form>
+                <div *ngFor="let offer of order.orderOffers">
+                    <label>Medicine name: {{offer.medicineName}}</label>
+                    <br/>
+                    <label>Quantity: {{offer.quantity}}</label>
+                    <br/>
+                </div>
+                <button *ngIf="!addOfferView" class="btn btn-outline-dark" (click)="addOffer($event, i)">Offer</button>
+                <div *ngIf="addOfferView && isEditable && enableEditIndex == i">
+                    <hr/>
+                    <h3>Offer</h3>
+                    <p>Delivery date:</p>
+                    <input type="date" [(ngModel)]="newOffer.deliveryDate" placeholder="Enter delivery date" name='deliveryDate' id='deliveryDate'>
+                    <p>Total price:</p>
+                    <input type="number" [(ngModel)]="newOffer.totalPrice" placeholder="Enter total price" name='totalPrice' id='totalPrice'>
+                    <button class="btn btn-info" (click)="create()">Save</button>
+                    <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+                </div>
+                <div *ngIf="addOfferView && !isEditable && enableEditIndex == i">
+                    <hr/>
+                    <h3>Offer</h3>
+                    <p>Delivery date:</p>
+                    <small>{{order.deliveryDate}}</small>
+                    <hr/>
+                    <p>Total price:</p>
+                    <small>{{order.totalPrice}}</small>
+                    <button  class="btn btn-info" (click)="edit(i)">Edit</button>
+                    <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

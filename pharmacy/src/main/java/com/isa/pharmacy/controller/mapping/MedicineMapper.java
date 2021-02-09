@@ -123,8 +123,8 @@ public class MedicineMapper {
         searchMedicineDto.setTypeOfMedicine(medicine.getTypeOfMedicine());
         searchMedicineDto.setPublishingType(medicine.getPublishingType());
         List<SearchMedPhDto> searchMedPhDtos = new ArrayList<>();
-        SearchMedPhDto searchMedPhDto = new SearchMedPhDto();
         for(MedicinePharmacy medicinePharmacy: medicine.getMedicinePharmacy()){
+            SearchMedPhDto searchMedPhDto = new SearchMedPhDto();
             searchMedPhDto.setPharmacyName(medicinePharmacy.getPharmacy().getName());
             searchMedPhDto.setPrice(medicinePharmacy.getPrice());
             searchMedPhDtos.add(searchMedPhDto);

@@ -199,4 +199,6 @@ insert into order_offer(price, quantity, medicine_id)VALUES (2.9, 200, 1);
 insert into order_offer(price, quantity, medicine_id)VALUES (1.0, 100, 2);
 insert into order_offer(price, quantity, medicine_id)VALUES (2.0, 2, 3);
 
-
+--SupplierOffers
+insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-01-01', 20.0, 2, 1, 1);
+insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-02-02', 50, 1, 2, 1);

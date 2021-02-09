@@ -1,11 +1,14 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.OrderDto;
+import com.isa.pharmacy.controller.dto.ViewOrderOfferDto;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Order;
+import com.isa.pharmacy.domain.SupplierOffer;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class OrderMapper {
@@ -37,4 +40,20 @@ public class OrderMapper {
         return orderDtoList;
     }
 
+    public static Collection<ViewOrderOfferDto> mapOrdersToViewOrderOffersDto(List<Order> orders){
+        List<ViewOrderOfferDto> viewOrderOfferDtos = new ArrayList<>();
+        for (Order order : orders)
+            viewOrderOfferDtos.add(mapOrderToViewOrderOfferDto(order));
+        return viewOrderOfferDtos;
+    }
+
+    public static ViewOrderOfferDto mapOrderToViewOrderOfferDto(Order order){
+        ViewOrderOfferDto viewOrderOfferDto = new ViewOrderOfferDto();
+        viewOrderOfferDto.setId(order.getId());
+        viewOrderOfferDto.setOrderOffers(OrderOffersMapper.mapOrderOffersToOrderOffersDto(order.getOrderOffers()));
+        viewOrderOfferDto.setEndDate(order.getEndDate());
+        viewOrderOfferDto.setEndTime(order.getEndTime());
+        viewOrderOfferDto.setPharmacyAdminEmail(order.getPharmacyAdmin().getUser().getEmail());
+        return viewOrderOfferDto;
+    }
 }

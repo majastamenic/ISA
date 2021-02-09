@@ -1,9 +1,12 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.SupplierOfferDto;
+import com.isa.pharmacy.controller.dto.ViewOrderOfferDto;
+import com.isa.pharmacy.controller.mapping.OrderMapper;
 import com.isa.pharmacy.controller.mapping.SupplierOfferMapper;
 import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.domain.SupplierOffer;
+import com.isa.pharmacy.domain.enums.OrderOfferType;
 import com.isa.pharmacy.service.OrderService;
 import com.isa.pharmacy.service.SupplierOfferService;
 import com.isa.pharmacy.users.domain.Supplier;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/supplier-offer")
@@ -25,8 +29,19 @@ public class SupplierOfferController {
     private SupplierService supplierService;
 
     @GetMapping("/{email}")
-    public List<SupplierOfferDto> getAllSupplierOffers(@PathVariable String email){
-        return SupplierOfferMapper.mapSupplierOffersToSupplierOffersDto(supplierOfferService.getAllSupplierOffers(email));
+    public List<ViewOrderOfferDto> getAllSupplierOffers(@PathVariable String email){
+        List<SupplierOffer> supplierOfferList = supplierOfferService.getAllSupplierOffers(email);
+        List<ViewOrderOfferDto> viewOrderOfferDtos = SupplierOfferMapper.mapSupplierOffersAndOrdersToViewOrderOfferDtos(supplierOfferList);
+        List<Order> orders = orderService.findOrderWithoutSupplierOffer(email);
+        if(!orders.isEmpty() && orders != null)
+            viewOrderOfferDtos.addAll(OrderMapper.mapOrdersToViewOrderOffersDto(orders).stream().distinct().collect(Collectors.toList()));
+        return viewOrderOfferDtos;
+    }
+
+    @GetMapping
+    public List<ViewOrderOfferDto> filter(@RequestParam String email, @RequestParam OrderOfferType type){
+        List<SupplierOffer> supplierOfferList = supplierOfferService.filter(email, type);
+        return SupplierOfferMapper.mapSupplierOffersAndOrdersToViewOrderOfferDtos(supplierOfferList);
     }
 
     @PostMapping

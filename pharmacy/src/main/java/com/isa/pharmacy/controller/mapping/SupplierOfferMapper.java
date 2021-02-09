@@ -1,8 +1,10 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.SupplierOfferDto;
+import com.isa.pharmacy.controller.dto.ViewOrderOfferDto;
 import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.domain.SupplierOffer;
+import com.isa.pharmacy.domain.enums.OrderOfferType;
 import com.isa.pharmacy.users.domain.Supplier;
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ public class SupplierOfferMapper {
         SupplierOffer supplierOffer = new SupplierOffer();
         supplierOffer.setOrder(order);
         supplierOffer.setSupplier(supplier);
-        supplierOffer.setType(supplierOfferDto.getType());
+        supplierOffer.setType(OrderOfferType.WAITING_FOR_ANSWER);
         supplierOffer.setTotalPrice(supplierOfferDto.getTotalPrice());
         supplierOffer.setDeliveryDate(supplierOfferDto.getDeliveryDate());
         return supplierOffer;
@@ -34,5 +36,27 @@ public class SupplierOfferMapper {
         for(SupplierOffer supplierOffer: supplierOfferList)
             supplierOfferDtoList.add(mapSupplierOfferToSupplierOfferDto(supplierOffer));
         return supplierOfferDtoList;
+    }
+
+    public static ViewOrderOfferDto mapSupplierOfferAndOrderToViewOrderOfferDto(SupplierOffer supplierOffer){
+        ViewOrderOfferDto viewOrderOfferDto = new ViewOrderOfferDto();
+        viewOrderOfferDto.setId(supplierOffer.getOrder().getId());
+        viewOrderOfferDto.setOrderOffers(OrderOffersMapper.mapOrderOffersToOrderOffersDto(supplierOffer.getOrder().getOrderOffers()));
+        viewOrderOfferDto.setEndDate(supplierOffer.getOrder().getEndDate());
+        viewOrderOfferDto.setEndTime(supplierOffer.getOrder().getEndTime());
+        viewOrderOfferDto.setPharmacyAdminEmail(supplierOffer.getOrder().getPharmacyAdmin().getUser().getEmail());
+        viewOrderOfferDto.setType(supplierOffer.getType());
+        viewOrderOfferDto.setSupplierEmail(supplierOffer.getSupplier().getUser().getEmail());
+        viewOrderOfferDto.setTotalPrice(supplierOffer.getTotalPrice());
+        viewOrderOfferDto.setDeliveryDate(supplierOffer.getDeliveryDate());
+        return viewOrderOfferDto;
+    }
+
+    public static List<ViewOrderOfferDto> mapSupplierOffersAndOrdersToViewOrderOfferDtos (List<SupplierOffer> supplierOfferList){
+        List<ViewOrderOfferDto> viewOrderOfferDtos = new ArrayList<>();
+        for(SupplierOffer supplierOffer: supplierOfferList){
+            viewOrderOfferDtos.add(mapSupplierOfferAndOrderToViewOrderOfferDto(supplierOffer));
+        }
+        return viewOrderOfferDtos;
     }
 }

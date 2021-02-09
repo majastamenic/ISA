@@ -33,7 +33,7 @@ public interface MedicineRepository extends JpaRepository<Medicine, Long> {
     @Query(value = "select distinct m from Medicine m join MedicinePharmacy mp" +
             "       on mp.medicine.id = m.id" +
             "       where lower(m.name) like concat('%',lower(:name),'%')" +
-            "       and (:pharmacies is null or mp.pharmacy.id in :pharmacies) " +
+            "       and ((:pharmacies) is null or mp.pharmacy.id in (:pharmacies)) " +
             "       and (:startPrice is null or mp.price >= :startPrice)" +
             "       and (:endPrice is null or mp.price <= :endPrice) " +
             "       and (:typeOfMedicine = '' or lower(m.typeOfMedicine) like concat('%',lower(:typeOfMedicine),'%'))" +

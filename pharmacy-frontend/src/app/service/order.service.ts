@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OFFER_PATH, ORDER_PATH } from '../util/paths';
@@ -28,5 +28,12 @@ export class OrderService {
 
   getSupplierOffers(email: string): any{
     return this.httpClient.get(OFFER_PATH + "/" + email);
+  }
+
+  filter(email: string, type: any): any{
+    let params = new HttpParams();
+    params = params.append('email', email);
+    if(type){params = params.append('type', type);}
+    return this.httpClient.get(OFFER_PATH, {params: params});
   }
 }

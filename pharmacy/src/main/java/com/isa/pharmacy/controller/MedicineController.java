@@ -2,8 +2,6 @@ package com.isa.pharmacy.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 import com.isa.pharmacy.controller.dto.AddMedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
@@ -18,7 +16,6 @@ import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.service.MedicineService;
 
-import static java.util.Collections.emptyList;
 
 @RestController
 @RequestMapping("/medicine")
