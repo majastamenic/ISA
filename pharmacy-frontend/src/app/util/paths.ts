@@ -46,6 +46,7 @@ export const FREE_EXAM_TERMS_PATH = EXAMINATION_PATH + '/freeTerms';
 export const SCHEDULE_EXAM_PATH = EXAMINATION_PATH + '/schedule';
 export const CANCEL_EXAMINATION = EXAMINATION_PATH + '/cancel';
 export const EXAMINATION_START_PATH = EXAMINATION_PATH + '/start';
+export const EXAMINATION_UPDATE_PATH = EXAMINATION_PATH + '/update';
 export const PATIENT_EXAMINATIONS = EXAMINATION_PATH + '/scheduled';
 
 export const DIAGNOSIS_PATH = BACKEND_PATH + '/diagnosis';
