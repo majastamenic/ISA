@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Counseling;
@@ -54,7 +55,7 @@ public class CounselingService {
         return counselingRepository.save(counseling);
     }
 
-    public Counseling updateCounseling(Counseling c) {
+    public Counseling updateCounseling(CounselingDto c) {
         Counseling counseling = counselingRepository.findCounselingById(c.getId());
         if(counseling == null)
             throw new NotFoundException("Counseling not found");

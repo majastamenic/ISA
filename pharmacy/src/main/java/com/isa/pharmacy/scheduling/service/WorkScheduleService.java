@@ -2,6 +2,7 @@ package com.isa.pharmacy.scheduling.service;
 
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
 import com.isa.pharmacy.controller.mapping.WorkScheduleMapper;
+import com.isa.pharmacy.scheduling.DateConvert;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 import com.isa.pharmacy.scheduling.repository.WorkScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,6 @@ public class WorkScheduleService {
 
     @Autowired
     private WorkScheduleRepository workScheduleRepository;
-    @Autowired
-    private ScheduleService scheduleService;
 
 
     public List<WorkScheduleDto> getAll(){
@@ -51,8 +50,8 @@ public class WorkScheduleService {
     }
 
     private boolean isWorking(WorkSchedule ws, Date eagerDate){
-        Date startTime = scheduleService.mergeDateAndTime(eagerDate, ws.getSchedule().getStartTime());
-        Date endTime = scheduleService.mergeDateAndTime(eagerDate, ws.getSchedule().getEndTime());      // Vreme postavi na trenutno
+        Date startTime = DateConvert.mergeDateAndTime(eagerDate, ws.getSchedule().getStartTime());
+        Date endTime = DateConvert.mergeDateAndTime(eagerDate, ws.getSchedule().getEndTime());      // Vreme postavi na trenutno
         return (ws.getSchedule().getStartDate().compareTo(eagerDate) >= 0 &&
                 ws.getSchedule().getEndDate().compareTo(eagerDate) <= 0 &&
                 startTime.compareTo(eagerDate) >= 0 &&

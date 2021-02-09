@@ -97,9 +97,8 @@ public class PharmacistService {
     public List<Pharmacist> getFreePharmacistByDate(Date eagerDate){
         List<Pharmacist> freePharmacists = new ArrayList<>();
         for(Pharmacist pharmacist : pharmacistRepository.findAll()){
-            if(counselingService.isPharmacistOccupied(pharmacist, eagerDate))
-                continue;
-            if(vacationScheduleService.isEmployeeOnVacation(pharmacist.getVacationSchedules(), eagerDate))
+            if(counselingService.isPharmacistOccupied(pharmacist, eagerDate) ||
+               vacationScheduleService.isEmployeeOnVacation(pharmacist.getVacationSchedules(), eagerDate))
                 continue;
             if(workScheduleService.isEmployeeWorking(pharmacist.getWorkSchedule(), eagerDate))
                 freePharmacists.add(pharmacist);

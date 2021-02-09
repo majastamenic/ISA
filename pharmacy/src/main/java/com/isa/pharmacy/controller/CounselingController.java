@@ -57,5 +57,5 @@ public class CounselingController {
     }
 
     @PostMapping("/update")
-    public Counseling updateCounseling(@RequestBody Counseling c) { return counselingService.updateCounseling(c); }
+    public Counseling updateCounseling(@RequestBody CounselingDto c) { return counselingService.updateCounseling(c); }
 }
