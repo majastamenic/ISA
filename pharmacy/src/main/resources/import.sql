@@ -102,16 +102,41 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-08', '2021-02-08', '19:30:00', '20:00:00');
 
 -- WorkSchedule //////////////////////////////////////////////////////////
-insert into work_schedule(schedule_id) values(1);
-insert into work_schedule(schedule_id) values(2);
-insert into work_schedule(schedule_id) values(3);
-insert into work_schedule(schedule_id) values(4);
-insert into work_schedule(schedule_id) values(5);
-insert into work_schedule(schedule_id) values(6);
-insert into work_schedule(schedule_id) values(7);
-insert into work_schedule(schedule_id) values(8);
-insert into work_schedule(schedule_id) values(9);
-insert into work_schedule(schedule_id) values(10);
+    // Jankovic
+insert into work_schedule(schedule_id, admin_id) values(1, 1);
+insert into work_schedule(schedule_id, admin_id) values(2, 1);
+insert into work_schedule(schedule_id, admin_id) values(3, 1);
+insert into work_schedule(schedule_id, admin_id) values(4, 1);
+insert into work_schedule(schedule_id, admin_id) values(5, 1);
+insert into work_schedule(schedule_id, admin_id) values(6, 1);
+insert into work_schedule(schedule_id, admin_id) values(7, 1);
+insert into work_schedule(schedule_id, admin_id) values(8, 1);
+insert into work_schedule(schedule_id, admin_id) values(9, 1);
+insert into work_schedule(schedule_id, admin_id) values(10, 1);
+
+    // Benu
+insert into work_schedule(schedule_id, admin_id) values(1, 2);
+insert into work_schedule(schedule_id, admin_id) values(2, 2);
+insert into work_schedule(schedule_id, admin_id) values(3, 2);
+insert into work_schedule(schedule_id, admin_id) values(4, 2);
+insert into work_schedule(schedule_id, admin_id) values(5, 2);
+insert into work_schedule(schedule_id, admin_id) values(6, 2);
+insert into work_schedule(schedule_id, admin_id) values(7, 2);
+insert into work_schedule(schedule_id, admin_id) values(8, 2);
+insert into work_schedule(schedule_id, admin_id) values(9, 2);
+insert into work_schedule(schedule_id, admin_id) values(10, 2);
+
+    // Zelena Apoteka
+insert into work_schedule(schedule_id, admin_id) values(1, 3);
+insert into work_schedule(schedule_id, admin_id) values(2, 3);
+insert into work_schedule(schedule_id, admin_id) values(3, 3);
+insert into work_schedule(schedule_id, admin_id) values(4, 3);
+insert into work_schedule(schedule_id, admin_id) values(5, 3);
+insert into work_schedule(schedule_id, admin_id) values(6, 3);
+insert into work_schedule(schedule_id, admin_id) values(7, 3);
+insert into work_schedule(schedule_id, admin_id) values(8, 3);
+insert into work_schedule(schedule_id, admin_id) values(9, 3);
+insert into work_schedule(schedule_id, admin_id) values(10, 3);
 
 -- WorkSchedule: Dermatologist
 insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 1);
@@ -156,6 +181,13 @@ insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4,
 insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 9);
 
 -- ////////////////////////////////////////////////////////////////////////////
+
+--Loyalty program
+insert into loyalty_group(points, type) values (3, 0);
+insert into loyalty_group(points, type) values (4, 1);
+insert into loyalty_group(points, type) values (10, 2);
+insert into loyalty_group(points, type) values (20, 3);
+insert into loyalty_group(points, type) values (50, 4);
 
 -- Examinations
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 11, 1, 1, 1, 1, false);
@@ -257,12 +289,7 @@ insert into diagnosis(name)values('Anxiety');
 insert into diagnosis(name)values('Back pain');
 insert into diagnosis(name)values('Hypertension');
 
---Loyalty program
-insert into loyalty_group(points, type) values (3, 0);
-insert into loyalty_group(points, type) values (4, 1);
-insert into loyalty_group(points, type) values (10, 2);
-insert into loyalty_group(points, type) values (20, 3);
-insert into loyalty_group(points, type) values (50, 4);
+
 
 -- Complaints
 insert into complaint(complaint_message, response_complaint, patient_id)values ('Bad service', 'Please tell us more to improve our service.', 1);

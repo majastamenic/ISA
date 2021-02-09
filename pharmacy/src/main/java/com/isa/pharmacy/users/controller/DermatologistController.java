@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;
@@ -26,18 +27,13 @@ public class DermatologistController {
         emailService.activationEmail(dermatologist.getUser());
         return dermatologist;
     }
-    //TODO: Dermatolog
-    /*
-    @PostMapping("/registration")
-    public Dermatologist save(@RequestBody Dermatologist d) {
-        return dermatologistService.save(d);
-    }
-    */
+
     @GetMapping
     public List<Dermatologist> getAll() { return dermatologistService.getAll(); }
-    //TODO: Dermatolog 1
-    /*
-    @PostMapping("/update")
-    public Dermatologist update(@RequestBody Dermatologist d) { return dermatologistService.update(d); }
-     */
+
+    @GetMapping("/work/{email}")
+    public List<WorkSchedulePharmacyDto> getWorkScheduleByDermatologist(@PathVariable("email") String email){
+        return dermatologistService.getWorkScheduleByDermatologist(email);
+    }
+
 }
