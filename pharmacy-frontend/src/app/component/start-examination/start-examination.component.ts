@@ -36,6 +36,7 @@ export class StartExaminationComponent implements OnInit {
   hideStart: boolean = false;
   diags:any[]=[];
   toSchedule: boolean = false;
+  cannotSave: boolean = false;
   updateExam: ExaminationDto = { id:0, email:'', patientDto:{}, patientEmail: '', schedule: {id:''}, prescription: {days:'', diagnosis:[], medicines:[]}, pharmacyName:'', price:0,  patientCame: false };
   
   constructor(private examinationService: ExaminationService,private  medicinePharmacyService: MedicinePharmacyService, 
@@ -109,6 +110,7 @@ export class StartExaminationComponent implements OnInit {
     }
 
     saveExamination(came: boolean){
+      this.cannotSave = false;
       this.updateExam.id = this.examination.id;
       this.updateExam.email = this.examination.email;
       this.updateExam.patientDto = this.examination.patientDto;
@@ -127,24 +129,35 @@ export class StartExaminationComponent implements OnInit {
           }
         }
         for(let m of this.selectedMeds){
-          for(let mia of this.medicines){
-            if(m.medicine.name == mia.medicine.name){
-              this.updateExam.prescription.medicines.push(mia.medicine.code);
+          for(let a of this.availableMeds){
+            if(a.name == m.medicine.name){
+              if(a.available){
+                for(let mia of this.medicines){
+                  if(m.medicine.name == mia.medicine.name){
+                    this.updateExam.prescription.medicines.push(mia.medicine.code);
+                  }
+                }
+              }else{
+                this.cannotSave = true;
+                this.toastrService.error("Examination cannot be saved, because some medicines are not available.");
+              }
             }
           }
         }    
       }
 
-      this.examinationService.updateExamination(this.updateExam).subscribe(exam => {
-        console.log(exam);
-        if(came == true){
-          this.toSchedule = true;
-          this.toastrService.success("Examination is saved.");
-        }else{
-          this.router.navigate(['/home']);
-          this.toastrService.success("Examination is finished. Patient didn't come.");
-        }
-      })
+      if(!this.cannotSave){
+        this.examinationService.updateExamination(this.updateExam).subscribe(exam => {
+          console.log(exam);
+          if(came == true){
+            this.toSchedule = true;
+            this.toastrService.success("Examination is saved.");
+          }else{
+            this.router.navigate(['/home']);
+            this.toastrService.success("Examination is finished. Patient didn't come.");
+          }
+        })
+      }
     }
 
     checkAvailabilityCancel(){

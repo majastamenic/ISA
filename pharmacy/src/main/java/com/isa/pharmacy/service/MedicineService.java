@@ -67,10 +67,16 @@ public class MedicineService {
             for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
                if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName) && med.equalsIgnoreCase(mp.getMedicine().getName())){
                    AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
-                   if(mp.getQuantity()>0)
+                   if(mp.getQuantity()>0){
                        availMed.setAvailable(true);
-                   else
+                   }
+                   else{
+                       // TODO: slanje mejla adminu apoteke
                        availMed.setAvailable(false);
+                       List<String> alternative = getAllMedicinesById(mp.getMedicine().getReplacementMedicines());
+                       availMed.setAlternative(alternative);
+                   }
+                   availMed.setId(mp.getId());
                    availMed.setName(med);
                    availabilityMedicineDtos.add(availMed);
                }
@@ -100,6 +106,19 @@ public class MedicineService {
             }
         }
         return  medicines;
+    }
+
+    public List<String> getAllMedicinesById(List<Long> ids){
+        List<String> medNames = new ArrayList<>();
+        if(ids != null){
+            for(Long i : ids){
+                for(Medicine m: getAll()){
+                    if(m.getCode().equals(i))
+                        medNames.add(m.getName());
+                }
+            }
+        }
+        return  medNames;
     }
 
 

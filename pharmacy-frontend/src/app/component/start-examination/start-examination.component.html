@@ -37,11 +37,11 @@
                 </div>
                 <button class="btn btn-secondary" style="width:100px;" (click)="checkAvailability()" [disabled]="isChecked">Check</button>&nbsp;&nbsp;
                 <button *ngIf='isChecked' class="btn btn-secondary" style="width:150px;" (click)="checkAvailabilityCancel()">Cancel check</button>
-                <div *ngIf='isChecked && availableMeds != null'>
-                    <div *ngFor="let avail of availableMeds">
-                        <li *ngIf="avail.available">{{avail.name}} is in stock.</li>
-                        <li *ngIf="!avail.available">{{avail.name}} isn't in stock. Alternative medicine is ...</li>
-                    </div>
+            </div>
+            <div *ngIf='isChecked && availableMeds != null'>
+                <div *ngFor="let avail of availableMeds">
+                    <li *ngIf="avail.available">{{avail.name}} is in stock.</li>
+                    <li *ngIf="!avail.available">{{avail.name}} isn't in stock. Alternative medicine/s: <span *ngFor="let alter of avail.alternative;">{{alter}}, </span></li>
                 </div>
             </div>
 

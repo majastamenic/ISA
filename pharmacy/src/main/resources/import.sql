@@ -172,6 +172,10 @@ insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
 -- MedicineReplacement
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(1, 62217);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(2, 66042);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(3, 66042);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(4, 66042);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(4, 62922);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(5, 66042);
 
 -- MedicinePrescription
 insert into medicineeprescription(code, name, quantity) values(2, 'brufen', 123419);
