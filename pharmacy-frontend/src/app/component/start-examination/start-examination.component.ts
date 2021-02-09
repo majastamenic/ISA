@@ -8,6 +8,7 @@ import { MedicineService } from 'src/app/service/medicine.service';
 import { Diagnosis } from 'src/app/model/diagnosis';
 import { DiagnosisService } from 'src/app/service/diagnosis.service';
 import { ExaminationDto } from 'src/app/model/examination';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -18,13 +19,15 @@ import { ExaminationDto } from 'src/app/model/examination';
 })
 export class StartExaminationComponent implements OnInit {
 
+  loggedUser: any = sessionStorage.getItem('user');
   id: any;
   examination: any;
   medicines: any[]=[];
   names: any[]=[];
   selectedMeds: any[]=[];
+  isChecked: boolean = false;
   selectedDiag: any[]=[];
-  available: any[]=[];
+  availableMeds: any[]=[];
   meds: any[]=[];
   allDiagnosis: any[]=[];
   diagnosis: Diagnosis={name:''};
@@ -34,10 +37,16 @@ export class StartExaminationComponent implements OnInit {
   diags:any[]=[];
   toSchedule: boolean = false;
   updateExam: ExaminationDto = { id:0, email:'', patientDto:{}, patientEmail: '', schedule: {id:''}, prescription: {days:'', diagnosis:[], medicines:[]}, pharmacyName:'', price:0,  patientCame: false };
-
+  
   constructor(private examinationService: ExaminationService,private  medicinePharmacyService: MedicinePharmacyService, 
     private medicineService: MedicineService, private diagnosisService: DiagnosisService, 
-    private _ActivatedRoute: ActivatedRoute, private router: Router) { }
+    private _ActivatedRoute: ActivatedRoute, private router: Router,
+    private toastrService: ToastrService) {
+      if(!this.loggedUser){
+        this.router.navigate(['login']);
+        toastrService.info('Please login first!');
+      }
+  }
 
   public model: any;
 
@@ -82,17 +91,21 @@ export class StartExaminationComponent implements OnInit {
         this.meds.push(med.medicine.name);
       }
       this.medicineService.checkAvailabilityMeds(this.examination.pharmacyName, this.meds).subscribe((data:any[]) => {
-        this.available = data;
+        this.availableMeds = data;
         console.log(data);
+        this.isChecked = true;
+        this.toastrService.info('Medicines are checked.');
       })
     }
 
     cancelExamination(){
       this.router.navigate(['/allexaminations']);
+      this.toastrService.success('Examination has been canceled.');
     }
 
     patientIsHere(){
       this.patientCame = true;
+      this.toastrService.info("Patient is here! Fill in report of examination.");
     }
 
     saveExamination(came: boolean){
@@ -126,10 +139,22 @@ export class StartExaminationComponent implements OnInit {
         console.log(exam);
         if(came == true){
           this.toSchedule = true;
+          this.toastrService.success("Examination is saved.");
         }else{
           this.router.navigate(['/home']);
+          this.toastrService.success("Examination is finished. Patient didn't come.");
         }
       })
+    }
+
+    checkAvailabilityCancel(){
+      this.isChecked = false;
+      this.toastrService.info('Check has been canceled.');
+    }
+
+    scheduleExamination(){
+      this.router.navigate(['/examination']);
+      // proslediti i pacijenta u urlu
     }
 
 }
