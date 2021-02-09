@@ -41,12 +41,13 @@ export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/getAllMedicines';
 export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
 export const MEDICINES_PHARMACY_PATH = MEDICINEPHARMACY_PATH + '/all';
 
-
 export const EXAMINATION_PATH = BACKEND_PATH + '/examination';
 export const FREE_EXAM_TERMS_PATH = EXAMINATION_PATH + '/freeTerms';
 export const SCHEDULE_EXAM_PATH = EXAMINATION_PATH + '/schedule';
+export const CANCEL_EXAMINATION = EXAMINATION_PATH + '/cancel';
 export const EXAMINATION_START_PATH = EXAMINATION_PATH + '/start';
 export const EXAMINATION_UPDATE_PATH = EXAMINATION_PATH + '/update';
+export const PATIENT_EXAMINATIONS = EXAMINATION_PATH + '/scheduled';
 
 export const DIAGNOSIS_PATH = BACKEND_PATH + '/diagnosis';
 export const DIAGNOSIS_ADD_PATH = DIAGNOSIS_PATH + '/add';

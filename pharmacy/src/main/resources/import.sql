@@ -79,19 +79,20 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-01', '2021-03-07', '08:00:00', '14:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-01', '2021-03-07', '14:00:00', '20:00:00');
 -- Schedule: Examination
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '14:00:00', '14:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '14:30:00', '15:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '15:00:00', '15:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '15:30:00', '16:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '16:00:00', '16:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '16:30:00', '17:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '17:00:00', '17:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '17:30:00', '18:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '18:00:00', '18:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '18:30:00', '19:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '19:00:00', '19:30:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-22', '19:30:00', '20:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-22', '19:30:00', '20:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '14:00:00', '14:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '14:30:00', '15:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '15:00:00', '15:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '15:30:00', '16:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '16:00:00', '16:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '16:30:00', '17:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '17:00:00', '17:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '17:30:00', '18:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '18:00:00', '18:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '18:30:00', '19:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '19:00:00', '19:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '19:30:00', '20:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-15', '19:30:00', '20:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-08', '2021-02-08', '19:30:00', '20:00:00');
 
 -- WorkSchedule
 insert into work_schedule(schedule_id) values(1);
@@ -112,14 +113,13 @@ insert into loyalty_group(points, type) values (10, 2);
 insert into loyalty_group(points, type) values (20, 3);
 insert into loyalty_group(points, type) values (50, 4);
 
--- Prescriptions
 
 -- Examinations
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 11, 1, 1, 1, 1, false);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(15, 11, 1, 1, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 12, 1, 1, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 13, 1, 1, 1);
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(15, 20, 1, 1, 1, 2);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(15, 24, 1, 1, 1, 2);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 15, 2, 1, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(40, 16, 2, 1, 1,2);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id) values(30, 17, 2, 1, 1,3);
@@ -199,5 +199,5 @@ insert into diagnosis(name)values('Back pain');
 insert into diagnosis(name)values('Hypertension');
 
 -- Complaints
-insert into complaint(complaint_message, response_complaint, patient_id)values ('Losa usluga', '...', 1);
-insert into complaint(complaint_message, patient_id)values ('Guzva', 2);
+insert into complaint(complaint_message, response_complaint, patient_id)values ('Bad service', 'Please tell us more to improve our service.', 1);
+insert into complaint(complaint_message, patient_id)values ('Too crowded', 2);

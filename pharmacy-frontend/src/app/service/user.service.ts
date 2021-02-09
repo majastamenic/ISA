@@ -52,6 +52,10 @@ export class UserService {
     return !(user == null)
   }
 
+  isPatient(){
+    return (sessionStorage.getItem("role") == 'PATIENT');
+  }
+
   isPharmacist(){
     return (sessionStorage.getItem("role") == 'PHARMACIST');
   }

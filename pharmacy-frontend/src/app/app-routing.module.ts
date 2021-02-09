@@ -37,6 +37,7 @@ import { RegSystemAdminComponent } from './component/system-admin/reg-system-adm
 import { RegDermatologistComponent } from './component/system-admin/reg-dermatologist/reg-dermatologist.component';
 import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
+import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
+  { path: 'scheduledExaminations', component: PatientExaminationsComponent},
   { path: 'allcounselings/:id', component: StartCounselingComponent},
   { path: 'allexaminations/:id', component: StartExaminationComponent},
   { path: 'price/init', component: PriceInitComponent},
@@ -82,6 +84,7 @@ const routes: Routes = [
   { path: 'examination', component: ScheduleExaminationDermatologistComponent},
   { path: 'diagnosis', component: DiagnosisComponent},
   { path: 'add-complaint', component: ComplaintMessageComponent},
+  
 ];
 
 @NgModule({
