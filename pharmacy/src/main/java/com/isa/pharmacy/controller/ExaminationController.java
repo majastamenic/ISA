@@ -67,9 +67,8 @@ public class ExaminationController {
 
     @GetMapping("/free/{email}")
     public List<ExaminationUpcomingDto> getFreeExaminationsByDermatologist(@PathVariable("email") String email){
-        List<ExaminationUpcomingDto> examinationUpcomingDtos = new ArrayList<>();
         List<Examination> examinations = examinationService.getFreeExaminationsByDermatologist(email);
-        examinationUpcomingDtos = ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinations);
+        List<ExaminationUpcomingDto> examinationUpcomingDtos = ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinations);
         return examinationUpcomingDtos;
     }
 

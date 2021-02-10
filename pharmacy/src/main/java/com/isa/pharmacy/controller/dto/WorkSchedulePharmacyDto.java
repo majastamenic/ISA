@@ -4,7 +4,7 @@ public class WorkSchedulePharmacyDto {
     private WorkScheduleDto workScheduleDto;
     private String pharmacyName;
 
-    public WorkSchedulePharmacyDto(){};
+    public WorkSchedulePharmacyDto(){}
 
     public WorkSchedulePharmacyDto(WorkScheduleDto workScheduleDto, String pharmacyName) {
         this.workScheduleDto = workScheduleDto;

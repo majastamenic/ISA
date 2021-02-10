@@ -1,7 +1,5 @@
 package com.isa.pharmacy.users.controller;
 
-import com.isa.pharmacy.controller.dto.VacationScheduleDto;
-import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;

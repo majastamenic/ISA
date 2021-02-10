@@ -1,13 +1,9 @@
 package com.isa.pharmacy.scheduling.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.users.domain.Pharmacist;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table
