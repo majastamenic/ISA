@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoyaltyGroupService } from 'service/loyalty-group.service';
-import { MedicineService } from 'service/medicine.service';
-import { UserService } from 'service/user.service';
+import { LoyaltyGroupService } from 'src/app/service/loyalty-group.service';
+import { MedicineService } from 'src/app/service/medicine.service';
+import { UserService } from 'src/app/service/user.service';
 import { LoyaltyGroup, LoyaltyGroupType } from '../model/loyaltyGroup';
 
 @Component({

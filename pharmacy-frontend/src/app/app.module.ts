@@ -1,8 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// calendar
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
 import { FormsModule } from '@angular/forms';
@@ -16,14 +25,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { PharmacyAdminComponent } from './component/pharmacy-admin/pharmacy-admin.component';
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
-import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
-import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
 import { ExaminationScheduleComponent } from './component/patient/examination-schedule/examination-schedule.component';
 import { UserProfileComponent } from './component/user/profile/user-profile.component';
 import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
@@ -31,12 +36,6 @@ import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-pr
 import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
 import { AllDermatologistsComponent } from './component/pharmacy-admin/all-dermatologists/all-dermatologists.component';
 import { AllMedicationsComponent } from './component/pharmacy-admin/all-medications/all-medications.component';
-import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
-import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
-import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
-import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
-import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
-import { StartExaminationComponent } from './component/start-examination/start-examination.component';
 import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
 import { SystemAdminComponent } from './component/system-admin/system-admin.component';
 import { AddMedicinesComponent } from './component/system-admin/add-medicines/add-medicines.component';
@@ -56,6 +55,24 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
 import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
 import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
+
+// dermatologist & pharmacist component
+import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
+import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
+import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
+import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
+import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
+import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
+import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
+import { StartExaminationComponent } from './component/start-examination/start-examination.component';
+import { WorkScheduleComponent } from './component/work-schedule/work-schedule.component';
+
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  interactionPlugin
+])
 
 @NgModule({
   declarations: [
@@ -99,6 +116,8 @@ import { SubscribeListComponent } from './component/subscribe-list/subscribe-lis
     LoyalityComponent,
     ComplaintMessageComponent,
     ComplaintsComponent,
+    PatientExaminationsComponent,
+    WorkScheduleComponent,
     SupplierComponent,
     AddOrderComponent,
     ViewOrdersComponent,
@@ -106,7 +125,8 @@ import { SubscribeListComponent } from './component/subscribe-list/subscribe-lis
     CounselingsComponent,
     CounselingSearchComponent,
     CounselingScheduleComponent,
-    SubscribeListComponent
+    SubscribeListComponent,
+    SubscribeListComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +141,7 @@ import { SubscribeListComponent } from './component/subscribe-list/subscribe-lis
     NgSelectModule,
     DpDatePickerModule,
     NgbModule,
+    FullCalendarModule,
     NgxPaginationModule,
   ],
   providers: [],

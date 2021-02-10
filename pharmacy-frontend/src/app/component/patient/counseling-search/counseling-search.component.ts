@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DateTime } from 'src/app/model/examination';
-import { PharmacyService } from 'service/pharmacy.service';
+import { PharmacyService } from 'src/app/service/pharmacy.service';
 
 @Component({
   selector: 'app-counseling-search',

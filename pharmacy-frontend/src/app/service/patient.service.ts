@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PATIENT_PATH, UPDATE_ALLERGY_PATH } from '../src/app/util/paths';
+import { PATIENT_PATH, UPDATE_ALLERGY_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'

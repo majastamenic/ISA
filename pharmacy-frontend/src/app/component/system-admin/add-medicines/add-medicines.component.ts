@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Medicine, MedicineDto } from 'src/app/component/medicine/model/medicine-model';
-import { MedicineService } from 'service/medicine.service';
-import { UserService } from 'service/user.service';
+import { MedicineService } from 'src/app/service/medicine.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-add-medicines',

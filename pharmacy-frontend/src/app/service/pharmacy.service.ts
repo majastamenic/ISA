@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DateTime } from 'src/app/model/examination';
-import { PharmacyDto } from '../src/app/component/system-admin/add-pharmacy/model/pharmacy-model';
-import { PHARMACY_PATH, PHARMACY_SUB_PATH, SUBSCRIBE_PATH, UNSUBSCRIBE_PATH, PHARMACISTSBYPHARMACY_PATH, FREE_PHARMACIST_PATH, AVAILABLE_PHARMACIES } from '../src/app/util/paths';
+import { PharmacyDto } from '../component/system-admin/add-pharmacy/model/pharmacy-model';
+import { PHARMACY_PATH, PHARMACY_SUB_PATH, SUBSCRIBE_PATH, UNSUBSCRIBE_PATH, AVAILABLE_PHARMACIES } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'

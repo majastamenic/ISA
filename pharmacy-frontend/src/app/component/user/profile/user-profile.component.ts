@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { PatientService } from 'service/patient.service';
-import { UserService } from 'service/user.service';
-import { PasswordChangeDto } from '../../../model/user-model';
+import { PasswordChangeDto } from 'src/app/model/user-model';
+import { PatientService } from 'src/app/service/patient.service';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-user-profile',

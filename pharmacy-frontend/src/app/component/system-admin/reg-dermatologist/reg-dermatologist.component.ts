@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { User, UserRegistrationDto } from 'src/app/model/user-model';
-import { UserService } from 'service/user.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-reg-dermatologist',
