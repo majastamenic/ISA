@@ -60,7 +60,7 @@ public class CounselingService {
         if(counseling == null)
             throw new NotFoundException("Counseling not found");
         counseling.setReport(reportService.update(c.getReport()));
-        counseling.setPatientCame(c.isPatientCame());
+        counseling.setPatientCame(c.getPatientCame());
         counselingRepository.save(counseling);
         return counseling;
     }
@@ -68,7 +68,7 @@ public class CounselingService {
     public List<String> getPharmacistNameByPatient(Patient patient){
         List<String> pharmacistNames = new ArrayList<>();
         for(Counseling counseling: counselingRepository.findByPatient(patient)){
-            if(counseling.isPatientCame()){
+            if(counseling.getPatientCame()){
                 String pharmacistName = counseling.getPharmacist().getUser().getRole().toString() + ": " + counseling.getPharmacist().getUser().getName()+" "+ counseling.getPharmacist().getUser().getSurname();
                 pharmacistNames.add(pharmacistName);
             }

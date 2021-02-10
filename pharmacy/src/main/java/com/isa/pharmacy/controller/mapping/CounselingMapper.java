@@ -17,7 +17,7 @@ public class CounselingMapper {
     public static Counseling mapCounselingDtoToCounseling(CounselingDto counselingDto, Pharmacist pharmacist, Patient patient) {
         Counseling counseling = new Counseling();
         counseling.setId(counselingDto.getId());
-        counseling.setPatientCame(counselingDto.isPatientCame());
+        counseling.setPatientCame(counselingDto.getPatientCame());
         counseling.setReport(counselingDto.getReport());
         counseling.setSchedule(counselingDto.getSchedule());
         counseling.setPatient(patient);
@@ -29,7 +29,7 @@ public class CounselingMapper {
     public static Counseling mapCounselingDtoToCounseling1(CounselingDto counselingDto) {
         Counseling counseling = new Counseling();
         counseling.setId(counselingDto.getId());
-        counseling.setPatientCame(counselingDto.isPatientCame());
+        counseling.setPatientCame(counselingDto.getPatientCame());
         counseling.setReport(counselingDto.getReport());
         counseling.setSchedule(counselingDto.getSchedule());
         counseling.setPatient(PatientMapper.mapPatientDtoToPatient(counselingDto.getPatientDto()));
@@ -40,7 +40,7 @@ public class CounselingMapper {
     public static CounselingDto mapCounselingToCounselingDto(Counseling counseling) {
         CounselingDto counselingDto = new CounselingDto();
         counselingDto.setId(counseling.getId());
-        counselingDto.setPatientCame(counseling.isPatientCame());
+        counselingDto.setPatientCame(counseling.getPatientCame());
         counselingDto.setReport(counseling.getReport());
         counselingDto.setSchedule(counseling.getSchedule());
         counselingDto.setPatientDto(PatientMapper.mapPatientToPatientDto(counseling.getPatient()));
@@ -61,7 +61,7 @@ public class CounselingMapper {
                 PatientMapper.mapPatientToPatientDto(counseling.getPatient()),
                 WorkScheduleMapper.mapScheduleToWorkScheduleDto(counseling.getSchedule()),
                 counseling.getReport(),
-                counseling.isPatientCame(),
+                counseling.getPatientCame(),
                 counseling.getLoyaltyPoints());
     }
 

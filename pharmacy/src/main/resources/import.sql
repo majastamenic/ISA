@@ -229,12 +229,12 @@ insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyal
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 23, 3, 2, 1);
 
 -- Counselings
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (11, 1, 1, false, 10);
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (15, 2, 1, false, 10);
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (22, 3, 1, false, 10);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_points) values (11, 1, 1, 10);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_points) values (15, 2, 1, 10);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_points) values (22, 3, 1, 10);
 
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (13, 1, 2, false, 10);
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_points) values (16, 3, 2, false, 10);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_points) values (13, 1, 2, 10);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_points) values (16, 3, 2, 10);
 
 -- Medicines
 insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62542, 'cochenillrot, laktoza, monohidrat', 0, 5,'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu');
