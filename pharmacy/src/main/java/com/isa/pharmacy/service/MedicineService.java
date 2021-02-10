@@ -12,7 +12,9 @@ import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
+import com.isa.pharmacy.users.service.PharmacistService;
 import com.isa.pharmacy.users.service.PharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,6 +39,8 @@ public class MedicineService {
     private EmailService emailService;
     @Autowired
     private PharmacyAdminService pharmacyAdminService;
+    @Autowired
+    private PharmacistService pharmacistService;
 
     public Medicine create(Medicine medicine) {
         if (medicineRepository.findMedicineById(medicine.getId()) != null)
@@ -117,6 +121,38 @@ public class MedicineService {
         }
         return availabilityMedicineDtos;
     }
+
+
+
+    public List<AvailabilityMedicineDto> checkAvailabilityMedicinesByPharmacist(String pharmacistEmail, List<String> meds){
+        Pharmacist pharmacist = pharmacistService.findUserByEmail(pharmacistEmail);
+        List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
+        for(String med: meds){
+            for(MedicinePharmacy mp: pharmacist.getPharmacy().getMedicinePharmacy()){
+                if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacist.getPharmacy().getName()) && med.equalsIgnoreCase(mp.getMedicine().getName())){
+                    AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
+                    if(mp.getQuantity()>0){
+                        availMed.setAvailable(true);
+                    }
+                    else{
+                        List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacist.getPharmacy().getName());
+                        for(PharmacyAdmin pa: pharmacyAdmins){
+                            String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
+                            emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, mp.getMedicine().getName());
+                        }
+                        availMed.setAvailable(false);
+                        List<String> alternative = getAllMedicinesById(mp.getMedicine().getReplacementMedicines());
+                        availMed.setAlternative(alternative);
+                    }
+                    availMed.setId(mp.getId());
+                    availMed.setName(med);
+                    availabilityMedicineDtos.add(availMed);
+                }
+            }
+        }
+        return availabilityMedicineDtos;
+    }
+
 
     public MedicineLoyaltyDto changeLoyalty(MedicineLoyaltyDto medicineLoyaltyDto) {
         Medicine medicine = medicineRepository.findMedicineByCode(medicineLoyaltyDto.getCode());

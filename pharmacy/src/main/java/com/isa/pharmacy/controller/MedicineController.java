@@ -76,5 +76,9 @@ public class MedicineController {
         return medicineService.checkAvailabilityMedicines(pharmacyName, meds);
     }
 
+    @PostMapping("/check/pharmacist/{pharmacistEmail}")
+    public List<AvailabilityMedicineDto> checkAvailabilityMedicinesByPharmacist(@PathVariable String pharmacistEmail, @RequestBody List<String> meds){
+        return medicineService.checkAvailabilityMedicinesByPharmacist(pharmacistEmail, meds);
+    }
 
 }
