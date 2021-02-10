@@ -167,7 +167,7 @@ export class StartExaminationComponent implements OnInit {
 
     scheduleExamination(){
       this.router.navigate(['/examination']);
-      // proslediti pacijenta u urlu
+      // proslediti i pacijenta u urlu
     }
 
 }

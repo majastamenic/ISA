@@ -32,7 +32,7 @@
                         [(ngModel)]="selectedMeds"
                         name="selectedMeds" [disabled]="isChecked">
                     </ng-select>
-                    <label>Days:&nbsp;&nbsp;</label><input type="number" style="width:100px" [disabled]="isChecked" required>
+                    <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="updateCounseling.report.days" name="days" style="width:100px" [disabled]="isChecked" required>
                 </div>
                 <button class="btn btn-secondary" style="width:100px;" (click)="checkAvailability()" [disabled]="isChecked">Check</button>&nbsp;&nbsp;
                 <button *ngIf='isChecked' class="btn btn-secondary" style="width:150px;" (click)="checkAvailabilityCancel()">Cancel check</button>

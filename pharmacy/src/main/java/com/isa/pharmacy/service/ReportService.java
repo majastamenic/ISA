@@ -18,7 +18,6 @@ public class ReportService {
 
     public Report update(Report r) {
         Report report = reportRepository.findReportById(r.getId());
-        report.setNote(r.getNote());
         report.setMedicines(r.getMedicines());
         reportRepository.save(report);
         return report;

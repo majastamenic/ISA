@@ -12,8 +12,6 @@ public class Report implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private String note;
     @OneToMany
     private List<MedicinePharmacy> medicines;
     @Column
@@ -21,13 +19,11 @@ public class Report implements Serializable {
 
     public Report(){}
 
-    public Report(Long id, String note, List<MedicinePharmacy> medicines, Integer days) {
+    public Report(Long id, List<MedicinePharmacy> medicines, Integer days) {
         this.id = id;
-        this.note = note;
         this.medicines = medicines;
         this.days = days;
     }
-
 
     public Integer getDays() {
         return days;
@@ -51,14 +47,6 @@ public class Report implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 
 }

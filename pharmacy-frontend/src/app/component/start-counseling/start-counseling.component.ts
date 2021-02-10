@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { logging } from 'protractor';
+import { CounselingDto } from 'src/app/model/counseling';
 import { Diagnosis } from 'src/app/model/diagnosis';
 import { CounselingsService } from 'src/app/service/counselings.service';
 import { DiagnosisService } from 'src/app/service/diagnosis.service';
@@ -27,6 +28,7 @@ export class StartCounselingComponent implements OnInit {
   meds: any[]=[];
   availableMeds: any[]=[];
   isChecked: boolean = false;
+  updateCounseling: CounselingDto = { id:0, email:'', patientDto:{}, schedule: {id:''}, report: {days:'', medicines:[]}, patientCame: false , loyaltyGroup: ''};
 
   loggedUser: any = sessionStorage.getItem('user');
   loggedUserRole: any = sessionStorage.getItem('role');
