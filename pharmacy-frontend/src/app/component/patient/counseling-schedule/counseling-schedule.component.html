@@ -15,9 +15,9 @@
             <tbody>
                 <tr *ngFor="let pharmacist of pharmacists; let i = index;">
                     <td>{{pharmacist.user.name}}</td>
-                    <td>{{pharmacist.user.address}}</td>
+                    <td>{{pharmacist.user.surname}}</td>
                     <td>DISPLAY WHEN ADDED TO MODEL</td><!-- TODO: Dodati kada se doda rate u model -->
-                    <td><button class="btn btn-primary">Show pharmacists</button></td>
+                    <td><button class="btn btn-primary" (click)='schedule()'>Schedule</button></td>
                 </tr>
             </tbody>
         </table>

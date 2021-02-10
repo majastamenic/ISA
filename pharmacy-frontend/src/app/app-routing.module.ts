@@ -43,6 +43,7 @@ import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 import { CommonModule } from '@angular/common';
 import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
+import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -74,7 +75,8 @@ const routes: Routes = [
   { path: 'patient/examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'patient/examinations', component: PatientExaminationsComponent},
   { path: 'patient/counselings', component: CounselingsComponent},
-  { path: 'patient/counselingSchedule:pharmacyName', component: CounselingSearchComponent},
+  { path: 'patient/counselingSearch', component: CounselingSearchComponent},
+  { path: 'patient/counselingSchedule/:pharmacyName', component: CounselingScheduleComponent},
 
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},

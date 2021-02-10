@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DateTime } from 'src/app/model/examination';
 import { PharmacistService } from 'src/app/service/pharmacist.service';
 
 @Component({
@@ -23,12 +24,23 @@ export class CounselingScheduleComponent implements OnInit {
     if(this.loggedUser){
       this._ActivatedRoute.paramMap.subscribe(params => { 
         this.pharmacy = params.get('pharmacyName');
-        //this.pharmacistService.getFreePharmacistOnDate(pharmacy, );
+        let temp : DateTime = {date: '2021-02-15', time: '13:00:00'}
+        this.pharmacistService.getFreePharmacistOnDate(this.pharmacy, temp).subscribe((data:any[]) => {
+          if(data.length <= 0){
+            this.toastrService.info('No pharamcist has been found for selected term!');
+          }else{
+            this.pharmacists = data;
+          }
+        })
       });
     }else{
       this.router.navigate(['login']);
       this.toastrService.info('Please log in first.');
     }
+  }
+
+  schedule(){
+    
   }
 
 }

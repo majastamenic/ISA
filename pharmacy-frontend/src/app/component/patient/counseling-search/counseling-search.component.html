@@ -44,7 +44,7 @@
                     <td>{{pharmacy.address}}</td>
                     <td>{{pharmacy.counselingPrice}}</td>
                     <td>ADD RATE WHEN IT IS IMPLEMENTED</td>
-                    <td><button class="btn btn-primary">Show pharmacists</button></td>
+                    <td><button class="btn btn-primary" [routerLink]="['/patient/counselingSchedule', pharmacy.name]" routerLinkActive="active">Show pharmacists</button></td>
                 </tr>
             </tbody>
         </table>

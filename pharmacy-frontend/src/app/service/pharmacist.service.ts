@@ -23,7 +23,7 @@ export class PharmacistService {
     return this.httpClient.get(PHARMACISTSBYPHARMACY_PATH + '/' + id)
   }
 
-  getFreePharmacistOnDate(date:DateTime){
-    return this.httpClient.put(FREE_PHARMACIST_PATH, date);
+  getFreePharmacistOnDate(pharmacyName: string, date: DateTime) : any{
+    return this.httpClient.put(FREE_PHARMACIST_PATH + '?pharmacy=' + pharmacyName, date);
   }
 }

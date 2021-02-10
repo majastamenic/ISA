@@ -88,25 +88,20 @@ public class Schedule implements Serializable {
     }
 
     public Date mergeStartDateAndTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date res = new Date();
         try {
-            res = sdf.parse(this.startDate.toString() + " " + this.startTime.toString());
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(this.startDate.toString() + " " + this.startTime.toString());
         } catch (ParseException e) {
             logger.error("Error while parsing date to: yyyy-MM-dd HH:mm:ss");
+            return null;
         }
-        return res;
     }
 
     public Date mergeEndDateAndTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date res = new Date();
         try {
-            res = sdf.parse(this.endDate.toString() + " " + this.endTime.toString());
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(this.endDate.toString() + " " + this.endTime.toString());
         } catch (ParseException e) {
             logger.error("Error while parsing date to: yyyy-MM-dd HH:mm:ss");
+            return null;
         }
-        return res;
     }
-
 }

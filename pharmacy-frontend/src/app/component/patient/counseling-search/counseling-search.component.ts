@@ -34,6 +34,14 @@ export class CounselingSearchComponent implements OnInit {
   }
 
   find(){
+    if(typeof this.eagerDate != 'object'){
+      this.toastrService.error("Invalid date format!");
+      return;
+    }
+    if(this.startTime.hour > 23 || this.startTime.minute > 59){
+      this.toastrService.error("Invalid time format!");
+      return;
+    }
     this.dateTime.date = `${this.eagerDate.year}-${this.eagerDate.month}-${this.eagerDate.day}`;
     this.dateTime.time = `${this.startTime.hour}:${this.startTime.minute}:00`;
     this.pharmacyService.getPharmaciesWithAvailablePharmacists(this.dateTime).subscribe((data: any[]) => {
@@ -44,8 +52,7 @@ export class CounselingSearchComponent implements OnInit {
         this.isCounselingFound = true;
       }
     }, (error:any) => {
-      this.toastrService.error("Unkonwn error");
+      this.toastrService.error("Server error");
     });
-
   }
 }
