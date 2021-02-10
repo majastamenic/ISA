@@ -291,18 +291,6 @@ insert into medicine_replacement_medicines(medicine_id, replacement_medicines) v
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(4, 62922);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(5, 66042);
 
--- MedicinePrescription
-insert into medicineeprescription(code, name, quantity) values(2, 'brufen', 123419);
-insert into medicineeprescription(code, name, quantity) values(8, 'panadol', 6839093);
-
--- EPrescription
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(24363, null, 'Brufen, Panadol', 'Marko Markovic');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(246663, null, 'Brufen', 'Petar Petrovic');
-    -- EPrescription: Medications
-    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
-    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
-
-
 -- Diagnosis
 insert into diagnosis(name)values('Cholera');
 insert into diagnosis(name)values('Sickness');
@@ -311,8 +299,6 @@ insert into diagnosis(name)values('Poisoning');
 insert into diagnosis(name)values('Anxiety');
 insert into diagnosis(name)values('Back pain');
 insert into diagnosis(name)values('Hypertension');
-
-
 
 -- Complaints
 insert into complaint(complaint_message, response_complaint, patient_id)values ('Bad service', 'Please tell us more to improve our service.', 1);
@@ -364,3 +350,39 @@ insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) 
 insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (1, 10)
 insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (4, 11)
 insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (2, 12)
+-- EPrescription
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(1, '2021-01-01', 'Maja Stamenic Panadol,', 'Maja Stamenic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(2, '2021-02-01', 'Aca Lukas Panadol,', 'Aca Lukas');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(3, '2021-02-02', 'Toma Zdravkovic Bensedin,', 'Toma Zdravkovic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(4, '2021-02-03', 'Gojko Novcic Aspirin,', 'Gojko Novcic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(5, '2021-01-02', 'Nastasja Damjanac Brufen,', 'Nastasja Damjanac');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(6, '2021-02-03', 'Gojko Novcic Panadol,', 'Gojko Novcic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(7, '2021-01-02', 'Toma Zdravkovic Aspirin,', 'Toma Zdravkovic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(8, '2021-02-03', 'Aca Lukas Brufen, Bensedin,', 'Aca Lukas');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(9, '2021-01-02', 'Maja Stamenic Brufen,', 'Maja Stamenic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(10, '2021-01-03', 'Maja Stamenic Aspirin,', 'Maja Stamenic');
+    -- MedicineEPrescription
+    insert into medicineeprescription(code, name, quantity) values(1, 'Panadol', 1);
+    insert into medicineeprescription(code, name, quantity) values(2, 'Panadol', 2);
+    insert into medicineeprescription(code, name, quantity) values(3, 'Bensedin', 3);
+    insert into medicineeprescription(code, name, quantity) values(4, 'Aspirin', 4);
+    insert into medicineeprescription(code, name, quantity) values(5, 'Brufen', 3);
+    insert into medicineeprescription(code, name, quantity) values(6, 'Panadol', 4);
+    insert into medicineeprescription(code, name, quantity) values(7, 'Aspirin', 2);
+    insert into medicineeprescription(code, name, quantity) values(8, 'Brufen', 2);
+    insert into medicineeprescription(code, name, quantity) values(9, 'Bensedin', 2);
+    insert into medicineeprescription(code, name, quantity) values(10, 'Brufen', 1);
+    insert into medicineeprescription(code, name, quantity) values(11, 'Aspirin', 5);
+
+    -- EPrescription: Medications
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(2, 2);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(3, 3);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(4, 4);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(5, 5);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(6, 6);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(7, 7);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(8, 8);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(8, 9);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(9, 10);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(10, 11);
