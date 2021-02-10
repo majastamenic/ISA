@@ -16,13 +16,25 @@ public class Report implements Serializable {
     private String note;
     @OneToMany
     private List<MedicinePharmacy> medicines;
+    @Column
+    private Integer days;
 
     public Report(){}
 
-    public Report(Long id, String note, List<MedicinePharmacy> medicines) {
+    public Report(Long id, String note, List<MedicinePharmacy> medicines, Integer days) {
         this.id = id;
         this.note = note;
         this.medicines = medicines;
+        this.days = days;
+    }
+
+
+    public Integer getDays() {
+        return days;
+    }
+
+    public void setDays(Integer days) {
+        this.days = days;
     }
 
     public List<MedicinePharmacy> getMedicines() {
