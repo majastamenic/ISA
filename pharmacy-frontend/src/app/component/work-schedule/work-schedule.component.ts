@@ -3,6 +3,8 @@ import { CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventInput } f
 import { createEventId} from 'src/app/util/event-utils';
 import { ExaminationService } from 'src/app/service/examination.service';
 import { VacationScheduleService } from 'src/app/service/vacation-schedule.service';
+import { CounselingsComponent } from '../patient/counselings/counselings.component';
+import { CounselingsService } from 'src/app/service/counselings.service';
 
 
 const TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
@@ -19,57 +21,95 @@ export class WorkScheduleComponent implements OnInit {
   vacations: any[]=[];
   examinations: any[]=[];
   freeExaminations: any[]=[];
+  counseling: any[]=[];
   calendarVisible = true;
   loggedUser: any = sessionStorage.getItem('user');
+  loggedUserRole: any = sessionStorage.getItem('role');
 
-  constructor(private vacationService: VacationScheduleService, private examinationService: ExaminationService) {
-    
+  constructor(private vacationService: VacationScheduleService, private examinationService: ExaminationService,
+    private counselingService: CounselingsService) {
    }
 
   ngOnInit(): void {
     if(this.loggedUser){
-      this.vacationService.getDermatologistVacations(this.loggedUser).subscribe((data: any[]) => {
-        this.vacations = data;
-        console.log(this.vacations);
-        for (var i of this.vacations) {
-          this.INITIAL_EVENTS.push({
-            id: createEventId(),
-            title: 'Vacation',
-            start: i.startDate,
-            end: i.endDate,
-            allDay: true,
-            backgroundColor: 'yellow',
-            display: 'background'
-          })
-        }
-
-        this.examinationService.getExaminations(this.loggedUser).subscribe((data: any[]) => {
-          this.examinations = data;
-          console.log(this.examinations);
-          for (var i of this.examinations) {
+      if(this.loggedUserRole == 'DERMATOLOGIST'){
+        this.vacationService.getDermatologistVacations(this.loggedUser).subscribe((data: any[]) => {
+          this.vacations = data;
+          console.log(this.vacations);
+          for (var i of this.vacations) {
             this.INITIAL_EVENTS.push({
-              id: i.id,
-              title: i.patientDto.user.name + ' ' + i.patientDto.user.surname + ' [' + i.pharmacyName + ']',
-              start: i.schedule.startDate + 'T' + i.schedule.startTime,
-              end: i.schedule.endDate + 'T' + i.schedule.endTime
+              id: createEventId(),
+              title: 'Vacation',
+              start: i.startDate,
+              end: i.endDate,
+              allDay: true,
+              backgroundColor: 'yellow',
+              display: 'background'
             })
           }
-
-          this.examinationService.getFreeExaminationTermsByDermatlogist(this.loggedUser).subscribe((data: any[]) => {
-            this.freeExaminations = data;
-            console.log(this.freeExaminations);
-            for (var i of this.freeExaminations) {
+  
+          this.examinationService.getExaminations(this.loggedUser).subscribe((data: any[]) => {
+            this.examinations = data;
+            console.log(this.examinations);
+            for (var i of this.examinations) {
               this.INITIAL_EVENTS.push({
-                id: createEventId(),
-                title: '[' + i.pharmacy.name + '] nobody scheduled',
+                id: i.id,
+                title: i.patientDto.user.name + ' ' + i.patientDto.user.surname + ' [' + i.pharmacyName + ']',
                 start: i.schedule.startDate + 'T' + i.schedule.startTime,
                 end: i.schedule.endDate + 'T' + i.schedule.endTime
               })
             }
+  
+            this.examinationService.getFreeExaminationTermsByDermatlogist(this.loggedUser).subscribe((data: any[]) => {
+              this.freeExaminations = data;
+              console.log(this.freeExaminations);
+              for (var i of this.freeExaminations) {
+                this.INITIAL_EVENTS.push({
+                  id: createEventId(),
+                  title: '[' + i.pharmacy.name + '] nobody scheduled',
+                  start: i.schedule.startDate + 'T' + i.schedule.startTime,
+                  end: i.schedule.endDate + 'T' + i.schedule.endTime
+                })
+              }
+              this.calendarOptions.events = this.INITIAL_EVENTS;
+            });
+          });
+        }); 
+      }
+
+      if(this.loggedUserRole == 'PHARMACIST'){
+        this.counselingService.getCounseltings(this.loggedUser).subscribe((data: any[]) => {
+          this.counseling = data;
+          console.log(this.counseling);
+          for (var i of this.counseling) {
+            this.INITIAL_EVENTS.push({
+              id: i.id,
+              title: i.patientDto.user.name + ' ' + i.patientDto.user.surname,
+              start: i.schedule.startDate + 'T' + i.schedule.startTime,
+              end: i.schedule.endDate + 'T' + i.schedule.endTime
+            })
+          }
+          
+          this.vacationService.getPharmacistVacations(this.loggedUser).subscribe((data: any[]) => {
+            this.vacations = data;
+            console.log(this.vacations);
+            for (var i of this.vacations) {
+              this.INITIAL_EVENTS.push({
+                id: createEventId(),
+                title: 'Vacation',
+                start: i.startDate,
+                end: i.endDate,
+                allDay: true,
+                backgroundColor: 'yellow',
+                display: 'background'
+              })
+            }
             this.calendarOptions.events = this.INITIAL_EVENTS;
           });
+          
         });
-      }); 
+      }
+      
       
     }
     

@@ -48,13 +48,13 @@ import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.comp
 import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
 import { PatientExaminationsComponent } from './component/patient/patient-examinations/patient-examinations.component';
 import { CounselingsComponent } from './component/patient/counselings/counselings.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
 import { SupplierComponent } from './component/supplier/supplier.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
 import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
-import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
 
 // dermatologist & pharmacist component
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';

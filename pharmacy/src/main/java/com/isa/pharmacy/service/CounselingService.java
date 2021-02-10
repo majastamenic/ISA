@@ -39,7 +39,7 @@ public class CounselingService {
         return counseling;
     }
 
-    public List<Counseling> getAllByPharmacist(Pharmacist pharmacist) {
+    public List<Counseling> getCounselingByPharmacist(Pharmacist pharmacist) {
         return counselingRepository.findByPharmacist(pharmacist);
     }
 

@@ -4,7 +4,6 @@ import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.CounselingFullDto;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
-import com.isa.pharmacy.controller.mapping.WorkScheduleMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.scheduling.DateConvert;
 import com.isa.pharmacy.service.CounselingService;
@@ -38,9 +37,10 @@ public class CounselingController {
     }
 
     @GetMapping("/{email}")
-    public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
+    public List<CounselingDto> getCounselingByPharmacist(@PathVariable("email") String email) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
-        return CounselingMapper.mapListCounselingToCounselingDto(counselingService.getAllByPharmacist(pharmacist));
+        return CounselingMapper.mapListCounselingToCounselingDto(
+                counselingService.getCounselingByPharmacist(pharmacist));
     }
 
     @GetMapping("/patient/{email}")
@@ -62,6 +62,6 @@ public class CounselingController {
     /*
     @PostMapping("/update")
     public Counseling updateCounseling(@RequestBody CounselingDto c) { return counselingService.updateCounseling(c); }
-*/
+    */
 
 }

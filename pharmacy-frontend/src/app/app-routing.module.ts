@@ -8,7 +8,6 @@ import { MedicineComponent } from './component/medicine/medicine.component';
 import { UserProfileComponent } from './component/user/profile/user-profile.component';
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
-import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
 import { LoginComponent } from './component/user/login/login.component';
@@ -40,12 +39,13 @@ import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-
 import { PatientExaminationsComponent } from './component/patient/patient-examinations/patient-examinations.component';
 import { WorkScheduleComponent } from './component/work-schedule/work-schedule.component';
 import { CounselingsComponent } from './component/patient/counselings/counselings.component';
-import { AddOrderComponent } from './component/add-order/add-order.component';
-import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 import { CommonModule } from '@angular/common';
 import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
 import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
 import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
+import { AddOrderComponent } from './component/add-order/add-order.component';
+import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -54,12 +54,16 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user', component: RegistrationComponent },
   { path: 'hospital', component: HospitalComponent },
-  { path: 'actions', component: ActionsBenefitsComponent },
   { path: 'medicines', component: MedicineComponent },
+  //Patient
+  { path: 'actions', component: ActionsBenefitsComponent },
   { path: 'uploadQR', component: UploadQRComponent },
-  { path: 'ePrescription', component: EPrescriptionComponent },
+  { path: 'subscribe-list', component: SubscribeListComponent},
+  { path: 'add-complaint', component: ComplaintMessageComponent},
+  //Pharmacist
   { path: 'counseling', component: ScheduleCounselingComponent },
   { path: 'allcounselings', component: AllCounselingsComponent },
+  //System admin
   {
     path: 'system-admin', component: SystemAdminComponent,
     children: [
@@ -74,11 +78,20 @@ const routes: Routes = [
   { path: 'loyalty', component: LoyalityComponent },
   { path: 'complaints', component: ComplaintsComponent},
 
+
   { path: 'patient/examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'patient/examinations', component: PatientExaminationsComponent},
   { path: 'patient/counselings', component: CounselingsComponent},
   { path: 'patient/counselingSearch', component: CounselingSearchComponent},
   { path: 'patient/counselingSchedule/:pharmacyName', component: CounselingScheduleComponent},
+
+  //Dermatologist
+  { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
+  { path: 'scheduledExaminations', component: PatientExaminationsComponent},
+  { path: 'diagnosis', component: DiagnosisComponent},
+  { path: 'allexaminations', component: AllExaminationsComponent},
+  { path: 'examination', component: ScheduleExaminationDermatologistComponent},
+  //Pharmacy admin
 
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
@@ -96,11 +109,11 @@ const routes: Routes = [
   { path: 'allexaminations', component: AllExaminationsComponent},
   { path: 'examination', component: ScheduleExaminationDermatologistComponent},
   { path: 'diagnosis', component: DiagnosisComponent},
+  //Supplier
   { path: 'add-complaint', component: ComplaintMessageComponent},
   { path: 'work/schedule', component: WorkScheduleComponent},
   { path: 'order', component: AddOrderComponent},
   { path: 'view-orders', component: ViewOrdersComponent},
-  { path: 'subscribe-list', component: SubscribeListComponent},
 ];
 
 @NgModule({
