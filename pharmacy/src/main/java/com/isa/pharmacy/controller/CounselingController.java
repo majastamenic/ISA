@@ -1,12 +1,11 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.CounselingFullDto;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.service.CounselingService;
-import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.PatientService;
 import com.isa.pharmacy.users.service.PharmacistService;
@@ -39,7 +38,7 @@ public class CounselingController {
     @GetMapping("/{email}")
     public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
-        return CounselingMapper.mapCounselingListToCounselingDto(counselingService.getAllByPharmacist(pharmacist));
+        return CounselingMapper.mapListCounselingToCounselingDto(counselingService.getAllByPharmacist(pharmacist));
     }
 
     @GetMapping("/patient/{email}")
@@ -48,12 +47,11 @@ public class CounselingController {
     }
 
     @PostMapping("/add")
-    public Counseling createCounseling(@RequestBody CounselingDto counselingDto) {
-        Pharmacist pharmacist = pharmacistService.findUserByEmail(counselingDto.getEmail());
-        Patient patient = patientService.getPatient(counselingDto.getPatientEmail());
-        Counseling counseling = CounselingMapper.mapCounselingDtoToCounseling(counselingDto, pharmacist, patient);
-        counseling.setReport(new Report());
-        return counselingService.save(counseling);
+    public CounselingFullDto createCounseling(@RequestBody CounselingCreateDto counselingDto) {
+        Counseling counseling = CounselingMapper.mapCounselingCreateDtoToCounseling(counselingDto);
+        counseling.setPatient(patientService.getPatient(counselingDto.getPatientEmail()));
+        counseling.setPharmacist(pharmacistService.findUserByEmail(counselingDto.getPharmacistEmail()));
+        return CounselingMapper.mapCounselingToCounselingFullDto(counselingService.createCounseling(counseling));
     }
 
     //TODO: Masa

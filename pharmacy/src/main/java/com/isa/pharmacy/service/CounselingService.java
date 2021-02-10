@@ -47,11 +47,11 @@ public class CounselingService {
         return counselingRepository.findCounselingByPatient_User_Email(patientEmail);
     }
 
-    public Counseling save(Counseling counseling) {
-        if(!counseling.getSchedule().getStartDate().equals(counseling.getSchedule().getEndDate()))
+    public Counseling createCounseling(Counseling counseling) {
+        if(counseling.getSchedule().getStartDate().compareTo(counseling.getSchedule().getEndDate()) != 0)
             throw new InvalidActionException("Start date and end date must be on a same date");
+        //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu
         scheduleService.save(counseling.getSchedule());
-        reportService.save(counseling.getReport());
         return counselingRepository.save(counseling);
     }
 

@@ -23,4 +23,13 @@ public class WorkScheduleMapper {
         workScheduleDto.setStartTime(schedule.getStartTime());
         return workScheduleDto;
     }
+
+    public static Schedule mapWorkScheduleDtoToSchedule(WorkScheduleDto workScheduleDto){
+        Schedule schedule = new Schedule();
+        schedule.setStartDate(workScheduleDto.getStartDate());
+        schedule.setEndDate(workScheduleDto.getEndDate());
+        schedule.setStartTime(workScheduleDto.getStartTime());
+        schedule.setEndTime(workScheduleDto.getEndTime());
+        return schedule;
+    }
 }
