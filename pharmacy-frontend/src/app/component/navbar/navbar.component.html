@@ -15,10 +15,14 @@
                 <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/add-complaint'" routerLinkActive="active">Complaints</a>
             </li>
             <li class="nav-item">
+
                 <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/patient/examinations'" routerLinkActive="active">Examinations</a>
             </li>
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/patient/counselings'" routerLinkActive="active">Counselings</a>
+            </li>
+            <li>
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/subscribe-list'" routerLinkActive="active">Subscribe list</a>
             </li>
             <!--Pharmacist-->
             <li class="nav-item">

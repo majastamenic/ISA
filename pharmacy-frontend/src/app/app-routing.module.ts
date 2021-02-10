@@ -44,6 +44,7 @@ import { ViewOrdersComponent } from './component/supplier/view-orders/view-order
 import { CommonModule } from '@angular/common';
 import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
 import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
+import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -97,6 +98,7 @@ const routes: Routes = [
   { path: 'add-complaint', component: ComplaintMessageComponent},
   { path: 'order', component: AddOrderComponent},
   { path: 'view-orders', component: ViewOrdersComponent},
+  { path: 'subscribe-list', component: SubscribeListComponent},
 ];
 
 @NgModule({

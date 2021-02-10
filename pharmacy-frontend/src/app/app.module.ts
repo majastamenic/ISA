@@ -55,6 +55,7 @@ import { ViewOrdersComponent } from './component/supplier/view-orders/view-order
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
 import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
+import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { CounselingScheduleComponent } from './component/patient/counseling-sche
     PatientExaminationsComponent,
     CounselingsComponent,
     CounselingSearchComponent,
-    CounselingScheduleComponent
+    CounselingScheduleComponent,
+    SubscribeListComponent
   ],
   imports: [
     BrowserModule,

@@ -6,17 +6,40 @@ insert into pharmacy (address, name, counseling_price) values('Bulevar Cara Laza
 insert into pharmacy (address, name, counseling_price) values('Rumenacka 13, Novi Sad', 'Irisfarm', 8);
 insert into pharmacy (address, name, counseling_price) values('Futoski Put 85A, Novi Sad', 'Tilia', 3);
 
+--Subscribes
+    --Jankovic
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (1, 'maja@mailinator.com');
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (1, 'tasa@mailinator.com');
+    --Benu
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (2, 'maja@mailinator.com');
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (2, 'tasa@mailinator.com');
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (2, 'joxy@mailinator.com');
+    --ZelenaApoteka
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (3, 'aca@mailinator.com');
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (3, 'tasa@mailinator.com');
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (3, 'joxy@mailinator.com');
+    --Galen pharm
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (4, 'gojko@mailinator.com');
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (4, 'toma@mailinator.com');
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (4, 'joxy@mailinator.com');
+    --Irisfarm
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (5, 'gojko@mailinator.com');
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (5, 'tasa@mailinator.com');
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (5, 'joxy@mailinator.com');
+    --Tilia
+        insert into pharmacy_subscribed_emails(pharmacy_id, subscribed_emails)VALUES (6, 'joxy@mailinator.com');
+
 -- Hospital
 insert into hospital(email, name) values('integration.adapter@gmail.com', 'WellDevClinic');
 
 -- ********************************  USERS ****************************************************************
 -- User: Patient
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Maja', 'Stamenic', 'maja@gmail.com', 'maja', 'Suboticka 23', 'Novi Sad', 'Srbija', '066/468965', 0, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Gojko', 'Novcic', 'gojko@gmail.com', 'gojko', 'Rumenacka 23', 'Novi Sad', 'Srbija', '061/558877', 0, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nastasja', 'Damjanac', 'tasa@gmail.com', 'tasa', 'Temerinska 23', 'Novi Sad', 'Srbija', '066/123466', 0, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Jovana', 'Jakovljevic', 'joxy@gmail.com', 'joxy', 'Lasla Gala 15', 'Novi Sad', 'Srbija', '063/1125455', 0, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Aca', 'Lukas', 'aca@gmail.com', 'aca', 'Vojislava Vuckovica 1', 'Beograd', 'Srbija', '069/5889522', 0, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Toma', 'Zdravkovic', 'toma@gmail.com', 'toma', 'Jastrebacka 11', 'Aleksinac', 'Srbija', '065/338799', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Maja', 'Stamenic', 'maja@mailinator.com', 'maja', 'Suboticka 23', 'Novi Sad', 'Srbija', '066/468965', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Gojko', 'Novcic', 'gojko@mailinator.com', 'gojko', 'Rumenacka 23', 'Novi Sad', 'Srbija', '061/558877', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nastasja', 'Damjanac', 'tasa@mailinator.com', 'tasa', 'Temerinska 23', 'Novi Sad', 'Srbija', '066/123466', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Jovana', 'Jakovljevic', 'joxy@mailinator.com', 'joxy', 'Lasla Gala 15', 'Novi Sad', 'Srbija', '063/1125455', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Aca', 'Lukas', 'aca@mailinator.com', 'aca', 'Vojislava Vuckovica 1', 'Beograd', 'Srbija', '069/5889522', 0, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Toma', 'Zdravkovic', 'toma@mailinator.com', 'toma', 'Jastrebacka 11', 'Aleksinac', 'Srbija', '065/338799', 0, true);
     -- Patient
     insert into patient(loyalty_points, verification_code, user_id, penal) values(10, 'AVG-EE-FTG', 1, 0);
     insert into patient(loyalty_points, verification_code, user_id, penal) values(15, 'A45-RE-BNA', 2, 0);
@@ -25,10 +48,10 @@ insert into app_user (name, surname, email, password, address, city, country, ph
     insert into patient(loyalty_points, verification_code, user_id, penal) values(5,  'QPO-4S-VBG', 5, 0);
     insert into patient(loyalty_points, verification_code, user_id, penal) values(10, 'AS-TRV-T1W', 6, 1);
 -- User: Pharmacist
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Milanovic', 'masa@gmail.com', 'masa', 'Ticanova 23', 'Novi Sad', 'Srbija', '069/7798654', 3, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milan', 'Knezevic', 'milan@gmail.com', 'milan', 'Gagarinova 83', 'Novi Sad', 'Srbija', '065/963565', 3, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Antonic', 'antonic@gmail.com', 'antonic', 'Bulevar Oslobodjenja 78', 'Novi Sad', 'Srbija', '065/789101', 3, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirko', 'Plavsic', 'mirko@gmail.com', 'mirko', 'Pa Pavla 14', 'Novi Sad', 'Srbija', '069/8765432', 3, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Milanovic', 'masa@mailinator.com', 'masa', 'Ticanova 23', 'Novi Sad', 'Srbija', '069/7798654', 3, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milan', 'Knezevic', 'milan@mailinator.com', 'milan', 'Gagarinova 83', 'Novi Sad', 'Srbija', '065/963565', 3, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Antonic', 'antonic@mailinator.com', 'antonic', 'Bulevar Oslobodjenja 78', 'Novi Sad', 'Srbija', '065/789101', 3, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirko', 'Plavsic', 'mirko@mailinator.com', 'mirko', 'Pa Pavla 14', 'Novi Sad', 'Srbija', '069/8765432', 3, true);
     -- Pharmacist
     insert into pharmacist(pharmacy_id, user_id) values(5, 7);
     insert into pharmacist(pharmacy_id, user_id) values(6, 8);
@@ -41,9 +64,9 @@ insert into app_user (name, surname, email, password, address, city, country, ph
     insert into admin(user_id) values (11);
     insert into admin(user_id) values (12);
 -- User: Dermatologist
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milica', 'Pavlovic', 'milica@gmail.com', 'milica', 'Somborska 37', 'Novi Sad', 'Srbija', '063/887345', 2, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Darko', 'Milicic', 'dare@gmail.com', 'dare', 'Zmaj Jovina 56', 'Novi Sad', 'Srbija', '061/1116555', 2, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Acim', 'Maravic', 'acim@gmail.com', 'acim', 'Bulevar Cara Lazara 15', 'Novi Sad', 'Srbija', '063/555333', 2, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milica', 'Pavlovic', 'milica@mailinator.com', 'milica', 'Somborska 37', 'Novi Sad', 'Srbija', '063/887345', 2, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Darko', 'Milicic', 'dare@mailinator.com', 'dare', 'Zmaj Jovina 56', 'Novi Sad', 'Srbija', '061/1116555', 2, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Acim', 'Maravic', 'acim@mailinator.com', 'acim', 'Bulevar Cara Lazara 15', 'Novi Sad', 'Srbija', '063/555333', 2, true);
     -- Dermatologist
     insert into dermatologist(user_id) values(13);
     insert into dermatologist(user_id) values(14);

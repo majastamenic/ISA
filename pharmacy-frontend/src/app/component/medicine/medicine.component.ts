@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MedicineService } from 'src/app/service/medicine.service';
-import { PharmacistService } from 'src/app/service/pharmacist.service';
-import { PharmacyService } from 'src/app/service/pharmacy.service';
+import { MedicineService } from 'service/medicine.service';
+import { PharmacistService } from 'service/pharmacist.service';
+import { PharmacyService } from 'service/pharmacy.service';
 
 @Component({
   selector: 'app-medicine',

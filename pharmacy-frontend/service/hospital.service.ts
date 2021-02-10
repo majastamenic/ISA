@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HOSPITAL_PATH} from '../util/paths';
+import { HOSPITAL_PATH} from '../src/app/util/paths';
 import { HttpClient } from '@angular/common/http';
-import { HospitalRegistrationDto } from '../component/hospital/model/hospital-model';
+import { HospitalRegistrationDto } from '../src/app/component/hospital/model/hospital-model';
 import { Observable } from 'rxjs';
 
 @Injectable({

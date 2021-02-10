@@ -1,28 +1,27 @@
 package com.isa.pharmacy.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
+import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
-import com.isa.pharmacy.scheduling.DateConvert;
+import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.repository.PharmacyRepository;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
-import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.repository.PharmacyRepository;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class PharmacyService {
@@ -140,6 +139,7 @@ public class PharmacyService {
         return pharmacyNames;
     }
 
+
     public List<Pharmacy> getPharmaciesForCounseling(DateTimeDto eagerDate){
         List<Pharmacy> availablePharmacies = new ArrayList<>();
         List<String> addedPharmacies = new ArrayList<>();
@@ -150,5 +150,29 @@ public class PharmacyService {
             }
         }
         return availablePharmacies;
+    }
+
+    public List<Pharmacy> findPharmaciesBySubEmail(String email){
+        List<Pharmacy> pharmacyList = pharmacyRepository.findPharmaciesBySubscriber(email);
+        if(pharmacyList.isEmpty())
+            throw new NotFoundException("User with email "+ email+" isn't subscribed to any pharmacy");
+        return pharmacyList;
+    }
+
+    public void addSubscribe(String email, String phName){
+        Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(phName);
+        for(String subEmail: pharmacy.getSubscribedEmails())
+            if(subEmail.equals(email))
+                throw new AlreadyExistsException("You are already subscribed to "+phName+" pharmacy.");
+        pharmacy.getSubscribedEmails().add(email);
+        pharmacyRepository.save(pharmacy);
+    }
+
+    public void unsubscribe(String email, String phName){
+        Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(phName);
+        if(!pharmacy.getSubscribedEmails().isEmpty()) {
+            pharmacy.getSubscribedEmails().remove(email);
+            pharmacyRepository.save(pharmacy);
+        }
     }
 }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OFFER_PATH, ORDER_PATH } from '../util/paths';
+import { OFFER_PATH, ORDER_PATH } from '../src/app/util/paths';
 
 @Injectable({
   providedIn: 'root'

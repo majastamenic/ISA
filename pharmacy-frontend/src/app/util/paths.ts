@@ -65,3 +65,7 @@ export const COMPLAINT_PATH = BACKEND_PATH + '/complaint';
 
 export const ORDER_PATH = BACKEND_PATH + '/order';
 export const OFFER_PATH = BACKEND_PATH + '/supplier-offer';
+
+export const SUBSCRIBE_PATH = PHARMACY_PATH + '/subscribe';
+export const UNSUBSCRIBE_PATH = PHARMACY_PATH + '/unsubscribe';
+export const PHARMACY_SUB_PATH = PHARMACY_PATH + '/sub_pharmacy';

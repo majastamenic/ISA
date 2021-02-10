@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ComplaintService } from 'src/app/service/complaint.service';
-import { UserService } from 'src/app/service/user.service';
+import { ComplaintService } from 'service/complaint.service';
+import { UserService } from 'service/user.service';
 
 @Component({
   selector: 'app-complaints',
@@ -26,8 +26,7 @@ export class ComplaintsComponent implements OnInit {
     }
     this.complaintService.getAll().subscribe((listComplaints: any) => {
       this.complaints = listComplaints;
-    },
-    (err: any) => {
+    }, (err: any) => {
       this.toastrService.error('Error ' + err.error.message);
     });
   }

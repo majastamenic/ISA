@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DateTime } from 'src/app/model/examination';
-import { PharmacistService } from 'src/app/service/pharmacist.service';
+import { PharmacistService } from 'service/pharmacist.service';
 
 @Component({
   selector: 'app-counseling-schedule',
@@ -40,7 +40,7 @@ export class CounselingScheduleComponent implements OnInit {
   }
 
   schedule(){
-    
+
   }
 
 }

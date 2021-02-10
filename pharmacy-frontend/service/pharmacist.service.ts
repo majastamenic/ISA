@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PHARMACISTSBYPHARMACY_PATH, PHARMACIST_REGISTRATION_PATH, PHARMACY_PATH, FREE_PHARMACIST_PATH} from '../util/paths';
+import { PHARMACISTSBYPHARMACY_PATH, PHARMACIST_REGISTRATION_PATH, PHARMACY_PATH, FREE_PHARMACIST_PATH} from '../src/app/util/paths';
 import { Observable } from 'rxjs';
-import { DateTime } from '../model/examination';
+import { DateTime } from 'src/app/model/examination';
 
 
 @Injectable({
