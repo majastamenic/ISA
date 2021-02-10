@@ -25,10 +25,20 @@ public class WorkScheduleMapper {
         return workScheduleDto;
     }
 
+    public static Schedule mapWorkScheduleDtoToSchedule(WorkScheduleDto workScheduleDto) {
+        Schedule schedule = new Schedule();
+        schedule.setStartDate(workScheduleDto.getStartDate());
+        schedule.setEndDate(workScheduleDto.getEndDate());
+        schedule.setStartTime(workScheduleDto.getStartTime());
+        schedule.setEndTime(workScheduleDto.getEndTime());
+        return schedule;
+    }
+
     public static WorkSchedulePharmacyDto mapWorkScheduleToWorkSchedulePharmacyDto(WorkSchedule workSchedule, String pharmacyName){
         WorkSchedulePharmacyDto workSchedulePharmacyDto = new WorkSchedulePharmacyDto();
         workSchedulePharmacyDto.setWorkScheduleDto(mapWorkScheduleToWorkScheduleDto(workSchedule));
         workSchedulePharmacyDto.setPharmacyName(pharmacyName);
         return workSchedulePharmacyDto;
+
     }
 }

@@ -11,19 +11,17 @@ public class CounselingFullDto {
     private WorkScheduleDto schedule;
     private Report report;
     private boolean patientCame;
-    private Integer loyaltyPoints;
 
     public CounselingFullDto(){}
 
     public CounselingFullDto(long id, PharmacistDto pharmacist, PatientDto patient, WorkScheduleDto schedule,
-                             Report report, boolean patientCame, Integer loyaltyPoints) {
+                             Report report, boolean patientCame) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
         this.schedule = schedule;
         this.report = report;
         this.patientCame = patientCame;
-        this.loyaltyPoints = loyaltyPoints;
     }
 
     public long getId() {
@@ -72,13 +70,5 @@ public class CounselingFullDto {
 
     public void setPatientCame(boolean patientCame) {
         this.patientCame = patientCame;
-    }
-
-    public Integer getLoyaltyPoints() {
-        return loyaltyPoints;
-    }
-
-    public void setLoyaltyPoints(Integer loyaltyPoints) {
-        this.loyaltyPoints = loyaltyPoints;
     }
 }

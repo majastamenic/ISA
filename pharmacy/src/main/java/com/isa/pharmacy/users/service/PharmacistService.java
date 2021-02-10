@@ -1,7 +1,9 @@
 package com.isa.pharmacy.users.service;
 
 
+import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
+import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 import com.isa.pharmacy.scheduling.service.VacationScheduleService;
@@ -95,7 +97,16 @@ public class PharmacistService {
         return pharmacistByPharmacyDtos;
     }
 
-    public List<Pharmacist> getFreePharmacistByDate(Date eagerDate){
+    public List<Pharmacist> getFreePharmacistByPharmacyAndDate(String pharmacyName, DateTimeDto date){
+        List<Pharmacist> freePharmacists = new ArrayList<>();
+        for (Pharmacist pharmacist : getFreePharmacistByDate(date))
+            if(pharmacist.getPharmacy().getName().equals(pharmacyName))
+                freePharmacists.add(pharmacist);
+        return freePharmacists;
+    }
+
+    public List<Pharmacist> getFreePharmacistByDate(DateTimeDto date){
+        Date eagerDate = DateManipulation.mergeDateAndTime(date.getDate(), date.getTime());
         List<Pharmacist> freePharmacists = new ArrayList<>();
         for(Pharmacist pharmacist : pharmacistRepository.findAll()){
             if(counselingService.isPharmacistOccupied(pharmacist, eagerDate) ||

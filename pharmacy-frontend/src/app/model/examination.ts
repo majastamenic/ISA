@@ -25,6 +25,11 @@ export interface Schedule{
     endTime: any,
 }
 
+export interface DateTime{
+    date: any,
+    time: any,
+}
+
 export interface ScheduleDto{
     id:any
 }

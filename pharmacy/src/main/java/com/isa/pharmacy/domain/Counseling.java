@@ -25,20 +25,30 @@ public class Counseling implements Serializable {
     private Report report;
     @Column
     private boolean patientCame;
-    @Column
-    private int loyaltyPoints;
+    @ManyToOne
+    private LoyaltyGroup loyaltyGroup;
 
     public Counseling(){}
 
     public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule,
-                      Report report, boolean patientCame, int loyaltyPoints) {
+                      Report report, boolean patientCame, LoyaltyGroup loyaltyGroup) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
         this.schedule = schedule;
         this.report = report;
         this.patientCame = patientCame;
-        this.loyaltyPoints = loyaltyPoints;
+        this.loyaltyGroup = loyaltyGroup;
+    }
+
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule,
+                      Report report, boolean patientCame) {
+        this.id = id;
+        this.pharmacist = pharmacist;
+        this.patient = patient;
+        this.schedule = schedule;
+        this.report = report;
+        this.patientCame = patientCame;
     }
 
     public Long getId() {
@@ -88,11 +98,12 @@ public class Counseling implements Serializable {
     public void setPatientCame(boolean patientCame) {
         this.patientCame = patientCame;
     }
-    public int getLoyaltyPoints() {
-        return loyaltyPoints;
+
+    public LoyaltyGroup getLoyaltyGroup() {
+        return loyaltyGroup;
     }
 
-    public void setLoyaltyPoints(int loyaltyPoints) {
-        this.loyaltyPoints = loyaltyPoints;
+    public void setLoyaltyGroup(LoyaltyGroup loyaltyGroup) {
+        this.loyaltyGroup = loyaltyGroup;
     }
 }

@@ -1,9 +1,6 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
-import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.controller.dto.MedicineOrderDto;
-import com.isa.pharmacy.controller.dto.PharmacyDto;
+import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
@@ -111,6 +108,12 @@ public class PharmacyController {
         return pharmacyService.hasPharmacyMedication(pharmacyName, medicineName);
     }
 
+
+    @PutMapping("/availablePharmacies")
+    public List<PharmacyDto> getPharmaciesForCounseling(@RequestBody DateTimeDto date) {
+        return PharmacyMapper.mapListPharmacyToPharmacyDto(pharmacyService.getPharmaciesForCounseling(date));
+    }
+
     @PutMapping("/subscribe/{phName}/{email}")
     public void subscribe(@PathVariable String phName, @PathVariable String email){
         pharmacyService.addSubscribe(email, phName);
@@ -127,5 +130,6 @@ public class PharmacyController {
         for(Pharmacy p: pharmacyService.findPharmaciesBySubEmail(email))
             phNames.add(p.getName());
         return phNames;
+
     }
 }

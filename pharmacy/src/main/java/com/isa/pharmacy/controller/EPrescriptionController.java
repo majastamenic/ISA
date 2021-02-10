@@ -7,6 +7,8 @@ import com.isa.pharmacy.controller.mapping.EPrescriptionMapper;
 import com.isa.pharmacy.domain.EPrescription;
 import com.isa.pharmacy.service.EPrescriptionService;
 import com.isa.pharmacy.service.QRService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +24,7 @@ import java.util.List;
 @RequestMapping("/ePrescription")
 @CrossOrigin(value = "http://localhost:4200")
 public class EPrescriptionController {
+    private static final Logger logger = LoggerFactory.getLogger(EPrescriptionController.class);
 
     @Autowired
     private EPrescriptionService ePrescriptionService;
@@ -57,7 +60,7 @@ public class EPrescriptionController {
                 new FileOutputStream(baseFileDestination + file.getOriginalFilename()))){
             stream.write(bytes);
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         String text = qrService.readQrCode(baseFileDestination + file.getOriginalFilename());
         System.out.println(text);
