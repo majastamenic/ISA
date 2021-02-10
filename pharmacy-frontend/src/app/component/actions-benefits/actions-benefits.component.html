@@ -1,35 +1,12 @@
-<div class="row">
-    <div class="column">
-        <div class="action-page">
-            <div class="form">
-                <form class="action-form">
-                    <h3>Actions and benefits</h3>
-                    <div class="form-group">
-                        <input type="text" [(ngModel)]="actionBenefit.message" placeholder="Enter message text" name="message" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="startDate"><b>Valid from: </b></label>
-                        <input type="date" id="startDate" [(ngModel)]="actionBenefit.startDate"  name="startDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="endDate"><b>Valid until:</b></label>
-                        <input type="date" [(ngModel)]="actionBenefit.endDate" min="2020-12-01" name="endDate" required>
-                    </div>
-                    <button (click)="send()" class="btn btn-primary">Send</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="action1-page">
-            <div class="form1">
-                <form class="action-form">
-                    <h3 class="h32">Hospitals</h3>
-                    <ul name="hospital-list" class="list">
-                        <li *ngFor="let hospital of hospitals">{{hospital.name}}</li>
-                    </ul>
-                </form>
-            </div>
-        </div>
+<div class="page">
+    <div class="form">
+        <h3>Actions and benefits</h3>
+        <input type="text" [(ngModel)]="actionBenefit.message" placeholder="Enter message text" name="message" required>
+        <label for="startDate"><b>Valid from: </b></label>
+        <input type="date" id="startDate" [(ngModel)]="actionBenefit.startDate"  name="startDate" required>
+        
+        <label for="endDate"><b>Valid until:</b></label>
+        <input type="date" [(ngModel)]="actionBenefit.endDate" min="2020-12-01" name="endDate" required>
+        <button (click)="send()" class="btn btn-primary">Send</button>
     </div>
 </div>

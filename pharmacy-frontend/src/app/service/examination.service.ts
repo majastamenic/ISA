@@ -4,6 +4,7 @@ import { ExaminationDto } from '../model/examination';
 import { CANCEL_EXAMINATION, EXAMINATION_PATH, EXAMINATION_START_PATH, EXAMINATION_UPDATE_PATH, 
   PATIENT_EXAMINATIONS, FREE_EXAM_TERMS_PATH, SCHEDULE_EXAM_PATH, FREE_EXAM_TERMS_WORKER_PATH } from '../util/paths';
 
+
 @Injectable({
   providedIn: 'root'
 })

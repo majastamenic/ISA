@@ -10,7 +10,7 @@ export class ActionsBenefitsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  send(actionBenefit: ActionsBenefitsDto): any {
-    return this.httpClient.post(ACTION_PATH, actionBenefit, {responseType: 'text'});
+  send(actionBenefit: ActionsBenefitsDto, email: string): any {
+    return this.httpClient.post(ACTION_PATH + "/" + email, actionBenefit);
   }
 }

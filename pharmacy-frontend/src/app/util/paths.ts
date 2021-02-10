@@ -65,3 +65,7 @@ export const OFFER_PATH = BACKEND_PATH + '/supplier-offer';
 
 export const VACATION_PATH = BACKEND_PATH + '/vacation';
 export const VACATIONS_DERMATOLOGIST_PATH = VACATION_PATH + '/dermatologist';
+
+export const SUBSCRIBE_PATH = PHARMACY_PATH + '/subscribe';
+export const UNSUBSCRIBE_PATH = PHARMACY_PATH + '/unsubscribe';
+export const PHARMACY_SUB_PATH = PHARMACY_PATH + '/sub_pharmacy';

@@ -26,8 +26,7 @@ export class ComplaintsComponent implements OnInit {
     }
     this.complaintService.getAll().subscribe((listComplaints: any) => {
       this.complaints = listComplaints;
-    },
-    (err: any) => {
+    }, (err: any) => {
       this.toastrService.error('Error ' + err.error.message);
     });
   }

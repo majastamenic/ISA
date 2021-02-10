@@ -6,6 +6,7 @@ import java.util.List;
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineOrderDto;
+import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
@@ -132,4 +133,29 @@ public class PharmacyService {
             pharmacyNames.add("APOTEKA: "+ pharmacy.getName());
         return pharmacyNames;
     }
+
+    public List<Pharmacy> findPharmaciesBySubEmail(String email){
+        List<Pharmacy> pharmacyList = pharmacyRepository.findPharmaciesBySubscriber(email);
+        if(pharmacyList.isEmpty())
+            throw new NotFoundException("User with email "+ email+" isn't subscribed to any pharmacy");
+        return pharmacyList;
+    }
+
+    public void addSubscribe(String email, String phName){
+        Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(phName);
+        for(String subEmail: pharmacy.getSubscribedEmails())
+            if(subEmail.equals(email))
+                throw new AlreadyExistsException("You are already subscribed to "+phName+" pharmacy.");
+        pharmacy.getSubscribedEmails().add(email);
+        pharmacyRepository.save(pharmacy);
+    }
+
+    public void unsubscribe(String email, String phName){
+        Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(phName);
+        if(!pharmacy.getSubscribedEmails().isEmpty()) {
+            pharmacy.getSubscribedEmails().remove(email);
+            pharmacyRepository.save(pharmacy);
+        }
+    }
+
 }

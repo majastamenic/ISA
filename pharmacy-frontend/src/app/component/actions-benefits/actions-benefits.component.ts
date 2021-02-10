@@ -13,8 +13,9 @@ import { ActionsBenefits, ActionsBenefitsDto } from './model/actions-benefits-mo
 })
 export class ActionsBenefitsComponent implements OnInit {
 
+  phAdmin: string = ''
+
   actionBenefit: ActionsBenefitsDto = {message: '', startDate: new Date(), endDate: new Date()};
-  hospitals: any;
   constructor(private actionsBenefitsService: ActionsBenefitsService, private hospitalService: HospitalService, private toastrService: ToastrService,
     private userService: UserService, private router: Router) { }
 
@@ -23,17 +24,18 @@ export class ActionsBenefitsComponent implements OnInit {
       this.router.navigate(['home']);
       this.toastrService.error('Unauthorized access.');
     }
-    this.hospitalService.getAll().subscribe(listHospital => {
-      this.hospitals = listHospital;
-    });
+    let userEmail = sessionStorage.getItem('user');
+    if(userEmail){
+      this.phAdmin = userEmail;
+    }
   }
 
   send(): void{
-    this.actionsBenefitsService.send(this.actionBenefit).subscribe((returnedAction: string) => {
+    this.actionsBenefitsService.send(this.actionBenefit, this.phAdmin).subscribe((returnedAction: string) => {
       this.toastrService.success('Action or benefit send.');
     },
       (err: any) => {
-        this.toastrService.error('Error while sending action or benefit ' + err.error.message);
+        this.toastrService.error(err.error.message);
       });
   }
 
