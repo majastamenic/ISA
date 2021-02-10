@@ -49,8 +49,7 @@ public class CounselingMapper {
                 PatientMapper.mapPatientToPatientDto(counseling.getPatient()),
                 WorkScheduleMapper.mapScheduleToWorkScheduleDto(counseling.getSchedule()),
                 counseling.getReport(),
-                counseling.isPatientCame(),
-                counseling.getLoyaltyPoints());
+                counseling.isPatientCame());
     }
 
     public static Counseling mapCounselingFullDtoToCounseling(CounselingFullDto counselingDto){
@@ -60,8 +59,7 @@ public class CounselingMapper {
                 PatientMapper.mapPatientDtoToPatient(counselingDto.getPatient()),
                 WorkScheduleMapper.mapWorkScheduleDtoToSchedule(counselingDto.getSchedule()),
                 counselingDto.getReport(),
-                counselingDto.isPatientCame(),
-                counselingDto.getLoyaltyPoints());
+                counselingDto.isPatientCame());
     }
 
     public static List<CounselingFullDto> mapListCounselingToCounsellingFullDto(List<Counseling> counselings){
@@ -75,7 +73,6 @@ public class CounselingMapper {
         Counseling counseling = new Counseling();
         counseling.setId(counselingCreateDto.getId());
         counseling.setSchedule(WorkScheduleMapper.mapWorkScheduleDtoToSchedule(counselingCreateDto.getSchedule()));
-        counseling.setLoyaltyPoints(counselingCreateDto.getLoyaltyPoints());
         return counseling;
     }
 }

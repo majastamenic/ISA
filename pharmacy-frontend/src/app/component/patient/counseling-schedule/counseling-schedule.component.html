@@ -17,7 +17,7 @@
                     <td>{{pharmacist.user.name}}</td>
                     <td>{{pharmacist.user.surname}}</td>
                     <td>DISPLAY WHEN ADDED TO MODEL</td><!-- TODO: Dodati kada se doda rate u model -->
-                    <td><button class="btn btn-primary" (click)='schedule()'>Schedule</button></td>
+                    <td><button class="btn btn-primary" (click)='schedule(pharmacist.user.email)'>Schedule</button></td>
                 </tr>
             </tbody>
         </table>

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateConvert {
@@ -19,5 +20,12 @@ public class DateConvert {
             logger.error("Error while parsing date to: yyyy-MM-dd HH:mm:ss");
             return null;
         }
+    }
+
+    public static Date addMinutes(Date date, int minutes){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MINUTE, minutes);
+        return cal.getTime();
     }
 }

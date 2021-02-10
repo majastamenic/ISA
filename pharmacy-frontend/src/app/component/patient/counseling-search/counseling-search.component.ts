@@ -44,6 +44,8 @@ export class CounselingSearchComponent implements OnInit {
     }
     this.dateTime.date = `${this.eagerDate.year}-${this.eagerDate.month}-${this.eagerDate.day}`;
     this.dateTime.time = `${this.startTime.hour}:${this.startTime.minute}:00`;
+    sessionStorage.setItem('date', this.dateTime.date);
+    sessionStorage.setItem('time', this.dateTime.time);
     this.pharmacyService.getPharmaciesWithAvailablePharmacists(this.dateTime).subscribe((data: any[]) => {
       if(data.length <= 0)
         this.toastrService.info('There is no available pharmacists for selected term');

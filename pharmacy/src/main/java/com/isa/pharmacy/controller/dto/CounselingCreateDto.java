@@ -5,17 +5,15 @@ public class CounselingCreateDto {
     private String pharmacistEmail;
     private String patientEmail;
     private WorkScheduleDto schedule;
-    private Integer loyaltyPoints;
 
     public CounselingCreateDto(){}
 
     public CounselingCreateDto(long id, String pharmacistEmail, String patientEmail,
-                               WorkScheduleDto schedule, Integer loyaltyPoints) {
+                               WorkScheduleDto schedule) {
         this.id = id;
         this.pharmacistEmail = pharmacistEmail;
         this.patientEmail = patientEmail;
         this.schedule = schedule;
-        this.loyaltyPoints = loyaltyPoints;
     }
 
     public long getId() {
@@ -48,13 +46,5 @@ public class CounselingCreateDto {
 
     public void setSchedule(WorkScheduleDto schedule) {
         this.schedule = schedule;
-    }
-
-    public Integer getLoyaltyPoints() {
-        return loyaltyPoints;
-    }
-
-    public void setLoyaltyPoints(Integer loyaltyPoints) {
-        this.loyaltyPoints = loyaltyPoints;
     }
 }

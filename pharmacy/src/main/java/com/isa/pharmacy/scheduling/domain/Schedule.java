@@ -1,13 +1,12 @@
 package com.isa.pharmacy.scheduling.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.isa.pharmacy.scheduling.DateConvert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -88,20 +87,10 @@ public class Schedule implements Serializable {
     }
 
     public Date mergeStartDateAndTime() {
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(this.startDate.toString() + " " + this.startTime.toString());
-        } catch (ParseException e) {
-            logger.error("Error while parsing date to: yyyy-MM-dd HH:mm:ss");
-            return null;
-        }
+        return DateConvert.mergeDateAndTime(startDate, startTime);
     }
 
     public Date mergeEndDateAndTime() {
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(this.endDate.toString() + " " + this.endTime.toString());
-        } catch (ParseException e) {
-            logger.error("Error while parsing date to: yyyy-MM-dd HH:mm:ss");
-            return null;
-        }
+        return DateConvert.mergeDateAndTime(endDate, endTime);
     }
 }
