@@ -336,12 +336,20 @@ insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-02-02', 50, 1, 2, 1);
 
 -- VacationSchedule
+    -- Dermatologist
 insert into vacation_schedule(start_date, end_date) values ('2021-03-03', '2021-03-10')
 insert into vacation_schedule(start_date, end_date) values ('2021-03-01', '2021-03-22')
 insert into vacation_schedule(start_date, end_date) values ('2021-04-10', '2021-04-12')
 insert into vacation_schedule(start_date, end_date) values ('2021-04-03', '2021-04-10')
 insert into vacation_schedule(start_date, end_date) values ('2021-03-04', '2021-03-17')
 insert into vacation_schedule(start_date, end_date) values ('2021-03-09', '2021-03-10')
+    -- Pharmacist
+insert into vacation_schedule(start_date, end_date) values ('2021-03-10', '2021-03-15')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-01', '2021-03-05')
+insert into vacation_schedule(start_date, end_date) values ('2021-04-10', '2021-04-12')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-01', '2021-03-10')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-29', '2021-03-31')
+insert into vacation_schedule(start_date, end_date) values ('2021-05-09', '2021-05-20')
     -- Dermatologist_VacationSchedule
 insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (1, 1)
 insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 2)
@@ -349,3 +357,10 @@ insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedule
 insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (1, 4)
 insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 5)
 insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 6)
+    -- Pharmacist_VacationSchedule
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (1, 7)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (2, 8)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (3, 9)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (1, 10)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (4, 11)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (2, 12)
