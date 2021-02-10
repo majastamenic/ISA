@@ -8,7 +8,6 @@ import com.isa.pharmacy.repository.CounselingRepository;
 import com.isa.pharmacy.scheduling.service.ScheduleService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class CounselingService {
     @Autowired
     private ReportService reportService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private EmailService emailService;
 
 
     public List<Counseling> getAll(){ return counselingRepository.findAll(); }
@@ -52,7 +51,9 @@ public class CounselingService {
             throw new InvalidActionException("Start date and end date must be on a same date");
         //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu
         scheduleService.save(counseling.getSchedule());
-        return counselingRepository.save(counseling);
+        Counseling scheduledCounseling = counselingRepository.save(counseling);
+        emailService.successfulCounselingSchedule(scheduledCounseling);
+        return scheduledCounseling;
     }
 
     public Counseling updateCounseling(CounselingDto c) {

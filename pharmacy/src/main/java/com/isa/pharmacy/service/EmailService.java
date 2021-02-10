@@ -59,6 +59,7 @@ public class EmailService {
                             "You have successfully scheduled an appointment with dermatologist.\n" +
                             "Details: \n" +
                             "- Dermatologist: " + examiantion.getDermatologist().getUser().getName() + " " + examiantion.getDermatologist().getUser().getSurname() + "\n" +
+                            "- Date: " + examiantion.getSchedule().getStartDate() + "\n" +
                             "- Time: " + examiantion.getSchedule().getStartTime() + "\n" +
                             "- Price: " + examiantion.getPrice() + "€\n\n" +
                             CLOSE_PHASE +
@@ -76,6 +77,7 @@ public class EmailService {
                 "You have successfully scheduled a counseling with pharmacist.\n" +
                 "Details: \n" +
                 "- Pharmacist: " + counseling.getPharmacist().getUser().getName() + " " + counseling.getPharmacist().getUser().getSurname() + "\n" +
+                "- Date: " + counseling.getSchedule().getStartDate() + "\n" +
                 "- Time: " + counseling.getSchedule().getStartTime() + "\n" +
                 "- Price: " + counseling.getPharmacist().getPharmacy().getCounselingPrice() + "€\n\n" +
                 CLOSE_PHASE +

@@ -3,7 +3,7 @@ package com.isa.pharmacy.scheduling.service;
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
 import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.controller.mapping.WorkScheduleMapper;
-import com.isa.pharmacy.scheduling.DateConvert;
+import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 import com.isa.pharmacy.scheduling.repository.WorkScheduleRepository;
 import com.isa.pharmacy.users.domain.Dermatologist;
@@ -59,8 +59,8 @@ public class WorkScheduleService {
     }
 
     private boolean isWorking(WorkSchedule ws, Date eagerDate){
-        Date startTime = DateConvert.mergeDateAndTime(eagerDate, ws.getSchedule().getStartTime());
-        Date endTime = DateConvert.mergeDateAndTime(eagerDate, ws.getSchedule().getEndTime());
+        Date startTime = DateManipulation.mergeDateAndTime(eagerDate, ws.getSchedule().getStartTime());
+        Date endTime = DateManipulation.mergeDateAndTime(eagerDate, ws.getSchedule().getEndTime());
         return (ws.getSchedule().getStartDate().compareTo(eagerDate) <= 0 &&
                 ws.getSchedule().getEndDate().compareTo(eagerDate) >= 0 &&
                 startTime.compareTo(eagerDate) <= 0 &&

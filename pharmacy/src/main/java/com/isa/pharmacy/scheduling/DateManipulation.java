@@ -8,8 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateConvert {
-    private static final Logger logger = LoggerFactory.getLogger(DateConvert.class);
+public class DateManipulation {
+    private static final Logger logger = LoggerFactory.getLogger(DateManipulation.class);
 
     public static Date mergeDateAndTime(Date date, Date time){
         try {

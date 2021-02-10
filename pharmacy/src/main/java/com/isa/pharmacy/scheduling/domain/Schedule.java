@@ -1,9 +1,7 @@
 package com.isa.pharmacy.scheduling.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.isa.pharmacy.scheduling.DateConvert;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.isa.pharmacy.scheduling.DateManipulation;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,8 +11,6 @@ import java.util.Date;
 @Table
 public class Schedule implements Serializable {
     private static final long serialVersionUID = -2158829881260056438L;
-
-    private static final Logger logger = LoggerFactory.getLogger(Schedule.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,10 +83,10 @@ public class Schedule implements Serializable {
     }
 
     public Date mergeStartDateAndTime() {
-        return DateConvert.mergeDateAndTime(startDate, startTime);
+        return DateManipulation.mergeDateAndTime(startDate, startTime);
     }
 
     public Date mergeEndDateAndTime() {
-        return DateConvert.mergeDateAndTime(endDate, endTime);
+        return DateManipulation.mergeDateAndTime(endDate, endTime);
     }
 }

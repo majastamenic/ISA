@@ -60,6 +60,12 @@ const routes: Routes = [
   { path: 'uploadQR', component: UploadQRComponent },
   { path: 'subscribe-list', component: SubscribeListComponent},
   { path: 'add-complaint', component: ComplaintMessageComponent},
+
+  { path: 'patient/examinations', component: PatientExaminationsComponent},
+  { path: 'patient/examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
+  { path: 'patient/counselings', component: CounselingsComponent},
+  { path: 'patient/counselingSearch', component: CounselingSearchComponent},
+  { path: 'patient/counselingSchedule/:pharmacyName', component: CounselingScheduleComponent},
   //Pharmacist
   { path: 'counseling', component: ScheduleCounselingComponent },
   { path: 'allcounselings', component: AllCounselingsComponent },
@@ -77,13 +83,6 @@ const routes: Routes = [
   { path: 'add-pharmacy', component: AddPharmacyComponent },
   { path: 'loyalty', component: LoyalityComponent },
   { path: 'complaints', component: ComplaintsComponent},
-
-
-  { path: 'patient/examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
-  { path: 'patient/examinations', component: PatientExaminationsComponent},
-  { path: 'patient/counselings', component: CounselingsComponent},
-  { path: 'patient/counselingSearch', component: CounselingSearchComponent},
-  { path: 'patient/counselingSchedule/:pharmacyName', component: CounselingScheduleComponent},
 
   //Dermatologist
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},

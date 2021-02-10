@@ -5,7 +5,7 @@ import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.CounselingFullDto;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.scheduling.DateConvert;
+import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.service.CounselingService;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.PatientService;
@@ -51,7 +51,7 @@ public class CounselingController {
     @PostMapping("/add")
     public CounselingFullDto createCounseling(@RequestBody CounselingCreateDto counselingDto) {
         if(counselingDto.getSchedule().getEndTime() == null)
-            DateConvert.addMinutes(counselingDto.getSchedule().getStartTime(), 15); // TODO: Dovrsiti ubacivanje vremena
+            DateManipulation.addMinutes(counselingDto.getSchedule().getStartTime(), 15); // TODO: Dovrsiti ubacivanje vremena
         Counseling counseling = CounselingMapper.mapCounselingCreateDtoToCounseling(counselingDto);
         counseling.setPatient(patientService.getPatient(counselingDto.getPatientEmail()));
         counseling.setPharmacist(pharmacistService.findUserByEmail(counselingDto.getPharmacistEmail()));
