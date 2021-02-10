@@ -17,6 +17,7 @@ export const MEDICINES_CHECK_PATH = MEDICINE_PATH + '/check';
 
 export const EPRESCRIPTION_PATH = BACKEND_PATH + '/ePrescription';
 export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';
+export const QR_ORDER_PATH = EPRESCRIPTION_PATH + '/order';
 export const SCHEDULE_PATH = BACKEND_PATH + '/workschedule';
 export const PHARMACIST_REGISTRATION_PATH = BACKEND_PATH + '/pharmacist/registration';
 export const PHARMACISTSBYPHARMACY_PATH = BACKEND_PATH + '/pharmacist/pharmacists';

@@ -259,18 +259,6 @@ insert into medicine_replacement_medicines(medicine_id, replacement_medicines) v
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(4, 62922);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(5, 66042);
 
--- MedicinePrescription
-insert into medicineeprescription(code, name, quantity) values(2, 'brufen', 123419);
-insert into medicineeprescription(code, name, quantity) values(8, 'panadol', 6839093);
-
--- EPrescription
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(24363, null, 'Brufen, Panadol', 'Marko Markovic');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(246663, null, 'Brufen', 'Petar Petrovic');
-    -- EPrescription: Medications
-    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
-    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
-
-
 -- Diagnosis
 insert into diagnosis(name)values('Cholera');
 insert into diagnosis(name)values('Sickness');
@@ -307,3 +295,14 @@ insert into order_offer(price, quantity, medicine_id)VALUES (2.0, 2, 3);
 --SupplierOffers
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-01-01', 20.0, 2, 1, 1);
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-02-02', 50, 1, 2, 1);
+
+-- MedicinePrescription
+insert into medicineeprescription(code, name, quantity) values(2, 'Brufen', 2);
+insert into medicineeprescription(code, name, quantity) values(8, 'Panadol', 1);
+
+-- EPrescription
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(24363, '2020-02-02', 'Brufen, Panadol', 'Marko Markovic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(246663, '2021-03-03', 'Brufen', 'Petar Petrovic');
+    -- EPrescription: Medications
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);

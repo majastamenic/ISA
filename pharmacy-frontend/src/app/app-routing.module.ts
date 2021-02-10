@@ -8,7 +8,6 @@ import { MedicineComponent } from './component/medicine/medicine.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
-import { EPrescriptionComponent } from './component/prescription/e-prescription/e-prescription.component';
 import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
 import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
 import { LoginComponent } from './component/user/login/login.component';
@@ -39,10 +38,11 @@ import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
 import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
 import { CounselingsComponent } from './component/patient/counselings/counselings.component';
-import { AddOrderComponent } from './component/add-order/add-order.component';
-import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 import { CommonModule } from '@angular/common';
 import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
+import { AddOrderComponent } from './component/add-order/add-order.component';
+import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -54,7 +54,6 @@ const routes: Routes = [
   { path: 'actions', component: ActionsBenefitsComponent },
   { path: 'medicines', component: MedicineComponent },
   { path: 'uploadQR', component: UploadQRComponent },
-  { path: 'ePrescription', component: EPrescriptionComponent },
   { path: 'counseling', component: ScheduleCounselingComponent },
   { path: 'allcounselings', component: AllCounselingsComponent },
   {
