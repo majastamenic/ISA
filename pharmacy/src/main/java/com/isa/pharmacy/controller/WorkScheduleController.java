@@ -26,4 +26,9 @@ public class WorkScheduleController {
     public List<WorkSchedulePharmacyDto> getWorkScheduleByDermatologist(@PathVariable("email") String email){
         return workScheduleService.getWorkScheduleByDermatologist(email);
     }
+
+    @GetMapping("/pharmacist/{email}")
+    public List<WorkSchedulePharmacyDto> getWorkScheduleByPharmacist(@PathVariable("email") String email){
+        return workScheduleService.getWorkScheduleByPharmacist(email);
+    }
 }

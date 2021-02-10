@@ -27,4 +27,9 @@ public class VacationScheduleController {
     public List<VacationScheduleDto> getVacationScheduleByDermatologist(@PathVariable("email") String email){
         return vacationScheduleService.getVacationScheduleByDermatologist(email);
     }
+
+    @GetMapping("/pharmacist/{email}")
+    public List<VacationScheduleDto> getVacationScheduleByPharmacist(@PathVariable("email") String email){
+        return vacationScheduleService.getVacationScheduleByPharmacist(email);
+    }
 }
