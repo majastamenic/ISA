@@ -223,4 +223,16 @@ public class MedicineService {
         medicineRepository.save(medicine);
     }
 
+
+    public MedicineDto findMedicineSpecification(String name){
+        Medicine medicine = findByName(name);
+        MedicineDto medicineDto = new MedicineDto();
+        if(medicine != null){
+            medicineDto = MedicineMapper.mapMedicineToMedicineDto(medicine, "");
+        }else{
+            throw new NullPointerException("Pharmacy don't have medicine with that name.");
+        }
+        return medicineDto;
+    }
+
 }

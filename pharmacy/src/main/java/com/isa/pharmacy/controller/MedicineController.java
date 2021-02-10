@@ -3,10 +3,7 @@ package com.isa.pharmacy.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.isa.pharmacy.controller.dto.AddMedicineDto;
-import com.isa.pharmacy.controller.dto.AvailabilityMedicineDto;
-import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
-import com.isa.pharmacy.controller.dto.SearchMedicineDto;
+import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +76,11 @@ public class MedicineController {
     @PostMapping("/check/pharmacist/{pharmacistEmail}")
     public List<AvailabilityMedicineDto> checkAvailabilityMedicinesByPharmacist(@PathVariable String pharmacistEmail, @RequestBody List<String> meds){
         return medicineService.checkAvailabilityMedicinesByPharmacist(pharmacistEmail, meds);
+    }
+
+    @GetMapping("specification/{name}")
+    public MedicineDto findMedicineSpecification(@PathVariable("name") String name){
+        return medicineService.findMedicineSpecification(name);
     }
 
 }
