@@ -12,6 +12,7 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
 import com.isa.pharmacy.domain.*;
+import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,8 @@ public class PharmacyService {
     private PharmacyRepository pharmacyRepository;
     @Value("${apiKey}")
     private String apiKey;
+    @Autowired
+    private MedicinePharmacyRepository medicinePharmacyRepository;
 
     public Pharmacy save(Pharmacy p) {
         return pharmacyRepository.save(p);
@@ -161,23 +164,16 @@ public class PharmacyService {
     }
 
     public List<PharmacyPriceDto> getPharmacyByEPrescription(EPrescription ePrescription){
-        //TODO: ILI SVE LEKOVE ILI NIJEDAN!!!
-        List<Pharmacy> pharmacyList = pharmacyRepository.findAll();
+        List<Long> codes = new ArrayList<>();
+        for(MedicineEPrescription med: ePrescription.getListOfMedication())
+            codes.add(med.getCode());
+        List<MedicinePharmacy> pharmacyList = pharmacyRepository.findPharmaciesByMedicineEprescription(codes);
         List<PharmacyPriceDto> pharmacyPriceDtos = new ArrayList<>();
-        for(MedicineEPrescription medicineEPrescription: ePrescription.getListOfMedication()) {
-            for (Pharmacy pharmacy : pharmacyList) {
-                for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacy()) {
-                    if(medicineEPrescription.getName().equals(medicinePharmacy.getMedicine().getName()) && medicinePharmacy.getQuantity()>=medicineEPrescription.getQuantity()){
-                        PharmacyPriceDto pharmacyPriceDto = new PharmacyPriceDto();
-                        pharmacyPriceDto.setPhName(pharmacy.getName());
-                        pharmacyPriceDto.setPrice(medicinePharmacy.getPrice());
-                        pharmacyPriceDtos.add(pharmacyPriceDto);
-                    }
-                }
-            }
-        }
-        if(pharmacyList.isEmpty()){
-            throw new NotFoundException("There is no pharmacy who has your medicines.");
+        for(MedicinePharmacy medicinePharmacy: pharmacyList){
+            PharmacyPriceDto pharmacyPriceDto = new PharmacyPriceDto();
+            pharmacyPriceDto.setPhName(medicinePharmacy.getPharmacy().getName());
+            pharmacyPriceDto.setPrice(medicinePharmacy.getPrice());
+            pharmacyPriceDtos.add(pharmacyPriceDto);
         }
         return pharmacyPriceDtos;
     }

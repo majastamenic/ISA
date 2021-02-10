@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MedicineService } from 'service/medicine.service';
-import { PharmacistService } from 'service/pharmacist.service';
-import { PharmacyService } from 'service/pharmacy.service';
+import { MedicineService } from 'src/app/service/medicine.service';
+import { PharmacistService } from 'src/app/service/pharmacist.service';
+import { PharmacyService } from 'src/app/service/pharmacy.service';
 
 @Component({
   selector: 'app-medicine',
@@ -20,7 +20,7 @@ export class MedicineComponent implements OnInit {
   formOfMedicine: any;
   publishingType: any;
   filterView: boolean = false;
-  
+
   allPharmacies: any;
   selectedPharmacies: any = [];
 
@@ -30,6 +30,7 @@ export class MedicineComponent implements OnInit {
   viewSpec: boolean = false;
   enableViewIndex: any;
   total: number = 0;
+  searchMode = false;
 
   constructor(private medicineService: MedicineService, private pharmacyService: PharmacyService) { }
 
@@ -37,20 +38,24 @@ export class MedicineComponent implements OnInit {
     this.medicineService.getAllMedicinesDto(this.page - 1, 2).subscribe(listMedicineDto => {
       this.medicinesDtoList = listMedicineDto.content;
       this.total = listMedicineDto.totalElements;
-      this.page = listMedicineDto.pageNumber + 1;
+      this.page = listMedicineDto.number + 1;
     });
 
-    this.pharmacyService.getAll().subscribe((response:any)=>{
+    this.pharmacyService.getAll().subscribe((response: any) => {
       this.allPharmacies = response;
     });
   }
 
   onPageChanged(number: number) {
-    this.medicineService.getAllMedicinesDto(number - 1, 2).subscribe(listMedicineDto => {
-      this.medicinesDtoList = listMedicineDto.content;
-      this.total = listMedicineDto.totalElements;
-      this.page = number;
-    });
+    this.page = number;
+    if (this.searchMode == true) {
+      this.search();
+    } else {
+      this.medicineService.getAllMedicinesDto(number - 1, 2).subscribe(listMedicineDto => {
+        this.medicinesDtoList = listMedicineDto.content;
+        this.total = listMedicineDto.totalElements;
+      });
+    }
   }
   viewSpecification(e: Event, i: any) {
     this.enableViewIndex = i;
@@ -61,21 +66,32 @@ export class MedicineComponent implements OnInit {
     this.viewSpec = false;
   }
 
-  search(){
-    if(this.selectedPharmacies && this.selectedPharmacies.length > 0){
-      this.pharmacies = [];
-      for(let p of this.selectedPharmacies){
+  search() {
+    this.searchMode = true;
+    this.pharmacies = [];
+    if (this.selectedPharmacies && this.selectedPharmacies.length > 0) {
+      for (let p of this.selectedPharmacies) {
         this.pharmacies.push(p.id);
       }
     }
-    this.medicineService.searchFilter(2, 0, this.name, this.startPrice, this.endPrice, this.pharmacies,
+    this.medicineService.searchFilter(2, this.page - 1, this.name, this.startPrice, this.endPrice, this.pharmacies,
       this.typeOfMedicine, this.manufactured, this.composition, this.formOfMedicine,
       this.publishingType).subscribe((responseMedicines: any) => {
         this.medicinesDtoList = responseMedicines.content;
         this.total = responseMedicines.totalElements;
-        this.page = responseMedicines.pageNumber + 1;
+        this.page = responseMedicines.number + 1;
         this.filterView = true;
-    });
+      });
+  }
+
+  removeSelected(selected: any) {
+    this.selectedPharmacies = this.selectedPharmacies.filter(({ id }) => selected.value.id !== id);     
+        
+    console.log(selected);
+  }
+
+  clearAll() {
+    this.selectedPharmacies = [];
   }
 
 }

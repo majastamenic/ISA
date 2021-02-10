@@ -180,6 +180,13 @@ insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4,
 
 -- ////////////////////////////////////////////////////////////////////////////
 
+--Loyalty program
+insert into loyalty_group(points, type) values (3, 0);
+insert into loyalty_group(points, type) values (4, 1);
+insert into loyalty_group(points, type) values (10, 2);
+insert into loyalty_group(points, type) values (20, 3);
+insert into loyalty_group(points, type) values (50, 4);
+
 -- Examinations
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 11, 1, 1, 1, 1, false);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(15, 11, 1, 1, 1);
@@ -268,13 +275,6 @@ insert into diagnosis(name)values('Anxiety');
 insert into diagnosis(name)values('Back pain');
 insert into diagnosis(name)values('Hypertension');
 
---Loyalty program
-insert into loyalty_group(points, type) values (3, 0);
-insert into loyalty_group(points, type) values (4, 1);
-insert into loyalty_group(points, type) values (10, 2);
-insert into loyalty_group(points, type) values (20, 3);
-insert into loyalty_group(points, type) values (50, 4);
-
 -- Complaints
 insert into complaint(complaint_message, response_complaint, patient_id)values ('Bad service', 'Please tell us more to improve our service.', 1);
 insert into complaint(complaint_message, patient_id)values ('Too crowded', 2);
@@ -296,13 +296,39 @@ insert into order_offer(price, quantity, medicine_id)VALUES (2.0, 2, 3);
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-01-01', 20.0, 2, 1, 1);
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-02-02', 50, 1, 2, 1);
 
--- MedicinePrescription
-insert into medicineeprescription(code, name, quantity) values(2, 'Brufen', 2);
-insert into medicineeprescription(code, name, quantity) values(8, 'Panadol', 1);
-
 -- EPrescription
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(24363, '2020-02-02', 'Brufen, Panadol', 'Marko Markovic');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(246663, '2021-03-03', 'Brufen', 'Petar Petrovic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(1, '2021-01-01', 'Maja Stamenic Panadol,', 'Maja Stamenic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(2, '2021-02-01', 'Aca Lukas Panadol,', 'Aca Lukas');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(3, '2021-02-02', 'Toma Zdravkovic Bensedin,', 'Toma Zdravkovic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(4, '2021-02-03', 'Gojko Novcic Aspirin,', 'Gojko Novcic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(5, '2021-01-02', 'Nastasja Damjanac Brufen,', 'Nastasja Damjanac');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(6, '2021-02-03', 'Gojko Novcic Panadol,', 'Gojko Novcic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(7, '2021-01-02', 'Toma Zdravkovic Aspirin,', 'Toma Zdravkovic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(8, '2021-02-03', 'Aca Lukas Brufen, Bensedin,', 'Aca Lukas');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(9, '2021-01-02', 'Maja Stamenic Brufen,', 'Maja Stamenic');
+insert into eprescription(code, date_of_issue, file_text, patient_name) values(10, '2021-01-03', 'Maja Stamenic Aspirin,', 'Maja Stamenic');
+    -- MedicineEPrescription
+    insert into medicineeprescription(code, name, quantity) values(1, 'Panadol', 1);
+    insert into medicineeprescription(code, name, quantity) values(2, 'Panadol', 2);
+    insert into medicineeprescription(code, name, quantity) values(3, 'Bensedin', 3);
+    insert into medicineeprescription(code, name, quantity) values(4, 'Aspirin', 4);
+    insert into medicineeprescription(code, name, quantity) values(5, 'Brufen', 3);
+    insert into medicineeprescription(code, name, quantity) values(6, 'Panadol', 4);
+    insert into medicineeprescription(code, name, quantity) values(7, 'Aspirin', 2);
+    insert into medicineeprescription(code, name, quantity) values(8, 'Brufen', 2);
+    insert into medicineeprescription(code, name, quantity) values(9, 'Bensedin', 2);
+    insert into medicineeprescription(code, name, quantity) values(10, 'Brufen', 1);
+    insert into medicineeprescription(code, name, quantity) values(11, 'Aspirin', 5);
+
     -- EPrescription: Medications
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 1);
-    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(1, 2);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(2, 2);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(3, 3);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(4, 4);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(5, 5);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(6, 6);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(7, 7);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(8, 8);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(8, 9);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(9, 10);
+    insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(10, 11);

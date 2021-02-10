@@ -40,6 +40,8 @@ public class ExaminationService {
     private DiagnosisService diagnosisService;
     @Autowired
     private MedicineService medicineService;
+    @Autowired
+    private EPrescriptionService ePrescriptionService;
 
 
     public Examination save(Examination examination){
@@ -155,6 +157,7 @@ public class ExaminationService {
             prescription.setDiagnosis(diagnosis);
             prescription.setDays(updateExamination.getPrescription().getDays());
             prescriptionService.save(prescription);
+            ePrescriptionService.createEPrescription(prescription, patient);
             exam.setPrescription(prescription);
             exam = ExaminationMapper.mapExaminationDtoToExamination(updateExamination, dermatologist, patient, pharmacy, prescription, updated.getSchedule());
             prescriptionService.save(prescription);

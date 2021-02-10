@@ -1,7 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { QR_ORDER_PATH, UPLOADQR_PATH } from '../src/app/util/paths';
+import { QR_ORDER_PATH, UPLOADQR_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'

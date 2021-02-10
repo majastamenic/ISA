@@ -51,11 +51,16 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user', component: RegistrationComponent },
   { path: 'hospital', component: HospitalComponent },
-  { path: 'actions', component: ActionsBenefitsComponent },
   { path: 'medicines', component: MedicineComponent },
+  //Patient
+  { path: 'actions', component: ActionsBenefitsComponent },
   { path: 'uploadQR', component: UploadQRComponent },
+  { path: 'subscribe-list', component: SubscribeListComponent},
+  { path: 'add-complaint', component: ComplaintMessageComponent},
+  //Pharmacist
   { path: 'counseling', component: ScheduleCounselingComponent },
   { path: 'allcounselings', component: AllCounselingsComponent },
+  //System admin
   {
     path: 'system-admin', component: SystemAdminComponent,
     children: [
@@ -69,11 +74,14 @@ const routes: Routes = [
   { path: 'add-pharmacy', component: AddPharmacyComponent },
   { path: 'loyalty', component: LoyalityComponent },
   { path: 'complaints', component: ComplaintsComponent},
-
+  //Dermatologist
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'scheduledExaminations', component: PatientExaminationsComponent},
   { path: 'patient/counselings', component: CounselingsComponent},
-
+  { path: 'diagnosis', component: DiagnosisComponent},
+  { path: 'allexaminations', component: AllExaminationsComponent},
+  { path: 'examination', component: ScheduleExaminationDermatologistComponent}, 
+  //Pharmacy admin
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'allcounselings/:id', component: StartCounselingComponent},
@@ -87,13 +95,9 @@ const routes: Routes = [
   { path: 'dermatologists', component: AllDermatologistsComponent},
   { path: 'medications/:id', component: AllMedicationsComponent},
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
-  { path: 'allexaminations', component: AllExaminationsComponent},
-  { path: 'examination', component: ScheduleExaminationDermatologistComponent},
-  { path: 'diagnosis', component: DiagnosisComponent},
-  { path: 'add-complaint', component: ComplaintMessageComponent},
+  //Supplier
   { path: 'order', component: AddOrderComponent},
   { path: 'view-orders', component: ViewOrdersComponent},
-  { path: 'subscribe-list', component: SubscribeListComponent},
 ];
 
 @NgModule({

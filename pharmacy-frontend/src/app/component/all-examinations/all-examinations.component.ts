@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ExaminationService } from 'service/examination.service';
+import { ExaminationService } from 'src/app/service/examination.service';
 
 @Component({
   selector: 'app-all-examinations',

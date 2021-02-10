@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CounselingsService } from 'service/counselings.service';
+import { CounselingsService } from 'src/app/service/counselings.service';
 
 @Component({
   selector: 'app-start-counseling',

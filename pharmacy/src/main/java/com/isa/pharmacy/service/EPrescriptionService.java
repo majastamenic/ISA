@@ -1,17 +1,19 @@
 package com.isa.pharmacy.service;
 
+import java.awt.print.Pageable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.MedicinePharmacy;
-import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.domain.*;
+import com.isa.pharmacy.users.domain.Patient;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.isa.pharmacy.domain.EPrescription;
-import com.isa.pharmacy.domain.MedicineEPrescription;
 import com.isa.pharmacy.repository.EPrescriptionRepository;
 
 @Service
@@ -59,7 +61,7 @@ public class EPrescriptionService {
         try{
             for(MedicineEPrescription medicineEPrescription: ePrescription.getListOfMedication()){
                 for(MedicinePharmacy medicinePharmacy: pharmacy.getMedicinePharmacy()){
-                    if(medicineEPrescription.getName().equals(medicinePharmacy.getMedicine().getName())){
+                    if(medicineEPrescription.getName().equals(medicinePharmacy.getMedicine().getName()) && medicineEPrescription.getQuantity()<=medicinePharmacy.getQuantity()){
                         medicinePharmacy.setQuantity(medicinePharmacy.getQuantity()-medicineEPrescription.getQuantity());
                         medicinePharmacyService.save(medicinePharmacy);
                     }
@@ -78,5 +80,31 @@ public class EPrescriptionService {
         if(ePrescription == null)
             throw new NotFoundException("E-prescription with code: "+ code + " doesn't exists.");
         return ePrescription;
+    }
+
+    public EPrescription createEPrescription(Prescription prescription, Patient patient){
+        EPrescription ePrescription = new EPrescription();
+        ePrescription.setCode(new Random().nextLong());
+        ePrescription.setPatientName(patient.getUser().getName()+" "+patient.getUser().getSurname());
+        ePrescription.setDateOfIssue(new Date());
+        List<MedicineEPrescription> medicineEPrescriptions = new ArrayList<>();
+        String medText="";
+        for(Medicine medicine: prescription.getMedicines()){
+            MedicineEPrescription medicineEPrescription = new MedicineEPrescription();
+            medicineEPrescription.setCode(new Random().nextLong());
+            medicineEPrescription.setName(medicine.getName());
+            if((prescription.getDays()/10) < 1)
+                medicineEPrescription.setQuantity(1);
+            else
+                medicineEPrescription.setQuantity(prescription.getDays()/10);
+            medicineEPrescriptions.add(medicineEPrescription);
+            medText = medicineEPrescription.getName() + ", ";
+            medicineEService.create(medicineEPrescription);
+        }
+        if(medText!="")
+            medText.substring(medText.lastIndexOf(" "));
+        ePrescription.setFileText(ePrescription.getPatientName()+" "+ medText);
+        ePrescription.setListOfMedication(medicineEPrescriptions);
+        return ePrescriptionRepository.save(ePrescription);
     }
 }

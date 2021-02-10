@@ -26,6 +26,7 @@ public interface PharmacyRepository extends JpaRepository<Pharmacy, Long> {
     @Query(value = "select p from Pharmacy p join p.subscribedEmails se where :email = se")
     List<Pharmacy> findPharmaciesBySubscriber(@Param("email")String email);
 
-    @Query(value = "select p from Pharmacy p, MedicinePharmacy mp join MedicineEPrescription me where me in (:medEprescriptions) and mp.pharmacy = p and mp.medicine.name=me.name and mp.quantity>=me.quantity" )
-    List<Pharmacy> findPharmaciesByMedicineEprescription(@Param("medEprescriptions")List<MedicineEPrescription> medEprescriptions);
+    @Query(value = "select distinct mp from MedicinePharmacy mp join MedicineEPrescription me on me.name = mp.medicine.name " +
+            "where me.code in (:codes) and mp.quantity>=me.quantity" )
+    List<MedicinePharmacy> findPharmaciesByMedicineEprescription(@Param("codes")List<Long> codes);
 }
