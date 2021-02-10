@@ -1,0 +1,25 @@
+<div class="panel panel-primary" style="margin: 20px;">
+    <div class="panel-heading">
+        <h2>Available pharmacies</h2>
+    </div>
+    <div class="panel-body">
+        <table id="freeTerms" class="table transparent">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>LastName</th>
+                    <th>Rate</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pharmacist of pharmacists; let i = index;">
+                    <td>{{pharmacist.user.name}}</td>
+                    <td>{{pharmacist.user.address}}</td>
+                    <td>DISPLAY WHEN ADDED TO MODEL</td><!-- TODO: Dodati kada se doda rate u model -->
+                    <td><button class="btn btn-primary">Show pharmacists</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -54,8 +54,9 @@ public class PharmacistController {
     }
 
     @PutMapping("/free")
-    public List<PharmacistDto> getFreePharmacist(@RequestBody DateTimeDto date){
-        return PharmacistMapper.mapPharmacistListToPharmacistDto(pharmacistService.getFreePharmacistByDate(date));
+    public List<PharmacistDto> getFreePharmacist(@RequestParam("pharmacy") String pharmacy, @RequestBody DateTimeDto date){
+        return PharmacistMapper.mapPharmacistListToPharmacistDto(
+                pharmacistService.getFreePharmacistByPharmacyAndDate(pharmacy, date));
     }
 
 }

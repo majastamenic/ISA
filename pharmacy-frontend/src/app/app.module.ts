@@ -54,6 +54,7 @@ import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
+import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { CounselingSearchComponent } from './component/patient/counseling-search
     ViewOrdersComponent,
     PatientExaminationsComponent,
     CounselingsComponent,
-    CounselingSearchComponent
+    CounselingSearchComponent,
+    CounselingScheduleComponent
   ],
   imports: [
     BrowserModule,

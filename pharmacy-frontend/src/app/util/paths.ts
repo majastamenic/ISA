@@ -7,19 +7,23 @@ export const INFO_PATH = USER_PATH + '/info';
 export const UPDATE_USER_PATH = USER_PATH + '/update';
 
 export const PHARMACY_PATH = BACKEND_PATH + '/pharmacy';
+export const AVAILABLE_PHARMACIES = PHARMACY_PATH + '/availablePharmacies';  // Gets pharmacies with available pharmacists
 export const HOSPITAL_PATH = BACKEND_PATH + '/hospital';
 export const ACTION_PATH = BACKEND_PATH + '/actions';
 
 export const MEDICINE_PATH = BACKEND_PATH + '/medicine';
-export const MEDICINE_SEARCH_PATH = BACKEND_PATH + '/medicine/search';
+export const MEDICINE_SEARCH_PATH = MEDICINE_PATH + '/search';
 export const MEDICINEALL_PATH = MEDICINE_PATH + '/getAllMedicines';
 export const MEDICINES_CHECK_PATH = MEDICINE_PATH + '/check';
 
 export const EPRESCRIPTION_PATH = BACKEND_PATH + '/ePrescription';
 export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';
 export const SCHEDULE_PATH = BACKEND_PATH + '/workschedule';
-export const PHARMACIST_REGISTRATION_PATH = BACKEND_PATH + '/pharmacist/registration';
-export const PHARMACISTSBYPHARMACY_PATH = BACKEND_PATH + '/pharmacist/pharmacists';
+
+export const PHARMACIST_PATH = BACKEND_PATH + '/pharmacist';
+export const PHARMACIST_REGISTRATION_PATH = PHARMACIST_PATH + '/registration';
+export const PHARMACISTSBYPHARMACY_PATH = PHARMACIST_PATH + '/pharmacists';
+export const FREE_PHARMACIST_PATH = PHARMACIST_PATH + '/free';
 
 export const PATIENT_PATH = BACKEND_PATH + '/patient';
 export const PATIENT_VALID_PATH = PATIENT_PATH + '/valid';

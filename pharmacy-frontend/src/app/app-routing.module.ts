@@ -74,7 +74,7 @@ const routes: Routes = [
   { path: 'patient/examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'patient/examinations', component: PatientExaminationsComponent},
   { path: 'patient/counselings', component: CounselingsComponent},
-  { path: 'patient/counselingSchedule', component: CounselingSearchComponent},
+  { path: 'patient/counselingSchedule:pharmacyName', component: CounselingSearchComponent},
 
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},

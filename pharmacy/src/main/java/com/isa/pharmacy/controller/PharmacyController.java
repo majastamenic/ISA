@@ -106,7 +106,7 @@ public class PharmacyController {
         return pharmacyService.hasPharmacyMedication(pharmacyName, medicineName);
     }
 
-    @PostMapping("/availablePharmacies")
+    @PutMapping("/availablePharmacies")
     public List<PharmacyDto> getPharmaciesForCounseling(@RequestBody DateTimeDto date){
         return PharmacyMapper.mapListPharmacyToPharmacyDto(pharmacyService.getPharmaciesForCounseling(date));
     }

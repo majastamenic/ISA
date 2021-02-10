@@ -96,6 +96,14 @@ public class PharmacistService {
         return pharmacistByPharmacyDtos;
     }
 
+    public List<Pharmacist> getFreePharmacistByPharmacyAndDate(String pharmacyName, DateTimeDto date){
+        List<Pharmacist> freePharmacists = new ArrayList<>();
+        for (Pharmacist pharmacist : getFreePharmacistByDate(date))
+            if(pharmacist.getPharmacy().getName().equals(pharmacyName))
+                freePharmacists.add(pharmacist);
+        return freePharmacists;
+    }
+
     public List<Pharmacist> getFreePharmacistByDate(DateTimeDto date){
         Date eagerDate = DateConvert.mergeDateAndTime(date.getDate(), date.getTime());
         List<Pharmacist> freePharmacists = new ArrayList<>();

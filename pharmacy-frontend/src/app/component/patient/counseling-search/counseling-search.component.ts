@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DateTime } from 'src/app/model/examination';
+import { PharmacyService } from 'src/app/service/pharmacy.service';
 
 @Component({
   selector: 'app-counseling-search',
@@ -16,25 +18,34 @@ export class CounselingSearchComponent implements OnInit {
   eagerDate: any;
   minuteStep: number = 15;
 
+  dateTime: DateTime = {date: '', time: ''}
   pharmacies: any;
 
-  constructor(private router: Router,
-              private toastrService: ToastrService,
+  constructor(private pharmacyService: PharmacyService,
+              private router: Router,
+              private toastrService: ToastrService
               ) { }
 
   ngOnInit(): void {
-    if(this.loggedUser){
-
-    }else{
+    if(!this.loggedUser){
       this.router.navigate(['login']);
       this.toastrService.info('Please log in first.');
     }
   }
 
   find(){
-    let DateTime = {
-      date: `${this.eagerDate.year}-${this.eagerDate.mounth}-${this.eagerDate.day}`,
-      time: `${this.startTime.hour}-${this.startTime.minute}`
-    }
+    this.dateTime.date = `${this.eagerDate.year}-${this.eagerDate.month}-${this.eagerDate.day}`;
+    this.dateTime.time = `${this.startTime.hour}:${this.startTime.minute}:00`;
+    this.pharmacyService.getPharmaciesWithAvailablePharmacists(this.dateTime).subscribe((data: any[]) => {
+      if(data.length <= 0)
+        this.toastrService.info('There is no available pharmacists for selected term');
+      else{
+        this.pharmacies = data;
+        this.isCounselingFound = true;
+      }
+    }, (error:any) => {
+      this.toastrService.error("Unkonwn error");
+    });
+
   }
 }

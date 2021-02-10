@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div *ngif="isCounselingFound" class="panel panel-primary" style="margin: 20px;">
+<div *ngIf="isCounselingFound" class="panel panel-primary" style="margin: 20px;">
     <div class="panel-heading">
         <h2>Available pharmacies</h2>
     </div>
@@ -34,6 +34,7 @@
                     <th>Pharmacy</th>
                     <th>Address</th>
                     <th>Price (€)</th>
+                    <th>Rate</th>
                     <th></th>
                 </tr>
             </thead>
@@ -42,6 +43,7 @@
                     <td>{{pharmacy.name}}</td>
                     <td>{{pharmacy.address}}</td>
                     <td>{{pharmacy.counselingPrice}}</td>
+                    <td>ADD RATE WHEN IT IS IMPLEMENTED</td>
                     <td><button class="btn btn-primary">Show pharmacists</button></td>
                 </tr>
             </tbody>
