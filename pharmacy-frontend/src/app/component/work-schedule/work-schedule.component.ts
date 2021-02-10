@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventInput } from '@fullcalendar/angular';
 import { createEventId} from 'src/app/event-utils';
+import { ExaminationService } from 'src/app/service/examination.service';
 import { VacationScheduleService } from 'src/app/service/vacation-schedule.service';
 
 const TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
@@ -15,9 +16,10 @@ export class WorkScheduleComponent implements OnInit {
   INITIAL_EVENTS: EventInput[] = [];
   currentEvents: EventApi[] = [];
   vacations: any[]=[];
+  examinations: any[]=[];
   calendarVisible = true;
 
-  constructor(private vacationService: VacationScheduleService) {
+  constructor(private vacationService: VacationScheduleService, private examinationService: ExaminationService) {
     
    }
 
@@ -38,9 +40,24 @@ export class WorkScheduleComponent implements OnInit {
             backgroundColor: 'yellow',
             display: 'background'
           })
+          //this.calendarOptions.events = this.INITIAL_EVENTS;
+        }
+      });
+
+      this.examinationService.getExaminations(loggedUser).subscribe((data: any[]) => {
+        this.examinations = data;
+        console.log(this.examinations);
+        for (var i of this.examinations) {
+          this.INITIAL_EVENTS.push({
+            id: i.id,
+            title: i.patientDto.user.name + ' ' + i.patientDto.user.surname + ' [' + i.pharmacyName + ']',
+            start: i.schedule.startDate + 'T' + i.schedule.startTime,
+            end: i.schedule.endDate + 'T' + i.schedule.endTime
+          })
           this.calendarOptions.events = this.INITIAL_EVENTS;
         }
       });
+
     }
   }
 
