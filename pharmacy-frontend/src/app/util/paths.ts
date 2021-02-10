@@ -51,6 +51,7 @@ export const CANCEL_EXAMINATION = EXAMINATION_PATH + '/cancel';
 export const EXAMINATION_START_PATH = EXAMINATION_PATH + '/start';
 export const EXAMINATION_UPDATE_PATH = EXAMINATION_PATH + '/update';
 export const PATIENT_EXAMINATIONS = EXAMINATION_PATH + '/scheduled';
+export const FREE_EXAM_TERMS_WORKER_PATH = EXAMINATION_PATH + '/free';
 
 export const DIAGNOSIS_PATH = BACKEND_PATH + '/diagnosis';
 export const DIAGNOSIS_ADD_PATH = DIAGNOSIS_PATH + '/add';
@@ -62,6 +63,10 @@ export const COMPLAINT_PATH = BACKEND_PATH + '/complaint';
 
 export const ORDER_PATH = BACKEND_PATH + '/order';
 export const OFFER_PATH = BACKEND_PATH + '/supplier-offer';
+
+export const VACATION_PATH = BACKEND_PATH + '/vacation';
+export const VACATIONS_DERMATOLOGIST_PATH = VACATION_PATH + '/dermatologist';
+export const VACATION_PHARMACIST_PATH = VACATION_PATH + '/pharmacist';
 
 export const SUBSCRIBE_PATH = PHARMACY_PATH + '/subscribe';
 export const UNSUBSCRIBE_PATH = PHARMACY_PATH + '/unsubscribe';

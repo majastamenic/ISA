@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
+import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.scheduling.domain.Schedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 
@@ -22,5 +23,12 @@ public class WorkScheduleMapper {
         workScheduleDto.setStartDate(schedule.getStartDate());
         workScheduleDto.setStartTime(schedule.getStartTime());
         return workScheduleDto;
+    }
+
+    public static WorkSchedulePharmacyDto mapWorkScheduleToWorkSchedulePharmacyDto(WorkSchedule workSchedule, String pharmacyName){
+        WorkSchedulePharmacyDto workSchedulePharmacyDto = new WorkSchedulePharmacyDto();
+        workSchedulePharmacyDto.setWorkScheduleDto(mapWorkScheduleToWorkScheduleDto(workSchedule));
+        workSchedulePharmacyDto.setPharmacyName(pharmacyName);
+        return workSchedulePharmacyDto;
     }
 }

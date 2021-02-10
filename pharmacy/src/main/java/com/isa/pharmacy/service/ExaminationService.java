@@ -165,4 +165,18 @@ public class ExaminationService {
         }
         return updateExamination;
     }
+
+    public List<Examination> getFreeExaminationsByDermatologist(String email){
+        List<Examination> freeExaminations = new ArrayList<>();
+        Dermatologist dermatologist = dermatologistService.findUserByEmail(email);
+        if(dermatologist != null){
+            for(Examination e : getAllFreeExaminationTerms()){
+                if(e.getDermatologist().equals(dermatologist) && e.getSchedule() != null){
+                    freeExaminations.add(e);
+                }
+            }
+        }
+        return freeExaminations;
+    }
+
 }

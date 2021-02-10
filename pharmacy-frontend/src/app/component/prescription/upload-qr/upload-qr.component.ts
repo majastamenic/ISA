@@ -37,10 +37,10 @@ export class UploadQRComponent implements OnInit {
       this.uploadQrService.uploadFiled(this.file).subscribe((returnedEPrescription: EPrescription) => {
         this.ePrescription = returnedEPrescription;
         this.viewEPrescription = true;
-      }, 
+      },
       (err: any) => {
         this.toastrService.error('Error while reading QRcode ' + err.error.message);
-      }); 
+      });
     }
   }
 

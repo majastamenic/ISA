@@ -1,30 +1,23 @@
-package com.isa.pharmacy.scheduling.domain;
+package com.isa.pharmacy.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
-@Entity
-@Table
-public class VacationSchedule implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class VacationScheduleDto {
     private Long id;
-    @Column
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date startDate;
-    @Column
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date endDate;
 
-    public VacationSchedule(){}
+    public VacationScheduleDto(){}
 
-    public VacationSchedule(Long id, Date startDate, Date endDate) {
+
+    public VacationScheduleDto(Long id, Date startDate, Date endDate) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;

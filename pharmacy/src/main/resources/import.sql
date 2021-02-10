@@ -125,16 +125,41 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-08', '2021-02-08', '19:30:00', '20:00:00');
 
 -- WorkSchedule //////////////////////////////////////////////////////////
-insert into work_schedule(schedule_id) values(1);
-insert into work_schedule(schedule_id) values(2);
-insert into work_schedule(schedule_id) values(3);
-insert into work_schedule(schedule_id) values(4);
-insert into work_schedule(schedule_id) values(5);
-insert into work_schedule(schedule_id) values(6);
-insert into work_schedule(schedule_id) values(7);
-insert into work_schedule(schedule_id) values(8);
-insert into work_schedule(schedule_id) values(9);
-insert into work_schedule(schedule_id) values(10);
+    // Jankovic
+insert into work_schedule(schedule_id, admin_id) values(1, 1);
+insert into work_schedule(schedule_id, admin_id) values(2, 1);
+insert into work_schedule(schedule_id, admin_id) values(3, 1);
+insert into work_schedule(schedule_id, admin_id) values(4, 1);
+insert into work_schedule(schedule_id, admin_id) values(5, 1);
+insert into work_schedule(schedule_id, admin_id) values(6, 1);
+insert into work_schedule(schedule_id, admin_id) values(7, 1);
+insert into work_schedule(schedule_id, admin_id) values(8, 1);
+insert into work_schedule(schedule_id, admin_id) values(9, 1);
+insert into work_schedule(schedule_id, admin_id) values(10, 1);
+
+    // Benu
+insert into work_schedule(schedule_id, admin_id) values(1, 2);
+insert into work_schedule(schedule_id, admin_id) values(2, 2);
+insert into work_schedule(schedule_id, admin_id) values(3, 2);
+insert into work_schedule(schedule_id, admin_id) values(4, 2);
+insert into work_schedule(schedule_id, admin_id) values(5, 2);
+insert into work_schedule(schedule_id, admin_id) values(6, 2);
+insert into work_schedule(schedule_id, admin_id) values(7, 2);
+insert into work_schedule(schedule_id, admin_id) values(8, 2);
+insert into work_schedule(schedule_id, admin_id) values(9, 2);
+insert into work_schedule(schedule_id, admin_id) values(10, 2);
+
+    // Zelena Apoteka
+insert into work_schedule(schedule_id, admin_id) values(1, 3);
+insert into work_schedule(schedule_id, admin_id) values(2, 3);
+insert into work_schedule(schedule_id, admin_id) values(3, 3);
+insert into work_schedule(schedule_id, admin_id) values(4, 3);
+insert into work_schedule(schedule_id, admin_id) values(5, 3);
+insert into work_schedule(schedule_id, admin_id) values(6, 3);
+insert into work_schedule(schedule_id, admin_id) values(7, 3);
+insert into work_schedule(schedule_id, admin_id) values(8, 3);
+insert into work_schedule(schedule_id, admin_id) values(9, 3);
+insert into work_schedule(schedule_id, admin_id) values(10, 3);
 
 -- WorkSchedule: Dermatologist
 insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 1);
@@ -296,6 +321,35 @@ insert into order_offer(price, quantity, medicine_id)VALUES (2.0, 2, 3);
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-01-01', 20.0, 2, 1, 1);
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-02-02', 50, 1, 2, 1);
 
+-- VacationSchedule
+    -- Dermatologist
+insert into vacation_schedule(start_date, end_date) values ('2021-03-03', '2021-03-10')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-01', '2021-03-22')
+insert into vacation_schedule(start_date, end_date) values ('2021-04-10', '2021-04-12')
+insert into vacation_schedule(start_date, end_date) values ('2021-04-03', '2021-04-10')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-04', '2021-03-17')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-09', '2021-03-10')
+    -- Pharmacist
+insert into vacation_schedule(start_date, end_date) values ('2021-03-10', '2021-03-15')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-01', '2021-03-05')
+insert into vacation_schedule(start_date, end_date) values ('2021-04-10', '2021-04-12')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-01', '2021-03-10')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-29', '2021-03-31')
+insert into vacation_schedule(start_date, end_date) values ('2021-05-09', '2021-05-20')
+    -- Dermatologist_VacationSchedule
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (1, 1)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 2)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (3, 3)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (1, 4)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 5)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 6)
+    -- Pharmacist_VacationSchedule
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (1, 7)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (2, 8)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (3, 9)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (1, 10)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (4, 11)
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (2, 12)
 -- EPrescription
 insert into eprescription(code, date_of_issue, file_text, patient_name) values(1, '2021-01-01', 'Maja Stamenic Panadol,', 'Maja Stamenic');
 insert into eprescription(code, date_of_issue, file_text, patient_name) values(2, '2021-02-01', 'Aca Lukas Panadol,', 'Aca Lukas');

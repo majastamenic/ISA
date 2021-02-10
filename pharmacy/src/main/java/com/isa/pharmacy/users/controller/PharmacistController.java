@@ -33,10 +33,12 @@ public class PharmacistController {
     @PostMapping("/update")
     public Pharmacist update(@RequestBody Pharmacist p) { return pharmacistService.update(p); }
     */
-    @GetMapping("/workschedule/{id}")
+
+    // TODO: obrisati ?
+    /*@GetMapping("/workschedule/{id}")
     public List<WorkSchedule> getWorkScheduleByPharmacistId(@PathVariable("id") Long id){
         return pharmacistService.getWorkScheduleByPharmacist(id);
-    }
+    }*/
 
     @GetMapping("/vacationschedule/{id}")
     public List<VacationSchedule> getVacationScheduleByPharmacist(@PathVariable("id") Long id){

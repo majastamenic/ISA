@@ -37,6 +37,7 @@ import { RegDermatologistComponent } from './component/system-admin/reg-dermatol
 import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
 import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
+import { WorkScheduleComponent } from './component/work-schedule/work-schedule.component';
 import { CounselingsComponent } from './component/patient/counselings/counselings.component';
 import { CommonModule } from '@angular/common';
 import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
@@ -80,7 +81,7 @@ const routes: Routes = [
   { path: 'patient/counselings', component: CounselingsComponent},
   { path: 'diagnosis', component: DiagnosisComponent},
   { path: 'allexaminations', component: AllExaminationsComponent},
-  { path: 'examination', component: ScheduleExaminationDermatologistComponent}, 
+  { path: 'examination', component: ScheduleExaminationDermatologistComponent},
   //Pharmacy admin
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
@@ -95,7 +96,12 @@ const routes: Routes = [
   { path: 'dermatologists', component: AllDermatologistsComponent},
   { path: 'medications/:id', component: AllMedicationsComponent},
   { path: 'schedule/vacation', component: ScheduleVacationComponent},
+  { path: 'allexaminations', component: AllExaminationsComponent},
+  { path: 'examination', component: ScheduleExaminationDermatologistComponent},
+  { path: 'diagnosis', component: DiagnosisComponent},
   //Supplier
+  { path: 'add-complaint', component: ComplaintMessageComponent},
+  { path: 'work/schedule', component: WorkScheduleComponent},
   { path: 'order', component: AddOrderComponent},
   { path: 'view-orders', component: ViewOrdersComponent},
 ];

@@ -73,8 +73,9 @@ public class PharmacistService {
         return pharmacist;
     }
 
-    public List<WorkSchedule> getWorkScheduleByPharmacist(Long id){
-        return pharmacistRepository.findPharmacistById(id).getWorkSchedule();
+    // TODO: obrisati ako niko ne koristi?
+    public List<WorkSchedule> getWorkScheduleByPharmacistEmail(String email){
+        return pharmacistRepository.findPharmacistByUser_email(email).getWorkSchedule();
     }
 
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){

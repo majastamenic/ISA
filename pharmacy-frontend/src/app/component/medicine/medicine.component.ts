@@ -84,12 +84,6 @@ export class MedicineComponent implements OnInit {
       });
   }
 
-  removeSelected(selected: any) {
-    this.selectedPharmacies = this.selectedPharmacies.filter(({ id }) => selected.value.id !== id);     
-        
-    console.log(selected);
-  }
-
   clearAll() {
     this.selectedPharmacies = [];
   }

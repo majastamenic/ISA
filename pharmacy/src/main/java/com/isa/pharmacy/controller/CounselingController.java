@@ -37,9 +37,9 @@ public class CounselingController {
     }
 
     @GetMapping("/{email}")
-    public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
+    public List<CounselingDto> getCounselingByPharmacist(@PathVariable("email") String email) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
-        return CounselingMapper.mapCounselingListToCounselingDto(counselingService.getAllByPharmacist(pharmacist));
+        return CounselingMapper.mapCounselingListToCounselingDto(counselingService.getCounselingByPharmacist(pharmacist));
     }
 
     @GetMapping("/patient/{email}")

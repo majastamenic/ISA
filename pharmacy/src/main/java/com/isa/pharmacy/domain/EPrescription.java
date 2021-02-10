@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -21,7 +22,8 @@ public class EPrescription implements Serializable {
     @Column
     private String patientName;
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date dateOfIssue;
     @OneToMany
     private List<MedicineEPrescription> listOfMedication;

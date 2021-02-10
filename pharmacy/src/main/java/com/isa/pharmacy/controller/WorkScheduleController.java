@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
+import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 import com.isa.pharmacy.scheduling.service.WorkScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +21,14 @@ public class WorkScheduleController {
 
     @PostMapping("/add")
     public WorkSchedule save(@RequestBody WorkSchedule ws) { return workScheduleService.save(ws); }
+
+    @GetMapping("/dermatologist/{email}")
+    public List<WorkSchedulePharmacyDto> getWorkScheduleByDermatologist(@PathVariable("email") String email){
+        return workScheduleService.getWorkScheduleByDermatologist(email);
+    }
+
+    @GetMapping("/pharmacist/{email}")
+    public List<WorkSchedulePharmacyDto> getWorkScheduleByPharmacist(@PathVariable("email") String email){
+        return workScheduleService.getWorkScheduleByPharmacist(email);
+    }
 }

@@ -12,11 +12,11 @@ public class CounselingDto {
     private Schedule schedule;
     private Report report;
     private boolean patientCame;
+    private int loyaltyPoints;
 
     public CounselingDto(){}
 
-    public CounselingDto(long id, String email, String patientEmail, PatientDto patientDto, Schedule schedule,
-                         Report report, boolean patientCame) {
+    public CounselingDto(long id, String email, String patientEmail, PatientDto patientDto, Schedule schedule, Report report, boolean patientCame, int loyaltyPoints) {
         this.id = id;
         this.email = email;
         this.patientEmail = patientEmail;
@@ -24,6 +24,15 @@ public class CounselingDto {
         this.schedule = schedule;
         this.report = report;
         this.patientCame = patientCame;
+        this.loyaltyPoints = loyaltyPoints;
+    }
+
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
+    }
+
+    public void setLoyaltyPoints(int loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
     }
 
     public long getId() {
