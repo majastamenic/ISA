@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GET_MEDICINEPHARMACY_PATH, MEDICINES_PHARMACY_PATH } from '../src/app/util/paths';
+import { GET_MEDICINEPHARMACY_PATH, MEDICINES_PHARMACY_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'

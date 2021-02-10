@@ -125,16 +125,41 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-08', '2021-02-08', '19:30:00', '20:00:00');
 
 -- WorkSchedule //////////////////////////////////////////////////////////
-insert into work_schedule(schedule_id) values(1);
-insert into work_schedule(schedule_id) values(2);
-insert into work_schedule(schedule_id) values(3);
-insert into work_schedule(schedule_id) values(4);
-insert into work_schedule(schedule_id) values(5);
-insert into work_schedule(schedule_id) values(6);
-insert into work_schedule(schedule_id) values(7);
-insert into work_schedule(schedule_id) values(8);
-insert into work_schedule(schedule_id) values(9);
-insert into work_schedule(schedule_id) values(10);
+    // Jankovic
+insert into work_schedule(schedule_id, admin_id) values(1, 1);
+insert into work_schedule(schedule_id, admin_id) values(2, 1);
+insert into work_schedule(schedule_id, admin_id) values(3, 1);
+insert into work_schedule(schedule_id, admin_id) values(4, 1);
+insert into work_schedule(schedule_id, admin_id) values(5, 1);
+insert into work_schedule(schedule_id, admin_id) values(6, 1);
+insert into work_schedule(schedule_id, admin_id) values(7, 1);
+insert into work_schedule(schedule_id, admin_id) values(8, 1);
+insert into work_schedule(schedule_id, admin_id) values(9, 1);
+insert into work_schedule(schedule_id, admin_id) values(10, 1);
+
+    // Benu
+insert into work_schedule(schedule_id, admin_id) values(1, 2);
+insert into work_schedule(schedule_id, admin_id) values(2, 2);
+insert into work_schedule(schedule_id, admin_id) values(3, 2);
+insert into work_schedule(schedule_id, admin_id) values(4, 2);
+insert into work_schedule(schedule_id, admin_id) values(5, 2);
+insert into work_schedule(schedule_id, admin_id) values(6, 2);
+insert into work_schedule(schedule_id, admin_id) values(7, 2);
+insert into work_schedule(schedule_id, admin_id) values(8, 2);
+insert into work_schedule(schedule_id, admin_id) values(9, 2);
+insert into work_schedule(schedule_id, admin_id) values(10, 2);
+
+    // Zelena Apoteka
+insert into work_schedule(schedule_id, admin_id) values(1, 3);
+insert into work_schedule(schedule_id, admin_id) values(2, 3);
+insert into work_schedule(schedule_id, admin_id) values(3, 3);
+insert into work_schedule(schedule_id, admin_id) values(4, 3);
+insert into work_schedule(schedule_id, admin_id) values(5, 3);
+insert into work_schedule(schedule_id, admin_id) values(6, 3);
+insert into work_schedule(schedule_id, admin_id) values(7, 3);
+insert into work_schedule(schedule_id, admin_id) values(8, 3);
+insert into work_schedule(schedule_id, admin_id) values(9, 3);
+insert into work_schedule(schedule_id, admin_id) values(10, 3);
 
 -- WorkSchedule: Dermatologist
 insert into dermatologist_work_schedule(dermatologist_id, work_schedule_id) values (1, 1);
@@ -179,6 +204,13 @@ insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4,
 insert into pharmacist_work_schedule(pharmacist_id, work_schedule_id) values (4, 9);
 
 -- ////////////////////////////////////////////////////////////////////////////
+
+--Loyalty program
+insert into loyalty_group(points, type) values (3, 0);
+insert into loyalty_group(points, type) values (4, 1);
+insert into loyalty_group(points, type) values (10, 2);
+insert into loyalty_group(points, type) values (20, 3);
+insert into loyalty_group(points, type) values (50, 4);
 
 -- Examinations
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 11, 1, 1, 1, 1, false);
@@ -280,12 +312,7 @@ insert into diagnosis(name)values('Anxiety');
 insert into diagnosis(name)values('Back pain');
 insert into diagnosis(name)values('Hypertension');
 
---Loyalty program
-insert into loyalty_group(points, type) values (3, 0);
-insert into loyalty_group(points, type) values (4, 1);
-insert into loyalty_group(points, type) values (10, 2);
-insert into loyalty_group(points, type) values (20, 3);
-insert into loyalty_group(points, type) values (50, 4);
+
 
 -- Complaints
 insert into complaint(complaint_message, response_complaint, patient_id)values ('Bad service', 'Please tell us more to improve our service.', 1);
@@ -307,3 +334,18 @@ insert into order_offer(price, quantity, medicine_id)VALUES (2.0, 2, 3);
 --SupplierOffers
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-01-01', 20.0, 2, 1, 1);
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-02-02', 50, 1, 2, 1);
+
+-- VacationSchedule
+insert into vacation_schedule(start_date, end_date) values ('2021-03-03', '2021-03-10')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-01', '2021-03-22')
+insert into vacation_schedule(start_date, end_date) values ('2021-04-10', '2021-04-12')
+insert into vacation_schedule(start_date, end_date) values ('2021-04-03', '2021-04-10')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-04', '2021-03-17')
+insert into vacation_schedule(start_date, end_date) values ('2021-03-09', '2021-03-10')
+    -- Dermatologist_VacationSchedule
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (1, 1)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 2)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (3, 3)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (1, 4)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 5)
+insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 6)

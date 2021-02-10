@@ -60,6 +60,6 @@ public class CounselingController {
     /*
     @PostMapping("/update")
     public Counseling updateCounseling(@RequestBody CounselingDto c) { return counselingService.updateCounseling(c); }
-    */
+*/
 
 }

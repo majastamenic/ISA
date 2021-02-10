@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ExaminationService } from 'service/examination.service';
-import { MedicinePharmacyService } from 'service/medicine-pharmacy.service';
+import { ExaminationService } from 'src/app/service/examination.service';
+import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.service';
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import { MedicineService } from 'service/medicine.service';
+import { MedicineService } from 'src/app/service/medicine.service';
 import { Diagnosis } from 'src/app/model/diagnosis';
-import { DiagnosisService } from 'service/diagnosis.service';
+import { DiagnosisService } from 'src/app/service/diagnosis.service';
 import { ExaminationDto } from 'src/app/model/examination';
 import { ToastrService } from 'ngx-toastr';
 

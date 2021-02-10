@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ActionsBenefitsService } from 'service/actions-benefits.service';
-import { HospitalService } from 'service/hospital.service';
-import { UserService } from 'service/user.service';
+import { ActionsBenefitsService } from 'src/app/service/actions-benefits.service';
+import { HospitalService } from 'src/app/service/hospital.service';
+import { UserService } from 'src/app/service/user.service';
 import { ActionsBenefits, ActionsBenefitsDto } from './model/actions-benefits-model';
 
 @Component({

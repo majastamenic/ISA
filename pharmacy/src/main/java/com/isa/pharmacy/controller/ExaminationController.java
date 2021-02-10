@@ -4,12 +4,14 @@ import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 
+import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.service.ExaminationService;
 import com.isa.pharmacy.users.service.DermatologistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -62,4 +64,12 @@ public class ExaminationController {
 
     @PostMapping("/update")
     public ExamDermatologistDto updateExamination(@RequestBody ExamDermatologistDto examination){return examinationService.updateExamination(examination);}
+
+    @GetMapping("/free/{email}")
+    public List<ExaminationUpcomingDto> getFreeExaminationsByDermatologist(@PathVariable("email") String email){
+        List<Examination> examinations = examinationService.getFreeExaminationsByDermatologist(email);
+        List<ExaminationUpcomingDto> examinationUpcomingDtos = ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinations);
+        return examinationUpcomingDtos;
+    }
+
 }

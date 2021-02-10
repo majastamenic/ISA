@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Diagnosis } from '../src/app/model/diagnosis';
-import { DIAGNOSIS_ADD_PATH, DIAGNOSIS_PATH } from '../src/app/util/paths';
+import { Diagnosis } from '../model/diagnosis';
+import { DIAGNOSIS_ADD_PATH, DIAGNOSIS_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'

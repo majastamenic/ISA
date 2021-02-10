@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { OrderService } from 'service/order.service';
+import { OrderService } from 'src/app/service/order.service';
 
 @Component({
   selector: 'app-add-order',

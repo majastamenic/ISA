@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { OrderOfferType, SupplierOfferDto } from 'src/app/model/order';
-import { OrderService } from 'service/order.service';
-import { UserService } from 'service/user.service';
+import { OrderService } from 'src/app/service/order.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-view-orders',

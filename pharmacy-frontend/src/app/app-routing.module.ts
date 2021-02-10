@@ -38,6 +38,7 @@ import { RegDermatologistComponent } from './component/system-admin/reg-dermatol
 import { AddPharmacyAdminComponent } from './component/system-admin/reg-pharmacy-admin/reg-pharmacy-admin.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
 import { PatientExaminationsComponent } from './component/patient-examinations/patient-examinations.component';
+import { WorkScheduleComponent } from './component/work-schedule/work-schedule.component';
 import { CounselingsComponent } from './component/patient/counselings/counselings.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
@@ -92,6 +93,7 @@ const routes: Routes = [
   { path: 'examination', component: ScheduleExaminationDermatologistComponent},
   { path: 'diagnosis', component: DiagnosisComponent},
   { path: 'add-complaint', component: ComplaintMessageComponent},
+  { path: 'work/schedule', component: WorkScheduleComponent},
   { path: 'order', component: AddOrderComponent},
   { path: 'view-orders', component: ViewOrdersComponent},
   { path: 'subscribe-list', component: SubscribeListComponent},

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { PharmacistService } from 'service/pharmacist.service';
-import { PharmacyService } from 'service/pharmacy.service';
+import { PharmacistService } from 'src/app/service/pharmacist.service';
+import { PharmacyService } from 'src/app/service/pharmacy.service';
 
 @Component({
   selector: 'app-pharmacy-profile',
