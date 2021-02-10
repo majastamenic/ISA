@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular';
-import { createEventId, INITIAL_EVENTS } from 'src/app/event-utils';
+import { CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventInput } from '@fullcalendar/angular';
+import { createEventId} from 'src/app/event-utils';
+import { VacationScheduleService } from 'src/app/service/vacation-schedule.service';
 
+const TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
 
 @Component({
   selector: 'app-work-schedule',
@@ -10,7 +12,39 @@ import { createEventId, INITIAL_EVENTS } from 'src/app/event-utils';
 })
 export class WorkScheduleComponent implements OnInit {
 
+  INITIAL_EVENTS: EventInput[] = [];
+  currentEvents: EventApi[] = [];
+  vacations: any[]=[];
   calendarVisible = true;
+
+  constructor(private vacationService: VacationScheduleService) {
+    
+   }
+
+  ngOnInit(): void {
+    let loggedUser = sessionStorage.getItem("user");
+
+    if(loggedUser){
+      this.vacationService.getDermatologistVacations(loggedUser).subscribe((data: any[]) => {
+        this.vacations = data;
+        console.log(this.vacations);
+        for (var i of this.vacations) {
+          this.INITIAL_EVENTS.push({
+            id: createEventId(),
+            title: 'Vacation',
+            start: i.startDate,
+            end: i.endDate,
+            allDay: true,
+            backgroundColor: 'yellow',
+            display: 'background'
+          })
+          this.calendarOptions.events = this.INITIAL_EVENTS;
+        }
+      });
+    }
+  }
+
+
   calendarOptions: CalendarOptions = {
     headerToolbar: {
       left: 'prev,next today',
@@ -18,7 +52,6 @@ export class WorkScheduleComponent implements OnInit {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     initialView: 'dayGridMonth',
-    initialEvents: INITIAL_EVENTS,
     weekends: true,
     editable: true,
     selectable: true,
@@ -28,7 +61,7 @@ export class WorkScheduleComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this)
   };
-  currentEvents: EventApi[] = [];
+  
 
   handleCalendarToggle() {
     this.calendarVisible = !this.calendarVisible;
@@ -66,9 +99,9 @@ export class WorkScheduleComponent implements OnInit {
     this.currentEvents = events;
   }
 
-  constructor() { }
+  
 
-  ngOnInit(): void {
-  }
+  
 
 }
+

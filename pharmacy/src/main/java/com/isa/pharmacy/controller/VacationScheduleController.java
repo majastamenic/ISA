@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vacationschedule")
+@RequestMapping("/vacation")
+@CrossOrigin(value = "http://localhost:4200")
 public class VacationScheduleController {
     @Autowired
     private VacationScheduleService vacationScheduleService;

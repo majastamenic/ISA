@@ -61,3 +61,6 @@ export const COMPLAINT_PATH = BACKEND_PATH + '/complaint';
 
 export const ORDER_PATH = BACKEND_PATH + '/order';
 export const OFFER_PATH = BACKEND_PATH + '/supplier-offer';
+
+export const VACATION_PATH = BACKEND_PATH + '/vacation';
+export const VACATIONS_DERMATOLOGIST_PATH = VACATION_PATH + '/dermatologist';
