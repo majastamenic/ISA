@@ -3,7 +3,6 @@ package com.isa.pharmacy.repository;
 
 import java.util.List;
 
-import com.isa.pharmacy.domain.MedicineEPrescription;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

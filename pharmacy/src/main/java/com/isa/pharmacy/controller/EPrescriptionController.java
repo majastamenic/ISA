@@ -5,12 +5,9 @@ import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.EPrescriptionMapper;
 import com.isa.pharmacy.domain.EPrescription;
-import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.service.EPrescriptionService;
-import com.isa.pharmacy.service.PharmacyService;
 import com.isa.pharmacy.service.QRService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

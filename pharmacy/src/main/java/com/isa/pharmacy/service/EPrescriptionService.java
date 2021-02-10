@@ -1,6 +1,5 @@
 package com.isa.pharmacy.service;
 
-import java.awt.print.Pageable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +10,6 @@ import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.users.domain.Patient;
-import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.isa.pharmacy.repository.EPrescriptionRepository;
@@ -101,8 +99,8 @@ public class EPrescriptionService {
             medText = medicineEPrescription.getName() + ", ";
             medicineEService.create(medicineEPrescription);
         }
-        if(medText!="")
-            medText.substring(medText.lastIndexOf(" "));
+        if(!medText.equals(""))
+            medText = medText.substring(medText.lastIndexOf(" "));
         ePrescription.setFileText(ePrescription.getPatientName()+" "+ medText);
         ePrescription.setListOfMedication(medicineEPrescriptions);
         return ePrescriptionRepository.save(ePrescription);
