@@ -3,9 +3,12 @@ package com.isa.pharmacy.domain;
 import com.isa.pharmacy.domain.enums.LoyaltyGroupType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class LoyaltyGroup {
+public class LoyaltyGroup implements Serializable {
+    private static final long serialVersionUID = -7292156935382744908L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

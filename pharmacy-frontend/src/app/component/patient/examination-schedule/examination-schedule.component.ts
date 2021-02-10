@@ -28,9 +28,11 @@ export class ExaminationScheduleComponent implements OnInit {
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => { 
       this.pharmacy = params.get('pharmacyName');
-      this.examinationService.getFreeExaminationTermsByPharmacy(this.pharmacy).subscribe(freeExaminations =>{
+      this.examinationService.getFreeExaminationTermsByPharmacy(this.pharmacy).subscribe((freeExaminations: any[]) =>{
         this.examinations = freeExaminations;
-      }, error => {
+        if(freeExaminations.length <= 0)
+          this.toastrService.info("No examinations has been found for pharmacy or pharmacy doesn't exist!");
+      }, (error:any) => {
         console.error(error);
         this.toastrService.error("Error while loading terms!");
       }); 
@@ -40,7 +42,7 @@ export class ExaminationScheduleComponent implements OnInit {
     });
   }
 
-  scheduleExamination(id: number, i:number){
+  scheduleExamination(id: number, i: number){
     this.examinationService.scheduleExamination(this.loggedUser, id).subscribe(noVal =>{
       this.examinations.splice(i, 1);
       this.toastrService.success('Examination successfuly scheduled!');

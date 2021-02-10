@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ExaminationDto } from '../model/examination';
-import { CANCEL_EXAMINATION, EXAMINATION_PATH, EXAMINATION_START_PATH, EXAMINATION_UPDATE_PATH, 
+import { CANCEL_EXAMINATION, EXAMINATION_PATH, EXAMINATION_START_PATH, EXAMINATION_UPDATE_PATH,
   PATIENT_EXAMINATIONS, FREE_EXAM_TERMS_PATH, SCHEDULE_EXAM_PATH, FREE_EXAM_TERMS_WORKER_PATH } from '../util/paths';
 
 
@@ -17,7 +16,7 @@ export class ExaminationService {
     return this.httpClient.get(FREE_EXAM_TERMS_PATH);
   }
 
-  getFreeExaminationTermsByPharmacy(pharmacyName: string){
+  getFreeExaminationTermsByPharmacy(pharmacyName: string): any{
     return this.httpClient.get(FREE_EXAM_TERMS_PATH + "/" + pharmacyName);
   }
 
@@ -48,5 +47,5 @@ export class ExaminationService {
   getFreeExaminationTermsByDermatlogist(email: any):any{
     return this.httpClient.get(FREE_EXAM_TERMS_WORKER_PATH + "/" + email);
   }
-  
+
 }

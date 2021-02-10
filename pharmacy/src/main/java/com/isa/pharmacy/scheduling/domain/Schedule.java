@@ -1,10 +1,10 @@
 package com.isa.pharmacy.scheduling.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.isa.pharmacy.scheduling.DateManipulation;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -83,23 +83,10 @@ public class Schedule implements Serializable {
     }
 
     public Date mergeStartDateAndTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date res = new Date();
-        try {
-            res = sdf.parse(this.startDate.toString() + " " + this.startTime.toString());
-        } catch (ParseException e) {
-        }
-        return res;
+        return DateManipulation.mergeDateAndTime(startDate, startTime);
     }
 
     public Date mergeEndDateAndTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date res = new Date();
-        try {
-            res = sdf.parse(this.endDate.toString() + " " + this.endTime.toString());
-        } catch (ParseException e) {
-        }
-        return res;
+        return DateManipulation.mergeDateAndTime(endDate, endTime);
     }
-
 }

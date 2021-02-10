@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.isa.pharmacy.controller.dto.EPrescriptionDto;
+import com.isa.pharmacy.controller.dto.MedicineEPrescriptionDto;
+import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
 import com.isa.pharmacy.domain.EPrescription;
 import com.isa.pharmacy.domain.MedicineEPrescription;
 
@@ -39,5 +42,26 @@ public class EPrescriptionMapper {
         ePrescription.setListOfMedication(listMedicine);
 
         return ePrescription;
+    }
+
+    public static EPrescriptionDto mapEPrescriptionToEPrescriptionDto(EPrescription ePrescription, List<PharmacyPriceDto> pharmacyPriceDtos){
+        EPrescriptionDto ePrescriptionDto = new EPrescriptionDto();
+        ePrescriptionDto.setCode(ePrescription.getCode());
+        ePrescriptionDto.setDateOfIssue(ePrescription.getDateOfIssue());
+        ePrescriptionDto.setListOfMedication(mapMedicineEPrescriptionToDto(ePrescription.getListOfMedication()));
+        ePrescriptionDto.setPatientName(ePrescription.getPatientName());
+        ePrescriptionDto.setPharmacyPriceDtoList(pharmacyPriceDtos);
+        return ePrescriptionDto;
+    }
+
+    public static List<MedicineEPrescriptionDto> mapMedicineEPrescriptionToDto(List<MedicineEPrescription> medicineEPrescriptions){
+        List<MedicineEPrescriptionDto> medicineEPrescriptionDtos = new ArrayList<>();
+        for(MedicineEPrescription medicineEPrescription: medicineEPrescriptions){
+            MedicineEPrescriptionDto medicineEPrescriptionDto = new MedicineEPrescriptionDto();
+            medicineEPrescriptionDto.setMedicineName(medicineEPrescription.getName());
+            medicineEPrescriptionDto.setQuantity(medicineEPrescription.getQuantity());
+            medicineEPrescriptionDtos.add(medicineEPrescriptionDto);
+        }
+        return medicineEPrescriptionDtos;
     }
 }

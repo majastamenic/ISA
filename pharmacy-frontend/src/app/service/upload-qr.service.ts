@@ -1,7 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UPLOADQR_PATH } from '../util/paths';
+import { QR_ORDER_PATH, UPLOADQR_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,10 @@ export class UploadQrSevice {
 
     formData.append('file', file);
     return this.http.post(UPLOADQR_PATH, formData);
+  }
+
+  order(code: number, phName: string){
+    return this.http.put(QR_ORDER_PATH + "/" + code + "/" + phName, null);
   }
 
 

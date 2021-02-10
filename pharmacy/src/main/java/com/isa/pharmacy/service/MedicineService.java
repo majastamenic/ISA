@@ -219,4 +219,8 @@ public class MedicineService {
         return medicines;
     }
 
+    public void update(Medicine medicine){
+        medicineRepository.save(medicine);
+    }
+
 }

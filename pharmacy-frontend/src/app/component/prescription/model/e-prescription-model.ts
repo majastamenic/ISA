@@ -16,3 +16,15 @@ export interface MedicineEPrescription {
     quantity: number;
 }
 
+export interface ePrescriptionClass {
+    code: string;
+    patientName: string;
+    date: Date;
+    medicines: Medicine[];
+  }
+  
+  export interface Medicine{
+    quantity: number;
+    name: string; 
+  }
+

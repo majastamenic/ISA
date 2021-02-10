@@ -1,39 +1,24 @@
 package com.isa.pharmacy.controller.mapping;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.CounselingFullDto;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.users.controller.mapping.PharmacistMapper;
-import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.domain.Pharmacist;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CounselingMapper {
 
-    // TODO Masa: Obrisati, koristi ove ispod
-    public static Counseling mapCounselingDtoToCounseling(CounselingDto counselingDto, Pharmacist pharmacist, Patient patient) {
-        Counseling counseling = new Counseling();
-        counseling.setId(counselingDto.getId());
-        counseling.setPatientCame(counselingDto.getPatientCame());
-        counseling.setReport(counselingDto.getReport());
-        counseling.setSchedule(counselingDto.getSchedule());
-        counseling.setPatient(patient);
-        counseling.setPharmacist(pharmacist);
-        return counseling;
-    }
-
-
-    public static Counseling mapCounselingDtoToCounseling1(CounselingDto counselingDto) {
+    public static Counseling mapCounselingDtoToCounseling(CounselingDto counselingDto) {
         Counseling counseling = new Counseling();
         counseling.setId(counselingDto.getId());
         counseling.setPatientCame(counselingDto.getPatientCame());
         counseling.setReport(counselingDto.getReport());
         counseling.setSchedule(counselingDto.getSchedule());
         counseling.setPatient(PatientMapper.mapPatientDtoToPatient(counselingDto.getPatientDto()));
-//        counseling.setPharmacist();
         return counseling;
     }
 
@@ -48,7 +33,7 @@ public class CounselingMapper {
         return counselingDto;
     }
 
-    public static List<CounselingDto> mapCounselingListToCounselingDto(List<Counseling> counselings){
+    public static List<CounselingDto> mapListCounselingToCounselingDto(List<Counseling> counselings){
         List<CounselingDto> mappedCounselings = new ArrayList<>();
         for(Counseling c : counselings)
             mappedCounselings.add(mapCounselingToCounselingDto(c));
@@ -61,8 +46,17 @@ public class CounselingMapper {
                 PatientMapper.mapPatientToPatientDto(counseling.getPatient()),
                 WorkScheduleMapper.mapScheduleToWorkScheduleDto(counseling.getSchedule()),
                 counseling.getReport(),
-                counseling.getPatientCame(),
-                counseling.getLoyaltyPoints());
+                counseling.getPatientCame());
+    }
+
+    public static Counseling mapCounselingFullDtoToCounseling(CounselingFullDto counselingDto){
+        return new Counseling(
+                counselingDto.getId(),
+                PharmacistMapper.mapPharmacistDtoToPharmacist(counselingDto.getPharmacist()),
+                PatientMapper.mapPatientDtoToPatient(counselingDto.getPatient()),
+                WorkScheduleMapper.mapWorkScheduleDtoToSchedule(counselingDto.getSchedule()),
+                counselingDto.getReport(),
+                counselingDto.getPatientCame());
     }
 
     public static List<CounselingFullDto> mapListCounselingToCounsellingFullDto(List<Counseling> counselings){
@@ -70,5 +64,12 @@ public class CounselingMapper {
         for(Counseling c : counselings)
             mappedCounselings.add(mapCounselingToCounselingFullDto(c));
         return  mappedCounselings;
+    }
+
+    public static Counseling mapCounselingCreateDtoToCounseling(CounselingCreateDto counselingCreateDto){
+        Counseling counseling = new Counseling();
+        counseling.setId(counselingCreateDto.getId());
+        counseling.setSchedule(WorkScheduleMapper.mapWorkScheduleDtoToSchedule(counselingCreateDto.getSchedule()));
+        return counseling;
     }
 }

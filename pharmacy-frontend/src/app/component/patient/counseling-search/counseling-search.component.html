@@ -1,0 +1,52 @@
+<div class="page">
+    <div class="form">
+        <form class="ngform" style="width:500px;">
+            <h3>Schedule counseling</h3>
+            <br>
+            <form class="form-inline d-flex justify-content-center">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label style="margin-right: 10px">Date:</label>
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="eagerDate" ngbDatepicker
+                            #d="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="startTime" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
+            <br>
+            <button class="btn btn-primary" (click)="find()">Find counseling</button>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="isCounselingFound" class="panel panel-primary" style="margin: 20px;">
+    <div class="panel-heading">
+        <h2>Available pharmacies</h2>
+    </div>
+    <div class="panel-body">
+        <table id="freeTerms" class="table transparent">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Pharmacy</th>
+                    <th>Address</th>
+                    <th>Price (€)</th>
+                    <th>Rate</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pharmacy of pharmacies; let i = index;">
+                    <td>{{pharmacy.name}}</td>
+                    <td>{{pharmacy.address}}</td>
+                    <td>{{pharmacy.counselingPrice}}</td>
+                    <td>ADD RATE WHEN IT IS IMPLEMENTED</td>
+                    <td><button class="btn btn-primary" [routerLink]="['/patient/counselingSchedule', pharmacy.name]" routerLinkActive="active">Show pharmacists</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

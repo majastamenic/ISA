@@ -34,6 +34,7 @@ public class PharmacistMapper {
         return pharmacistByPharmacyDto;
     }
 
+// TODO: Ovo iznad obrisati kasnije
     public static PharmacistDto mapPharmacistToPharmacistDto(Pharmacist pharmacist){
         PharmacistDto ph = new PharmacistDto();
         ph.setPharmacy(PharmacyMapper.mapPharmacyToPharmacyDto(pharmacist.getPharmacy()));
@@ -41,7 +42,14 @@ public class PharmacistMapper {
         return ph;
     }
 
-    public static List<PharmacistDto> mapPharmacistListToPharmacistDto(List<Pharmacist> pharmacists){
+    public static Pharmacist mapPharmacistDtoToPharmacist(PharmacistDto pharmacistDto){
+        Pharmacist pharmacist = new Pharmacist();
+        pharmacist.setPharmacy(PharmacyMapper.mapPharmacyDtoToPharmacy(pharmacistDto.getPharmacy()));
+        pharmacist.setUser(UserMapper.mapUserDtoToUser(pharmacistDto.getUser()));
+        return pharmacist;
+    }
+
+    public static List<PharmacistDto> mapListPharmacistToPharmacistDto(List<Pharmacist> pharmacists){
         List<PharmacistDto> mappedPharmacists = new ArrayList<>();
         for(Pharmacist pharmacist : pharmacists)
             mappedPharmacists.add(mapPharmacistToPharmacistDto(pharmacist));

@@ -1,39 +1,45 @@
 package com.isa.pharmacy.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
-import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.controller.dto.MedicineOrderDto;
+import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
-import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.MedicinePharmacy;
+import com.isa.pharmacy.domain.*;
+import com.isa.pharmacy.repository.MedicinePharmacyRepository;
+import com.isa.pharmacy.repository.PharmacyRepository;
+import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Repository;
-import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.repository.PharmacyRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-@Repository
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
 public class PharmacyService {
 
     @Autowired
     private PharmacyRepository pharmacyRepository;
+    @Autowired
+    private PharmacistService pharmacistService;
     @Value("${apiKey}")
     private String apiKey;
+    @Autowired
+    private MedicinePharmacyRepository medicinePharmacyRepository;
 
     public Pharmacy save(Pharmacy p) {
         return pharmacyRepository.save(p);
     }
 
     public Pharmacy getByName(String name) {
-        return pharmacyRepository.findPharmacyByName(name);
+        Pharmacy pharmacy = pharmacyRepository.findPharmacyByName(name);
+        if(pharmacy == null)
+            throw new NotFoundException("Pharmacy: " + name + " doesn't exists.");
+        return pharmacy;
     }
 
     public Pharmacy getById(Long id) {
@@ -130,8 +136,21 @@ public class PharmacyService {
         List<String> pharmacyNames = new ArrayList<>();
         List<Pharmacy> pharmacyList = pharmacyRepository.findAll();
         for(Pharmacy pharmacy: pharmacyList)
-            pharmacyNames.add("APOTEKA: "+ pharmacy.getName());
+            pharmacyNames.add("Pharmacy: "+ pharmacy.getName());
         return pharmacyNames;
+    }
+
+
+    public List<Pharmacy> getPharmaciesForCounseling(DateTimeDto eagerDate){
+        List<Pharmacy> availablePharmacies = new ArrayList<>();
+        List<String> addedPharmacies = new ArrayList<>();
+        for(Pharmacist ph : pharmacistService.getFreePharmacistByDate(eagerDate)){
+            if(!addedPharmacies.contains(ph.getPharmacy().getName())){
+                availablePharmacies.add(pharmacyRepository.findPharmacyByName(ph.getPharmacy().getName()));
+                addedPharmacies.add(ph.getPharmacy().getName());
+            }
+        }
+        return availablePharmacies;
     }
 
     public List<Pharmacy> findPharmaciesBySubEmail(String email){
@@ -158,4 +177,22 @@ public class PharmacyService {
         }
     }
 
+    public List<PharmacyPriceDto> getPharmacyByEPrescription(EPrescription ePrescription){
+        List<Long> codes = new ArrayList<>();
+        for(MedicineEPrescription med: ePrescription.getListOfMedication())
+            codes.add(med.getCode());
+        List<MedicinePharmacy> pharmacyList = pharmacyRepository.findPharmaciesByMedicineEprescription(codes);
+        List<PharmacyPriceDto> pharmacyPriceDtos = new ArrayList<>();
+        for(MedicinePharmacy medicinePharmacy: pharmacyList){
+            PharmacyPriceDto pharmacyPriceDto = new PharmacyPriceDto();
+            pharmacyPriceDto.setPhName(medicinePharmacy.getPharmacy().getName());
+            pharmacyPriceDto.setPrice(medicinePharmacy.getPrice());
+            pharmacyPriceDtos.add(pharmacyPriceDto);
+        }
+        return pharmacyPriceDtos;
+    }
+
+    public void update(Pharmacy pharmacy){
+        pharmacyRepository.save(pharmacy);
+    }
 }
