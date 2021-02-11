@@ -22,8 +22,8 @@ public class PatientController {
     @Autowired
     private EmailService emailService;
 
-    @GetMapping("/valid")
-    public Patient activeProfile(@RequestParam String email, @RequestParam String code){
+    @GetMapping("/valid/{email}/{code}")
+    public String activeProfile(@PathVariable String email, @PathVariable String code){
         return patientService.activateProfile(email, code);
     }
 

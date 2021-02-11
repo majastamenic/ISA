@@ -42,11 +42,6 @@ export class UserService {
     return this.httpClient.post(SYSTEM_ADMIN_PATH, user);
   }
 
-  verification(user: UserRegistrationDto, verificationCode: string): any {
-    let params = new HttpParams().set('email', user.email).set('code', verificationCode)
-    return this.httpClient.get(PATIENT_VALID_PATH, {params});
-  }
-
   isUserLogin(){
     let user = sessionStorage.getItem('user');
     return !(user == null)
