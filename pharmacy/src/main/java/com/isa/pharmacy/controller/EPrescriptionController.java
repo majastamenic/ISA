@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -45,6 +46,11 @@ public class EPrescriptionController {
         return ePrescription;
     }
 
+    @GetMapping("/patient/{patientEmail}")
+    public List<EPrescriptionDto> getEprescriptionsByPatientEMail(@PathVariable String patientEmail){
+        return EPrescriptionMapper.mapListEPrescriptionToEPrescriptionDto(ePrescriptionService.getByPatientEmail(patientEmail));
+    }
+
     @PostMapping
     public EPrescription saveByText(@RequestBody String text) {
         EPrescription ePrescription = EPrescriptionMapper.mapStringToEPrescription(text);
@@ -75,6 +81,4 @@ public class EPrescriptionController {
     public void order(@PathVariable Long code, @PathVariable String phName){
         ePrescriptionService.order(code, phName);
     }
-
-
 }

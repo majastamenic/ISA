@@ -1,18 +1,17 @@
 package com.isa.pharmacy.service;
 
-import java.text.ParseException;
+import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
+import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.domain.*;
+import com.isa.pharmacy.repository.EPrescriptionRepository;
+import com.isa.pharmacy.users.domain.Patient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-
-import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
-import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.*;
-import com.isa.pharmacy.users.domain.Patient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.isa.pharmacy.repository.EPrescriptionRepository;
 
 @Service
 public class EPrescriptionService {
@@ -37,7 +36,11 @@ public class EPrescriptionService {
         return ePrescriptionRepository.findEPrescriptionById(id);
     }
 
-    public EPrescription getByText(String text) throws ParseException {
+    public List<EPrescription> getByPatientEmail(String email){
+        return ePrescriptionRepository.findEPrescriptionByPatient_User_Email(email);
+    }
+
+    public EPrescription getByText(String text) {
         EPrescription ePrescription = ePrescriptionRepository.findEPrescriptionByFileText(text);
         if(ePrescription == null)
             throw new NotFoundException("E-prescription doesn't exists.");

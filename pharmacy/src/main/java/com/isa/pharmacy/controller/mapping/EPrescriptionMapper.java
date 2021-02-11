@@ -65,4 +65,20 @@ public class EPrescriptionMapper {
         }
         return medicineEPrescriptionDtos;
     }
+
+    public static EPrescriptionDto mapEPrescriptionToEPrescriptionDto(EPrescription ePrescription){
+        EPrescriptionDto ePrescriptionDto = new EPrescriptionDto();
+        ePrescriptionDto.setCode(ePrescription.getCode());
+        ePrescriptionDto.setDateOfIssue(ePrescription.getDateOfIssue());
+        ePrescriptionDto.setListOfMedication(mapMedicineEPrescriptionToDto(ePrescription.getListOfMedication()));
+        ePrescriptionDto.setPatient(PatientMapper.mapPatientToPatientDto(ePrescription.getPatient()));
+        return ePrescriptionDto;
+    }
+
+    public static List<EPrescriptionDto> mapListEPrescriptionToEPrescriptionDto(List<EPrescription> ePrescriptions){
+        List<EPrescriptionDto> mappedPrescriptions = new ArrayList<>();
+        for(EPrescription ePrescription : ePrescriptions)
+            mappedPrescriptions.add(mapEPrescriptionToEPrescriptionDto(ePrescription));
+        return mappedPrescriptions;
+    }
 }
