@@ -130,7 +130,7 @@ public class PharmacistService {
             boolean validVacationTerms = vacationScheduleService.compareDateWithVacations(vacationScheduleService.getVacationScheduleByPharmacist(email),
                     requiredStartDate, requiredEndDate, email);
             boolean validWorkTimeTerms = workScheduleService.compareDateWithWorkTime(workScheduleService.getWorkScheduleByPharmacist(email),
-                    requiredStartDate, requiredEndDate, email);
+                    requiredStartDate, requiredEndDate);
             boolean validCounselingTerms = counselingService.compareDateWithCounselingTerm(CounselingMapper.mapListCounselingToCounselingDto(counselingService.getCounselingByPharmacist(findUserByEmail(email))),
                     requiredStartDate, requiredEndDate, email);
             if(validCounselingTerms && validVacationTerms && validWorkTimeTerms){
@@ -153,7 +153,6 @@ public class PharmacistService {
 
         return false;
     }
-
 
 
 

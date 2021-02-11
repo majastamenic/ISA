@@ -1,14 +1,19 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.CounselingDto;
+import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.CounselingRepository;
+import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.service.ScheduleService;
+import com.isa.pharmacy.scheduling.service.WorkScheduleService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.PatientService;
@@ -40,6 +45,10 @@ public class CounselingService {
     private PharmacyService pharmacyService;
     @Autowired
     private MedicineService medicineService;
+    @Autowired
+    private ExaminationService examinationService;
+    @Autowired
+    private WorkScheduleService workScheduleService;
 
 
     public List<Counseling> getAll(){ return counselingRepository.findAll(); }
@@ -62,12 +71,83 @@ public class CounselingService {
     public Counseling createCounseling(Counseling counseling) {
         if(counseling.getSchedule().getStartDate().compareTo(counseling.getSchedule().getEndDate()) != 0)
             throw new InvalidActionException("Start date and end date must be on a same date");
-        //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu
+        //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu - NEMOJ!
         scheduleService.save(counseling.getSchedule());
         Counseling scheduledCounseling = counselingRepository.save(counseling);
         emailService.successfulCounselingSchedule(scheduledCounseling);
         return scheduledCounseling;
     }
+
+    public boolean createCounselingByPharmacist(CounselingCreateDto counselingDto){
+        DateManipulation dm = new DateManipulation();
+        Date start = dm.mergeDateAndTime(counselingDto.getSchedule().getStartDate(), counselingDto.getSchedule().getStartTime());
+        Date end = dm.mergeDateAndTime(counselingDto.getSchedule().getEndDate(), counselingDto.getSchedule().getEndTime());
+        Pharmacist pharmacist = pharmacistService.findUserByEmail(counselingDto.getPharmacistEmail());
+        Patient patient = patientService.getPatient(counselingDto.getPatientEmail());
+        List<WorkSchedulePharmacyDto> pharmacistWork = workScheduleService.getWorkScheduleByPharmacist(counselingDto.getPharmacistEmail());
+        if(workScheduleService.pharmacistIsWorking(pharmacist, counselingDto)) {
+            boolean validCouns = pharmacistOnCounseling(pharmacist, start, end);
+            if (validCouns) {
+                boolean validTerm = patientIsFree(patient, start, end);
+                if (validTerm) {
+                    Counseling counseling = CounselingMapper.mapCounselingCreateDtoToCounseling(counselingDto);
+                    counseling.setPharmacist(pharmacist);
+                    counseling.setPatient(patient);
+                    createCounseling(counseling);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+    public boolean pharmacistOnCounseling(Pharmacist pharmacist, Date start, Date end){
+        List<Counseling> pharmacistCouns = getCounselingByPharmacist(pharmacist);
+        DateManipulation dm = new DateManipulation();
+        boolean validCouns = false;
+        for(Counseling c: pharmacistCouns){
+            Date startCouns = dm.mergeDateAndTime(c.getSchedule().getStartDate(), c.getSchedule().getStartTime());
+            Date endCouns = dm.mergeDateAndTime(c.getSchedule().getEndDate(), c.getSchedule().getEndTime());
+            if((start.before(startCouns) && end.before(startCouns)) || (start.after(endCouns) && end.after(endCouns))){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean patientIsFree(Patient patient, Date start, Date end){
+        List<Counseling> patientCouns = counselingRepository.findCounselingByPatient_User_Email(patient.getUser().getEmail());
+        List<Examination> patientExams = examinationService.getExaminationByPatient(patient.getUser().getEmail());
+        DateManipulation dm = new DateManipulation();
+        boolean validTerm = false;
+        for(Counseling c: patientCouns){
+            Date startCouns = dm.mergeDateAndTime(c.getSchedule().getStartDate(), c.getSchedule().getStartTime());
+            Date endCouns = dm.mergeDateAndTime(c.getSchedule().getEndDate(), c.getSchedule().getEndTime());
+            if((start.before(startCouns) && end.before(startCouns)) || (start.after(endCouns) && end.after(endCouns))){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        for(Examination e : patientExams){
+            Date startExam = dm.mergeDateAndTime(e.getSchedule().getStartDate(), e.getSchedule().getEndTime());
+            Date endExam = dm.mergeDateAndTime(e.getSchedule().getEndDate(), e.getSchedule().getEndTime());
+            if((start.before(startExam) && end.before(startExam)) || (start.after(endExam) && end.after(endExam))){
+                continue;
+            }else{
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
 
     public List<String> getPharmacistNameByPatient(Patient patient){

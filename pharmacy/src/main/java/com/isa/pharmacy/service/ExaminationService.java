@@ -189,4 +189,5 @@ public class ExaminationService {
         return freeExaminations;
     }
 
+
 }

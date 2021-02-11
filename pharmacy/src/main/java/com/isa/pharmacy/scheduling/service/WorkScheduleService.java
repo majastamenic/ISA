@@ -1,5 +1,7 @@
 package com.isa.pharmacy.scheduling.service;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
+import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
 import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.controller.mapping.WorkScheduleMapper;
@@ -92,7 +94,7 @@ public class WorkScheduleService {
 
 
 
-    public boolean compareDateWithWorkTime(List<WorkSchedulePharmacyDto> pharmacistWork, Date requiredStartDate, Date requiredEndDate, String email){
+    public boolean compareDateWithWorkTime(List<WorkSchedulePharmacyDto> pharmacistWork, Date requiredStartDate, Date requiredEndDate){
         for(WorkSchedulePharmacyDto ws : pharmacistWork){
             if(requiredStartDate.before(ws.getWorkScheduleDto().getStartDate()) && requiredEndDate.before(ws.getWorkScheduleDto().getStartDate())){
                 continue;
@@ -103,6 +105,22 @@ public class WorkScheduleService {
             }
         }
         return true;
+    }
+
+    public boolean pharmacistIsWorking(Pharmacist pharmacist, CounselingCreateDto counselingCreateDto){
+        List<WorkSchedulePharmacyDto> pharmacistWork = getWorkScheduleByPharmacist(pharmacist.getUser().getEmail());
+        DateManipulation dm = new DateManipulation();
+        Date startDate = counselingCreateDto.getSchedule().getStartDate();
+        Date startTime = counselingCreateDto.getSchedule().getStartTime();
+        Date endTime = counselingCreateDto.getSchedule().getEndTime();
+        for(WorkSchedulePharmacyDto ws : pharmacistWork) {
+            if (startDate.after(ws.getWorkScheduleDto().getStartDate()) && startDate.before(ws.getWorkScheduleDto().getEndDate()) || startDate.equals(ws.getWorkScheduleDto().getEndDate()) || startDate.equals(ws.getWorkScheduleDto().getStartDate())) {
+                if (dm.mergeDateAndTime(startDate, endTime).before(ws.getWorkScheduleDto().getEndDate()) && dm.mergeDateAndTime(startDate, startTime).after(ws.getWorkScheduleDto().getStartTime())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

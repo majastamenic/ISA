@@ -20,5 +20,7 @@ public interface CounselingRepository extends JpaRepository<Counseling, Long> {
 
     List<Counseling> findCounselingByPatient_User_Email(String email);
 
+    List<Counseling> findCounselingByPharmacist_User_Email(String email);
+
     Counseling save(Counseling counseling);
 }
