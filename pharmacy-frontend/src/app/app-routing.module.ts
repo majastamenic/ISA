@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ActionsBenefitsComponent } from './component/pharmacy-admin/actions-benefits/actions-benefits.component';
 import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
-import { HomeComponent } from '../../home/home.component';
+import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { UserProfileComponent } from './component/user/profile/user-profile.component';

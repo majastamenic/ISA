@@ -15,7 +15,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from '../../home/home.component';
+import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
 import { ActionsBenefitsComponent } from './component/pharmacy-admin/actions-benefits/actions-benefits.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
