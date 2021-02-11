@@ -60,8 +60,9 @@ export const FREE_EXAM_TERMS_WORKER_PATH = EXAMINATION_PATH + '/free';
 export const DIAGNOSIS_PATH = BACKEND_PATH + '/diagnosis';
 export const DIAGNOSIS_ADD_PATH = DIAGNOSIS_PATH + '/add';
 
-export const MEDICINE_LOYALTY_PATH = MEDICINE_PATH+'/loyalty';
+export const MEDICINE_LOYALTY_PATH = MEDICINE_PATH + '/loyalty';
 export const LOYALTY_GROUP_PATH = BACKEND_PATH + '/loyaltyGroup';
+export const CATEGORY_PATH = LOYALTY_GROUP_PATH + '/category';
 
 export const COMPLAINT_PATH = BACKEND_PATH + '/complaint';
 

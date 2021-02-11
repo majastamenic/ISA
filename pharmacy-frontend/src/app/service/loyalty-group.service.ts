@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { LoyaltyGroup } from '../component/system-admin/model/loyaltyGroup';
-import { LOYALTY_GROUP_PATH } from '../util/paths';
+import { LOYALTY_GROUP_PATH, CATEGORY_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,9 @@ export class LoyaltyGroupService {
 
   setLoyaltyPoints(loyaltyGroup: LoyaltyGroup): any{
     return this.httpClient.put(LOYALTY_GROUP_PATH, loyaltyGroup);
+  }
+
+  getCategoryByPoints(points: number): any{
+    return this.httpClient.get(CATEGORY_PATH + '?points=' + points);
   }
 }

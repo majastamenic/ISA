@@ -19,6 +19,11 @@ public class LoyaltyGroupController {
         return loyaltyGroupService.getLoyaltyPoints(type);
     }
 
+    @GetMapping("/category")
+    public String getCategoryByPoints(@RequestParam("points") int points){
+        return loyaltyGroupService.getLoyaltyGroupByPoints(points);
+    }
+
     @PutMapping
     public void updateLoyaltyPoints(@RequestBody LoyaltyGroupDto loyaltyGroupDto){
         loyaltyGroupService.updateLoyaltyPoints(LoyaltyGroupMapper.mapLoyaltyGroupDtoToLoyaltyGroup(loyaltyGroupDto));
