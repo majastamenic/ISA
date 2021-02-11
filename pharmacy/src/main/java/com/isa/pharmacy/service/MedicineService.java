@@ -96,58 +96,32 @@ public class MedicineService {
 
     public List<AvailabilityMedicineDto> checkAvailabilityMedicines(String pharmacyName, List<String> meds){
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
-        List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
-        int br = 0;
-        for(String med: meds){
-            br += 1;
-            if(br <= meds.size()){
-                for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
-                    if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName) && med.equalsIgnoreCase(mp.getMedicine().getName())){
-                        AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
-                        if(mp.getQuantity()>0){
-                            availMed.setAvailable(true);
-                        }
-                        else{
-                            List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacyName);
-                            for(PharmacyAdmin pa: pharmacyAdmins){
-                                String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
-                                emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, mp.getMedicine().getName());
-                            }
-                            availMed.setAvailable(false);
-                            List<String> alternative = getAllMedicinesById(mp.getMedicine().getReplacementMedicines());
-                            availMed.setAlternative(alternative);
-                        }
-                        availMed.setId(mp.getId());
-                        availMed.setName(med);
-                        availabilityMedicineDtos.add(availMed);
-                    }
-                }
-            }
-        }
+        List<AvailabilityMedicineDto> availabilityMedicineDtos = checkingMedicines(pharmacy, meds);
         return availabilityMedicineDtos;
     }
 
 
-
     public List<AvailabilityMedicineDto> checkAvailabilityMedicinesByPharmacist(String pharmacistEmail, List<String> meds){
-        Pharmacist pharmacist = pharmacistService.findUserByEmail(pharmacistEmail);
+        Pharmacy pharmacy =  pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
+        List<AvailabilityMedicineDto> availabilityMedicineDtos = checkingMedicines(pharmacy, meds);
+        return availabilityMedicineDtos;
+    }
+
+
+    public List<AvailabilityMedicineDto> checkingMedicines(Pharmacy pharmacy, List<String> meds){
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
-        for(MedicinePharmacy mp: pharmacist.getPharmacy().getMedicinePharmacy()){
+        for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
             for(String med: meds){
-                if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacist.getPharmacy().getName()) && med.equalsIgnoreCase(mp.getMedicine().getName())){
+                if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacy.getName()) && med.equalsIgnoreCase(mp.getMedicine().getName())){
                     AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
                     if(mp.getQuantity()>0){
                         availMed.setAvailable(true);
                     }
                     else{
-                        List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacist.getPharmacy().getName());
-                        for(PharmacyAdmin pa: pharmacyAdmins){
-                            String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
-                            emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, mp.getMedicine().getName());
-                        }
+                        List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacy.getName());
+                        notifyPharmacyAdminsAboutMedicine(pharmacyAdmins, mp.getMedicine().getName());
                         availMed.setAvailable(false);
-                        List<String> alternative = getAllMedicinesById(mp.getMedicine().getReplacementMedicines());
-                        availMed.setAlternative(alternative);
+                        availMed.setAlternative(getAllMedicinesById(mp.getMedicine().getReplacementMedicines()));
                     }
                     availMed.setId(mp.getId());
                     availMed.setName(med);
@@ -158,6 +132,12 @@ public class MedicineService {
         return availabilityMedicineDtos;
     }
 
+    public void notifyPharmacyAdminsAboutMedicine(List<PharmacyAdmin> pharmacyAdmins, String medicineName){
+        for(PharmacyAdmin pa: pharmacyAdmins){
+            String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
+            emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, medicineName);
+        }
+    }
 
     public MedicineLoyaltyDto changeLoyalty(MedicineLoyaltyDto medicineLoyaltyDto) {
         Medicine medicine = medicineRepository.findMedicineByCode(medicineLoyaltyDto.getCode());

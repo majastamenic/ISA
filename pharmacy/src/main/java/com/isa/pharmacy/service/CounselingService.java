@@ -96,25 +96,29 @@ public class CounselingService {
         if(updated != null){
             Pharmacist pharmacist = pharmacistService.findUserByEmail(updateCounseling.getEmail());
             Patient patient = patientService.getPatient(updateCounseling.getPatientDto().getUser().getEmail());
-            List<Medicine> medicines = medicineService.getAllMedicinesByCode(updateCounseling.getReport().getMedicines());
-            medicines = medicineService.decreaseQuantityInPharmacy(medicines, pharmacist.getPharmacy().getName());
-            Counseling couns = CounselingMapper.mapCounselingDtoToCounseling(updateCounseling);
-            couns.setPharmacist(pharmacist);
-            couns.setLoyaltyGroup(updated.getLoyaltyGroup());
-            if(!couns.getPatientCame()){
-                patient.setPenal(patient.getPenal()+1);
+            if(pharmacist != null && patient != null){
+                List<Medicine> medicines = medicineService.getAllMedicinesByCode(updateCounseling.getReport().getMedicines());
+                medicines = medicineService.decreaseQuantityInPharmacy(medicines, pharmacist.getPharmacy().getName());
+                Counseling couns = CounselingMapper.mapCounselingDtoToCounseling(updateCounseling);
+                couns.setPharmacist(pharmacist);
+                couns.setLoyaltyGroup(updated.getLoyaltyGroup());
+                if(!couns.getPatientCame() && couns.getPatientCame() != null){
+                    patient.setPenal(patient.getPenal()+1);
+                    patientService.save(patient);
+                }else{
+                    Report report = new Report();
+                    report.setMedicines(medicines);
+                    report.setDays(updateCounseling.getReport().getDays());
+                    reportService.save(report);
+                    couns.setReport(report);
+                    reportService.save(report);
+                }
+                couns.setPatient(patient);
                 patientService.save(patient);
+                counselingRepository.save(couns);
             }else{
-                Report report = new Report();
-                report.setMedicines(medicines);
-                report.setDays(updateCounseling.getReport().getDays());
-                reportService.save(report);
-                couns.setReport(report);
-                reportService.save(report);
+                throw new InvalidActionException("Can't update counseling without patient and pharmacist.");
             }
-            couns.setPatient(patient);
-            patientService.save(patient);
-            counselingRepository.save(couns);
         }else{
             throw new NotFoundException("Counseling not found.");
         }

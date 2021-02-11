@@ -1,6 +1,5 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.scheduling.domain.Schedule;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 
