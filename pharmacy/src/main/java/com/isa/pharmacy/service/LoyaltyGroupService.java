@@ -32,15 +32,17 @@ public class LoyaltyGroupService {
     public String getLoyaltyGroupByPoints(int points){
         LoyaltyGroup eagerGroup = new LoyaltyGroup();
         boolean firstPass = true;
+        int minPoints = 0;
         for(LoyaltyGroup group : getUserLoyaltyCategories()){
             if(firstPass){
                 firstPass = false;
                 eagerGroup = group;
+                minPoints = group.getPoints();
             }
             if(group.getPoints() <= points && group.getPoints() <= eagerGroup.getPoints())
                 eagerGroup = group;
         }
-        if(eagerGroup == null)
+        if(points < minPoints)
             return "Not categorised";
         return eagerGroup.getType().name();
     }

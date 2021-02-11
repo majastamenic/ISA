@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ComplaintService } from 'src/app/service/complaint.service';
-import { ComplaintDto } from './model/complaint';
+import { ComplaintDto } from '../../../model/complaint';
 
 @Component({
   selector: 'app-complaint-message',

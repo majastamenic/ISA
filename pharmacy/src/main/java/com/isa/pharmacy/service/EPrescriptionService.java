@@ -83,7 +83,7 @@ public class EPrescriptionService {
     public EPrescription createEPrescription(Prescription prescription, Patient patient){
         EPrescription ePrescription = new EPrescription();
         ePrescription.setCode(new Random().nextLong());
-        ePrescription.setPatientName(patient.getUser().getName()+" "+patient.getUser().getSurname());
+        ePrescription.setPatient(patient);
         ePrescription.setDateOfIssue(new Date());
         List<MedicineEPrescription> medicineEPrescriptions = new ArrayList<>();
         String medText="";
@@ -101,7 +101,7 @@ public class EPrescriptionService {
         }
         if(!medText.equals(""))
             medText = medText.substring(medText.lastIndexOf(" "));
-        ePrescription.setFileText(ePrescription.getPatientName()+" "+ medText);
+        ePrescription.setFileText(patient.getUser().getName() + " " + patient.getUser().getSurname() + " " + medText);
         ePrescription.setListOfMedication(medicineEPrescriptions);
         return ePrescriptionRepository.save(ePrescription);
     }

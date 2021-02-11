@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, Sanitizer } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MedicineDto } from '../component/medicine/model/medicine-model';
+import { MedicineDto } from '../model/medicine-model';
 import { MEDICINEALL_PATH, MEDICINE_LOYALTY_PATH, MEDICINES_CHECK_PATH,MEDICINE_PATH, MEDICINE_SEARCH_PATH } from '../util/paths';
 
 

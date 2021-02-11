@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoyaltyGroup } from '../component/system-admin/model/loyaltyGroup';
+import { LoyaltyGroup } from '../model/loyaltyGroup';
 import { LOYALTY_GROUP_PATH, CATEGORY_PATH } from '../util/paths';
 
 @Injectable({

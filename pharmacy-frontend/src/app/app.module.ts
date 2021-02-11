@@ -17,9 +17,9 @@ import { RegistrationComponent } from './component/user/registration/registratio
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from '../../home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
-import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
+import { ActionsBenefitsComponent } from './component/pharmacy-admin/actions-benefits/actions-benefits.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
-import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
+import { UploadQRComponent } from './component/patient/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ToastrModule } from 'ngx-toastr';
 import { PharmacyAdminComponent } from './component/pharmacy-admin/pharmacy-admin.component';
@@ -36,7 +36,7 @@ import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-pr
 import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
 import { AllDermatologistsComponent } from './component/pharmacy-admin/all-dermatologists/all-dermatologists.component';
 import { AllMedicationsComponent } from './component/pharmacy-admin/all-medications/all-medications.component';
-import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
+import { ComplaintMessageComponent } from './component/patient/complaint-message/complaint-message.component';
 import { SystemAdminComponent } from './component/system-admin/system-admin.component';
 import { AddMedicinesComponent } from './component/system-admin/add-medicines/add-medicines.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
@@ -49,7 +49,7 @@ import { ComplaintsComponent } from './component/system-admin/complaints/complai
 import { PatientExaminationsComponent } from './component/patient/patient-examinations/patient-examinations.component';
 import { CounselingsComponent } from './component/patient/counselings/counselings.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { SubscribeListComponent } from './component/subscribe-list/subscribe-list.component';
+import { SubscribeListComponent } from './component/patient/subscribe-list/subscribe-list.component';
 import { SupplierComponent } from './component/supplier/supplier.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
