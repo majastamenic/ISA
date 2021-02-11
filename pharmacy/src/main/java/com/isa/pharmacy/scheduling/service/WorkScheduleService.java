@@ -89,4 +89,20 @@ public class WorkScheduleService {
         }
         return workSchedulesDto;
     }
+
+
+
+    public boolean compareDateWithWorkTime(List<WorkSchedulePharmacyDto> pharmacistWork, Date requiredStartDate, Date requiredEndDate, String email){
+        for(WorkSchedulePharmacyDto ws : pharmacistWork){
+            if(requiredStartDate.before(ws.getWorkScheduleDto().getStartDate()) && requiredEndDate.before(ws.getWorkScheduleDto().getStartDate())){
+                continue;
+            }else if(requiredStartDate.after(ws.getWorkScheduleDto().getEndDate()) && requiredEndDate.after(ws.getWorkScheduleDto().getEndDate())){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

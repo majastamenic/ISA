@@ -72,4 +72,18 @@ public class VacationScheduleService {
         return vacationScheduleDtos;
     }
 
+
+    public boolean compareDateWithVacations(List<VacationScheduleDto> pharmacistVacations, Date requiredStartDate, Date requiredEndDate, String email){
+        for(VacationScheduleDto vs: pharmacistVacations){
+            if(requiredStartDate.before(vs.getStartDate()) && requiredEndDate.before(vs.getStartDate())){
+                continue;
+            }else if(requiredStartDate.after(vs.getEndDate()) && requiredEndDate.after(vs.getEndDate())){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

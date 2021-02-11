@@ -27,6 +27,7 @@ export const PHARMACIST_PATH = BACKEND_PATH + '/pharmacist';
 export const PHARMACIST_REGISTRATION_PATH = PHARMACIST_PATH + '/registration';
 export const PHARMACISTSBYPHARMACY_PATH = PHARMACIST_PATH + '/pharmacists';
 export const FREE_PHARMACIST_PATH = PHARMACIST_PATH + '/free';
+export const PHARMACIST_VACATION_CHECK_PATH = PHARMACIST_PATH + '/check/vacation';
 
 export const PATIENT_PATH = BACKEND_PATH + '/patient';
 export const PATIENT_VALID_PATH = PATIENT_PATH + '/valid';
@@ -75,6 +76,7 @@ export const OFFER_PATH = BACKEND_PATH + '/supplier-offer';
 export const VACATION_PATH = BACKEND_PATH + '/vacation';
 export const VACATIONS_DERMATOLOGIST_PATH = VACATION_PATH + '/dermatologist';
 export const VACATION_PHARMACIST_PATH = VACATION_PATH + '/pharmacist';
+
 
 export const SUBSCRIBE_PATH = PHARMACY_PATH + '/subscribe';
 export const UNSUBSCRIBE_PATH = PHARMACY_PATH + '/unsubscribe';

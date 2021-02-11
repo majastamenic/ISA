@@ -125,4 +125,20 @@ public class CounselingService {
         return updateCounseling;
     }
 
+
+
+
+    public boolean compareDateWithCounselingTerm(List<CounselingDto> pharmacistCounseling, Date requiredStartDate, Date requiredEndDate, String email){
+        for(CounselingDto couns : pharmacistCounseling){
+            if(requiredStartDate.before(couns.getSchedule().getStartDate())){
+                continue;
+            }else if(requiredStartDate.after(couns.getSchedule().getStartDate())){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

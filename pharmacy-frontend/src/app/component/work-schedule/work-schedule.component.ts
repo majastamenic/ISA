@@ -55,8 +55,8 @@ export class WorkScheduleComponent implements OnInit {
               this.INITIAL_EVENTS.push({
                 id: i.id,
                 title: i.patientDto.user.name + ' ' + i.patientDto.user.surname + ' [' + i.pharmacyName + ']',
-                start: i.schedule.startDate + 'T' + i.schedule.startTime,
-                end: i.schedule.endDate + 'T' + i.schedule.endTime
+                start: i.schedule.startDate + ' ' + i.schedule.startTime,
+                end: i.schedule.endDate + ' ' + i.schedule.endTime
               })
             }
   
@@ -67,8 +67,8 @@ export class WorkScheduleComponent implements OnInit {
                 this.INITIAL_EVENTS.push({
                   id: createEventId(),
                   title: '[' + i.pharmacy.name + '] nobody scheduled',
-                  start: i.schedule.startDate + 'T' + i.schedule.startTime,
-                  end: i.schedule.endDate + 'T' + i.schedule.endTime
+                  start: i.schedule.startDate + ' ' + i.schedule.startTime,
+                  end: i.schedule.endDate + ' ' + i.schedule.endTime
                 })
               }
               this.calendarOptions.events = this.INITIAL_EVENTS;
@@ -85,8 +85,8 @@ export class WorkScheduleComponent implements OnInit {
             this.INITIAL_EVENTS.push({
               id: i.id,
               title: i.patientDto.user.name + ' ' + i.patientDto.user.surname,
-              start: i.schedule.startDate + 'T' + i.schedule.startTime,
-              end: i.schedule.endDate + 'T' + i.schedule.endTime
+              start: i.schedule.startDate + ' ' + i.schedule.startTime,
+              end: i.schedule.endDate + ' ' + i.schedule.endTime
             })
           }
           
@@ -94,6 +94,7 @@ export class WorkScheduleComponent implements OnInit {
             this.vacations = data;
             console.log(this.vacations);
             for (var i of this.vacations) {
+
               this.INITIAL_EVENTS.push({
                 id: createEventId(),
                 title: 'Vacation',
@@ -115,6 +116,11 @@ export class WorkScheduleComponent implements OnInit {
     
   }
 
+
+  /*fix(startDate: any, endDate:any){
+    var splited = startDate.split("-");
+
+  }*/
 
   calendarOptions: CalendarOptions = {
     headerToolbar: {

@@ -2,6 +2,7 @@ package com.isa.pharmacy.users.controller;
 
 import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
+import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
@@ -57,6 +58,11 @@ public class PharmacistController {
     public List<PharmacistDto> getFreePharmacist(@RequestParam("pharmacy") String pharmacy, @RequestBody DateTimeDto date){
         return PharmacistMapper.mapListPharmacistToPharmacistDto(
                 pharmacistService.getFreePharmacistByPharmacyAndDate(pharmacy, date));
+    }
+
+    @PostMapping("/check/vacation/{email}")
+    public boolean checkVacationTerm(@RequestBody VacationScheduleDto vacationScheduleDto, @PathVariable("email") String email){
+        return pharmacistService.checkVacationTerm(vacationScheduleDto, email);
     }
 
 }
