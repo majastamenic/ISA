@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/supplier-offer")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class SupplierOfferController {
     @Autowired
     private SupplierOfferService supplierOfferService;
