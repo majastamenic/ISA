@@ -58,10 +58,8 @@ public class CounselingController {
         return CounselingMapper.mapCounselingToCounselingFullDto(counselingService.createCounseling(counseling));
     }
 
-    //TODO: Masa
-    /*
+
     @PostMapping("/update")
-    public Counseling updateCounseling(@RequestBody CounselingDto c) { return counselingService.updateCounseling(c); }
-    */
+    public CounselingDto updateCounseling(@RequestBody CounselingDto counseling) { return counselingService.updateCounseling(counseling); }
 
 }

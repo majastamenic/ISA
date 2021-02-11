@@ -16,7 +16,6 @@ public class CounselingMapper {
         Counseling counseling = new Counseling();
         counseling.setId(counselingDto.getId());
         counseling.setPatientCame(counselingDto.getPatientCame());
-        counseling.setReport(counselingDto.getReport());
         counseling.setSchedule(counselingDto.getSchedule());
         counseling.setPatient(PatientMapper.mapPatientDtoToPatient(counselingDto.getPatientDto()));
         return counseling;
@@ -26,7 +25,6 @@ public class CounselingMapper {
         CounselingDto counselingDto = new CounselingDto();
         counselingDto.setId(counseling.getId());
         counselingDto.setPatientCame(counseling.getPatientCame());
-        counselingDto.setReport(counseling.getReport());
         counselingDto.setSchedule(counseling.getSchedule());
         counselingDto.setPatientDto(PatientMapper.mapPatientToPatientDto(counseling.getPatient()));
         counselingDto.setEmail(counseling.getPharmacist().getUser().getEmail());

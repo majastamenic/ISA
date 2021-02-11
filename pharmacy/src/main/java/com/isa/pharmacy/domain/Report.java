@@ -12,14 +12,14 @@ public class Report implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
-    private List<MedicinePharmacy> medicines;
     @Column
     private Integer days;
+    @ManyToMany
+    private List<Medicine> medicines;
 
     public Report(){}
 
-    public Report(Long id, List<MedicinePharmacy> medicines, Integer days) {
+    public Report(Long id, List<Medicine> medicines, Integer days) {
         this.id = id;
         this.medicines = medicines;
         this.days = days;
@@ -33,11 +33,11 @@ public class Report implements Serializable {
         this.days = days;
     }
 
-    public List<MedicinePharmacy> getMedicines() {
+    public List<Medicine> getMedicines() {
         return medicines;
     }
 
-    public void setMedicines(List<MedicinePharmacy> medicines) {
+    public void setMedicines(List<Medicine> medicines) {
         this.medicines = medicines;
     }
 

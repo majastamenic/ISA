@@ -162,6 +162,8 @@ public class ExaminationService {
             exam = ExaminationMapper.mapExaminationDtoToExamination(updateExamination, dermatologist, patient, pharmacy, prescription, updated.getSchedule());
             prescriptionService.save(prescription);
             examinationRepository.save(exam);
+        }else{
+            throw new NotFoundException("Examination not found.");
         }
         return updateExamination;
     }
