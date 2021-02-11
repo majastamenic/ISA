@@ -23,6 +23,8 @@ public class ComplaintService {
     private ExaminationService examinationService;
     @Autowired
     private PharmacyService pharmacyService;
+    @Autowired
+    private EmailService emailService;
 
     public List<Complaint> getAll(){
         List<Complaint> complaintList = complaintRepository.findAll();
@@ -51,6 +53,7 @@ public class ComplaintService {
     public Complaint addResponse(Complaint complaint){
         Complaint dbComplaint = complaintRepository.findComplaintById(complaint.getId());
         dbComplaint.setResponseComplaint(complaint.getResponseComplaint());
+        emailService.sendComplaintResponse(complaint);
         return dbComplaint;
     }
 

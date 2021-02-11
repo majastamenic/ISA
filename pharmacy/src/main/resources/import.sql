@@ -243,6 +243,11 @@ insert into medicine(code, composition, form_of_medicine, loyalty_points, manufa
 insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62217, 'skrob, trietil-citrat', 2, 15, 'Bayer', 'Aspirin', 'Beleska 3', 0, 'Lek za bolove i prehladu');
 insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62921, 'natrijum-laurilsulfat, akacija, laktoza', 2, 12, 'Hemofarm A.D.', 'Bromazepam', 'Beleska 3', 0, 'Lek za smirenje');
 insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62922, 'diazepam, monohidrat, laktoza', 2, 16, 'Galenika A.D.', 'Bensedin', 'Beleska 3', 0, 'Lek za smirenje');
+insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62543, 'penicilin, laktoza', 0, 1,'Tovarna Zdravil', 'Elicea', 'Beleska 6', 0, 'Lek za smirenje');
+insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (66044, 'kalijum-sorbat', 1, 2, 'Hemofarm A.D.', 'Trodon', 'Beleska 7', 0, 'Analgetik');
+insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62215, 'trietil-citrat', 2, 2, 'Hemofarm A.D.', 'Sabax', 'Beleska 8', 0, 'Lek za zeludac');
+insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62926, 'natrijum-laurilsulfat, laktoza', 2, 3, 'Pharmamed', 'Herbifit reuma', 'Beleska 9', 1, 'Lek za reumu');
+insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62927, 'diazepam', 7, 6, 'SALVEO Pharma', 'Prospan', 'Beleska 10', 1, 'Lek za kasalj');
 
 -- Patient Allergies
 insert into patient_allergic_medicines(patient_id, allergic_medicines) values (2, 'Brufen');
@@ -255,11 +260,67 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.75, 1420, 3, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.00, 0, 4, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.25, 2150, 5, 1);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 5592, 6, 1);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(2.89, 1064, 7, 1);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.75, 825, 8, 1);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.50, 182, 9, 1);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(0.25, 50, 10, 1);
+
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 1);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (2, 2);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (3, 3);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (4, 4);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (5, 5);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (6, 6);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (7, 7);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (8, 8);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (9, 9);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (10, 10);
 
 -- MedicinePharmacy: Benu
-insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 15, 1, 2);
-insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 18, 2, 2);
-insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.00, 110, 4, 2);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 16932, 1, 2);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 1818, 2, 2);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.00, 1190, 4, 2);
+
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 11);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (2, 12);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (4, 13);
+
+--MedicinePharmacy: Zelena Apoteka
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.14, 1917, 3, 3);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(2.90, 1718, 6, 3);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.60, 1109, 5, 3);
+
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (3, 14);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (6, 15);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (5, 16);
+
+--MedicinePharmacy: Galen Pharmacy
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.94, 1729, 7, 4);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(5.90, 7291, 8, 4);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(4.60, 91712, 9, 4);
+
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (7, 17);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (8, 18);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (9, 19);
+
+--MedicinePharmacy: Irisfarm
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(6.12, 2315, 10, 5);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(7.34, 9818, 8, 5);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.19, 1110, 9, 5);
+
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (10, 20);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (8, 21);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (9, 22);
+
+--MedicinePharmacy: Tilia
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.91, 1915, 2, 6);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(6.83, 1801, 6, 6);
+insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.11, 1510, 1, 6);
+
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (2, 23);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (6, 24);
+insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 25);
 
 -- ??????????????
 insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 1);
@@ -276,18 +337,17 @@ insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values
 -- Orders
 insert into app_order(end_date, end_time) values ('2021-02-07', '08:00:00');
 insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
-insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 4);
-insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (2, 5);
 
 -- MedicineReplacement
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(1, 62217);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(2, 66042);
-
-
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(3, 66042);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(4, 66042);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(4, 62922);
-insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(5, 66042);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(5, 66044);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(6, 66044);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(7, 66043);
+insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(8, 66042);
 
 -- Diagnosis
 insert into diagnosis(name)values('Cholera');
@@ -305,15 +365,22 @@ insert into complaint(complaint_message, patient_id)values ('Too crowded', 2);
 -- Orders
 insert into app_order( end_date, end_time, pharmacy_admin_id) values ('2021-02-07', '08:00:00', 1);
 insert into app_order(end_date, end_time, pharmacy_admin_id) values ('2021-03-07', '04:00:00', 1);
+insert into app_order( end_date, end_time, pharmacy_admin_id) values ('2021-05-07', '12:00:00', 2);
+insert into app_order(end_date, end_time, pharmacy_admin_id) values ('2021-03-04', '14:00:00', 2);
 
 -- OrdersOffers
-insert into order_offer(price, quantity, medicine_id)VALUES (2.9, 200, 1);
-insert into order_offer(price, quantity, medicine_id)VALUES (1.0, 100, 2);
-insert into order_offer(price, quantity, medicine_id)VALUES (2.0, 2, 3);
+insert into order_offer(price, quantity, medicine_id)VALUES (10.0, 200, 1);
+insert into order_offer(price, quantity, medicine_id)VALUES (21.0, 100, 2);
+insert into order_offer(price, quantity, medicine_id)VALUES (29.0, 29, 3);
+insert into order_offer(price, quantity, medicine_id)VALUES (12.9, 11, 10);
+insert into order_offer(price, quantity, medicine_id)VALUES (17.0, 10, 9);
+insert into order_offer(price, quantity, medicine_id)VALUES (12.0, 5, 8);
 
 --SupplierOffers
-insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-01-01', 20.0, 2, 1, 1);
-insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-02-02', 50, 1, 2, 1);
+insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-01-01', 200, 2, 1, 1);
+insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-02-02', 500, 1, 2, 1);
+insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-03-04', 430, 0, 3, 1);
+insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-04-04', 500, 1, 4, 1);
 
 -- VacationSchedule
     -- Dermatologist
