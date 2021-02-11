@@ -57,6 +57,20 @@ public class MedicinePharmacyService {
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email) {
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
         Patient patient = patientService.getPatient(email);
+        List<MedicinePharmacyDto> meds = getMedicinesPharmacy(pharmacy, patient);
+        return meds;
+    }
+
+
+    public List<MedicinePharmacyDto> getMedicinesByPharmacist(String pharmacistEmail, String patientEmail){
+        Pharmacy pharmacy = pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
+        Patient patient = patientService.getPatient(patientEmail);
+        List<MedicinePharmacyDto> meds = getMedicinesPharmacy(pharmacy, patient);
+        return meds;
+    }
+
+
+    public List<MedicinePharmacyDto> getMedicinesPharmacy(Pharmacy pharmacy, Patient patient){
         if(pharmacy == null)
             throw  new NotFoundException("Pharmacy doesn't exist in this pharmacy system.");
         if(patient == null)
@@ -77,7 +91,6 @@ public class MedicinePharmacyService {
         return meds;
     }
 
-
     public List<MedicinePharmacyDto> getMedicinesByCounseling(long id){
         Counseling counseling = counselingService.getCounselingById(id);
         List<MedicinePharmacyDto> meds = new ArrayList<>();
@@ -92,27 +105,6 @@ public class MedicinePharmacyService {
         return meds;
     }
 
-    public List<MedicinePharmacyDto> getMedicinesByPharmacist(String pharmacistEmail, String patientEmail){
-        Pharmacist pharmacist = pharmacistService.findUserByEmail(pharmacistEmail);
-        Patient patient = patientService.getPatient(patientEmail);
-        if(pharmacist.getPharmacy() == null)
-            throw  new NotFoundException("Pharmacy doesn't exist in this pharmacy system.");
-        if(patient == null)
-            throw  new NotFoundException("Patient doesn't exist in this pharmacy system.");
-        List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(pharmacist.getPharmacy().getId());
-        List<MedicinePharmacyDto> meds = new ArrayList<>();
-        for(MedicinePharmacy mp : medicinePharmacies){
-            boolean find = false;
-            for(String m: patient.getAllergicMedicines()){
-                if(mp.getMedicine().getName().equals(m))
-                    find = true;
-            }
-            if(!find){
-                MedicinePharmacyDto mpDto = MedicinePharmacyMapper.mapMedicinePharmacyToMedicinePharmacyDto(mp);
-                meds.add(mpDto);
-            }
-        }
-        return meds;
-    }
+
 
 }
