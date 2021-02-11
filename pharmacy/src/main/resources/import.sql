@@ -53,10 +53,10 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Antonic', 'antonic@mailinator.com', 'antonic', 'Bulevar Oslobodjenja 78', 'Novi Sad', 'Srbija', '065/789101', 3, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirko', 'Plavsic', 'mirko@mailinator.com', 'mirko', 'Pa Pavla 14', 'Novi Sad', 'Srbija', '069/8765432', 3, true);
     -- Pharmacist
-    insert into pharmacist(pharmacy_id, user_id) values(5, 7);
-    insert into pharmacist(pharmacy_id, user_id) values(6, 8);
-    insert into pharmacist(pharmacy_id, user_id) values(4, 9);
-    insert into pharmacist(pharmacy_id, user_id) values(5, 10);
+    insert into pharmacist(pharmacy_id, user_id) values(1, 7);
+    insert into pharmacist(pharmacy_id, user_id) values(2, 8);
+    insert into pharmacist(pharmacy_id, user_id) values(3, 9);
+    insert into pharmacist(pharmacy_id, user_id) values(4, 10);
 -- User: Admin
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Nikola', 'Luburic', 'nikola@yahoo.com', 'nikola', 'Marka Kraljevica 2', 'Novi Sad', 'Srbija', '062/468965', 1, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Rade', 'Doroslovacki', 'rade@yahoo.com', 'rade', 'Marka Kraljevica 15', 'Novi Sad', 'Srbija', '062/779635', 1, true);
@@ -229,12 +229,13 @@ insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyal
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 23, 3, 2, 1);
 
 -- Counselings
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_group_id) values (11, 1, 1, false, 1);
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_group_id) values (15, 2, 1, false, 1);
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_group_id) values (22, 3, 1, false, 1);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id) values (11, 1, 1, 1);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id) values (15, 2, 1, 1);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id) values (22, 3, 1, 1);
 
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_group_id) values (13, 1, 2, false, 1);
-insert into counseling(schedule_id, pharmacist_id, patient_id, patient_came, loyalty_group_id) values (16, 3, 2, false, 1);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id) values (13, 1, 2, 1);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id) values (16, 3, 2, 1);
+
 
 -- Medicines
 insert into medicine(code, composition, form_of_medicine, loyalty_points, manufactured, name, note, publishing_type, type_of_medicine) values (62542, 'cochenillrot, laktoza, monohidrat', 0, 5,'Galenika', 'Brufen', 'Beleska 1', 0, 'Lek za temperaturu');
@@ -254,9 +255,6 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.75, 1420, 3, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.00, 0, 4, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.25, 2150, 5, 1);
-insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 1);
-insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (2, 2);
-insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (3, 3);
 
 -- MedicinePharmacy: Benu
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 15, 1, 2);

@@ -10,12 +10,11 @@ public class CounselingFullDto {
     private PatientDto patient;
     private WorkScheduleDto schedule;
     private Report report;
-    private boolean patientCame;
+    private Boolean patientCame;
 
     public CounselingFullDto(){}
 
-    public CounselingFullDto(long id, PharmacistDto pharmacist, PatientDto patient, WorkScheduleDto schedule,
-                             Report report, boolean patientCame) {
+    public CounselingFullDto(long id, PharmacistDto pharmacist, PatientDto patient, WorkScheduleDto schedule, Report report, Boolean patientCame) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
@@ -64,11 +63,11 @@ public class CounselingFullDto {
         this.report = report;
     }
 
-    public boolean isPatientCame() {
+    public Boolean getPatientCame() {
         return patientCame;
     }
 
-    public void setPatientCame(boolean patientCame) {
+    public void setPatientCame(Boolean patientCame) {
         this.patientCame = patientCame;
     }
 }

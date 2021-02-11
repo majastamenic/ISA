@@ -40,6 +40,11 @@ public class MedicinePharmacyController {
         return medicinePharmacyService.getMedicinesByPharmacy(pharmacyName, email);
     }
 
+    @GetMapping("/all/pharmacist/{pharmacyName}/{email}")
+    public List<MedicinePharmacyDto> getMedicinesByPharmacist(@PathVariable("pharmacyName")String pharmacistEmail, @PathVariable("email")String patientEmail) {
+        return medicinePharmacyService.getMedicinesByPharmacist(pharmacistEmail, patientEmail);
+    }
+
     @GetMapping("/{id}")
     public List<MedicinePharmacyDto> getMedicinePharmacyByCounseling(@PathVariable("id")Long id){return medicinePharmacyService.getMedicinesByCounseling(id);}
 }

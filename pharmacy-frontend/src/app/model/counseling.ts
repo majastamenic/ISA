@@ -7,3 +7,22 @@ export interface Counseling{
   patientCame: any;
   counselingStatus: any;
 }
+
+export interface CounselingDto{
+  id: any,
+  email: any,
+  patientDto: any,
+  schedule: ScheduleDto,
+  report: Report,
+  patientCame: any,
+  loyaltyGroup: any
+}
+
+export interface Report{
+  days: any,
+  medicines: any[]
+}
+
+export interface ScheduleDto{
+  id:any
+}

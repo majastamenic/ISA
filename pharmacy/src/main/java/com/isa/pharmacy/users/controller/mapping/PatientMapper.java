@@ -13,6 +13,7 @@ public class PatientMapper {
 
     public static Patient mapPatientDtoToPatient(PatientDto patientDto){
         Patient patient = new Patient();
+        patient.setId(patient.getId());
         patient.setAllergicMedicines(patientDto.getAllergicMedicines());
         patient.setUser(patientDto.getUser());
         return patient;
