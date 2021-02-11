@@ -9,7 +9,6 @@ import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.PatientService;
 import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,16 +56,14 @@ public class MedicinePharmacyService {
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email) {
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
         Patient patient = patientService.getPatient(email);
-        List<MedicinePharmacyDto> meds = getMedicinesPharmacy(pharmacy, patient);
-        return meds;
+        return getMedicinesPharmacy(pharmacy, patient);
     }
 
 
     public List<MedicinePharmacyDto> getMedicinesByPharmacist(String pharmacistEmail, String patientEmail){
         Pharmacy pharmacy = pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
         Patient patient = patientService.getPatient(patientEmail);
-        List<MedicinePharmacyDto> meds = getMedicinesPharmacy(pharmacy, patient);
-        return meds;
+        return getMedicinesPharmacy(pharmacy, patient);
     }
 
 

@@ -1,19 +1,17 @@
 package com.isa.pharmacy.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.isa.pharmacy.controller.dto.AvailabilityMedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.enums.FormOfMedicine;
-import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.domain.enums.FormOfMedicine;
+import com.isa.pharmacy.domain.enums.MedicinePublishingType;
+import com.isa.pharmacy.repository.MedicineRepository;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.service.PharmacistService;
 import com.isa.pharmacy.users.service.PharmacyAdminService;
@@ -23,10 +21,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.repository.MedicineRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MedicineService {
@@ -96,15 +95,13 @@ public class MedicineService {
 
     public List<AvailabilityMedicineDto> checkAvailabilityMedicines(String pharmacyName, List<String> meds){
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
-        List<AvailabilityMedicineDto> availabilityMedicineDtos = checkingMedicines(pharmacy, meds);
-        return availabilityMedicineDtos;
+        return checkingMedicines(pharmacy, meds);
     }
 
 
     public List<AvailabilityMedicineDto> checkAvailabilityMedicinesByPharmacist(String pharmacistEmail, List<String> meds){
         Pharmacy pharmacy =  pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
-        List<AvailabilityMedicineDto> availabilityMedicineDtos = checkingMedicines(pharmacy, meds);
-        return availabilityMedicineDtos;
+        return checkingMedicines(pharmacy, meds);
     }
 
 
