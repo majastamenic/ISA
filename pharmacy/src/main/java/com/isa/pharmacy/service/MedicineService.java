@@ -42,6 +42,7 @@ public class MedicineService {
     @Autowired
     private PharmacistService pharmacistService;
 
+
     public Medicine create(Medicine medicine) {
         if (medicineRepository.findMedicineById(medicine.getId()) != null)
             throw new ResponseStatusException(HttpStatus.CONFLICT);
@@ -98,12 +99,10 @@ public class MedicineService {
         return checkingMedicines(pharmacy, meds);
     }
 
-
     public List<AvailabilityMedicineDto> checkAvailabilityMedicinesByPharmacist(String pharmacistEmail, List<String> meds){
         Pharmacy pharmacy =  pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
         return checkingMedicines(pharmacy, meds);
     }
-
 
     public List<AvailabilityMedicineDto> checkingMedicines(Pharmacy pharmacy, List<String> meds){
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
@@ -204,7 +203,6 @@ public class MedicineService {
     public void update(Medicine medicine){
         medicineRepository.save(medicine);
     }
-
 
     public MedicineDto findMedicineSpecification(String name){
         Medicine medicine = findByName(name);

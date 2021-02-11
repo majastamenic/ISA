@@ -33,6 +33,9 @@ public class MedicinePharmacyService {
 
     public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
 
+    public MedicinePharmacy getByPharmacyAndMedicine(String pharmacyName, String medicineName){
+        return medicinePharmacyRepository.findMedicinePharmaciesByAndPharmacy_NameAndMedicine_Name(pharmacyName, medicineName);
+    }
 
     public List<GetAllMedicinePharmacyDto> getAllMedicinePharmacies() {
         List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findAll();
@@ -52,20 +55,17 @@ public class MedicinePharmacyService {
         return medicineDtoList;
     }
 
-
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email) {
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
         Patient patient = patientService.getPatient(email);
         return getMedicinesPharmacy(pharmacy, patient);
     }
 
-
     public List<MedicinePharmacyDto> getMedicinesByPharmacist(String pharmacistEmail, String patientEmail){
         Pharmacy pharmacy = pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
         Patient patient = patientService.getPatient(patientEmail);
         return getMedicinesPharmacy(pharmacy, patient);
     }
-
 
     public List<MedicinePharmacyDto> getMedicinesPharmacy(Pharmacy pharmacy, Patient patient){
         if(pharmacy == null)

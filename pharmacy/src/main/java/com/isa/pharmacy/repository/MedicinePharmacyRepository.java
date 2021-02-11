@@ -14,6 +14,8 @@ public interface MedicinePharmacyRepository extends JpaRepository<MedicinePharma
 
     MedicinePharmacy findMedicinePharmacyById(Long id);
 
+    MedicinePharmacy findMedicinePharmaciesByAndPharmacy_NameAndMedicine_Name(String pharmacyName, String medicineName);
+
     List<MedicinePharmacy> findAll();
 
     List<MedicinePharmacy> findMedicinePharmacyByPharmacy_id(Long id);
