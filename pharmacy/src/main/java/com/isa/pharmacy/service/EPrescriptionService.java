@@ -24,6 +24,8 @@ public class EPrescriptionService {
     private PharmacyService pharmacyService;
     @Autowired
     private MedicinePharmacyService medicinePharmacyService;
+    @Autowired
+    private EmailService emailService;
 
     public EPrescription save(EPrescription ePrescription) {
         for (MedicineEPrescription m : ePrescription.getListOfMedication()) {
@@ -58,7 +60,6 @@ public class EPrescriptionService {
     public void order(Long code, String phName){
         Pharmacy pharmacy = pharmacyService.getByName(phName);
         EPrescription ePrescription = findByCode(code);
-
         try{
             for(MedicineEPrescription medicineEPrescription: ePrescription.getListOfMedication()){
                 for(MedicinePharmacy medicinePharmacy: pharmacy.getMedicinePharmacy()){
@@ -68,8 +69,8 @@ public class EPrescriptionService {
                     }
                 }
             }
-
             ePrescriptionRepository.delete(ePrescription);
+            emailService.sendEmailEPrescription(ePrescription);
 
         }catch(Exception e){
             throw new NotFoundException("Order is not possible.");

@@ -131,7 +131,7 @@ public class PharmacyService {
         if (!(this.apiKey).equals(apiKey))
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
-    //TODO: Samo apoteke u kojima je kupio lek
+    //TODO: Maja Samo apoteke u kojima je kupio lek
     public List<String> getPharmacyName(){
         List<String> pharmacyNames = new ArrayList<>();
         List<Pharmacy> pharmacyList = pharmacyRepository.findAll();

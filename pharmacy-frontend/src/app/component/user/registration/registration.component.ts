@@ -13,7 +13,6 @@ export class RegistrationComponent implements OnInit {
 
   user: any;
   verificationCode: string =  '';
-  registered = false;
 
   constructor(private userService: UserService, private router: Router, private toastrService: ToastrService) { }
 
@@ -25,21 +24,10 @@ export class RegistrationComponent implements OnInit {
   registration(): void {
     this.userService.registration(this.user).subscribe((returnedUser: User) => {
       this.toastrService.success('Please check your email.');
-      this.registered = true;
-    },
-      (err: any) => {
-        alert('Registration error ' + err.error.message);
-      });
-  }
-
-  verification(): void {
-    this.userService.verification(this.user, this.verificationCode).subscribe((returnedUser: User) => {
-      this.toastrService.success('User with email ' + returnedUser.email + ' is registered.');
       this.router.navigate(['/login']);
     },
       (err: any) => {
-        alert('Error while verification ' + err.error.message);
+        this.toastrService.error('Registration error ' + err.error.message);
       });
   }
-
 }
