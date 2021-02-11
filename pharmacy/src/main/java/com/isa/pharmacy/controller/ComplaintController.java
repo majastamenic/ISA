@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/complaint")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class ComplaintController {
     @Autowired
     private ComplaintService complaintService;
