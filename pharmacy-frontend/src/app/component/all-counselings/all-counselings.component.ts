@@ -10,21 +10,18 @@ import { Counseling } from '../../model/counseling';
 })
 export class AllCounselingsComponent implements OnInit {
 
-  email: string;
-  counselings: Counseling[] = [];
-  counseling: any;
+  counseling: Counseling[] = [];
+  loggedUser: any = sessionStorage.getItem('user');
+  loggedUserRole: any = sessionStorage.getItem('role');
 
   constructor(private allCounseling: CounselingsService, private router: Router) {
-    this.email = '';
    }
 
-  ngOnInit(): void {
-    let loggedUser = sessionStorage.getItem("user");
-    
-    if(loggedUser){
-      this.allCounseling.getCounseltings(loggedUser).subscribe((data: Counseling[]) => {
-        this.counselings = data;
-        console.log(this.counselings)
+  ngOnInit(): void {    
+    if(this.loggedUser && this.loggedUserRole == 'PHARMACIST'){
+      this.allCounseling.getCounseltings(this.loggedUser).subscribe((data: Counseling[]) => {
+        this.counseling = data;
+        console.log(this.counseling)
       });
     }
   }

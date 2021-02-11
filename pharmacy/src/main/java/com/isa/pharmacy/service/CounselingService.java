@@ -3,11 +3,16 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.domain.Medicine;
+import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.CounselingRepository;
 import com.isa.pharmacy.scheduling.service.ScheduleService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.users.service.PatientService;
+import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +32,14 @@ public class CounselingService {
     private ReportService reportService;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private PharmacistService pharmacistService;
+    @Autowired
+    private PatientService patientService;
+    @Autowired
+    private PharmacyService pharmacyService;
+    @Autowired
+    private MedicineService medicineService;
 
 
     public List<Counseling> getAll(){ return counselingRepository.findAll(); }
@@ -56,21 +69,12 @@ public class CounselingService {
         return scheduledCounseling;
     }
 
-    public Counseling updateCounseling(CounselingDto c) {
-        Counseling counseling = counselingRepository.findCounselingById(c.getId());
-        if(counseling == null)
-            throw new NotFoundException("Counseling not found");
-        counseling.setReport(reportService.update(c.getReport()));
-        counseling.setPatientCame(c.isPatientCame());
-        counselingRepository.save(counseling);
-        return counseling;
-    }
 
     public List<String> getPharmacistNameByPatient(Patient patient){
         List<String> pharmacistNames = new ArrayList<>();
         for(Counseling counseling: counselingRepository.findByPatient(patient)){
             //TODO: Maja - provera da li je null
-            if(counseling.isPatientCame()){
+            if(counseling.getPatientCame()){
                 String pharmacistName = counseling.getPharmacist().getUser().getRole().toString() + ": " + counseling.getPharmacist().getUser().getName()+" "+ counseling.getPharmacist().getUser().getSurname();
                 pharmacistNames.add(pharmacistName);
             }
@@ -87,4 +91,39 @@ public class CounselingService {
         }
         return false;
     }
+
+    public CounselingDto updateCounseling(CounselingDto updateCounseling) {
+        Counseling updated = counselingRepository.findCounselingById(updateCounseling.getId());
+        if(updated != null){
+            Pharmacist pharmacist = pharmacistService.findUserByEmail(updateCounseling.getEmail());
+            Patient patient = patientService.getPatient(updateCounseling.getPatientDto().getUser().getEmail());
+            if(pharmacist != null && patient != null){
+                List<Medicine> medicines = medicineService.getAllMedicinesByCode(updateCounseling.getReport().getMedicines());
+                medicines = medicineService.decreaseQuantityInPharmacy(medicines, pharmacist.getPharmacy().getName());
+                Counseling couns = CounselingMapper.mapCounselingDtoToCounseling(updateCounseling);
+                couns.setPharmacist(pharmacist);
+                couns.setLoyaltyGroup(updated.getLoyaltyGroup());
+                if(!couns.getPatientCame() && couns.getPatientCame() != null){
+                    patient.setPenal(patient.getPenal()+1);
+                    patientService.save(patient);
+                }else{
+                    Report report = new Report();
+                    report.setMedicines(medicines);
+                    report.setDays(updateCounseling.getReport().getDays());
+                    reportService.save(report);
+                    couns.setReport(report);
+                    reportService.save(report);
+                }
+                couns.setPatient(patient);
+                patientService.save(patient);
+                counselingRepository.save(couns);
+            }else{
+                throw new InvalidActionException("Can't update counseling without patient and pharmacist.");
+            }
+        }else{
+            throw new NotFoundException("Counseling not found.");
+        }
+        return updateCounseling;
+    }
+
 }

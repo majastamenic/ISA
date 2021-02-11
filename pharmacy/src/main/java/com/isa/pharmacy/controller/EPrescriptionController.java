@@ -17,7 +17,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -57,7 +56,7 @@ public class EPrescriptionController {
     }
 
     @PostMapping("/uploadQr")
-    public EPrescriptionDto searchQrCode(@RequestParam("file") MultipartFile file) throws IOException, ParseException {
+    public EPrescriptionDto searchQrCode(@RequestParam("file") MultipartFile file) throws IOException {
         if (file.isEmpty()) throw new RuntimeException("File is empty!");
         byte[] bytes = file.getBytes();
 

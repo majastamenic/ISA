@@ -10,6 +10,7 @@ import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.service.PatientService;
+import com.isa.pharmacy.users.service.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,8 @@ public class MedicinePharmacyService {
     private PatientService patientService;
     @Autowired
     private PharmacyService pharmacyService;
+    @Autowired
+    private PharmacistService pharmacistService;
 
 
     public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
@@ -53,6 +56,18 @@ public class MedicinePharmacyService {
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email) {
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
         Patient patient = patientService.getPatient(email);
+        return getMedicinesPharmacy(pharmacy, patient);
+    }
+
+
+    public List<MedicinePharmacyDto> getMedicinesByPharmacist(String pharmacistEmail, String patientEmail){
+        Pharmacy pharmacy = pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
+        Patient patient = patientService.getPatient(patientEmail);
+        return getMedicinesPharmacy(pharmacy, patient);
+    }
+
+
+    public List<MedicinePharmacyDto> getMedicinesPharmacy(Pharmacy pharmacy, Patient patient){
         if(pharmacy == null)
             throw  new NotFoundException("Pharmacy doesn't exist in this pharmacy system.");
         if(patient == null)
@@ -73,7 +88,6 @@ public class MedicinePharmacyService {
         return meds;
     }
 
-
     public List<MedicinePharmacyDto> getMedicinesByCounseling(long id){
         Counseling counseling = counselingService.getCounselingById(id);
         List<MedicinePharmacyDto> meds = new ArrayList<>();
@@ -87,5 +101,7 @@ public class MedicinePharmacyService {
         }
         return meds;
     }
+
+
 
 }

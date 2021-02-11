@@ -13,34 +13,31 @@ public class Report implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String note;
-    @OneToOne
-    private Counseling counseling;
-    @OneToMany
-    private List<MedicinePharmacy> medicines;
+    private Integer days;
+    @ManyToMany
+    private List<Medicine> medicines;
 
     public Report(){}
 
-    public Report(Long id, String note, Counseling counseling, List<MedicinePharmacy> medicines) {
+    public Report(Long id, List<Medicine> medicines, Integer days) {
         this.id = id;
-        this.note = note;
-        this.counseling = counseling;
         this.medicines = medicines;
+        this.days = days;
     }
 
-    public Counseling getCounseling() {
-        return counseling;
+    public Integer getDays() {
+        return days;
     }
 
-    public void setCounseling(Counseling counseling) {
-        this.counseling = counseling;
+    public void setDays(Integer days) {
+        this.days = days;
     }
 
-    public List<MedicinePharmacy> getMedicines() {
+    public List<Medicine> getMedicines() {
         return medicines;
     }
 
-    public void setMedicines(List<MedicinePharmacy> medicines) {
+    public void setMedicines(List<Medicine> medicines) {
         this.medicines = medicines;
     }
 
@@ -50,14 +47,6 @@ public class Report implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 
 }

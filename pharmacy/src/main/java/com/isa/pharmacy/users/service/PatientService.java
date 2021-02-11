@@ -59,4 +59,13 @@ public class PatientService {
     public void deletePatient(long id){
         patientRepository.deleteById(id);
     }
+
+    public Patient save(Patient p){
+        Patient patient = patientRepository.findPatientById(p.getId());
+        if(patient != null){
+            userService.save(patient.getUser());
+            return patientRepository.save(patient);
+        }
+        throw new NotFoundException("Patient doesn't exist.");
+    }
 }

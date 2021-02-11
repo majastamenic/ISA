@@ -3,7 +3,6 @@ package com.isa.pharmacy.domain;
 import com.isa.pharmacy.scheduling.domain.Schedule;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -21,17 +20,16 @@ public class Counseling implements Serializable {
     private Patient patient;
     @OneToOne
     private Schedule schedule;
-    @OneToOne           // TODO: Obrisati ili odavde ili iz Reporta Counseling
+    @OneToOne
     private Report report;
     @Column
-    private boolean patientCame;
+    private Boolean patientCame;
     @ManyToOne
     private LoyaltyGroup loyaltyGroup;
 
     public Counseling(){}
 
-    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule,
-                      Report report, boolean patientCame, LoyaltyGroup loyaltyGroup) {
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, Boolean patientCame, LoyaltyGroup loyaltyGroup) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
@@ -41,8 +39,7 @@ public class Counseling implements Serializable {
         this.loyaltyGroup = loyaltyGroup;
     }
 
-    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule,
-                      Report report, boolean patientCame) {
+    public Counseling(Long id, Pharmacist pharmacist, Patient patient, Schedule schedule, Report report, Boolean patientCame) {
         this.id = id;
         this.pharmacist = pharmacist;
         this.patient = patient;
@@ -91,11 +88,11 @@ public class Counseling implements Serializable {
         this.report = report;
     }
 
-    public boolean isPatientCame() {
+    public Boolean getPatientCame() {
         return patientCame;
     }
 
-    public void setPatientCame(boolean patientCame) {
+    public void setPatientCame(Boolean patientCame) {
         this.patientCame = patientCame;
     }
 
@@ -107,3 +104,4 @@ public class Counseling implements Serializable {
         this.loyaltyGroup = loyaltyGroup;
     }
 }
+

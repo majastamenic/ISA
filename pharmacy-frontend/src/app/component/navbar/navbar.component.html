@@ -6,6 +6,9 @@
         </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
+                <a class="nav-link" [routerLink]="'/home'" routerLinkActive="active">Pharmacies</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" [routerLink]="'/medicines'" routerLinkActive="active">Medicines</a>
             </li>
             <!--Patient-->
@@ -26,9 +29,6 @@
                 <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/subscribe-list'" routerLinkActive="active">Subscribe list</a>
             </li>
             <!--Pharmacist-->
-            <li class="nav-item">
-                <a *ngIf="userService.isUserLogin() && userService.isPharmacist()" class="nav-link" [routerLink]="'/counseling'" routerLinkActive="active">Schedule counseling</a>
-            </li>
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPharmacist()" class="nav-link" [routerLink]="'/allcounselings'" routerLinkActive="active">Counseling</a>
             </li>
