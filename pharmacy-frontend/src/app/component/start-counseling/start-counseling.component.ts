@@ -128,7 +128,15 @@ export class StartCounselingComponent implements OnInit {
   // do ovde je okej
 
   saveCounseling(came: boolean){
-    // blabla
+    if(!this.cannotSave){
+      if(came == true){
+        this.toSchedule = true;
+        this.toastrService.success("Examination is saved.");
+      }else{
+        this.router.navigate(['/home']);
+        this.toastrService.success("Examination is finished. Patient didn't come.");
+      }
+    }
   }
 
   

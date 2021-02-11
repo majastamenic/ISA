@@ -86,8 +86,8 @@
     <button class="btn btn-primary" style="width:200px;" (click)="patientIsHere()">Patient came</button>
 </div>
 
-<div *ngIf='toSchedule'  class="page" >
-    <h1>Do you want to schedule new Examination?</h1>
+<div *ngIf='toSchedule' class="page" >
+    <h1>Do you want to schedule new Counseling?</h1>
     <button class="btn btn-secondary" style="width:100px;" (click)="cancelCounseling()">No</button>&nbsp;
-    <button class="btn btn-primary" style="width:100px;" (click)="scheduleCounseling()">Yes</button>
+    <button class="btn btn-primary" style="width:100px;" [routerLink]="['/counseling', counseling.id]">Yes</button>
 </div>

@@ -66,9 +66,7 @@ const routes: Routes = [
   { path: 'patient/counselings', component: CounselingsComponent},
   { path: 'patient/counselingSearch', component: CounselingSearchComponent},
   { path: 'patient/counselingSchedule/:pharmacyName', component: CounselingScheduleComponent},
-  //Pharmacist
-  { path: 'counseling', component: ScheduleCounselingComponent },
-  { path: 'allcounselings', component: AllCounselingsComponent },
+  
   //System admin
   {
     path: 'system-admin', component: SystemAdminComponent,
@@ -84,33 +82,39 @@ const routes: Routes = [
   { path: 'loyalty', component: LoyalityComponent },
   { path: 'complaints', component: ComplaintsComponent},
 
+  //Pharmacist
+  { path: 'counseling', component: ScheduleCounselingComponent },
+  { path: 'allcounselings', component: AllCounselingsComponent },
+  { path: 'allcounselings/:id', component: StartCounselingComponent},
+  { path: 'counseling/:id', component: ScheduleCounselingComponent},
   //Dermatologist
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'scheduledExaminations', component: PatientExaminationsComponent},
   { path: 'diagnosis', component: DiagnosisComponent},
   { path: 'allexaminations', component: AllExaminationsComponent},
+  { path: 'allexaminations/:id', component: StartExaminationComponent},
   { path: 'examination', component: ScheduleExaminationDermatologistComponent},
+  // Dermatologist & Pharmacist
+  { path: 'work/schedule', component: WorkScheduleComponent},
+  { path: 'diagnosis', component: DiagnosisComponent},
+  { path: 'schedule/vacation', component: ScheduleVacationComponent},
+
   //Pharmacy admin
 
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
-  { path: 'allcounselings/:id', component: StartCounselingComponent},
-  { path: 'allexaminations/:id', component: StartExaminationComponent},
   { path: 'price/init', component: PriceInitComponent},
-  { path: 'counseling', component: ScheduleCounselingComponent},
+  
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
   { path: 'pharmacy/:pharmacyName', component: PharmacyProfileComponent},
   { path: 'pharmacists/:id', component: AllPharmacistsComponent},
   { path: 'dermatologists', component: AllDermatologistsComponent},
   { path: 'medications/:id', component: AllMedicationsComponent},
-  { path: 'schedule/vacation', component: ScheduleVacationComponent},
-  { path: 'allexaminations', component: AllExaminationsComponent},
-  { path: 'examination', component: ScheduleExaminationDermatologistComponent},
-  { path: 'diagnosis', component: DiagnosisComponent},
+  
+  
   //Supplier
   { path: 'add-complaint', component: ComplaintMessageComponent},
-  { path: 'work/schedule', component: WorkScheduleComponent},
   { path: 'order', component: AddOrderComponent},
   { path: 'view-orders', component: ViewOrdersComponent},
 ];
