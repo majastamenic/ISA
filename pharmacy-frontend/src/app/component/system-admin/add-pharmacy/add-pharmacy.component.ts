@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
 import { UserService } from 'src/app/service/user.service';
-import { Pharmacy, PharmacyDto } from './model/pharmacy-model';
+import { Pharmacy, PharmacyDto } from '../../../model/pharmacy-model';
 
 @Component({
   selector: 'app-add-pharmacy',

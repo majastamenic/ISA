@@ -345,16 +345,16 @@ insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) 
 insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (4, 11)
 insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (2, 12)
 -- EPrescription
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(1, '2021-01-01', 'Maja Stamenic Panadol,', 'Maja Stamenic');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(2, '2021-02-01', 'Aca Lukas Panadol,', 'Aca Lukas');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(3, '2021-02-02', 'Toma Zdravkovic Bensedin,', 'Toma Zdravkovic');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(4, '2021-02-03', 'Gojko Novcic Aspirin,', 'Gojko Novcic');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(5, '2021-01-02', 'Nastasja Damjanac Brufen,', 'Nastasja Damjanac');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(6, '2021-02-03', 'Gojko Novcic Panadol,', 'Gojko Novcic');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(7, '2021-01-02', 'Toma Zdravkovic Aspirin,', 'Toma Zdravkovic');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(8, '2021-02-03', 'Aca Lukas Brufen, Bensedin,', 'Aca Lukas');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(9, '2021-01-02', 'Maja Stamenic Brufen,', 'Maja Stamenic');
-insert into eprescription(code, date_of_issue, file_text, patient_name) values(10, '2021-01-03', 'Maja Stamenic Aspirin,', 'Maja Stamenic');
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(1, '2021-01-01', 'Maja Stamenic Panadol,', 1);
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(2, '2021-02-01', 'Aca Lukas Panadol,', 5);
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(3, '2021-02-02', 'Toma Zdravkovic Bensedin,', 6);
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(4, '2021-02-03', 'Gojko Novcic Aspirin,', 2);
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(5, '2021-01-02', 'Nastasja Damjanac Brufen,', 3);
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(6, '2021-02-03', 'Gojko Novcic Panadol,', 2);
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(7, '2021-01-02', 'Toma Zdravkovic Aspirin,', 6);
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(8, '2021-02-03', 'Aca Lukas Brufen, Bensedin,', 5);
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(9, '2021-01-02', 'Maja Stamenic Brufen,', 1);
+insert into eprescription(code, date_of_issue, file_text, patient_id) values(10, '2021-01-03', 'Maja Stamenic Aspirin,', 1);
     -- MedicineEPrescription
     insert into medicineeprescription(code, name, quantity) values(1, 'Panadol', 1);
     insert into medicineeprescription(code, name, quantity) values(2, 'Panadol', 2);

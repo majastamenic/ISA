@@ -1,18 +1,17 @@
 package com.isa.pharmacy.service;
 
-import java.text.ParseException;
+import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
+import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.domain.*;
+import com.isa.pharmacy.repository.EPrescriptionRepository;
+import com.isa.pharmacy.users.domain.Patient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-
-import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
-import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.*;
-import com.isa.pharmacy.users.domain.Patient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.isa.pharmacy.repository.EPrescriptionRepository;
 
 @Service
 public class EPrescriptionService {
@@ -37,7 +36,11 @@ public class EPrescriptionService {
         return ePrescriptionRepository.findEPrescriptionById(id);
     }
 
-    public EPrescription getByText(String text) throws ParseException {
+    public List<EPrescription> getByPatientEmail(String email){
+        return ePrescriptionRepository.findEPrescriptionByPatient_User_Email(email);
+    }
+
+    public EPrescription getByText(String text) {
         EPrescription ePrescription = ePrescriptionRepository.findEPrescriptionByFileText(text);
         if(ePrescription == null)
             throw new NotFoundException("E-prescription doesn't exists.");
@@ -83,7 +86,7 @@ public class EPrescriptionService {
     public EPrescription createEPrescription(Prescription prescription, Patient patient){
         EPrescription ePrescription = new EPrescription();
         ePrescription.setCode(new Random().nextLong());
-        ePrescription.setPatientName(patient.getUser().getName()+" "+patient.getUser().getSurname());
+        ePrescription.setPatient(patient);
         ePrescription.setDateOfIssue(new Date());
         List<MedicineEPrescription> medicineEPrescriptions = new ArrayList<>();
         String medText="";
@@ -101,7 +104,7 @@ public class EPrescriptionService {
         }
         if(!medText.equals(""))
             medText = medText.substring(medText.lastIndexOf(" "));
-        ePrescription.setFileText(ePrescription.getPatientName()+" "+ medText);
+        ePrescription.setFileText(patient.getUser().getName() + " " + patient.getUser().getSurname() + " " + medText);
         ePrescription.setListOfMedication(medicineEPrescriptions);
         return ePrescriptionRepository.save(ePrescription);
     }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Medicine, MedicineDto } from 'src/app/component/medicine/model/medicine-model';
+import { Medicine, MedicineDto } from 'src/app/model/medicine-model';
 import { MedicineService } from 'src/app/service/medicine.service';
 import { UserService } from 'src/app/service/user.service';
 

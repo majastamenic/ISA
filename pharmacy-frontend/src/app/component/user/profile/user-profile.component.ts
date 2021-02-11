@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PasswordChangeDto } from 'src/app/model/user-model';
+import { LoyaltyGroupService } from 'src/app/service/loyalty-group.service';
 import { PatientService } from 'src/app/service/patient.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -16,15 +17,18 @@ export class UserProfileComponent implements OnInit {
   passwordChange: boolean = false;
   allergyChange: boolean = false;
   newAllergy: string = '';
-
   
   patientAllergies: any = [];
+  patientLoyaltyPoints: number = 0;
+  patientLoyaltyCategory: any;
+  
   passwordDto: PasswordChangeDto = {oldPassword: "", newPassword: "", newPasswordRepeat: ""};
   user : any;
   loggedUserRole = sessionStorage.getItem("role");
 
   constructor(private userService: UserService, 
               private patientService: PatientService,
+              private loyaltyGroupService: LoyaltyGroupService,
               private router: Router, 
               private toastrService: ToastrService) { 
   }
@@ -34,8 +38,15 @@ export class UserProfileComponent implements OnInit {
     if(loggedUser){
       let userRole = sessionStorage.getItem("role");
       if(userRole == 'PATIENT')
-        this.patientService.getPatientByEmail(loggedUser).subscribe((data:any) => {
-          this.patientAllergies = data.allergicMedicines;
+        this.patientService.getPatientByEmail(loggedUser).subscribe((patient:any) => {
+          this.patientAllergies = patient.allergicMedicines;
+          this.patientLoyaltyPoints = patient.loyaltyPoints;
+          this.loyaltyGroupService.getCategoryByPoints(patient.loyaltyPoints).subscribe((category: any) => {
+            this.patientLoyaltyCategory = category;
+          }, (error:any) => {
+            if(error.status == 200)
+              this.patientLoyaltyCategory = error.error.text;
+          });
         }, error => {
           this.toastrService.error("Unknown error");
         });

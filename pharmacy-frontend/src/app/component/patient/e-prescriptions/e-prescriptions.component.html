@@ -1,0 +1,24 @@
+<div class="panel panel-primary" style="margin: 20px;">
+    <div class="panel-heading d-flex">
+        <h2>E-prescriptions</h2>
+        <button class="btn btn-primary ml-auto p-2" style="width: auto;" [routerLink]="'/uploadQR'">Upload QR</button>
+    </div>
+    <div class="panel-body">
+        <table id="freeTerms" class="table transparent">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Code</th>
+                    <th>Date</th>
+                    <th>Medicaitons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let eprescription of ePrescriptions">
+                    <td>{{eprescription.code}}</td>
+                    <td>{{eprescription.dateOfIssue}}</td>
+                    <td><span *ngFor="let med of eprescription.listOfMedication">{{med.medicineName}}, </span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

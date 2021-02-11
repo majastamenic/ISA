@@ -17,7 +17,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -45,6 +44,11 @@ public class EPrescriptionController {
         return ePrescription;
     }
 
+    @GetMapping("/patient/{patientEmail}")
+    public List<EPrescriptionDto> getEprescriptionsByPatientEMail(@PathVariable String patientEmail){
+        return EPrescriptionMapper.mapListEPrescriptionToEPrescriptionDto(ePrescriptionService.getByPatientEmail(patientEmail));
+    }
+
     @PostMapping
     public EPrescription saveByText(@RequestBody String text) {
         EPrescription ePrescription = EPrescriptionMapper.mapStringToEPrescription(text);
@@ -52,7 +56,7 @@ public class EPrescriptionController {
     }
 
     @PostMapping("/uploadQr")
-    public EPrescriptionDto searchQrCode(@RequestParam("file") MultipartFile file) throws IOException, ParseException {
+    public EPrescriptionDto searchQrCode(@RequestParam("file") MultipartFile file) throws IOException {
         if (file.isEmpty()) throw new RuntimeException("File is empty!");
         byte[] bytes = file.getBytes();
 
@@ -75,6 +79,4 @@ public class EPrescriptionController {
     public void order(@PathVariable Long code, @PathVariable String phName){
         ePrescriptionService.order(code, phName);
     }
-
-
 }

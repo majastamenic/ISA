@@ -21,6 +21,7 @@ export const MEDICINE_SPECIFICATION_PATH = MEDICINE_PATH + '/specification';
 export const EPRESCRIPTION_PATH = BACKEND_PATH + '/ePrescription';
 export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';
 export const QR_ORDER_PATH = EPRESCRIPTION_PATH + '/order';
+export const EPRESCRIPTION_PATIENT_PATH = EPRESCRIPTION_PATH + '/patient';
 export const SCHEDULE_PATH = BACKEND_PATH + '/workschedule';
 
 export const PHARMACIST_PATH = BACKEND_PATH + '/pharmacist';
@@ -64,8 +65,9 @@ export const FREE_EXAM_TERMS_WORKER_PATH = EXAMINATION_PATH + '/free';
 export const DIAGNOSIS_PATH = BACKEND_PATH + '/diagnosis';
 export const DIAGNOSIS_ADD_PATH = DIAGNOSIS_PATH + '/add';
 
-export const MEDICINE_LOYALTY_PATH = MEDICINE_PATH+'/loyalty';
+export const MEDICINE_LOYALTY_PATH = MEDICINE_PATH + '/loyalty';
 export const LOYALTY_GROUP_PATH = BACKEND_PATH + '/loyaltyGroup';
+export const CATEGORY_PATH = LOYALTY_GROUP_PATH + '/category';
 
 export const COMPLAINT_PATH = BACKEND_PATH + '/complaint';
 
