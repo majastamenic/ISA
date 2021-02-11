@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { logging } from 'protractor';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { CounselingDto } from 'src/app/model/counseling';
 import { Diagnosis } from 'src/app/model/diagnosis';
 import { CounselingsService } from 'src/app/service/counselings.service';
@@ -28,6 +30,9 @@ export class StartCounselingComponent implements OnInit {
   meds: any[]=[];
   availableMeds: any[]=[];
   isChecked: boolean = false;
+  specification: any;
+  isSpec: boolean = false;
+  public model: any;
   updateCounseling: CounselingDto = { id:0, email:'', patientDto:{}, schedule: {id:''}, report: {days:'', medicines:[]}, patientCame: false , loyaltyGroup: ''};
 
   loggedUser: any = sessionStorage.getItem('user');
@@ -62,11 +67,18 @@ export class StartCounselingComponent implements OnInit {
       for(let i of this.allDiagnosis){
         let diag = i.name;
         i.labelDiag = diag;
-        this.names.push(diag);
       }
     });
   }
 
+
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : this.names.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    )
 
   checkAvailability(){
     this.meds = [];
@@ -140,6 +152,23 @@ export class StartCounselingComponent implements OnInit {
         }
       })
     }*/
+  }
+
+  findSpecification(){
+    this.isSpec = false;
+    if(this.model != ''){
+      this.medicineService.findMedicineSpecification(this.model).subscribe(data => {
+        this.specification = data;
+        console.log(data);
+        this.isSpec = true;
+        this.toastrService.success("Slide down to see specification of requered medicine.");
+      }, error => {
+        this.toastrService.info('Pharmacy do not have that medicine.');
+      });
+    }else{
+      this.toastrService.info('Please input medicine name.');
+    }
+    
   }
 
 }

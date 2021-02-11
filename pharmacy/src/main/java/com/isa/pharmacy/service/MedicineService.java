@@ -6,6 +6,7 @@ import java.util.List;
 import com.isa.pharmacy.controller.dto.AvailabilityMedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;
@@ -96,8 +97,8 @@ public class MedicineService {
     public List<AvailabilityMedicineDto> checkAvailabilityMedicines(String pharmacyName, List<String> meds){
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
-        for(String med: meds){
-            for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
+        for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
+            for(String med: meds){
                if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName) && med.equalsIgnoreCase(mp.getMedicine().getName())){
                    AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
                    if(mp.getQuantity()>0){
@@ -127,8 +128,8 @@ public class MedicineService {
     public List<AvailabilityMedicineDto> checkAvailabilityMedicinesByPharmacist(String pharmacistEmail, List<String> meds){
         Pharmacist pharmacist = pharmacistService.findUserByEmail(pharmacistEmail);
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
-        for(String med: meds){
-            for(MedicinePharmacy mp: pharmacist.getPharmacy().getMedicinePharmacy()){
+        for(MedicinePharmacy mp: pharmacist.getPharmacy().getMedicinePharmacy()){
+            for(String med: meds){
                 if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacist.getPharmacy().getName()) && med.equalsIgnoreCase(mp.getMedicine().getName())){
                     AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
                     if(mp.getQuantity()>0){
@@ -230,7 +231,7 @@ public class MedicineService {
         if(medicine != null){
             medicineDto = MedicineMapper.mapMedicineToMedicineDto(medicine, "");
         }else{
-            throw new NullPointerException("Pharmacy don't have medicine with that name.");
+            throw new InvalidActionException("Pharmacy don't have medicine with that name.");
         }
         return medicineDto;
     }

@@ -16,6 +16,7 @@ export const MEDICINE_SEARCH_PATH = MEDICINE_PATH + '/search';
 export const MEDICINEALL_PATH = MEDICINE_PATH + '/getAllMedicines';
 export const MEDICINES_CHECK_PATH = MEDICINE_PATH + '/check';
 export const MEDICINES_CHECK_PHARMACIST_PATH = MEDICINES_CHECK_PATH + '/pharmacist';
+export const MEDICINE_SPECIFICATION_PATH = MEDICINE_PATH + '/specification';
 
 export const EPRESCRIPTION_PATH = BACKEND_PATH + '/ePrescription';
 export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';

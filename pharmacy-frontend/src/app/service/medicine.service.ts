@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, Sanitizer } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MedicineDto } from '../component/medicine/model/medicine-model';
-import { MEDICINEALL_PATH, MEDICINE_LOYALTY_PATH, MEDICINES_CHECK_PATH,MEDICINE_PATH, MEDICINE_SEARCH_PATH, MEDICINES_CHECK_PHARMACIST_PATH } from '../util/paths';
+import { MEDICINEALL_PATH, MEDICINE_LOYALTY_PATH, MEDICINES_CHECK_PATH,MEDICINE_PATH, MEDICINE_SEARCH_PATH, MEDICINES_CHECK_PHARMACIST_PATH, MEDICINE_SPECIFICATION_PATH } from '../util/paths';
 
 
 @Injectable({
@@ -71,5 +71,9 @@ export class MedicineService {
 
   checkAvailabilityMedsByPharmacist(pharmacistEmail: any, meds: any[]): Observable<any>{
     return this.httpClient.post(MEDICINES_CHECK_PHARMACIST_PATH + '/'+ pharmacistEmail, meds);
+  }
+
+  findMedicineSpecification(name: any){
+    return this.httpClient.get(MEDICINE_SPECIFICATION_PATH + '/'+ name);
   }
 }

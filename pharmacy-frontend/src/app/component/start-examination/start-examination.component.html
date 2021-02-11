@@ -60,15 +60,26 @@
             </div>
         </form>
     </div>
+    <div>
     <h3>Medicine specification</h3>
-<input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>&nbsp;
-<button class="btn btn-primary" style="width:100px;">Search</button>
-<br>
-<pre>Model: {{ model | json }}</pre>
-<br><br><br>
+        <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>&nbsp;
+        <button class="btn btn-primary" style="width:100px;" (click)="findSpecification()">Search</button>
+        <br><br>
+        <table *ngIf='isSpec && specification != null'>
+            <h5>&nbsp;&nbsp;&nbsp;{{specification.name}}</h5>
+            <tr><td>Code:</td><td>&nbsp;{{specification.code}}</td></tr>
+            <tr><td>Form:</td><td>&nbsp;{{specification.formOfMedicine}}</td></tr>
+            <tr><td>Type:</td><td>&nbsp;{{specification.typeOfMedicine}}</td></tr>
+            <tr><td>Composition:</td><td>&nbsp;{{specification.composition}}</td></tr>
+            <tr><td>Manufactured:</td><td>&nbsp;{{specification.manufactured}}</td></tr>
+            <tr><td>Publishing type:</td><td>&nbsp;{{specification.publishingType}}</td></tr>
+            <tr><td>Alternative medicines (code):</td><td>&nbsp;<span *ngFor="let alter of specification.alternative;">{{alter}}, </span></td></tr>
+            <tr><td>Note:</td><td>&nbsp;{{specification.note}}</td></tr>
+        </table>
+    </div>
 </div>
 
-
+    
 
 
 <div *ngIf='!patientCame && !toSchedule'  class="page" >

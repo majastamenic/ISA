@@ -37,6 +37,9 @@ export class StartExaminationComponent implements OnInit {
   diags:any[]=[];
   toSchedule: boolean = false;
   cannotSave: boolean = false;
+  specification: any;
+  isSpec: boolean = false;
+  public model: any;
   updateExam: ExaminationDto = { id:0, email:'', patientDto:{}, patientEmail: '', schedule: {id:''}, prescription: {days:'', diagnosis:[], medicines:[]}, pharmacyName:'', price:0,  patientCame: false };
   
   constructor(private examinationService: ExaminationService,private  medicinePharmacyService: MedicinePharmacyService, 
@@ -49,7 +52,6 @@ export class StartExaminationComponent implements OnInit {
       }
   }
 
-  public model: any;
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params =>{
@@ -73,7 +75,6 @@ export class StartExaminationComponent implements OnInit {
       for(let i of this.allDiagnosis){
         let diag = i.name;
         i.labelDiag = diag;
-        this.names.push(diag);
       }
     });
   }
@@ -168,6 +169,22 @@ export class StartExaminationComponent implements OnInit {
     scheduleExamination(){
       this.router.navigate(['/examination']);
       // proslediti i pacijenta u urlu
+    }
+
+    findSpecification(){
+      this.isSpec = false;
+      if(this.model != ''){
+        this.medicineService.findMedicineSpecification(this.model).subscribe(data => {
+          this.specification = data;
+          console.log(data);
+          this.isSpec = true;
+          this.toastrService.success("Slide down to see specification of requered medicine.");
+        }, error => {
+          this.toastrService.info('Pharmacy do not have that medicine.');
+        });
+      }else{
+        this.toastrService.info("Please input medicine name.");
+      }
     }
 
 }
