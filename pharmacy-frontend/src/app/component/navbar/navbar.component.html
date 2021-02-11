@@ -29,9 +29,6 @@
             </li>
             <!--Pharmacist-->
             <li class="nav-item">
-                <a *ngIf="userService.isUserLogin() && userService.isPharmacist()" class="nav-link" [routerLink]="'/counseling'" routerLinkActive="active">Schedule counseling</a>
-            </li>
-            <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPharmacist()" class="nav-link" [routerLink]="'/allcounselings'" routerLinkActive="active">Counseling</a>
             </li>
             <li class="nav-item">

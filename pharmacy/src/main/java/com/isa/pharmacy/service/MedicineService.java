@@ -1,18 +1,19 @@
 package com.isa.pharmacy.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.isa.pharmacy.controller.dto.AvailabilityMedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.enums.FormOfMedicine;
-import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.domain.enums.FormOfMedicine;
+import com.isa.pharmacy.domain.enums.MedicinePublishingType;
+import com.isa.pharmacy.repository.MedicineRepository;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
+import com.isa.pharmacy.users.service.PharmacistService;
 import com.isa.pharmacy.users.service.PharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,10 +21,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.repository.MedicineRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MedicineService {
@@ -37,6 +39,8 @@ public class MedicineService {
     private EmailService emailService;
     @Autowired
     private PharmacyAdminService pharmacyAdminService;
+    @Autowired
+    private PharmacistService pharmacistService;
 
     public Medicine create(Medicine medicine) {
         if (medicineRepository.findMedicineById(medicine.getId()) != null)
@@ -91,31 +95,45 @@ public class MedicineService {
 
     public List<AvailabilityMedicineDto> checkAvailabilityMedicines(String pharmacyName, List<String> meds){
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        return checkingMedicines(pharmacy, meds);
+    }
+
+
+    public List<AvailabilityMedicineDto> checkAvailabilityMedicinesByPharmacist(String pharmacistEmail, List<String> meds){
+        Pharmacy pharmacy =  pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
+        return checkingMedicines(pharmacy, meds);
+    }
+
+
+    public List<AvailabilityMedicineDto> checkingMedicines(Pharmacy pharmacy, List<String> meds){
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
-        for(String med: meds){
-            for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
-               if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName) && med.equalsIgnoreCase(mp.getMedicine().getName())){
-                   AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
-                   if(mp.getQuantity()>0){
-                       availMed.setAvailable(true);
-                   }
-                   else{
-                       List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacyName);
-                       for(PharmacyAdmin pa: pharmacyAdmins){
-                           String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
-                           emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, mp.getMedicine().getName());
-                       }
-                       availMed.setAvailable(false);
-                       List<String> alternative = getAllMedicinesById(mp.getMedicine().getReplacementMedicines());
-                       availMed.setAlternative(alternative);
-                   }
-                   availMed.setId(mp.getId());
-                   availMed.setName(med);
-                   availabilityMedicineDtos.add(availMed);
-               }
+        for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
+            for(String med: meds){
+                if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacy.getName()) && med.equalsIgnoreCase(mp.getMedicine().getName())){
+                    AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
+                    if(mp.getQuantity()>0){
+                        availMed.setAvailable(true);
+                    }
+                    else{
+                        List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacy.getName());
+                        notifyPharmacyAdminsAboutMedicine(pharmacyAdmins, mp.getMedicine().getName());
+                        availMed.setAvailable(false);
+                        availMed.setAlternative(getAllMedicinesById(mp.getMedicine().getReplacementMedicines()));
+                    }
+                    availMed.setId(mp.getId());
+                    availMed.setName(med);
+                    availabilityMedicineDtos.add(availMed);
+                }
             }
         }
         return availabilityMedicineDtos;
+    }
+
+    public void notifyPharmacyAdminsAboutMedicine(List<PharmacyAdmin> pharmacyAdmins, String medicineName){
+        for(PharmacyAdmin pa: pharmacyAdmins){
+            String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
+            emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, medicineName);
+        }
     }
 
     public MedicineLoyaltyDto changeLoyalty(MedicineLoyaltyDto medicineLoyaltyDto) {
@@ -185,6 +203,18 @@ public class MedicineService {
 
     public void update(Medicine medicine){
         medicineRepository.save(medicine);
+    }
+
+
+    public MedicineDto findMedicineSpecification(String name){
+        Medicine medicine = findByName(name);
+        MedicineDto medicineDto = new MedicineDto();
+        if(medicine != null){
+            medicineDto = MedicineMapper.mapMedicineToMedicineDto(medicine, "");
+        }else{
+            throw new InvalidActionException("Pharmacy don't have medicine with that name.");
+        }
+        return medicineDto;
     }
 
 }

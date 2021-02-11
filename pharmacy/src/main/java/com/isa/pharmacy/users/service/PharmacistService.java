@@ -3,6 +3,7 @@ package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
+import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
@@ -117,4 +118,6 @@ public class PharmacistService {
         }
         return freePharmacists;
     }
+
+    //public List<Counseling>
 }
