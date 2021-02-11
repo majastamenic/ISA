@@ -6,7 +6,6 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.CounselingRepository;
 import com.isa.pharmacy.scheduling.service.ScheduleService;

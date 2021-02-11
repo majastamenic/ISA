@@ -145,22 +145,25 @@ public class ExaminationService {
         if(updated != null){
             Dermatologist dermatologist = dermatologistService.findUserByEmail(updateExamination.getEmail());
             Patient patient = patientService.getPatient(updateExamination.getPatientDto().getUser().getEmail());
+            List<Diagnosis> diagnosis = diagnosisService.getAllDiagnosisById(updateExamination.getPrescription().getDiagnosis());
+            List<Medicine> medicines = medicineService.getAllMedicinesByCode(updateExamination.getPrescription().getMedicines());
+            medicines = medicineService.decreaseQuantityInPharmacy(medicines, updateExamination.getPharmacyName());
             if(!updateExamination.getPatientCame()){
                 patient.setPenal(patient.getPenal() + 1);
                 patientService.save(patient);
             }
             Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
-            List<Diagnosis> diagnosis = diagnosisService.getAllDiagnosisById(updateExamination.getPrescription().getDiagnosis());
-            List<Medicine> medicines = medicineService.getAllMedicinesByCode(updateExamination.getPrescription().getMedicines());
-            medicines = medicineService.decreaseQuantityInPharmacy(medicines, updateExamination.getPharmacyName());
             Prescription prescription = new Prescription();
             prescription.setMedicines(medicines);
             prescription.setDiagnosis(diagnosis);
             prescription.setDays(updateExamination.getPrescription().getDays());
             prescriptionService.save(prescription);
-            ePrescriptionService.createEPrescription(prescription, patient);
+            if(prescription.getMedicines() != null && prescription.getDays() != null){
+                ePrescriptionService.createEPrescription(prescription, patient);
+            }
             exam.setPrescription(prescription);
             exam = ExaminationMapper.mapExaminationDtoToExamination(updateExamination, dermatologist, patient, pharmacy, prescription, updated.getSchedule());
+            exam.setLoyaltyGroup(updated.getLoyaltyGroup());
             prescriptionService.save(prescription);
             examinationRepository.save(exam);
         }else{
