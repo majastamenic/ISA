@@ -255,9 +255,6 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.75, 1420, 3, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(3.00, 0, 4, 1);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.25, 2150, 5, 1);
-insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 1);
-insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (2, 2);
-insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (3, 3);
 
 -- MedicinePharmacy: Benu
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 15, 1, 2);

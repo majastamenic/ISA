@@ -33,6 +33,9 @@ export class StartCounselingComponent implements OnInit {
   specification: any;
   isSpec: boolean = false;
   public model: any;
+  toSchedule: boolean = false;
+  cannotSave: boolean = false;
+  patientCame: boolean = false;
   updateCounseling: CounselingDto = { id:0, email:'', patientDto:{}, schedule: {id:''}, report: {days:'', medicines:[]}, patientCame: false , loyaltyGroup: ''};
 
   loggedUser: any = sessionStorage.getItem('user');
@@ -103,56 +106,6 @@ export class StartCounselingComponent implements OnInit {
     this.toastrService.success('Counseling has been canceled.');
   }
 
-  saveCounseling(came: boolean){
-    /*this.cannotSave = false;
-    this.updateExam.id = this.examination.id;
-    this.updateExam.email = this.examination.email;
-    this.updateExam.patientDto = this.examination.patientDto;
-    this.updateExam.schedule = this.examination.schedule;
-    this.updateExam.pharmacyName = this.examination.pharmacyName;
-    this.updateExam.price = this.examination.price;
-    this.updateExam.patientCame = came;
-    this.updateExam.prescription.diagnosis = [];
-    this.updateExam.prescription.medicines = [];
-    if(came == true){
-      for(let d of this.selectedDiag){
-        for(let dia of this.allDiagnosis){
-          if(d.name == dia.name){
-            this.updateExam.prescription.diagnosis.push(dia.id);
-          }
-        }
-      }
-      for(let m of this.selectedMeds){
-        for(let a of this.availableMeds){
-          if(a.name == m.medicine.name){
-            if(a.available){
-              for(let mia of this.medicines){
-                if(m.medicine.name == mia.medicine.name){
-                  this.updateExam.prescription.medicines.push(mia.medicine.code);
-                }
-              }
-            }else{
-              this.cannotSave = true;
-              this.toastrService.error("Examination cannot be saved, because some medicines are not available.");
-            }
-          }
-        }
-      }    
-    }*/
-
-    /*if(!this.cannotSave){
-      this.examinationService.updateExamination(this.updateExam).subscribe(exam => {
-        console.log(exam);
-        if(came == true){
-          this.toSchedule = true;
-          this.toastrService.success("Examination is saved.");
-        }else{
-          this.router.navigate(['/home']);
-          this.toastrService.success("Examination is finished. Patient didn't come.");
-        }
-      })
-    }*/
-  }
 
   findSpecification(){
     this.isSpec = false;
@@ -168,7 +121,26 @@ export class StartCounselingComponent implements OnInit {
     }else{
       this.toastrService.info('Please input medicine name.');
     }
-    
   }
+
+
+
+  // do ovde je okej
+
+  saveCounseling(came: boolean){
+    // blabla
+  }
+
+  
+  patientIsHere(){
+    this.patientCame = true;
+    this.toastrService.info("Patient is here! Fill in report of counseling.");
+  }
+
+  scheduleCounseling(){
+    //this.router.navigate(['/examination']);
+    // proslediti i pacijenta u urlu
+  }
+
 
 }

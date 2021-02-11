@@ -97,27 +97,31 @@ public class MedicineService {
     public List<AvailabilityMedicineDto> checkAvailabilityMedicines(String pharmacyName, List<String> meds){
         Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
-        for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
-            for(String med: meds){
-               if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName) && med.equalsIgnoreCase(mp.getMedicine().getName())){
-                   AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
-                   if(mp.getQuantity()>0){
-                       availMed.setAvailable(true);
-                   }
-                   else{
-                       List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacyName);
-                       for(PharmacyAdmin pa: pharmacyAdmins){
-                           String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
-                           emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, mp.getMedicine().getName());
-                       }
-                       availMed.setAvailable(false);
-                       List<String> alternative = getAllMedicinesById(mp.getMedicine().getReplacementMedicines());
-                       availMed.setAlternative(alternative);
-                   }
-                   availMed.setId(mp.getId());
-                   availMed.setName(med);
-                   availabilityMedicineDtos.add(availMed);
-               }
+        int br = 0;
+        for(String med: meds){
+            br += 1;
+            if(br <= meds.size()){
+                for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
+                    if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacyName) && med.equalsIgnoreCase(mp.getMedicine().getName())){
+                        AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
+                        if(mp.getQuantity()>0){
+                            availMed.setAvailable(true);
+                        }
+                        else{
+                            List<PharmacyAdmin> pharmacyAdmins = pharmacyAdminService.findPharmacyAdminByPharmacy(pharmacyName);
+                            for(PharmacyAdmin pa: pharmacyAdmins){
+                                String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
+                                emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, mp.getMedicine().getName());
+                            }
+                            availMed.setAvailable(false);
+                            List<String> alternative = getAllMedicinesById(mp.getMedicine().getReplacementMedicines());
+                            availMed.setAlternative(alternative);
+                        }
+                        availMed.setId(mp.getId());
+                        availMed.setName(med);
+                        availabilityMedicineDtos.add(availMed);
+                    }
+                }
             }
         }
         return availabilityMedicineDtos;

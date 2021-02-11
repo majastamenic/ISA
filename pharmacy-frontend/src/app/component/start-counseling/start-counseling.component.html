@@ -1,4 +1,4 @@
-<div class="page">
+<div *ngIf='patientCame && !toSchedule' class="page">
     <div class="form">
         <form class="ngform" style="width: 600px">
             <h2>Counseling</h2>
@@ -77,4 +77,17 @@
                 <tr><td>Note:</td><td>&nbsp;{{specification.note}}</td></tr>
             </table>
         </div>
+</div>
+
+
+
+<div *ngIf='!patientCame && !toSchedule'  class="page" >
+    <button class="btn btn-secondary" style="width:200px;" (click)="saveCounseling(false)">Patient didn't came</button>&nbsp;
+    <button class="btn btn-primary" style="width:200px;" (click)="patientIsHere()">Patient came</button>
+</div>
+
+<div *ngIf='toSchedule'  class="page" >
+    <h1>Do you want to schedule new Examination?</h1>
+    <button class="btn btn-secondary" style="width:100px;" (click)="cancelCounseling()">No</button>&nbsp;
+    <button class="btn btn-primary" style="width:100px;" (click)="scheduleCounseling()">Yes</button>
 </div>
