@@ -17,7 +17,6 @@ public class CounselingMapper {
         counseling.setId(counselingDto.getId());
         counseling.setPatientCame(counselingDto.getPatientCame());
         counseling.setSchedule(counselingDto.getSchedule());
-        counseling.setPatient(PatientMapper.mapPatientDtoToPatient(counselingDto.getPatientDto()));
         return counseling;
     }
 

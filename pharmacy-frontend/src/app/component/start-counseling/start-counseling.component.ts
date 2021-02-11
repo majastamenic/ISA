@@ -20,10 +20,7 @@ export class StartCounselingComponent implements OnInit {
 
   id: any;
   counseling: any;
-  allDiagnosis: any[]=[];
-  diagnosis: Diagnosis={name:''};
   names: any[]=[];
-  selectedDiag: any[]=[];
   selectedMeds: any[]=[];
   examination: any;
   medicines: any[]=[];
@@ -36,42 +33,43 @@ export class StartCounselingComponent implements OnInit {
   toSchedule: boolean = false;
   cannotSave: boolean = false;
   patientCame: boolean = false;
-  updateCounseling: CounselingDto = { id:0, email:'', patientDto:{}, schedule: {id:''}, report: {days:'', medicines:[]}, patientCame: false , loyaltyGroup: ''};
+  days: any;
+  updateCouns: CounselingDto = { id:0, email:'', patientDto:{}, schedule: {id:''}, report: {days:'', medicines:[]}, patientCame: false , loyaltyGroup: ''};
 
   loggedUser: any = sessionStorage.getItem('user');
   loggedUserRole: any = sessionStorage.getItem('role');
 
-  constructor(private allCounseling: CounselingsService, private diagnosisService: DiagnosisService, 
-    private  medicinePharmacyService: MedicinePharmacyService, private medicineService: MedicineService,
+  constructor(private allCounseling: CounselingsService, private  medicinePharmacyService: MedicinePharmacyService, private medicineService: MedicineService,
     private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService,
-    private router: Router,) { }
+    private router: Router,) { 
+      if(!this.loggedUser){
+        this.router.navigate(['login']);
+        toastrService.info('Please login first!');
+      }
+  }
 
   ngOnInit(): void {
-    this._ActivatedRoute.paramMap.subscribe(params =>{
-      this.id = params.get('id');
-      this.allCounseling.startCounseling(this.id).subscribe(startCoun =>{
-        this.counseling = startCoun;
-        console.log(startCoun);
-        this.medicinePharmacyService.getMedicinesByPharmacist(this.loggedUser, this.counseling.patientDto.user.email).subscribe((data: any[]) => {
-          this.medicines = data;
-          console.log(this.medicines);
-          for(let i of this.medicines){
-            let med = i.medicine.name;
-            i.label = med;
-            this.names.push(med);
-          }
-        });
+    if(this.loggedUserRole == 'PHARMACIST'){
+      this._ActivatedRoute.paramMap.subscribe(params =>{
+        this.id = params.get('id');
+        this.allCounseling.startCounseling(this.id).subscribe(startCoun =>{
+          this.counseling = startCoun;
+          console.log(startCoun);
+          this.medicinePharmacyService.getMedicinesByPharmacist(this.loggedUser, this.counseling.patientDto.user.email).subscribe((data: any[]) => {
+            this.medicines = data;
+            console.log(this.medicines);
+            for(let i of this.medicines){
+              let med = i.medicine.name;
+              i.label = med;
+              this.names.push(med);
+            }
+          });
+        })
       })
-    })
-
-    this.diagnosisService.getDiagnosis().subscribe((data: any[]) => {
-      this.allDiagnosis = data;
-      console.log(this.allDiagnosis);
-      for(let i of this.allDiagnosis){
-        let diag = i.name;
-        i.labelDiag = diag;
-      }
-    });
+    }else{
+      this.router.navigate(['home']);
+      this.toastrService.error('You do not have access rights for this page!');
+    }
   }
 
 
@@ -126,16 +124,44 @@ export class StartCounselingComponent implements OnInit {
 
 
   // do ovde je okej
-
   saveCounseling(came: boolean){
+    this.cannotSave = false;
+    this.updateCouns.id = this.counseling.id;
+    this.updateCouns.email = this.counseling.email;
+    this.updateCouns.patientDto = this.counseling.patientDto;
+    this.updateCouns.schedule = this.counseling.schedule;
+    this.updateCouns.patientCame = came;
+    this.updateCouns.report.medicines = [];
+    if(came == true){
+      for(let m of this.selectedMeds){
+        for(let a of this.availableMeds){
+          if(a.name == m.medicine.name){
+            if(a.available){
+              for(let mia of this.medicines){
+                if(m.medicine.name == mia.medicine.name){
+                  this.updateCouns.report.medicines.push(mia.medicine.code);
+                }
+              }
+            }else{
+              this.cannotSave = true;
+              this.toastrService.error("Counseling cannot be saved, because some medicines are not available.");
+            }
+          }
+        }
+      }    
+    }
+
     if(!this.cannotSave){
-      if(came == true){
-        this.toSchedule = true;
-        this.toastrService.success("Examination is saved.");
-      }else{
-        this.router.navigate(['/home']);
-        this.toastrService.success("Examination is finished. Patient didn't come.");
-      }
+      this.allCounseling.updateCounseling(this.updateCouns).subscribe(couns => {
+        console.log(couns);
+        if(came == true){
+          this.toSchedule = true;
+          this.toastrService.success("Counseling is saved.");
+        }else{
+          this.router.navigate(['/home']);
+          this.toastrService.success("Counseling is finished. Patient didn't come.");
+        }
+      })
     }
   }
 

@@ -147,6 +147,7 @@ public class ExaminationService {
             Patient patient = patientService.getPatient(updateExamination.getPatientDto().getUser().getEmail());
             if(!updateExamination.getPatientCame()){
                 patient.setPenal(patient.getPenal() + 1);
+                patientService.save(patient);
             }
             Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
             List<Diagnosis> diagnosis = diagnosisService.getAllDiagnosisById(updateExamination.getPrescription().getDiagnosis());

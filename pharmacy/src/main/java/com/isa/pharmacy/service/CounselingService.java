@@ -94,27 +94,31 @@ public class CounselingService {
 
     public CounselingDto updateCounseling(CounselingDto updateCounseling) {
         Counseling updated = counselingRepository.findCounselingById(updateCounseling.getId());
-        Counseling couns = new Counseling();
         if(updated != null){
             Pharmacist pharmacist = pharmacistService.findUserByEmail(updateCounseling.getEmail());
             Patient patient = patientService.getPatient(updateCounseling.getPatientDto().getUser().getEmail());
-            if(!updateCounseling.getPatientCame()){
-                patient.setPenal(patient.getPenal() + 1);
-            }
             List<Medicine> medicines = medicineService.getAllMedicinesByCode(updateCounseling.getReport().getMedicines());
             medicines = medicineService.decreaseQuantityInPharmacy(medicines, pharmacist.getPharmacy().getName());
-            Report report = new Report();
-            report.setMedicines(medicines);
-            report.setDays(updateCounseling.getReport().getDays());
-            reportService.save(report);
-            couns.setReport(report);
-            couns = CounselingMapper.mapCounselingDtoToCounseling(updateCounseling);
-            reportService.save(report);
+            Counseling couns = CounselingMapper.mapCounselingDtoToCounseling(updateCounseling);
+            couns.setPharmacist(pharmacist);
+            couns.setLoyaltyGroup(updated.getLoyaltyGroup());
+            if(!couns.getPatientCame()){
+                patient.setPenal(patient.getPenal()+1);
+                patientService.save(patient);
+            }else{
+                Report report = new Report();
+                report.setMedicines(medicines);
+                report.setDays(updateCounseling.getReport().getDays());
+                reportService.save(report);
+                couns.setReport(report);
+                reportService.save(report);
+            }
+            couns.setPatient(patient);
+            patientService.save(patient);
             counselingRepository.save(couns);
         }else{
             throw new NotFoundException("Counseling not found.");
         }
-
         return updateCounseling;
     }
 

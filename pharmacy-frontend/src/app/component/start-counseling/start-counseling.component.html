@@ -11,17 +11,6 @@
             </div>
             <hr>
             <br>
-            <div style="width: 250px;">
-                <ng-select [items]="allDiagnosis"
-                    bindLabel="labelDiag"
-                    placeholder="Select diagnosis"
-                    appendTo="body"
-                    [multiple]="true"
-                    [(ngModel)]="selectedDiag"
-                    name="selectedDiag">
-                </ng-select>
-            </div>
-            <br><br>
             <div>
                 <div style="width: 250px;">
                     <ng-select [items]="medicines"
@@ -32,7 +21,7 @@
                         [(ngModel)]="selectedMeds"
                         name="selectedMeds" [disabled]="isChecked">
                     </ng-select>
-                    <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="updateCounseling.report.days" name="days" style="width:100px" [disabled]="isChecked" required>
+                    <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="updateCouns.report.days" name="days" style="width:100px" [disabled]="isChecked" required>
                 </div>
                 <button class="btn btn-secondary" style="width:100px;" (click)="checkAvailability()" [disabled]="isChecked">Check</button>&nbsp;&nbsp;
                 <button *ngIf='isChecked' class="btn btn-secondary" style="width:150px;" (click)="checkAvailabilityCancel()">Cancel check</button>
