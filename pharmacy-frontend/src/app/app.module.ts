@@ -66,6 +66,7 @@ import { ScheduleExaminationDermatologistComponent } from './component/schedule-
 import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
 import { StartExaminationComponent } from './component/start-examination/start-examination.component';
 import { WorkScheduleComponent } from './component/work-schedule/work-schedule.component';
+import { EPrescriptionsComponent } from './component/patient/e-prescriptions/e-prescriptions.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -127,6 +128,7 @@ FullCalendarModule.registerPlugins([
     CounselingScheduleComponent,
     SubscribeListComponent,
     SubscribeListComponent,
+    EPrescriptionsComponent,
   ],
   imports: [
     BrowserModule,

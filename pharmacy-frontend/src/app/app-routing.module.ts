@@ -45,6 +45,7 @@ import { CounselingScheduleComponent } from './component/patient/counseling-sche
 import { SubscribeListComponent } from './component/patient/subscribe-list/subscribe-list.component';
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
+import { EPrescriptionsComponent } from './component/patient/e-prescriptions/e-prescriptions.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,7 @@ const routes: Routes = [
   //Patient
   { path: 'actions', component: ActionsBenefitsComponent },
   { path: 'uploadQR', component: UploadQRComponent },
+  { path: 'eprescriptions', component: EPrescriptionsComponent },
   { path: 'subscribe-list', component: SubscribeListComponent},
   { path: 'add-complaint', component: ComplaintMessageComponent},
 

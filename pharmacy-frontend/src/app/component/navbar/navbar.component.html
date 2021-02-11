@@ -9,7 +9,7 @@
             </li>
             <!--Patient-->
             <li class="nav-item">
-                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/uploadQR'" routerLinkActive="active">Upload QR-code</a>
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/eprescriptions'" routerLinkActive="active">E-prescriptions</a>
             </li>
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/add-complaint'" routerLinkActive="active">Complaints</a>
