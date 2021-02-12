@@ -32,9 +32,10 @@ export class PublishingReservedMedicineComponent implements OnInit {
           this.toastrService.success("Reservation is accepted.");
           window.location.reload();
         }else{
-          window.location.reload();
-          this.toastrService.success("Reservation code is not valid.");
+          this.toastrService.error("Reservation code is not valid.");
         }
+      }, error => {
+        this.toastrService.error('Error.');
       })
     }else{
       this.router.navigate(['home']);

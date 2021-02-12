@@ -7,7 +7,9 @@ import com.isa.pharmacy.repository.MedicineReservationRepository;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
 import com.isa.pharmacy.service.interfaces.IMedicineReservationService;
+import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.interfaces.IPatientService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,8 @@ public class MedicineReservationService implements IMedicineReservationService {
     private IPatientService patientService;
     @Autowired
     private IMedicinePharmacyService medicinePharmacyService;
+    @Autowired
+    private IPharmacistService pharmacistService;
 
 
     public List<MedicineReservation> getAllReservationsByPatient(String patientEmail){
@@ -48,14 +52,17 @@ public class MedicineReservationService implements IMedicineReservationService {
 
     public boolean acceptReservation(String email, Long code){
         MedicineReservation medicineReservation = medicineReservationRepository.findMedicineReservationByCode(code);
+        Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
         DateManipulation dm = new DateManipulation();
         int minutes = 60*24;
         Date currentDate = dm.addMinutes(new Date(), minutes);
-        if(medicineReservation != null && medicineReservation.getTaken() == null && currentDate.before(medicineReservation.getDueDate())){
+        if(medicineReservation != null && medicineReservation.getTaken() == null && currentDate.before(medicineReservation.getDueDate()) &&
+                pharmacist != null && pharmacist.getPharmacy().getName().equals(medicineReservation.getMedicinePharmacy().getPharmacy().getName())){
             medicineReservation.setTaken(true);
             medicineReservationRepository.save(medicineReservation);
             patientService.save(medicineReservation.getPatient());
             medicinePharmacyService.save(medicineReservation.getMedicinePharmacy());
+            emailService.successfulPublishingReservation(medicineReservation);
             return true;
         }else if(medicineReservation == null){
             throw new NotFoundException("Reservation doesn't exist.");
