@@ -66,6 +66,7 @@ export const EXAMINATION_START_PATH = EXAMINATION_PATH + '/start';
 export const EXAMINATION_UPDATE_PATH = EXAMINATION_PATH + '/update';
 export const PATIENT_EXAMINATIONS = EXAMINATION_PATH + '/scheduled';
 export const FREE_EXAM_TERMS_WORKER_PATH = EXAMINATION_PATH + '/free';
+export const CREATE_EXAMINATION_DERMATOLOGIST_PATH = EXAMINATION_PATH + '/create/dermatologist';
 
 export const DIAGNOSIS_PATH = BACKEND_PATH + '/diagnosis';
 export const DIAGNOSIS_ADD_PATH = DIAGNOSIS_PATH + '/add';

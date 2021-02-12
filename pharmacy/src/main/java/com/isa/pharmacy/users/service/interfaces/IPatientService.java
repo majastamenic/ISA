@@ -1,6 +1,8 @@
 package com.isa.pharmacy.users.service.interfaces;
 
 import com.isa.pharmacy.users.domain.Patient;
+
+import java.util.Date;
 import java.util.List;
 
 public interface IPatientService {
@@ -17,4 +19,6 @@ public interface IPatientService {
      void deletePatient(long id);
 
      Patient save(Patient p);
+
+     boolean patientIsFree(Patient patient, Date start, Date end);
 }

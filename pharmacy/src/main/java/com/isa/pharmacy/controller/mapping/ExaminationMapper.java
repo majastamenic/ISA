@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
+import com.isa.pharmacy.controller.dto.ExaminationCreateDto;
 import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Pharmacy;
@@ -58,5 +59,6 @@ public class ExaminationMapper {
             freeExaminations.add(mapExaminationToExaminationUpcomingDto(exam));
         return freeExaminations;
     }
+
 
 }

@@ -1,13 +1,18 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
+import com.isa.pharmacy.controller.dto.ExaminationCreateDto;
+import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
+import com.isa.pharmacy.controller.mapping.ScheduleMapper;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.ExaminationRepository;
-import com.isa.pharmacy.domain.Examination;
-import com.isa.pharmacy.domain.Prescription;
+import com.isa.pharmacy.scheduling.DateManipulation;
+import com.isa.pharmacy.scheduling.domain.Schedule;
+import com.isa.pharmacy.scheduling.service.interfaces.IScheduleService;
+import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
 import com.isa.pharmacy.service.interfaces.*;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.PatientMapper;
@@ -20,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -43,6 +49,10 @@ public class ExaminationService implements IExaminationService {
     private IMedicineService medicineService;
     @Autowired
     private IEPrescriptionService ePrescriptionService;
+    @Autowired
+    private IWorkScheduleService workScheduleService;
+    @Autowired
+    private IScheduleService scheduleService;
 
 
     public Examination save(Examination examination){
@@ -101,9 +111,6 @@ public class ExaminationService implements IExaminationService {
         List<ExamDermatologistDto> examDermatologistDtos = new ArrayList<>();
         if(examinations.isEmpty() == false){
             for(Examination e : examinations){
-                if(e.getPrescription() == null){
-                    e.setPrescription(new Prescription());
-                }
                 if(e.getPatient() != null){
                     PatientDto patientDto = PatientMapper.mapPatientToPatientDto(e.getPatient());
                     ExamDermatologistDto examDermatologistDto = ExaminationMapper.mapExaminationToExaminationDto(e, patientDto);
@@ -114,8 +121,8 @@ public class ExaminationService implements IExaminationService {
         return examDermatologistDtos;
     }
 
+
     public ExamDermatologistDto getById(long id) {
-        // provera vremena
         Examination examination = examinationRepository.findExaminationById(id);
         if(examination == null)
             throw new NotFoundException("Examination is not found.");
@@ -190,5 +197,48 @@ public class ExaminationService implements IExaminationService {
         return freeExaminations;
     }
 
+
+    public boolean createExaminationByDermatologist(ExaminationCreateDto examinationCreateDto){
+        DateManipulation dm = new DateManipulation();
+        Date start = dm.mergeDateAndTime(examinationCreateDto.getSchedule().getStartDate(), examinationCreateDto.getSchedule().getStartTime());
+        Date end = dm.mergeDateAndTime(examinationCreateDto.getSchedule().getEndDate(), examinationCreateDto.getSchedule().getEndTime());
+        ExamDermatologistDto oldExamination = getById(examinationCreateDto.getOldExaminationId());
+        Dermatologist dermatologist = dermatologistService.findUserByEmail(oldExamination.getEmail());
+        String pharmacyName = oldExamination.getPharmacyName();
+        Patient patient = patientService.getPatient(oldExamination.getPatientDto().getUser().getEmail());
+        List <WorkSchedulePharmacyDto> dermatologistWork = workScheduleService.getWorkScheduleByDermatologist(dermatologist.getUser().getEmail());
+        if(workScheduleService.dermatologistIsWorking(examinationCreateDto, dermatologist, pharmacyName)){
+            if(dermatologistNotOnExamination(dermatologist, start, end)){
+                if(patientService.patientIsFree(patient, start, end)){
+                    Examination examination = new Examination();
+                    Schedule schedule = ScheduleMapper.mapWorkScheduleDtoToSchedule(examinationCreateDto.getSchedule());
+                    examination.setDermatologist(dermatologist);
+                    examination.setPharmacy(pharmacyService.getPharmacyByName(pharmacyName));
+                    examination.setPatient(patient);
+                    examination.setSchedule(schedule);
+                    scheduleService.save(schedule);
+                    save(examination);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    public boolean dermatologistNotOnExamination(Dermatologist dermatologist, Date start, Date end){
+        List<Examination> examinations = examinationRepository.findByDermatologist(dermatologist);
+        DateManipulation dm = new DateManipulation();
+        for(Examination exam: examinations){
+            Date startExam = dm.mergeDateAndTime(exam.getSchedule().getStartDate(), exam.getSchedule().getStartTime());
+            Date endExam = dm.mergeDateAndTime(exam.getSchedule().getEndDate(), exam.getSchedule().getEndTime());
+            if((start.before(startExam) && end.before(startExam)) || (start.after(endExam) && end.after(endExam))){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

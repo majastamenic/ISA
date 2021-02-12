@@ -3,7 +3,7 @@
         <form class="ngform" style="width:500px;">
             <h3>Schedule examination</h3>
             <br><br>
-            <form class="form-inline">
+            <form class="form-inline" class="d-flex justify-content-center">
                 <div class="form-group">
                     <div class="input-group">
                         <label>Date:</label>
@@ -16,8 +16,9 @@
                     </div>
                 </div>
             </form>
-            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="startTime" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
-            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="endTime" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
+            
+            <label>From:</label><ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="startTime" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
+            <label>To:</label><ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="endTime" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
             <br>
             <button class="btn btn-primary" (click)="schedule()">Schedule</button>
         </form>

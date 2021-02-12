@@ -1,6 +1,8 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
+import com.isa.pharmacy.controller.dto.ExaminationCreateDto;
 import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 
@@ -70,6 +72,11 @@ public class ExaminationController {
         List<Examination> examinations = examinationService.getFreeExaminationsByDermatologist(email);
         List<ExaminationUpcomingDto> examinationUpcomingDtos = ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinations);
         return examinationUpcomingDtos;
+    }
+
+    @PostMapping("create/dermatologist")
+    public boolean createExaminationByDermatologist(@RequestBody ExaminationCreateDto examinationCreateDto){
+        return  examinationService.createExaminationByDermatologist(examinationCreateDto);
     }
 
 }

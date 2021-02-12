@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ExaminationService } from 'src/app/service/examination.service';
 
 @Component({
   selector: 'app-schedule-examination-dermatologist',
@@ -18,9 +19,9 @@ export class ScheduleExaminationDermatologistComponent implements OnInit {
   endTime = { hour: this.startTime.hour, minute: this.startTime.minute};
   minuteStep = 30;
 
-  examination: any = { oldExam: {id:''}, schedule: {startDate:'', endDate:'', startTime:'', endTime:''}};
+  examination: any = { oldExaminationId: {id:''}, schedule: {startDate:'', endDate:'', startTime:'', endTime:''}};
 
-  constructor( private router: Router,
+  constructor( private router: Router, private examinationService: ExaminationService,
     private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService) { 
     if(!this.loggedUser){
       this.router.navigate(['login']);
@@ -43,24 +44,27 @@ export class ScheduleExaminationDermatologistComponent implements OnInit {
 
 
   schedule() {
-    /*const counseling = {
+    const examination = {
       schedule: {
         startDate: `${this.model.year}-${this.model.month}-${this.model.day}`,
         endDate: `${this.model.year}-${this.model.month}-${this.model.day}`,
         startTime: `${this.startTime.hour}:${this.startTime.minute}:00`,
         endTime: `${this.endTime.hour}:${this.endTime.minute}:00`
       }, 
-      patientEmail: this.pathParam,
-      pharmacistEmail: this.loggedUser
-    }*/
+      oldExaminationId: this.pathParam
+    }
 
-    /*this.counselingService.createCounselingByPharmacist(counseling).subscribe(data => {
+    this.examinationService.createExaminationByDermatologist(examination).subscribe(data => {
       console.log(data);
-      this.toastrService.success('Counseling is scheduled.');
-      this.router.navigate(['home'])
+      if(data == true){
+        this.toastrService.success('Examination is scheduled.');
+        this.router.navigate(['home'])
+      }else{
+        this.toastrService.error('Required term is occupied.');
+      }
     }, error => {
-      this.toastrService.error('Required term is occupied.');
-    });*/
+      this.toastrService.error('Error. Try again.');
+    });
   }
 
 }

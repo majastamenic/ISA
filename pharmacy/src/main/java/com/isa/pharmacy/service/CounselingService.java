@@ -7,7 +7,6 @@ import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.CounselingRepository;
@@ -99,7 +98,7 @@ public class CounselingService implements ICounselingService {
         if(workScheduleService.pharmacistIsWorking(pharmacist, counselingDto)) {
             boolean validCouns = pharmacistOnCounseling(pharmacist, start, end);
             if (validCouns) {
-                boolean validTerm = patientIsFree(patient, start, end);
+                boolean validTerm = patientService.patientIsFree(patient, start, end);
                 if (validTerm) {
                     Counseling counseling = CounselingMapper.mapCounselingCreateDtoToCounseling(counselingDto);
                     counseling.setPharmacist(pharmacist);
@@ -119,7 +118,6 @@ public class CounselingService implements ICounselingService {
     public boolean pharmacistOnCounseling(Pharmacist pharmacist, Date start, Date end){
         List<Counseling> pharmacistCouns = getCounselingByPharmacist(pharmacist);
         DateManipulation dm = new DateManipulation();
-        boolean validCouns = false;
         for(Counseling c: pharmacistCouns){
             Date startCouns = dm.mergeDateAndTime(c.getSchedule().getStartDate(), c.getSchedule().getStartTime());
             Date endCouns = dm.mergeDateAndTime(c.getSchedule().getEndDate(), c.getSchedule().getEndTime());
@@ -132,32 +130,7 @@ public class CounselingService implements ICounselingService {
         return true;
     }
 
-    public boolean patientIsFree(Patient patient, Date start, Date end){
-        List<Counseling> patientCouns = counselingRepository.findCounselingByPatient_User_Email(patient.getUser().getEmail());
-        List<Examination> patientExams = examinationService.getExaminationByPatient(patient.getUser().getEmail());
-        DateManipulation dm = new DateManipulation();
-        boolean validTerm = false;
-        for(Counseling c: patientCouns){
-            Date startCouns = dm.mergeDateAndTime(c.getSchedule().getStartDate(), c.getSchedule().getStartTime());
-            Date endCouns = dm.mergeDateAndTime(c.getSchedule().getEndDate(), c.getSchedule().getEndTime());
-            if((start.before(startCouns) && end.before(startCouns)) || (start.after(endCouns) && end.after(endCouns))){
-                continue;
-            }else{
-                return false;
-            }
-        }
-        for(Examination e : patientExams){
-            Date startExam = dm.mergeDateAndTime(e.getSchedule().getStartDate(), e.getSchedule().getEndTime());
-            Date endExam = dm.mergeDateAndTime(e.getSchedule().getEndDate(), e.getSchedule().getEndTime());
-            if((start.before(startExam) && end.before(startExam)) || (start.after(endExam) && end.after(endExam))){
-                continue;
-            }else{
-                return false;
-            }
-        }
 
-        return true;
-    }
 
 
 
