@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PharmacistService } from 'src/app/service/pharmacist.service';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-pharmacy-profile',
@@ -15,8 +16,10 @@ export class PharmacyProfileComponent implements OnInit {
   loginUser: string = '';
 
   pharmacyName: any;
-  constructor(private _ActivatedRoute: ActivatedRoute, private pharmacyService: PharmacyService,
-    private toastrService: ToastrService) {
+  constructor(private _ActivatedRoute: ActivatedRoute, 
+              private pharmacyService: PharmacyService,
+              public userService: UserService,
+              private toastrService: ToastrService) {
    }
 
   ngOnInit(): void {

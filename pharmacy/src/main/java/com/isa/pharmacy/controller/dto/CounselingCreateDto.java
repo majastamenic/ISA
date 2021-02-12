@@ -1,5 +1,7 @@
 package com.isa.pharmacy.controller.dto;
 
+import java.util.Date;
+
 public class CounselingCreateDto {
     private long id;
     private String pharmacistEmail;
@@ -46,5 +48,9 @@ public class CounselingCreateDto {
 
     public void setSchedule(WorkScheduleDto schedule) {
         this.schedule = schedule;
+    }
+
+    public void serScheduleEndTime(Date endTime){
+        this.schedule.setEndTime(endTime);
     }
 }

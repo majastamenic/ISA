@@ -92,13 +92,9 @@ public class ExaminationService implements IExaminationService {
 
     public void cancelExamination(Long examinationId){
         Examination examination = examinationRepository.findExaminationById(examinationId);
-        Calendar currDateTime = Calendar.getInstance();
-        if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) < 0)
-            throw new InvalidActionException("Examination has finished!");
-        currDateTime.add(Calendar.HOUR, 24);
-        if(examination.getSchedule().getStartDate().compareTo(currDateTime.getTime()) <= 0)
-//            if(currDateTime.getTime().after(examination.getSchedule().getStartTime()))  TODO: Treba porediti i sate/minute
-                throw new InvalidActionException("Too late! Examination can't be canceled!");
+        Date currentDate = DateManipulation.addMinutes(new Date(), 60*24);
+        if((currentDate.compareTo(examination.getSchedule().mergeStartDateAndTime())) > 0)
+            throw new InvalidActionException("Too late! Examination can't be canceled!");
         Examination newExamination = new Examination(examination.getDermatologist(),
                 examination.getPharmacy(), examination.getSchedule(), examination.getPrice(),
                 examination.getLoyaltyGroup());
@@ -184,6 +180,7 @@ public class ExaminationService implements IExaminationService {
         return updateExamination;
     }
 
+
     public List<Examination> getFreeExaminationsByDermatologist(String email){
         List<Examination> freeExaminations = new ArrayList<>();
         Dermatologist dermatologist = dermatologistService.findUserByEmail(email);
@@ -197,6 +194,21 @@ public class ExaminationService implements IExaminationService {
         return freeExaminations;
     }
 
+    public List<Examination> getFreeExaminationByDermatologistPatient(Long id){
+        ExamDermatologistDto oldExamination = getById(id);
+        List<Examination> freeDermExams = getFreeExaminationsByDermatologist(oldExamination.getEmail());
+        List<Examination> freeDermPharmacyExams = new ArrayList<>();
+        DateManipulation dm = new DateManipulation();
+        Patient patient = patientService.getPatient(oldExamination.getPatientDto().getUser().getEmail());
+        for(Examination e: freeDermExams){
+            Date start = dm.mergeDateAndTime(e.getSchedule().getStartDate(), e.getSchedule().getStartTime());
+            Date end = dm.mergeDateAndTime(e.getSchedule().getEndDate(), e.getSchedule().getEndTime());
+            if(e.getPharmacy().getName().equals(oldExamination.getPharmacyName()) && patientService.patientIsFree(patient, start, end)){
+                freeDermPharmacyExams.add(e);
+            }
+        }
+        return  freeDermPharmacyExams;
+    }
 
     public boolean createExaminationByDermatologist(ExaminationCreateDto examinationCreateDto){
         DateManipulation dm = new DateManipulation();

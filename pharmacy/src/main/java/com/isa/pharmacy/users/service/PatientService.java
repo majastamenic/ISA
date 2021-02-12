@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.service;
 
+import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Counseling;
@@ -106,6 +107,11 @@ public class PatientService implements IPatientService {
         }
 
         return true;
+    }
+
+    public String getPatientEmailByExamination(Long id){
+        ExamDermatologistDto examination = examinationService.getById(id);
+        return examination.getPatientDto().getUser().getEmail();
     }
 
 }
