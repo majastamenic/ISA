@@ -4,6 +4,7 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.LoyaltyGroup;
 import com.isa.pharmacy.domain.enums.LoyaltyGroupType;
 import com.isa.pharmacy.repository.LoyaltyGroupRepository;
+import com.isa.pharmacy.service.interfaces.ILoyaltyGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class LoyaltyGroupService {
+public class LoyaltyGroupService implements ILoyaltyGroupService {
     @Autowired
     private LoyaltyGroupRepository loyaltyGroupRepository;
 
     public int getLoyaltyPoints(LoyaltyGroupType type){
         LoyaltyGroup loyaltyGroup = loyaltyGroupRepository.findLoyaltyGroupByType(type);
+        if(loyaltyGroup == null)
+            throw new NotFoundException("Loyalty group doesn't exists.");
         return loyaltyGroup.getPoints();
     }
 
@@ -24,7 +27,7 @@ public class LoyaltyGroupService {
         LoyaltyGroup dbLoyaltyGroup = loyaltyGroupRepository.findLoyaltyGroupByType(loyaltyGroup.getType());
         if(dbLoyaltyGroup == null)
             throw new NotFoundException("Loyalty group doesn't exists.");
-        //Provera 
+        //TODO: Provera
         dbLoyaltyGroup.setPoints(loyaltyGroup.getPoints());
         loyaltyGroupRepository.save(dbLoyaltyGroup);
     }
@@ -49,7 +52,10 @@ public class LoyaltyGroupService {
 
     public List<LoyaltyGroup> getUserLoyaltyCategories(){
         List<LoyaltyGroup> categories = new ArrayList<>();
-        for(LoyaltyGroup group : loyaltyGroupRepository.findAll()){
+        List<LoyaltyGroup> loyaltyGroups = loyaltyGroupRepository.findAll();
+        if(loyaltyGroups.isEmpty())
+            throw new NotFoundException("There is no loyalty group.");
+        for(LoyaltyGroup group : loyaltyGroups){
             if(group.getType() != LoyaltyGroupType.EXAMINATION && group.getType() != LoyaltyGroupType.COUNSELING)
                 categories.add(group);
         }

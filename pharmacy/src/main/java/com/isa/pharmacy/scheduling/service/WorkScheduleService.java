@@ -8,10 +8,11 @@ import com.isa.pharmacy.controller.mapping.WorkScheduleMapper;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 import com.isa.pharmacy.scheduling.repository.WorkScheduleRepository;
+import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.service.DermatologistService;
-import com.isa.pharmacy.users.service.PharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +21,14 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class WorkScheduleService {
+public class WorkScheduleService implements IWorkScheduleService {
 
     @Autowired
     private WorkScheduleRepository workScheduleRepository;
     @Autowired
-    private DermatologistService dermatologistService;
+    private IDermatologistService dermatologistService;
     @Autowired
-    private PharmacistService pharmacistService;
-
+    private IPharmacistService pharmacistService;
 
     public List<WorkScheduleDto> getAll(){
         List<WorkScheduleDto> schedulesDtos= new ArrayList<>();
@@ -80,7 +80,6 @@ public class WorkScheduleService {
         return workSchedulesDto;
     }
 
-
     public List<WorkSchedulePharmacyDto> getWorkScheduleByPharmacist(String email){
         List<WorkSchedulePharmacyDto> workSchedulesDto = new ArrayList<>();
         Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
@@ -91,7 +90,6 @@ public class WorkScheduleService {
         }
         return workSchedulesDto;
     }
-
 
 
     public boolean compareDateWithWorkTime(List<WorkSchedulePharmacyDto> pharmacistWork, Date requiredStartDate, Date requiredEndDate){

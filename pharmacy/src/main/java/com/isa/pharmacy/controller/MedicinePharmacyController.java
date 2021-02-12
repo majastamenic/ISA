@@ -3,7 +3,7 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
 import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.service.MedicinePharmacyService;
+import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class MedicinePharmacyController {
 
     @Autowired
-    private MedicinePharmacyService medicinePharmacyService;
+    private IMedicinePharmacyService medicinePharmacyService;
 
     @GetMapping("/getAllMedicines")
     public List<GetAllMedicinePharmacyDto> getAll() {

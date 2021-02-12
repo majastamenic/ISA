@@ -2,7 +2,7 @@ package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
-import com.isa.pharmacy.scheduling.service.VacationScheduleService;
+import com.isa.pharmacy.scheduling.service.interfaces.IVacationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +12,9 @@ import java.util.List;
 @RequestMapping("/vacation")
 @CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class VacationScheduleController {
+
     @Autowired
-    private VacationScheduleService vacationScheduleService;
+    private IVacationService vacationScheduleService;
 
     @GetMapping
     public List<VacationSchedule> getAll() { return vacationScheduleService.getAll(); }

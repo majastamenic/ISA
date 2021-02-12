@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Pharmacy, PharmacyDto } from 'src/app/model/pharmacy-model';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
 import { UserService } from 'src/app/service/user.service';
-import { Pharmacy, PharmacyDto } from '../../../model/pharmacy-model';
 
 @Component({
   selector: 'app-add-pharmacy',
@@ -18,7 +18,6 @@ export class AddPharmacyComponent implements OnInit {
   ngOnInit(): void {
     if(!this.userService.isAdmin()){
       this.router.navigate(['home']);
-      this.toastrService.error('Unauthorized access.');
     }
   }
 

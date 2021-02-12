@@ -4,9 +4,9 @@ import com.isa.pharmacy.controller.dto.CreateComplaintDto;
 import com.isa.pharmacy.controller.dto.ShowComplaintDto;
 import com.isa.pharmacy.controller.mapping.ComplaintMapper;
 import com.isa.pharmacy.domain.Complaint;
-import com.isa.pharmacy.service.ComplaintService;
+import com.isa.pharmacy.service.interfaces.IComplaintService;
 import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.service.PatientService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +16,11 @@ import java.util.List;
 @RequestMapping("/complaint")
 @CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class ComplaintController {
+
     @Autowired
-    private ComplaintService complaintService;
+    private IComplaintService complaintService;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
 
     @GetMapping
     public List<ShowComplaintDto> getAll(){

@@ -8,12 +8,13 @@ import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.ExaminationRepository;
 import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Prescription;
+import com.isa.pharmacy.service.interfaces.*;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.service.DermatologistService;
-import com.isa.pharmacy.users.service.PatientService;
+import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,26 +23,26 @@ import java.util.Calendar;
 import java.util.List;
 
 @Service
-public class ExaminationService {
+public class ExaminationService implements IExaminationService {
 
     @Autowired
     private ExaminationRepository examinationRepository;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
     @Autowired
-    private DermatologistService dermatologistService;
+    private IDermatologistService dermatologistService;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IPharmacyService pharmacyService;
     @Autowired
-    private  PrescriptionService prescriptionService;
+    private IPrescriptionService prescriptionService;
     @Autowired
-    private DiagnosisService diagnosisService;
+    private IDiagnosisService diagnosisService;
     @Autowired
-    private MedicineService medicineService;
+    private IMedicineService medicineService;
     @Autowired
-    private EPrescriptionService ePrescriptionService;
+    private IEPrescriptionService ePrescriptionService;
 
 
     public Examination save(Examination examination){
@@ -131,8 +132,7 @@ public class ExaminationService {
         List<String> dermatologistNames = new ArrayList<>();
         List<Examination> examinationList = examinationRepository.findByPatient(patient);
         for(Examination examination: examinationList){
-            //TODO: Maja provera da je null
-            if(examination.getPatientCame()){
+            if(examination.getPatientCame() != null && examination.getPatientCame()){
                 dermatologistName = examination.getDermatologist().getUser().getRole().toString() + ": " + examination.getDermatologist().getUser().getName()+" "+ examination.getDermatologist().getUser().getSurname();
                 dermatologistNames.add(dermatologistName);
             }
@@ -154,7 +154,7 @@ public class ExaminationService {
                     patient.setPenal(patient.getPenal() + 1);
                     patientService.save(patient);
                 }
-                Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
+                Pharmacy pharmacy = pharmacyService.getPharmacyByName(updateExamination.getPharmacyName());
                 Prescription prescription = new Prescription();
                 prescription.setMedicines(medicines);
                 prescription.setDiagnosis(diagnosis);

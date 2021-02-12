@@ -7,10 +7,10 @@ import com.isa.pharmacy.controller.mapping.SupplierOfferMapper;
 import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.domain.SupplierOffer;
 import com.isa.pharmacy.domain.enums.OrderOfferType;
-import com.isa.pharmacy.service.OrderService;
-import com.isa.pharmacy.service.SupplierOfferService;
+import com.isa.pharmacy.service.interfaces.IOrderService;
+import com.isa.pharmacy.service.interfaces.ISupplierOfferService;
 import com.isa.pharmacy.users.domain.Supplier;
-import com.isa.pharmacy.users.service.SupplierService;
+import com.isa.pharmacy.users.service.interfaces.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +21,13 @@ import java.util.stream.Collectors;
 @RequestMapping("/supplier-offer")
 @CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class SupplierOfferController {
+
     @Autowired
-    private SupplierOfferService supplierOfferService;
+    private ISupplierOfferService supplierOfferService;
     @Autowired
-    private OrderService orderService;
+    private IOrderService orderService;
     @Autowired
-    private SupplierService supplierService;
+    private ISupplierService supplierService;
 
     @GetMapping("/{email}")
     public List<ViewOrderOfferDto> getAllSupplierOffers(@PathVariable String email){

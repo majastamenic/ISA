@@ -6,8 +6,10 @@ import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.domain.SupplierOffer;
 import com.isa.pharmacy.domain.enums.OrderOfferType;
 import com.isa.pharmacy.repository.SupplierOfferRepository;
+import com.isa.pharmacy.service.interfaces.IOrderService;
+import com.isa.pharmacy.service.interfaces.ISupplierOfferService;
 import com.isa.pharmacy.users.domain.Supplier;
-import com.isa.pharmacy.users.service.SupplierService;
+import com.isa.pharmacy.users.service.interfaces.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +17,14 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class SupplierOfferService {
+public class SupplierOfferService implements ISupplierOfferService {
+
     @Autowired
     private SupplierOfferRepository supplierOfferRepository;
     @Autowired
-    private SupplierService supplierService;
+    private ISupplierService supplierService;
     @Autowired
-    private OrderService orderService;
+    private IOrderService orderService;
 
     public void createOffer(SupplierOffer supplierOffer){
         SupplierOffer dbsupplierOffer = supplierOfferRepository.findSupplierOfferByOrder(supplierOffer.getOrder());
@@ -46,12 +49,18 @@ public class SupplierOfferService {
     public List<SupplierOffer> getAllSupplierOffers(String email){
         Supplier supplier = supplierService.getByEmail(email);
         List<SupplierOffer> supplierOfferList = supplierOfferRepository.findSupplierOfferBySupplier(supplier);
+        if(supplierOfferList.isEmpty())
+            throw new NotFoundException("There is no supplier offer.");
         return supplierOfferList;
     }
 
     public List<SupplierOffer> filter(String email, OrderOfferType type){
         Supplier supplier = supplierService.getByEmail(email);
         List<SupplierOffer> supplierOfferList = supplierOfferRepository.findSupplierOfferBySupplierAndType(supplier, type);
+        if(supplierOfferList.isEmpty())
+            throw new NotFoundException("There is no supplier offer");
+        if(type == null)
+            supplierOfferList = supplierOfferRepository.findSupplierOfferBySupplier(supplier);
         if(supplierOfferList.isEmpty())
             throw new NotFoundException("Supplier "+supplier.getUser().getName()+" "+ supplier.getUser().getSurname()+" doesn't have offer with type " + type);
         return supplierOfferList;

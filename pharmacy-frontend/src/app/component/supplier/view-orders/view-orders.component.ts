@@ -28,7 +28,6 @@ export class ViewOrdersComponent implements OnInit {
   ngOnInit(): void {
     if(!this.userService.isSupplier()){
       this.router.navigate(['home']);
-      this.toastrService.error('Unauthorized access.');
     }
     let userEmail = sessionStorage.getItem('user');
     if(userEmail){
@@ -53,7 +52,6 @@ export class ViewOrdersComponent implements OnInit {
     this.orderService.createOffer(this.newOffer).subscribe((response: any) =>{
       this.isEditable = false;
       this.addOfferView = false;
-      this.router.navigate(['/']);
       this.toastrService.success("Added offer");
     }, (err: any) => {
         this.toastrService.error("Error: "+ err.error.message);

@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     this.userService.changePassword(this.returnedUser).subscribe((returnedUser: User) => {
       this.changePassword = false;
       sessionStorage.setItem('user', this.user.email);
+      sessionStorage.setItem('role', returnedUser.role.toString());
       this.router.navigate(['/home']);
       this.toastrService.success("User logged in successfully");
     },

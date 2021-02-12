@@ -1,6 +1,7 @@
 package com.isa.pharmacy.users.controller.mapping;
 
 import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.domain.User;

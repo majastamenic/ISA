@@ -12,9 +12,13 @@ import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 import com.isa.pharmacy.repository.MedicineRepository;
+import com.isa.pharmacy.service.interfaces.IEmailService;
+import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
+import com.isa.pharmacy.service.interfaces.IMedicineService;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
-import com.isa.pharmacy.users.service.PharmacistService;
-import com.isa.pharmacy.users.service.PharmacyAdminService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,19 +34,19 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class MedicineService {
+public class MedicineService implements IMedicineService {
     @Autowired
     private MedicineRepository medicineRepository;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IPharmacyService pharmacyService;
     @Autowired
-    private MedicinePharmacyService medicinePharmacyService;
+    private IMedicinePharmacyService medicinePharmacyService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
     @Autowired
-    private PharmacyAdminService pharmacyAdminService;
+    private IPharmacyAdminService pharmacyAdminService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
 
     public Medicine create(Medicine medicine) {
         if (medicineRepository.findMedicineById(medicine.getId()) != null)
@@ -80,8 +84,8 @@ public class MedicineService {
 
     public List<Medicine> getAll(){
         List<Medicine> medicineList = medicineRepository.findAll();
-        if(medicineList == null)
-            throw new NotFoundException("Pharmacy system doesnt have any medicine");
+        if(medicineList.isEmpty())
+            throw new NotFoundException("Pharmacy system doesn't have any medicine");
         return medicineList;
     }
 
@@ -96,7 +100,7 @@ public class MedicineService {
     }
 
     public List<AvailabilityMedicineDto> checkAvailabilityMedicines(String pharmacyName, List<String> meds){
-        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyName);
         return checkingMedicines(pharmacy, meds);
     }
 
@@ -188,7 +192,7 @@ public class MedicineService {
 
     public List<Medicine> decreaseQuantityInPharmacy(List<Medicine> meds, String pharmacyName){
         List<Medicine> medicines = new ArrayList<>();
-        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyName);
         if(meds != null && pharmacyName !=null){
             for(Medicine m: meds){
                 for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
@@ -206,7 +210,6 @@ public class MedicineService {
     public void update(Medicine medicine){
         medicineRepository.save(medicine);
     }
-
 
     public MedicineDto findMedicineSpecification(String name){
         Medicine medicine = findByName(name);

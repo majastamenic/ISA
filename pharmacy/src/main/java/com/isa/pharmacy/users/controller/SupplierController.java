@@ -1,10 +1,10 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
 import com.isa.pharmacy.users.domain.Supplier;
-import com.isa.pharmacy.service.EmailService;
-import com.isa.pharmacy.users.service.SupplierService;
+import com.isa.pharmacy.users.service.interfaces.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/supplier")
 @CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class SupplierController {
+
     @Autowired
-    private SupplierService supplierService;
+    private ISupplierService supplierService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
+
     @PostMapping
     public Supplier registration(@RequestBody RegistrationDto registrationDto) {
         Supplier supplier = supplierService.registration(UserMapper.mapRegistrationDtoToSupplier(registrationDto));

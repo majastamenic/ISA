@@ -12,12 +12,13 @@ import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.CounselingRepository;
 import com.isa.pharmacy.scheduling.DateManipulation;
-import com.isa.pharmacy.scheduling.service.ScheduleService;
-import com.isa.pharmacy.scheduling.service.WorkScheduleService;
+import com.isa.pharmacy.scheduling.service.interfaces.IScheduleService;
+import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
+import com.isa.pharmacy.service.interfaces.*;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.service.PatientService;
-import com.isa.pharmacy.users.service.PharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,32 +27,38 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class CounselingService {
+public class CounselingService implements ICounselingService {
 
     @Autowired
     private CounselingRepository counselingRepository;
 
     @Autowired
-    private ScheduleService scheduleService;
+    private IScheduleService scheduleService;
     @Autowired
-    private ReportService reportService;
+    private IReportService reportService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IMedicineService medicineService;
     @Autowired
-    private MedicineService medicineService;
+    private IPharmacyService pharmacyService;
     @Autowired
-    private ExaminationService examinationService;
+    private IExaminationService examinationService;
     @Autowired
-    private WorkScheduleService workScheduleService;
+    private IWorkScheduleService workScheduleService;
 
 
-    public List<Counseling> getAll(){ return counselingRepository.findAll(); }
+
+    public List<Counseling> getAll(){
+        List<Counseling> counselingList = counselingRepository.findAll();
+        if(counselingList.isEmpty())
+            throw new NotFoundException("There is no counseling.");
+        return counselingList;
+    }
 
     public Counseling getCounselingById(long id){
         Counseling counseling = counselingRepository.findCounselingById(id);
@@ -61,7 +68,10 @@ public class CounselingService {
     }
 
     public List<Counseling> getCounselingByPharmacist(Pharmacist pharmacist) {
-        return counselingRepository.findByPharmacist(pharmacist);
+        List<Counseling> counselingList = counselingRepository.findByPharmacist(pharmacist);
+        if(counselingList.isEmpty())
+            throw new NotFoundException("Pharmacist has no consultation.");
+        return counselingList;
     }
 
     public List<Counseling> getAllPatientsCounselings(String patientEmail){
@@ -77,6 +87,7 @@ public class CounselingService {
         emailService.successfulCounselingSchedule(scheduledCounseling);
         return scheduledCounseling;
     }
+
 
     public boolean createCounselingByPharmacist(CounselingCreateDto counselingDto){
         DateManipulation dm = new DateManipulation();
@@ -153,15 +164,13 @@ public class CounselingService {
     public List<String> getPharmacistNameByPatient(Patient patient){
         List<String> pharmacistNames = new ArrayList<>();
         for(Counseling counseling: counselingRepository.findByPatient(patient)){
-            //TODO: Maja - provera da li je null
-            if(counseling.getPatientCame()){
+            if(counseling.getPatientCame() != null && counseling.getPatientCame()){
                 String pharmacistName = counseling.getPharmacist().getUser().getRole().toString() + ": " + counseling.getPharmacist().getUser().getName()+" "+ counseling.getPharmacist().getUser().getSurname();
                 pharmacistNames.add(pharmacistName);
             }
         }
         return pharmacistNames;
     }
-
 
     public boolean isPharmacistOccupied(Pharmacist pharmacist, Date eagerDate){
         for(Counseling c : counselingRepository.findByPharmacist(pharmacist)){
@@ -209,7 +218,7 @@ public class CounselingService {
 
 
 
-    public boolean compareDateWithCounselingTerm(List<CounselingDto> pharmacistCounseling, Date requiredStartDate, Date requiredEndDate, String email){
+    public boolean compareDateWithCounselingTerm(List<CounselingDto> pharmacistCounseling, Date requiredStartDate, Date requiredEndDate){
         for(CounselingDto couns : pharmacistCounseling){
             if(requiredStartDate.before(couns.getSchedule().getStartDate())){
                 continue;
