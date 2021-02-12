@@ -3,6 +3,7 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.AvailabilityMedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
@@ -139,7 +140,11 @@ public class MedicineService implements IMedicineService {
     public void notifyPharmacyAdminsAboutMedicine(List<PharmacyAdmin> pharmacyAdmins, String medicineName){
         for(PharmacyAdmin pa: pharmacyAdmins){
             String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
-            emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, medicineName);
+            try {
+                emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, medicineName);
+            }catch (Exception e){
+                throw new BadRequestException("Email feature not available on heroku");
+            }
         }
     }
 
@@ -206,6 +211,21 @@ public class MedicineService implements IMedicineService {
             }
         }
         return medicines;
+    }
+
+    public void changeAmount(String medicineName, int amount, String pharmacyName) {
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyName);
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacy()) {
+            if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName)) {
+                int updatedVal = medicinePharmacy.getQuantity() + amount;
+                if(updatedVal < 0)
+                    throw new InvalidActionException("Not enough medicine in stock!");
+                medicinePharmacy.setQuantity(updatedVal);
+                medicinePharmacyService.save(medicinePharmacy);
+                return;
+            }
+        }
+        throw new NotFoundException("Medicine not found for selected pharmacy");
     }
 
     public void update(Medicine medicine){

@@ -1,6 +1,7 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Complaint;
 import com.isa.pharmacy.repository.ComplaintRepository;
@@ -59,7 +60,12 @@ public class ComplaintService implements IComplaintService {
         if(dbComplaint.getResponseComplaint() != null)
             throw new AlreadyExistsException("Complaint response already exists");
         dbComplaint.setResponseComplaint(complaint.getResponseComplaint());
-        emailService.sendComplaintResponse(complaint);
+        try {
+            emailService.sendComplaintResponse(complaint);
+        }catch (Exception e){
+            throw new BadRequestException("Email feature not available on heroku");
+        }
+
         return dbComplaint;
     }
 

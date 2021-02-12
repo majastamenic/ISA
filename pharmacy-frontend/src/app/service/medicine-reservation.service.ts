@@ -16,4 +16,8 @@ export class MedicineReservationService {
   createReservation(reservation:any){
     return this.httpClient.post(RESERVATION_PATH, reservation);
   }
+
+  cancelReservation(reservationId: number){
+    return this.httpClient.delete(RESERVATION_PATH + '/' + reservationId);
+  }
 }

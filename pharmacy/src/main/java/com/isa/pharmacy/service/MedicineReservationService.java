@@ -1,12 +1,15 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.MedicineReservation;
 import com.isa.pharmacy.repository.MedicineReservationRepository;
 import com.isa.pharmacy.scheduling.DateManipulation;
+import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
 import com.isa.pharmacy.service.interfaces.IMedicineReservationService;
+import com.isa.pharmacy.service.interfaces.IMedicineService;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.interfaces.IPatientService;
 import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
@@ -23,13 +26,15 @@ public class MedicineReservationService implements IMedicineReservationService {
     @Autowired
     private MedicineReservationRepository medicineReservationRepository;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
     @Autowired
     private IPatientService patientService;
     @Autowired
     private IMedicinePharmacyService medicinePharmacyService;
     @Autowired
     private IPharmacistService pharmacistService;
+    @Autowired
+    private IMedicineService medicineService;
 
 
     public List<MedicineReservation> getAllReservationsByPatient(String patientEmail){
@@ -44,8 +49,11 @@ public class MedicineReservationService implements IMedicineReservationService {
         MedicineReservation reservedMedicine = medicineReservationRepository.save(reservation);
         reservedMedicine.setCode(new Random().nextLong());
         medicineReservationRepository.save(reservedMedicine);
+        medicineService.changeAmount(reservation.getMedicinePharmacy().getMedicine().getName(),
+                -reservation.getAmount(), reservation.getMedicinePharmacy().getPharmacy().getName());
         medicinePharmacyService.save(reservedMedicine.getMedicinePharmacy());
         patientService.save(reservedMedicine.getPatient());
+
         emailService.successfulMedicineReservation(reservedMedicine);
         return medicineReservationRepository.save(reservation);
     }
@@ -74,4 +82,14 @@ public class MedicineReservationService implements IMedicineReservationService {
         return false;
     }
 
+
+    public void cancelReservation(long reservationId){
+        MedicineReservation reservation = medicineReservationRepository.findMedicineReservationById(reservationId);
+        Date currDate = DateManipulation.addMinutes(new Date(), 60*24);
+        if(currDate.after(reservation.getDueDate()))
+            throw new InvalidActionException("Too late! Reservation can't be canceled");
+        medicineService.changeAmount(reservation.getMedicinePharmacy().getMedicine().getName(),
+                reservation.getAmount(), reservation.getMedicinePharmacy().getPharmacy().getName());
+        medicineReservationRepository.delete(reservation);
+    }
 }

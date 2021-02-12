@@ -33,7 +33,7 @@ public class PatientService implements IPatientService {
     private IExaminationService examinationService;
 
     public Patient registration(Patient patient) {
-        Patient existingUser = getPatient(patient.getUser().getEmail());
+        Patient existingUser = patientRepository.findByUser_email(patient.getUser().getEmail());
         if (existingUser == null) {
             userService.create(patient.getUser());
             return patientRepository.save(patient);
