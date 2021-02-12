@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CounselingsService } from 'src/app/service/counselings.service';
-import { Counseling } from '../../model/counseling';
+import { Counseling } from '../../../model/counseling';
 
 @Component({
   selector: 'app-all-counselings',

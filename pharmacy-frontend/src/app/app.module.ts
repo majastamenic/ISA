@@ -31,7 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
 import { ExaminationScheduleComponent } from './component/patient/examination-schedule/examination-schedule.component';
 import { UserProfileComponent } from './component/user/profile/user-profile.component';
-import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
+import { PublishingReservedMedicineComponent } from './component/pharmacist/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-profile/pharmacy-profile.component';
 import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
 import { AllDermatologistsComponent } from './component/pharmacy-admin/all-dermatologists/all-dermatologists.component';
@@ -57,14 +57,14 @@ import { CounselingSearchComponent } from './component/patient/counseling-search
 import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
 
 // dermatologist & pharmacist component
-import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
-import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
+import { ScheduleCounselingComponent } from './component/pharmacist/schedule-counseling/schedule-counseling.component';
+import { AllCounselingsComponent } from './component/pharmacist/all-counselings/all-counselings.component';
 import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
-import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
-import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
-import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
-import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
-import { StartExaminationComponent } from './component/start-examination/start-examination.component';
+import { StartCounselingComponent } from './component/pharmacist/start-counseling/start-counseling.component';
+import { AllExaminationsComponent } from './component/dermatologist/all-examinations/all-examinations.component';
+import { ScheduleExaminationDermatologistComponent } from './component/dermatologist/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
+import { DiagnosisComponent } from './component/dermatologist/diagnosis/diagnosis.component';
+import { StartExaminationComponent } from './component/dermatologist/start-examination/start-examination.component';
 import { WorkScheduleComponent } from './component/work-schedule/work-schedule.component';
 import { EPrescriptionsComponent } from './component/patient/e-prescriptions/e-prescriptions.component';
 

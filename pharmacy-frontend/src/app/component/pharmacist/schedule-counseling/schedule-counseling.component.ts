@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ScheduleCounselingService } from 'src/app/service/schedule-counseling.service';
-import { Counseling } from '../../model/counseling';
+import { Counseling } from '../../../model/counseling';
 import { IDatePickerConfig } from 'ng2-date-picker';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -60,8 +60,12 @@ export class ScheduleCounselingComponent implements OnInit {
 
     this.counselingService.createCounselingByPharmacist(counseling).subscribe(data => {
       console.log(data);
-      this.toastrService.success('Counseling is scheduled.');
-      this.router.navigate(['home'])
+      if(data == true){
+        this.toastrService.success('Counseling is scheduled.');
+        this.router.navigate(['home'])
+      }else{
+        this.toastrService.error('Required term is occupied.');
+      }
     }, error => {
       this.toastrService.error('Required term is occupied.');
     });

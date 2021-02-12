@@ -113,9 +113,12 @@ public class MedicineService implements IMedicineService {
 
     public List<AvailabilityMedicineDto> checkingMedicines(Pharmacy pharmacy, List<String> meds){
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();
-        for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
-            for(String med: meds){
-                if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacy.getName()) && med.equalsIgnoreCase(mp.getMedicine().getName())){
+        boolean find = false;
+        for(String med: meds){
+            find = false;
+            for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
+                if(mp.getPharmacy().getName().equalsIgnoreCase(pharmacy.getName()) && med.equalsIgnoreCase(mp.getMedicine().getName())
+                        && !find){
                     AvailabilityMedicineDto availMed = new AvailabilityMedicineDto();
                     if(mp.getQuantity()>0){
                         availMed.setAvailable(true);
@@ -129,6 +132,7 @@ public class MedicineService implements IMedicineService {
                     availMed.setId(mp.getId());
                     availMed.setName(med);
                     availabilityMedicineDtos.add(availMed);
+                    find = true;
                 }
             }
         }
