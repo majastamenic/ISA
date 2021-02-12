@@ -22,12 +22,24 @@ export class CounselingsComponent implements OnInit {
       this.counselingService.getPatientCounselings(this.loggedUser).subscribe(data => {
         this.counselings = data;
       }, error => {
-        this.toastrService.error("An error has occured while retriveing counselings.");
+        this.toastrService.error("Server error: can't load counselings!");
       });
     }else{
       this.router.navigate(['login']);
       this.toastrService.info('Pleaste log in first.');
     }
+  }
+
+  cancelCounseling(counselingId: number, idx: number){
+    this.counselingService.cancelCounseling(counselingId).subscribe(() => {
+      this.toastrService.success('Counseling canceled successfuly');
+      this.counselings.splice(idx, 1);
+    }, error => {
+      if(error.status == 400)
+        this.toastrService.warning(error.error.message);
+      else
+        this.toastrService.error("Server error: can't cancel counseling");
+    });
   }
 
 }

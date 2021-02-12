@@ -22,7 +22,7 @@ export class PatientExaminationsComponent implements OnInit {
       this.examinationService.getPatientExaminations(this.loggedUser).subscribe(data => {
         this.examinations = data;
       }, error => {
-        this.toastrService.error("Unknown error, please log in again");
+        this.toastrService.error("Server error: can't load examinations!");
       });
     } else {
       this.router.navigate(['login']);
@@ -35,7 +35,10 @@ export class PatientExaminationsComponent implements OnInit {
       this.toastrService.success('Examination canceled!');
       this.examinations.splice(i, 1);
     }, error => {
-      this.toastrService.error(error.error.message);
+      if(error.status == 400)
+        this.toastrService.warning(error.error.message);
+      else
+        this.toastrService.error("Server error: can't cancel examination!");
     })
   }
 }

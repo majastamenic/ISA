@@ -21,6 +21,8 @@ public interface ICounselingService {
 
      Counseling createCounseling(Counseling counseling);
 
+     void cancelCounseling(Long counselingId);
+
      List<String> getPharmacistNameByPatient(Patient patient);
 
      boolean isPharmacistOccupied(Pharmacist pharmacist, Date eagerDate);

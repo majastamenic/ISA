@@ -7,12 +7,12 @@
         <table id="freeTerms" class="table transparent">
             <thead class="thead-dark">
                 <tr>
-                    <th>Pharmacist</th>
-                    <th>Price (€)</th>
-                    <th>Date</th>
-                    <th>Start time</th>
-                    <th>End time</th>
-                    <th></th>
+                    <th scope="col">Pharmacist</th>
+                    <th scope="col">Price (€)</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Start time</th>
+                    <th scope="col">End time</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +22,7 @@
                     <td>{{counseling.schedule.startDate}}</td>
                     <td>{{counseling.schedule.startTime}}</td>
                     <td>{{counseling.schedule.endTime}}</td>
+                    <td><button class="btn btn-warning" (click)='cancelCounseling(counseling.id, i)'>Cancel</button></td>
                 </tr>
             </tbody>
         </table>

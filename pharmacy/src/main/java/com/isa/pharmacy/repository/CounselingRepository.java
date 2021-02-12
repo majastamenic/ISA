@@ -10,6 +10,9 @@ import java.util.List;
 
 @Repository
 public interface CounselingRepository extends JpaRepository<Counseling, Long> {
+
+    Counseling findCounselingById(long id);
+
     List<Counseling> findAll();
 
     List<Counseling> findByPharmacist(Pharmacist pharmacist);

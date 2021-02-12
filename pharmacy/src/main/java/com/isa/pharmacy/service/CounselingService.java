@@ -22,8 +22,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.HOURS;
 
 @Service
 public class CounselingService implements ICounselingService {
@@ -87,6 +90,13 @@ public class CounselingService implements ICounselingService {
         return scheduledCounseling;
     }
 
+    public void cancelCounseling(Long counselingId){
+        Counseling counseling = counselingRepository.findCounselingById(counselingId);
+        Date currentDate = DateManipulation.addMinutes(new Date(), 60*24);
+        if((currentDate.compareTo(counseling.getSchedule().mergeStartDateAndTime())) > 0)
+            throw new InvalidActionException("Too late! Counseling can't be canceled!");
+        counselingRepository.delete(counseling);
+    }
 
     public boolean createCounselingByPharmacist(CounselingCreateDto counselingDto){
         DateManipulation dm = new DateManipulation();
@@ -111,10 +121,6 @@ public class CounselingService implements ICounselingService {
         return false;
     }
 
-
-
-
-
     public boolean pharmacistOnCounseling(Pharmacist pharmacist, Date start, Date end){
         List<Counseling> pharmacistCouns = getCounselingByPharmacist(pharmacist);
         DateManipulation dm = new DateManipulation();
@@ -129,10 +135,6 @@ public class CounselingService implements ICounselingService {
         }
         return true;
     }
-
-
-
-
 
     public List<String> getPharmacistNameByPatient(Patient patient){
         List<String> pharmacistNames = new ArrayList<>();
@@ -187,9 +189,6 @@ public class CounselingService implements ICounselingService {
         }
         return updateCounseling;
     }
-
-
-
 
     public boolean compareDateWithCounselingTerm(List<CounselingDto> pharmacistCounseling, Date requiredStartDate, Date requiredEndDate){
         for(CounselingDto couns : pharmacistCounseling){
