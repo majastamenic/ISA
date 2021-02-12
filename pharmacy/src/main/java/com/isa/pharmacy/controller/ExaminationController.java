@@ -79,4 +79,11 @@ public class ExaminationController {
         return  examinationService.createExaminationByDermatologist(examinationCreateDto);
     }
 
+    @GetMapping("/freeterms/{pharm}/{dermEmail}/{patEmail}")
+    public List<ExaminationUpcomingDto> getFreeExaminationByDermatologistPatient(@PathVariable("dermEmail") String dermEmail, @PathVariable("patEmail") String patEmail, @PathVariable("pharm") String pharm){
+        List<Examination> examinations = examinationService.getFreeExaminationByDermatologistPatient(dermEmail, patEmail, pharm);
+        List<ExaminationUpcomingDto> examinationUpcomingDtos = ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinations);
+        return examinationUpcomingDtos;
+    }
+
 }

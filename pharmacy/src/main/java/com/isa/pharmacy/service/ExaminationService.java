@@ -198,6 +198,20 @@ public class ExaminationService implements IExaminationService {
         return freeExaminations;
     }
 
+    public List<Examination> getFreeExaminationByDermatologistPatient(String dermatologistEmail, String patientEmail, String pharmacyName){
+        List<Examination> freeDermExams = getFreeExaminationsByDermatologist(dermatologistEmail);
+        List<Examination> freeDermPharmacyExams = new ArrayList<>();
+        DateManipulation dm = new DateManipulation();
+        Patient patient = patientService.getPatient(patientEmail);
+        for(Examination e: freeDermExams){
+            Date start = dm.mergeDateAndTime(e.getSchedule().getStartDate(), e.getSchedule().getStartTime());
+            Date end = dm.mergeDateAndTime(e.getSchedule().getEndDate(), e.getSchedule().getEndTime());
+            if(e.getPharmacy().getName().equals(pharmacyName) && patientService.patientIsFree(patient, start, end)){
+                freeDermPharmacyExams.add(e);
+            }
+        }
+        return  freeDermPharmacyExams;
+    }
 
     public boolean createExaminationByDermatologist(ExaminationCreateDto examinationCreateDto){
         DateManipulation dm = new DateManipulation();
