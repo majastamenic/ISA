@@ -6,6 +6,8 @@ import com.isa.pharmacy.users.controller.mapping.PharmacyAdminMapper;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.repository.PharmacyAdminRepository;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
+import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PharmacyAdminService {
+public class PharmacyAdminService implements IPharmacyAdminService {
     @Autowired
     private PharmacyAdminRepository pharmacyAdminRepository;
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     public PharmacyAdmin registration(PharmacyAdmin pharmacyAdmin) {
         PharmacyAdmin existingUser = pharmacyAdminRepository.findPharmacyAdminByUser_email(pharmacyAdmin.getUser().getEmail());
@@ -35,6 +37,7 @@ public class PharmacyAdminService {
         return pharmacyAdminList;
     }
 
+    //TODO: Ne postoji u Iservice-u
     public PharmacyAdmin updateAdmin(PharmacyAdmin pharmacyAdmin){
         PharmacyAdmin admin = pharmacyAdminRepository.findPharmacyAdminById(pharmacyAdmin.getId());
         if(admin == null)

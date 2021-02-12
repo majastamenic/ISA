@@ -4,19 +4,20 @@ package com.isa.pharmacy.users.service;
 import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
-import com.isa.pharmacy.scheduling.service.VacationScheduleService;
+import com.isa.pharmacy.scheduling.service.interfaces.IVacationService;
+import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
+import com.isa.pharmacy.service.interfaces.ICounselingService;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacistMapper;
-import com.isa.pharmacy.service.CounselingService;
-import com.isa.pharmacy.service.PharmacyService;
-import com.isa.pharmacy.scheduling.service.WorkScheduleService;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PharmacistRepository;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,19 +27,19 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
-public class PharmacistService {
+public class PharmacistService implements IPharmacistService {
     @Autowired
     private PharmacistRepository pharmacistRepository;
     @Autowired
-    private UserService userService;
+    private IUserService userService;
     @Autowired
-    private CounselingService counselingService;
+    private ICounselingService counselingService;
     @Autowired
-    private WorkScheduleService workScheduleService;
+    private IWorkScheduleService workScheduleService;
     @Autowired
-    private VacationScheduleService vacationScheduleService;
+    private IVacationService vacationScheduleService;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IPharmacyService pharmacyService;
 
 
     public CreatePharmacistDto save(CreatePharmacistDto p) {
@@ -78,6 +79,7 @@ public class PharmacistService {
     }
 
     // TODO: obrisati ako niko ne koristi?
+    //Ne postoji u Iservice-u
     public List<WorkSchedule> getWorkScheduleByPharmacistEmail(String email){
         return pharmacistRepository.findPharmacistByUser_email(email).getWorkSchedule();
     }

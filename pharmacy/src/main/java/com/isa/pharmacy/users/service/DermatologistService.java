@@ -4,18 +4,19 @@ import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.repository.DermatologistRepository;
+import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
+import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.net.NoRouteToHostException;
 import java.util.List;
 
 @Service
-public class DermatologistService {
+public class DermatologistService implements IDermatologistService {
     @Autowired
     private DermatologistRepository dermatologistRepository;
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     public void delete(Dermatologist dermatologist){
         dermatologistRepository.delete(dermatologist);

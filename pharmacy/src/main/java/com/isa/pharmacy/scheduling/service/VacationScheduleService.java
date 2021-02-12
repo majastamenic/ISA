@@ -5,10 +5,11 @@ import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.mapping.VacationScheduleMapper;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.repository.VacationScheduleRepository;
+import com.isa.pharmacy.scheduling.service.interfaces.IVacationService;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.service.DermatologistService;
-import com.isa.pharmacy.users.service.PharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +18,14 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class VacationScheduleService {
+public class VacationScheduleService implements IVacationService {
 
     @Autowired
     private VacationScheduleRepository vacationScheduleRepository;
     @Autowired
-    private DermatologistService dermatologistService;
+    private IDermatologistService dermatologistService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
 
     public VacationSchedule save(VacationSchedule vs) {
         if(vs.getStartDate().compareTo(vs.getEndDate()) > 0 )

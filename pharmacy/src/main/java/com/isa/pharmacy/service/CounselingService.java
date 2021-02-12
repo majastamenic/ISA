@@ -8,11 +8,12 @@ import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.CounselingRepository;
-import com.isa.pharmacy.scheduling.service.ScheduleService;
+import com.isa.pharmacy.scheduling.service.interfaces.IScheduleService;
+import com.isa.pharmacy.service.interfaces.*;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.service.PatientService;
-import com.isa.pharmacy.users.service.PharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,25 +22,23 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class CounselingService {
+public class CounselingService implements ICounselingService {
 
     @Autowired
     private CounselingRepository counselingRepository;
 
     @Autowired
-    private ScheduleService scheduleService;
+    private IScheduleService scheduleService;
     @Autowired
-    private ReportService reportService;
+    private IReportService reportService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
     @Autowired
-    private PharmacyService pharmacyService;
-    @Autowired
-    private MedicineService medicineService;
+    private IMedicineService medicineService;
 
 
     public List<Counseling> getAll(){

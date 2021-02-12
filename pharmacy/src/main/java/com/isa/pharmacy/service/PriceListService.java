@@ -4,13 +4,15 @@ import com.isa.pharmacy.controller.dto.CreatePriceListDto;
 import com.isa.pharmacy.controller.mapping.PriceListMapper;
 import com.isa.pharmacy.domain.PriceList;
 import com.isa.pharmacy.repository.PriceListRepository;
+import com.isa.pharmacy.service.interfaces.IPriceListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PriceListService {
+public class PriceListService implements IPriceListService {
+
     @Autowired
     private PriceListRepository priceListRepository;
 

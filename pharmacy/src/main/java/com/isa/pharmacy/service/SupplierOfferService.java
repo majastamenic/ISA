@@ -6,8 +6,10 @@ import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.domain.SupplierOffer;
 import com.isa.pharmacy.domain.enums.OrderOfferType;
 import com.isa.pharmacy.repository.SupplierOfferRepository;
+import com.isa.pharmacy.service.interfaces.IOrderService;
+import com.isa.pharmacy.service.interfaces.ISupplierOfferService;
 import com.isa.pharmacy.users.domain.Supplier;
-import com.isa.pharmacy.users.service.SupplierService;
+import com.isa.pharmacy.users.service.interfaces.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +17,14 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class SupplierOfferService {
+public class SupplierOfferService implements ISupplierOfferService {
+
     @Autowired
     private SupplierOfferRepository supplierOfferRepository;
     @Autowired
-    private SupplierService supplierService;
+    private ISupplierService supplierService;
     @Autowired
-    private OrderService orderService;
+    private IOrderService orderService;
 
     public void createOffer(SupplierOffer supplierOffer){
         SupplierOffer dbsupplierOffer = supplierOfferRepository.findSupplierOfferByOrder(supplierOffer.getOrder());

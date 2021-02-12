@@ -5,8 +5,8 @@ import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.EPrescriptionMapper;
 import com.isa.pharmacy.domain.EPrescription;
-import com.isa.pharmacy.service.EPrescriptionService;
-import com.isa.pharmacy.service.QRService;
+import com.isa.pharmacy.service.interfaces.IEPrescriptionService;
+import com.isa.pharmacy.service.interfaces.IQrService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +26,9 @@ public class EPrescriptionController {
     private static final Logger logger = LoggerFactory.getLogger(EPrescriptionController.class);
 
     @Autowired
-    private EPrescriptionService ePrescriptionService;
+    private IEPrescriptionService ePrescriptionService;
     @Autowired
-    private QRService qrService;
+    private IQrService qrService;
 
     private final String baseFileDestination;
 

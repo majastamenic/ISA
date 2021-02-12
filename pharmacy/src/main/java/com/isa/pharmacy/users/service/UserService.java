@@ -8,6 +8,7 @@ import com.isa.pharmacy.controller.exception.UnauthorizeException;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.users.repository.UserRepository;
+import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
-public class UserService {
-    private static final String NOTFOUND = "User not found";
+public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;

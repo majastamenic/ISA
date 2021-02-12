@@ -3,6 +3,7 @@ package com.isa.pharmacy.users.service;
 import java.util.List;
 
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.users.service.interfaces.IHospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
@@ -10,7 +11,7 @@ import com.isa.pharmacy.users.domain.Hospital;
 import com.isa.pharmacy.users.repository.HospitalRepository;
 
 @Service
-public class HospitalService {
+public class HospitalService implements IHospitalService {
 
     @Autowired
     private HospitalRepository hospitalRepository;

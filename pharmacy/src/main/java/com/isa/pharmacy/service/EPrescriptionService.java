@@ -4,6 +4,7 @@ import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.EPrescriptionRepository;
+import com.isa.pharmacy.service.interfaces.*;
 import com.isa.pharmacy.users.domain.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,18 +15,18 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class EPrescriptionService {
+public class EPrescriptionService implements IEPrescriptionService {
 
     @Autowired
     private EPrescriptionRepository ePrescriptionRepository;
     @Autowired
-    private MedicineEPrescriptionService medicineEService;
+    private IMedicineEPrescriptionService medicineEService;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IPharmacyService pharmacyService;
     @Autowired
-    private MedicinePharmacyService medicinePharmacyService;
+    private IMedicinePharmacyService medicinePharmacyService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
 
     public EPrescription save(EPrescription ePrescription) {
         for (MedicineEPrescription m : ePrescription.getListOfMedication()) {

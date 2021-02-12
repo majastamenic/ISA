@@ -6,10 +6,10 @@ import com.isa.pharmacy.controller.dto.CounselingFullDto;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.scheduling.DateManipulation;
-import com.isa.pharmacy.service.CounselingService;
+import com.isa.pharmacy.service.interfaces.ICounselingService;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.service.PatientService;
-import com.isa.pharmacy.users.service.PharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +21,11 @@ import java.util.List;
 public class CounselingController {
 
     @Autowired
-    private CounselingService counselingService;
+    private ICounselingService counselingService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
 
 
     @GetMapping

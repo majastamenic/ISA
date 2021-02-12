@@ -6,10 +6,10 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
 import com.isa.pharmacy.domain.*;
-import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 import com.isa.pharmacy.repository.PharmacyRepository;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.service.PharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -20,12 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PharmacyService {
+public class PharmacyService implements IPharmacyService {
 
     @Autowired
     private PharmacyRepository pharmacyRepository;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
     @Value("${apiKey}")
     private String apiKey;
 

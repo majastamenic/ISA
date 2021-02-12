@@ -12,9 +12,13 @@ import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;
 import com.isa.pharmacy.repository.MedicineRepository;
+import com.isa.pharmacy.service.interfaces.IEmailService;
+import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
+import com.isa.pharmacy.service.interfaces.IMedicineService;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
-import com.isa.pharmacy.users.service.PharmacistService;
-import com.isa.pharmacy.users.service.PharmacyAdminService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,19 +32,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MedicineService {
+public class MedicineService implements IMedicineService {
     @Autowired
     private MedicineRepository medicineRepository;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IPharmacyService pharmacyService;
     @Autowired
-    private MedicinePharmacyService medicinePharmacyService;
+    private IMedicinePharmacyService medicinePharmacyService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
     @Autowired
-    private PharmacyAdminService pharmacyAdminService;
+    private IPharmacyAdminService pharmacyAdminService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
 
     public Medicine create(Medicine medicine) {
         if (medicineRepository.findMedicineById(medicine.getId()) != null)

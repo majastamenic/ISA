@@ -4,6 +4,7 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.LoyaltyGroup;
 import com.isa.pharmacy.domain.enums.LoyaltyGroupType;
 import com.isa.pharmacy.repository.LoyaltyGroupRepository;
+import com.isa.pharmacy.service.interfaces.ILoyaltyGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class LoyaltyGroupService {
+public class LoyaltyGroupService implements ILoyaltyGroupService {
     @Autowired
     private LoyaltyGroupRepository loyaltyGroupRepository;
 

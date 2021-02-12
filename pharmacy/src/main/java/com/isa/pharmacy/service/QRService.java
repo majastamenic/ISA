@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import com.isa.pharmacy.service.interfaces.IQrService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 
 @Service
-public class QRService {
+public class QRService implements IQrService {
 
     private final Logger logger = LoggerFactory.getLogger(QRService.class);
 

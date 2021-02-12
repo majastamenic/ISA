@@ -5,6 +5,8 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PatientRepository;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
+import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PatientService {
+public class PatientService implements IPatientService {
 
     @Autowired
     private PatientRepository patientRepository;
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     public Patient registration(Patient patient) {
         Patient existingUser = getPatient(patient.getUser().getEmail());

@@ -6,7 +6,7 @@ import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.service.PharmacyService;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ import java.util.List;
 public class PharmacyController {
 
     @Autowired
-    private PharmacyService pharmacyService;
+    private IPharmacyService pharmacyService;
     @Value("${apiKey}")
     private String apiKey;
 

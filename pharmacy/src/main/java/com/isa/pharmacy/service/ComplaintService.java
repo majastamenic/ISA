@@ -4,8 +4,9 @@ import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Complaint;
 import com.isa.pharmacy.repository.ComplaintRepository;
+import com.isa.pharmacy.service.interfaces.*;
 import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.service.PatientService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,19 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ComplaintService {
+public class ComplaintService implements IComplaintService {
     @Autowired
     private ComplaintRepository complaintRepository;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
     @Autowired
-    private CounselingService counselingService;
+    private ICounselingService counselingService;
     @Autowired
-    private ExaminationService examinationService;
+    private IExaminationService examinationService;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IPharmacyService pharmacyService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
 
     public List<Complaint> getAll(){
         List<Complaint> complaintList = complaintRepository.findAll();

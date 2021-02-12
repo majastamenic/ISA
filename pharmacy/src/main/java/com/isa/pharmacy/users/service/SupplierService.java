@@ -4,14 +4,15 @@ import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.domain.Supplier;
 import com.isa.pharmacy.users.repository.SupplierRepository;
-import com.isa.pharmacy.users.service.UserService;
+import com.isa.pharmacy.users.service.interfaces.ISupplierService;
+import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SupplierService {
+public class SupplierService implements ISupplierService {
     @Autowired
-    private UserService userService;
+    private IUserService userService;
     @Autowired
     private SupplierRepository supplierRepository;
 

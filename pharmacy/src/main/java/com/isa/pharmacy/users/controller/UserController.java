@@ -3,14 +3,13 @@ package com.isa.pharmacy.users.controller;
 import com.isa.pharmacy.users.controller.dto.PasswordChangeDto;
 import com.isa.pharmacy.users.controller.dto.UpdateUserDto;
 import com.isa.pharmacy.users.controller.dto.UserDto;
+import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.isa.pharmacy.users.controller.dto.LoginDto;
-import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
 import com.isa.pharmacy.users.domain.User;
-import com.isa.pharmacy.users.service.UserService;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @GetMapping
     public ModelAndView getUsers() {
