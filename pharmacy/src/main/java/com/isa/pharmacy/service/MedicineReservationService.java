@@ -3,6 +3,7 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.domain.MedicineReservation;
 import com.isa.pharmacy.repository.MedicineReservationRepository;
+import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.service.interfaces.IMedicineReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class MedicineReservationService implements IMedicineReservationService {
     @Autowired
     private MedicineReservationRepository medicineReservationRepository;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
 
 
     public List<MedicineReservation> getAllReservationsByPatient(String patientEmail){
@@ -31,5 +32,12 @@ public class MedicineReservationService implements IMedicineReservationService {
         MedicineReservation reservedMedicine = medicineReservationRepository.save(reservation);
         emailService.successfulMedicineReservation(reservedMedicine);
         return medicineReservationRepository.save(reservation);
+    }
+
+    public void cancelReservation(long reservationId){
+        MedicineReservation reservation = medicineReservationRepository.findMedicineReservationById(reservationId);
+        reservation.getAmount();
+        reservation.getMedicinePharmacy().getMedicine().getName();
+        medicineReservationRepository.delete(reservation);
     }
 }
