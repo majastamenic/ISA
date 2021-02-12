@@ -124,6 +124,11 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-01', '2021-02-15', '19:30:00', '20:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-08', '2021-02-08', '19:30:00', '20:00:00');
 
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-02', '2021-03-02', '19:00:00', '19:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-03', '2021-03-03', '19:30:00', '20:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-04', '2021-03-04', '18:30:00', '19:00:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-05', '2021-03-05', '18:00:00', '18:30:00');
+
 -- WorkSchedule //////////////////////////////////////////////////////////
     // Jankovic
 insert into work_schedule(schedule_id, admin_id) values(1, 1);
@@ -227,6 +232,10 @@ insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyal
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 21, 1, 2, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 22, 1, 2, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 23, 3, 2, 1);
+
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 24, 2, 1, 1, 1, true );
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 25, 2, 1, 1, 2, true );
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 26, 2, 1, 1, 3, true );
 
 -- Counselings
 insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id) values (11, 1, 1, 1);

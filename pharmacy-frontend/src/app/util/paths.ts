@@ -1,7 +1,8 @@
 import { environment } from "src/environments/environment.prod";
 
+export const BACKEND_PATH ='http://localhost:8081';
 
-export const BACKEND_PATH ='http://localhost:8081'; //environment.backend_url ? environment.backend_url :'http://localhost:8081';
+//export const BACKEND_PATH = environment.backend_url ? environment.backend_url :'http://localhost:8081';
 
 export const USER_PATH = BACKEND_PATH + '/user';
 export const LOGIN_PATH = USER_PATH + '/login';
