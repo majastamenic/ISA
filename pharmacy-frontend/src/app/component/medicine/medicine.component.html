@@ -43,6 +43,7 @@
         </div>
     </nav>
 </div>
+<button *ngIf="userService.isPatient()" class="btn btn-primary" [routerLink]="'/patient/reservations'">View reservations</button>
 <div class="center">
     <div class="cardDisplay" style="width: 350px;" *ngFor="let medicine of medicinesDtoList | paginate: {id: 'server', itemsPerPage: itemsPerPage, currentPage: page, totalItems: total }; index as i">
         <div class="form">

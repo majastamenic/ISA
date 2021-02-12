@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class MedicineReservationService {
@@ -15,6 +16,11 @@ public class MedicineReservationService {
     private MedicineReservationRepository medicineReservationRepository;
     @Autowired
     private EmailService emailService;
+
+
+    public List<MedicineReservation> getAllReservationsByPatient(String patientEmail){
+        return medicineReservationRepository.findMedicineReservationByPatient_User_Email(patientEmail);
+    }
 
     public MedicineReservation createReservation(MedicineReservation reservation){
         if(reservation.getDueDate().compareTo(new Date()) <= 0)

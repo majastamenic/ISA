@@ -9,6 +9,8 @@ import com.isa.pharmacy.users.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/medicineReservation")
 @CrossOrigin(value = "http://localhost:4200")
@@ -21,6 +23,13 @@ public class MedicineReservationController {
     private MedicinePharmacyService medicinePharmacyService;
     @Autowired
     private PatientService patientService;
+
+
+    @GetMapping("/{email}")
+    public List<MedicineReservationDto> getAllReservationsByPatient(@PathVariable String email){
+        return MedicineReservationMapper.mapListReservationToReservationDto(
+                medicineReservationService.getAllReservationsByPatient(email));
+    }
 
     @PostMapping
     public MedicineReservationDto createReservation(@RequestBody MedicineReservationDto reservationDto){

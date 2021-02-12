@@ -9,6 +9,10 @@ export class MedicineReservationService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getAllReservationsByPatient(email: string){
+    return this.httpClient.get(RESERVATION_PATH + '/' + email);
+  }
+
   createReservation(reservation:any){
     return this.httpClient.post(RESERVATION_PATH, reservation);
   }

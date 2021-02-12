@@ -1,7 +1,11 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.MedicineReservationDto;
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicineReservation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MedicineReservationMapper {
 
@@ -22,5 +26,12 @@ public class MedicineReservationMapper {
         mappedReservation.setDueDate(reservationDto.getDueDate());
         mappedReservation.setAmount(reservationDto.getAmount());
         return mappedReservation;
+    }
+
+    public static List<MedicineReservationDto> mapListReservationToReservationDto(List<MedicineReservation> reservations){
+        List<MedicineReservationDto> mappedReservations = new ArrayList<>();
+        for(MedicineReservation res : reservations)
+            mappedReservations.add(mapReservationToReservationDto(res));
+        return mappedReservations;
     }
 }
