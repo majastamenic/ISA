@@ -3,6 +3,7 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.AvailabilityMedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineDto;
 import com.isa.pharmacy.controller.dto.MedicineLoyaltyDto;
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
@@ -141,7 +142,9 @@ public class MedicineService implements IMedicineService {
             String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
             try {
                 emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, medicineName);
-            }catch (Exception e){}
+            }catch (Exception e){
+                throw new BadRequestException("Email feature not available on heroku");
+            }
         }
     }
 

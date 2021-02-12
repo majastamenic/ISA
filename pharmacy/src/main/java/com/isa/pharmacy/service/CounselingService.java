@@ -3,6 +3,7 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
@@ -86,7 +87,10 @@ public class CounselingService implements ICounselingService {
         //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu - NEMOJ!
         scheduleService.save(counseling.getSchedule());
         Counseling scheduledCounseling = counselingRepository.save(counseling);
-        try{emailService.successfulCounselingSchedule(scheduledCounseling);}catch (Exception e){}
+        try{emailService.successfulCounselingSchedule(scheduledCounseling);
+        }catch (Exception e){
+            throw new BadRequestException("Email feature not available on heroku");
+        }
         return scheduledCounseling;
     }
 

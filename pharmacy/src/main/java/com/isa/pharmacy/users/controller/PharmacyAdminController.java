@@ -1,4 +1,5 @@
 package com.isa.pharmacy.users.controller;
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.service.interfaces.IPharmacyService;
@@ -32,7 +33,9 @@ public class PharmacyAdminController {
         PharmacyAdmin pharmacyAdmin = pharmacyAdminService.registration(PharmacyAdminMapper.mapPharmacyAdminDtoToPharmacyAdmin(createPhAdminDto, pharmacy));
         try {
             emailService.activationEmail(pharmacyAdmin.getUser());
-        }catch (Exception e){}
+        }catch (Exception e){
+            throw new BadRequestException("Email feature not available on heroku");
+        }
         return PharmacyAdminMapper.mapPharmacyAdminToPharmacyAdminDto(pharmacyAdmin);
     }
 

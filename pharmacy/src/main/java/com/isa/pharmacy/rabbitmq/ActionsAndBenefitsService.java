@@ -1,5 +1,6 @@
 package com.isa.pharmacy.rabbitmq;
 
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
@@ -24,7 +25,9 @@ public class ActionsAndBenefitsService {
         for(String email: emails){
             try {
                 emailService.sendAction(actionsAndBenefits, email, pharmacyAdmin.getPharmacy().getName());
-            }catch (Exception e){}
+            }catch (Exception e){
+                throw new BadRequestException("Email feature not available on heroku");
+            }
         }
 
     }

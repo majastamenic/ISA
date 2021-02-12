@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
@@ -32,7 +33,10 @@ public class PatientController {
     @PostMapping
     public Patient registration(@RequestBody RegistrationDto registrationDto) {
         Patient patient = patientService.registration(UserMapper.mapRegistrationDtoToPatient(registrationDto));
-        try{emailService.verificationEmailPatient(patient);}catch (Exception e){}
+        try{emailService.verificationEmailPatient(patient);
+        }catch (Exception e){
+            throw new BadRequestException("Email feature not available on heroku");
+        }
         return patient;
     }
 

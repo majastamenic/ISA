@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
@@ -25,7 +26,9 @@ public class DermatologistController {
         Dermatologist dermatologist = dermatologistService.registration(UserMapper.mapRegistrationDtoToDermatologist(registrationDto));
         try {
             emailService.activationEmail(dermatologist.getUser());
-        }catch (Exception e){}
+        }catch (Exception e){
+            throw new BadRequestException("Email feature not available on heroku");
+        }
         return dermatologist;
     }
 
