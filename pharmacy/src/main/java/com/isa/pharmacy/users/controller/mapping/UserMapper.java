@@ -1,8 +1,10 @@
 package com.isa.pharmacy.users.controller.mapping;
 
 
+import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.users.controller.dto.LoginDto;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
+import com.isa.pharmacy.users.controller.dto.UpdateUserDto;
 import com.isa.pharmacy.users.controller.dto.UserDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.users.domain.*;
@@ -51,7 +53,7 @@ public class UserMapper {
             user.setPassword(registrationDto.getPassword());
         else
             throw new NotFoundException("Wrong password");
-        /*user.setEmail(registrationDto.getEmail());        TODO maja: Proveri jel radi
+        user.setEmail(registrationDto.getEmail());
         user.setName(registrationDto.getName());
         user.setSurname(registrationDto.getSurname());
         user.setAddress(registrationDto.getAddress());
@@ -59,7 +61,7 @@ public class UserMapper {
         user.setCountry(registrationDto.getCountry());
         user.setPhone(registrationDto.getPhone());
         user.setActive(false);
-        user.setRole(Role.PATIENT);*/
+        user.setRole(Role.PATIENT);
 
         patient.setVerificationCode(RandomString.make(10));
         patient.setUser(user);
@@ -115,5 +117,18 @@ public class UserMapper {
         userDto.setActive(user.getActive());
         userDto.setRole(user.getRole());
         return userDto;
+    }
+
+    public static User mapUpdateUserDtoToUser(UpdateUserDto updateUserDto){
+        User user = new User();
+        user.setEmail(updateUserDto.getEmail());
+        user.setPassword(updateUserDto.getPassword());
+        user.setName(updateUserDto.getName());
+        user.setSurname(updateUserDto.getSurname());
+        user.setAddress(updateUserDto.getAddress());
+        user.setCity(updateUserDto.getCity());
+        user.setCountry(updateUserDto.getCountry());
+        user.setPhone(updateUserDto.getPhone());
+        return user;
     }
 }

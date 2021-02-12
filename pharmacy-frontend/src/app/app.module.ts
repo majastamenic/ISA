@@ -1,43 +1,42 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// calendar
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './component/home/home.component';
 import { HospitalComponent } from './component/hospital/hospital.component';
-import { ActionsBenefitsComponent } from './component/actions-benefits/actions-benefits.component';
+import { ActionsBenefitsComponent } from './component/pharmacy-admin/actions-benefits/actions-benefits.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
-import { UploadQRComponent } from './component/prescription/upload-qr/upload-qr.component';
+import { UploadQRComponent } from './component/patient/upload-qr/upload-qr.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ToastrModule } from 'ngx-toastr';
 import { PharmacyAdminComponent } from './component/pharmacy-admin/pharmacy-admin.component';
 import { PharmacistInitComponent } from './component/pharmacy-admin/pharmacist-init/pharmacist-init.component';
 import { PharmacistComponent } from './component/pharmacy-admin/pharmacist/pharmacist.component';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderInitComponent } from './component/pharmacy-admin/order-init/order-init.component';
-import { ScheduleCounselingComponent } from './component/schedule-counseling/schedule-counseling.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PriceInitComponent } from './component/pharmacy-admin/price-init/price-init.component';
-import { AllCounselingsComponent } from './component/all-counselings/all-counselings.component';
-import { ExaminationScheduleComponent } from './component/examination-schedule/examination-schedule.component';
-import { UserProfileComponent } from './component/user-profile/user-profile.component';
-import { PublishingReservedMedicineComponent } from './component/publishing-reserved-medicine/publishing-reserved-medicine.component';
+import { ExaminationScheduleComponent } from './component/patient/examination-schedule/examination-schedule.component';
+import { UserProfileComponent } from './component/user/profile/user-profile.component';
+import { PublishingReservedMedicineComponent } from './component/pharmacist/publishing-reserved-medicine/publishing-reserved-medicine.component';
 import { PharmacyProfileComponent } from './component/pharmacy-admin/pharmacy-profile/pharmacy-profile.component';
 import { AllPharmacistsComponent } from './component/pharmacy-admin/all-pharmacists/all-pharmacists.component';
 import { AllDermatologistsComponent } from './component/pharmacy-admin/all-dermatologists/all-dermatologists.component';
 import { AllMedicationsComponent } from './component/pharmacy-admin/all-medications/all-medications.component';
-import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
-import { StartCounselingComponent } from './component/start-counseling/start-counseling.component';
-import { AllExaminationsComponent } from './component/all-examinations/all-examinations.component';
-import { ScheduleExaminationDermatologistComponent } from './component/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
-import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
-import { StartExaminationComponent } from './component/start-examination/start-examination.component';
-import { ComplaintMessageComponent } from './component/complaint-message/complaint-message.component';
+import { ComplaintMessageComponent } from './component/patient/complaint-message/complaint-message.component';
 import { SystemAdminComponent } from './component/system-admin/system-admin.component';
 import { AddMedicinesComponent } from './component/system-admin/add-medicines/add-medicines.component';
 import { AddPharmacyComponent } from './component/system-admin/add-pharmacy/add-pharmacy.component';
@@ -47,6 +46,34 @@ import { RegSupplierComponent } from './component/system-admin/reg-supplier/reg-
 import { RegSystemAdminComponent } from './component/system-admin/reg-system-admin/reg-system-admin.component';
 import { LoyalityComponent } from './component/system-admin/loyalty/loyalty.component';
 import { ComplaintsComponent } from './component/system-admin/complaints/complaints.component';
+import { PatientExaminationsComponent } from './component/patient/patient-examinations/patient-examinations.component';
+import { CounselingsComponent } from './component/patient/counselings/counselings.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SubscribeListComponent } from './component/patient/subscribe-list/subscribe-list.component';
+import { SupplierComponent } from './component/supplier/supplier.component';
+import { AddOrderComponent } from './component/add-order/add-order.component';
+import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
+import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
+import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
+
+// dermatologist & pharmacist component
+import { ScheduleCounselingComponent } from './component/pharmacist/schedule-counseling/schedule-counseling.component';
+import { AllCounselingsComponent } from './component/pharmacist/all-counselings/all-counselings.component';
+import { ScheduleVacationComponent } from './component/schedule-vacation/schedule-vacation.component';
+import { StartCounselingComponent } from './component/pharmacist/start-counseling/start-counseling.component';
+import { AllExaminationsComponent } from './component/dermatologist/all-examinations/all-examinations.component';
+import { ScheduleExaminationDermatologistComponent } from './component/dermatologist/schedule-examination-dermatologist/schedule-examination-dermatologist.component';
+import { DiagnosisComponent } from './component/dermatologist/diagnosis/diagnosis.component';
+import { StartExaminationComponent } from './component/dermatologist/start-examination/start-examination.component';
+import { WorkScheduleComponent } from './component/work-schedule/work-schedule.component';
+import { EPrescriptionsComponent } from './component/patient/e-prescriptions/e-prescriptions.component';
+
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  interactionPlugin
+])
 
 @NgModule({
   declarations: [
@@ -89,7 +116,19 @@ import { ComplaintsComponent } from './component/system-admin/complaints/complai
     StartExaminationComponent,
     LoyalityComponent,
     ComplaintMessageComponent,
-    ComplaintsComponent
+    ComplaintsComponent,
+    PatientExaminationsComponent,
+    WorkScheduleComponent,
+    SupplierComponent,
+    AddOrderComponent,
+    ViewOrdersComponent,
+    PatientExaminationsComponent,
+    CounselingsComponent,
+    CounselingSearchComponent,
+    CounselingScheduleComponent,
+    SubscribeListComponent,
+    SubscribeListComponent,
+    EPrescriptionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +143,8 @@ import { ComplaintsComponent } from './component/system-admin/complaints/complai
     NgSelectModule,
     DpDatePickerModule,
     NgbModule,
+    FullCalendarModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

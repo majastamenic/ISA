@@ -1,8 +1,6 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.Report;
-import com.isa.pharmacy.domain.Schedule;
-import com.isa.pharmacy.domain.enums.ExaminationAndCounselingStatus;
+import com.isa.pharmacy.scheduling.domain.Schedule;
 import com.isa.pharmacy.users.controller.dto.PatientDto;
 
 public class CounselingDto {
@@ -11,13 +9,13 @@ public class CounselingDto {
     private String patientEmail;
     private PatientDto patientDto;
     private Schedule schedule;
-    private Report report;
-    private boolean patientCame;
-    private ExaminationAndCounselingStatus counselingStatus;
+    private ReportDto report;
+    private Boolean patientCame;
+    private int loyaltyPoints;
 
     public CounselingDto(){}
 
-    public CounselingDto(long id, String email, String patientEmail, PatientDto patientDto, Schedule schedule, Report report, boolean patientCame, ExaminationAndCounselingStatus counselingStatus) {
+    public CounselingDto(long id, String email, String patientEmail, PatientDto patientDto, Schedule schedule, ReportDto report, Boolean patientCame, int loyaltyPoints) {
         this.id = id;
         this.email = email;
         this.patientEmail = patientEmail;
@@ -25,7 +23,31 @@ public class CounselingDto {
         this.schedule = schedule;
         this.report = report;
         this.patientCame = patientCame;
-        this.counselingStatus = counselingStatus;
+        this.loyaltyPoints = loyaltyPoints;
+    }
+
+    public ReportDto getReport() {
+        return report;
+    }
+
+    public void setReport(ReportDto report) {
+        this.report = report;
+    }
+
+    public Boolean getPatientCame() {
+        return patientCame;
+    }
+
+    public void setPatientCame(Boolean patientCame) {
+        this.patientCame = patientCame;
+    }
+
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
+    }
+
+    public void setLoyaltyPoints(int loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
     }
 
     public long getId() {
@@ -69,27 +91,4 @@ public class CounselingDto {
         this.schedule = schedule;
     }
 
-    public Report getReport() {
-        return report;
-    }
-
-    public void setReport(Report report) {
-        this.report = report;
-    }
-
-    public boolean isPatientCame() {
-        return patientCame;
-    }
-
-    public void setPatientCame(boolean patientCame) {
-        this.patientCame = patientCame;
-    }
-
-    public ExaminationAndCounselingStatus getCounselingStatus() {
-        return counselingStatus;
-    }
-
-    public void setCounselingStatus(ExaminationAndCounselingStatus counselingStatus) {
-        this.counselingStatus = counselingStatus;
-    }
 }

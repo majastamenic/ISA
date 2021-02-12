@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { PharmacyService } from 'src/app/service/pharmacy.service';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  pharmacies: any = [];
 
-  ngOnInit(): void {
+  constructor(private pharmacyService: PharmacyService,
+              private toastrService: ToastrService,
+              rating: NgbRatingConfig) {
   }
 
+  ngOnInit(): void {
+    this.pharmacyService.getAll().subscribe(allPharmacies => {
+      this.pharmacies = allPharmacies;
+    }, error => {
+      this.toastrService.error("Server error");
+    });
+  }
 }

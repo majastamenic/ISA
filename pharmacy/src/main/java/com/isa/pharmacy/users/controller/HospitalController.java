@@ -5,6 +5,7 @@ import com.isa.pharmacy.users.controller.mapping.HospitalMapper;
 import com.isa.pharmacy.users.domain.Hospital;
 import com.isa.pharmacy.service.EmailService;
 import com.isa.pharmacy.users.service.HospitalService;
+import com.isa.pharmacy.users.service.interfaces.IHospitalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/hospital")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class HospitalController {
 
     @Autowired
-    private HospitalService hospitalService;
+    private IHospitalService hospitalService;
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 

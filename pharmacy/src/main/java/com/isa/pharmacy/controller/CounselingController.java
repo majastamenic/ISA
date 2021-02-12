@@ -1,14 +1,15 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.CounselingDto;
+import com.isa.pharmacy.controller.dto.CounselingFullDto;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.scheduling.DateManipulation;
+import com.isa.pharmacy.service.interfaces.ICounselingService;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.domain.Report;
-import com.isa.pharmacy.service.CounselingService;
-import com.isa.pharmacy.users.service.PatientService;
-import com.isa.pharmacy.users.service.PharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,41 +17,53 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/counseling")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class CounselingController {
 
     @Autowired
-    private CounselingService counselingService;
+    private ICounselingService counselingService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
 
-    @PostMapping("/add")
-    public Counseling save(@RequestBody CounselingDto counselingDto) {
-        Pharmacist pharmacist = pharmacistService.findUserByEmail(counselingDto.getEmail());
-        Patient patient = patientService.getPatient(counselingDto.getPatientEmail());
-        Counseling counseling = CounselingMapper.mapCounselingDtoToCounseling(counselingDto, pharmacist, patient);
-        counseling.setReport(new Report());
-        return counselingService.save(counseling);
-    }
 
     @GetMapping
     public List<Counseling> getAll() { return counselingService.getAll(); }
 
+    @GetMapping("/start/{id}")
+    public CounselingDto getById(@PathVariable("id") long id) {
+        return CounselingMapper.mapCounselingToCounselingDto(counselingService.getCounselingById(id));
+    }
+
     @GetMapping("/{email}")
-    public List<CounselingDto> getAllByPharmacist(@PathVariable("email") String email) {
+    public List<CounselingDto> getCounselingByPharmacist(@PathVariable("email") String email) {
         Pharmacist pharmacist = pharmacistService.findUserByEmail(email);
-        return counselingService.getAllByPharmacist(pharmacist);
+        return CounselingMapper.mapListCounselingToCounselingDto(
+                counselingService.getCounselingByPharmacist(pharmacist));
+    }
+
+    @GetMapping("/patient/{email}")
+    public List<CounselingFullDto> getAllCounselingsByPatient(@PathVariable String email){
+        return CounselingMapper.mapListCounselingToCounsellingFullDto(counselingService.getAllPatientsCounselings(email));
+    }
+
+    @PostMapping("/add")
+    public CounselingFullDto createCounseling(@RequestBody CounselingCreateDto counselingDto) {
+        if(counselingDto.getSchedule().getEndTime() == null)
+            DateManipulation.addMinutes(counselingDto.getSchedule().getStartTime(), 15); // TODO: Dovrsiti ubacivanje vremena
+        Counseling counseling = CounselingMapper.mapCounselingCreateDtoToCounseling(counselingDto);
+        counseling.setPatient(patientService.getPatient(counselingDto.getPatientEmail()));
+        counseling.setPharmacist(pharmacistService.findUserByEmail(counselingDto.getPharmacistEmail()));
+        return CounselingMapper.mapCounselingToCounselingFullDto(counselingService.createCounseling(counseling));
     }
 
     @PostMapping("/update")
-    public Counseling update(@RequestBody Counseling c) { return counselingService.save(c); }
+    public CounselingDto updateCounseling(@RequestBody CounselingDto counseling) { return counselingService.updateCounseling(counseling); }
 
-    @GetMapping("/start/{id}")
-    public CounselingDto getById(@PathVariable("id") long id) {
-        return counselingService.getById(id);
+    @PostMapping("create/pharmacist")
+    public boolean createCounselingByPharmacist(@RequestBody CounselingCreateDto counselingCreateDto){
+        return  counselingService.createCounselingByPharmacist(counselingCreateDto);
     }
-
 
 }

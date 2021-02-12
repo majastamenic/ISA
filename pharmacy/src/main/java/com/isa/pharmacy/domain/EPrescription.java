@@ -6,7 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.isa.pharmacy.users.domain.Patient;
 
 @Entity
 @Table
@@ -18,10 +19,11 @@ public class EPrescription implements Serializable {
     private Long id;
     @Column(unique = true)
     private Long code;
+    @ManyToOne
+    private Patient patient;
     @Column
-    private String patientName;
-    @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date dateOfIssue;
     @OneToMany
     private List<MedicineEPrescription> listOfMedication;
@@ -30,12 +32,13 @@ public class EPrescription implements Serializable {
 
     public EPrescription() { }
 
-    public EPrescription(Long id, Long code, String patientName, Date dateOfIssue, List<MedicineEPrescription> listOfMedication,
+    public EPrescription(Long id, Long code, Patient patient, Date dateOfIssue,
+                         List<MedicineEPrescription> listOfMedication,
                          String fileText) {
         super();
         this.id = id;
         this.code = code;
-        this.patientName = patientName;
+        this.patient = patient;
         this.dateOfIssue = dateOfIssue;
         this.listOfMedication = listOfMedication;
         this.fileText = fileText;
@@ -58,12 +61,12 @@ public class EPrescription implements Serializable {
         this.code = code;
     }
 
-    public String getPatientName() {
-        return patientName;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public Date getDateOfIssue() {

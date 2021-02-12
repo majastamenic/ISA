@@ -1,29 +1,28 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
-import com.isa.pharmacy.controller.dto.MedicineDto;
-import com.isa.pharmacy.controller.dto.MedicineOrderDto;
-import com.isa.pharmacy.controller.dto.PharmacyDto;
+import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.service.PharmacyService;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 @RequestMapping("/pharmacy")
 public class PharmacyController {
 
     @Autowired
-    private PharmacyService pharmacyService;
+    private IPharmacyService pharmacyService;
     @Value("${apiKey}")
     private String apiKey;
 
@@ -107,5 +106,30 @@ public class PharmacyController {
                                      @RequestBody String medicineName, @RequestHeader("apiKey") String apiKey) {
         pharmacyService.checkApiKey(apiKey);
         return pharmacyService.hasPharmacyMedication(pharmacyName, medicineName);
+    }
+
+
+    @PutMapping("/availablePharmacies")
+    public List<PharmacyDto> getPharmaciesForCounseling(@RequestBody DateTimeDto date) {
+        return PharmacyMapper.mapListPharmacyToPharmacyDto(pharmacyService.getPharmaciesForCounseling(date));
+    }
+
+    @PutMapping("/subscribe/{phName}/{email}")
+    public void subscribe(@PathVariable String phName, @PathVariable String email){
+        pharmacyService.addSubscribe(email, phName);
+    }
+
+    @PutMapping("/unsubscribe/{phName}/{email}")
+    public void unsubscribe(@PathVariable String phName, @PathVariable String email){
+        pharmacyService.unsubscribe(email, phName);
+    }
+
+    @GetMapping("/sub_pharmacy/{email}")
+    public List<String> getSubPharmacies(@PathVariable String email){
+        List<String> phNames = new ArrayList<>();
+        for(Pharmacy p: pharmacyService.findPharmaciesBySubEmail(email))
+            phNames.add(p.getName());
+        return phNames;
+
     }
 }

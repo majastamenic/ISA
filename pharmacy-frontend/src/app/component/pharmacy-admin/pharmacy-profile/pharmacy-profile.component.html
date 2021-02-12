@@ -1,18 +1,3 @@
-<style>
-    a:link, a:visited {
-      background-color: white;
-      color: black;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-    }
-    
-    a:hover, a:active {
-      background-color: rgb(12, 226, 226);
-      color: white;
-    }
-    </style>
 <div class="page">
     <div class="form">
         <form class="ngform">
@@ -21,11 +6,13 @@
             <a class="nav-link" [routerLink]="'/dermatologists'" routerLinkActive="active">Show all dermatologists</a>
             <a class="nav-link" [routerLink]="'/pharmacists'" routerLinkActive="active">Show all pharmacists</a>
             <a class="nav-link" [routerLink]="'/medications'" routerLinkActive="active">Show all medications</a>
-            <a class="nav-link" [routerLink]="['/examinationSchedule', pharmacyName]" routerLinkActive="active">All dermatologist terms</a>
+            <a class="nav-link" [routerLink]="['/patient/examinationSchedule', pharmacyName]" routerLinkActive="active">All dermatologist terms</a>
             <a class="nav-link" routerLinkActive="active">Reserve medication</a>
             <a class="nav-link" routerLinkActive="active">Schedule a counseling</a>
             <a class="nav-link" routerLinkActive="active">Schedule an examination</a>
             <a class="nav-link" routerLinkActive="active">Check actions and benefits</a>
+
+            <button *ngIf="userLogin" id="subBtn" class="btn btn-outline-info" (click)="subscribe()" type="submit">Subscribe</button>
 
         </form>
     </div>

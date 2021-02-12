@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { HospitalService } from 'src/app/service/hospital.service';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
-import { HospitalRegistrationDto, Hospital } from './model/hospital-model';
+import { HospitalRegistrationDto, Hospital } from '../../model/hospital-model';
 
 @Component({
   selector: 'app-hospital',

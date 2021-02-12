@@ -1,8 +1,8 @@
 package com.isa.pharmacy.users.controller.mapping;
 
-import com.isa.pharmacy.controller.dto.GetAllPharmaciesPharmacyAdminDto;
-import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
 import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.domain.enums.Role;
+import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.domain.User;
 import net.bytebuddy.utility.RandomString;
@@ -37,15 +37,5 @@ public class PharmacyAdminMapper {
         createPhAdminDto.setSurname(pharmacyAdmin.getUser().getSurname());
         createPhAdminDto.setActive(pharmacyAdmin.getUser().getActive());
         return createPhAdminDto;
-    }
-
-
-    public static GetAllPharmaciesPharmacyAdminDto mapPharmacyAdminToGetAllPharmaciesPharmacyAdminDto (PharmacyAdmin
-    admin){
-        GetAllPharmaciesPharmacyAdminDto getAllPharmaciesPharmacyAdminDto = new GetAllPharmaciesPharmacyAdminDto();
-        getAllPharmaciesPharmacyAdminDto.setUser(admin.getUser());
-        getAllPharmaciesPharmacyAdminDto.setSchedule(admin.getSchedule());
-        return getAllPharmaciesPharmacyAdminDto;
-
     }
 }

@@ -5,6 +5,9 @@ import com.isa.pharmacy.controller.dto.PharmacyFromMedicinePharmacyDto;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PharmacyMapper {
     public static Pharmacy mapPharmacyDtoToPharmacy(PharmacyDto pharmacyDto){
         Pharmacy pharmacy = new Pharmacy();
@@ -15,9 +18,16 @@ public class PharmacyMapper {
     }
 
     public static PharmacyDto mapPharmacyToPharmacyDto(Pharmacy pharmacy) {
-        PharmacyDto pharmacyDto = new PharmacyDto();
-        pharmacyDto.setAddress(pharmacy.getAddress());
-        return pharmacyDto;
+        return new PharmacyDto(pharmacy.getName(),
+                pharmacy.getAddress(),
+                pharmacy.getCounselingPrice());
+    }
+
+    public static List<PharmacyDto> mapListPharmacyToPharmacyDto(List<Pharmacy> pharmacies){
+        List<PharmacyDto> mappedPharmacies = new ArrayList<>();
+        for(Pharmacy pharmacy : pharmacies)
+            mappedPharmacies.add(mapPharmacyToPharmacyDto(pharmacy));
+        return mappedPharmacies;
     }
 
     public static GetAllPharmaciesDto mapPharmacyToGetAllPharmaciesDto(Pharmacy pharmacy) {

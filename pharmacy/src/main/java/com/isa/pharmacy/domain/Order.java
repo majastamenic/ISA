@@ -18,7 +18,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany
-    private List<MedicinePharmacy> medicineList;
+    private List<OrderOffer> orderOffers;
     @Column
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
@@ -27,24 +27,18 @@ public class Order implements Serializable {
     @Temporal(TemporalType.TIME)
     @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
     private Date endTime;
-    @OneToOne
+    @ManyToOne
     private PharmacyAdmin pharmacyAdmin;
-    @OneToMany          // TODO: Obrisati?
-    private List<OrderOffer> offers;
-    @Column
-    private Long winnerId;
 
     public Order() {
     }
 
-    public Order(Long id, List<MedicinePharmacy> medicineList, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin, List<OrderOffer> offers,Long winnerId) {
+    public Order(Long id, List<OrderOffer> orderOffers, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin) {
         this.id = id;
-        this.medicineList = medicineList;
+        this.orderOffers = orderOffers;
         this.endDate = endDate;
         this.endTime = endTime;
-        this.pharmacyAdmin=pharmacyAdmin;
-        this.offers= offers;
-        this.winnerId =winnerId;
+        this.pharmacyAdmin = pharmacyAdmin;
     }
 
     public static long getSerialVersionUID() {
@@ -57,14 +51,6 @@ public class Order implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<MedicinePharmacy> getMedicineList() {
-        return medicineList;
-    }
-
-    public void setMedicineList(List<MedicinePharmacy> medicineList) {
-        this.medicineList = medicineList;
     }
 
     public Date getEndDate() {
@@ -83,27 +69,19 @@ public class Order implements Serializable {
         this.endTime = endTime;
     }
 
+    public List<OrderOffer> getOrderOffers() {
+        return orderOffers;
+    }
+
+    public void setOrderOffers(List<OrderOffer> orderOffers) {
+        this.orderOffers = orderOffers;
+    }
+
     public PharmacyAdmin getPharmacyAdmin() {
         return pharmacyAdmin;
     }
 
     public void setPharmacyAdmin(PharmacyAdmin pharmacyAdmin) {
         this.pharmacyAdmin = pharmacyAdmin;
-    }
-
-    public List<OrderOffer> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<OrderOffer> offers) {
-        this.offers = offers;
-    }
-
-    public Long getWinnerId() {
-        return winnerId;
-    }
-
-    public void setWinnerId(Long winnerId) {
-        this.winnerId = winnerId;
     }
 }

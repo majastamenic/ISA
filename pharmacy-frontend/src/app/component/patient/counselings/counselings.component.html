@@ -1,0 +1,29 @@
+<div class="panel panel-primary" style="margin: 20px;">
+    <div class="panel-heading d-flex">
+        <h2>Counselings</h2>
+        <button class="btn btn-primary ml-auto p-2" style="width: auto;" [routerLink]="'/patient/counselingSearch'">Schedule new counseling</button>
+    </div>
+    <div class="panel-body">
+        <table id="freeTerms" class="table transparent">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Pharmacist</th>
+                    <th>Price (€)</th>
+                    <th>Date</th>
+                    <th>Start time</th>
+                    <th>End time</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let counseling of counselings; let i = index;">
+                    <td>{{counseling.pharmacist.user.name}} {{counseling.pharmacist.user.surname}}</td>
+                    <td>{{counseling.pharmacist.pharmacy.counselingPrice}}</td>
+                    <td>{{counseling.schedule.startDate}}</td>
+                    <td>{{counseling.schedule.startTime}}</td>
+                    <td>{{counseling.schedule.endTime}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

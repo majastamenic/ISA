@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LoyaltyGroup, LoyaltyGroupType } from 'src/app/model/loyaltyGroup';
 import { LoyaltyGroupService } from 'src/app/service/loyalty-group.service';
 import { MedicineService } from 'src/app/service/medicine.service';
-import { LoyaltyGroup, LoyaltyGroupType } from '../model/loyaltyGroup';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-loyalty',
@@ -35,10 +37,13 @@ export class LoyalityComponent implements OnInit {
   prevGoldPoints: any;
 
   constructor(private medicineService: MedicineService, private loyaltyGroupService: LoyaltyGroupService, 
-    private toastrService: ToastrService) { 
+    private toastrService: ToastrService, private userService: UserService, private router: Router) { 
     }
 
   ngOnInit(): void {
+    if(!this.userService.isAdmin()){
+      this.router.navigate(['home']);
+    }
     this.medicineService.getAllMedLoyality().subscribe(listMedicineDto => {
       this.medicinesList = listMedicineDto;
     });

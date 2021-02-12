@@ -1,10 +1,10 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.users.service.DermatologistService;
-import com.isa.pharmacy.service.EmailService;
+import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dermatologist")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class DermatologistController {
 
     @Autowired
-    private DermatologistService dermatologistService;
+    private IDermatologistService dermatologistService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
 
     @PostMapping
     public Dermatologist registration(@RequestBody RegistrationDto registrationDto) {
@@ -26,18 +26,12 @@ public class DermatologistController {
         emailService.activationEmail(dermatologist.getUser());
         return dermatologist;
     }
-    //TODO: Dermatolog
-    /*
-    @PostMapping("/registration")
-    public Dermatologist save(@RequestBody Dermatologist d) {
-        return dermatologistService.save(d);
-    }
-    */
+
     @GetMapping
     public List<Dermatologist> getAll() { return dermatologistService.getAll(); }
-    //TODO: Dermatolog 1
-    /*
-    @PostMapping("/update")
-    public Dermatologist update(@RequestBody Dermatologist d) { return dermatologistService.update(d); }
-     */
+
+
+
+
+
 }

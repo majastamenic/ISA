@@ -3,7 +3,7 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
 import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.service.MedicinePharmacyService;
+import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/medicinepharmacy")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class MedicinePharmacyController {
 
     @Autowired
-    private MedicinePharmacyService medicinePharmacyService;
+    private IMedicinePharmacyService medicinePharmacyService;
 
     @GetMapping("/getAllMedicines")
     public List<GetAllMedicinePharmacyDto> getAll() {
@@ -38,6 +38,11 @@ public class MedicinePharmacyController {
     @GetMapping("/all/{pharmacyName}/{email}")
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(@PathVariable("pharmacyName")String pharmacyName, @PathVariable("email")String email) {
         return medicinePharmacyService.getMedicinesByPharmacy(pharmacyName, email);
+    }
+
+    @GetMapping("/all/pharmacist/{pharmacyName}/{email}")
+    public List<MedicinePharmacyDto> getMedicinesByPharmacist(@PathVariable("pharmacyName")String pharmacistEmail, @PathVariable("email")String patientEmail) {
+        return medicinePharmacyService.getMedicinesByPharmacist(pharmacistEmail, patientEmail);
     }
 
     @GetMapping("/{id}")

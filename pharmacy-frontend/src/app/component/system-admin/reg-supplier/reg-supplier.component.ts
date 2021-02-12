@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { User, UserRegistrationDto } from 'src/app/component/user/model/user-model';
+import { User, UserRegistrationDto } from 'src/app/model/user-model';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/service/user.service';
 export class RegSupplierComponent implements OnInit {
 
   user: UserRegistrationDto = { email: '', password: '', passwordAgain: '', name: '', surname: '', address: '', city: '',
-  country: '', phone: '', role: 2};
+  country: '', phone: '', role: 4};
 
   constructor(private userService: UserService, private toastrService:ToastrService) { }
 

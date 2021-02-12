@@ -1,11 +1,13 @@
 package com.isa.pharmacy.service;
 
 import java.io.IOException;
+
+import com.isa.pharmacy.service.interfaces.ISftpService;
 import net.schmizz.sshj.SSHClient;
 import net.schmizz.sshj.sftp.SFTPClient;
 import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
 
-public class SftpService {
+public class SftpService implements ISftpService {
 
     private SSHClient setup() throws IOException {
         try (SSHClient sshClient = new SSHClient()) {

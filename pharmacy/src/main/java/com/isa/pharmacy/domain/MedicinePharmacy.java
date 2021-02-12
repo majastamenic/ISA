@@ -19,7 +19,7 @@ public class MedicinePharmacy implements Serializable {
     @ManyToOne
     private Medicine medicine;
     @ManyToOne
-    private Pharmacy pharmacy;      // TODO: Dodati Pricelist
+    private Pharmacy pharmacy;
 
     public MedicinePharmacy() { }
 

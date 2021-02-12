@@ -1,36 +1,57 @@
 package com.isa.pharmacy.users.service;
 
 
+
+import com.isa.pharmacy.controller.dto.*;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
+import com.isa.pharmacy.scheduling.DateManipulation;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.service.VacationScheduleService;
+import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
+import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.scheduling.DateManipulation;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.service.interfaces.IVacationService;
+import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
+import com.isa.pharmacy.service.interfaces.ICounselingService;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacistMapper;
-import com.isa.pharmacy.domain.*;
-import com.isa.pharmacy.service.CounselingService;
-import com.isa.pharmacy.service.PharmacyService;
-import com.isa.pharmacy.service.WorkScheduleService;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PharmacistRepository;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
-public class PharmacistService {
+public class PharmacistService implements IPharmacistService {
     @Autowired
     private PharmacistRepository pharmacistRepository;
     @Autowired
-    private UserService userService;
+    private IUserService userService;
     @Autowired
-    private CounselingService counselingService;
+    private ICounselingService counselingService;
     @Autowired
-    private WorkScheduleService workScheduleService;
+    private IWorkScheduleService workScheduleService;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IVacationService vacationScheduleService;
+    @Autowired
+    private IPharmacyService pharmacyService;
 
+
+    public Pharmacist savePharmacist(Pharmacist pharmacist){
+        return pharmacistRepository.save(pharmacist);
+    }
 
     public CreatePharmacistDto save(CreatePharmacistDto p) {
         Pattern pattern = Pattern.compile("^(.+)@(.+)$");
@@ -68,8 +89,10 @@ public class PharmacistService {
         return pharmacist;
     }
 
-    public List<WorkSchedule> getWorkScheduleByPharmacist(Long id){
-        return pharmacistRepository.findPharmacistById(id).getWorkSchedule();
+    // TODO: obrisati ako niko ne koristi?
+    //Ne postoji u Iservice-u
+    public List<WorkSchedule> getWorkScheduleByPharmacistEmail(String email){
+        return pharmacistRepository.findPharmacistByUser_email(email).getWorkSchedule();
     }
 
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){
@@ -77,7 +100,10 @@ public class PharmacistService {
     }
 
     public Pharmacist findUserByEmail(String email){
-        return pharmacistRepository.findPharmacistByUser_email(email);
+        Pharmacist pharmacist = pharmacistRepository.findPharmacistByUser_email(email);
+        if(pharmacist == null)
+            throw new NotFoundException("Pharmacist with email "+email+" does't exists.");
+        return pharmacist;
     }
 
     public List<PharmacistByPharmacyDto> findPharmacistsByPharmacyId(Long id){
@@ -88,5 +114,68 @@ public class PharmacistService {
         }
         return pharmacistByPharmacyDtos;
     }
+
+    public List<Pharmacist> getFreePharmacistByPharmacyAndDate(String pharmacyName, DateTimeDto date){
+        List<Pharmacist> freePharmacists = new ArrayList<>();
+        for (Pharmacist pharmacist : getFreePharmacistByDate(date))
+            if(pharmacist.getPharmacy().getName().equals(pharmacyName))
+                freePharmacists.add(pharmacist);
+        return freePharmacists;
+    }
+
+    public List<Pharmacist> getFreePharmacistByDate(DateTimeDto date){
+        Date eagerDate = DateManipulation.mergeDateAndTime(date.getDate(), date.getTime());
+        List<Pharmacist> freePharmacists = new ArrayList<>();
+        for(Pharmacist pharmacist : pharmacistRepository.findAll()){
+            if(counselingService.isPharmacistOccupied(pharmacist, eagerDate) ||
+               vacationScheduleService.isEmployeeOnVacation(pharmacist.getVacationSchedules(), eagerDate))
+                continue;
+            if(workScheduleService.isEmployeeWorking(pharmacist.getWorkSchedule(), eagerDate))
+                freePharmacists.add(pharmacist);
+        }
+        return freePharmacists;
+    }
+
+
+    public boolean checkVacationTerm(VacationScheduleDto vacationScheduleDto, String email){
+        VacationSchedule vacationSchedule = new VacationSchedule();
+        if(vacationScheduleDto == null){
+            throw new NullPointerException("No parametars");
+        }
+        Date requiredStartDate = vacationScheduleDto.getStartDate();
+        Date requiredEndDate = vacationScheduleDto.getEndDate();
+        if(requiredStartDate.before(requiredEndDate) || requiredStartDate.equals(requiredEndDate) || requiredEndDate == null){
+            boolean validVacationTerms = vacationScheduleService.compareDateWithVacations(vacationScheduleService.getVacationScheduleByPharmacist(email),
+                    requiredStartDate, requiredEndDate);
+            boolean validWorkTimeTerms = workScheduleService.compareDateWithWorkTime(workScheduleService.getWorkScheduleByPharmacist(email),
+                    requiredStartDate, requiredEndDate);
+            boolean validCounselingTerms = counselingService.compareDateWithCounselingTerm(CounselingMapper.mapListCounselingToCounselingDto(counselingService.getCounselingByPharmacist(findUserByEmail(email))),
+                    requiredStartDate, requiredEndDate);
+            if(validCounselingTerms && validVacationTerms && validWorkTimeTerms){
+                vacationSchedule.setStartDate(requiredStartDate);
+                vacationSchedule.setEndDate(requiredEndDate);
+                vacationScheduleService.save(vacationSchedule);
+                Pharmacist pharmacist = findUserByEmail(email);
+                List<VacationSchedule> pharmacistVacations = new ArrayList<>();
+                for(VacationSchedule vs : pharmacist.getVacationSchedules()){
+                    pharmacistVacations.add(vs);
+                }
+                pharmacistVacations.add(vacationSchedule);
+                pharmacist.setVacationSchedules(pharmacistVacations);
+                savePharmacist(pharmacist);
+                return true;
+            }
+        }else{
+            throw new InvalidActionException("Start date can't be after end date.");
+        }
+
+        return false;
+    }
+
+
+
+
+
+
 
 }

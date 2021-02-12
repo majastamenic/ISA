@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ShowComplaintDto } from '../component/complaint-message/model/complaint';
+import { ShowComplaintDto } from '../model/complaint';
 import { COMPLAINT_PATH } from '../util/paths';
 
 @Injectable({

@@ -17,18 +17,22 @@ public class Pharmacy implements Serializable {
     private String name;
     @Column
     private String address;
+    @Column
+    private Integer counselingPrice;
     @OneToMany(fetch = FetchType.EAGER)
     private List<MedicinePharmacy> medicinePharmacy;
+    @ElementCollection
+    private List<String> subscribedEmails;
 
     public Pharmacy() { }
 
-    public Pharmacy(Long id, String name, String address,
-                    List<MedicinePharmacy> medicinePharmacy) {
-        super();
+    public Pharmacy(Long id, String name, String address, Integer counselingPrice, List<MedicinePharmacy> medicinePharmacy, List<String> subscribedEmails) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.counselingPrice = counselingPrice;
         this.medicinePharmacy = medicinePharmacy;
+        this.subscribedEmails = subscribedEmails;
     }
 
     public Long getId() {
@@ -55,6 +59,22 @@ public class Pharmacy implements Serializable {
         this.address = address;
     }
 
+    public Integer getCounselingPrice() {
+        return counselingPrice;
+    }
+
+    public void setCounselingPrice(Integer counselingPrice) {
+        this.counselingPrice = counselingPrice;
+    }
+
+    public List<String> getSubscribedEmails() {
+        return subscribedEmails;
+    }
+
+    public void setSubscribedEmails(List<String> subscribedEmails) {
+        this.subscribedEmails = subscribedEmails;
+    }
+
     public List<MedicinePharmacy> getMedicinePharmacy() {
         return medicinePharmacy;
     }
@@ -72,6 +92,4 @@ public class Pharmacy implements Serializable {
     public String toString() {
         return name;
     }
-
-
 }

@@ -12,7 +12,7 @@ public class ComplaintMapper {
 
     public static Complaint mapComplaintDtoToComplaint(CreateComplaintDto createComplaintDto, Patient patient){
         Complaint complaint = new Complaint();
-        complaint.setComplaintMessage(createComplaintDto.getSubject() + "\n" + createComplaintDto.getComplaintText());
+        complaint.setComplaintMessage(createComplaintDto.getSubject() + ":\n" + createComplaintDto.getComplaintText());
         complaint.setPatient(patient);
         return complaint;
     }
@@ -29,7 +29,7 @@ public class ComplaintMapper {
     public static ShowComplaintDto mapComplaintToShowComplaintDto(Complaint complaint){
         ShowComplaintDto showComplaintDto = new ShowComplaintDto();
         showComplaintDto.setId(complaint.getId());
-        showComplaintDto.setPatientName(complaint.getPatient().getUser().getName()+" "+complaint.getPatient().getUser().getSurname()+" "+complaint.getPatient().getUser().getEmail());
+        showComplaintDto.setPatientName(complaint.getPatient().getUser().getName()+" "+complaint.getPatient().getUser().getSurname()+": "+complaint.getPatient().getUser().getEmail());
         showComplaintDto.setMessage(complaint.getComplaintMessage());
         showComplaintDto.setResponse(complaint.getResponseComplaint());
         return showComplaintDto;

@@ -12,5 +12,11 @@ public interface EPrescriptionRepository extends JpaRepository<EPrescription, Lo
 
     EPrescription findEPrescriptionById(Long id);
 
+    EPrescription findEPrescriptionByFileText(String text);
+
+    EPrescription findEPrescriptionByCode(Long code);
+
     List<EPrescription> findAll();
+
+    List<EPrescription> findEPrescriptionByPatient_User_Email(String email);
 }

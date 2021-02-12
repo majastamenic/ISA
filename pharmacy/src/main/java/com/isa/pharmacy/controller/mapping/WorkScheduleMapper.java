@@ -1,8 +1,9 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.WorkScheduleDto;
-import com.isa.pharmacy.domain.Schedule;
-import com.isa.pharmacy.domain.WorkSchedule;
+import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
+import com.isa.pharmacy.scheduling.domain.Schedule;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 
 public class WorkScheduleMapper {
     public static WorkScheduleDto mapWorkScheduleToWorkScheduleDto (WorkSchedule workSchedule){
@@ -22,5 +23,22 @@ public class WorkScheduleMapper {
         workScheduleDto.setStartDate(schedule.getStartDate());
         workScheduleDto.setStartTime(schedule.getStartTime());
         return workScheduleDto;
+    }
+
+    public static Schedule mapWorkScheduleDtoToSchedule(WorkScheduleDto workScheduleDto) {
+        Schedule schedule = new Schedule();
+        schedule.setStartDate(workScheduleDto.getStartDate());
+        schedule.setEndDate(workScheduleDto.getEndDate());
+        schedule.setStartTime(workScheduleDto.getStartTime());
+        schedule.setEndTime(workScheduleDto.getEndTime());
+        return schedule;
+    }
+
+    public static WorkSchedulePharmacyDto mapWorkScheduleToWorkSchedulePharmacyDto(WorkSchedule workSchedule, String pharmacyName){
+        WorkSchedulePharmacyDto workSchedulePharmacyDto = new WorkSchedulePharmacyDto();
+        workSchedulePharmacyDto.setWorkScheduleDto(mapWorkScheduleToWorkScheduleDto(workSchedule));
+        workSchedulePharmacyDto.setPharmacyName(pharmacyName);
+        return workSchedulePharmacyDto;
+
     }
 }

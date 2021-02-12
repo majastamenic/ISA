@@ -1,7 +1,7 @@
 package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.domain.Diagnosis;
-import com.isa.pharmacy.service.DiagnosisService;
+import com.isa.pharmacy.service.interfaces.IDiagnosisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,10 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/diagnosis")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class DiagnosisController {
+
     @Autowired
-    private DiagnosisService diagnosisService;
+    private IDiagnosisService diagnosisService;
 
     @PostMapping("/add")
     public Diagnosis save(@RequestBody Diagnosis diag) {
