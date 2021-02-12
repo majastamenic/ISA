@@ -33,4 +33,6 @@ public interface ICounselingService {
 
      boolean compareDateWithCounselingTerm(List<CounselingDto> pharmacistCounseling, Date requiredStartDate, Date requiredEndDate);
 
+     List<CounselingDto> findCounselingByPatient(String email, String name, String surname);
+
 }

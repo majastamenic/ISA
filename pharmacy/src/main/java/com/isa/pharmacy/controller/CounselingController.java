@@ -27,7 +27,6 @@ public class CounselingController {
     @Autowired
     private IPatientService patientService;
 
-
     @GetMapping
     public List<Counseling> getAll() { return counselingService.getAll(); }
 
@@ -69,6 +68,12 @@ public class CounselingController {
     @DeleteMapping("/{counselingId}")
     public void cancelCounseling(@PathVariable long counselingId){
         counselingService.cancelCounseling(counselingId);
+    }
+
+
+    @GetMapping("/find/{email}/{name}/{surname}")
+    public List<CounselingDto> findCounselingByPatient(@PathVariable("email") String email, @PathVariable("name") String name, @PathVariable("surname") String surname){
+        return counselingService.findCounselingByPatient(email, name, surname);
     }
 
 }

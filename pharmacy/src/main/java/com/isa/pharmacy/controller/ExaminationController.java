@@ -1,6 +1,5 @@
 package com.isa.pharmacy.controller;
 
-import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.ExaminationCreateDto;
 import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
@@ -24,7 +23,6 @@ public class ExaminationController {
     private IExaminationService examinationService;
     @Autowired
     private IDermatologistService dermatologistService;
-
 
     @GetMapping("/start/{id}")
     public ExamDermatologistDto getById(@PathVariable("id") long id) {
@@ -59,7 +57,6 @@ public class ExaminationController {
         examinationService.scheduleExamination(patientEmail, examinationId);
     }
 
-
     @PutMapping("/cancel/{examinationId}")
     public void cancelExamination(@PathVariable Long examinationId){
         examinationService.cancelExamination(examinationId);
@@ -85,6 +82,11 @@ public class ExaminationController {
         List<Examination> examinations = examinationService.getFreeExaminationByDermatologistPatient(id);
         List<ExaminationUpcomingDto> examinationUpcomingDtos = ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinations);
         return examinationUpcomingDtos;
+    }
+
+    @GetMapping("/find/{email}/{name}/{surname}")
+    public List<ExamDermatologistDto> findExaminationByPatient(@PathVariable("email") String email, @PathVariable("name") String name, @PathVariable("surname") String surname){
+        return examinationService.findExaminationByPatient(email, name, surname);
     }
 
 }

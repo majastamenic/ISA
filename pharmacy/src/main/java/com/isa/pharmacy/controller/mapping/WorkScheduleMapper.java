@@ -6,6 +6,7 @@ import com.isa.pharmacy.scheduling.domain.Schedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 
 public class WorkScheduleMapper {
+
     public static WorkScheduleDto mapWorkScheduleToWorkScheduleDto (WorkSchedule workSchedule){
         WorkScheduleDto workScheduleDto = new WorkScheduleDto();
         workScheduleDto.setId(workSchedule.getId());

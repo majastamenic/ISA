@@ -4,6 +4,8 @@ import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,4 +28,6 @@ public interface CounselingRepository extends JpaRepository<Counseling, Long> {
     List<Counseling> findCounselingByPharmacist_User_Email(String email);
 
     Counseling save(Counseling counseling);
+
+
 }

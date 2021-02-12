@@ -11,7 +11,7 @@ public class Diagnosis implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(unique = true, nullable = false)
     private String name;
 
     public Diagnosis(){}

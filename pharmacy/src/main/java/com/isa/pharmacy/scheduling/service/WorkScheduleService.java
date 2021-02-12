@@ -110,7 +110,7 @@ public class WorkScheduleService implements IWorkScheduleService {
         Date endTime = counselingCreateDto.getSchedule().getEndTime();
         for(WorkSchedulePharmacyDto ws : pharmacistWork) {
             if (startDate.after(ws.getWorkScheduleDto().getStartDate()) && startDate.before(ws.getWorkScheduleDto().getEndDate()) || startDate.equals(ws.getWorkScheduleDto().getEndDate()) || startDate.equals(ws.getWorkScheduleDto().getStartDate())) {
-                if (dm.mergeDateAndTime(startDate, endTime).before(ws.getWorkScheduleDto().getEndDate()) && dm.mergeDateAndTime(startDate, startTime).after(ws.getWorkScheduleDto().getStartTime())) {
+                if (dm.mergeDateAndTime(startDate, endTime).before(dm.mergeDateAndTime(startDate, ws.getWorkScheduleDto().getEndTime())) && dm.mergeDateAndTime(startDate, startTime).after(dm.mergeDateAndTime(startDate, ws.getWorkScheduleDto().getStartTime()))) {
                     return true;
                 }
             }

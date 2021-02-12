@@ -1,16 +1,12 @@
 package com.isa.pharmacy.users.service;
 
 
-
-import com.isa.pharmacy.controller.dto.*;
-import com.isa.pharmacy.controller.exception.InvalidActionException;
-import com.isa.pharmacy.controller.mapping.CounselingMapper;
-import com.isa.pharmacy.scheduling.DateManipulation;
-import com.isa.pharmacy.scheduling.domain.VacationSchedule;
-import com.isa.pharmacy.scheduling.service.VacationScheduleService;
 import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
+import com.isa.pharmacy.controller.dto.VacationScheduleDto;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;

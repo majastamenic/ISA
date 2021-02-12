@@ -23,11 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.HOURS;
 
 @Service
 public class CounselingService implements ICounselingService {
@@ -204,6 +201,21 @@ public class CounselingService implements ICounselingService {
             }
         }
         return true;
+    }
+
+    public List<CounselingDto> findCounselingByPatient(String email, String name, String surname){
+        List<Patient> patients = patientService.findPatientByName(name, surname);
+        List<Counseling> counselings = new ArrayList<>();
+        for(Patient p : patients){
+            counselings.addAll(counselingRepository.findByPatient(p));
+        }
+        List<CounselingDto> counselingDtos = new ArrayList<>();
+        for(Counseling c: counselings){
+            if(c.getPharmacist().getUser().getEmail().equals(email)){
+                counselingDtos.add(CounselingMapper.mapCounselingToCounselingDto(c));
+            }
+        }
+        return counselingDtos;
     }
 
 }

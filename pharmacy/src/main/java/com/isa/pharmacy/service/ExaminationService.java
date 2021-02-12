@@ -1,11 +1,13 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.ExaminationCreateDto;
 import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 import com.isa.pharmacy.controller.mapping.ScheduleMapper;
 import com.isa.pharmacy.domain.*;
@@ -121,7 +123,6 @@ public class ExaminationService implements IExaminationService {
         return examDermatologistDtos;
     }
 
-
     public ExamDermatologistDto getById(long id) {
         Examination examination = examinationRepository.findExaminationById(id);
         if(examination == null)
@@ -184,7 +185,6 @@ public class ExaminationService implements IExaminationService {
         return updateExamination;
     }
 
-
     public List<Examination> getFreeExaminationsByDermatologist(String email){
         List<Examination> freeExaminations = new ArrayList<>();
         Dermatologist dermatologist = dermatologistService.findUserByEmail(email);
@@ -241,7 +241,6 @@ public class ExaminationService implements IExaminationService {
         return false;
     }
 
-
     public boolean dermatologistNotOnExamination(Dermatologist dermatologist, Date start, Date end){
         List<Examination> examinations = examinationRepository.findByDermatologist(dermatologist);
         DateManipulation dm = new DateManipulation();
@@ -255,6 +254,40 @@ public class ExaminationService implements IExaminationService {
             }
         }
         return true;
+    }
+
+
+
+    public boolean compareDateWithExaminationTerm(Dermatologist dermatologist, Date requiredStartDate, Date requiredEndDate){
+        List<Examination> examinations = examinationRepository.findByDermatologist(dermatologist);
+        for(Examination exam : examinations){
+            if(requiredStartDate.before(exam.getSchedule().getStartDate())){
+                continue;
+            }else if(requiredStartDate.after(exam.getSchedule().getStartDate())){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public List<ExamDermatologistDto> findExaminationByPatient(String email, String name, String surname){
+        List<Patient> patients = patientService.findPatientByName(name, surname);
+        List<Examination> examinations = new ArrayList<>();
+        for(Patient p : patients){
+            examinations.addAll(examinationRepository.findByPatient(p));
+        }
+        List<ExamDermatologistDto> examDermatologistDtos = new ArrayList<>();
+        for(Examination e: examinations){
+            if(e.getDermatologist().getUser().getEmail().equals(email)){
+                PatientDto patientDto = PatientMapper.mapPatientToPatientDto(e.getPatient());
+                ExamDermatologistDto examDermatologistDto = ExaminationMapper.mapExaminationToExaminationDto(e, patientDto);
+                examDermatologistDtos.add(examDermatologistDto);
+            }
+        }
+        return examDermatologistDtos;
     }
 
 }

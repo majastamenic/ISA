@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
@@ -35,8 +36,8 @@ public class DermatologistController {
     @GetMapping
     public List<Dermatologist> getAll() { return dermatologistService.getAll(); }
 
-
-
-
-
+    @PostMapping("/check/vacation/{email}")
+    public boolean checkVacationTerm(@RequestBody VacationScheduleDto vacationScheduleDto, @PathVariable("email") String email){
+        return dermatologistService.checkVacationTerm(vacationScheduleDto, email);
+    }
 }
