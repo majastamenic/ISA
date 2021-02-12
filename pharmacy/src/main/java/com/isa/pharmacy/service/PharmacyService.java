@@ -7,9 +7,11 @@ import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.PharmacyRepository;
+import com.isa.pharmacy.service.interfaces.IMedicineReservationService;
 import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
+import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PharmacyService implements IPharmacyService {
@@ -26,6 +29,8 @@ public class PharmacyService implements IPharmacyService {
     private PharmacyRepository pharmacyRepository;
     @Autowired
     private IPharmacistService pharmacistService;
+    @Autowired
+    private IMedicineReservationService medicineReservationService;
     @Value("${apiKey}")
     private String apiKey;
 
@@ -123,15 +128,16 @@ public class PharmacyService implements IPharmacyService {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
 
-    //TODO: Maja Samo apoteke u kojima je kupio lek
-    public List<String> getPharmacyName(){
+    public List<String> getPharmacyName(String email){
         List<String> pharmacyNames = new ArrayList<>();
-        List<Pharmacy> pharmacyList = pharmacyRepository.findAll();
-        if(pharmacyList.isEmpty())
-            throw new NotFoundException("There is no pharmacy");
-        for(Pharmacy pharmacy: pharmacyList)
-            pharmacyNames.add("Pharmacy: "+ pharmacy.getName());
-        return pharmacyNames;
+        List<MedicineReservation> medicineReservations = medicineReservationService.getAllReservationsByPatient(email);
+        if (medicineReservations != null) {
+            for(MedicineReservation med: medicineReservations){
+                if(med.getTaken() != null && med.getTaken())
+                    pharmacyNames.add(med.getMedicinePharmacy().getPharmacy().getName());
+            }
+        }
+        return pharmacyNames.stream().distinct().collect(Collectors.toList());
     }
 
     public List<Pharmacy> getPharmaciesForCounseling(DateTimeDto eagerDate){

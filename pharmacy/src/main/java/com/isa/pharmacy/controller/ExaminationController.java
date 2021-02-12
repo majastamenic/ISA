@@ -31,7 +31,7 @@ public class ExaminationController {
         return examinationService.getById(id);
     }
 
-    @GetMapping("/freeTerms")       // TODO: Obrisati ako niko ne koristi
+    @GetMapping("/freeTerms")
     public List<ExaminationUpcomingDto> getFreeExaminationTerms(){
         return ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinationService.getAllFreeExaminationTerms());
     }

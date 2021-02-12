@@ -22,19 +22,12 @@ public class PharmacistMapper {
         return dto;
     }
 
-    public static Pharmacist mapPharmacistByPharmacyDtoToPharmacist(PharmacistByPharmacyDto pharmacistByPharmacyDto){
-        Pharmacist pharmacist = new Pharmacist();
-        pharmacist.setUser(pharmacistByPharmacyDto.getUser());
-        return pharmacist;
-    }
-
     public  static PharmacistByPharmacyDto mapPharmacistToPharmacistByPharmacyDto(Pharmacist pharmacist){
         PharmacistByPharmacyDto pharmacistByPharmacyDto = new PharmacistByPharmacyDto();
         pharmacistByPharmacyDto.setUser(pharmacist.getUser());
         return pharmacistByPharmacyDto;
     }
 
-// TODO: Ovo iznad obrisati kasnije
     public static PharmacistDto mapPharmacistToPharmacistDto(Pharmacist pharmacist){
         PharmacistDto ph = new PharmacistDto();
         ph.setPharmacy(PharmacyMapper.mapPharmacyToPharmacyDto(pharmacist.getPharmacy()));

@@ -45,7 +45,7 @@ public class ComplaintService implements IComplaintService {
         List<String> types = new ArrayList<>();
         types.addAll(counselingService.getPharmacistNameByPatient(patient));
         types.addAll(examinationService.getDermatologistNameByPatient(patient));
-        types.addAll(pharmacyService.getPharmacyName());
+        types.addAll(pharmacyService.getPharmacyName(email));
 
         if(types.isEmpty())
             throw new NotFoundException("You were not in contact with either the pharmacy or their employees.");

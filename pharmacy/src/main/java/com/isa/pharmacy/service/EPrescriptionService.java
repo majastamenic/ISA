@@ -77,6 +77,7 @@ public class EPrescriptionService implements IEPrescriptionService {
                     if(medicineEPrescription.getName().equals(medicinePharmacy.getMedicine().getName()) && medicineEPrescription.getQuantity()<=medicinePharmacy.getQuantity()){
                         medicinePharmacy.setQuantity(medicinePharmacy.getQuantity()-medicineEPrescription.getQuantity());
                         medicinePharmacyService.save(medicinePharmacy);
+                        ePrescription.getPatient().setLoyaltyPoints(ePrescription.getPatient().getLoyaltyPoints() + medicinePharmacy.getMedicine().getLoyaltyPoints());
                     }
                 }
             }
