@@ -1,6 +1,7 @@
 package com.isa.pharmacy.controller.dto;
 
 public class WorkSchedulePharmacyDto {
+
     private WorkScheduleDto workScheduleDto;
     private String pharmacyName;
 

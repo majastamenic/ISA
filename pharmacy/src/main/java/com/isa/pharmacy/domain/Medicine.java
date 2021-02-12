@@ -16,7 +16,7 @@ public class Medicine implements Serializable {
     private Long id;
     @Column(unique = true, nullable = false)
     private Long code;
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String name;
     @Column
     private String typeOfMedicine;

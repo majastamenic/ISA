@@ -22,6 +22,7 @@ import java.util.List;
 
 @Service
 public class MedicinePharmacyService implements IMedicinePharmacyService {
+
     @Autowired
     private MedicinePharmacyRepository medicinePharmacyRepository;
     @Autowired

@@ -8,6 +8,7 @@ import com.isa.pharmacy.users.domain.User;
 import net.bytebuddy.utility.RandomString;
 
 public class PharmacyAdminMapper {
+
     public static PharmacyAdmin mapPharmacyAdminDtoToPharmacyAdmin(CreatePhAdminDto createPhAdminDto, Pharmacy pharmacy){
         PharmacyAdmin pharmacyAdmin = new PharmacyAdmin();
         User user = new User();

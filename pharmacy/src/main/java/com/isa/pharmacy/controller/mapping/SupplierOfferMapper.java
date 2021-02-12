@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierOfferMapper {
+
     public static SupplierOffer mapSupplierOfferDtoToSupplierOffer(SupplierOfferDto supplierOfferDto, Order order, Supplier supplier){
         SupplierOffer supplierOffer = new SupplierOffer();
         supplierOffer.setOrder(order);

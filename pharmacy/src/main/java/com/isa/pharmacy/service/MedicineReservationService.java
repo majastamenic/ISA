@@ -82,7 +82,6 @@ public class MedicineReservationService implements IMedicineReservationService {
         return false;
     }
 
-
     public void cancelReservation(long reservationId){
         MedicineReservation reservation = medicineReservationRepository.findMedicineReservationById(reservationId);
         Date currDate = DateManipulation.addMinutes(new Date(), 60*24);

@@ -45,5 +45,4 @@ public class HospitalController {
         return hospital;
     }
 
-
 }

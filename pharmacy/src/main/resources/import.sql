@@ -480,3 +480,29 @@ insert into eprescription(code, date_of_issue, file_text, patient_id) values(10,
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(8, 9);
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(9, 10);
     insert into eprescription_list_of_medication(eprescription_id, list_of_medication_id) values(10, 11);
+
+-- Rating
+    --Pharmacist
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (1, 1, 1);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (1, 2, 5);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (1, 3, 5);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (1, 4, 3);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (1, 5, 4);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (1, 6, 5);
+
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (2, 1, 2);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (2, 2, 2);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (2, 3, 5);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (2, 4, 1);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (2, 5, 2);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (2, 6, 3);
+
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (3, 1, 5);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (3, 2, 5);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (3, 3, 3);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (3, 4, 2);
+
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 1, 1);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 3, 1);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 4, 2);
+    insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 6, 3);

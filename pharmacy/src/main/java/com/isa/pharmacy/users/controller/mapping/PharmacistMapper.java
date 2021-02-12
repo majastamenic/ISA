@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PharmacistMapper {
+
     public static Pharmacist mapCreatePharmacistDtoToPharmacist(CreatePharmacistDto createPharmacistDto){
         Pharmacist pharmacist = new Pharmacist();
         pharmacist.setWorkSchedule(new ArrayList<>());
