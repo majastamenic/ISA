@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service.interfaces;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.users.domain.Patient;
@@ -25,5 +26,9 @@ public interface ICounselingService {
      boolean isPharmacistOccupied(Pharmacist pharmacist, Date eagerDate);
 
      CounselingDto updateCounseling(CounselingDto updateCounseling);
+
+     boolean createCounselingByPharmacist(CounselingCreateDto counselingDto);
+
+     boolean compareDateWithCounselingTerm(List<CounselingDto> pharmacistCounseling, Date requiredStartDate, Date requiredEndDate);
 
 }

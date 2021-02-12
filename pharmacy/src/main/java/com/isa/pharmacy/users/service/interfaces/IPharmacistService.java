@@ -2,6 +2,7 @@ package com.isa.pharmacy.users.service.interfaces;
 
 import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
+import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
@@ -34,4 +35,6 @@ public interface IPharmacistService {
      List<Pharmacist> getFreePharmacistByPharmacyAndDate(String pharmacyName, DateTimeDto date);
 
      List<Pharmacist> getFreePharmacistByDate(DateTimeDto date);
+
+     boolean checkVacationTerm(VacationScheduleDto vacationScheduleDto, String email);
 }

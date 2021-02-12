@@ -61,4 +61,9 @@ public class CounselingController {
     @PostMapping("/update")
     public CounselingDto updateCounseling(@RequestBody CounselingDto counseling) { return counselingService.updateCounseling(counseling); }
 
+    @PostMapping("create/pharmacist")
+    public boolean createCounselingByPharmacist(@RequestBody CounselingCreateDto counselingCreateDto){
+        return  counselingService.createCounselingByPharmacist(counselingCreateDto);
+    }
+
 }

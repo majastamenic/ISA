@@ -1,7 +1,6 @@
 package com.isa.pharmacy.scheduling.service;
 
-import com.isa.pharmacy.controller.dto.WorkScheduleDto;
-import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
+import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.controller.mapping.WorkScheduleMapper;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
@@ -88,4 +87,54 @@ public class WorkScheduleService implements IWorkScheduleService {
         }
         return workSchedulesDto;
     }
+
+
+    public boolean compareDateWithWorkTime(List<WorkSchedulePharmacyDto> pharmacistWork, Date requiredStartDate, Date requiredEndDate){
+        for(WorkSchedulePharmacyDto ws : pharmacistWork){
+            if(requiredStartDate.before(ws.getWorkScheduleDto().getStartDate()) && requiredEndDate.before(ws.getWorkScheduleDto().getStartDate())){
+                continue;
+            }else if(requiredStartDate.after(ws.getWorkScheduleDto().getEndDate()) && requiredEndDate.after(ws.getWorkScheduleDto().getEndDate())){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean pharmacistIsWorking(Pharmacist pharmacist, CounselingCreateDto counselingCreateDto){
+        List<WorkSchedulePharmacyDto> pharmacistWork = getWorkScheduleByPharmacist(pharmacist.getUser().getEmail());
+        DateManipulation dm = new DateManipulation();
+        Date startDate = counselingCreateDto.getSchedule().getStartDate();
+        Date startTime = counselingCreateDto.getSchedule().getStartTime();
+        Date endTime = counselingCreateDto.getSchedule().getEndTime();
+        for(WorkSchedulePharmacyDto ws : pharmacistWork) {
+            if (startDate.after(ws.getWorkScheduleDto().getStartDate()) && startDate.before(ws.getWorkScheduleDto().getEndDate()) || startDate.equals(ws.getWorkScheduleDto().getEndDate()) || startDate.equals(ws.getWorkScheduleDto().getStartDate())) {
+                if (dm.mergeDateAndTime(startDate, endTime).before(ws.getWorkScheduleDto().getEndDate()) && dm.mergeDateAndTime(startDate, startTime).after(ws.getWorkScheduleDto().getStartTime())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean dermatologistIsWorking(ExaminationCreateDto examinationCreateDto, Dermatologist dermatologist, String pharmacyName){
+        List<WorkSchedulePharmacyDto> dermatologistWork = getWorkScheduleByDermatologist(dermatologist.getUser().getEmail());
+        DateManipulation dm = new DateManipulation();
+        Date startDate = examinationCreateDto.getSchedule().getStartDate();
+        Date startTime = examinationCreateDto.getSchedule().getStartTime();
+        Date endTime = examinationCreateDto.getSchedule().getEndTime();
+        for(WorkSchedulePharmacyDto ws : dermatologistWork){
+            if(ws.getPharmacyName().equals(pharmacyName)){
+                if (startDate.after(ws.getWorkScheduleDto().getStartDate()) && startDate.before(ws.getWorkScheduleDto().getEndDate()) || startDate.equals(ws.getWorkScheduleDto().getEndDate()) || startDate.equals(ws.getWorkScheduleDto().getStartDate())) {
+                    if (dm.mergeDateAndTime(startDate, endTime).before(dm.mergeDateAndTime(startDate, ws.getWorkScheduleDto().getEndTime())) && dm.mergeDateAndTime(startDate, startTime).after(dm.mergeDateAndTime(startDate, ws.getWorkScheduleDto().getStartTime()))) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
 }

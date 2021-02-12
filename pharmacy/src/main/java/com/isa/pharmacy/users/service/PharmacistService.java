@@ -1,6 +1,13 @@
 package com.isa.pharmacy.users.service;
 
 
+
+import com.isa.pharmacy.controller.dto.*;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
+import com.isa.pharmacy.scheduling.DateManipulation;
+import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.service.VacationScheduleService;
 import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
@@ -41,6 +48,10 @@ public class PharmacistService implements IPharmacistService {
     @Autowired
     private IPharmacyService pharmacyService;
 
+
+    public Pharmacist savePharmacist(Pharmacist pharmacist){
+        return pharmacistRepository.save(pharmacist);
+    }
 
     public CreatePharmacistDto save(CreatePharmacistDto p) {
         Pattern pattern = Pattern.compile("^(.+)@(.+)$");
@@ -125,5 +136,46 @@ public class PharmacistService implements IPharmacistService {
         return freePharmacists;
     }
 
-    //public List<Counseling>
+
+    public boolean checkVacationTerm(VacationScheduleDto vacationScheduleDto, String email){
+        VacationSchedule vacationSchedule = new VacationSchedule();
+        if(vacationScheduleDto == null){
+            throw new NullPointerException("No parametars");
+        }
+        Date requiredStartDate = vacationScheduleDto.getStartDate();
+        Date requiredEndDate = vacationScheduleDto.getEndDate();
+        if(requiredStartDate.before(requiredEndDate) || requiredStartDate.equals(requiredEndDate) || requiredEndDate == null){
+            boolean validVacationTerms = vacationScheduleService.compareDateWithVacations(vacationScheduleService.getVacationScheduleByPharmacist(email),
+                    requiredStartDate, requiredEndDate);
+            boolean validWorkTimeTerms = workScheduleService.compareDateWithWorkTime(workScheduleService.getWorkScheduleByPharmacist(email),
+                    requiredStartDate, requiredEndDate);
+            boolean validCounselingTerms = counselingService.compareDateWithCounselingTerm(CounselingMapper.mapListCounselingToCounselingDto(counselingService.getCounselingByPharmacist(findUserByEmail(email))),
+                    requiredStartDate, requiredEndDate);
+            if(validCounselingTerms && validVacationTerms && validWorkTimeTerms){
+                vacationSchedule.setStartDate(requiredStartDate);
+                vacationSchedule.setEndDate(requiredEndDate);
+                vacationScheduleService.save(vacationSchedule);
+                Pharmacist pharmacist = findUserByEmail(email);
+                List<VacationSchedule> pharmacistVacations = new ArrayList<>();
+                for(VacationSchedule vs : pharmacist.getVacationSchedules()){
+                    pharmacistVacations.add(vs);
+                }
+                pharmacistVacations.add(vacationSchedule);
+                pharmacist.setVacationSchedules(pharmacistVacations);
+                savePharmacist(pharmacist);
+                return true;
+            }
+        }else{
+            throw new InvalidActionException("Start date can't be after end date.");
+        }
+
+        return false;
+    }
+
+
+
+
+
+
+
 }

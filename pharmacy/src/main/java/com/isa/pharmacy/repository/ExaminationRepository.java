@@ -19,4 +19,6 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
     List<Examination> findByPatient(Patient patient);
 
     Examination save(Examination examination);
+
+    List<Examination> findExaminationByPatient_User_Email(String email);
 }

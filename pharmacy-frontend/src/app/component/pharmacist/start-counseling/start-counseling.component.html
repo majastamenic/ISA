@@ -46,6 +46,8 @@
                 <button class="btn btn-secondary" style="width:200px;" (click)="cancelCounseling()">Cancel</button>&nbsp;
                 <button class="btn btn-primary" style="width:200px;" (click)="saveCounseling(true)" [disabled]="!isChecked">Save</button>
             </div>
+            <br>
+            <p style="font-size: 11px; color: red;">Before saving examination, you need to check availability of medicine/s.</p>
         </form>
     </div>
 
@@ -78,5 +80,5 @@
 <div *ngIf='toSchedule' class="page" >
     <h1>Do you want to schedule new Counseling?</h1>
     <button class="btn btn-secondary" style="width:100px;" (click)="cancelCounseling()">No</button>&nbsp;
-    <button class="btn btn-primary" style="width:100px;" [routerLink]="['/counseling', counseling.id]">Yes</button>
+    <button class="btn btn-primary" style="width:100px;" [routerLink]="['/counseling', counseling.patientDto.user.email]">Yes</button>
 </div>

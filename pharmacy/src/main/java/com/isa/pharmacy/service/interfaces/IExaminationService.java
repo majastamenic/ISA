@@ -1,10 +1,13 @@
 package com.isa.pharmacy.service.interfaces;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
+import com.isa.pharmacy.controller.dto.ExaminationCreateDto;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Patient;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IExaminationService {
@@ -30,4 +33,8 @@ public interface IExaminationService {
      ExamDermatologistDto updateExamination(ExamDermatologistDto updateExamination);
 
      List<Examination> getFreeExaminationsByDermatologist(String email);
+
+     boolean createExaminationByDermatologist(ExaminationCreateDto examinationCreateDto);
+
+     boolean dermatologistNotOnExamination(Dermatologist dermatologist, Date start, Date end);
 }

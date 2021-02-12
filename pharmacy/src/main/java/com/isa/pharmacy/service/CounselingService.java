@@ -1,6 +1,8 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.CounselingDto;
+import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
@@ -8,7 +10,9 @@ import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.CounselingRepository;
+import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.service.interfaces.IScheduleService;
+import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
 import com.isa.pharmacy.service.interfaces.*;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
@@ -39,6 +43,13 @@ public class CounselingService implements ICounselingService {
     private IPatientService patientService;
     @Autowired
     private IMedicineService medicineService;
+    @Autowired
+    private IPharmacyService pharmacyService;
+    @Autowired
+    private IExaminationService examinationService;
+    @Autowired
+    private IWorkScheduleService workScheduleService;
+
 
 
     public List<Counseling> getAll(){
@@ -69,12 +80,59 @@ public class CounselingService implements ICounselingService {
     public Counseling createCounseling(Counseling counseling) {
         if(counseling.getSchedule().getStartDate().compareTo(counseling.getSchedule().getEndDate()) != 0)
             throw new InvalidActionException("Start date and end date must be on a same date");
-        //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu
+        //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu - NEMOJ!
         scheduleService.save(counseling.getSchedule());
         Counseling scheduledCounseling = counselingRepository.save(counseling);
         emailService.successfulCounselingSchedule(scheduledCounseling);
         return scheduledCounseling;
     }
+
+
+    public boolean createCounselingByPharmacist(CounselingCreateDto counselingDto){
+        DateManipulation dm = new DateManipulation();
+        Date start = dm.mergeDateAndTime(counselingDto.getSchedule().getStartDate(), counselingDto.getSchedule().getStartTime());
+        Date end = dm.mergeDateAndTime(counselingDto.getSchedule().getEndDate(), counselingDto.getSchedule().getEndTime());
+        Pharmacist pharmacist = pharmacistService.findUserByEmail(counselingDto.getPharmacistEmail());
+        Patient patient = patientService.getPatient(counselingDto.getPatientEmail());
+        List<WorkSchedulePharmacyDto> pharmacistWork = workScheduleService.getWorkScheduleByPharmacist(counselingDto.getPharmacistEmail());
+        if(workScheduleService.pharmacistIsWorking(pharmacist, counselingDto)) {
+            boolean validCouns = pharmacistOnCounseling(pharmacist, start, end);
+            if (validCouns) {
+                boolean validTerm = patientService.patientIsFree(patient, start, end);
+                if (validTerm) {
+                    Counseling counseling = CounselingMapper.mapCounselingCreateDtoToCounseling(counselingDto);
+                    counseling.setPharmacist(pharmacist);
+                    counseling.setPatient(patient);
+                    createCounseling(counseling);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+    public boolean pharmacistOnCounseling(Pharmacist pharmacist, Date start, Date end){
+        List<Counseling> pharmacistCouns = getCounselingByPharmacist(pharmacist);
+        DateManipulation dm = new DateManipulation();
+        for(Counseling c: pharmacistCouns){
+            Date startCouns = dm.mergeDateAndTime(c.getSchedule().getStartDate(), c.getSchedule().getStartTime());
+            Date endCouns = dm.mergeDateAndTime(c.getSchedule().getEndDate(), c.getSchedule().getEndTime());
+            if((start.before(startCouns) && end.before(startCouns)) || (start.after(endCouns) && end.after(endCouns))){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
 
     public List<String> getPharmacistNameByPatient(Patient patient){
         List<String> pharmacistNames = new ArrayList<>();
@@ -128,6 +186,22 @@ public class CounselingService implements ICounselingService {
             throw new NotFoundException("Counseling not found.");
         }
         return updateCounseling;
+    }
+
+
+
+
+    public boolean compareDateWithCounselingTerm(List<CounselingDto> pharmacistCounseling, Date requiredStartDate, Date requiredEndDate){
+        for(CounselingDto couns : pharmacistCounseling){
+            if(requiredStartDate.before(couns.getSchedule().getStartDate())){
+                continue;
+            }else if(requiredStartDate.after(couns.getSchedule().getStartDate())){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
     }
 
 }

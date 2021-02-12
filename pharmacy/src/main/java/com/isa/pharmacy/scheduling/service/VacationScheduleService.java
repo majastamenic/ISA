@@ -73,4 +73,18 @@ public class VacationScheduleService implements IVacationService {
         return vacationScheduleDtos;
     }
 
+
+    public boolean compareDateWithVacations(List<VacationScheduleDto> pharmacistVacations, Date requiredStartDate, Date requiredEndDate){
+        for(VacationScheduleDto vs: pharmacistVacations){
+            if(requiredStartDate.before(vs.getStartDate()) && requiredEndDate.before(vs.getStartDate())){
+                continue;
+            }else if(requiredStartDate.after(vs.getEndDate()) && requiredEndDate.after(vs.getEndDate())){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

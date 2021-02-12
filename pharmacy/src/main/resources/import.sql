@@ -277,6 +277,18 @@ insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values 
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (9, 9);
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (10, 10);
 
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 1);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 2);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 3);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 4);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 5);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 6);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 7);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 8);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 9);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 10);
+
+
 -- MedicinePharmacy: Benu
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.44, 16932, 1, 2);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.90, 1818, 2, 2);
@@ -285,6 +297,11 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 11);
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (2, 12);
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (4, 13);
+
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 11);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 12);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 13);
+
 
 --MedicinePharmacy: Zelena Apoteka
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.14, 1917, 3, 3);
@@ -295,6 +312,10 @@ insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values 
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (6, 15);
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (5, 16);
 
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(3, 14);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(3, 15);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(3, 16);
+
 --MedicinePharmacy: Galen Pharmacy
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.94, 1729, 7, 4);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(5.90, 7291, 8, 4);
@@ -303,6 +324,10 @@ insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (7, 17);
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (8, 18);
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (9, 19);
+
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(4, 17);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(4, 18);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(4, 19);
 
 --MedicinePharmacy: Irisfarm
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(6.12, 2315, 10, 5);
@@ -313,6 +338,10 @@ insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values 
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (8, 21);
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (9, 22);
 
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(5, 20);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(5, 21);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(5, 22);
+
 --MedicinePharmacy: Tilia
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(1.91, 1915, 2, 6);
 insert into medicine_pharmacy(price, quantity, medicine_id, pharmacy_id) values(6.83, 1801, 6, 6);
@@ -322,16 +351,11 @@ insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values 
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (6, 24);
 insert into medicine_medicine_pharmacy(medicine_id, medicine_pharmacy_id)values (1, 25);
 
--- ??????????????
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 1);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 2);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 3);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 4);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(1, 5);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(6, 23);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(6, 24);
+insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(6, 25);
 
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 6);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 7);
-insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values(2, 8);
+
 ----------------------
 
 -- Orders

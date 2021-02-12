@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { logging } from 'protractor';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { CounselingDto } from 'src/app/model/counseling';
-import { Diagnosis } from 'src/app/model/diagnosis';
 import { CounselingsService } from 'src/app/service/counselings.service';
-import { DiagnosisService } from 'src/app/service/diagnosis.service';
 import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.service';
 import { MedicineService } from 'src/app/service/medicine.service';
 
@@ -122,8 +119,6 @@ export class StartCounselingComponent implements OnInit {
   }
 
 
-
-  // do ovde je okej
   saveCounseling(came: boolean){
     this.cannotSave = false;
     this.updateCouns.id = this.counseling.id;
@@ -171,10 +166,6 @@ export class StartCounselingComponent implements OnInit {
     this.toastrService.info("Patient is here! Fill in report of counseling.");
   }
 
-  scheduleCounseling(){
-    //this.router.navigate(['/examination']);
-    // proslediti i pacijenta u urlu
-  }
 
 
 }

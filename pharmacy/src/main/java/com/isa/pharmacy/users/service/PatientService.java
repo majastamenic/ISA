@@ -2,6 +2,11 @@ package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.scheduling.DateManipulation;
+import com.isa.pharmacy.service.interfaces.ICounselingService;
+import com.isa.pharmacy.service.interfaces.IExaminationService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PatientRepository;
@@ -11,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,6 +26,10 @@ public class PatientService implements IPatientService {
     private PatientRepository patientRepository;
     @Autowired
     private IUserService userService;
+    @Autowired
+    private ICounselingService counselingService;
+    @Autowired
+    private IExaminationService examinationService;
 
     public Patient registration(Patient patient) {
         Patient existingUser = getPatient(patient.getUser().getEmail());
@@ -69,6 +79,33 @@ public class PatientService implements IPatientService {
             return patientRepository.save(patient);
         }
         throw new NotFoundException("Patient doesn't exist.");
+    }
+
+    public boolean patientIsFree(Patient patient, Date start, Date end){
+        List<Counseling> patientCouns = counselingService.getAllPatientsCounselings(patient.getUser().getEmail());
+        List<Examination> patientExams = examinationService.getExaminationByPatient(patient.getUser().getEmail());
+        DateManipulation dm = new DateManipulation();
+        boolean validTerm = false;
+        for(Counseling c: patientCouns){
+            Date startCouns = dm.mergeDateAndTime(c.getSchedule().getStartDate(), c.getSchedule().getStartTime());
+            Date endCouns = dm.mergeDateAndTime(c.getSchedule().getEndDate(), c.getSchedule().getEndTime());
+            if((start.before(startCouns) && end.before(startCouns)) || (start.after(endCouns) && end.after(endCouns))){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        for(Examination e : patientExams){
+            Date startExam = dm.mergeDateAndTime(e.getSchedule().getStartDate(), e.getSchedule().getEndTime());
+            Date endExam = dm.mergeDateAndTime(e.getSchedule().getEndDate(), e.getSchedule().getEndTime());
+            if((start.before(startExam) && end.before(startExam)) || (start.after(endExam) && end.after(endExam))){
+                continue;
+            }else{
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }

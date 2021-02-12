@@ -16,4 +16,6 @@ public interface IVacationService {
      List<VacationScheduleDto> getVacationScheduleByDermatologist(String email);
 
      List<VacationScheduleDto> getVacationScheduleByPharmacist(String email);
+
+     boolean compareDateWithVacations(List<VacationScheduleDto> pharmacistVacations, Date requiredStartDate, Date requiredEndDate);
 }
