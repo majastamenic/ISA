@@ -27,7 +27,7 @@ public class EPrescription implements Serializable {
     private Date dateOfIssue;
     @OneToMany
     private List<MedicineEPrescription> listOfMedication;
-    @Column
+    @Column(unique = true, nullable = false)
     private String fileText;
 
     public EPrescription() { }

@@ -12,7 +12,7 @@ public class LoyaltyGroup implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(unique = true)
     private LoyaltyGroupType type;
     @Column
     private int points;

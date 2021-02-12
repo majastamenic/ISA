@@ -2,20 +2,20 @@ package com.isa.pharmacy.rabbitmq;
 
 import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
-import com.isa.pharmacy.service.EmailService;
+import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
-import com.isa.pharmacy.users.service.PharmacyAdminService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ActionsAndBenefitsService {
+public class ActionsAndBenefitsService implements IActionAndBenefitService{
     @Autowired
-    private PharmacyAdminService pharmacyAdminService;
+    private IPharmacyAdminService pharmacyAdminService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
 
     public void send(ActionsAndBenefits actionsAndBenefits, String phAdminEmail){
         PharmacyAdmin pharmacyAdmin = pharmacyAdminService.getByEmail(phAdminEmail);

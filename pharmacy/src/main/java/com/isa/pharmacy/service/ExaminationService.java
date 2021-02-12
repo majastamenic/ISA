@@ -121,7 +121,6 @@ public class ExaminationService implements IExaminationService {
         return examDermatologistDtos;
     }
 
-
     public ExamDermatologistDto getById(long id) {
         Examination examination = examinationRepository.findExaminationById(id);
         if(examination == null)
@@ -184,7 +183,6 @@ public class ExaminationService implements IExaminationService {
         return updateExamination;
     }
 
-
     public List<Examination> getFreeExaminationsByDermatologist(String email){
         List<Examination> freeExaminations = new ArrayList<>();
         Dermatologist dermatologist = dermatologistService.findUserByEmail(email);
@@ -240,7 +238,6 @@ public class ExaminationService implements IExaminationService {
         }
         return false;
     }
-
 
     public boolean dermatologistNotOnExamination(Dermatologist dermatologist, Date start, Date end){
         List<Examination> examinations = examinationRepository.findByDermatologist(dermatologist);

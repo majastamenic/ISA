@@ -35,8 +35,4 @@ public class DermatologistController {
     @GetMapping
     public List<Dermatologist> getAll() { return dermatologistService.getAll(); }
 
-
-
-
-
 }

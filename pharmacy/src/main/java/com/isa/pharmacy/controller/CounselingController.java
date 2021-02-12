@@ -27,7 +27,6 @@ public class CounselingController {
     @Autowired
     private IPatientService patientService;
 
-
     @GetMapping
     public List<Counseling> getAll() { return counselingService.getAll(); }
 

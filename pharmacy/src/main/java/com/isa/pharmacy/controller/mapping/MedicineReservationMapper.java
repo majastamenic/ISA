@@ -1,7 +1,6 @@
 package com.isa.pharmacy.controller.mapping;
 
 import com.isa.pharmacy.controller.dto.MedicineReservationDto;
-import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicineReservation;
 
 import java.util.ArrayList;

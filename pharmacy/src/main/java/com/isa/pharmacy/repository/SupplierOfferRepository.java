@@ -11,8 +11,12 @@ import java.util.List;
 
 @Repository
 public interface SupplierOfferRepository extends JpaRepository<SupplierOffer, Long> {
+
     SupplierOffer save(SupplierOffer supplierOffer);
+
     SupplierOffer findSupplierOfferByOrder(Order order);
+
     List<SupplierOffer> findSupplierOfferBySupplier(Supplier supplier);
+
     List<SupplierOffer> findSupplierOfferBySupplierAndType(Supplier supplier, OrderOfferType type);
 }

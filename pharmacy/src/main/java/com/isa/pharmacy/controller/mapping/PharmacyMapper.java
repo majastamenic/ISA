@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PharmacyMapper {
+
     public static Pharmacy mapPharmacyDtoToPharmacy(PharmacyDto pharmacyDto){
         Pharmacy pharmacy = new Pharmacy();
         pharmacy.setName(pharmacyDto.getName());
@@ -38,6 +39,7 @@ public class PharmacyMapper {
 
         return dto;
     }
+
     public static PharmacyFromMedicinePharmacyDto mapPharmacyToPharmacyFromMedicinePharmacyDto(Pharmacy pharmacy){
         PharmacyFromMedicinePharmacyDto pharmacyFromMedicinePharmacyDto = new PharmacyFromMedicinePharmacyDto();
 

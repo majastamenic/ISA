@@ -12,8 +12,6 @@ public interface MedicinePharmacyRepository extends JpaRepository<MedicinePharma
 
     MedicinePharmacy save(MedicinePharmacy medicine);
 
-    MedicinePharmacy findMedicinePharmacyById(Long id);
-
     MedicinePharmacy findMedicinePharmacyByAndPharmacy_NameAndMedicine_Name(String pharmacyName, String medicineName);
 
     List<MedicinePharmacy> findAll();

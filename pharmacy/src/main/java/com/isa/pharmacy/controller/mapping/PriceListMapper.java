@@ -4,6 +4,7 @@ import com.isa.pharmacy.controller.dto.CreatePriceListDto;
 import com.isa.pharmacy.domain.PriceList;
 
 public class PriceListMapper {
+
     public static PriceList mapCreatePriceListDtoToPriceList(CreatePriceListDto createPriceListDto){
         PriceList priceList = new PriceList();
         priceList.setId(createPriceListDto.getId());

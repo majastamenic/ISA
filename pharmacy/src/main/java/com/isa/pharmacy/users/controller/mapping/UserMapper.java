@@ -1,6 +1,5 @@
 package com.isa.pharmacy.users.controller.mapping;
 
-
 import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.users.controller.dto.LoginDto;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
@@ -18,7 +17,6 @@ public class UserMapper {
         user.setEmail(loginDto.getEmail());
         return user;
     }
-
 
     public static RegistrationDto mapUserToRegistrationDto(User user){
         RegistrationDto registrationDto = new RegistrationDto();
