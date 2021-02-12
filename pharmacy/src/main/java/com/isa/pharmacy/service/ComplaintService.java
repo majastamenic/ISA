@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Complaint;
 import com.isa.pharmacy.repository.ComplaintRepository;
@@ -52,6 +53,10 @@ public class ComplaintService {
 
     public Complaint addResponse(Complaint complaint){
         Complaint dbComplaint = complaintRepository.findComplaintById(complaint.getId());
+        if(dbComplaint == null)
+            throw new NotFoundException("Complaint doesn't exists.");
+        if(dbComplaint.getResponseComplaint() != null)
+            throw new AlreadyExistsException("Complaint response already exists");
         dbComplaint.setResponseComplaint(complaint.getResponseComplaint());
         emailService.sendComplaintResponse(complaint);
         return dbComplaint;

@@ -11,7 +11,7 @@ import { UserService } from 'src/app/service/user.service';
 export class RegSupplierComponent implements OnInit {
 
   user: UserRegistrationDto = { email: '', password: '', passwordAgain: '', name: '', surname: '', address: '', city: '',
-  country: '', phone: '', role: 2};
+  country: '', phone: '', role: 4};
 
   constructor(private userService: UserService, private toastrService:ToastrService) { }
 

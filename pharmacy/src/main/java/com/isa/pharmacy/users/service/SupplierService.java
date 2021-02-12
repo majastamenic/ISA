@@ -16,12 +16,11 @@ public class SupplierService {
     private SupplierRepository supplierRepository;
 
     public Supplier registration(Supplier supplier) {
-        Supplier existingUser = supplierRepository.findSupplierByUser_email(supplier.getUser().getEmail());
-        if (existingUser == null) {
-            userService.create(supplier.getUser());
-            return supplierRepository.save(supplier);
-        }
-        throw new AlreadyExistsException(String.format("Supplier with email %s, already exists", supplier.getUser().getEmail()));
+        Supplier existingUser = getByEmail(supplier.getUser().getEmail());
+        if (existingUser != null)
+            throw new AlreadyExistsException(String.format("Supplier with email %s, already exists", supplier.getUser().getEmail()));
+        userService.create(supplier.getUser());
+        return supplierRepository.save(supplier);
     }
 
     public Supplier getByEmail(String email){

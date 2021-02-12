@@ -1,6 +1,7 @@
 package com.isa.pharmacy.users.controller.mapping;
 
 
+import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.users.controller.dto.LoginDto;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.dto.UpdateUserDto;
@@ -52,7 +53,7 @@ public class UserMapper {
             user.setPassword(registrationDto.getPassword());
         else
             throw new NotFoundException("Wrong password");
-        /*user.setEmail(registrationDto.getEmail());        TODO maja: Proveri jel radi
+        user.setEmail(registrationDto.getEmail());
         user.setName(registrationDto.getName());
         user.setSurname(registrationDto.getSurname());
         user.setAddress(registrationDto.getAddress());
@@ -60,7 +61,7 @@ public class UserMapper {
         user.setCountry(registrationDto.getCountry());
         user.setPhone(registrationDto.getPhone());
         user.setActive(false);
-        user.setRole(Role.PATIENT);*/
+        user.setRole(Role.PATIENT);
 
         patient.setVerificationCode(RandomString.make(10));
         patient.setUser(user);

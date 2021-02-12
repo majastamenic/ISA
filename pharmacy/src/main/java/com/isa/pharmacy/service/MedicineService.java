@@ -78,8 +78,8 @@ public class MedicineService {
 
     public List<Medicine> getAll(){
         List<Medicine> medicineList = medicineRepository.findAll();
-        if(medicineList == null)
-            throw new NotFoundException("Pharmacy system doesnt have any medicine");
+        if(medicineList.isEmpty())
+            throw new NotFoundException("Pharmacy system doesn't have any medicine");
         return medicineList;
     }
 
@@ -94,7 +94,7 @@ public class MedicineService {
     }
 
     public List<AvailabilityMedicineDto> checkAvailabilityMedicines(String pharmacyName, List<String> meds){
-        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyName);
         return checkingMedicines(pharmacy, meds);
     }
 
@@ -186,7 +186,7 @@ public class MedicineService {
 
     public List<Medicine> decreaseQuantityInPharmacy(List<Medicine> meds, String pharmacyName){
         List<Medicine> medicines = new ArrayList<>();
-        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyName);
         if(meds != null && pharmacyName !=null){
             for(Medicine m: meds){
                 for(MedicinePharmacy mp: pharmacy.getMedicinePharmacy()){
@@ -204,7 +204,6 @@ public class MedicineService {
     public void update(Medicine medicine){
         medicineRepository.save(medicine);
     }
-
 
     public MedicineDto findMedicineSpecification(String name){
         Medicine medicine = findByName(name);

@@ -33,7 +33,6 @@ public class MedicinePharmacyService {
 
     public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
 
-
     public List<GetAllMedicinePharmacyDto> getAllMedicinePharmacies() {
         List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findAll();
         List<GetAllMedicinePharmacyDto> medicineDtoList = new ArrayList<>();
@@ -52,20 +51,17 @@ public class MedicinePharmacyService {
         return medicineDtoList;
     }
 
-
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email) {
-        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyName);
         Patient patient = patientService.getPatient(email);
         return getMedicinesPharmacy(pharmacy, patient);
     }
-
 
     public List<MedicinePharmacyDto> getMedicinesByPharmacist(String pharmacistEmail, String patientEmail){
         Pharmacy pharmacy = pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
         Patient patient = patientService.getPatient(patientEmail);
         return getMedicinesPharmacy(pharmacy, patient);
     }
-
 
     public List<MedicinePharmacyDto> getMedicinesPharmacy(Pharmacy pharmacy, Patient patient){
         if(pharmacy == null)
@@ -101,7 +97,5 @@ public class MedicinePharmacyService {
         }
         return meds;
     }
-
-
 
 }

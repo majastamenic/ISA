@@ -29,26 +29,20 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable("id") Long id) {
-        User user = userService.getById(id);
-        if (user == null) {
-            throw new NotFoundException(String.format("User with id %s not found", id));
-        }
-        return user;
+        return userService.getById(id);
     }
 
-
-    @GetMapping("/all")
-    public List<User> getAll() {
-        return userService.getAll();
-    }
-    //TODO: User update
-    /*
     @PutMapping("/password")
     public User updateUser(@RequestBody UserDto userDto){
         User user = UserMapper.mapUserDtoToUser(userDto);
         return userService.updateUserPassword(user);
     }
-    */
+
+    @GetMapping("/all")
+    public List<User> getAll() {
+        return userService.getAll();
+    }
+
     @PostMapping("/login")
     public User login(@RequestBody LoginDto loginDto) throws Exception {
         String email = loginDto.getEmail();

@@ -42,7 +42,12 @@ public class CounselingService {
     private MedicineService medicineService;
 
 
-    public List<Counseling> getAll(){ return counselingRepository.findAll(); }
+    public List<Counseling> getAll(){
+        List<Counseling> counselingList = counselingRepository.findAll();
+        if(counselingList.isEmpty())
+            throw new NotFoundException("There is no counseling.");
+        return counselingList;
+    }
 
     public Counseling getCounselingById(long id){
         Counseling counseling = counselingRepository.findCounselingById(id);
@@ -52,7 +57,10 @@ public class CounselingService {
     }
 
     public List<Counseling> getCounselingByPharmacist(Pharmacist pharmacist) {
-        return counselingRepository.findByPharmacist(pharmacist);
+        List<Counseling> counselingList = counselingRepository.findByPharmacist(pharmacist);
+        if(counselingList.isEmpty())
+            throw new NotFoundException("Pharmacist has no consultation.");
+        return counselingList;
     }
 
     public List<Counseling> getAllPatientsCounselings(String patientEmail){
@@ -69,19 +77,16 @@ public class CounselingService {
         return scheduledCounseling;
     }
 
-
     public List<String> getPharmacistNameByPatient(Patient patient){
         List<String> pharmacistNames = new ArrayList<>();
         for(Counseling counseling: counselingRepository.findByPatient(patient)){
-            //TODO: Maja - provera da li je null
-            if(counseling.getPatientCame()){
+            if(counseling.getPatientCame() != null && counseling.getPatientCame()){
                 String pharmacistName = counseling.getPharmacist().getUser().getRole().toString() + ": " + counseling.getPharmacist().getUser().getName()+" "+ counseling.getPharmacist().getUser().getSurname();
                 pharmacistNames.add(pharmacistName);
             }
         }
         return pharmacistNames;
     }
-
 
     public boolean isPharmacistOccupied(Pharmacist pharmacist, Date eagerDate){
         for(Counseling c : counselingRepository.findByPharmacist(pharmacist)){

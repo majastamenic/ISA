@@ -22,7 +22,6 @@ export class ActionsBenefitsComponent implements OnInit {
   ngOnInit(): void {
     if(!this.userService.isPharmacyAdmin()){
       this.router.navigate(['home']);
-      this.toastrService.error('Unauthorized access.');
     }
     let userEmail = sessionStorage.getItem('user');
     if(userEmail){

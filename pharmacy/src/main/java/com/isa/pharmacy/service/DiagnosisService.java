@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Diagnosis;
 import com.isa.pharmacy.repository.DiagnosisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,12 @@ public class DiagnosisService {
         return diagnosisRepository.save(d);
     }
 
-    public List<Diagnosis> getAll(){ return diagnosisRepository.findAll(); }
+    public List<Diagnosis> getAll(){
+        List<Diagnosis> diagnoses = diagnosisRepository.findAll();
+        if(diagnoses.isEmpty())
+            throw new NotFoundException("There is no diagnosis");
+        return diagnoses;
+    }
 
     public List<Diagnosis> getAllDiagnosisById(List<Long> id){
         List<Diagnosis> diagnosis = new ArrayList<>();

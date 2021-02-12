@@ -3,6 +3,7 @@ package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.dto.DateTimeDto;
 import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
@@ -86,7 +87,10 @@ public class PharmacistService {
     }
 
     public Pharmacist findUserByEmail(String email){
-        return pharmacistRepository.findPharmacistByUser_email(email);
+        Pharmacist pharmacist = pharmacistRepository.findPharmacistByUser_email(email);
+        if(pharmacist == null)
+            throw new NotFoundException("Pharmacist with email "+email+" does't exists.");
+        return pharmacist;
     }
 
     public List<PharmacistByPharmacyDto> findPharmacistsByPharmacyId(Long id){

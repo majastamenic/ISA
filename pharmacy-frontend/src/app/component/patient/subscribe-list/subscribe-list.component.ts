@@ -20,7 +20,6 @@ export class SubscribeListComponent implements OnInit {
   ngOnInit(): void {
     if(!this.userService.isPatient()){
       this.router.navigate(['home']);
-      this.toastrService.error('Unauthorized access.');
     }
     let userEmail = sessionStorage.getItem('user');
     if(userEmail){
@@ -30,7 +29,7 @@ export class SubscribeListComponent implements OnInit {
     this.pharcyService.pharmacies_sub(this.loginUser).subscribe((response: any)=>{
       this.pharmacies = response;
     }, (err: any) => {
-      this.toastrService.error(err.error.message);
+      this.toastrService.info(err.error.message);
     });
   }
 

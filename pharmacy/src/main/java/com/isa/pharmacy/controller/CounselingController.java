@@ -58,7 +58,6 @@ public class CounselingController {
         return CounselingMapper.mapCounselingToCounselingFullDto(counselingService.createCounseling(counseling));
     }
 
-
     @PostMapping("/update")
     public CounselingDto updateCounseling(@RequestBody CounselingDto counseling) { return counselingService.updateCounseling(counseling); }
 

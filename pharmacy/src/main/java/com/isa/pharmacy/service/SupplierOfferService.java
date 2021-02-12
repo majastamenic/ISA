@@ -46,12 +46,18 @@ public class SupplierOfferService {
     public List<SupplierOffer> getAllSupplierOffers(String email){
         Supplier supplier = supplierService.getByEmail(email);
         List<SupplierOffer> supplierOfferList = supplierOfferRepository.findSupplierOfferBySupplier(supplier);
+        if(supplierOfferList.isEmpty())
+            throw new NotFoundException("There is no supplier offer.");
         return supplierOfferList;
     }
 
     public List<SupplierOffer> filter(String email, OrderOfferType type){
         Supplier supplier = supplierService.getByEmail(email);
         List<SupplierOffer> supplierOfferList = supplierOfferRepository.findSupplierOfferBySupplierAndType(supplier, type);
+        if(supplierOfferList.isEmpty())
+            throw new NotFoundException("There is no supplier offer");
+        if(type == null)
+            supplierOfferList = supplierOfferRepository.findSupplierOfferBySupplier(supplier);
         if(supplierOfferList.isEmpty())
             throw new NotFoundException("Supplier "+supplier.getUser().getName()+" "+ supplier.getUser().getSurname()+" doesn't have offer with type " + type);
         return supplierOfferList;

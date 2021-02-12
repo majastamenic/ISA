@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class ReportService {
 
     public Report update(Report r) {
         Report report = reportRepository.findReportById(r.getId());
+        if(report == null)
+            throw new NotFoundException("Report doesn't exists");
         report.setMedicines(r.getMedicines());
         reportRepository.save(report);
         return report;

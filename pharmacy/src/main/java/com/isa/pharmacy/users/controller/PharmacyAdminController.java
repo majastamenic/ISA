@@ -1,4 +1,6 @@
 package com.isa.pharmacy.users.controller;
+import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.exception.UnauthorizeException;
 import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacyAdminMapper;
 import com.isa.pharmacy.domain.Pharmacy;
@@ -25,6 +27,8 @@ public class PharmacyAdminController {
     @PostMapping
     public CreatePhAdminDto registration(@RequestBody CreatePhAdminDto createPhAdminDto) {
         Pharmacy pharmacy = pharmacyService.getById(createPhAdminDto.getPharmacyId());
+        if(pharmacy == null)
+            throw new NotFoundException("There is no pharmacy.");
         PharmacyAdmin pharmacyAdmin = pharmacyAdminService.registration(PharmacyAdminMapper.mapPharmacyAdminDtoToPharmacyAdmin(createPhAdminDto, pharmacy));
         emailService.activationEmail(pharmacyAdmin.getUser());
         return PharmacyAdminMapper.mapPharmacyAdminToPharmacyAdminDto(pharmacyAdmin);

@@ -29,17 +29,23 @@ public class EPrescriptionService {
 
     public EPrescription save(EPrescription ePrescription) {
         for (MedicineEPrescription m : ePrescription.getListOfMedication()) {
-            MedicineEPrescription med = medicineEService.create(m);
+            medicineEService.create(m);
         }
         return ePrescriptionRepository.save(ePrescription);
     }
 
     public EPrescription getById(Long id) {
-        return ePrescriptionRepository.findEPrescriptionById(id);
+        EPrescription ePrescription = ePrescriptionRepository.findEPrescriptionById(id);
+        if(ePrescription == null)
+            throw new NotFoundException("E-prescription doesn't exists.");
+        return ePrescription;
     }
 
     public List<EPrescription> getByPatientEmail(String email){
-        return ePrescriptionRepository.findEPrescriptionByPatient_User_Email(email);
+        List<EPrescription> ePrescriptions = ePrescriptionRepository.findEPrescriptionByPatient_User_Email(email);
+        if(ePrescriptions.isEmpty())
+            throw new NotFoundException("Patient doesn't have any e-prescription");
+        return ePrescriptions;
     }
 
     public EPrescription getByText(String text) {
@@ -50,7 +56,10 @@ public class EPrescriptionService {
     }
 
     public List<EPrescription> getAll() {
-        return ePrescriptionRepository.findAll();
+        List<EPrescription> ePrescriptions = ePrescriptionRepository.findAll();
+        if(ePrescriptions.isEmpty())
+            throw new NotFoundException("There is no e-prescription");
+        return ePrescriptions;
     }
 
     public List<PharmacyPriceDto> getPharmacy(EPrescription ePrescription){
@@ -58,7 +67,7 @@ public class EPrescriptionService {
     }
 
     public void order(Long code, String phName){
-        Pharmacy pharmacy = pharmacyService.getByName(phName);
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(phName);
         EPrescription ePrescription = findByCode(code);
         try{
             for(MedicineEPrescription medicineEPrescription: ePrescription.getListOfMedication()){

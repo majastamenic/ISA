@@ -28,17 +28,24 @@ public class PharmacyAdminService {
         throw new AlreadyExistsException(String.format("User with email %s, already exists", pharmacyAdmin.getUser().getEmail()));
     }
 
-    public List<PharmacyAdmin> findAll(){ return pharmacyAdminRepository.findAll();}
+    public List<PharmacyAdmin> findAll(){
+        List<PharmacyAdmin> pharmacyAdminList = pharmacyAdminRepository.findAll();
+        if(pharmacyAdminList.isEmpty())
+            throw new NotFoundException("There is no pharmacy admins in pharmacy system");
+        return pharmacyAdminList;
+    }
 
     public PharmacyAdmin updateAdmin(PharmacyAdmin pharmacyAdmin){
         PharmacyAdmin admin = pharmacyAdminRepository.findPharmacyAdminById(pharmacyAdmin.getId());
+        if(admin == null)
+            throw new NotFoundException("Pharmacy admin doens't exists.");
         admin.setUser(pharmacyAdmin.getUser());
         pharmacyAdminRepository.save(pharmacyAdmin);
         return admin;
     }
 
     public CreatePhAdminDto findPharmacyAdminByEmail(String email){
-        PharmacyAdmin pharmacyAdmin = pharmacyAdminRepository.findPharmacyAdminByUser_email(email);
+        PharmacyAdmin pharmacyAdmin = getByEmail(email);
         return PharmacyAdminMapper.mapPharmacyAdminToPharmacyAdminDto(pharmacyAdmin);
     }
 
@@ -54,7 +61,7 @@ public class PharmacyAdminService {
     public PharmacyAdmin getByEmail(String email){
         PharmacyAdmin pharmacyAdmin = pharmacyAdminRepository.findPharmacyAdminByUser_email(email);
         if(pharmacyAdmin == null)
-            throw new NotFoundException("PharmacyAdmin with email "+email+" doesn't exists.");
+            throw new NotFoundException("Pharmacy admin with email "+email+" doesn't exists.");
         return pharmacyAdmin;
     }
 }

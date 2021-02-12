@@ -131,8 +131,7 @@ public class ExaminationService {
         List<String> dermatologistNames = new ArrayList<>();
         List<Examination> examinationList = examinationRepository.findByPatient(patient);
         for(Examination examination: examinationList){
-            //TODO: Maja provera da je null
-            if(examination.getPatientCame()){
+            if(examination.getPatientCame() != null && examination.getPatientCame()){
                 dermatologistName = examination.getDermatologist().getUser().getRole().toString() + ": " + examination.getDermatologist().getUser().getName()+" "+ examination.getDermatologist().getUser().getSurname();
                 dermatologistNames.add(dermatologistName);
             }
@@ -154,7 +153,7 @@ public class ExaminationService {
                     patient.setPenal(patient.getPenal() + 1);
                     patientService.save(patient);
                 }
-                Pharmacy pharmacy = pharmacyService.getByName(updateExamination.getPharmacyName());
+                Pharmacy pharmacy = pharmacyService.getPharmacyByName(updateExamination.getPharmacyName());
                 Prescription prescription = new Prescription();
                 prescription.setMedicines(medicines);
                 prescription.setDiagnosis(diagnosis);
