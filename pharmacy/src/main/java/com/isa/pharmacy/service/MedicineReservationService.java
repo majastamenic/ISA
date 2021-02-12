@@ -46,7 +46,7 @@ public class MedicineReservationService implements IMedicineReservationService {
         return medicineReservationRepository.save(reservation);
     }
 
-    public boolean acceptReservation(Long code){
+    public boolean acceptReservation(String email, Long code){
         MedicineReservation medicineReservation = medicineReservationRepository.findMedicineReservationByCode(code);
         DateManipulation dm = new DateManipulation();
         int minutes = 60*24;
@@ -60,6 +60,10 @@ public class MedicineReservationService implements IMedicineReservationService {
         }else if(medicineReservation == null){
             throw new NotFoundException("Reservation doesn't exist.");
         }
+        medicineReservation.setTaken(false);
+        medicineReservationRepository.save(medicineReservation);
+        patientService.save(medicineReservation.getPatient());
+        medicinePharmacyService.save(medicineReservation.getMedicinePharmacy());
         return false;
     }
 

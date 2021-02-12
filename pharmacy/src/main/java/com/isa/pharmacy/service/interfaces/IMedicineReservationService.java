@@ -10,5 +10,5 @@ public interface IMedicineReservationService {
 
     MedicineReservation createReservation(MedicineReservation reservation);
 
-    boolean acceptReservation(Long code);
+    boolean acceptReservation(String pharmacyName, Long code);
 }

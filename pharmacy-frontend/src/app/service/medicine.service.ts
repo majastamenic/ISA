@@ -3,7 +3,7 @@ import { Injectable, Sanitizer } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MedicineDto } from '../model/medicine-model';
 
-import { MEDICINEALL_PATH, MEDICINE_LOYALTY_PATH, MEDICINES_CHECK_PATH,MEDICINE_PATH, MEDICINE_SEARCH_PATH, MEDICINES_CHECK_PHARMACIST_PATH, MEDICINE_SPECIFICATION_PATH } from '../util/paths';
+import { MEDICINEALL_PATH, MEDICINE_LOYALTY_PATH, MEDICINES_CHECK_PATH,MEDICINE_PATH, MEDICINE_SEARCH_PATH, MEDICINES_CHECK_PHARMACIST_PATH, MEDICINE_SPECIFICATION_PATH, RESERVATION_MEDICINE_PATH } from '../util/paths';
 
 
 @Injectable({
@@ -76,5 +76,9 @@ export class MedicineService {
 
   findMedicineSpecification(name: any){
     return this.httpClient.get(MEDICINE_SPECIFICATION_PATH + '/'+ name);
+  }
+
+  acceptReservation(pharmacyName: string, code: number){
+    return this.httpClient.put(RESERVATION_MEDICINE_PATH + '/' + pharmacyName + '/' + code, null);
   }
 }

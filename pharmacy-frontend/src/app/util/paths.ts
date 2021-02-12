@@ -22,6 +22,7 @@ export const MEDICINES_CHECK_PHARMACIST_PATH = MEDICINES_CHECK_PATH + '/pharmaci
 export const MEDICINE_SPECIFICATION_PATH = MEDICINE_PATH + '/specification';
 
 export const RESERVATION_PATH = BACKEND_PATH + '/medicineReservation';
+export const RESERVATION_MEDICINE_PATH = RESERVATION_PATH + '/accept';
 
 export const EPRESCRIPTION_PATH = BACKEND_PATH + '/ePrescription';
 export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';
