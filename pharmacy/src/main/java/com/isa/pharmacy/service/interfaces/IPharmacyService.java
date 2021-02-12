@@ -42,4 +42,5 @@ public interface IPharmacyService {
      List<PharmacyPriceDto> getPharmacyByEPrescription(EPrescription ePrescription);
 
      void update(Pharmacy pharmacy);
+
 }

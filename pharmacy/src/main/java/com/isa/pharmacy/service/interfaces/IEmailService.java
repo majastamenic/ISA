@@ -39,4 +39,6 @@ public interface IEmailService {
      void sendEmailEPrescription(EPrescription ePrescription) throws MailException;
      @Async
      void sendComplaintResponse(Complaint complaint) throws MailException;
+     @Async
+     void successfulPublishingReservation(MedicineReservation medicineReservation) throws MailException;
 }

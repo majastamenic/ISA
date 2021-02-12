@@ -25,11 +25,23 @@ export class ReservationsComponent implements OnInit {
       this.medicineReservationsService.getAllReservationsByPatient(this.loggedUser).subscribe(data => {
         this.reservations = data;
       }, error => {
-        this.toastrService.error('Server error');
+        this.toastrService.error("Server error: can't load reservations!");
       })
     }else{
       this.router.navigate(['login']);
       this.toastrService.info("Please log in first.");
     }
+  }
+
+  cancelReservation(reservationId: number, idx: number){
+    this.medicineReservationsService.cancelReservation(reservationId).subscribe(() => {
+      this.toastrService.success("Reservation canceled!");
+      this.reservations.splice(idx, 1);
+    }, error => {
+      if(error.status == 400)
+        this.toastrService.warning(error.error.message);
+      else
+        this.toastrService.error("Server error: can't cancel reservation");
+    });
   }
 }

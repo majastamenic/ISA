@@ -213,6 +213,21 @@ public class MedicineService implements IMedicineService {
         return medicines;
     }
 
+    public void changeAmount(String medicineName, int amount, String pharmacyName) {
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyName);
+        for (MedicinePharmacy medicinePharmacy : pharmacy.getMedicinePharmacy()) {
+            if (medicinePharmacy.getMedicine().getName().equalsIgnoreCase(medicineName)) {
+                int updatedVal = medicinePharmacy.getQuantity() + amount;
+                if(updatedVal < 0)
+                    throw new InvalidActionException("Not enough medicine in stock!");
+                medicinePharmacy.setQuantity(updatedVal);
+                medicinePharmacyService.save(medicinePharmacy);
+                return;
+            }
+        }
+        throw new NotFoundException("Medicine not found for selected pharmacy");
+    }
+
     public void update(Medicine medicine){
         medicineRepository.save(medicine);
     }
