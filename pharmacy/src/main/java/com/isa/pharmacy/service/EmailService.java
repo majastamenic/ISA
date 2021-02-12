@@ -2,6 +2,7 @@ package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.rabbitmq.ActionsAndBenefits;
+import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,11 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmailService {
+public class EmailService implements IEmailService {
 
     private static final String GREETING = "Dear ";
     private static final String CLOSE_PHASE = "Best regards,\nPharmacy system";
-    private static final String BACK_ENDPOINT = "http://localhost:8081";
+    private static final String BACK_ENDPOINT = "https://pharmacy-25-backend.herokuapp.com/";
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -105,8 +106,7 @@ public class EmailService {
     }
 
     @Async
-    public void sendApiKey(String hospitalEmail, String apiKey)
-            throws MailException {
+    public void sendApiKey(String hospitalEmail, String apiKey) throws MailException {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(hospitalEmail);
@@ -119,10 +119,8 @@ public class EmailService {
         javaMailSender.send(simpleMailMessage);
     }
 
-
     @Async
-    public void notifyHospitalSftp(String hospitalEmail, String patientName)
-            throws MailException {
+    public void notifyHospitalSftp(String hospitalEmail, String patientName) throws MailException {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(hospitalEmail);
@@ -134,8 +132,7 @@ public class EmailService {
     }
 
     @Async
-    public void notifyPharmacySftp(String pharmacyEmail)
-            throws MailException {
+    public void notifyPharmacySftp(String pharmacyEmail) throws MailException {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(pharmacyEmail);
@@ -146,6 +143,7 @@ public class EmailService {
         javaMailSender.send(simpleMailMessage);
     }
 
+    @Async
     public void notifyAdminPharmacyAboutMedicine(String adminEmail, String pharmacyAdmin, String medName)throws MailException{
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
@@ -158,7 +156,8 @@ public class EmailService {
         javaMailSender.send(simpleMailMessage);
     }
 
-    public void sendAction(ActionsAndBenefits action, String email, String phName){
+    @Async
+    public void sendAction(ActionsAndBenefits action, String email, String phName) throws MailException{
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(email);
@@ -169,7 +168,8 @@ public class EmailService {
         javaMailSender.send(simpleMailMessage);
     }
 
-    public void sendEmailEPrescription(EPrescription ePrescription){
+    @Async
+    public void sendEmailEPrescription(EPrescription ePrescription) throws MailException{
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(ePrescription.getPatient().getUser().getEmail());
@@ -180,7 +180,8 @@ public class EmailService {
         javaMailSender.send(simpleMailMessage);
     }
 
-    public void sendComplaintResponse(Complaint complaint){
+    @Async
+    public void sendComplaintResponse(Complaint complaint) throws MailException{
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(complaint.getPatient().getUser().getEmail());

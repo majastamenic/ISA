@@ -1,5 +1,7 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.service.interfaces.IEmailService;
+import com.isa.pharmacy.service.interfaces.INotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +16,14 @@ import java.io.*;
 @EnableScheduling
 @SpringBootApplication
 @Component
-public class NotificationService {
+public class NotificationService implements INotificationService {
 
     private final Logger logger = LoggerFactory.getLogger(NotificationService.class);
 
     private String pharmacyEmail = "ppharmacy056@gmail.com";
     private String hospitalEmail = "bolnica218@yahoo.com";
     @Autowired
-    private EmailService emailsService;
+    private IEmailService emailsService;
 
     @Scheduled(fixedRate = 20000)
     public void checkFile() throws IOException {

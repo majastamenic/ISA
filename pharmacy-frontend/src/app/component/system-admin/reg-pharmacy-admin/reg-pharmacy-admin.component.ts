@@ -29,7 +29,7 @@ export class AddPharmacyAdminComponent implements OnInit {
       this.toastrService.success('Added new pharmacy admin.');
     },
       (err: any) => {
-        alert('Registration error ' + err.error.message);
+        this.toastrService.error('Registration error ' + err.error.message);
       });
   }
 

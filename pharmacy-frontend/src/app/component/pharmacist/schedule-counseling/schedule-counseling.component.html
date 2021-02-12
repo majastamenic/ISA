@@ -2,13 +2,7 @@
     <div class="form">
         <form class="ngform" style="width:500px;">
             <h3>Schedule counseling</h3>
-            <br>
-            <!--<div>
-                <input type="text" [(ngModel)]="user.email" placeholder="Pharmacist name" name="surname" required>
-            </div>-->
-            <!--<div>
-                <input type="text" [(ngModel)]="user.email" placeholder="Current patient name" name="surname" required>
-            </div>-->
+            <br><br>
             <form class="form-inline">
                 <div class="form-group">
                     <div class="input-group">
@@ -22,10 +16,10 @@
                     </div>
                 </div>
             </form>
-            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="startTime" name="timepicker"></ngb-timepicker>
-            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="endTime" name="timepicker"></ngb-timepicker>
+            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="startTime" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
+            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="endTime" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
             <br>
-            <button class="btn btn-primary" (click)="schedule()">Schedule counseling</button>
+            <button class="btn btn-primary" (click)="schedule()">Schedule</button>
         </form>
     </div>
 </div>

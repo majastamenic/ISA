@@ -1,6 +1,8 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.CounselingDto;
+import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
@@ -8,11 +10,14 @@ import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Report;
 import com.isa.pharmacy.repository.CounselingRepository;
-import com.isa.pharmacy.scheduling.service.ScheduleService;
+import com.isa.pharmacy.scheduling.DateManipulation;
+import com.isa.pharmacy.scheduling.service.interfaces.IScheduleService;
+import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
+import com.isa.pharmacy.service.interfaces.*;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.Pharmacist;
-import com.isa.pharmacy.users.service.PatientService;
-import com.isa.pharmacy.users.service.PharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,28 +26,38 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class CounselingService {
+public class CounselingService implements ICounselingService {
 
     @Autowired
     private CounselingRepository counselingRepository;
 
     @Autowired
-    private ScheduleService scheduleService;
+    private IScheduleService scheduleService;
     @Autowired
-    private ReportService reportService;
+    private IReportService reportService;
     @Autowired
-    private EmailService emailService;
+    private IEmailService emailService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IMedicineService medicineService;
     @Autowired
-    private MedicineService medicineService;
+    private IPharmacyService pharmacyService;
+    @Autowired
+    private IExaminationService examinationService;
+    @Autowired
+    private IWorkScheduleService workScheduleService;
 
 
-    public List<Counseling> getAll(){ return counselingRepository.findAll(); }
+
+    public List<Counseling> getAll(){
+        List<Counseling> counselingList = counselingRepository.findAll();
+        if(counselingList.isEmpty())
+            throw new NotFoundException("There is no counseling.");
+        return counselingList;
+    }
 
     public Counseling getCounselingById(long id){
         Counseling counseling = counselingRepository.findCounselingById(id);
@@ -52,7 +67,10 @@ public class CounselingService {
     }
 
     public List<Counseling> getCounselingByPharmacist(Pharmacist pharmacist) {
-        return counselingRepository.findByPharmacist(pharmacist);
+        List<Counseling> counselingList = counselingRepository.findByPharmacist(pharmacist);
+        if(counselingList.isEmpty())
+            throw new NotFoundException("Pharmacist has no consultation.");
+        return counselingList;
     }
 
     public List<Counseling> getAllPatientsCounselings(String patientEmail){
@@ -62,7 +80,7 @@ public class CounselingService {
     public Counseling createCounseling(Counseling counseling) {
         if(counseling.getSchedule().getStartDate().compareTo(counseling.getSchedule().getEndDate()) != 0)
             throw new InvalidActionException("Start date and end date must be on a same date");
-        //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu
+        //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu - NEMOJ!
         scheduleService.save(counseling.getSchedule());
         Counseling scheduledCounseling = counselingRepository.save(counseling);
         emailService.successfulCounselingSchedule(scheduledCounseling);
@@ -70,18 +88,62 @@ public class CounselingService {
     }
 
 
+    public boolean createCounselingByPharmacist(CounselingCreateDto counselingDto){
+        DateManipulation dm = new DateManipulation();
+        Date start = dm.mergeDateAndTime(counselingDto.getSchedule().getStartDate(), counselingDto.getSchedule().getStartTime());
+        Date end = dm.mergeDateAndTime(counselingDto.getSchedule().getEndDate(), counselingDto.getSchedule().getEndTime());
+        Pharmacist pharmacist = pharmacistService.findUserByEmail(counselingDto.getPharmacistEmail());
+        Patient patient = patientService.getPatient(counselingDto.getPatientEmail());
+        List<WorkSchedulePharmacyDto> pharmacistWork = workScheduleService.getWorkScheduleByPharmacist(counselingDto.getPharmacistEmail());
+        if(workScheduleService.pharmacistIsWorking(pharmacist, counselingDto)) {
+            boolean validCouns = pharmacistOnCounseling(pharmacist, start, end);
+            if (validCouns) {
+                boolean validTerm = patientService.patientIsFree(patient, start, end);
+                if (validTerm) {
+                    Counseling counseling = CounselingMapper.mapCounselingCreateDtoToCounseling(counselingDto);
+                    counseling.setPharmacist(pharmacist);
+                    counseling.setPatient(patient);
+                    createCounseling(counseling);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+    public boolean pharmacistOnCounseling(Pharmacist pharmacist, Date start, Date end){
+        List<Counseling> pharmacistCouns = getCounselingByPharmacist(pharmacist);
+        DateManipulation dm = new DateManipulation();
+        for(Counseling c: pharmacistCouns){
+            Date startCouns = dm.mergeDateAndTime(c.getSchedule().getStartDate(), c.getSchedule().getStartTime());
+            Date endCouns = dm.mergeDateAndTime(c.getSchedule().getEndDate(), c.getSchedule().getEndTime());
+            if((start.before(startCouns) && end.before(startCouns)) || (start.after(endCouns) && end.after(endCouns))){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
+
     public List<String> getPharmacistNameByPatient(Patient patient){
         List<String> pharmacistNames = new ArrayList<>();
         for(Counseling counseling: counselingRepository.findByPatient(patient)){
-            //TODO: Maja - provera da li je null
-            if(counseling.getPatientCame()){
+            if(counseling.getPatientCame() != null && counseling.getPatientCame()){
                 String pharmacistName = counseling.getPharmacist().getUser().getRole().toString() + ": " + counseling.getPharmacist().getUser().getName()+" "+ counseling.getPharmacist().getUser().getSurname();
                 pharmacistNames.add(pharmacistName);
             }
         }
         return pharmacistNames;
     }
-
 
     public boolean isPharmacistOccupied(Pharmacist pharmacist, Date eagerDate){
         for(Counseling c : counselingRepository.findByPharmacist(pharmacist)){
@@ -124,6 +186,22 @@ public class CounselingService {
             throw new NotFoundException("Counseling not found.");
         }
         return updateCounseling;
+    }
+
+
+
+
+    public boolean compareDateWithCounselingTerm(List<CounselingDto> pharmacistCounseling, Date requiredStartDate, Date requiredEndDate){
+        for(CounselingDto couns : pharmacistCounseling){
+            if(requiredStartDate.before(couns.getSchedule().getStartDate())){
+                continue;
+            }else if(requiredStartDate.after(couns.getSchedule().getStartDate())){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
     }
 
 }

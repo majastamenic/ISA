@@ -8,9 +8,12 @@ import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.MedicinePharmacyRepository;
+import com.isa.pharmacy.service.interfaces.ICounselingService;
+import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.domain.Patient;
-import com.isa.pharmacy.users.service.PatientService;
-import com.isa.pharmacy.users.service.PharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +21,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MedicinePharmacyService {
+public class MedicinePharmacyService implements IMedicinePharmacyService {
     @Autowired
     private MedicinePharmacyRepository medicinePharmacyRepository;
     @Autowired
-    private CounselingService counselingService;
+    private ICounselingService counselingService;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
     @Autowired
-    private PharmacyService pharmacyService;
+    private IPharmacyService pharmacyService;
     @Autowired
-    private PharmacistService pharmacistService;
+    private IPharmacistService pharmacistService;
 
 
     public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
@@ -56,7 +59,7 @@ public class MedicinePharmacyService {
     }
 
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email) {
-        Pharmacy pharmacy = pharmacyService.getByName(pharmacyName);
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyName);
         Patient patient = patientService.getPatient(email);
         return getMedicinesPharmacy(pharmacy, patient);
     }
@@ -105,5 +108,4 @@ public class MedicinePharmacyService {
     public List<MedicinePharmacy> getByMedicine(String medicineName){
         return medicinePharmacyRepository.findMedicinePharmaciesByMedicine_Name(medicineName);
     }
-
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LoyaltyGroup, LoyaltyGroupType } from 'src/app/model/loyaltyGroup';
 import { LoyaltyGroupService } from 'src/app/service/loyalty-group.service';
 import { MedicineService } from 'src/app/service/medicine.service';
 import { UserService } from 'src/app/service/user.service';
-import { LoyaltyGroup, LoyaltyGroupType } from '../../../model/loyaltyGroup';
 
 @Component({
   selector: 'app-loyalty',
@@ -43,7 +43,6 @@ export class LoyalityComponent implements OnInit {
   ngOnInit(): void {
     if(!this.userService.isAdmin()){
       this.router.navigate(['home']);
-      this.toastrService.error('Unauthorized access.');
     }
     this.medicineService.getAllMedLoyality().subscribe(listMedicineDto => {
       this.medicinesList = listMedicineDto;

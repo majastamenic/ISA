@@ -44,7 +44,8 @@ public class SupplierOfferMapper {
         viewOrderOfferDto.setOrderOffers(OrderOffersMapper.mapOrderOffersToOrderOffersDto(supplierOffer.getOrder().getOrderOffers()));
         viewOrderOfferDto.setEndDate(supplierOffer.getOrder().getEndDate());
         viewOrderOfferDto.setEndTime(supplierOffer.getOrder().getEndTime());
-        viewOrderOfferDto.setPharmacyAdminEmail(supplierOffer.getOrder().getPharmacyAdmin().getUser().getEmail());
+        if(supplierOffer.getOrder().getPharmacyAdmin() != null)
+            viewOrderOfferDto.setPharmacyAdminEmail(supplierOffer.getOrder().getPharmacyAdmin().getUser().getEmail());
         viewOrderOfferDto.setType(supplierOffer.getType());
         viewOrderOfferDto.setSupplierEmail(supplierOffer.getSupplier().getUser().getEmail());
         viewOrderOfferDto.setTotalPrice(supplierOffer.getTotalPrice());

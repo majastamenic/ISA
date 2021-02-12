@@ -1,27 +1,29 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.CounselingCreateDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
+import com.isa.pharmacy.controller.dto.ExaminationCreateDto;
 import com.isa.pharmacy.controller.dto.ExaminationUpcomingDto;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 
 import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.service.interfaces.IExaminationService;
 import com.isa.pharmacy.users.domain.Dermatologist;
-import com.isa.pharmacy.service.ExaminationService;
-import com.isa.pharmacy.users.service.DermatologistService;
+import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/examination")
 @CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class ExaminationController {
+
     @Autowired
-    private ExaminationService examinationService;
+    private IExaminationService examinationService;
     @Autowired
-    private DermatologistService dermatologistService;
+    private IDermatologistService dermatologistService;
 
 
     @GetMapping("/start/{id}")
@@ -70,6 +72,11 @@ public class ExaminationController {
         List<Examination> examinations = examinationService.getFreeExaminationsByDermatologist(email);
         List<ExaminationUpcomingDto> examinationUpcomingDtos = ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinations);
         return examinationUpcomingDtos;
+    }
+
+    @PostMapping("create/dermatologist")
+    public boolean createExaminationByDermatologist(@RequestBody ExaminationCreateDto examinationCreateDto){
+        return  examinationService.createExaminationByDermatologist(examinationCreateDto);
     }
 
 }

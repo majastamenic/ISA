@@ -47,7 +47,7 @@ export class UploadQRComponent implements OnInit {
   send(){
     this.uploadQrService.order(this.ePrescription.code, this.pharmacy).subscribe((response: any)=>{
       this.toastrService.success("The order has been completed.");
-      this.router.navigate(['home']);
+      this.router.navigate(['eprescriptions']);
     },(err: any) => {
       this.toastrService.error(err.error.message);
     });

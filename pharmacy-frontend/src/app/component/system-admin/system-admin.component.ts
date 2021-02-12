@@ -16,7 +16,6 @@ export class SystemAdminComponent implements OnInit {
   ngOnInit(): void {
     if(!this.userService.isAdmin()){
       this.router.navigate(['home']);
-      this.toastrService.error('Unauthorized access.');
     }
   }
 

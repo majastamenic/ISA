@@ -6,21 +6,22 @@ import java.util.List;
 import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.domain.enums.FormOfMedicine;
 import com.isa.pharmacy.domain.enums.MedicinePublishingType;
+import com.isa.pharmacy.service.interfaces.IMedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.service.MedicineService;
 
 
 @RestController
 @RequestMapping("/medicine")
 @CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class MedicineController {
+
     @Autowired
-    private MedicineService medicineService;
+    private IMedicineService medicineService;
 
     @GetMapping("/loyalty")
     public List<MedicineLoyaltyDto> getAllMedicines() {

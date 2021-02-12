@@ -166,10 +166,6 @@ export class StartExaminationComponent implements OnInit {
       this.toastrService.info('Check has been canceled.');
     }
 
-    scheduleExamination(){
-      this.router.navigate(['/examination']);
-      // proslediti i pacijenta u urlu
-    }
 
     findSpecification(){
       this.isSpec = false;

@@ -1,16 +1,16 @@
-<div *ngIf='!schedule' class="page">
+<div class="page">
     <div class="form">
-        <form class="ngform" style="width: 600px">
+        <form class="ngform" style="width: 600px;">
             <h3>Schedule vacation</h3>
             <br>
-            <div>
-                <input type="email" [(ngModel)]="user.email" name="email" disabled>
+            <div style="float: left;">
+                <table>
+                    <tr><h5><td style="color:gray"></td><td>&nbsp; {{user.name}} {{user.surname}}</td></h5></tr>
+                    <tr><h5><td style="color:gray">Role:</td><td>&nbsp;{{user.role}}</td></h5></tr>
+                    <tr><h5><td style="color:gray">Email:</td><td>&nbsp;{{user.email}}</td></h5></tr>
+                </table>
             </div>
-            <br>
-            <div>
-                <label>Pharmacy name:</label><input type="text" [(ngModel)]="user.name" placeholder="Enter name" name="name" required>
-            </div>
-            <br>
+            <br><br>
             <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
             </ngb-datepicker>
 
@@ -24,14 +24,8 @@
                   {{ date.day }}
                 </span>
               </ng-template>
-
             <br>
-            <button class="btn btn-primary">Send request</button>
-            <a href="javascript: void(0)" (click)="schedule = true">Status of my requested vacations</a>
+            <button class="btn btn-primary" (click)="scheduleVacation()">Send request</button>
         </form>
     </div>
-</div>
-
-<div *ngIf='schedule'>
-    <p> My requested vacations </p>
 </div>

@@ -3,7 +3,7 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.LoyaltyGroupDto;
 import com.isa.pharmacy.controller.mapping.LoyaltyGroupMapper;
 import com.isa.pharmacy.domain.enums.LoyaltyGroupType;
-import com.isa.pharmacy.service.LoyaltyGroupService;
+import com.isa.pharmacy.service.interfaces.ILoyaltyGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class LoyaltyGroupController {
     @Autowired
-    private LoyaltyGroupService loyaltyGroupService;
+    private ILoyaltyGroupService loyaltyGroupService;
 
     @GetMapping("/{type}")
     public int getLoyaltyPoints(@PathVariable LoyaltyGroupType type){

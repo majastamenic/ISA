@@ -5,10 +5,10 @@ import com.isa.pharmacy.controller.dto.OrderOfferDto;
 import com.isa.pharmacy.controller.mapping.OrderMapper;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Order;
-import com.isa.pharmacy.service.MedicineService;
-import com.isa.pharmacy.service.OrderService;
+import com.isa.pharmacy.service.interfaces.IMedicineService;
+import com.isa.pharmacy.service.interfaces.IOrderService;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
-import com.isa.pharmacy.users.service.PharmacyAdminService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +21,11 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    private OrderService orderService;
+    private IOrderService orderService;
     @Autowired
-    private PharmacyAdminService pharmacyAdminService;
+    private IPharmacyAdminService pharmacyAdminService;
     @Autowired
-    private MedicineService medicineService;
+    private IMedicineService medicineService;
 
     @GetMapping
     public List<OrderDto> getAll(){
