@@ -1,5 +1,6 @@
 import { environment } from "src/environments/environment.prod";
 
+
 export const BACKEND_PATH = environment.backend_url ? environment.backend_url :'http://localhost:8081';
 
 export const USER_PATH = BACKEND_PATH + '/user';
@@ -37,6 +38,7 @@ export const PHARMACIST_VACATION_CHECK_PATH = PHARMACIST_PATH + '/check/vacation
 export const PATIENT_PATH = BACKEND_PATH + '/patient';
 export const PATIENT_VALID_PATH = PATIENT_PATH + '/valid';
 export const UPDATE_ALLERGY_PATH = PATIENT_PATH + '/updateAllergy';
+export const PATIENT_EMAIL_PATH = PATIENT_PATH + '/examination';
 
 export const DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologist';
 export const PHARMACY_ADMIN_PATH = BACKEND_PATH + '/phadmin';
@@ -69,6 +71,7 @@ export const EXAMINATION_START_PATH = EXAMINATION_PATH + '/start';
 export const EXAMINATION_UPDATE_PATH = EXAMINATION_PATH + '/update';
 export const PATIENT_EXAMINATIONS = EXAMINATION_PATH + '/scheduled';
 export const FREE_EXAM_TERMS_WORKER_PATH = EXAMINATION_PATH + '/free';
+export const FREE_PREDEFINED_TERMS = EXAMINATION_PATH + '/freeterms/dermatologist';
 export const CREATE_EXAMINATION_DERMATOLOGIST_PATH = EXAMINATION_PATH + '/create/dermatologist';
 
 export const DIAGNOSIS_PATH = BACKEND_PATH + '/diagnosis';

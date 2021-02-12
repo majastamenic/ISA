@@ -37,4 +37,6 @@ public interface IExaminationService {
      boolean createExaminationByDermatologist(ExaminationCreateDto examinationCreateDto);
 
      boolean dermatologistNotOnExamination(Dermatologist dermatologist, Date start, Date end);
+
+     List<Examination> getFreeExaminationByDermatologistPatient(Long id);
 }
