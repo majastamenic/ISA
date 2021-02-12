@@ -51,7 +51,7 @@ public class CounselingController {
     @PostMapping("/add")
     public CounselingFullDto createCounseling(@RequestBody CounselingCreateDto counselingDto) {
         if(counselingDto.getSchedule().getEndTime() == null)
-            DateManipulation.addMinutes(counselingDto.getSchedule().getStartTime(), 15); // TODO: Dovrsiti ubacivanje vremena
+            counselingDto.serScheduleEndTime(DateManipulation.addMinutes(counselingDto.getSchedule().getStartTime(), 15));
         Counseling counseling = CounselingMapper.mapCounselingCreateDtoToCounseling(counselingDto);
         counseling.setPatient(patientService.getPatient(counselingDto.getPatientEmail()));
         counseling.setPharmacist(pharmacistService.findUserByEmail(counselingDto.getPharmacistEmail()));
