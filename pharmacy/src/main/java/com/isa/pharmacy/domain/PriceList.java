@@ -12,8 +12,6 @@ public class PriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column                         // TODO Tasa: Mozda bolje da medicinePharmacy ima Pricelist
-    private MedicinePharmacy medicinePharmacy;
     @Column
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
@@ -25,9 +23,8 @@ public class PriceList {
 
     public PriceList(){ }
 
-    public PriceList(Long id, MedicinePharmacy medicinePharmacy, Date dateFrom, Date dateTo) {
+    public PriceList(Long id, Date dateFrom, Date dateTo) {
         this.id=id;
-        this.medicinePharmacy = medicinePharmacy;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
@@ -38,14 +35,6 @@ public class PriceList {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public MedicinePharmacy getMedicinePharmacy() {
-        return medicinePharmacy;
-    }
-
-    public void setMedicinePharmacy(MedicinePharmacy medicinePharmacy) {
-        this.medicinePharmacy = medicinePharmacy;
     }
 
     public Date getDateFrom() {

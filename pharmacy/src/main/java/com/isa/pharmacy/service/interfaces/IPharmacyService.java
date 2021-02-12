@@ -27,7 +27,7 @@ public interface IPharmacyService {
 
      void checkApiKey(String apiKey);
 
-     List<String> getPharmacyName();
+     List<String> getPharmacyName(String email);
 
      List<Pharmacy> getPharmaciesForCounseling(DateTimeDto eagerDate);
 

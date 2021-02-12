@@ -36,7 +36,7 @@ export class ComplaintMessageComponent implements OnInit {
     this.complaintService.sendComplaint(this.complaint).subscribe((response: any)=>{
       this.toastrService.success("Sent complaint message.")
     },(err: any) => {
-      this.toastrService.error("Error: " + err.error.message)
+      this.toastrService.info("Error: " + err.error.message)
     });
   }
 

@@ -37,15 +37,6 @@ public class PharmacyAdminService implements IPharmacyAdminService {
         return pharmacyAdminList;
     }
 
-    //TODO: Ne postoji u Iservice-u
-    public PharmacyAdmin updateAdmin(PharmacyAdmin pharmacyAdmin){
-        PharmacyAdmin admin = pharmacyAdminRepository.findPharmacyAdminById(pharmacyAdmin.getId());
-        if(admin == null)
-            throw new NotFoundException("Pharmacy admin doens't exists.");
-        admin.setUser(pharmacyAdmin.getUser());
-        pharmacyAdminRepository.save(pharmacyAdmin);
-        return admin;
-    }
 
     public CreatePhAdminDto findPharmacyAdminByEmail(String email){
         PharmacyAdmin pharmacyAdmin = getByEmail(email);
