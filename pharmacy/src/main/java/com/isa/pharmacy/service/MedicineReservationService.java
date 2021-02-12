@@ -3,6 +3,7 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.domain.MedicineReservation;
 import com.isa.pharmacy.repository.MedicineReservationRepository;
+import com.isa.pharmacy.service.interfaces.IMedicineReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class MedicineReservationService {
+public class MedicineReservationService implements IMedicineReservationService {
 
     @Autowired
     private MedicineReservationRepository medicineReservationRepository;

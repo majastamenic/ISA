@@ -1,9 +1,6 @@
 package com.isa.pharmacy.service.interfaces;
 
-import com.isa.pharmacy.domain.Complaint;
-import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.domain.EPrescription;
-import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.rabbitmq.ActionsAndBenefits;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
@@ -18,10 +15,13 @@ public interface IEmailService {
      void verificationEmailPatient(Patient patient) throws MailException;
 
      @Async
-     void successfulExamSchedule(Examination examiantion) throws  MailException;
+     void successfulExamSchedule(Examination examination) throws  MailException;
 
      @Async
      void successfulCounselingSchedule(Counseling counseling) throws  MailException;
+
+     @Async
+     void successfulMedicineReservation(MedicineReservation reservation);
 
      @Async
      void sendApiKey(String hospitalEmail, String apiKey) throws MailException;

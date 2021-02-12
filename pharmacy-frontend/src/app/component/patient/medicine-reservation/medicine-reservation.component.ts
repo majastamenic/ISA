@@ -51,7 +51,7 @@ export class MedicineReservationComponent implements OnInit {
     this.reservation.dueDate = `${this.eagerDate.year}-${this.eagerDate.month}-${this.eagerDate.day}`;
     this.reservation.pharmacyName = this.selectedPharmacy.pharmacyName;
     this.medicineReservationService.createReservation(this.reservation).subscribe(reservated => {
-      this.router.navigate(['medicines']);
+      this.router.navigate(['patient/reservations']);
       this.toastrService.success('Reservation successfull!');
     }, error => {
       this.toastrService.error(error.error.message);
