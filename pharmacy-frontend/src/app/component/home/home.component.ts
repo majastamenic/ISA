@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
-import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +12,7 @@ export class HomeComponent implements OnInit {
   pharmacies: any = [];
 
   constructor(private pharmacyService: PharmacyService,
-              private toastrService: ToastrService,
-              rating: NgbRatingConfig) {
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {

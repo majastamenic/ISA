@@ -42,20 +42,20 @@
             <button *ngIf="filterView" (click) =search()>Filter</button>
         </div>
     </nav>
-
-    <div *ngFor="let medicine of medicinesDtoList | paginate: {id: 'server', itemsPerPage: itemsPerPage, currentPage: page, totalItems: total }; index as i" class="page">
+</div>
+<div class="center">
+    <div class="cardDisplay" style="width: 350px;" *ngFor="let medicine of medicinesDtoList | paginate: {id: 'server', itemsPerPage: itemsPerPage, currentPage: page, totalItems: total }; index as i">
         <div class="form">
         <form class="ngform">
             <h3>{{medicine.name}}</h3>
             <label>Type: {{medicine.typeOfMedicine}}</label>
             <hr/>
-            <p>Pharmacies:</p>
+            <p>Available in:</p>
             <div *ngFor="let p of medicine.pharmacyPriceDtos">
-                <label>Pharmacy name: {{p.pharmacyName}}</label>
-                <br/>
-                <label>Price: {{p.price}}</label>
+                <label>{{p.pharmacyName}} - {{p.price}} €</label>
             </div>
-            <button *ngIf="!viewSpec" class="btn btn-info" (click)="viewSpecification($event, i)">Specification</button>
+            <button class="btn btn-primary" [routerLink]="['/reserve', medicine.name]">Reserve</button>
+            <button *ngIf="!viewSpec" class="btn btn-outline-info" (click)="viewSpecification($event, i)">Specification</button>
             <div *ngIf="viewSpec && enableViewIndex==i">
                 <hr/>
                 <p>Specification</p>

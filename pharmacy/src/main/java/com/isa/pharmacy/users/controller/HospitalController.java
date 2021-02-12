@@ -21,7 +21,7 @@ public class HospitalController {
     @Autowired
     private HospitalService hospitalService;
 
-    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final Logger logger = LoggerFactory.getLogger(HospitalController.class);
 
     @Autowired
     private EmailService emailService;

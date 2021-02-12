@@ -46,6 +46,7 @@ import { SubscribeListComponent } from './component/patient/subscribe-list/subsc
 import { AddOrderComponent } from './component/add-order/add-order.component';
 import { ViewOrdersComponent } from './component/supplier/view-orders/view-orders.component';
 import { EPrescriptionsComponent } from './component/patient/e-prescriptions/e-prescriptions.component';
+import { MedicineReservationComponent } from './component/patient/medicine-reservation/medicine-reservation.component';
 
 
 const routes: Routes = [
@@ -68,6 +69,7 @@ const routes: Routes = [
   { path: 'patient/counselings', component: CounselingsComponent},
   { path: 'patient/counselingSearch', component: CounselingSearchComponent},
   { path: 'patient/counselingSchedule/:pharmacyName', component: CounselingScheduleComponent},
+  { path: 'reserve/:medicineName', component: MedicineReservationComponent},
   
   //System admin
   {

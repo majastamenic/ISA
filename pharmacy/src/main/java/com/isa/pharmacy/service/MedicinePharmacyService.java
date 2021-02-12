@@ -34,7 +34,7 @@ public class MedicinePharmacyService {
     public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
 
     public MedicinePharmacy getByPharmacyAndMedicine(String pharmacyName, String medicineName){
-        return medicinePharmacyRepository.findMedicinePharmaciesByAndPharmacy_NameAndMedicine_Name(pharmacyName, medicineName);
+        return medicinePharmacyRepository.findMedicinePharmacyByAndPharmacy_NameAndMedicine_Name(pharmacyName, medicineName);
     }
 
     public List<GetAllMedicinePharmacyDto> getAllMedicinePharmacies() {
@@ -102,6 +102,8 @@ public class MedicinePharmacyService {
         return meds;
     }
 
-
+    public List<MedicinePharmacy> getByMedicine(String medicineName){
+        return medicinePharmacyRepository.findMedicinePharmaciesByMedicine_Name(medicineName);
+    }
 
 }

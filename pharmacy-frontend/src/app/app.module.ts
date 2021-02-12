@@ -67,6 +67,7 @@ import { DiagnosisComponent } from './component/diagnosis/diagnosis.component';
 import { StartExaminationComponent } from './component/start-examination/start-examination.component';
 import { WorkScheduleComponent } from './component/work-schedule/work-schedule.component';
 import { EPrescriptionsComponent } from './component/patient/e-prescriptions/e-prescriptions.component';
+import { MedicineReservationComponent } from './component/patient/medicine-reservation/medicine-reservation.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -129,6 +130,7 @@ FullCalendarModule.registerPlugins([
     SubscribeListComponent,
     SubscribeListComponent,
     EPrescriptionsComponent,
+    MedicineReservationComponent,
   ],
   imports: [
     BrowserModule,

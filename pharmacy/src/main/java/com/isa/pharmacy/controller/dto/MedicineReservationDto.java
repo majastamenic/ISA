@@ -1,5 +1,9 @@
 package com.isa.pharmacy.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 public class MedicineReservationDto {
@@ -7,6 +11,8 @@ public class MedicineReservationDto {
     private String patientEmail;
     private String pharmacyName;
     private String medicineName;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date dueDate;
     private Integer amount;
 
