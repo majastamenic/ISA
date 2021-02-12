@@ -55,7 +55,6 @@ public class CounselingService implements ICounselingService {
     private IWorkScheduleService workScheduleService;
 
 
-
     public List<Counseling> getAll(){
         List<Counseling> counselingList = counselingRepository.findAll();
         if(counselingList.isEmpty())
