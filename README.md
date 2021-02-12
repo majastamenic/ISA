@@ -63,8 +63,8 @@ Ovaj projekat Vam nudi komunikaciju sa bolnicom putem:
 * rabbitMq
 
 Više informacija možete dobiti ukoliko pogledate sledeće videe:
-https://www.youtube.com/watch?v=74IY0mNCusE&feature=youtu.be
-https://www.youtube.com/watch?v=Tlyp3X1_Tak&feature=youtu.be
+- https://www.youtube.com/watch?v=74IY0mNCusE&feature=youtu.be
+- https://www.youtube.com/watch?v=Tlyp3X1_Tak&feature=youtu.be
 
 ### Pozdrav, tim 25
 
