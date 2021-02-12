@@ -40,6 +40,8 @@ import { ViewOrdersComponent } from './component/supplier/view-orders/view-order
 import { UserProfileComponent } from './component/user/profile/user-profile.component';
 import { UploadQRComponent } from './component/patient/upload-qr/upload-qr.component';
 import { EPrescriptionsComponent } from './component/patient/e-prescriptions/e-prescriptions.component';
+import { MedicineReservationComponent } from './component/patient/medicine-reservation/medicine-reservation.component';
+import { ReservationsComponent } from './component/patient/reservations/reservations.component';
 import { SubscribeListComponent } from './component/patient/subscribe-list/subscribe-list.component';
 import { ComplaintMessageComponent } from './component/patient/complaint-message/complaint-message.component';
 import { PatientExaminationsComponent } from './component/patient/patient-examinations/patient-examinations.component';
@@ -69,6 +71,8 @@ const routes: Routes = [
   { path: 'patient/counselings', component: CounselingsComponent},
   { path: 'patient/counselingSearch', component: CounselingSearchComponent},
   { path: 'patient/counselingSchedule/:pharmacyName', component: CounselingScheduleComponent},
+  { path: 'patient/reservations', component: ReservationsComponent},
+  { path: 'reserve/:medicineName', component: MedicineReservationComponent},
   
   //System admin
   {

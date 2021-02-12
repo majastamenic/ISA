@@ -1,16 +1,12 @@
 package com.isa.pharmacy.service;
 
-import com.isa.pharmacy.domain.Complaint;
-import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.domain.EPrescription;
-import com.isa.pharmacy.domain.Examination;
+import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.rabbitmq.ActionsAndBenefits;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -59,24 +55,24 @@ public class EmailService implements IEmailService {
     }
 
     @Async
-    public void successfulExamSchedule(Examination examiantion) throws  MailException{
+    public void successfulExamSchedule(Examination examination) throws MailException{
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(mailSender);
-        mailMessage.setTo(examiantion.getPatient().getUser().getEmail());
+        mailMessage.setTo(examination.getPatient().getUser().getEmail());
         mailMessage.setSubject("Examination");
-        mailMessage.setText(GREETING + examiantion.getPatient().getUser().getName() + ",\n\n" +
+        mailMessage.setText(GREETING + examination.getPatient().getUser().getName() + ",\n\n" +
                             "You have successfully scheduled an appointment with dermatologist.\n" +
                             "Details: \n" +
-                            "- Dermatologist: " + examiantion.getDermatologist().getUser().getName() + " " + examiantion.getDermatologist().getUser().getSurname() + "\n" +
-                            "- Date: " + examiantion.getSchedule().getStartDate() + "\n" +
-                            "- Time: " + examiantion.getSchedule().getStartTime() + "\n" +
-                            "- Price: " + examiantion.getPrice() + "€\n\n" +
+                            "- Dermatologist: " + examination.getDermatologist().getUser().getName() + " " + examination.getDermatologist().getUser().getSurname() + "\n" +
+                            "- Date: " + examination.getSchedule().getStartDate() + "\n" +
+                            "- Time: " + examination.getSchedule().getStartTime() + "\n" +
+                            "- Price: " + examination.getPrice() + "€\n\n" +
                             CLOSE_PHASE);
         javaMailSender.send(mailMessage);
     }
 
     @Async
-    public void successfulCounselingSchedule(Counseling counseling) throws  MailException{
+    public void successfulCounselingSchedule(Counseling counseling) throws MailException{
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(mailSender);
         mailMessage.setTo(counseling.getPatient().getUser().getEmail());
@@ -89,6 +85,23 @@ public class EmailService implements IEmailService {
                 "- Time: " + counseling.getSchedule().getStartTime() + "\n" +
                 "- Price: " + counseling.getPharmacist().getPharmacy().getCounselingPrice() + "€\n\n" +
                 CLOSE_PHASE);
+        javaMailSender.send(mailMessage);
+    }
+
+    @Async
+    public void successfulMedicineReservation(MedicineReservation reservation) throws MailException{
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(mailSender);
+        mailMessage.setTo(reservation.getPatient().getUser().getEmail());
+        mailMessage.setSubject("Medicine Reservation");
+        mailMessage.setText(GREETING + reservation.getPatient().getUser().getName() + ",\n\n" +
+                "You have successfully made a reservation.\n" +
+                "Order:\n" +
+                "- Medicine: " + reservation.getMedicinePharmacy().getMedicine().getName() + " x" + reservation.getAmount() + "\n" +
+                "- Reserved until: " + reservation.getDueDate() + "\n" +
+                "- Pharmacy: " + reservation.getMedicinePharmacy().getPharmacy().getName() + ", " + reservation.getMedicinePharmacy().getPharmacy().getAddress() + "\n" +
+                CLOSE_PHASE);
+
         javaMailSender.send(mailMessage);
     }
 

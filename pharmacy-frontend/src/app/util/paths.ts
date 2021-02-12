@@ -1,6 +1,6 @@
 import { environment } from "src/environments/environment.prod";
 
-export const BACKEND_PATH = environment.backend_url ? environment.backend_url :'http://localhost:8081'
+export const BACKEND_PATH = environment.backend_url ? environment.backend_url :'http://localhost:8081';
 
 export const USER_PATH = BACKEND_PATH + '/user';
 export const LOGIN_PATH = USER_PATH + '/login';
@@ -19,6 +19,8 @@ export const MEDICINEALL_PATH = MEDICINE_PATH + '/getAllMedicines';
 export const MEDICINES_CHECK_PATH = MEDICINE_PATH + '/check';
 export const MEDICINES_CHECK_PHARMACIST_PATH = MEDICINES_CHECK_PATH + '/pharmacist';
 export const MEDICINE_SPECIFICATION_PATH = MEDICINE_PATH + '/specification';
+
+export const RESERVATION_PATH = BACKEND_PATH + '/medicineReservation';
 
 export const EPRESCRIPTION_PATH = BACKEND_PATH + '/ePrescription';
 export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';
@@ -57,6 +59,7 @@ export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/getAllMedicines';
 export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
 export const MEDICINES_PHARMACY_PATH = MEDICINEPHARMACY_PATH + '/all';
 export const MEDICINES_PHARMACIST_PATH = MEDICINES_PHARMACY_PATH + '/pharmacist';
+export const MEDICINEPH_BY_MEDICINE_PATH = MEDICINEPHARMACY_PATH + '/medicine';
 
 export const EXAMINATION_PATH = BACKEND_PATH + '/examination';
 export const FREE_EXAM_TERMS_PATH = EXAMINATION_PATH + '/freeTerms';

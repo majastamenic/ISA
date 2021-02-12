@@ -22,4 +22,6 @@ public interface IMedicinePharmacyService {
      List<MedicinePharmacyDto> getMedicinesPharmacy(Pharmacy pharmacy, Patient patient);
 
      List<MedicinePharmacyDto> getMedicinesByCounseling(long id);
+
+     List<MedicinePharmacy> getByMedicine(String medicineName);
 }
