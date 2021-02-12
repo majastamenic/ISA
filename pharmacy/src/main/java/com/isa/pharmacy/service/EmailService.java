@@ -18,8 +18,8 @@ public class EmailService implements IEmailService {
 
     private static final String GREETING = "Dear ";
     private static final String CLOSE_PHASE = "Best regards,\nPharmacy system";
-    private static final String BACK_ENDPOINT = "http://localhost:8081";
-//    private static final String BACK_ENDPOINT = "https://pharmacy-25-backend.herokuapp.com";
+//    private static final String BACK_ENDPOINT = "http://localhost:8081";
+    private static final String BACK_ENDPOINT = "https://pharmacy-25-backend.herokuapp.com";
 
     @Autowired
     private JavaMailSender javaMailSender;
