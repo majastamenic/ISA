@@ -40,6 +40,11 @@ public class MedicineReservationController {
                 medicineReservationService.createReservation(reservation));
     }
 
+    @PutMapping("/accept/{email}/{code}")
+    public boolean acceptReservation(@PathVariable("email") String email, @PathVariable("code") Long code){
+        return medicineReservationService.acceptReservation(email, code);
+    }
+
     @DeleteMapping("/{reservationId}")
     public void cancelReservation(@PathVariable long reservationId){
         medicineReservationService.cancelReservation(reservationId);

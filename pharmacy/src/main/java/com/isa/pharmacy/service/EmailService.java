@@ -18,7 +18,8 @@ public class EmailService implements IEmailService {
 
     private static final String GREETING = "Dear ";
     private static final String CLOSE_PHASE = "Best regards,\nPharmacy system";
-    private static final String BACK_ENDPOINT = "https://pharmacy-25-backend.herokuapp.com/";
+    private static final String BACK_ENDPOINT = "http://localhost:8081";
+//    private static final String BACK_ENDPOINT = "https://pharmacy-25-backend.herokuapp.com";
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -100,6 +101,25 @@ public class EmailService implements IEmailService {
                 "- Medicine: " + reservation.getMedicinePharmacy().getMedicine().getName() + " x" + reservation.getAmount() + "\n" +
                 "- Reserved until: " + reservation.getDueDate() + "\n" +
                 "- Pharmacy: " + reservation.getMedicinePharmacy().getPharmacy().getName() + ", " + reservation.getMedicinePharmacy().getPharmacy().getAddress() + "\n" +
+                "- CODE: " + reservation.getCode() + "\n"+
+                CLOSE_PHASE);
+
+        javaMailSender.send(mailMessage);
+    }
+
+    @Async
+    public void successfulPublishingReservation(MedicineReservation reservation) throws MailException{
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(mailSender);
+        mailMessage.setTo(reservation.getPatient().getUser().getEmail());
+        mailMessage.setSubject("Medicine Reservation");
+        mailMessage.setText(GREETING + reservation.getPatient().getUser().getName() + ",\n\n" +
+                "You're reservation is accepted.\n" +
+                "Order:\n" +
+                "- Medicine: " + reservation.getMedicinePharmacy().getMedicine().getName() + " x" + reservation.getAmount() + "\n" +
+                "- Reserved until: " + reservation.getDueDate() + "\n" +
+                "- Pharmacy: " + reservation.getMedicinePharmacy().getPharmacy().getName() + ", " + reservation.getMedicinePharmacy().getPharmacy().getAddress() + "\n" +
+                "- CODE: " + reservation.getCode() + "\n"+
                 CLOSE_PHASE);
 
         javaMailSender.send(mailMessage);

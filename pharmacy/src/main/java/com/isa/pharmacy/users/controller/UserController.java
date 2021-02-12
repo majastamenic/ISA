@@ -63,7 +63,6 @@ public class UserController {
     public User getUserByEmail(@PathVariable("email") String email){
         return userService.getByEmail(email);
     }
-    //TODO: User
 
     @PutMapping("/update")
     public User updateUser(@RequestBody UpdateUserDto user){

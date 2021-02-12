@@ -41,11 +41,7 @@ public class PharmacyAdminController {
 
     @GetMapping
     public List<PharmacyAdmin> findAll() { return pharmacyAdminService.findAll(); }
-    //TODO: PharmacyAdmin
-    /*
-    @PutMapping("/update")
-    public PharmacyAdmin update (@RequestBody PharmacyAdmin pharmacyAdmin){ return pharmacyAdminService.updateAdmin(pharmacyAdmin);}
-    */
+
     @GetMapping("/{email}")
     public CreatePhAdminDto findPharmacyAdminByEmail(@PathVariable("email") String email){ return  pharmacyAdminService.findPharmacyAdminByEmail(email);}
 

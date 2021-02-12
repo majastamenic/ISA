@@ -6,16 +6,14 @@ import java.util.Date;
 public class CreatePriceListDto {
 
     private Long id;
-    private MedicinePharmacy medicinePharmacy;
     private Date dateFrom;
     private Date dateTo;
 
     public CreatePriceListDto() {
     }
 
-    public CreatePriceListDto(Long id, MedicinePharmacy medicinePharmacy, Date dateFrom, Date dateTo) {
+    public CreatePriceListDto(Long id, Date dateFrom, Date dateTo) {
         this.id = id;
-        this.medicinePharmacy = medicinePharmacy;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
@@ -26,14 +24,6 @@ public class CreatePriceListDto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public MedicinePharmacy getMedicinePharmacy() {
-        return medicinePharmacy;
-    }
-
-    public void setMedicinePharmacy(MedicinePharmacy medicinePharmacy) {
-        this.medicinePharmacy = medicinePharmacy;
     }
 
     public Date getDateFrom() {

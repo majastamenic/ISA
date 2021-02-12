@@ -5,7 +5,6 @@ import com.isa.pharmacy.controller.dto.PharmacistByPharmacyDto;
 import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
-import com.isa.pharmacy.scheduling.domain.WorkSchedule;
 import com.isa.pharmacy.users.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.users.controller.dto.PharmacistDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacistMapper;
@@ -23,24 +22,14 @@ public class PharmacistController {
 
     @Autowired
     private IPharmacistService pharmacistService;
+    
+    
 
     @GetMapping
     public List<Pharmacist> getAll() { return pharmacistService.getAll(); }
 
     @PostMapping("/registration")
     public CreatePharmacistDto save(@RequestBody CreatePharmacistDto p) { return pharmacistService.save(p); }
-    //TODO: Farmaceut
-    /*
-    @PostMapping("/update")
-    public Pharmacist update(@RequestBody Pharmacist p) { return pharmacistService.update(p); }
-    */
-
-
-    //proveriti
-    /*@GetMapping("/workschedule/{id}")
-    public List<WorkSchedule> getWorkScheduleByPharmacistId(@PathVariable("id") Long id){
-        return pharmacistService.getWorkScheduleByPharmacist(id);
-    }*/
 
     @GetMapping("/vacationschedule/{id}")
     public List<VacationSchedule> getVacationScheduleByPharmacist(@PathVariable("id") Long id){

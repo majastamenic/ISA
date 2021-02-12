@@ -85,8 +85,6 @@ public class PharmacistService implements IPharmacistService {
         return pharmacist;
     }
 
-    // TODO: obrisati ako niko ne koristi?
-    //Ne postoji u Iservice-u
     public List<WorkSchedule> getWorkScheduleByPharmacistEmail(String email){
         return pharmacistRepository.findPharmacistByUser_email(email).getWorkSchedule();
     }

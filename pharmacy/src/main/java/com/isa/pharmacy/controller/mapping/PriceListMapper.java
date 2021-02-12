@@ -9,7 +9,6 @@ public class PriceListMapper {
         priceList.setId(createPriceListDto.getId());
         priceList.setDateFrom(createPriceListDto.getDateFrom());
         priceList.setDateTo(createPriceListDto.getDateTo());
-        priceList.setMedicinePharmacy(createPriceListDto.getMedicinePharmacy());
         return priceList;
     }
 
@@ -18,7 +17,6 @@ public class PriceListMapper {
         createPriceListDto.setId(priceList.getId());
         createPriceListDto.setDateFrom(priceList.getDateFrom());
         createPriceListDto.setDateTo(priceList.getDateTo());
-        createPriceListDto.setMedicinePharmacy(priceList.getMedicinePharmacy());
         return  createPriceListDto;
     }
 

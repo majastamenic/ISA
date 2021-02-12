@@ -3,6 +3,7 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.GetAllPharmaciesDto;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.PharmacyRepository;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,8 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
@@ -40,12 +41,11 @@ public class PharmacyServiceTest {
 		System.out.println("test");
 	}
 
-	/*@Test
-	public void getByApyKeyTestSuccess() {
-		String apiKey = "ApiKey";
-		when(pharmacyRepository.findPharmacyByApiKey(apiKey)).thenReturn(new Pharmacy());
-		Pharmacy pharmacy = pharmacyService.getByApiKey(apiKey);
+	@Test
+	public void getByNameTestSuccess() {
+		Pharmacy pharmacy = new Pharmacy();
+		pharmacy.setName("Jankovic");
+		when(pharmacyRepository.findPharmacyByName(pharmacy.getName())).thenReturn(new Pharmacy());
 		assertNotNull(pharmacy);
-	}*/
-
+	}
 }

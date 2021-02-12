@@ -27,16 +27,27 @@ public class MedicineReservation implements Serializable {
     private Integer amount;
     @Column
     private Boolean isTaken;
+    @Column(unique = true)
+    private Long code;
 
     public MedicineReservation(){}
 
-    public MedicineReservation(Long id, Patient patient, MedicinePharmacy medicinePharmacy, Date dueDate, Integer amount, Boolean isTaken) {
+    public MedicineReservation(Long id, Patient patient, MedicinePharmacy medicinePharmacy, Date dueDate, Integer amount, Boolean isTaken, Long code) {
         this.id = id;
         this.patient = patient;
         this.medicinePharmacy = medicinePharmacy;
         this.dueDate = dueDate;
         this.amount = amount;
         this.isTaken = isTaken;
+        this.code = code;
+    }
+
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
     }
 
     public Long getId() {
