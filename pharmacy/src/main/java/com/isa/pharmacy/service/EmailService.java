@@ -100,6 +100,7 @@ public class EmailService implements IEmailService {
                 "- Medicine: " + reservation.getMedicinePharmacy().getMedicine().getName() + " x" + reservation.getAmount() + "\n" +
                 "- Reserved until: " + reservation.getDueDate() + "\n" +
                 "- Pharmacy: " + reservation.getMedicinePharmacy().getPharmacy().getName() + ", " + reservation.getMedicinePharmacy().getPharmacy().getAddress() + "\n" +
+                "- CODE: " + reservation.getCode() + "\n"+
                 CLOSE_PHASE);
 
         javaMailSender.send(mailMessage);
