@@ -11,6 +11,9 @@ import { Counseling } from '../../../model/counseling';
 export class AllCounselingsComponent implements OnInit {
 
   counseling: Counseling[] = [];
+  name: string ='';
+  surname: string='';
+
   loggedUser: any = sessionStorage.getItem('user');
   loggedUserRole: any = sessionStorage.getItem('role');
 
@@ -24,6 +27,13 @@ export class AllCounselingsComponent implements OnInit {
         console.log(this.counseling)
       });
     }
+  }
+
+  findByPatient(){
+    this.allCounseling.getCounselingByPatient(this.loggedUser, this.name, this.surname).subscribe((response: any) => {
+      this.counseling = response;
+      console.log(this.counseling)
+    });
   }
 
 }

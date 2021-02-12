@@ -45,13 +45,14 @@ export class ScheduleVacationComponent implements OnInit {
   vacationTerm: VacationSchedule = { startDate:'', endDate:''};
 
   constructor(calendar: NgbCalendar, private userService: UserService, private router: Router,
-    private toastrService: ToastrService, private pharmacistService: PharmacistService) {
+    private toastrService: ToastrService, private pharmacistService: PharmacistService,
+    private vacationService: VacationScheduleService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
    }
 
   ngOnInit(): void {
-    if(this.loggedUserRole == 'PHARMACIST'){
+    if(this.loggedUserRole == 'PHARMACIST' || this.loggedUserRole == 'DERMATOLOGIST'){
       this.userService.getUserByEmail(this.loggedUser).subscribe((data:any) =>{
         this.user = data;
         console.log(data);
@@ -99,15 +100,29 @@ export class ScheduleVacationComponent implements OnInit {
     }
     this.vacationTerm.startDate = this.fromDate.year + '-' + this.fromDate.month + '-' + this.fromDate.day;
     this.vacationTerm.endDate = toDateYear + '-' + toDateMonth + '-' + toDateDay
-    this.pharmacistService.scheduleVacationTerm(this.vacationTerm, this.loggedUser).subscribe(data => {
-      if(data == true){
-        this.toastrService.success('Term for vacation is accepted.');
-      }else{
-        this.toastrService.error('Term for vacation is occupied.');
-      }
-    }, error => {
-      this.toastrService.error('Term for vacation is not valid.');
-    });
+
+    if(this.loggedUserRole == 'PHARMACIST'){
+      this.pharmacistService.scheduleVacationTerm(this.vacationTerm, this.loggedUser).subscribe(data => {
+        if(data == true){
+          this.toastrService.success('Term for vacation is accepted.');
+        }else{
+          this.toastrService.error('Term for vacation is occupied.');
+        }
+      }, error => {
+        this.toastrService.error('Term for vacation is not valid.');
+      });
+    }else if(this.loggedUserRole == 'DERMATOLOGIST'){
+      this.vacationService.scheduleVacationTermDermatologist(this.vacationTerm, this.loggedUser).subscribe(data => {
+        if(data == true){
+          this.toastrService.success('Term for vacation is accepted.');
+        }else{
+          this.toastrService.error('Term for vacation is occupied.');
+        }
+      }, error => {
+        this.toastrService.error('Term for vacation is not valid.');
+      });
+    }
+    
   }
 
 }
