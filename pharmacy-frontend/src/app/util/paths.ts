@@ -57,6 +57,7 @@ export const COUNSELING_START_PATH = COUNSELING_PATH + '/start';
 export const PATIENT_COUNSELINGS_PATH = COUNSELING_PATH + '/patient';
 export const COUNSELING_UPDATE_PATH = COUNSELING_PATH + '/update';
 export const CREATE_COUNSELING_PHARMACIST_PATH = COUNSELING_PATH + '/create/pharmacist';
+export const COUNSELING_FIND_PATIENT = COUNSELING_PATH + '/find';
 
 
 export const MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy';
