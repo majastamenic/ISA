@@ -25,7 +25,7 @@ export class ReservationsComponent implements OnInit {
       this.medicineReservationsService.getAllReservationsByPatient(this.loggedUser).subscribe(data => {
         this.reservations = data;
       }, error => {
-        this.toastrService.error('Server error');
+        this.toastrService.error("Server error: can't load reservations!");
       })
     }else{
       this.router.navigate(['login']);
