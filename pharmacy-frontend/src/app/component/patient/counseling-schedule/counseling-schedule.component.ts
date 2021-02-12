@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DateTime } from 'src/app/model/examination';
 import { CounselingsService } from 'src/app/service/counselings.service';
 import { PharmacistService } from 'src/app/service/pharmacist.service';
+import { RatingService } from 'src/app/service/rating.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class CounselingScheduleComponent implements OnInit {
 
   constructor(private pharmacistService: PharmacistService,
               private counselingService: CounselingsService,
+              public ratingService: RatingService,
               private _ActivatedRoute: ActivatedRoute,
               private toastrService: ToastrService,
               private router: Router) { }
@@ -41,8 +43,20 @@ export class CounselingScheduleComponent implements OnInit {
           if(data.length <= 0){
             this.toastrService.info('No pharamcist has been found for selected term!');
           }else{
-            this.pharmacists = data;
-          }
+            let temp: { name: any; surname: any; email: any; rate: Object; }[] = [];
+            for(let ph of data){
+              this.ratingService.getAverageRatePharmacist(ph.user.email).subscribe(data => {
+                let item = {
+                  name: ph.user.name,
+                  surname: ph.user.surname,
+                  email: ph.user.email,
+                  rate: data,
+                }
+                temp.push(item);
+              });
+              }
+              this.pharmacists = temp;
+            }
         }, (error: any) => {
           this.toastrService.error("Unknown error");
         });
