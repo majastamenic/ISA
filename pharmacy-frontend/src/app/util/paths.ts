@@ -96,3 +96,8 @@ export const VACATION_PHARMACIST_PATH = VACATION_PATH + '/pharmacist';
 export const SUBSCRIBE_PATH = PHARMACY_PATH + '/subscribe';
 export const UNSUBSCRIBE_PATH = PHARMACY_PATH + '/unsubscribe';
 export const PHARMACY_SUB_PATH = PHARMACY_PATH + '/sub_pharmacy';
+
+export const RATING_PHARMACIST_PATH = BACKEND_PATH + '/pharmacistRating'
+export const RATING_DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologistRating'
+export const RATING_MEDICINE_PATH = BACKEND_PATH + '/medicineRating'
+export const RATING_PHARMACY_PATH = BACKEND_PATH + '/pharmacyRating'

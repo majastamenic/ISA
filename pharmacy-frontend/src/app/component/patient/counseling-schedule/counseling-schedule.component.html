@@ -13,9 +13,14 @@
                 </tr>
             </thead>
             <tbody>
+                <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
                 <tr *ngFor="let pharmacist of pharmacists; let i = index;">
-                    <td>{{pharmacist.user.name}}</td>
-                    <td>{{pharmacist.user.surname}}</td>
+                    <td>{{pharmacist.name}}</td>
+                    <td>{{pharmacist.surname}}</td>
                     <td><ngb-rating [(rate)]="pharmacist.rate" [max]="5" [readonly]="true"></ngb-rating></td>
                     <td><button class="btn btn-primary" (click)='schedule(pharmacist.user.email)'>Schedule</button></td>
                 </tr>
