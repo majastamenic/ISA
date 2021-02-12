@@ -39,4 +39,6 @@ public interface IExaminationService {
      boolean dermatologistNotOnExamination(Dermatologist dermatologist, Date start, Date end);
 
      List<Examination> getFreeExaminationByDermatologistPatient(Long id);
+
+     boolean compareDateWithExaminationTerm(Dermatologist dermatologist, Date requiredStartDate, Date requiredEndDate);
 }

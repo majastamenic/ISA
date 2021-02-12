@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.CounselingDto;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.ExaminationCreateDto;
 import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
@@ -249,6 +250,22 @@ public class ExaminationService implements IExaminationService {
             Date startExam = dm.mergeDateAndTime(exam.getSchedule().getStartDate(), exam.getSchedule().getStartTime());
             Date endExam = dm.mergeDateAndTime(exam.getSchedule().getEndDate(), exam.getSchedule().getEndTime());
             if((start.before(startExam) && end.before(startExam)) || (start.after(endExam) && end.after(endExam))){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+    public boolean compareDateWithExaminationTerm(Dermatologist dermatologist, Date requiredStartDate, Date requiredEndDate){
+        List<Examination> examinations = examinationRepository.findByDermatologist(dermatologist);
+        for(Examination exam : examinations){
+            if(requiredStartDate.before(exam.getSchedule().getStartDate())){
+                continue;
+            }else if(requiredStartDate.after(exam.getSchedule().getStartDate())){
                 continue;
             }else{
                 return false;

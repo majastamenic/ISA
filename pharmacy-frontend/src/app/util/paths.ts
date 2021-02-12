@@ -1,7 +1,7 @@
 import { environment } from "src/environments/environment.prod";
 
 
-export const BACKEND_PATH = environment.backend_url ? environment.backend_url :'http://localhost:8081';
+export const BACKEND_PATH = 'http://localhost:8081'; //environment.backend_url ? environment.backend_url :'http://localhost:8081';
 
 export const USER_PATH = BACKEND_PATH + '/user';
 export const LOGIN_PATH = USER_PATH + '/login';
@@ -41,8 +41,11 @@ export const UPDATE_ALLERGY_PATH = PATIENT_PATH + '/updateAllergy';
 export const PATIENT_EMAIL_PATH = PATIENT_PATH + '/examination';
 
 export const DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologist';
+export const DERMATOLOGIST_VACATION_CHECK_PATH = DERMATOLOGIST_PATH + '/check/vacation';
+
 export const PHARMACY_ADMIN_PATH = BACKEND_PATH + '/phadmin';
 export const SUPPLIER_PATH = BACKEND_PATH + '/supplier';
+
 
 export const SYSTEM_ADMIN_PATH = BACKEND_PATH + '/system_admin';
 
