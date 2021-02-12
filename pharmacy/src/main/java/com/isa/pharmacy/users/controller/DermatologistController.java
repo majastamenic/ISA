@@ -40,7 +40,4 @@ public class DermatologistController {
     public boolean checkVacationTerm(@RequestBody VacationScheduleDto vacationScheduleDto, @PathVariable("email") String email){
         return dermatologistService.checkVacationTerm(vacationScheduleDto, email);
     }
-
-
-
 }

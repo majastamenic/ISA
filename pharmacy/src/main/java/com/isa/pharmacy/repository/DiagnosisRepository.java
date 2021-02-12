@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface DiagnosisRepository extends JpaRepository<Diagnosis, Long> {
+
     List<Diagnosis> findAll();
     
     Diagnosis save(Diagnosis u);
 
-    Diagnosis findDiagnosisById(Long id);
 }

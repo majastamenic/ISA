@@ -28,8 +28,6 @@ public interface MedicineRepository extends JpaRepository<Medicine, Long> {
 
     Page<Medicine> findAll(Pageable pageable);
 
-    Page<Medicine> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
-
     @Query(value = "select distinct m from Medicine m join MedicinePharmacy mp" +
             "       on mp.medicine.id = m.id" +
             "       where lower(m.name) like concat('%',lower(:name),'%')" +

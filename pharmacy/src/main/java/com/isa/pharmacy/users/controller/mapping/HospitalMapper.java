@@ -1,6 +1,5 @@
 package com.isa.pharmacy.users.controller.mapping;
 
-import java.util.Random;
 
 import com.isa.pharmacy.users.controller.dto.HospitalManagerRegistrationDto;
 import com.isa.pharmacy.users.domain.Hospital;

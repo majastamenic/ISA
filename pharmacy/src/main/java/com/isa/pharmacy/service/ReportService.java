@@ -15,7 +15,6 @@ public class ReportService implements IReportService {
     private ReportRepository reportRepository;
 
     public Report save(Report report) {return reportRepository.save(report);}
-    // dodati proveru za lekove - alergije
 
     public List<Report> getAll() {return reportRepository.findAll();}
 

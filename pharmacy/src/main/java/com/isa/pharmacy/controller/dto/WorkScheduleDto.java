@@ -6,6 +6,7 @@ import javax.persistence.TemporalType;
 import java.util.Date;
 
 public class WorkScheduleDto{
+
     private Long id;
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")

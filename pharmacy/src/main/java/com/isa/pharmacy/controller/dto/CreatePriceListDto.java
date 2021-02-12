@@ -1,6 +1,5 @@
 package com.isa.pharmacy.controller.dto;
 
-import com.isa.pharmacy.domain.MedicinePharmacy;
 import java.util.Date;
 
 public class CreatePriceListDto {
