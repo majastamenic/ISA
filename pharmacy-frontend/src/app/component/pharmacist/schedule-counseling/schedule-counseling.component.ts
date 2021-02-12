@@ -22,6 +22,7 @@ export class ScheduleCounselingComponent implements OnInit {
   startTime = { hour: 13, minute: 30 };
   endTime = { hour: this.startTime.hour, minute: this.startTime.minute};
   minuteStep = 30;
+  currentDate: any;
 
   counseling: any = { pharmacistEmail: '', patientEmail: '', schedule: {startDate:'', endDate:'', startTime:'', endTime:''}};
 
@@ -47,6 +48,15 @@ export class ScheduleCounselingComponent implements OnInit {
   }
 
   schedule() {
+    if(typeof this.model != 'object'){
+      this.toastrService.error("Invalid date format!");
+      return;
+    }
+    if(this.startTime.hour > 23 || this.startTime.minute > 59){
+      this.toastrService.error("Invalid time format!");
+      return;
+    }
+
     const counseling = {
       schedule: {
         startDate: `${this.model.year}-${this.model.month}-${this.model.day}`,
