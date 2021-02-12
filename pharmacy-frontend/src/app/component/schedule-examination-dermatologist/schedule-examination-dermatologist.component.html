@@ -2,16 +2,24 @@
     <div class="form">
         <form class="ngform" style="width:500px;">
             <h3>Schedule examination</h3>
+            <br><br>
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>Date:</label>
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                            #d="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="startTime" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
+            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="endTime" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
             <br>
-            <!--<div>
-                <input type="text" [(ngModel)]="user.email" placeholder="Pharmacist name" name="surname" required>
-            </div>-->
-            <!--<div>
-                <input type="text" [(ngModel)]="user.email" placeholder="Current patient name" name="surname" required>
-            </div>-->
-            
-            <br>
-            <button class="btn btn-primary">Schedule examination</button>
+            <button class="btn btn-primary" (click)="schedule()">Schedule</button>
         </form>
     </div>
 </div>

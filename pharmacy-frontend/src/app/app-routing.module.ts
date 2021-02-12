@@ -96,7 +96,7 @@ const routes: Routes = [
   { path: 'diagnosis', component: DiagnosisComponent},
   { path: 'allexaminations', component: AllExaminationsComponent},
   { path: 'allexaminations/:id', component: StartExaminationComponent},
-  { path: 'examination', component: ScheduleExaminationDermatologistComponent},
+  { path: 'examination/:pathParam', component: ScheduleExaminationDermatologistComponent},
   // Dermatologist & Pharmacist
   { path: 'work/schedule', component: WorkScheduleComponent},
   { path: 'diagnosis', component: DiagnosisComponent},
