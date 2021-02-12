@@ -11,6 +11,8 @@ import java.util.List;
 public interface IMedicinePharmacyService {
      MedicinePharmacy save(MedicinePharmacy medicinePharmacy);
 
+     MedicinePharmacy getByPharmacyAndMedicine(String pharmacyName, String medicineName);
+
      List<GetAllMedicinePharmacyDto> getAllMedicinePharmacies();
 
      List<GetAllMedicinePharmacyDto> getAllMedicinesByPharmacies(Long id);

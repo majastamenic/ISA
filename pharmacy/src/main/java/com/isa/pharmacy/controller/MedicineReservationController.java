@@ -3,9 +3,9 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.MedicineReservationDto;
 import com.isa.pharmacy.controller.mapping.MedicineReservationMapper;
 import com.isa.pharmacy.domain.MedicineReservation;
-import com.isa.pharmacy.service.MedicinePharmacyService;
-import com.isa.pharmacy.service.MedicineReservationService;
-import com.isa.pharmacy.users.service.PatientService;
+import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
+import com.isa.pharmacy.service.interfaces.IMedicineReservationService;
+import com.isa.pharmacy.users.service.interfaces.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,16 +13,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/medicineReservation")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class MedicineReservationController {
 
     @Autowired
-    private MedicineReservationService medicineReservationService;
+    private IMedicineReservationService medicineReservationService;
 
     @Autowired
-    private MedicinePharmacyService medicinePharmacyService;
+    private IMedicinePharmacyService medicinePharmacyService;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
 
 
     @GetMapping("/{email}")
@@ -38,5 +38,10 @@ public class MedicineReservationController {
         reservation.setMedicinePharmacy(medicinePharmacyService.getByPharmacyAndMedicine(reservationDto.getPharmacyName(), reservationDto.getMedicineName()));
         return MedicineReservationMapper.mapReservationToReservationDto(
                 medicineReservationService.createReservation(reservation));
+    }
+
+    @DeleteMapping("/{reservationId}")
+    public void cancelReservation(@PathVariable long reservationId){
+        medicineReservationService.cancelReservation(reservationId);
     }
 }

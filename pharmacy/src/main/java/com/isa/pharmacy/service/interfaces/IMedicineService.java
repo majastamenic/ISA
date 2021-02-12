@@ -49,6 +49,11 @@ public interface IMedicineService {
 
      List<Medicine> decreaseQuantityInPharmacy(List<Medicine> meds, String pharmacyName);
 
+     /* Method changes amount of medicine with name medicineName from pharmacy
+      * with name pharmacyName. It adds or subtracts dependent on amount param sign.
+      **/
+     void changeAmount(String medicineName, int amount, String pharmacyName);
+
      void update(Medicine medicine);
 
      MedicineDto findMedicineSpecification(String name);

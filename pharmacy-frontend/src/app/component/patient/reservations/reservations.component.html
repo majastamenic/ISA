@@ -11,6 +11,7 @@
                     <th scope="col">Amount</th>
                     <th scope="col">Pharmacy</th>
                     <th scope="col">Reserved until</th>
+                    <th scope="col">    </th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                     <td>{{reservation.amount}}</td>
                     <td>{{reservation.pharmacyName}}</td>
                     <td>{{reservation.dueDate}}</td>
+                    <td><button class="btn btn-warning" (click)="cancelReservation(reservation.id, i)">Cancel reservation</button></td>
                 </tr>
             </tbody>
         </table>
