@@ -23,8 +23,9 @@ public class PharmacistRatingService implements IPharmacistRatingService {
             throw new InvalidActionException("Invalid rate");
         for(Counseling c : counselingService.getAllPatientsCounselings(rating.getPatient().getUser().getEmail()))
             if(c.getPatient().getUser().getEmail().equals(rating.getPatient().getUser().getEmail()) &&
-                c.getPatientCame() == true)
-                return pharmacistRatingRepository.save(rating);
+                    c.getPatientCame() != null)
+                if(c.getPatientCame())
+                    return pharmacistRatingRepository.save(rating);
         throw new InvalidActionException("Can't rate pharmacist that has not counsel you");
     }
 
