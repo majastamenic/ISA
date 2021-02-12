@@ -41,4 +41,6 @@ public interface IExaminationService {
      List<Examination> getFreeExaminationByDermatologistPatient(Long id);
 
      boolean compareDateWithExaminationTerm(Dermatologist dermatologist, Date requiredStartDate, Date requiredEndDate);
+
+     List<ExamDermatologistDto> findExaminationByPatient(String email, String name, String surname);
 }

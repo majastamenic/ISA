@@ -7,6 +7,7 @@ import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
 import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
 import com.isa.pharmacy.controller.mapping.ScheduleMapper;
 import com.isa.pharmacy.domain.*;
@@ -272,6 +273,24 @@ public class ExaminationService implements IExaminationService {
             }
         }
         return true;
+    }
+
+
+    public List<ExamDermatologistDto> findExaminationByPatient(String email, String name, String surname){
+        List<Patient> patients = patientService.findPatientByName(name, surname);
+        List<Examination> examinations = new ArrayList<>();
+        for(Patient p : patients){
+            examinations.addAll(examinationRepository.findByPatient(p));
+        }
+        List<ExamDermatologistDto> examDermatologistDtos = new ArrayList<>();
+        for(Examination e: examinations){
+            if(e.getDermatologist().getUser().getEmail().equals(email)){
+                PatientDto patientDto = PatientMapper.mapPatientToPatientDto(e.getPatient());
+                ExamDermatologistDto examDermatologistDto = ExaminationMapper.mapExaminationToExaminationDto(e, patientDto);
+                examDermatologistDtos.add(examDermatologistDto);
+            }
+        }
+        return examDermatologistDtos;
     }
 
 }

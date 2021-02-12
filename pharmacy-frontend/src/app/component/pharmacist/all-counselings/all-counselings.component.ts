@@ -13,7 +13,6 @@ export class AllCounselingsComponent implements OnInit {
   counseling: Counseling[] = [];
   name: string ='';
   surname: string='';
-  isSearch: boolean = false;
 
   loggedUser: any = sessionStorage.getItem('user');
   loggedUserRole: any = sessionStorage.getItem('role');
