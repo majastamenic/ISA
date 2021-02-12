@@ -48,4 +48,9 @@ public class PatientController {
     public void updateAllergy(@RequestBody List<String> allergies, @PathVariable String patientEmail){
         patientService.updateAllergies(patientEmail, allergies);
     }
+
+    @GetMapping("/examination/{oldId}")
+    public String getPatientEmailByExamination(@PathVariable("oldId")Long oldId){
+        return patientService.getPatientEmailByExamination(oldId);
+    }
 }

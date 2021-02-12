@@ -38,5 +38,5 @@ public interface IExaminationService {
 
      boolean dermatologistNotOnExamination(Dermatologist dermatologist, Date start, Date end);
 
-     List<Examination> getFreeExaminationByDermatologistPatient(String dermEmail, String patEmail, String pharmEmail);
+     List<Examination> getFreeExaminationByDermatologistPatient(Long id);
 }
