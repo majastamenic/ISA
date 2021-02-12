@@ -80,7 +80,10 @@ public class EPrescriptionService implements IEPrescriptionService {
                 }
             }
             ePrescriptionRepository.delete(ePrescription);
-            emailService.sendEmailEPrescription(ePrescription);
+            try {
+                emailService.sendEmailEPrescription(ePrescription);
+            }catch (Exception e){}
+
 
         }catch(Exception e){
             throw new NotFoundException("Order is not possible.");

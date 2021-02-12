@@ -21,7 +21,9 @@ public class SupplierController {
     @PostMapping
     public Supplier registration(@RequestBody RegistrationDto registrationDto) {
         Supplier supplier = supplierService.registration(UserMapper.mapRegistrationDtoToSupplier(registrationDto));
-        emailService.activationEmail(supplier.getUser());
+        try {
+            emailService.activationEmail(supplier.getUser());
+        }catch (Exception e){}
         return supplier;
     }
 }

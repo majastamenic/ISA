@@ -30,7 +30,9 @@ public class PharmacyAdminController {
         if(pharmacy == null)
             throw new NotFoundException("There is no pharmacy.");
         PharmacyAdmin pharmacyAdmin = pharmacyAdminService.registration(PharmacyAdminMapper.mapPharmacyAdminDtoToPharmacyAdmin(createPhAdminDto, pharmacy));
-        emailService.activationEmail(pharmacyAdmin.getUser());
+        try {
+            emailService.activationEmail(pharmacyAdmin.getUser());
+        }catch (Exception e){}
         return PharmacyAdminMapper.mapPharmacyAdminToPharmacyAdminDto(pharmacyAdmin);
     }
 

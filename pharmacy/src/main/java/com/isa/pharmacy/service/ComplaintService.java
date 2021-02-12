@@ -59,7 +59,10 @@ public class ComplaintService implements IComplaintService {
         if(dbComplaint.getResponseComplaint() != null)
             throw new AlreadyExistsException("Complaint response already exists");
         dbComplaint.setResponseComplaint(complaint.getResponseComplaint());
-        emailService.sendComplaintResponse(complaint);
+        try {
+            emailService.sendComplaintResponse(complaint);
+        }catch (Exception e){}
+
         return dbComplaint;
     }
 

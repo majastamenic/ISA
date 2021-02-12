@@ -32,7 +32,7 @@ public class PatientController {
     @PostMapping
     public Patient registration(@RequestBody RegistrationDto registrationDto) {
         Patient patient = patientService.registration(UserMapper.mapRegistrationDtoToPatient(registrationDto));
-        emailService.verificationEmailPatient(patient);
+        try{emailService.verificationEmailPatient(patient);}catch (Exception e){}
         return patient;
     }
 

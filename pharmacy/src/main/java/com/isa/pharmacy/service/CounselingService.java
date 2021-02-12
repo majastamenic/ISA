@@ -83,7 +83,7 @@ public class CounselingService implements ICounselingService {
         //TODO Gojko: Provera da li je slobodan farmaceut u tom periodu - NEMOJ!
         scheduleService.save(counseling.getSchedule());
         Counseling scheduledCounseling = counselingRepository.save(counseling);
-        emailService.successfulCounselingSchedule(scheduledCounseling);
+        try{emailService.successfulCounselingSchedule(scheduledCounseling);}catch (Exception e){}
         return scheduledCounseling;
     }
 

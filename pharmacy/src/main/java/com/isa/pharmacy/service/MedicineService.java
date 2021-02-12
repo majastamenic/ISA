@@ -141,7 +141,9 @@ public class MedicineService implements IMedicineService {
     public void notifyPharmacyAdminsAboutMedicine(List<PharmacyAdmin> pharmacyAdmins, String medicineName){
         for(PharmacyAdmin pa: pharmacyAdmins){
             String pharmacyAdmin = pa.getUser().getName().concat(" " + pa.getUser().getSurname());
-            emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, medicineName);
+            try {
+                emailService.notifyAdminPharmacyAboutMedicine(pa.getUser().getEmail(), pharmacyAdmin, medicineName);
+            }catch (Exception e){}
         }
     }
 

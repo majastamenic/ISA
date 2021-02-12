@@ -29,7 +29,7 @@ public class MedicineReservationService implements IMedicineReservationService {
         if(reservation.getAmount() <= 0)
             throw new InvalidActionException("Invalid medicine amount");
         MedicineReservation reservedMedicine = medicineReservationRepository.save(reservation);
-        emailService.successfulMedicineReservation(reservedMedicine);
+        try{emailService.successfulMedicineReservation(reservedMedicine);}catch (Exception e){}
         return medicineReservationRepository.save(reservation);
     }
 }

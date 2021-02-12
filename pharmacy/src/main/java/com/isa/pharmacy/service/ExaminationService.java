@@ -87,7 +87,7 @@ public class ExaminationService implements IExaminationService {
             throw new InvalidActionException("Examination cannot be scheduled!");
         examination.setPatient(patientService.getPatient(patientEmail));
         Examination scheduledExam = examinationRepository.save(examination);
-        emailService.successfulExamSchedule(scheduledExam);
+        try{emailService.successfulExamSchedule(scheduledExam);}catch (Exception e){}
     }
 
     public void cancelExamination(Long examinationId){

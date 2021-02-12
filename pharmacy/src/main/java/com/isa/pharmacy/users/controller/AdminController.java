@@ -21,7 +21,9 @@ public class AdminController {
     @PostMapping
     public Admin registration(@RequestBody RegistrationDto registrationDto) {
         Admin admin = adminService.registration(UserMapper.mapRegistrationDtoToAdmin(registrationDto));
-        emailService.activationEmail(admin.getUser());
+        try {
+            emailService.activationEmail(admin.getUser());
+        }catch (Exception e){}
         return admin;
     }
 }

@@ -23,7 +23,9 @@ public class DermatologistController {
     @PostMapping
     public Dermatologist registration(@RequestBody RegistrationDto registrationDto) {
         Dermatologist dermatologist = dermatologistService.registration(UserMapper.mapRegistrationDtoToDermatologist(registrationDto));
-        emailService.activationEmail(dermatologist.getUser());
+        try {
+            emailService.activationEmail(dermatologist.getUser());
+        }catch (Exception e){}
         return dermatologist;
     }
 

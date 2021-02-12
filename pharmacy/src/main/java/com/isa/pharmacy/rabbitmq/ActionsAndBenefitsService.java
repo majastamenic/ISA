@@ -21,7 +21,11 @@ public class ActionsAndBenefitsService {
         List<String> emails = pharmacyAdmin.getPharmacy().getSubscribedEmails();
         if(emails.isEmpty())
             throw new NotFoundException("Your pharmacy has no subscribers.");
-        for(String email: emails)
-            emailService.sendAction(actionsAndBenefits, email, pharmacyAdmin.getPharmacy().getName());
+        for(String email: emails){
+            try {
+                emailService.sendAction(actionsAndBenefits, email, pharmacyAdmin.getPharmacy().getName());
+            }catch (Exception e){}
+        }
+
     }
 }
