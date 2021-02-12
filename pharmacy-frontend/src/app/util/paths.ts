@@ -1,7 +1,7 @@
 import { environment } from "src/environments/environment.prod";
 
 
-export const BACKEND_PATH = environment.backend_url ? environment.backend_url :'http://localhost:8081';
+export const BACKEND_PATH ='http://localhost:8081'; //environment.backend_url ? environment.backend_url :'http://localhost:8081';
 
 export const USER_PATH = BACKEND_PATH + '/user';
 export const LOGIN_PATH = USER_PATH + '/login';
@@ -22,6 +22,7 @@ export const MEDICINES_CHECK_PHARMACIST_PATH = MEDICINES_CHECK_PATH + '/pharmaci
 export const MEDICINE_SPECIFICATION_PATH = MEDICINE_PATH + '/specification';
 
 export const RESERVATION_PATH = BACKEND_PATH + '/medicineReservation';
+export const RESERVATION_MEDICINE_PATH = RESERVATION_PATH + '/accept';
 
 export const EPRESCRIPTION_PATH = BACKEND_PATH + '/ePrescription';
 export const UPLOADQR_PATH = EPRESCRIPTION_PATH + '/uploadQr';
