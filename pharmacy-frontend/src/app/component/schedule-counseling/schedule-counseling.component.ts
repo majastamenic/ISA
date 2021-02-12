@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ScheduleCounselingService } from 'src/app/service/schedule-counseling.service';
-import { PharmacistService } from 'src/app/service/pharmacist.service';
 import { Counseling } from '../../model/counseling';
 import { IDatePickerConfig } from 'ng2-date-picker';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CounselingsService } from 'src/app/service/counselings.service';
 
 @Component({
   selector: 'app-schedule-counseling',
@@ -17,14 +17,15 @@ export class ScheduleCounselingComponent implements OnInit {
   loggedUser: any = sessionStorage.getItem('user');
   loggedUserRole: any = sessionStorage.getItem('role');
 
+  pathParam: any;
   model: any;
   startTime = { hour: 13, minute: 30 };
   endTime = { hour: this.startTime.hour, minute: this.startTime.minute};
   minuteStep = 30;
 
-  counseling: Counseling = { id:'', counselingStatus: '', user: {}, patientDto: {}, schedule: {}, report: {}, patientCame: false };
+  counseling: any = { pharmacistEmail: '', patientEmail: '', schedule: {startDate:'', endDate:'', startTime:'', endTime:''}};
 
-  constructor(private scheduleCounseling: ScheduleCounselingService, private router: Router,
+  constructor(private counselingService: CounselingsService, private router: Router,
     private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService) {
       if(!this.loggedUser){
         this.router.navigate(['login']);
@@ -35,9 +36,13 @@ export class ScheduleCounselingComponent implements OnInit {
   ngOnInit(): void {
     if(this.loggedUserRole == 'PHARMACIST'){
       this.counseling.user = this.loggedUser;
+
+      this._ActivatedRoute.paramMap.subscribe(params =>{
+        this.pathParam = params.get('pathParam');
+      })
     }else{
       this.router.navigate(['home']);
-      this.toastrService.error('You do not have access rights for this page!');
+      this.toastrService.error('You do not have rights to access this page!');
     }
   }
 
@@ -48,16 +53,18 @@ export class ScheduleCounselingComponent implements OnInit {
         endDate: `${this.model.year}-${this.model.month}-${this.model.day}`,
         startTime: `${this.startTime.hour}:${this.startTime.minute}:00`,
         endTime: `${this.endTime.hour}:${this.endTime.minute}:00`
-      },
-      report: {
-        
-      }
+      }, 
+      patientEmail: this.pathParam,
+      pharmacistEmail: this.loggedUser
     }
 
-    this.scheduleCounseling.createCounseling(counseling).subscribe(counseling => {
-      console.log(counseling);
+    this.counselingService.createCounselingByPharmacist(counseling).subscribe(data => {
+      console.log(data);
+      this.toastrService.success('Counseling is scheduled.');
       this.router.navigate(['home'])
-    })
+    }, error => {
+      this.toastrService.error('Required term is occupied.');
+    });
   }
 
 

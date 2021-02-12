@@ -86,7 +86,7 @@ const routes: Routes = [
   { path: 'counseling', component: ScheduleCounselingComponent },
   { path: 'allcounselings', component: AllCounselingsComponent },
   { path: 'allcounselings/:id', component: StartCounselingComponent},
-  { path: 'counseling/:id', component: ScheduleCounselingComponent},
+  { path: 'counseling/:pathParam', component: ScheduleCounselingComponent},
   //Dermatologist
   { path: 'examinationSchedule/:pharmacyName', component: ExaminationScheduleComponent},
   { path: 'scheduledExaminations', component: PatientExaminationsComponent},

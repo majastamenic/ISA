@@ -78,5 +78,5 @@
 <div *ngIf='toSchedule' class="page" >
     <h1>Do you want to schedule new Counseling?</h1>
     <button class="btn btn-secondary" style="width:100px;" (click)="cancelCounseling()">No</button>&nbsp;
-    <button class="btn btn-primary" style="width:100px;" [routerLink]="['/counseling', counseling.id]">Yes</button>
+    <button class="btn btn-primary" style="width:100px;" [routerLink]="['/counseling', counseling.patientDto.user.email]">Yes</button>
 </div>
