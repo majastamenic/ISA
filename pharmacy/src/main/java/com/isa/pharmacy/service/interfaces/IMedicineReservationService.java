@@ -9,4 +9,6 @@ public interface IMedicineReservationService {
     List<MedicineReservation> getAllReservationsByPatient(String patientEmail);
 
     MedicineReservation createReservation(MedicineReservation reservation);
+
+    boolean acceptReservation(Long code);
 }

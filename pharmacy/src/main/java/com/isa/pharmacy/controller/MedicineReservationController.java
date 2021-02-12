@@ -39,4 +39,9 @@ public class MedicineReservationController {
         return MedicineReservationMapper.mapReservationToReservationDto(
                 medicineReservationService.createReservation(reservation));
     }
+
+    @PutMapping("/accept/{code}")
+    public boolean acceptReservation(@PathVariable("code") Long code){
+        return medicineReservationService.acceptReservation(code);
+    }
 }

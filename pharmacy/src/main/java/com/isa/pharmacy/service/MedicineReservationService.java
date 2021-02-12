@@ -1,8 +1,10 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.exception.InvalidActionException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.MedicineReservation;
 import com.isa.pharmacy.repository.MedicineReservationRepository;
+import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
 import com.isa.pharmacy.service.interfaces.IMedicineReservationService;
 import com.isa.pharmacy.users.service.interfaces.IPatientService;
@@ -44,5 +46,21 @@ public class MedicineReservationService implements IMedicineReservationService {
         return medicineReservationRepository.save(reservation);
     }
 
-    //public boolean acceptReservation()
+    public boolean acceptReservation(Long code){
+        MedicineReservation medicineReservation = medicineReservationRepository.findMedicineReservationByCode(code);
+        DateManipulation dm = new DateManipulation();
+        int minutes = 60*24;
+        Date currentDate = dm.addMinutes(new Date(), minutes);
+        if(medicineReservation != null && medicineReservation.getTaken() == null && currentDate.before(medicineReservation.getDueDate())){
+            medicineReservation.setTaken(true);
+            medicineReservationRepository.save(medicineReservation);
+            patientService.save(medicineReservation.getPatient());
+            medicinePharmacyService.save(medicineReservation.getMedicinePharmacy());
+            return true;
+        }else if(medicineReservation == null){
+            throw new NotFoundException("Reservation doesn't exist.");
+        }
+        return false;
+    }
+
 }

@@ -10,4 +10,8 @@ import java.util.List;
 public interface MedicineReservationRepository extends JpaRepository<MedicineReservation, Long> {
 
     List<MedicineReservation> findMedicineReservationByPatient_User_Email(String email);
+
+    List<MedicineReservation> findAll();
+
+    MedicineReservation findMedicineReservationByCode(Long code);
 }
