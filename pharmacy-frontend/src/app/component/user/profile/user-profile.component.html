@@ -31,7 +31,11 @@
                     <a href="javascript: void(0)" (click)='allergyChange = true'>Edit</a>
                 </div>
                 <span *ngFor="let allergy of patientAllergies">{{allergy}} | </span>
-                <span *ngIf="patientAllergies.count == 0"> No allegies </span>
+                <span *ngIf="patientAllergies.length == 0"> No allegies </span>
+                <hr>
+                <h5>Loyalty</h5>
+                <p>Points:&nbsp; <span class="text-muted">{{patientLoyaltyPoints}}</span></p>
+                <p>Category:&nbsp; <span class="text-muted">{{patientLoyaltyCategory}}</span></p>
             </div>
             <button class="btn btn-primary" (click)="update()">Update info</button>
             <a href="javascript: void(0)" (click)="passwordChange = true; allergyChange = false;">Change password</a>

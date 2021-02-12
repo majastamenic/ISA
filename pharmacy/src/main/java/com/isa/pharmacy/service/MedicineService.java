@@ -128,9 +128,7 @@ public class MedicineService {
                 }
             }
         }
-        Set set = new HashSet(availabilityMedicineDtos);
-        List availabilityMedicineDtosSet = new ArrayList(set);
-        return availabilityMedicineDtosSet;
+        return availabilityMedicineDtos;
     }
 
     public void notifyPharmacyAdminsAboutMedicine(List<PharmacyAdmin> pharmacyAdmins, String medicineName){

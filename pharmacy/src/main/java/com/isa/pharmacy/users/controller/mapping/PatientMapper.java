@@ -8,6 +8,7 @@ public class PatientMapper {
         PatientDto patientDto = new PatientDto();
         patientDto.setAllergicMedicines(patient.getAllergicMedicines());
         patientDto.setUser(patient.getUser());
+        patientDto.setLoyaltyPoints(patient.getLoyaltyPoints());
         return patientDto;
     }
 
@@ -16,6 +17,7 @@ public class PatientMapper {
         patient.setId(patient.getId());
         patient.setAllergicMedicines(patientDto.getAllergicMedicines());
         patient.setUser(patientDto.getUser());
+        patient.setLoyaltyPoints(patientDto.getLoyaltyPoints());
         return patient;
     }
 

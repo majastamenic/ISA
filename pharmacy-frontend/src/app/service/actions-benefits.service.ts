@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActionsBenefitsDto } from '../component/actions-benefits/model/actions-benefits-model';
+import { ActionsBenefitsDto } from '../model/actions-benefits-model';
 import { ACTION_PATH } from '../util/paths';
 
 @Injectable({

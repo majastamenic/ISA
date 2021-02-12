@@ -17,7 +17,7 @@ import com.isa.pharmacy.service.MedicineService;
 
 @RestController
 @RequestMapping("/medicine")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class MedicineController {
     @Autowired
     private MedicineService medicineService;

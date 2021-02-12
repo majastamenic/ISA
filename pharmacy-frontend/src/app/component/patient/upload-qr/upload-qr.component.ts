@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UploadQrSevice } from 'src/app/service/upload-qr.service';
 import { UserService } from 'src/app/service/user.service';
-import {  EPrescription } from '../model/e-prescription-model';
+import { EPrescription } from '../../../model/e-prescription-model';
 
 @Component({
   selector: 'app-upload-qr',
@@ -24,7 +24,7 @@ export class UploadQRComponent implements OnInit {
   ngOnInit(): void {
     if(!this.userService.isPatient()){
       this.router.navigate(['home']);
-      this.toastrService.error('Unauthorized access.');
+      this.toastrService.info('Please log in first.');
     }
   }
 
@@ -34,7 +34,7 @@ export class UploadQRComponent implements OnInit {
 
   sendFile(): void {
     if (this.file !== null) {
-      this.uploadQrService.uploadFiled(this.file).subscribe((returnedEPrescription: EPrescription) => {
+      this.uploadQrService.uploadFiled(this.file).subscribe((returnedEPrescription: any) => {
         this.ePrescription = returnedEPrescription;
         this.viewEPrescription = true;
       },

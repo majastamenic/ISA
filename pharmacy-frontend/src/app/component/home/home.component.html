@@ -1,0 +1,12 @@
+<div class="center">
+    <div *ngFor="let pharmacy of pharmacies; index as i" class="page cardDisplay clickable" [routerLink]="['/pharmacy', pharmacy.name]">
+        <div class="form">
+        <form class="ngform">
+            <h3>{{pharmacy.name}}</h3>
+            <hr/>
+            <p>Address: {{pharmacy.address}}</p>
+            <p>Rating: <ngb-rating [(rate)]="pharmacy.rate" [max]="5" [readonly]="true"></ngb-rating></p>
+            </form>
+        </div>
+    </div>
+</div>

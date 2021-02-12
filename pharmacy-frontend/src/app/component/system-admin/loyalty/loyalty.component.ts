@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoyaltyGroupService } from 'src/app/service/loyalty-group.service';
 import { MedicineService } from 'src/app/service/medicine.service';
 import { UserService } from 'src/app/service/user.service';
-import { LoyaltyGroup, LoyaltyGroupType } from '../model/loyaltyGroup';
+import { LoyaltyGroup, LoyaltyGroupType } from '../../../model/loyaltyGroup';
 
 @Component({
   selector: 'app-loyalty',

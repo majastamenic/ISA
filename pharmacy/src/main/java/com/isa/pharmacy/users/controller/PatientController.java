@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/patient")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class PatientController {
 
     @Autowired
@@ -22,8 +22,8 @@ public class PatientController {
     @Autowired
     private EmailService emailService;
 
-    @GetMapping("/valid")
-    public Patient activeProfile(@RequestParam String email, @RequestParam String code){
+    @GetMapping("/valid/{email}/{code}")
+    public String activeProfile(@PathVariable String email, @PathVariable String code){
         return patientService.activateProfile(email, code);
     }
 

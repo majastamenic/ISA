@@ -153,6 +153,7 @@ public class CounselingService {
     public List<String> getPharmacistNameByPatient(Patient patient){
         List<String> pharmacistNames = new ArrayList<>();
         for(Counseling counseling: counselingRepository.findByPatient(patient)){
+            //TODO: Maja - provera da li je null
             if(counseling.getPatientCame()){
                 String pharmacistName = counseling.getPharmacist().getUser().getRole().toString() + ": " + counseling.getPharmacist().getUser().getName()+" "+ counseling.getPharmacist().getUser().getSurname();
                 pharmacistNames.add(pharmacistName);

@@ -28,14 +28,15 @@ public class PatientService {
         throw new AlreadyExistsException(String.format("Patient with email %s, already exists", patient.getUser().getEmail()));
     }
 
-    public Patient activateProfile(String email, String code){
+    public String activateProfile(String email, String code){
         User user = userService.getByEmail(email);
         Patient patient = patientRepository.findByUser(user);
         if(patient != null && !patient.getUser().getActive() && patient.getVerificationCode().equals(code)){
             patient.getUser().setActive(true);
             patientRepository.save(patient);
+            return "Successfully verified account";
         }
-        return patient;
+        return "Error while activating account";
     }
 
     public void updateAllergies(String patientEmail, List<String> allergies){

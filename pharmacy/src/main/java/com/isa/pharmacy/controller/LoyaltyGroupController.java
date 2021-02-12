@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/loyaltyGroup")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(origins ={ "http://localhost:4200", "https://pharmacy-25-frontend.herokuapp.com"})
 public class LoyaltyGroupController {
     @Autowired
     private LoyaltyGroupService loyaltyGroupService;
@@ -17,6 +17,11 @@ public class LoyaltyGroupController {
     @GetMapping("/{type}")
     public int getLoyaltyPoints(@PathVariable LoyaltyGroupType type){
         return loyaltyGroupService.getLoyaltyPoints(type);
+    }
+
+    @GetMapping("/category")
+    public String getCategoryByPoints(@RequestParam("points") int points){
+        return loyaltyGroupService.getLoyaltyGroupByPoints(points);
     }
 
     @PutMapping
