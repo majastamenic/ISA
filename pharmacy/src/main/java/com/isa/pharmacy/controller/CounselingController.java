@@ -66,4 +66,9 @@ public class CounselingController {
         return  counselingService.createCounselingByPharmacist(counselingCreateDto);
     }
 
+    @DeleteMapping("/{counselingId}")
+    public void cancelCounseling(@PathVariable long counselingId){
+        counselingService.cancelCounseling(counselingId);
+    }
+
 }

@@ -28,4 +28,11 @@ public class DateManipulation {
         cal.add(Calendar.MINUTE, minutes);
         return cal.getTime();
     }
+
+    public static Date subtractMinutes(Date date, int minutes){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MINUTE, -minutes);
+        return cal.getTime();
+    }
 }
