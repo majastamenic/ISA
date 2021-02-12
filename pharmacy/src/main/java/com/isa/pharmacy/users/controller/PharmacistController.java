@@ -22,6 +22,8 @@ public class PharmacistController {
 
     @Autowired
     private IPharmacistService pharmacistService;
+    
+    
 
     @GetMapping
     public List<Pharmacist> getAll() { return pharmacistService.getAll(); }

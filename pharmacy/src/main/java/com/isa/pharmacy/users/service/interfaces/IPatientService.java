@@ -23,4 +23,6 @@ public interface IPatientService {
      boolean patientIsFree(Patient patient, Date start, Date end);
 
      String getPatientEmailByExamination(Long id);
+
+     List<Patient> findPatientByName(String name, String surname);
 }

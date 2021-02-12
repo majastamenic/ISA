@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { COUNSELING_ADD_PATH, COUNSELING_PATH, COUNSELING_START_PATH, COUNSELING_UPDATE_PATH, CREATE_COUNSELING_PHARMACIST_PATH, PATIENT_COUNSELINGS_PATH } from '../util/paths';
+import { COUNSELING_ADD_PATH, COUNSELING_FIND_PATIENT, COUNSELING_PATH, COUNSELING_START_PATH, COUNSELING_UPDATE_PATH, CREATE_COUNSELING_PHARMACIST_PATH, PATIENT_COUNSELINGS_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +35,10 @@ export class CounselingsService {
   
   createCounselingByPharmacist(counseling: any){
     return this.httpClient.post(CREATE_COUNSELING_PHARMACIST_PATH, counseling);
+  }
+
+  getCounselingByPatient(email: string, name: string, surname: string):any{
+    return this.httpClient.get(COUNSELING_FIND_PATIENT + '/'+ email + '/' + name + '/' + surname);
   }
 
 }

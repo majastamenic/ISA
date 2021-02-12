@@ -84,4 +84,9 @@ public class ExaminationController {
         return examinationUpcomingDtos;
     }
 
+    @GetMapping("/find/{email}/{name}/{surname}")
+    public List<ExamDermatologistDto> findExaminationByPatient(@PathVariable("email") String email, @PathVariable("name") String name, @PathVariable("surname") String surname){
+        return examinationService.findExaminationByPatient(email, name, surname);
+    }
+
 }

@@ -114,4 +114,8 @@ public class PatientService implements IPatientService {
         return examination.getPatientDto().getUser().getEmail();
     }
 
+    public List<Patient> findPatientByName(String name, String surname){
+        return patientRepository.findPatientByUser_nameAndUser_surname(name, surname);
+    }
+
 }
