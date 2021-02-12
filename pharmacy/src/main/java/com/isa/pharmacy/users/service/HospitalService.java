@@ -25,10 +25,7 @@ public class HospitalService implements IHospitalService {
     }
 
     public Hospital getByEmail(String email) {
-        Hospital hospital = hospitalRepository.findByEmail(email);
-        if(hospital == null)
-            throw new NotFoundException("Hospital with email: "+ email+" doesn't exists.");
-        return hospital;
+        return hospitalRepository.findByEmail(email);
     }
 
     public List<Hospital> getAll() {

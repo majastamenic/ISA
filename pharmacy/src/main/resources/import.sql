@@ -213,7 +213,7 @@ insert into loyalty_group(points, type) values (20, 3);
 insert into loyalty_group(points, type) values (50, 4);
 
 -- Examinations
-insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 11, 1, 1, 1, 1, false);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 15, 1, 1, 1, 1, false);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(15, 11, 1, 1, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 12, 1, 1, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(20, 13, 1, 1, 1);

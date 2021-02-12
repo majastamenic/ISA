@@ -21,4 +21,6 @@ public interface IPatientService {
      Patient save(Patient p);
 
      boolean patientIsFree(Patient patient, Date start, Date end);
+
+     String getPatientEmailByExamination(Long id);
 }

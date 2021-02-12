@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.service;
 
+import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.Counseling;
@@ -32,7 +33,7 @@ public class PatientService implements IPatientService {
     private IExaminationService examinationService;
 
     public Patient registration(Patient patient) {
-        Patient existingUser = getPatient(patient.getUser().getEmail());
+        Patient existingUser = patientRepository.findByUser_email(patient.getUser().getEmail());
         if (existingUser == null) {
             userService.create(patient.getUser());
             return patientRepository.save(patient);
@@ -106,6 +107,11 @@ public class PatientService implements IPatientService {
         }
 
         return true;
+    }
+
+    public String getPatientEmailByExamination(Long id){
+        ExamDermatologistDto examination = examinationService.getById(id);
+        return examination.getPatientDto().getUser().getEmail();
     }
 
 }

@@ -1,5 +1,6 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.domain.MedicineReservation;
 import com.isa.pharmacy.repository.MedicineReservationRepository;
@@ -34,7 +35,10 @@ public class MedicineReservationService implements IMedicineReservationService {
         if(reservation.getAmount() <= 0)
             throw new InvalidActionException("Invalid medicine amount");
         MedicineReservation reservedMedicine = medicineReservationRepository.save(reservation);
-        emailService.successfulMedicineReservation(reservedMedicine);
+        try{emailService.successfulMedicineReservation(reservedMedicine);
+        }catch (Exception e){
+            throw new BadRequestException("Email feature not available on heroku");
+        }
         return medicineReservationRepository.save(reservation);
     }
 

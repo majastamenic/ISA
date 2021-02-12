@@ -59,6 +59,7 @@ public class ExaminationController {
         examinationService.scheduleExamination(patientEmail, examinationId);
     }
 
+
     @PutMapping("/cancel/{examinationId}")
     public void cancelExamination(@PathVariable Long examinationId){
         examinationService.cancelExamination(examinationId);
@@ -77,6 +78,13 @@ public class ExaminationController {
     @PostMapping("create/dermatologist")
     public boolean createExaminationByDermatologist(@RequestBody ExaminationCreateDto examinationCreateDto){
         return  examinationService.createExaminationByDermatologist(examinationCreateDto);
+    }
+
+    @GetMapping("/freeterms/dermatologist/{id}")
+    public List<ExaminationUpcomingDto> getFreeExaminationByDermatologistPatient(@PathVariable("id") Long id){
+        List<Examination> examinations = examinationService.getFreeExaminationByDermatologistPatient(id);
+        List<ExaminationUpcomingDto> examinationUpcomingDtos = ExaminationMapper.mapExaminationListToExaminationUpcomingDto(examinations);
+        return examinationUpcomingDtos;
     }
 
 }

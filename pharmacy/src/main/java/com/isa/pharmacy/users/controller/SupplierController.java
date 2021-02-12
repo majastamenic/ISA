@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
@@ -21,7 +22,11 @@ public class SupplierController {
     @PostMapping
     public Supplier registration(@RequestBody RegistrationDto registrationDto) {
         Supplier supplier = supplierService.registration(UserMapper.mapRegistrationDtoToSupplier(registrationDto));
-        emailService.activationEmail(supplier.getUser());
+        try {
+            emailService.activationEmail(supplier.getUser());
+        }catch (Exception e){
+            throw new BadRequestException("Email feature not available on heroku");
+        }
         return supplier;
     }
 }

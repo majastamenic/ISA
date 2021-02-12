@@ -3,6 +3,7 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.ExaminationCreateDto;
 import com.isa.pharmacy.controller.dto.WorkSchedulePharmacyDto;
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.ExaminationMapper;
@@ -87,7 +88,10 @@ public class ExaminationService implements IExaminationService {
             throw new InvalidActionException("Examination cannot be scheduled!");
         examination.setPatient(patientService.getPatient(patientEmail));
         Examination scheduledExam = examinationRepository.save(examination);
-        emailService.successfulExamSchedule(scheduledExam);
+        try{emailService.successfulExamSchedule(scheduledExam);
+        }catch (Exception e){
+            throw new BadRequestException("Email feature not available on heroku");
+        }
     }
 
     public void cancelExamination(Long examinationId){
@@ -180,6 +184,7 @@ public class ExaminationService implements IExaminationService {
         return updateExamination;
     }
 
+
     public List<Examination> getFreeExaminationsByDermatologist(String email){
         List<Examination> freeExaminations = new ArrayList<>();
         Dermatologist dermatologist = dermatologistService.findUserByEmail(email);
@@ -193,6 +198,21 @@ public class ExaminationService implements IExaminationService {
         return freeExaminations;
     }
 
+    public List<Examination> getFreeExaminationByDermatologistPatient(Long id){
+        ExamDermatologistDto oldExamination = getById(id);
+        List<Examination> freeDermExams = getFreeExaminationsByDermatologist(oldExamination.getEmail());
+        List<Examination> freeDermPharmacyExams = new ArrayList<>();
+        DateManipulation dm = new DateManipulation();
+        Patient patient = patientService.getPatient(oldExamination.getPatientDto().getUser().getEmail());
+        for(Examination e: freeDermExams){
+            Date start = dm.mergeDateAndTime(e.getSchedule().getStartDate(), e.getSchedule().getStartTime());
+            Date end = dm.mergeDateAndTime(e.getSchedule().getEndDate(), e.getSchedule().getEndTime());
+            if(e.getPharmacy().getName().equals(oldExamination.getPharmacyName()) && patientService.patientIsFree(patient, start, end)){
+                freeDermPharmacyExams.add(e);
+            }
+        }
+        return  freeDermPharmacyExams;
+    }
 
     public boolean createExaminationByDermatologist(ExaminationCreateDto examinationCreateDto){
         DateManipulation dm = new DateManipulation();

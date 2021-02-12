@@ -17,7 +17,7 @@ public class SupplierService implements ISupplierService {
     private SupplierRepository supplierRepository;
 
     public Supplier registration(Supplier supplier) {
-        Supplier existingUser = getByEmail(supplier.getUser().getEmail());
+        Supplier existingUser = supplierRepository.findSupplierByUser_email(supplier.getUser().getEmail());
         if (existingUser != null)
             throw new AlreadyExistsException(String.format("Supplier with email %s, already exists", supplier.getUser().getEmail()));
         userService.create(supplier.getUser());

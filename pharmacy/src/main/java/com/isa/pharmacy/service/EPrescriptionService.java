@@ -1,6 +1,7 @@
 package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.PharmacyPriceDto;
+import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.EPrescriptionRepository;
@@ -80,7 +81,12 @@ public class EPrescriptionService implements IEPrescriptionService {
                 }
             }
             ePrescriptionRepository.delete(ePrescription);
-            emailService.sendEmailEPrescription(ePrescription);
+            try {
+                emailService.sendEmailEPrescription(ePrescription);
+            }catch (Exception e){
+                throw new BadRequestException("Email feature not available on heroku");
+            }
+
 
         }catch(Exception e){
             throw new NotFoundException("Order is not possible.");
