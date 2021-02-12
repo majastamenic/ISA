@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MedicineService } from 'src/app/service/medicine.service';
-import { PharmacistService } from 'src/app/service/pharmacist.service';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-medicine',
@@ -32,7 +32,7 @@ export class MedicineComponent implements OnInit {
   total: number = 0;
   searchMode = false;
 
-  constructor(private medicineService: MedicineService, private pharmacyService: PharmacyService) { }
+  constructor(private medicineService: MedicineService, private pharmacyService: PharmacyService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.medicineService.getAllMedicinesDto(this.page - 1, 2).subscribe(listMedicineDto => {

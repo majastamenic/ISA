@@ -7,6 +7,14 @@
 > Fakultetu tehničkih nauka u Novom Sadu,
 > za školsku godinu 2020/2021.
 
+Heroku: https://pharmacy-25-frontend.herokuapp.com/
+
+Trello: https://trello.com/b/M5fKYB1P/isa-pharmacy
+
+Sonar: https://sonarcloud.io/dashboard?id=majastamenic_ISA
+
+Travis: https://travis-ci.com/github/majastamenic/ISA
+
 ### Tim 25 čine:
 | Uloga | Student |
 | ------ | ------ |
@@ -15,11 +23,6 @@
 | Student 3 | Marija Milanović RA 197/2017|
 | Student 4 | Maja Stamenić RA 65/2017|
 
-Trello: https://trello.com/b/M5fKYB1P/isa-pharmacy
-
-Sonar: https://sonarcloud.io/dashboard?id=majastamenic_ISA
-
-Travis: https://travis-ci.com/github/majastamenic/ISA
 
 Tehnologije:
 

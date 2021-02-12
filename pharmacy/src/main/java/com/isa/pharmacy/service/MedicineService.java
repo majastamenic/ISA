@@ -46,6 +46,7 @@ public class MedicineService implements IMedicineService {
     @Autowired
     private IPharmacistService pharmacistService;
 
+
     public Medicine create(Medicine medicine) {
         if (medicineRepository.findMedicineById(medicine.getId()) != null)
             throw new ResponseStatusException(HttpStatus.CONFLICT);
@@ -102,12 +103,10 @@ public class MedicineService implements IMedicineService {
         return checkingMedicines(pharmacy, meds);
     }
 
-
     public List<AvailabilityMedicineDto> checkAvailabilityMedicinesByPharmacist(String pharmacistEmail, List<String> meds){
         Pharmacy pharmacy =  pharmacistService.findUserByEmail(pharmacistEmail).getPharmacy();
         return checkingMedicines(pharmacy, meds);
     }
-
 
     public List<AvailabilityMedicineDto> checkingMedicines(Pharmacy pharmacy, List<String> meds){
         List<AvailabilityMedicineDto> availabilityMedicineDtos = new ArrayList<>();

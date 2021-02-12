@@ -28,6 +28,10 @@ export class CounselingsService {
   updateCounseling(updateCouns: any){
     return this.httpClient.post(COUNSELING_UPDATE_PATH, updateCouns);
   }
+
+  cancelCounseling(counselingId: number){
+    return this.httpClient.delete(COUNSELING_PATH + '/' + counselingId);
+  }
   
   createCounselingByPharmacist(counseling: any){
     return this.httpClient.post(CREATE_COUNSELING_PHARMACIST_PATH, counseling);

@@ -36,6 +36,10 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
 
     public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
 
+    public MedicinePharmacy getByPharmacyAndMedicine(String pharmacyName, String medicineName){
+        return medicinePharmacyRepository.findMedicinePharmacyByAndPharmacy_NameAndMedicine_Name(pharmacyName, medicineName);
+    }
+
     public List<GetAllMedicinePharmacyDto> getAllMedicinePharmacies() {
         List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findAll();
         List<GetAllMedicinePharmacyDto> medicineDtoList = new ArrayList<>();
@@ -101,4 +105,7 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
         return meds;
     }
 
+    public List<MedicinePharmacy> getByMedicine(String medicineName){
+        return medicinePharmacyRepository.findMedicinePharmaciesByMedicine_Name(medicineName);
+    }
 }

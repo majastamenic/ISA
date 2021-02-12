@@ -1,0 +1,27 @@
+<div class="panel panel-primary" style="margin: 20px;">
+    <div class="panel-heading">
+        <h2>Reservations</h2>
+    </div>
+    <div class="panel-body">
+        <table id="reservations" class="table transparent">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Pharmacy</th>
+                    <th scope="col">Reserved until</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reservation of reservations; let i = index;">
+                    <td>{{reservation.id}}</td>
+                    <td>{{reservation.medicineName}}</td>
+                    <td>{{reservation.amount}}</td>
+                    <td>{{reservation.pharmacyName}}</td>
+                    <td>{{reservation.dueDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

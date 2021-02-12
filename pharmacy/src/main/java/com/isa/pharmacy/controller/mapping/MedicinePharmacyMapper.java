@@ -5,6 +5,9 @@ import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MedicinePharmacyMapper {
 
     public static GetAllMedicinePharmacyDto mapMedicinePharmacyToGetAllMedicinePharmacyDto(MedicinePharmacy medicinePharmacy){
@@ -43,5 +46,12 @@ public class MedicinePharmacyMapper {
         medicinePharmacy.setMedicine(MedicineMapper.mapMedicineDtoToMedicine(medicinePharmacyDto.getMedicine()));
         medicinePharmacy.setPharmacy(pharmacy);
         return medicinePharmacy;
+    }
+
+    public static List<MedicinePharmacyDto> mapListMedicinePharmacyToMedicinePhDto(List<MedicinePharmacy> medPh){
+        List<MedicinePharmacyDto> mappedMedPh = new ArrayList<>();
+        for(MedicinePharmacy m : medPh)
+            mappedMedPh.add(mapMedicinePharmacyToMedicinePharmacyDto(m));
+        return mappedMedPh;
     }
 }

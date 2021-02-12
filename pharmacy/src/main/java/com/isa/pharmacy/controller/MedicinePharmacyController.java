@@ -3,6 +3,7 @@ package com.isa.pharmacy.controller;
 import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
 import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
 import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -47,4 +48,10 @@ public class MedicinePharmacyController {
 
     @GetMapping("/{id}")
     public List<MedicinePharmacyDto> getMedicinePharmacyByCounseling(@PathVariable("id")Long id){return medicinePharmacyService.getMedicinesByCounseling(id);}
+
+    @GetMapping("/medicine/{medName}")
+    public List<MedicinePharmacyDto> getMedicinePharmaciesByMedicineName(@PathVariable String medName){
+        return MedicinePharmacyMapper.mapListMedicinePharmacyToMedicinePhDto(
+                medicinePharmacyService.getByMedicine(medName));
+    }
 }
