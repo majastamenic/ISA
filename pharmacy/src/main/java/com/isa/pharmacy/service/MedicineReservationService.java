@@ -3,8 +3,10 @@ package com.isa.pharmacy.service;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.domain.MedicineReservation;
 import com.isa.pharmacy.repository.MedicineReservationRepository;
+import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.service.interfaces.IMedicineReservationService;
+import com.isa.pharmacy.service.interfaces.IMedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class MedicineReservationService implements IMedicineReservationService {
 
     @Autowired
     private MedicineReservationRepository medicineReservationRepository;
+    @Autowired
+    private IMedicineService medicineService;
     @Autowired
     private IEmailService emailService;
 
@@ -36,8 +40,11 @@ public class MedicineReservationService implements IMedicineReservationService {
 
     public void cancelReservation(long reservationId){
         MedicineReservation reservation = medicineReservationRepository.findMedicineReservationById(reservationId);
-        reservation.getAmount();
-        reservation.getMedicinePharmacy().getMedicine().getName();
+        Date currDate = DateManipulation.addMinutes(new Date(), 60*24);
+        if(currDate.after(reservation.getDueDate()))
+            throw new InvalidActionException("Too late! Reservation can't be canceled");
+        medicineService.changeAmount(reservation.getMedicinePharmacy().getMedicine().getName(),
+                reservation.getAmount(), reservation.getMedicinePharmacy().getPharmacy().getName());
         medicineReservationRepository.delete(reservation);
     }
 }
