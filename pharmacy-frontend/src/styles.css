@@ -1,0 +1,98 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+body {
+    background: url(../images/pharmacy.jpg) no-repeat center center fixed Highlight;
+    /*background-color: gray;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input, select{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+
+  button {
+    background-color: rgb(27, 186, 214);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  table{
+    background-color: white;
+  }
+
+  ngb-rating {
+    color: #FFC107;
+    font-size: 30px;
+  }
+
+  .page{
+    width: 360px;
+    padding: 0% 0 0;
+    margin: auto;
+  }
+  .ngform {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 560px;
+    margin: 0 auto 20px;
+    margin-top: 15px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  .center{
+    position: relative;
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  .card{
+    margin: 20px;
+  }
+
+  .cardDisplay{
+    display: inline-block;
+    margin: 10px;
+    margin-bottom: 0px;
+    vertical-align: top;
+  }
+
+  .transparent{
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .clickable:hover{
+    cursor: pointer;
+  }
+
+
+  .star {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+  }

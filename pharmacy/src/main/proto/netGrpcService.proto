@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package rs.ac.uns.ftn.grpc;
+import "model.proto";
+
+service NetGrpcService {
+  rpc transfer (ProtoAvailableMedication) returns (ProtoResponseAvailableMedication);
+  rpc transferMedications (ProtoMedications) returns (ProtoResponseMedications);
+}

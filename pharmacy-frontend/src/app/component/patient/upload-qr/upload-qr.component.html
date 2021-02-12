@@ -1,0 +1,55 @@
+<div *ngIf="!viewEPrescription" class="page">
+    <div class="form">
+      <form class="ngform" #uploadForm="ngForm">
+          <h3>Upload QR code: </h3>
+          <br/>
+          <form>
+            <div class="form-group">
+              <input type="file" (change)="imageChoice($event)" accept="image/png, image/jpeg"/>
+              <button class="btn btn-primary" (click)="sendFile()" type="submit">Check medicine availability</button>  
+            </div>
+          </form>
+    </form>  
+  </div>
+</div>
+
+<div *ngIf="viewEPrescription" class="page">
+  <div class="form">
+    <form class="ngform">
+      <h3>e-Prescription</h3>
+      <table>
+        <tbody>
+          <tr>
+            <td>Code:&nbsp;</td>
+            <td>{{ePrescription.code}}</td>
+          </tr>
+          <tr>
+            <td>Patient name:&nbsp;</td>
+            <td>{{ePrescription.patient.user.name}} {{ePrescription.patient.user.surname}}</td>
+          </tr>
+          <tr>
+            <td>Date of issue:&nbsp;</td>
+            <td>{{ePrescription.dateOfIssue}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <form class="action-form">
+          <h3>Medicines</h3>
+          <ul name="medicines-list">
+            <li *ngFor="let med of ePrescription.listOfMedication">{{med.medicineName}} x{{med.quantity}}</li>
+          </ul>
+          <br/>
+          <h5>Chose pharmacy</h5>
+          <select [(ngModel)]="pharmacy" name="pharmacies" id="ePrescription.pharmacyPriceDtoList">
+            <option value ="{{ph.phName}}" *ngFor="let ph of ePrescription.pharmacyPriceDtoList">{{ph.phName}}</option>
+          </select>
+          <br/>
+      </form>
+      <br/>
+      <br/>
+      <button (click)="send()">Send</button>
+      </form>
+  </div>
+</div>
+  

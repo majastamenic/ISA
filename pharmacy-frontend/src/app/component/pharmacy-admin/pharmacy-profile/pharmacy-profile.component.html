@@ -1,0 +1,19 @@
+<div class="page">
+    <div class="form">
+        <form class="ngform">
+            <h3>Welcome to pharmacy {{pharmacyName}}</h3>
+
+            <a class="nav-link" [routerLink]="'/dermatologists'" routerLinkActive="active">Show all dermatologists</a>
+            <a class="nav-link" [routerLink]="'/pharmacists'" routerLinkActive="active">Show all pharmacists</a>
+            <a class="nav-link" [routerLink]="'/medications'" routerLinkActive="active">Show all medications</a>
+            <div *ngIf="userService.isPatient()">
+                <a class="nav-link" routerLinkActive="active">Reserve medication</a>
+                <a class="nav-link" routerLinkActive="active">Schedule a counseling</a>
+                <a class="nav-link" [routerLink]="['/patient/examinationSchedule', pharmacyName]" >Schedule an examination</a>
+                <a class="nav-link" routerLinkActive="active">Check actions and benefits</a>
+            </div>
+            <button *ngIf="userLogin" id="subBtn" class="btn btn-outline-info" (click)="subscribe()" type="submit">Subscribe</button>
+
+        </form>
+    </div>
+</div>

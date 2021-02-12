@@ -1,0 +1,30 @@
+<div class="panel panel-primary" style="margin: 20px;">
+    <div class="panel-heading">
+        <h2>Available pharmacists</h2>
+    </div>
+    <div class="panel-body">
+        <table id="freeTerms" class="table transparent">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>LastName</th>
+                    <th>Rate</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+                <tr *ngFor="let pharmacist of pharmacists; let i = index;">
+                    <td>{{pharmacist.name}}</td>
+                    <td>{{pharmacist.surname}}</td>
+                    <td><ngb-rating [(rate)]="pharmacist.rate" [max]="5" [readonly]="true"></ngb-rating></td>
+                    <td><button class="btn btn-primary" (click)='schedule(pharmacist.user.email)'>Schedule</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

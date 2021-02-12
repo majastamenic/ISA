@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="#">
+            <img src="assets/medicine.png" width="30" height="30" alt="" />
+            Pharmacy system
+        </a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'/home'" routerLinkActive="active">Pharmacies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'/medicines'" routerLinkActive="active">Medicines</a>
+            </li>
+            <!--Patient-->
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/eprescriptions'" routerLinkActive="active">E-prescriptions</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/add-complaint'" routerLinkActive="active">Complaints</a>
+            </li>
+            <li class="nav-item">
+
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/patient/examinations'" routerLinkActive="active">Examinations</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/patient/counselings'" routerLinkActive="active">Counselings</a>
+            </li>
+            <li>
+                <a *ngIf="userService.isUserLogin() && userService.isPatient()" class="nav-link" [routerLink]="'/subscribe-list'" routerLinkActive="active">Subscribe list</a>
+            </li>
+            <!--Pharmacist-->
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPharmacist()" class="nav-link" [routerLink]="'/allcounselings'" routerLinkActive="active">Counseling</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPharmacist()" class="nav-link" [routerLink]="'/medicine/reserved'" routerLinkActive="active">Publishing reserved medicine</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && (userService.isPharmacist() || userService.isDermatologist())" class="nav-link" [routerLink]="'/schedule/vacation'" routerLinkActive="active">Schedule vacation</a>
+            </li>
+            <!--Pharmacy Admin-->
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/actions'" routerLinkActive="active">Actions and benefits</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/price/init'" routerLinkActive="active">Define price</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/order'" routerLinkActive="active">Orders</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/pharmacist/init'" routerLinkActive="active">Register pharmacist</a>
+            </li>
+            <!--Dermatologist-->
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/allexaminations'" routerLinkActive="active">Examinations</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/diagnosis'" routerLinkActive="active">Diagnosis</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && (userService.isPharmacist() || userService.isDermatologist())" class="nav-link" [routerLink]="'/work/schedule'" routerLinkActive="active">My work schedule</a>
+            </li>
+            <!--Admin-->
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isAdmin()" class="nav-link" [routerLink]="'/add-medicines'" routerLinkActive="active">Add medicine</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isAdmin()" class="nav-link" [routerLink]="'/add-pharmacy'" routerLinkActive="active">Add pharmacy</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isAdmin()" class="nav-link" [routerLink]="'/system-admin'" routerLinkActive="active">Registration</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isAdmin()" class="nav-link" [routerLink]="'/loyalty'" routerLinkActive="active">Loyalty program</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isAdmin()" class="nav-link" [routerLink]="'/complaints'" routerLinkActive="active">Complaints</a>
+            </li>
+            <!--Supplier-->
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isSupplier()" class="nav-link" [routerLink]="'/view-orders'" routerLinkActive="active">View orders</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin()"  class="nav-link" [routerLink]="'/profile'" routerLinkActive="active">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="!userService.isUserLogin()" class="nav-link"  [routerLink]="'/login'" routerLinkActive="active">Login</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="!userService.isUserLogin()" class="nav-link" [routerLink]="'/user'" routerLinkActive="active">Registration</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="!userService.isUserLogin()" class="nav-link" [routerLink]="'/hospital'" routerLinkActive="active">Hospital registration</a>
+            </li>
+            <li class="nav-item">
+                <a (click)="userService.logOut()" *ngIf="userService.isUserLogin()" class="nav-link" [routerLink]="'/login'" routerLinkActive="active">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>

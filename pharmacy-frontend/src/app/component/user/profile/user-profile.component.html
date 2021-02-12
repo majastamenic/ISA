@@ -1,0 +1,95 @@
+<div *ngIf='!passwordChange' class="page">
+    <div class="form">
+        <form class="ngform">
+            <h3>User profile</h3>
+            <div>
+                <input type="text" [(ngModel)]="user.email" placeholder="Enter name" name="email" disabled>
+            </div>
+            <div>
+                <input type="text" [(ngModel)]="user.name" placeholder="Enter name" name="name" required>
+            </div>
+
+            <div>
+                <input type="text" [(ngModel)]="user.surname" placeholder="Enter surname" name="surname" required>
+            </div>
+
+            <div>
+                <input type="text" [(ngModel)]="user.address" placeholder="Enter address" name="address" required>
+            </div>
+            <div>
+                <input type="text" [(ngModel)]="user.city" placeholder="Enter city" name="city" required>
+            </div>
+            <div>
+                <input type="text" [(ngModel)]="user.country" placeholder="Enter country" name="country" required>
+            </div>
+            <div>    
+                <input type="tel" [(ngModel)]="user.phone" placeholder="Enter phone" name="phone" required>
+            </div>
+            <div *ngIf="loggedUserRole == 'PATIENT'">
+                <div class="side-layout">
+                    <h5>Allergies</h5>&nbsp;
+                    <a href="javascript: void(0)" (click)='allergyChange = true'>Edit</a>
+                </div>
+                <span *ngFor="let allergy of patientAllergies">{{allergy}} | </span>
+                <span *ngIf="patientAllergies.length == 0"> No allegies </span>
+                <hr>
+                <h5>Loyalty</h5>
+                <p>Points:&nbsp; <span class="text-muted">{{patientLoyaltyPoints}}</span></p>
+                <p>Category:&nbsp; <span class="text-muted">{{patientLoyaltyCategory}}</span></p>
+            </div>
+            <button class="btn btn-primary" (click)="update()">Update info</button>
+            <a href="javascript: void(0)" (click)="passwordChange = true; allergyChange = false;">Change password</a>
+        </form>
+    </div>
+</div>
+
+<div *ngIf='passwordChange'>
+    <div class="form">
+        <form class="ngform">
+            <h3>Change password</h3>
+            <div>
+                <input type="password" [(ngModel)]="passwordDto.oldPassword" placeholder="Enter current Password" name="name" required #password="ngModel"
+                [class.is-invalid] = "password.invalid && password.touched">
+                <div *ngIf="password.invalid && password.touched">
+                    <small class="text-danger">Password is required field.</small>
+                </div>
+            </div>
+            <div>
+                <input type="password" [(ngModel)]="passwordDto.newPassword" placeholder="Enter new Password" name="name" required #password="ngModel"
+                [class.is-invalid] = "password.invalid && password.touched">
+                <div *ngIf="password.invalid && password.touched">
+                    <small class="text-danger">Password is required field.</small>
+                </div>
+            </div>
+            <div>
+                <input type="password" [(ngModel)]="passwordDto.newPasswordRepeat" placeholder="Confirm new password" name="name" required #password="ngModel"
+                [class.is-invalid] = "password.invalid && password.touched">
+                <div *ngIf="password.invalid && password.touched">
+                    <small class="text-danger">Password is required field.</small>
+                </div>
+            </div>
+            <button class="btn btn-primary" (click)="updatePassword()">Change password</button>
+            <button class="btn btn-secondary" (click)="passwordChange = false">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<div *ngIf='allergyChange'>
+    <div class="form">
+        <form class="ngform">
+            <h3>Edit allergies</h3>
+            <div class="side-layout">
+                <input type="text" [(ngModel)]='newAllergy' placeholder="Medicine" name="inpnewAllergy">
+                <button class="btn btn-outline-primary btnCustom" (click)='patientAllergies.push(newAllergy)'>Add</button>
+            </div>
+            <table>
+                <tr *ngFor='let med of patientAllergies; let i=index;'>
+                    <td>{{med}}</td>
+                    <td><button class="btn btn-danger btnRemove" (click)='patientAllergies.splice(i, 1);'>x</button></td>
+                </tr>
+            </table>
+            <button class='btn btn-primary' (click)='updatePatientAllergies()'>Save changes</button>
+            <button class="btn btn-secondary" (click)="allergyChange = false">Cancel</button>
+        </form>
+    </div>
+</div>

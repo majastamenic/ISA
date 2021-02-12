@@ -1,0 +1,12 @@
+<div class="page">
+    <div class="form">
+        <h3>Actions and benefits</h3>
+        <input type="text" [(ngModel)]="actionBenefit.message" placeholder="Enter message text" name="message" required>
+        <label for="startDate"><b>Valid from: </b></label>
+        <input type="date" id="startDate" [(ngModel)]="actionBenefit.startDate"  name="startDate" required>
+        
+        <label for="endDate"><b>Valid until:</b></label>
+        <input type="date" [(ngModel)]="actionBenefit.endDate" min="2020-12-01" name="endDate" required>
+        <button (click)="send()" class="btn btn-primary">Send</button>
+    </div>
+</div>

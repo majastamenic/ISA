@@ -1,0 +1,84 @@
+<div *ngIf='patientCame && !toSchedule' class="page">
+    <div class="form">
+        <form class="ngform" style="width: 600px">
+            <h2>Counseling</h2>
+            <br>
+            <div>
+                <table>
+                    <tr><h5><td style="color:gray">Patient:</td><td>&nbsp;{{counseling.patientDto.user.name}} {{counseling.patientDto.user.surname}}</td></h5></tr>
+                    <tr><h5><td style="color:gray">Allergic medicines:</td><td>&nbsp;<span *ngFor="let allergy of counseling.patientDto.allergicMedicines;">{{allergy}}, </span></td></h5></tr>
+                </table>
+            </div>
+            <hr>
+            <br>
+            <div>
+                <div style="width: 250px;">
+                    <ng-select [items]="medicines"
+                        bindLabel="label"
+                        placeholder="Select medicine"
+                        appendTo="body"
+                        [multiple]="true"
+                        [(ngModel)]="selectedMeds"
+                        name="selectedMeds" [disabled]="isChecked">
+                    </ng-select>
+                    <label>Days:&nbsp;&nbsp;</label><input type="number" [(ngModel)]="updateCouns.report.days" name="days" style="width:100px" [disabled]="isChecked" required>
+                </div>
+                <button class="btn btn-secondary" style="width:100px;" (click)="checkAvailability()" [disabled]="isChecked">Check</button>&nbsp;&nbsp;
+                <button *ngIf='isChecked' class="btn btn-secondary" style="width:150px;" (click)="checkAvailabilityCancel()">Cancel check</button>
+            </div>
+            <div *ngIf='isChecked && availableMeds != null'>
+                <div *ngFor="let avail of availableMeds; let i = index">
+                    <li *ngIf='avail.available'>{{avail.name}} is in stock.</li>
+                    <li *ngIf='!avail.available'>{{avail.name}} isn't in stock. 
+                        <br>Alternative medicine/s: <span *ngFor="let alter of avail.alternative;">{{alter}}, </span></li>
+                </div>
+            </div>
+            <br>
+
+            <div>
+                <p style="color:springgreen;font-size:15px;float:right;">
+                    <br>Pharmacist: <b>{{counseling.email}}</b>
+                    <br>{{counseling.schedule.startDate}}, {{counseling.schedule.startTime}}-{{counseling.schedule.endTime}}
+                </p>
+            </div>
+            <br><br><br><br>
+            <div>
+                <button class="btn btn-secondary" style="width:200px;" (click)="cancelCounseling()">Cancel</button>&nbsp;
+                <button class="btn btn-primary" style="width:200px;" (click)="saveCounseling(true)" [disabled]="!isChecked">Save</button>
+            </div>
+            <br>
+            <p style="font-size: 11px; color: red;">Before saving examination, you need to check availability of medicine/s.</p>
+        </form>
+    </div>
+
+    <div>
+        <h3>Medicine specification</h3>
+            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>&nbsp;
+            <button class="btn btn-primary" style="width:100px;" (click)="findSpecification()">Search</button>
+            <br><br>
+            <table *ngIf='isSpec && specification != null'>
+                <h5>&nbsp;&nbsp;&nbsp;{{specification.name}}</h5>
+                <tr><td>Code:</td><td>&nbsp;{{specification.code}}</td></tr>
+                <tr><td>Form:</td><td>&nbsp;{{specification.formOfMedicine}}</td></tr>
+                <tr><td>Type:</td><td>&nbsp;{{specification.typeOfMedicine}}</td></tr>
+                <tr><td>Composition:</td><td>&nbsp;{{specification.composition}}</td></tr>
+                <tr><td>Manufactured:</td><td>&nbsp;{{specification.manufactured}}</td></tr>
+                <tr><td>Publishing type:</td><td>&nbsp;{{specification.publishingType}}</td></tr>
+                <tr><td>Alternative medicines (code):</td><td>&nbsp;<span *ngFor="let alter of specification.alternative;">{{alter}}, </span></td></tr>
+                <tr><td>Note:</td><td>&nbsp;{{specification.note}}</td></tr>
+            </table>
+        </div>
+</div>
+
+
+
+<div *ngIf='!patientCame && !toSchedule'  class="page" >
+    <button class="btn btn-secondary" style="width:200px;" (click)="saveCounseling(false)">Patient didn't came</button>&nbsp;
+    <button class="btn btn-primary" style="width:200px;" (click)="patientIsHere()">Patient came</button>
+</div>
+
+<div *ngIf='toSchedule' class="page" >
+    <h1>Do you want to schedule new Counseling?</h1>
+    <button class="btn btn-secondary" style="width:100px;" (click)="cancelCounseling()">No</button>&nbsp;
+    <button class="btn btn-primary" style="width:100px;" [routerLink]="['/counseling', counseling.patientDto.user.email]">Yes</button>
+</div>

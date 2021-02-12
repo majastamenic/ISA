@@ -1,0 +1,29 @@
+<div class="panel panel-primary" style="margin: 20px;">
+    <div class="panel-heading">
+        <h2>Examinations</h2>
+    </div>
+    <div class="panel-body">
+        <table id="allExaminations" class="table transparent">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Dermatologist</th>
+                    <th scope="col">Price (€)</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Start time</th>
+                    <th scope="col">End time</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exam of examinations; let i = index;">
+                    <td>dr {{exam.dermatologist.name}} {{exam.dermatologist.surname}}</td>
+                    <td>{{exam.price}}</td>
+                    <td>{{exam.schedule.startDate}}</td>
+                    <td>{{exam.schedule.startTime}}</td>
+                    <td>{{exam.schedule.endTime}}</td>
+                    <td><button class="btn btn-warning" (click)='cancelExamination(exam.id, i)'>Cancel</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

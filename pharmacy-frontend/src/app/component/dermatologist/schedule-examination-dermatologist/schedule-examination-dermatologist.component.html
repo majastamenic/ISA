@@ -1,0 +1,43 @@
+<div class="page">
+    <div class="form">
+        <form class="ngform" style="width:500px;">
+            <h3>Schedule examination</h3>
+            <br><br>
+            <button *ngIf='!isPredefined' class="btn btn-primary" (click)="onPredefined()" style="width:200px">Predefined terms</button>
+            <br>
+            <div *ngIf='isPredefined' style="width: 400px;">
+                <ng-select [items]="predefinedTerms"
+                    bindLabel="label"
+                    placeholder="Select term"
+                    appendTo="body"
+                    [multiple]="false"
+                    [(ngModel)]="selectedTerm"
+                    name="selectedTerm">
+                </ng-select>
+            </div>
+            <br>
+            <button *ngIf='isPredefined' class="btn btn-primary" (click)="cancelPredefined()" style="width:200px">Cancel predefined terms</button>
+
+            <form class="form-inline" class="d-flex justify-content-center">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>Date:</label>
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                            #d="ngbDatepicker"  [disabled]="isPredefined">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"
+                                type="button"  [disabled]="isPredefined"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+            <label>From:</label><ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="startTime" name="timepicker" class="d-flex justify-content-center"  [disabled]="isPredefined"></ngb-timepicker>
+            <label>To:</label><ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="endTime" name="timepicker" class="d-flex justify-content-center"  [disabled]="isPredefined"></ngb-timepicker>
+            <br>
+            <button *ngIf='!isPredefined' class="btn btn-primary" (click)="schedule()">Schedule</button>
+            <button *ngIf='isPredefined' class="btn btn-primary" (click)="schedulePredefined()">Schedule</button>
+        </form>
+    </div>
+</div>
+
