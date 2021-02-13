@@ -38,6 +38,7 @@ Baza podataka: Postgresql
   - Potrebno je kreirati bazu pod nazivom isa
   - Takodje, šifra za bazu je: isa, a username: postgres
   - U sklopu foldera pharmacy/src/main/resources nalazi se skripta import.sql koje se pokreće pokretanjem backend projekta.
+  - U resources/application.properties na 19-toj liniji postaviti spring.jpa.hibernate.ddl-auto = create-drop
     
 Backend:
   - U intellij-u otvorite folder pharmacy
