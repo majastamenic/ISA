@@ -1,8 +1,8 @@
 # ISA projekat
 
-> U repozitorijumu ISA se nalazi projekat
+> U repozitorijumu PharmacySystem se nalazi projekat
 > koji simulira sistem apoteka.
-> ISA predstavlja predmetni
+> PharmacySystem predstavlja predmetni
 > projekat, istoimenog predmeta na 
 > Fakultetu tehničkih nauka u Novom Sadu,
 > za školsku godinu 2020/2021.
