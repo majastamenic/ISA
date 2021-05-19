@@ -107,6 +107,10 @@ public class PharmacyController {
         pharmacyService.checkApiKey(apiKey);
         return pharmacyService.hasPharmacyMedication(pharmacyName, medicineName);
     }
+    @GetMapping("/ph/{name}")
+    public PharmacyDto getPharmacyByName(@PathVariable String name){
+        return PharmacyMapper.mapPharmacyToPharmacyDto(pharmacyService.getPharmacyByName(name));
+    }
 
 
     @PutMapping("/availablePharmacies")

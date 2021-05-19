@@ -17,4 +17,6 @@ public interface DermatologistRepository extends JpaRepository<Dermatologist, Lo
     Dermatologist findDermatologistById(Long id);
 
     Dermatologist findDermatologistByUser_email(String email);
+
+    List<Dermatologist> findDermatologistByPharmacy_id(Long id);
 }

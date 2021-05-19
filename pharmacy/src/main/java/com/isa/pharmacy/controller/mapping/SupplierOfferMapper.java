@@ -42,9 +42,7 @@ public class SupplierOfferMapper {
     public static ViewOrderOfferDto mapSupplierOfferAndOrderToViewOrderOfferDto(SupplierOffer supplierOffer){
         ViewOrderOfferDto viewOrderOfferDto = new ViewOrderOfferDto();
         viewOrderOfferDto.setId(supplierOffer.getOrder().getId());
-        viewOrderOfferDto.setOrderOffers(OrderOffersMapper.mapOrderOffersToOrderOffersDto(supplierOffer.getOrder().getOrderOffers()));
         viewOrderOfferDto.setEndDate(supplierOffer.getOrder().getEndDate());
-        viewOrderOfferDto.setEndTime(supplierOffer.getOrder().getEndTime());
         if(supplierOffer.getOrder().getPharmacyAdmin() != null)
             viewOrderOfferDto.setPharmacyAdminEmail(supplierOffer.getOrder().getPharmacyAdmin().getUser().getEmail());
         viewOrderOfferDto.setType(supplierOffer.getType());

@@ -19,6 +19,8 @@ public interface IMedicinePharmacyService {
 
      List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email);
 
+     List<GetAllMedicinePharmacyDto> getAllMedicinesByAdminPharmacy(String email);
+
      List<MedicinePharmacyDto> getMedicinesByPharmacist(String pharmacistEmail, String patientEmail);
 
      List<MedicinePharmacyDto> getMedicinesPharmacy(Pharmacy pharmacy, Patient patient);
@@ -26,4 +28,6 @@ public interface IMedicinePharmacyService {
      List<MedicinePharmacyDto> getMedicinesByCounseling(long id);
 
      List<MedicinePharmacy> getByMedicine(String medicineName);
+
+     MedicinePharmacy getById(Long id);
 }

@@ -12,6 +12,7 @@ public class PharmacyMapper {
 
     public static Pharmacy mapPharmacyDtoToPharmacy(PharmacyDto pharmacyDto){
         Pharmacy pharmacy = new Pharmacy();
+        pharmacy.setId(pharmacyDto.getId());
         pharmacy.setName(pharmacyDto.getName());
         pharmacy.setAddress(pharmacyDto.getAddress());
         pharmacy.setMedicinePharmacy(null);
@@ -19,7 +20,7 @@ public class PharmacyMapper {
     }
 
     public static PharmacyDto mapPharmacyToPharmacyDto(Pharmacy pharmacy) {
-        return new PharmacyDto(pharmacy.getName(),
+        return new PharmacyDto(pharmacy.getId(), pharmacy.getName(),
                 pharmacy.getAddress(),
                 pharmacy.getCounselingPrice());
     }

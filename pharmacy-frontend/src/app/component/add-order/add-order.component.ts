@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { OrderDto, OrderOfferDto } from 'src/app/model/order';
 import { OrderService } from 'src/app/service/order.service';
+import { PharmacistComponent } from '../pharmacy-admin/pharmacist/pharmacist.component';
 
 @Component({
   selector: 'app-add-order',
@@ -9,13 +12,18 @@ import { OrderService } from 'src/app/service/order.service';
 })
 export class AddOrderComponent implements OnInit {
 
-  newOrder: any;
+  newOrder: OrderDto={price:0, quantity:0, pharmacyAdminEmail:"", endDate:"", medicineName:""};
   showCreateorder: boolean = false;
   listOrders: any;
-
+  phAdmin:any;
   constructor(private orderService: OrderService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
+    let userEmail = sessionStorage.getItem('user');
+    if(userEmail){
+      this.phAdmin = userEmail;
+    }
+    this.newOrder.pharmacyAdminEmail = this.phAdmin;
     this.orderService.getAll().subscribe(orders => {
       this.listOrders = orders;
     });

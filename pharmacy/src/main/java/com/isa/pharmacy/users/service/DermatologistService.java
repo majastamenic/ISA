@@ -1,13 +1,17 @@
 package com.isa.pharmacy.users.service;
 
+import com.isa.pharmacy.controller.dto.DermatologistDto;
 import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.DermatologistMapper;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.service.interfaces.IVacationService;
 import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
 import com.isa.pharmacy.service.interfaces.IExaminationService;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.repository.DermatologistRepository;
@@ -32,6 +36,8 @@ public class DermatologistService implements IDermatologistService {
     private IWorkScheduleService workScheduleService;
     @Autowired
     private IExaminationService examinationService;
+    @Autowired
+    private IPharmacyService pharmacyService;
 
     public void delete(Dermatologist dermatologist){
         dermatologistRepository.delete(dermatologist);
@@ -71,6 +77,16 @@ public class DermatologistService implements IDermatologistService {
         if(dermatologist == null)
             throw new NotFoundException("Dermatologist with email: "+ email + "doesn't exists.");
         return dermatologist;
+    }
+
+    public List<DermatologistDto> dermatologistListByPharmacyName(String name){
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(name);
+        List<Dermatologist> dermatologistList = dermatologistRepository.findDermatologistByPharmacy_id(pharmacy.getId());
+        List<DermatologistDto> dermatologistDtos = new ArrayList<DermatologistDto>();
+        for (Dermatologist dermatologist:dermatologistList){
+            dermatologistDtos.add(DermatologistMapper.mapDermatologistToDermatologistDto(dermatologist));
+        }
+        return dermatologistDtos;
     }
 
 

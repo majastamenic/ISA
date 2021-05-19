@@ -4,10 +4,13 @@ import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
 import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
+import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,6 +20,9 @@ public class MedicinePharmacyController {
 
     @Autowired
     private IMedicinePharmacyService medicinePharmacyService;
+
+    @Autowired
+    private IPharmacyService pharmacyService;
 
     @GetMapping("/getAllMedicines")
     public List<GetAllMedicinePharmacyDto> getAll() {
@@ -30,6 +36,25 @@ public class MedicinePharmacyController {
     @GetMapping("/getAllMedicines/{id}")
     public List<GetAllMedicinePharmacyDto> getMedicinePharmacyByPharmacy(@PathVariable("id")Long id) {
         List<GetAllMedicinePharmacyDto> medicineDtoList = medicinePharmacyService.getAllMedicinesByPharmacies(id);
+        if (medicineDtoList.isEmpty()) {
+            throw new NotFoundException("Pharmacy system doesn't have any medicine");
+        }
+        return medicineDtoList;
+    }
+
+    @GetMapping("/getMedicines/{name}")
+    public List<GetAllMedicinePharmacyDto> getMedicinePharmacyByPharmacyName(@PathVariable("name")String name) {
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(name);
+        List<GetAllMedicinePharmacyDto> medicineDtoList = medicinePharmacyService.getAllMedicinesByPharmacies(pharmacy.getId());
+        if (medicineDtoList.isEmpty()) {
+            throw new NotFoundException("Pharmacy system doesn't have any medicine");
+        }
+        return medicineDtoList;
+    }
+
+    @GetMapping("/getMedicinesByAdminPharmacy/{email}")
+    public List<GetAllMedicinePharmacyDto> getMedicinePharmacyByPharmacyAdmin(@PathVariable("email")String email) {
+       List<GetAllMedicinePharmacyDto> medicineDtoList = medicinePharmacyService.getAllMedicinesByAdminPharmacy(email);
         if (medicineDtoList.isEmpty()) {
             throw new NotFoundException("Pharmacy system doesn't have any medicine");
         }

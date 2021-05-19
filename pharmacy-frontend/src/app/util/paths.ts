@@ -1,7 +1,8 @@
 import { environment } from "src/environments/environment.prod";
+import { DermatologistService } from "../service/dermatologist.service";
 
-//export const BACKEND_PATH ='http://localhost:8081';
-export const BACKEND_PATH = environment.backend_url ? environment.backend_url :'http://localhost:8081';
+export const BACKEND_PATH ='http://localhost:8081';
+//export const BACKEND_PATH = environment.backend_url ? environment.backend_url :'http://localhost:8081';
 
 
 export const USER_PATH = BACKEND_PATH + '/user';
@@ -11,6 +12,7 @@ export const INFO_PATH = USER_PATH + '/info';
 export const UPDATE_USER_PATH = USER_PATH + '/update';
 
 export const PHARMACY_PATH = BACKEND_PATH + '/pharmacy';
+export const PHARMACY_FROM_PHARMACY_NAME = PHARMACY_PATH + '/ph';
 export const AVAILABLE_PHARMACIES = PHARMACY_PATH + '/availablePharmacies';  // Gets pharmacies with available pharmacists
 export const HOSPITAL_PATH = BACKEND_PATH + '/hospital';
 export const ACTION_PATH = BACKEND_PATH + '/actions';
@@ -33,7 +35,7 @@ export const SCHEDULE_PATH = BACKEND_PATH + '/workschedule';
 
 export const PHARMACIST_PATH = BACKEND_PATH + '/pharmacist';
 export const PHARMACIST_REGISTRATION_PATH = PHARMACIST_PATH + '/registration';
-export const PHARMACISTSBYPHARMACY_PATH = PHARMACIST_PATH + '/pharmacists';
+export const PHARMACISTSBYPHARMACY_PATH = PHARMACIST_PATH + '/pharmacist';
 export const FREE_PHARMACIST_PATH = PHARMACIST_PATH + '/free';
 export const PHARMACIST_VACATION_CHECK_PATH = PHARMACIST_PATH + '/check/vacation';
 
@@ -43,6 +45,7 @@ export const UPDATE_ALLERGY_PATH = PATIENT_PATH + '/updateAllergy';
 export const PATIENT_EMAIL_PATH = PATIENT_PATH + '/examination';
 
 export const DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologist';
+export const DERMATOLOGIST_BY_PHARMACY = DERMATOLOGIST_PATH + '/dermatologists';
 export const DERMATOLOGIST_VACATION_CHECK_PATH = DERMATOLOGIST_PATH + '/check/vacation';
 
 export const PHARMACY_ADMIN_PATH = BACKEND_PATH + '/phadmin';
@@ -63,7 +66,9 @@ export const COUNSELING_FIND_PATIENT = COUNSELING_PATH + '/find';
 
 
 export const MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy';
-export const GET_MEDICINEPHARMACY_PATH = BACKEND_PATH + '/getAllMedicines';
+export const GET_MEDICINEPHARMACY_PATH = MEDICINEPHARMACY_PATH + '/getMedicines';
+
+export const GET_MEDICINEPHARMACYBYADMIN_PATH = MEDICINEPHARMACY_PATH + '/getMedicinesByAdminPharmacy';
 export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
 export const MEDICINES_PHARMACY_PATH = MEDICINEPHARMACY_PATH + '/all';
 export const MEDICINES_PHARMACIST_PATH = MEDICINES_PHARMACY_PATH + '/pharmacist';

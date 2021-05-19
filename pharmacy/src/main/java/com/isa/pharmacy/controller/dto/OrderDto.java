@@ -1,40 +1,32 @@
 package com.isa.pharmacy.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.isa.pharmacy.domain.Medicine;
+
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
 
 public class OrderDto {
 
-    private Long id;
-    private List<OrderOfferDto> orderOffers;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date endDate;
-    private Date endTime;
     private String pharmacyAdminEmail;
+    private String medicineName;
+    private Integer quantity;
+    private double price;
 
     public OrderDto(){}
 
-    public OrderDto(Long id, List<OrderOfferDto> orderOffers, Date endDate, Date endTime, String pharmacyAdminEmail) {
-        this.id = id;
-        this.orderOffers = orderOffers;
+    public OrderDto(String medicineName,Integer quantity,double price, Date endDate, String pharmacyAdminEmail) {
         this.endDate = endDate;
-        this.endTime = endTime;
         this.pharmacyAdminEmail = pharmacyAdminEmail;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<OrderOfferDto> getOrderOffers() {
-        return orderOffers;
-    }
-
-    public void setOrderOffers(List<OrderOfferDto> orderOffers) {
-        this.orderOffers = orderOffers;
+        this.medicineName = medicineName;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public Date getEndDate() {
@@ -45,19 +37,35 @@ public class OrderDto {
         this.endDate = endDate;
     }
 
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public String getPharmacyAdminEmail() {
         return pharmacyAdminEmail;
     }
 
     public void setPharmacyAdminEmail(String pharmacyAdminEmail) {
         this.pharmacyAdminEmail = pharmacyAdminEmail;
+    }
+
+    public String getMedicineName() {
+        return medicineName;
+    }
+
+    public void setMedicineName(String medicineName) {
+        this.medicineName = medicineName;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

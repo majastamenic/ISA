@@ -1,1 +1,25 @@
-<p>all-dermatologists works!</p>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Pharmacist</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dermatologist of dermatologists; let i = index;">
+          <td>{{i}}</td>
+          <td>{{dermatologist.user.name}} {{dermatologist.user.surname}}</td>
+          <td>{{dermatologist.user.email}}</td>
+          <td>{{dermatologist.user.address}}</td>
+          <td>{{dermatologist.user.phone}}</td>
+          <td>{{dermatologist.user.country}}</td> 
+          <td><button class="btn btn-primary" (click)="define()">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+

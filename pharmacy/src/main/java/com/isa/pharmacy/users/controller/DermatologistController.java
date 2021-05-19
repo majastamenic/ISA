@@ -1,7 +1,9 @@
 package com.isa.pharmacy.users.controller;
 
+import com.isa.pharmacy.controller.dto.DermatologistDto;
 import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.BadRequestException;
+import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
@@ -10,6 +12,7 @@ import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,6 +38,15 @@ public class DermatologistController {
 
     @GetMapping
     public List<Dermatologist> getAll() { return dermatologistService.getAll(); }
+
+    @GetMapping("/dermatologists/{name}")
+    public List<DermatologistDto> dermatologistListByPharmacy(@PathVariable("name") String name){
+        List<DermatologistDto> dermatologistDtos = dermatologistService.dermatologistListByPharmacyName(name);
+        if(dermatologistDtos.isEmpty()){
+            throw new NotFoundException("Pharmacy doesn't have dermatologist");
+        }
+        return dermatologistDtos;
+    }
 
     @PostMapping("/check/vacation/{email}")
     public boolean checkVacationTerm(@RequestBody VacationScheduleDto vacationScheduleDto, @PathVariable("email") String email){

@@ -5,6 +5,7 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
+import com.isa.pharmacy.users.controller.dto.PharmacyAdminDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacyAdminMapper;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
@@ -44,6 +45,9 @@ public class PharmacyAdminController {
     public List<PharmacyAdmin> findAll() { return pharmacyAdminService.findAll(); }
 
     @GetMapping("/{email}")
-    public CreatePhAdminDto findPharmacyAdminByEmail(@PathVariable("email") String email){ return  pharmacyAdminService.findPharmacyAdminByEmail(email);}
+    public PharmacyAdminDto findPharmacyAdminByEmail(@PathVariable("email") String email){
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(email);
+        return PharmacyAdminMapper.mapPharmacyAdminnToPharmacyAdminDto(pharmacyAdmin);
+    }
 
 }

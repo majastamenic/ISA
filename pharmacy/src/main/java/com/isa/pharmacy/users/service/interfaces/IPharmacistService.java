@@ -32,4 +32,6 @@ public interface IPharmacistService {
      boolean checkVacationTerm(VacationScheduleDto vacationScheduleDto, String email);
 
       List<WorkSchedule> getWorkScheduleByPharmacistEmail(String email);
+
+    List<PharmacistByPharmacyDto> getPharmacistByPharmacyName(String name);
 }

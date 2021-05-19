@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { PriceDto } from 'src/app/model/price';
 import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.service';
 import { PriceListService } from 'src/app/service/price-list.service';
 import { PharmacyAdmin } from '../../../model/pharmacy-admin';
@@ -13,37 +14,29 @@ export class PriceInitComponent implements OnInit {
 
   listMedications: any=[];
   medication : any;
-  startDate: any;
-  endDate: any;
-  price: number;
-  pharmacyAdmin: PharmacyAdmin;
-  loggedUser: any = sessionStorage.getItem("user");
-
+  priceDto:PriceDto={dateFrom: new Date(), dateTo: new Date(), price:0, medicineId:'', adminEmail:''}
+  pharmacyAdmin : PharmacyAdmin = {user:"", pharmacyName:""};
+  loggedUser:any;
+  selectedMedicine: any;
   constructor(private priceListService: PriceListService, 
     private toastrService: ToastrService,
     private medicinePharmacyService: MedicinePharmacyService) { 
-      this.price=0;
-      this.pharmacyAdmin={orders:"", pharmacy:"", schedule:"", user:""};
-      let loggedUser = sessionStorage.getItem('user');
-      if(loggedUser){
-        this.priceListService.getPharmacyAdmin(loggedUser).subscribe((response: any)=>{
-          this.pharmacyAdmin =response;
-        });
-      }
+      
     }
 
   ngOnInit(): void {
-    this.medicinePharmacyService.getByPharmacy(this.pharmacyAdmin.pharmacy).subscribe((response: any) =>{
+    this.loggedUser = sessionStorage.getItem("user");
+    this.priceDto.adminEmail = this.loggedUser;
+    this.medicinePharmacyService.getByPharmacyAdmin(this.loggedUser).subscribe((response: any) =>{
       this.listMedications = response;
     });
   }
   define(){
-    let priceDto:any ={
-        startDate : `${this.startDate.year}-${this.startDate.month}-${this.startDate.day}`,
-        endDate: `${this.endDate.year}-${this.endDate.month}-${this.endDate.day}`
-    }
-    this.priceListService.createPriceList(priceDto).subscribe((_ret: any) =>{
+    this.priceDto.medicineId = this.selectedMedicine.medicine.id
+    this.priceListService.createPriceList(this.priceDto).subscribe((_ret: any) =>{
       this.toastrService.success("You added price successfuly");
+    },(err: any)=>{
+      this.toastrService.error("Error "+ err.error.message)
     }) 
 
   }

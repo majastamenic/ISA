@@ -17,28 +17,29 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
-    private List<OrderOffer> orderOffers;
+    @OneToOne
+    private Medicine medicine;
+    @Column
+    private Integer quantity;
+    @Column
+    private double price;
     @Column
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date endDate;
-    @Column
-    @Temporal(TemporalType.TIME)
-    @JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+01:00")
-    private Date endTime;
     @ManyToOne
     private PharmacyAdmin pharmacyAdmin;
 
     public Order() {
     }
 
-    public Order(Long id, List<OrderOffer> orderOffers, Date endDate, Date endTime, PharmacyAdmin pharmacyAdmin) {
+    public Order(Long id,Medicine medicine,Integer quantity,double price, Date endDate, PharmacyAdmin pharmacyAdmin) {
         this.id = id;
-        this.orderOffers = orderOffers;
         this.endDate = endDate;
-        this.endTime = endTime;
         this.pharmacyAdmin = pharmacyAdmin;
+        this.medicine = medicine;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public static long getSerialVersionUID() {
@@ -61,27 +62,35 @@ public class Order implements Serializable {
         this.endDate = endDate;
     }
 
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public List<OrderOffer> getOrderOffers() {
-        return orderOffers;
-    }
-
-    public void setOrderOffers(List<OrderOffer> orderOffers) {
-        this.orderOffers = orderOffers;
-    }
-
     public PharmacyAdmin getPharmacyAdmin() {
         return pharmacyAdmin;
     }
 
     public void setPharmacyAdmin(PharmacyAdmin pharmacyAdmin) {
         this.pharmacyAdmin = pharmacyAdmin;
+    }
+
+    public Medicine getMedicine() {
+        return medicine;
+    }
+
+    public void setMedicine(Medicine medicine) {
+        this.medicine = medicine;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

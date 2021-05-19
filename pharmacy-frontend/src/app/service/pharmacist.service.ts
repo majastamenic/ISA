@@ -19,8 +19,8 @@ export class PharmacistService {
     return this.httpClient.get(PHARMACY_PATH);
   }
 
-  getPharmacistsByPharmacyId(id: any):any{
-    return this.httpClient.get(PHARMACISTSBYPHARMACY_PATH + '/' + id)
+  getPharmacistsByPharmacyId(name: string):any{
+    return this.httpClient.get(PHARMACISTSBYPHARMACY_PATH + '/' + name)
   }
 
   getFreePharmacistOnDate(pharmacyName: string, date: DateTime) : any{

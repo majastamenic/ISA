@@ -45,6 +45,15 @@ public class PharmacistController {
         return pharmacistByPharmacyDtos;
     }
 
+    @GetMapping("/pharmacist/{name}")
+    public List<PharmacistByPharmacyDto> getPharmacistByPharmacyName(@PathVariable("name") String name){
+        List<PharmacistByPharmacyDto> pharmacistByPharmacyDtos = pharmacistService.getPharmacistByPharmacyName(name);
+        if (pharmacistByPharmacyDtos.isEmpty()) {
+            throw new NotFoundException("Pharmacy doesn't have pharmacist");
+        }
+        return pharmacistByPharmacyDtos;
+    }
+
     @PutMapping("/free")
     public List<PharmacistDto> getFreePharmacist(@RequestParam("pharmacy") String pharmacy, @RequestBody DateTimeDto date){
         return PharmacistMapper.mapListPharmacistToPharmacistDto(
