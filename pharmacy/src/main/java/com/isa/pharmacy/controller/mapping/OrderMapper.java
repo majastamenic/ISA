@@ -12,22 +12,23 @@ import java.util.List;
 
 public class OrderMapper {
 
-    public static Order mapOrderDtoToOrder(OrderDto orderDto, PharmacyAdmin pharmacyAdmin, List<Medicine> medicineList){
+    public static Order mapOrderDtoToOrder(OrderDto orderDto, PharmacyAdmin pharmacyAdmin, Medicine medicine){
         Order order = new Order();
         order.setPharmacyAdmin(pharmacyAdmin);
         order.setEndDate(orderDto.getEndDate());
-        order.setEndTime(order.getEndTime());
-        order.setOrderOffers(OrderOffersMapper.mapOrderOffersDtoToOrderOffers(orderDto.getOrderOffers(), medicineList));
+        order.setMedicine(medicine);
+        order.setPrice(orderDto.getPrice());
+        order.setQuantity(orderDto.getQuantity());
         return order;
     }
 
     public static OrderDto mapOrderToOrderDto(Order order){
         OrderDto orderDto = new OrderDto();
         orderDto.setEndDate(order.getEndDate());
-        orderDto.setEndTime(order.getEndTime());
-        orderDto.setId(order.getId());
+        orderDto.setMedicineName(order.getMedicine().getName());
+        orderDto.setPrice(order.getPrice());
+        orderDto.setQuantity(order.getQuantity());
         orderDto.setPharmacyAdminEmail(order.getPharmacyAdmin().getUser().getEmail());
-        orderDto.setOrderOffers(OrderOffersMapper.mapOrderOffersToOrderOffersDto(order.getOrderOffers()));
         return orderDto;
     }
 
@@ -49,9 +50,7 @@ public class OrderMapper {
     public static ViewOrderOfferDto mapOrderToViewOrderOfferDto(Order order){
         ViewOrderOfferDto viewOrderOfferDto = new ViewOrderOfferDto();
         viewOrderOfferDto.setId(order.getId());
-        viewOrderOfferDto.setOrderOffers(OrderOffersMapper.mapOrderOffersToOrderOffersDto(order.getOrderOffers()));
         viewOrderOfferDto.setEndDate(order.getEndDate());
-        viewOrderOfferDto.setEndTime(order.getEndTime());
         if(order.getPharmacyAdmin().getUser() != null)
             viewOrderOfferDto.setPharmacyAdminEmail(order.getPharmacyAdmin().getUser().getEmail());
         return viewOrderOfferDto;

@@ -4,35 +4,22 @@
             <h3>Define price for medication</h3>
 
             <div> 
-                <select name="medicationSelect" [(ngModel)]="medication" >
-                    <option *ngFor="let med of listMedications" [ngValue]="med">
-                        {{med.name}}
-                    </option>
-                </select>
+                <ng-select [items]="listMedications"
+                        placeholder="Select medicine"
+                        appendTo="body"
+                        bindLabel="medicine.name"
+                        [multiple]="false"
+                        [(ngModel)]="selectedMedicine"
+                        name="pharmaciesSelect">
+                </ng-select>
             </div>
             <div class="form-group">
-                <div class="input-group">
-                    <label>Start date:</label>
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="startDate" ngbDatepicker
-                        #d1="ngbDatepicker">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()"
-                            type="button"></button>
-                    </div>
-                </div>
+                <input type="date" [(ngModel)]="priceDto.dateFrom" placeholder="Enter start date" name='dateFrom' id='dateFrom'>
             </div>
             <div class="form-group">
-                <div class="input-group">
-                    <label>End date:</label>
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="endDate" ngbDatepicker
-                        #d2="ngbDatepicker">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()"
-                            type="button"></button>
-                    </div>
-                </div>
+                <input type="date" [(ngModel)]="priceDto.dateTo" placeholder="Enter end date" name='dateTo' id='dateTo'>
             </div>
-            <input type="number" [(ngModel)]="price" placeholder="Enter price" name="price" required>
+            <input type="number" [(ngModel)]="priceDto.price" placeholder="Enter price" name="price" required>
             <button class="btn btn-primary" (click)="define()">Confirm</button>
             
         </form>

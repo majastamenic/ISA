@@ -11,9 +11,13 @@ import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 import com.isa.pharmacy.service.interfaces.ICounselingService;
 import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
 import com.isa.pharmacy.service.interfaces.IPharmacyService;
+import com.isa.pharmacy.users.controller.dto.PharmacyAdminDto;
+import com.isa.pharmacy.users.controller.mapping.PharmacyAdminMapper;
 import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.service.interfaces.IPatientService;
 import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +37,8 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
     private IPharmacyService pharmacyService;
     @Autowired
     private IPharmacistService pharmacistService;
+    @Autowired
+    private IPharmacyAdminService pharmacyAdminService;
 
 
     public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
@@ -57,6 +63,20 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
             medicineDtoList.add(MedicinePharmacyMapper.mapMedicinePharmacyToGetAllMedicinePharmacyDto(medicine));
         }
         return medicineDtoList;
+    }
+
+    public MedicinePharmacy getById(Long id){return medicinePharmacyRepository.findMedicinePharmacyById(id);}
+
+    public List<GetAllMedicinePharmacyDto> getAllMedicinesByAdminPharmacy(String email) {
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(email);
+        Pharmacy pharmacy= pharmacyService.getById(pharmacyAdmin.getPharmacy().getId());
+        List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(pharmacy.getId());
+        List<GetAllMedicinePharmacyDto> medicineDtoList = new ArrayList<>();
+        for(MedicinePharmacy medicine:medicinePharmacies){
+            medicineDtoList.add(MedicinePharmacyMapper.mapMedicinePharmacyToGetAllMedicinePharmacyDto(medicine));
+        }
+        return medicineDtoList;
+
     }
 
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(String pharmacyName, String email) {

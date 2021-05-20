@@ -12,6 +12,8 @@ public class PriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    private MedicinePharmacy medicinePharmacy;
     @Column
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
@@ -20,13 +22,23 @@ public class PriceList {
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date dateTo;
+    @Column
+    private Integer price;
 
     public PriceList(){ }
 
-    public PriceList(Long id, Date dateFrom, Date dateTo) {
+    public PriceList(Long id, Date dateFrom, Date dateTo, Integer price, MedicinePharmacy medicinePharmacy) {
         this.id=id;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
+        this.price = price;
+        this.medicinePharmacy= medicinePharmacy;
+    }
+    public PriceList(Date dateFrom, Date dateTo, Integer price, MedicinePharmacy medicinePharmacy) {
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.price = price;
+        this.medicinePharmacy= medicinePharmacy;
     }
 
     public Long getId() {
@@ -51,5 +63,21 @@ public class PriceList {
 
     public void setDateTo(Date dateTo) {
         this.dateTo = dateTo;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public MedicinePharmacy getMedicinePharmacy() {
+        return medicinePharmacy;
+    }
+
+    public void setMedicinePharmacy(MedicinePharmacy medicinePharmacy) {
+        this.medicinePharmacy = medicinePharmacy;
     }
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PharmacyDto } from '../model/pharmacy-model';
-import { PHARMACY_PATH, PHARMACY_SUB_PATH, SUBSCRIBE_PATH, UNSUBSCRIBE_PATH, AVAILABLE_PHARMACIES } from '../util/paths';
+import { PHARMACY_PATH, PHARMACY_SUB_PATH, SUBSCRIBE_PATH, UNSUBSCRIBE_PATH, AVAILABLE_PHARMACIES, PHARMACY_FROM_PHARMACY_NAME } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,10 @@ export class PharmacyService {
 
   pharmacies_sub(email: string): any{
     return this.httpClient.get(PHARMACY_SUB_PATH + "/" + email);
+  }
+
+  pharmacy_from_name(name: string): any{
+    return this.httpClient.get(PHARMACY_FROM_PHARMACY_NAME + "/" + name);
   }
 
   getPharmaciesWithAvailablePharmacists(eagerDate: any): any{

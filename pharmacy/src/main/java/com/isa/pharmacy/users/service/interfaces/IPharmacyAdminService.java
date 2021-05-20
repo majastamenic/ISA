@@ -1,6 +1,7 @@
 package com.isa.pharmacy.users.service.interfaces;
 
 import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
+import com.isa.pharmacy.users.controller.dto.PharmacyAdminDto;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface IPharmacyAdminService {
 
      List<PharmacyAdmin> findAll();
 
-     CreatePhAdminDto findPharmacyAdminByEmail(String email);
+     PharmacyAdmin findPharmacyAdminByEmail(String email);
 
      List<PharmacyAdmin> findPharmacyAdminByPharmacy(String pharmacyName);
 

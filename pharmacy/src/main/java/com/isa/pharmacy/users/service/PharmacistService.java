@@ -7,6 +7,7 @@ import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
@@ -87,6 +88,17 @@ public class PharmacistService implements IPharmacistService {
 
     public List<WorkSchedule> getWorkScheduleByPharmacistEmail(String email){
         return pharmacistRepository.findPharmacistByUser_email(email).getWorkSchedule();
+    }
+
+    @Override
+    public List<PharmacistByPharmacyDto> getPharmacistByPharmacyName(String name) {
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(name);
+        List<Pharmacist> pharmacists = pharmacistRepository.findPharmacistByPharmacy_id(pharmacy.getId());
+        List<PharmacistByPharmacyDto> pharmacistByPharmacyDtos = new ArrayList<>();
+        for(Pharmacist pharmacist:pharmacists){
+            pharmacistByPharmacyDtos.add(PharmacistMapper.mapPharmacistToPharmacistByPharmacyDto(pharmacist));
+        }
+        return pharmacistByPharmacyDtos;
     }
 
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){

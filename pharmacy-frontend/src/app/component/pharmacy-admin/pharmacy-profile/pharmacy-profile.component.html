@@ -3,9 +3,9 @@
         <form class="ngform">
             <h3>Welcome to pharmacy {{pharmacyName}}</h3>
 
-            <a class="nav-link" [routerLink]="'/dermatologists'" routerLinkActive="active">Show all dermatologists</a>
-            <a class="nav-link" [routerLink]="'/pharmacists'" routerLinkActive="active">Show all pharmacists</a>
-            <a class="nav-link" [routerLink]="'/medications'" routerLinkActive="active">Show all medications</a>
+            <a class="nav-link" [routerLink]="['/dermatologists', pharmacyName]" routerLinkActive="active">Show all dermatologists</a>
+            <a class="nav-link" [routerLink]="['/pharmacists', pharmacyName]" routerLinkActive="active">Show all pharmacists</a>
+            <a class="nav-link" [routerLink]="['/medications', pharmacyName]" routerLinkActive="active">Show all medications</a>
             <div *ngIf="userService.isPatient()">
                 <a class="nav-link" routerLinkActive="active">Reserve medication</a>
                 <a class="nav-link" routerLinkActive="active">Schedule a counseling</a>

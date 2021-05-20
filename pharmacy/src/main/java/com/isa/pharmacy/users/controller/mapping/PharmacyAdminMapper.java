@@ -3,6 +3,7 @@ package com.isa.pharmacy.users.controller.mapping;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.users.controller.dto.CreatePhAdminDto;
+import com.isa.pharmacy.users.controller.dto.PharmacyAdminDto;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.domain.User;
 import net.bytebuddy.utility.RandomString;
@@ -38,5 +39,19 @@ public class PharmacyAdminMapper {
         createPhAdminDto.setSurname(pharmacyAdmin.getUser().getSurname());
         createPhAdminDto.setActive(pharmacyAdmin.getUser().getActive());
         return createPhAdminDto;
+    }
+
+    public static PharmacyAdminDto mapPharmacyAdminnToPharmacyAdminDto(PharmacyAdmin pharmacyAdmin){
+        PharmacyAdminDto pharmacyAdminDto = new PharmacyAdminDto();
+        pharmacyAdminDto.setPharmacyName(pharmacyAdmin.getPharmacy().getName());
+        pharmacyAdminDto.setUser(pharmacyAdmin.getUser());
+        return pharmacyAdminDto;
+    }
+
+    public static PharmacyAdmin mapPharmacyAdminDTOToPharmacyAdmin(PharmacyAdminDto pharmacyAdminDto, Pharmacy pharmacy){
+        PharmacyAdmin pharmacyAdmin = new PharmacyAdmin();
+        pharmacyAdmin.setPharmacy(pharmacy);
+        pharmacyAdmin.setUser(pharmacyAdminDto.getUser());
+        return pharmacyAdmin;
     }
 }

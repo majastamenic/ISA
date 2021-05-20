@@ -115,9 +115,9 @@ const routes: Routes = [
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
   { path: 'pharmacy/:pharmacyName', component: PharmacyProfileComponent},
-  { path: 'pharmacists/:id', component: AllPharmacistsComponent},
-  { path: 'dermatologists', component: AllDermatologistsComponent},
-  { path: 'medications/:id', component: AllMedicationsComponent},
+  { path: 'pharmacists/:pharmacyName', component: AllPharmacistsComponent},
+  { path: 'dermatologists/:pharmacyName', component: AllDermatologistsComponent},
+  { path: 'medications/:pharmacyName', component: AllMedicationsComponent},
   
   
   //Supplier

@@ -367,10 +367,6 @@ insert into pharmacy_medicine_pharmacy(pharmacy_id, medicine_pharmacy_id) values
 
 ----------------------
 
--- Orders
-insert into app_order(end_date, end_time) values ('2021-02-07', '08:00:00');
-insert into app_order(end_date, end_time) values ('2021-03-07', '04:00:00');
-
 -- MedicineReplacement
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(1, 62217);
 insert into medicine_replacement_medicines(medicine_id, replacement_medicines) values(2, 66042);
@@ -396,10 +392,10 @@ insert into complaint(complaint_message, response_complaint, patient_id)values (
 insert into complaint(complaint_message, patient_id)values ('Too crowded', 2);
 
 -- Orders
-insert into app_order( end_date, end_time, pharmacy_admin_id) values ('2021-02-07', '08:00:00', 1);
-insert into app_order(end_date, end_time, pharmacy_admin_id) values ('2021-03-07', '04:00:00', 1);
-insert into app_order( end_date, end_time, pharmacy_admin_id) values ('2021-05-07', '12:00:00', 2);
-insert into app_order(end_date, end_time, pharmacy_admin_id) values ('2021-03-04', '14:00:00', 2);
+insert into app_order( end_date, pharmacy_admin_id, quantity, price, medicine_id) values ('2021-02-07', 1,200,100,3);
+insert into app_order(end_date, pharmacy_admin_id, quantity, price, medicine_id) values ('2021-03-07', 1,100,100,3);
+insert into app_order( end_date, pharmacy_admin_id, quantity, price, medicine_id) values ('2021-05-07',  2,50,50,2);
+insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id) values ('2021-03-04', 2, 20,20,1);
 
 -- OrdersOffers
 insert into order_offer(price, quantity, medicine_id)VALUES (10.0, 200, 1);
@@ -506,3 +502,7 @@ insert into eprescription(code, date_of_issue, file_text, patient_id) values(10,
     insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 3, 1);
     insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 4, 2);
     insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 6, 3);
+
+    insert into dermatologist_pharmacy(dermatologist_id,pharmacy_id) values(1,1);
+    insert into dermatologist_pharmacy(dermatologist_id,pharmacy_id) values(2,1);
+    insert into dermatologist_pharmacy(dermatologist_id,pharmacy_id) values(2,2);

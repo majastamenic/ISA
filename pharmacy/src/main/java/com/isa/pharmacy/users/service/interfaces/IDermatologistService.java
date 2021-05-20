@@ -1,5 +1,6 @@
 package com.isa.pharmacy.users.service.interfaces;
 
+import com.isa.pharmacy.controller.dto.DermatologistDto;
 import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.users.domain.Dermatologist;
 
@@ -15,6 +16,8 @@ public interface IDermatologistService {
      Dermatologist update(Dermatologist d);
 
      Dermatologist registration(Dermatologist dermatologist);
+
+     List<DermatologistDto> dermatologistListByPharmacyName(String name);
 
      Dermatologist findUserByEmail(String email);
 

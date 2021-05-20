@@ -7,8 +7,6 @@
                     <h3>Order</h3>
                     <label>End date: {{order.endDate}}</label>
                     <br/>
-                    <label>End time: {{order.endTime}}</label>
-                    <br/>
                     <div *ngFor="let necessary of order.orderOffers">
                         <label>Medicine name: {{necessary.medicineName}}</label>
                         <br/>
@@ -26,10 +24,10 @@
                 <form class="ngform">
                     <h3>Create order</h3>
                     <input type="date" [(ngModel)]="newOrder.endDate" placeholder="Enter order end date" name='endDate' id='endDate'>
-                    <input type="time" [(ngModel)]="newOrder.endTime" placeholder="Enter order end time" name='endTime' name="endTime">
                     <div>
-                        <input type="text" [(ngModel)]="newOrder.orderOffers.medicineName" placeholder="Enter medicine name" name='medicineName' id='medicineName'>
-                        <input type="number" [(ngModel)]="newOrder.orderOffers.quantity" placeholder="Enter quantity" name='quantity' name="quantity">
+                        <input type="text" [(ngModel)]="newOrder.medicineName" placeholder="Enter medicine name" name='medicineName' id='medicineName'>
+                        <input type="number" [(ngModel)]="newOrder.quantity" placeholder="Enter quantity" name='quantity' name="quantity">
+                        <input type="number" [(ngModel)]="newOrder.price" placeholder="Enter price" name='price' name="price">
                     </div>
                     <button class="btn btn-info" (click)="create()">Create</button>
                 </form>

@@ -1,10 +1,10 @@
 import { Observable } from "rxjs";
 
 export interface OrderDto{
-    id: number;
-    orderOffers: Observable<OrderOfferDto>;
-    endDate: Date;
-    endTime: Date;
+    price:any;
+    quantity:any;
+    endDate: any;
+    medicineName:any;
     pharmacyAdminEmail: string;
 }
 

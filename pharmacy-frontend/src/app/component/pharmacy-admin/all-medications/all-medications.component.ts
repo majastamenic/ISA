@@ -11,16 +11,17 @@ import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.servi
 export class AllMedicationsComponent implements OnInit {
 
   id : any;
-  medications : MedicinePharmacy[]=[];
+  medicine : MedicinePharmacy[]=[];
+  pharmacyName:any;
   constructor(private medicinePharmacyService : MedicinePharmacyService,private _ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => { 
-      this.id = params.get('id');
+      this.pharmacyName = params.get('pharmacyName');
     });
 
-    this.medicinePharmacyService.getByPharmacy(this.id).subscribe((data: MedicinePharmacy[]) => {
-      this.medications = data;
+    this.medicinePharmacyService.getByPharmacy(this.pharmacyName).subscribe((data: MedicinePharmacy[]) => {
+      this.medicine = data;
     });
   }
 
