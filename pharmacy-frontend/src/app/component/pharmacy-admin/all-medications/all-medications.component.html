@@ -14,7 +14,7 @@
           <td>{{medication.price}}</td>
           <td>{{medication.quantity}}</td>
           <td>{{medication.medicine.name}}</td>
-          <td><button class="btn btn-primary" (click)="define()">Delete</button></td>
+          <td><button class="btn btn-primary" (click)="define(medication.medicine.name,medication.id, i)">Delete</button></td>
       </tr>
     </tbody>
   </table>

@@ -52,6 +52,11 @@ public class MedicinePharmacyController {
         return medicineDtoList;
     }
 
+    @PutMapping("/{medicineName}/{medicineId}/{adminEmail}")
+    public void deleteFromPharmacy(@PathVariable String medicineName, @PathVariable Long medicineId, @PathVariable String adminEmail){
+        medicinePharmacyService.deleteFromPharmacy(medicineName,adminEmail,medicineId);
+    }
+
     @GetMapping("/getMedicinesByAdminPharmacy/{email}")
     public List<GetAllMedicinePharmacyDto> getMedicinePharmacyByPharmacyAdmin(@PathVariable("email")String email) {
        List<GetAllMedicinePharmacyDto> medicineDtoList = medicinePharmacyService.getAllMedicinesByAdminPharmacy(email);

@@ -14,8 +14,10 @@ import com.isa.pharmacy.service.interfaces.IExaminationService;
 import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.repository.DermatologistRepository;
 import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,8 @@ public class DermatologistService implements IDermatologistService {
     private IExaminationService examinationService;
     @Autowired
     private IPharmacyService pharmacyService;
+    @Autowired
+    private IPharmacyAdminService pharmacyAdminService;
 
     public void delete(Dermatologist dermatologist){
         dermatologistRepository.delete(dermatologist);
@@ -89,7 +93,18 @@ public class DermatologistService implements IDermatologistService {
         return dermatologistDtos;
     }
 
-
+    public void deleteFromPharmacy(String email, String adminEmail){
+        PharmacyAdmin admin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
+        Pharmacy pharmacy = pharmacyService.getById(admin.getPharmacy().getId());
+        Dermatologist dermatologist = dermatologistRepository.findDermatologistByUser_email(email);
+        List<Pharmacy> pharmacyList =dermatologist.getPharmacy();
+        if(!pharmacyList.contains(pharmacy)){
+            throw new InvalidActionException("You are not allowed to delete this dermatologist");
+        }
+        pharmacyList.remove(pharmacy);
+        dermatologist.setPharmacy(pharmacyList);
+        update(dermatologist);
+    }
 
     public boolean checkVacationTerm(VacationScheduleDto vacationScheduleDto, String email){
         VacationSchedule vacationSchedule = new VacationSchedule();

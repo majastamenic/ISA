@@ -60,6 +60,11 @@ public class PharmacistController {
                 pharmacistService.getFreePharmacistByPharmacyAndDate(pharmacy, date));
     }
 
+    @PutMapping("/delete/{PharmacistEmail}/{adminEmail}")
+    public void deletePharmacist(@PathVariable String PharmacistEmail, @PathVariable String adminEmail){
+        pharmacistService.deletePharmacistByUser_email(PharmacistEmail, adminEmail);
+    }
+
     @PostMapping("/check/vacation/{email}")
     public boolean checkVacationTerm(@RequestBody VacationScheduleDto vacationScheduleDto, @PathVariable("email") String email){
         return pharmacistService.checkVacationTerm(vacationScheduleDto, email);

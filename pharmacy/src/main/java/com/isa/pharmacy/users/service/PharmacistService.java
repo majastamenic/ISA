@@ -18,9 +18,11 @@ import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.controller.dto.CreatePharmacistDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacistMapper;
 import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.domain.User;
 import com.isa.pharmacy.users.repository.PharmacistRepository;
 import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import com.isa.pharmacy.users.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,9 @@ public class PharmacistService implements IPharmacistService {
     private IVacationService vacationScheduleService;
     @Autowired
     private IPharmacyService pharmacyService;
+    @Autowired
+    private IPharmacyAdminService pharmacyAdminService;
+
 
 
     public Pharmacist savePharmacist(Pharmacist pharmacist){
@@ -88,6 +93,15 @@ public class PharmacistService implements IPharmacistService {
 
     public List<WorkSchedule> getWorkScheduleByPharmacistEmail(String email){
         return pharmacistRepository.findPharmacistByUser_email(email).getWorkSchedule();
+    }
+
+    public void deletePharmacistByUser_email(String email, String adminEmail){
+        Pharmacist pharmacist = pharmacistRepository.findPharmacistByUser_email(email);
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
+        if(!(pharmacyAdmin.getPharmacy().getId() == pharmacist.getPharmacy().getId()))
+            throw new InvalidActionException("You are not allowed to delete this pharmacist");
+        pharmacist.setPharmacy(null);
+        update(pharmacist);
     }
 
     @Override

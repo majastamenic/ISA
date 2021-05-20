@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GET_MEDICINEPHARMACYBYADMIN_PATH, GET_MEDICINEPHARMACY_PATH, MEDICINEPH_BY_MEDICINE_PATH, MEDICINES_PHARMACIST_PATH, MEDICINES_PHARMACY_PATH } from '../util/paths';
+import { GET_MEDICINEPHARMACYBYADMIN_PATH, GET_MEDICINEPHARMACY_PATH, MEDICINEPHARMACY_PATH, MEDICINEPH_BY_MEDICINE_PATH, MEDICINES_PHARMACIST_PATH, MEDICINES_PHARMACY_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +32,9 @@ export class MedicinePharmacyService {
 
   getByMedicine(medicineName: string){
     return this.httpClient.get(MEDICINEPH_BY_MEDICINE_PATH + '/' + medicineName);
+  }
+
+  deleteFromPharmacy(email: string, id:any, adminEmail: string):any{
+    return this.httpClient.put(MEDICINEPHARMACY_PATH + '/' + email + '/'+ id + '/' + adminEmail, null);
   }
 }

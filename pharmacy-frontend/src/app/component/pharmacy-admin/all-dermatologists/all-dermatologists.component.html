@@ -18,7 +18,7 @@
           <td>{{dermatologist.user.address}}</td>
           <td>{{dermatologist.user.phone}}</td>
           <td>{{dermatologist.user.country}}</td> 
-          <td><button class="btn btn-primary" (click)="define()">Delete</button></td>
+          <td><button class="btn btn-primary" (click)="define(dermatologist.user.email, i)">Delete</button></td>
       </tr>
     </tbody>
   </table>

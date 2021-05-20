@@ -48,6 +48,12 @@ public class DermatologistController {
         return dermatologistDtos;
     }
 
+    @PutMapping("/{dermatologistEmail}/{adminEmail}")
+    public void deleteDermatologist(@PathVariable String dermatologistEmail, @PathVariable String adminEmail){
+        dermatologistService.deleteFromPharmacy(dermatologistEmail,adminEmail);
+    }
+
+
     @PostMapping("/check/vacation/{email}")
     public boolean checkVacationTerm(@RequestBody VacationScheduleDto vacationScheduleDto, @PathVariable("email") String email){
         return dermatologistService.checkVacationTerm(vacationScheduleDto, email);
