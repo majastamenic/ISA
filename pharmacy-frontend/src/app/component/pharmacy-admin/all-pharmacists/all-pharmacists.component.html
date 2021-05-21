@@ -18,7 +18,7 @@
           <td>{{pharmacist.user.address}}</td>
           <td>{{pharmacist.user.phone}}</td>
           <td>{{pharmacist.user.country}}</td> 
-          <td><button class="btn btn-primary" (click)="define()">Delete</button></td>
+          <td><button class="btn btn-primary" (click)='define(pharmacist.user.email, i)'>Delete</button></td>
       </tr>
     </tbody>
   </table>

@@ -19,6 +19,8 @@ public interface IPharmacistService {
 
      Pharmacist update(Pharmacist p);
 
+     void deletePharmacistByUser_email(String email, String adminEmail);
+
      List<VacationSchedule> getVacationScheduleByPharmacist(Long id);
 
      Pharmacist findUserByEmail(String email);

@@ -36,6 +36,7 @@ export const SCHEDULE_PATH = BACKEND_PATH + '/workschedule';
 export const PHARMACIST_PATH = BACKEND_PATH + '/pharmacist';
 export const PHARMACIST_REGISTRATION_PATH = PHARMACIST_PATH + '/registration';
 export const PHARMACISTSBYPHARMACY_PATH = PHARMACIST_PATH + '/pharmacist';
+export const DELETEPHARMACIST_PATH = PHARMACIST_PATH + '/delete';
 export const FREE_PHARMACIST_PATH = PHARMACIST_PATH + '/free';
 export const PHARMACIST_VACATION_CHECK_PATH = PHARMACIST_PATH + '/check/vacation';
 
@@ -45,6 +46,7 @@ export const UPDATE_ALLERGY_PATH = PATIENT_PATH + '/updateAllergy';
 export const PATIENT_EMAIL_PATH = PATIENT_PATH + '/examination';
 
 export const DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologist';
+export const DELETE_DERMATOLOGIST_PATH = DERMATOLOGIST_PATH;
 export const DERMATOLOGIST_BY_PHARMACY = DERMATOLOGIST_PATH + '/dermatologists';
 export const DERMATOLOGIST_VACATION_CHECK_PATH = DERMATOLOGIST_PATH + '/check/vacation';
 

@@ -2,14 +2,17 @@ package com.isa.pharmacy.service;
 
 import com.isa.pharmacy.controller.dto.GetAllMedicinePharmacyDto;
 import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
+import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
 import com.isa.pharmacy.domain.Counseling;
+import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.MedicinePharmacy;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.MedicinePharmacyRepository;
 import com.isa.pharmacy.service.interfaces.ICounselingService;
 import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
+import com.isa.pharmacy.service.interfaces.IMedicineService;
 import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import com.isa.pharmacy.users.controller.dto.PharmacyAdminDto;
 import com.isa.pharmacy.users.controller.mapping.PharmacyAdminMapper;
@@ -39,6 +42,8 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
     private IPharmacistService pharmacistService;
     @Autowired
     private IPharmacyAdminService pharmacyAdminService;
+    @Autowired
+    private IMedicineService medicineService;
 
 
     public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
@@ -63,6 +68,23 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
             medicineDtoList.add(MedicinePharmacyMapper.mapMedicinePharmacyToGetAllMedicinePharmacyDto(medicine));
         }
         return medicineDtoList;
+    }
+
+    public void deleteFromPharmacy(String medicineName,String adminEmail, Long id){
+        Medicine medicine = medicineService.findByName(medicineName);
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
+        Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyAdmin.getPharmacy().getName());
+        MedicinePharmacy medicinePharmacy = getById(id);
+        if(medicinePharmacy.getPharmacy().getId() != pharmacyAdmin.getPharmacy().getId()){
+            throw new InvalidActionException("You are not allowed to delete this medicine");
+        }
+        List<MedicinePharmacy> medicinePharmacies = medicine.getMedicinePharmacy();
+        medicinePharmacies.remove(medicinePharmacy);
+        medicine.setMedicinePharmacy(medicinePharmacies);
+        medicineService.update(medicine);
+        medicinePharmacy.setPharmacy(null);
+        update(medicinePharmacy);
+
     }
 
     public MedicinePharmacy getById(Long id){return medicinePharmacyRepository.findMedicinePharmacyById(id);}
@@ -110,6 +132,10 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
             }
         }
         return meds;
+    }
+
+    public void update(MedicinePharmacy medicine){
+        medicinePharmacyRepository.save(medicine);
     }
 
     public List<MedicinePharmacyDto> getMedicinesByCounseling(long id){
