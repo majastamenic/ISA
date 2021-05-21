@@ -11,7 +11,7 @@ import com.isa.pharmacy.users.domain.Pharmacist;
 import java.util.List;
 
 public interface IPharmacistService {
-     CreatePharmacistDto save(CreatePharmacistDto p);
+     CreatePharmacistDto save(CreatePharmacistDto p, String adminEmail);
 
      List<Pharmacist> getAll();
 
@@ -36,4 +36,6 @@ public interface IPharmacistService {
       List<WorkSchedule> getWorkScheduleByPharmacistEmail(String email);
 
     List<PharmacistByPharmacyDto> getPharmacistByPharmacyName(String name);
+
+    List<PharmacistByPharmacyDto> getPharmacistByNameAndSurname(String name, String surname, String pharmacyName);
 }

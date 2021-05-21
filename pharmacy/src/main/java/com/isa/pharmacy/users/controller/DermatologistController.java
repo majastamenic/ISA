@@ -48,6 +48,15 @@ public class DermatologistController {
         return dermatologistDtos;
     }
 
+    @GetMapping("/dermatologists/{name}/{surname}/{pharmacyName}")
+    public List<DermatologistDto> dermatologistListByNameAndSurname(@PathVariable("name") String name,@PathVariable("surname") String surname,@PathVariable("pharmacyName") String pharmacyName){
+        List<DermatologistDto> dermatologistDtos = dermatologistService.dermatologistListByNameAndSurname(name, surname, pharmacyName);
+        if(dermatologistDtos.isEmpty()){
+            throw new NotFoundException("Pharmacy doesn't have dermatologist with this name and surname");
+        }
+        return dermatologistDtos;
+    }
+
     @PutMapping("/{dermatologistEmail}/{adminEmail}")
     public void deleteDermatologist(@PathVariable String dermatologistEmail, @PathVariable String adminEmail){
         dermatologistService.deleteFromPharmacy(dermatologistEmail,adminEmail);

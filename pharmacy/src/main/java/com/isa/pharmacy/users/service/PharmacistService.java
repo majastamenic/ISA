@@ -8,6 +8,7 @@ import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
 import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.scheduling.DateManipulation;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.domain.WorkSchedule;
@@ -30,6 +31,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 @Service
@@ -55,7 +57,8 @@ public class PharmacistService implements IPharmacistService {
         return pharmacistRepository.save(pharmacist);
     }
 
-    public CreatePharmacistDto save(CreatePharmacistDto p) {
+    public CreatePharmacistDto save(CreatePharmacistDto p, String adminEmail) {
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
         Pattern pattern = Pattern.compile("^(.+)@(.+)$");
         if (pattern.matcher(p.getUser().getEmail()).matches()) {
             for (Pharmacist pha : pharmacistRepository.findAll()) {
@@ -63,6 +66,8 @@ public class PharmacistService implements IPharmacistService {
                     return null;
                 }
             }
+            p.getUser().setRole(Role.PHARMACIST);
+            p.getUser().setPassword("Nast@sja98");
             User dbUser = userService.create(p.getUser());
             Pharmacist pharmacist = PharmacistMapper.mapCreatePharmacistDtoToPharmacist(p);
             pharmacist.setUser(dbUser);
@@ -71,7 +76,7 @@ public class PharmacistService implements IPharmacistService {
                 pharmacist.getWorkSchedule().add(this.workScheduleService.getById(id));
             }
 
-            pharmacist.setPharmacy(this.pharmacyService.getById(p.getPharmacyId()));
+            pharmacist.setPharmacy(pharmacyAdmin.getPharmacy());
             Pharmacist savedPharmacist = pharmacistRepository.save(pharmacist);
 //            Pharmacy pharmacy = this.pharmacyService.getById(p.getPharmacyId());
 //            this.pharmacyService.save(pharmacy);
@@ -114,6 +119,18 @@ public class PharmacistService implements IPharmacistService {
         }
         return pharmacistByPharmacyDtos;
     }
+
+     public List<PharmacistByPharmacyDto> getPharmacistByNameAndSurname(String name, String surname, String pharmacyName){
+         Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyName);
+         List<Pharmacist> pharmacists = pharmacistRepository.findPharmacistByUser_name(name);
+         List<PharmacistByPharmacyDto> pharmacistByPharmacyDtos = new ArrayList<>();
+         for(Pharmacist pharmacist:pharmacists){
+             if(pharmacist.getUser().getSurname().equalsIgnoreCase(surname))
+                 if(pharmacy.getId() == pharmacist.getPharmacy().getId())
+                    pharmacistByPharmacyDtos.add(PharmacistMapper.mapPharmacistToPharmacistByPharmacyDto(pharmacist));
+         }
+         return pharmacistByPharmacyDtos;
+     }
 
     public List<VacationSchedule> getVacationScheduleByPharmacist(Long id){
         return pharmacistRepository.findPharmacistById(id).getVacationSchedules();

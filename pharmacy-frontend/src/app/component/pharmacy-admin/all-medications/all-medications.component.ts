@@ -32,11 +32,12 @@ export class AllMedicationsComponent implements OnInit {
   define(medicationName:"", medicationId:0, i:number){
     this.medicinePharmacyService.deleteFromPharmacy(medicationName,medicationId,this.loggedUser).subscribe((data: any) => {
       this.toastrService.success('Medicine deleted!');
+      window.location.reload();
     }, (error: { status: number; error: { message: string | undefined; }; }) => {
       if(error.status == 400)
         this.toastrService.warning(error.error.message);
       else
-        this.toastrService.error("Server error: can't cancel examination!");
+        this.toastrService.error("Server error: can't delete medication!");
     })
   }
 }

@@ -14,6 +14,7 @@ export class PharmacistInitComponent implements OnInit {
   listPharmacies: any = []
   listSchedules: any = []
   selectedWorkSchedules: any=[]
+  loggedUser: any = sessionStorage.getItem('user');
   constructor( private pharmacyService: PharmacyService, 
     private workSchedule:WorkScheduleService, 
     private pharmacistService:PharmacistService,
@@ -34,12 +35,12 @@ export class PharmacistInitComponent implements OnInit {
   registration(){
     let userDto:any = {user: {email: this.user.email, name: this.user.name, surname: this.user.surname ,
       address: this.user.address, city:this.user.city, country:this.user.country, phone: this.user.phone, active:false}, 
-      pharmacyId: this.user.pharmacy.id}
+      pharmacyId: this.user.pharmacy.id} 
       userDto.workScheduleIds = [];
       for(let schedule of this.selectedWorkSchedules){
         userDto.workScheduleIds.push(schedule.id);
       }
-      this.pharmacistService.createPharmacist(userDto).subscribe((_ret: any) =>{
+      this.pharmacistService.createPharmacist(userDto,this.loggedUser).subscribe((_ret: any) =>{
         this.toastrService.success("You added pharmacist successfuly");
       }) 
   }

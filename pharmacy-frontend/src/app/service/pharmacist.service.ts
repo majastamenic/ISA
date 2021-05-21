@@ -12,8 +12,8 @@ export class PharmacistService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public createPharmacist(pharmacist:any): Observable<any>{
-    return this.httpClient.post(PHARMACIST_REGISTRATION_PATH, pharmacist);
+  public createPharmacist(pharmacist:any, adminEmail:string): Observable<any>{
+    return this.httpClient.post(PHARMACIST_REGISTRATION_PATH + '/' + adminEmail, pharmacist );
   }
   getAll(): Observable<any>{
     return this.httpClient.get(PHARMACY_PATH);
@@ -33,5 +33,9 @@ export class PharmacistService {
 
   deletePharmacist(email: string, adminEmail: string):any{
     return this.httpClient.put(DELETEPHARMACIST_PATH + '/' + email + '/'+ adminEmail, null);
+  }
+
+  findByNameAndSurname(name: string, surname:string, pharmacyName:string):any{
+    return this.httpClient.get(PHARMACISTSBYPHARMACY_PATH + '/' + name + '/' + surname + '/' + pharmacyName)
   }
 }
