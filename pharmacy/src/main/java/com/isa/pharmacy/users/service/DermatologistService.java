@@ -6,12 +6,18 @@ import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.DermatologistMapper;
+import com.isa.pharmacy.domain.Examination;
 import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.scheduling.DateManipulation;
+import com.isa.pharmacy.scheduling.domain.Schedule;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
+import com.isa.pharmacy.scheduling.domain.WorkSchedule;
+import com.isa.pharmacy.scheduling.service.interfaces.IScheduleService;
 import com.isa.pharmacy.scheduling.service.interfaces.IVacationService;
 import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
 import com.isa.pharmacy.service.interfaces.IExaminationService;
 import com.isa.pharmacy.service.interfaces.IPharmacyService;
+import com.isa.pharmacy.users.controller.dto.DermatologistExaminationDto;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Pharmacist;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
@@ -19,9 +25,11 @@ import com.isa.pharmacy.users.repository.DermatologistRepository;
 import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
 import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import com.isa.pharmacy.users.service.interfaces.IUserService;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,6 +50,8 @@ public class DermatologistService implements IDermatologistService {
     private IPharmacyService pharmacyService;
     @Autowired
     private IPharmacyAdminService pharmacyAdminService;
+    @Autowired
+    private IScheduleService scheduleService;
 
     public void delete(Dermatologist dermatologist){
         dermatologistRepository.delete(dermatologist);
@@ -103,6 +113,42 @@ public class DermatologistService implements IDermatologistService {
                     dermatologistDtos.add(DermatologistMapper.mapDermatologistToDermatologistDto(dermatologist));
         }
         return dermatologistDtos;
+    }
+
+    public List<DermatologistDto> dermatologistListByPharmacyAdmin(String adminEmail){
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
+        return dermatologistListByPharmacyName(pharmacyAdmin.getPharmacy().getName());
+    }
+    public void defineExamination(DermatologistExaminationDto dermatologistExaminationDto){
+        Dermatologist dermatologist = findUserByEmail(dermatologistExaminationDto.getEmail());
+        List<WorkSchedule> workScheduleList = dermatologist.getWorkSchedule();
+        List<WorkSchedule> workScheduleList1 = new ArrayList<>();
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(dermatologistExaminationDto.getAdminEmail());
+        for (WorkSchedule ws:workScheduleList){
+            if(ws.getSchedule().getStartDate().before(dermatologistExaminationDto.getStartDate())&&ws.getSchedule().getEndDate().after(dermatologistExaminationDto.getStartDate())){
+                workScheduleList1.add(ws);
+                Examination examination = new Examination();
+                examination.setDermatologist(dermatologist);
+                examination.setPharmacy(pharmacyAdmin.getPharmacy());
+                examination.setPrice(dermatologistExaminationDto.getPrice());
+                Schedule schedule = new Schedule();
+                schedule.setStartDate(dermatologistExaminationDto.getStartDate());
+                schedule.setEndDate(dermatologistExaminationDto.getStartDate());
+                schedule.setStartTime(dermatologistExaminationDto.getStartTime());
+                Date end = DateManipulation.addMinutes(dermatologistExaminationDto.getStartTime(), dermatologistExaminationDto.getDuration());
+                schedule.setEndTime(end);
+                scheduleService.save(schedule);
+                examination.setSchedule(schedule);
+
+                examinationService.save(examination);
+
+            }
+
+        }
+        if(workScheduleList1.isEmpty()){
+            throw new InvalidActionException("You can't define examination when dermatologist is not working");
+
+        }
     }
 
     public void deleteFromPharmacy(String email, String adminEmail){

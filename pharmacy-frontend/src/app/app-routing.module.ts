@@ -49,6 +49,7 @@ import { ExaminationScheduleComponent } from './component/patient/examination-sc
 import { CounselingSearchComponent } from './component/patient/counseling-search/counseling-search.component';
 import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
 import { ActionsBenefitsComponent } from './component/pharmacy-admin/actions-benefits/actions-benefits.component';
+import { DermatologistFreeTermsComponent } from './component/pharmacy-admin/dermatologist-free-terms/dermatologist-free-terms.component';
 
 
 const routes: Routes = [
@@ -111,6 +112,7 @@ const routes: Routes = [
   { path: 'pharmacist', component: PharmacistComponent},
   { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'price/init', component: PriceInitComponent},
+  { path: 'dermatologistWorkSchedule', component: DermatologistFreeTermsComponent},
   
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},

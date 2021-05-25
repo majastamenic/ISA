@@ -46,6 +46,8 @@ export const UPDATE_ALLERGY_PATH = PATIENT_PATH + '/updateAllergy';
 export const PATIENT_EMAIL_PATH = PATIENT_PATH + '/examination';
 
 export const DERMATOLOGIST_PATH = BACKEND_PATH + '/dermatologist';
+export const DERMATOLOGISTS_BY_ADMIN =  DERMATOLOGIST_PATH + '/findByPharmacy';
+export const DERMATOLOGISTS_DEFINE_EXAM =  DERMATOLOGIST_PATH + '/examination';
 export const DELETE_DERMATOLOGIST_PATH = DERMATOLOGIST_PATH;
 export const DERMATOLOGIST_BY_PHARMACY = DERMATOLOGIST_PATH + '/dermatologists';
 export const DERMATOLOGIST_VACATION_CHECK_PATH = DERMATOLOGIST_PATH + '/check/vacation';
