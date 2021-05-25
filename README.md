@@ -1,8 +1,8 @@
 # ISA projekat
 
-> U repozitorijumu ISA se nalazi projekat
+> U repozitorijumu PharmacySystem se nalazi projekat
 > koji simulira sistem apoteka.
-> ISA predstavlja predmetni
+> PharmacySystem predstavlja predmetni
 > projekat, istoimenog predmeta na 
 > Fakultetu tehničkih nauka u Novom Sadu,
 > za školsku godinu 2020/2021.
@@ -38,6 +38,7 @@ Baza podataka: Postgresql
   - Potrebno je kreirati bazu pod nazivom isa
   - Takodje, šifra za bazu je: isa, a username: postgres
   - U sklopu foldera pharmacy/src/main/resources nalazi se skripta import.sql koje se pokreće pokretanjem backend projekta.
+  - U resources/application.properties na 19-toj liniji postaviti spring.jpa.hibernate.ddl-auto = create-drop
     
 Backend:
   - U intellij-u otvorite folder pharmacy

@@ -62,6 +62,14 @@ export class ScheduleExaminationDermatologistComponent implements OnInit {
 
 
   schedule() {
+    if(typeof this.model != 'object'){
+      this.toastrService.error("Invalid date format!");
+      return;
+    }
+    if(this.startTime.hour > 23 || this.startTime.minute > 59){
+      this.toastrService.error("Invalid time format!");
+      return;
+    }
     const examination = {
       schedule: {
         startDate: `${this.model.year}-${this.model.month}-${this.model.day}`,
