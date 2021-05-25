@@ -28,8 +28,8 @@ public class PharmacistController {
     @GetMapping
     public List<Pharmacist> getAll() { return pharmacistService.getAll(); }
 
-    @PostMapping("/registration")
-    public CreatePharmacistDto save(@RequestBody CreatePharmacistDto p) { return pharmacistService.save(p); }
+    @PostMapping("/registration/{adminEmail}")
+    public CreatePharmacistDto save(@RequestBody CreatePharmacistDto p, @PathVariable("adminEmail") String adminEmail) { return pharmacistService.save(p,adminEmail); }
 
     @GetMapping("/vacationschedule/{id}")
     public List<VacationSchedule> getVacationScheduleByPharmacist(@PathVariable("id") Long id){
@@ -48,6 +48,15 @@ public class PharmacistController {
     @GetMapping("/pharmacist/{name}")
     public List<PharmacistByPharmacyDto> getPharmacistByPharmacyName(@PathVariable("name") String name){
         List<PharmacistByPharmacyDto> pharmacistByPharmacyDtos = pharmacistService.getPharmacistByPharmacyName(name);
+        if (pharmacistByPharmacyDtos.isEmpty()) {
+            throw new NotFoundException("Pharmacy doesn't have pharmacist");
+        }
+        return pharmacistByPharmacyDtos;
+    }
+
+    @GetMapping("/pharmacist/{name}/{surname}/{pharmacyName}")
+    public List<PharmacistByPharmacyDto> getPharmacistByNameAndSurname(@PathVariable("name") String name,@PathVariable("surname") String surname,@PathVariable("pharmacyName") String pharmacyName){
+        List<PharmacistByPharmacyDto> pharmacistByPharmacyDtos = pharmacistService.getPharmacistByNameAndSurname(name,surname,pharmacyName);
         if (pharmacistByPharmacyDtos.isEmpty()) {
             throw new NotFoundException("Pharmacy doesn't have pharmacist");
         }

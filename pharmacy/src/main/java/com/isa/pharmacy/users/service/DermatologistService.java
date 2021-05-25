@@ -93,6 +93,18 @@ public class DermatologistService implements IDermatologistService {
         return dermatologistDtos;
     }
 
+    public List<DermatologistDto> dermatologistListByNameAndSurname(String name, String surname, String pharmacyName){
+        List<Dermatologist> dermatologistList = dermatologistRepository.findDermatologistByUser_Name(name);
+        List<Dermatologist> dermatologistList1 = dermatologistRepository.findDermatologistByPharmacy_name(pharmacyName);
+        List<DermatologistDto> dermatologistDtos = new ArrayList<DermatologistDto>();
+        for (Dermatologist dermatologist:dermatologistList){
+            if(dermatologist.getUser().getSurname().equalsIgnoreCase(surname))
+                if(dermatologistList1.contains(dermatologist))
+                    dermatologistDtos.add(DermatologistMapper.mapDermatologistToDermatologistDto(dermatologist));
+        }
+        return dermatologistDtos;
+    }
+
     public void deleteFromPharmacy(String email, String adminEmail){
         PharmacyAdmin admin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
         Pharmacy pharmacy = pharmacyService.getById(admin.getPharmacy().getId());

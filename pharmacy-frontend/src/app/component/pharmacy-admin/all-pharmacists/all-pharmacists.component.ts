@@ -19,6 +19,8 @@ export class AllPharmacistsComponent implements OnInit {
   pharmacyName:any;
   id: any;
   loggedUser: any = sessionStorage.getItem('user');
+  name:any;
+  surname:any;
   constructor(private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService ,private pharmacistSevice: PharmacistService, private pharmacyService: PharmacyService) { }
 
   ngOnInit(): void {
@@ -37,16 +39,26 @@ export class AllPharmacistsComponent implements OnInit {
   define(pharmacistEmail: "" , i:number){
     this.pharmacistSevice.deletePharmacist(pharmacistEmail,this.loggedUser).subscribe((data: any) => {
       this.toastrService.success('Pharmacist deleted!');
+      window.location.reload();
     }, (error: { status: number; error: { message: string | undefined; }; }) => {
       if(error.status == 400)
         this.toastrService.warning(error.error.message);
       else
-        this.toastrService.error("Server error: can't cancel examination!");
+        this.toastrService.error("Server error: can't delete pharmacist!");
     })
       
       
   }
 
-
+  search(){
+    this.pharmacistSevice.findByNameAndSurname(this.name, this.surname, this.pharmacyName).subscribe((data: any) => {
+      this.pharmacists = data;
+    }, (error: { status: number; error: { message: string | undefined; }; }) => {
+      if(error.status == 400)
+        this.toastrService.warning(error.error.message);
+      else
+        this.toastrService.error("Server error: can't find dermatologist!");
+    })
+  }
 
 }

@@ -24,4 +24,6 @@ public interface IDermatologistService {
      boolean checkVacationTerm(VacationScheduleDto vacationScheduleDto, String email);
 
      void deleteFromPharmacy(String email, String adminEmail);
+
+    List<DermatologistDto> dermatologistListByNameAndSurname(String name, String surname, String pharmacyName);
 }

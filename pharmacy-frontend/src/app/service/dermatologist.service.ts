@@ -16,4 +16,8 @@ export class DermatologistService {
   deleteDermatologist(email: string, adminEmail: string):any{
     return this.httpClient.put(DELETE_DERMATOLOGIST_PATH + '/' + email + '/'+ adminEmail, null);
   }
+
+  findByNameAndSurname(name: string, surname:string, pharmacyName:string):any{
+    return this.httpClient.get(DERMATOLOGIST_BY_PHARMACY + '/' + name + '/' + surname + '/' + pharmacyName)
+  }
 }
