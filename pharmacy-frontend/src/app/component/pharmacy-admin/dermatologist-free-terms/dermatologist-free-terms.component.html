@@ -1,0 +1,27 @@
+<div class="page">
+    <div class="form">
+        <form class="ngform">
+            <h3>Define dermatologist examinations</h3>
+
+            <div> 
+                <ng-select [items]="listDermatologists"
+                        placeholder="Select dermatologist"
+                        appendTo="body"
+                        bindLabel="user.name"
+                        [multiple]="false"
+                        [(ngModel)]="selectedDermatologist"
+                        name="dermatologistSelect">
+                </ng-select>
+            </div>
+            <div class="form-group">
+                <input type="date" [(ngModel)]="startDate" placeholder="Enter start date" name='dateFrom' id='dateFrom'>
+            </div>
+            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="start" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
+            <input type="number" [(ngModel)]="duration" placeholder="Enter duration" name="duration" required>
+            <input type="number" [(ngModel)]="price" placeholder="Enter price" name="price" required>
+            <button class="btn btn-primary" (click)="define()">Confirm</button>
+            
+        </form>
+    </div>
+</div>
+

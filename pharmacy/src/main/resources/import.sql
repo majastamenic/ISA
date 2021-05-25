@@ -506,3 +506,6 @@ insert into eprescription(code, date_of_issue, file_text, patient_id) values(10,
     insert into dermatologist_pharmacy(dermatologist_id,pharmacy_id) values(1,1);
     insert into dermatologist_pharmacy(dermatologist_id,pharmacy_id) values(2,1);
     insert into dermatologist_pharmacy(dermatologist_id,pharmacy_id) values(2,2);
+
+    insert into work_schedule_dermatologists(work_schedule_id, dermatologists_id) values(1,1);
+    insert into work_schedule_dermatologists(work_schedule_id, dermatologists_id) values(3,1);
