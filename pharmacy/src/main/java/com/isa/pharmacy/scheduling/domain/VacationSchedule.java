@@ -21,6 +21,8 @@ public class VacationSchedule implements Serializable {
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date endDate;
+    @Column
+    private Boolean approved = false;
 
     public VacationSchedule(){}
 
@@ -28,6 +30,7 @@ public class VacationSchedule implements Serializable {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.approved = false;
     }
 
     public Long getId() {
@@ -52,5 +55,13 @@ public class VacationSchedule implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
     }
 }

@@ -12,4 +12,6 @@ public interface VacationScheduleRepository extends JpaRepository<VacationSchedu
     List<VacationSchedule> findAll();
 
     VacationSchedule save(VacationSchedule vacationSchedule);
+
+    VacationSchedule getVacationScheduleById(Long id);
 }
