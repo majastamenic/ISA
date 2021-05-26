@@ -126,6 +126,30 @@ public class EmailService implements IEmailService {
     }
 
     @Async
+    public void confirmedVacation(String email, String message) throws MailException {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSender);
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject("Confirmed vacation");
+        simpleMailMessage.setText(GREETING +
+                "Your vacation request is confirmed" + "\n\n" + CLOSE_PHASE);
+
+        javaMailSender.send(simpleMailMessage);
+    }
+
+    @Async
+    public void declinedVacation(String email, String message) throws MailException {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSender);
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject("Unconfirmed vacation");
+        simpleMailMessage.setText(GREETING +
+                "Your vacation request is declined because of:" + message + "\n\n" + CLOSE_PHASE);
+
+        javaMailSender.send(simpleMailMessage);
+    }
+
+    @Async
     public void sendApiKey(String hospitalEmail, String apiKey) throws MailException {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);

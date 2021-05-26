@@ -2,6 +2,7 @@ package com.isa.pharmacy.service.interfaces;
 
 import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.rabbitmq.ActionsAndBenefits;
+import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Patient;
 import com.isa.pharmacy.users.domain.User;
 import org.springframework.mail.MailException;
@@ -41,4 +42,8 @@ public interface IEmailService {
      void sendComplaintResponse(Complaint complaint) throws MailException;
      @Async
      void successfulPublishingReservation(MedicineReservation medicineReservation) throws MailException;
+     @Async
+     void confirmedVacation(String email, String message) throws MailException;
+     @Async
+     void declinedVacation(String email, String message) throws MailException;
 }

@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.pharmacy.controller.dto.VacationConfirmationDto;
 import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.scheduling.domain.VacationSchedule;
 import com.isa.pharmacy.scheduling.service.interfaces.IVacationService;
@@ -24,6 +25,16 @@ public class VacationScheduleController {
         return vacationScheduleService.save(vacationSchedule);
     }
 
+    @GetMapping("/admin")
+    public List<VacationScheduleDto> getVacationSchedulesSystemAdmin(){
+        return vacationScheduleService.getVacationScheduleDermatologists();
+    }
+
+    @GetMapping("/pharmacyAdmin/{email}")
+    public List<VacationScheduleDto> getVacationSchedulesPharmacyAdmin(@PathVariable("email") String email){
+        return vacationScheduleService.getVacationSchedulePharmacists(email);
+    }
+
     @GetMapping("/dermatologist/{email}")
     public List<VacationScheduleDto> getVacationScheduleByDermatologist(@PathVariable("email") String email){
         return vacationScheduleService.getVacationScheduleByDermatologist(email);
@@ -32,5 +43,15 @@ public class VacationScheduleController {
     @GetMapping("/pharmacist/{email}")
     public List<VacationScheduleDto> getVacationScheduleByPharmacist(@PathVariable("email") String email){
         return vacationScheduleService.getVacationScheduleByPharmacist(email);
+    }
+
+    @PostMapping("/confirmation")
+    public void confirmation(@RequestBody VacationConfirmationDto vacationSchedule) {
+        vacationScheduleService.confirmation(vacationSchedule);
+    }
+
+    @PostMapping("/confirmationPh")
+    public void confirmationPharmacist(@RequestBody VacationConfirmationDto vacationSchedule) {
+        vacationScheduleService.confirmationPharmacist(vacationSchedule);
     }
 }
