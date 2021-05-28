@@ -18,6 +18,7 @@ export class AddOrderComponent implements OnInit {
   phAdmin:any;
   listOffers:any;
   showOffers: boolean= false;
+  orderType: any;
   constructor(private orderService: OrderService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
@@ -60,10 +61,23 @@ export class AddOrderComponent implements OnInit {
     this.showOffers = true;
   }
   set(offerId:any, i:number){
-    this.orderService.updateWinner(offerId).subscribe((response: any)=>{
+    this.orderService.updateWinner(offerId, this.phAdmin).subscribe((response: any)=>{
       this.toastrService.success("Winner is here!")
     },(err: any)=>{
       this.toastrService.error("Error "+ err.error.message)
     });
+  }
+
+  filter(){
+    if(this.orderType == "PROCESSED"){
+      this.orderService.getFinishedOrders(this.phAdmin).subscribe((orders: any) => {
+        this.listOrders = orders;
+      });
+    }
+    else{
+      this.orderService.getOrders(this.phAdmin).subscribe((orders: any) => {
+        this.listOrders = orders;
+      });
+    }
   }
 }

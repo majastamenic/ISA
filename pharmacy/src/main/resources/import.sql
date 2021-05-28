@@ -85,7 +85,7 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mikica', 'Djurdjevic', 'mikica@mailinator.com', 'mikica', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marko', 'Markovic', 'mare@mailinator.com', 'mare', 'Fruskogorska 15', 'Novi Sad', 'Srbija', '067/114885', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milos', 'Djuric', 'milos@gmail.com', 'milos', 'Dunavska 89', 'Novi Sad', 'Srbija', '067/114885', 5, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Vucevic', 'marija@mailinator.com', 'marija', 'Narodnog Fronta 78', 'Novi Sad', 'Srbija', '063/659898', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Vucevic', 'marija@gmail.com', 'marija', 'Narodnog Fronta 78', 'Novi Sad', 'Srbija', '063/659898', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirjana', 'Radojcic', 'mima@gmail.com', 'mima', 'Zeleznicka 18', 'Novi Sad', 'Srbija', '061/1112565', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Ivana', 'Ivanovic', 'ivana@gmail.com', 'ivana', 'Vojvodjanskih Brigada 2', 'Novi Sad', 'Srbija', '069/3355668', 5, true);
     -- PharmacyAdmin
@@ -392,12 +392,12 @@ insert into complaint(complaint_message, response_complaint, patient_id)values (
 insert into complaint(complaint_message, patient_id)values ('Too crowded', 2);
 
 -- Orders
-insert into app_order( end_date, pharmacy_admin_id, quantity, price, medicine_id) values ('2021-02-07', 1,200,100,3);
-insert into app_order(end_date, pharmacy_admin_id, quantity, price, medicine_id) values ('2021-03-07', 1,100,100,3);
-insert into app_order( end_date, pharmacy_admin_id, quantity, price, medicine_id) values ('2021-05-07',  2,50,50,2);
-insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id) values ('2021-03-04', 2, 20,20,1);
-insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id) values ('2021-04-04', 4, 20,20,1);
-insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id) values ('2021-05-04', 4, 20,20,1);
+insert into app_order( end_date, pharmacy_admin_id, quantity, price, medicine_id, order_state) values ('2021-02-07', 1,200,100,3,0);
+insert into app_order(end_date, pharmacy_admin_id, quantity, price, medicine_id, order_state) values ('2021-03-07', 1,100,100,3,0);
+insert into app_order( end_date, pharmacy_admin_id, quantity, price, medicine_id, order_state) values ('2021-05-07',  2,50,50,2,0);
+insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id, order_state) values ('2021-03-04', 2, 20,20,1,1);
+insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id, order_state) values ('2021-04-04', 4, 20,20,1,0);
+insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id, order_state) values ('2021-05-04', 4, 20,20,1,0);
 
 
 -- OrdersOffers
@@ -509,6 +509,47 @@ insert into eprescription(code, date_of_issue, file_text, patient_id) values(10,
     insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 3, 1);
     insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 4, 2);
     insert into pharmacist_rating(pharmacist_id, patient_id, rate) values (4, 6, 3);
+
+    --Dermatologist
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (1, 1, 1);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (1, 2, 5);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (1, 3, 5);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (1, 4, 3);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (1, 5, 4);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (1, 6, 5);
+
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (2, 1, 2);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (2, 2, 2);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (2, 3, 5);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (2, 4, 1);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (2, 5, 2);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (2, 6, 3);
+
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (3, 1, 5);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (3, 2, 5);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (3, 3, 3);
+insert into dermatologist_rating(dermatologist_id, patient_id, rate) values (3, 4, 2);
+
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (1, 1, 1);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (1, 2, 5);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (1, 3, 5);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (1, 4, 3);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (1, 5, 4);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (1, 6, 5);
+
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (2, 1, 2);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (2, 2, 2);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (2, 3, 5);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (2, 4, 1);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (2, 5, 2);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (2, 6, 3);
+
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (3, 1, 5);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (3, 2, 5);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (3, 3, 3);
+insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (3, 4, 2);
+
+
 
     insert into dermatologist_pharmacy(dermatologist_id,pharmacy_id) values(1,1);
     insert into dermatologist_pharmacy(dermatologist_id,pharmacy_id) values(2,1);

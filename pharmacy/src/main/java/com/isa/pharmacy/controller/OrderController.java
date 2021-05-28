@@ -54,12 +54,18 @@ public class OrderController {
         orderService.deleteOrder(id);
    }
 
-   @PostMapping("/winner/{id}")
-    public void updateWinner(@PathVariable Long id){ orderService.updateWinner(id);}
+   @PostMapping("/winner/{id}/{adminEmail}")
+    public void updateWinner(@PathVariable Long id, @PathVariable String adminEmail){ orderService.updateWinner(id, adminEmail);}
 
     @GetMapping("/orders/{adminEmail}")
     public List<OrderDto> getAllByAdmin(@PathVariable String adminEmail){
         List<Order> orders = orderService.getAllByAdmin(adminEmail);
+        return OrderMapper.mapOrdersToOrdersDto(orders);
+    }
+
+    @GetMapping("/finishedOrders/{adminEmail}")
+    public List<OrderDto> getAllFinishedByAdmin(@PathVariable String adminEmail){
+        List<Order> orders = orderService.getAllFinishedByAdmin(adminEmail);
         return OrderMapper.mapOrdersToOrdersDto(orders);
     }
 }

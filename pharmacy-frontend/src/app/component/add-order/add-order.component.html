@@ -1,6 +1,16 @@
+<div class="page">
 <div>
     <div *ngIf="!showCreateorder && !showOffers" >
         <button class="btn btn-info" (click)="addOrder()">Create order</button>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <select class="form-select" [(ngModel)]="orderType" placeholder="Select order type" name='orderType'>
+                    <option value="WAITING_FOR_OFFERS">WAITING_FOR_OFFERS</option>
+                    <option value="PROCESSED">PROCESSED</option>
+                </select>
+                <button (click) = filter()>Search</button>
+            </div>
+        </nav>
         <div *ngFor="let order of listOrders; index as i;">
             <div class="form">
                 <form class="ngform">
@@ -56,6 +66,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 

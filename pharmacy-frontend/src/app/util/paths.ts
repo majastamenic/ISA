@@ -103,6 +103,7 @@ export const ORDER_PATH = BACKEND_PATH + '/order';
 export const OFFER_PATH = BACKEND_PATH + '/supplier-offer';
 export const OFFERS_PATH = OFFER_PATH + '/offers';
 export const ORDERS_PATH = ORDER_PATH + '/orders';
+export const FINISHED_ORDERS_PATH = ORDER_PATH + '/finishedOrders';
 export const UPDATE_WINNER_PATH = ORDER_PATH + '/winner';
 
 export const VACATION_PATH = BACKEND_PATH + '/vacation';

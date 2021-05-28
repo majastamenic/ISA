@@ -1,9 +1,11 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Pharmacy } from 'src/app/model/pharmacy-model';
 import { PharmacistService } from 'src/app/service/pharmacist.service';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
+import { RatingService } from 'src/app/service/rating.service';
 import { Pharmacist } from '../../../model/pharmacist';
 import { PharmacistComponent } from '../pharmacist/pharmacist.component';
 
@@ -21,7 +23,7 @@ export class AllPharmacistsComponent implements OnInit {
   loggedUser: any = sessionStorage.getItem('user');
   name:any;
   surname:any;
-  constructor(private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService ,private pharmacistSevice: PharmacistService, private pharmacyService: PharmacyService) { }
+  constructor(private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService,public ratingService: RatingService ,private pharmacistSevice: PharmacistService, private pharmacyService: PharmacyService) { }
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => { 
@@ -30,6 +32,12 @@ export class AllPharmacistsComponent implements OnInit {
 
     this.pharmacistSevice.getPharmacistsByPharmacyId(this.pharmacyName).subscribe((data: Pharmacist[]) => {
       this.pharmacists = data;
+      for(let ph of this.pharmacists){
+        this.ratingService.getAverageRatePharmacist(ph.user.email).subscribe(ocena => {
+          ph.rate = ocena;
+        });
+        }
+      
     },(err: any)=>{
       this.toastrService.error("Error "+ err.error.message)
     });

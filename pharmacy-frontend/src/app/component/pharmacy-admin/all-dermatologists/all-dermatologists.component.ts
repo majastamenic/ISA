@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Dermatologist } from 'src/app/model/dermatologist';
 import { DermatologistService } from 'src/app/service/dermatologist.service';
+import { RatingService } from 'src/app/service/rating.service';
 
 @Component({
   selector: 'app-all-dermatologists',
@@ -16,7 +17,7 @@ export class AllDermatologistsComponent implements OnInit {
   loggedUser: any = sessionStorage.getItem('user');
   name:any;
   surname:any;
-  constructor(private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService, private dermatologistService: DermatologistService) { }
+  constructor(private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService,public ratingService: RatingService , private dermatologistService: DermatologistService) { }
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => { 
@@ -25,6 +26,11 @@ export class AllDermatologistsComponent implements OnInit {
 
     this.dermatologistService.getDermatologistsByPharmacyName(this.pharmacyName).subscribe((data: Dermatologist[]) => {
       this.dermatologists = data;
+      for(let ph of this.dermatologists){
+        this.ratingService.getAverageRateDermatologist(ph.user.email).subscribe(ocena => {
+          ph.rate = ocena;
+        });
+        }
     },(err: any)=>{
       this.toastrService.error("Error "+ err.error.message)
     });

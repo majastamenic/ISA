@@ -5,6 +5,7 @@ import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.SupplierOfferMapper;
 import com.isa.pharmacy.domain.*;
+import com.isa.pharmacy.domain.enums.OrderState;
 import com.isa.pharmacy.repository.OrderRepository;
 import com.isa.pharmacy.service.interfaces.IEmailService;
 import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
@@ -73,35 +74,41 @@ public class OrderService implements IOrderService {
         return orderRepository.findOrderWithoutSupplierOffer(email);
     }
 
-    public void updateWinner(Long winnerId){
+    public void updateWinner(Long winnerId,String adminEmail){
         SupplierOffer supplierOffer = supplierOfferService.getById(winnerId);
         Order order = supplierOffer.getOrder();
+        PharmacyAdmin admin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
         List<SupplierOfferDto> supplierOffers= supplierOfferService.offersByOrderId(order.getId());
         Date date = new Date();
-        if(order.getEndDate().before(date)) {
-            order.setWinnerId(winnerId);
-            orderRepository.save(order);
-            emailService.orderWinner(supplierOffer.getSupplier().getUser().getEmail());
-            supplierOffers.remove(SupplierOfferMapper.mapSupplierOfferToSupplierOfferDto(supplierOffer));
-            for(SupplierOfferDto offer:supplierOffers){
-                if(supplierOffers != null)
-                    emailService.orderNonWinner(offer.getSupplierEmail());
+        if(order.getPharmacyAdmin().equals(admin)) {
+            if (order.getEndDate().before(date)) {
+                order.setWinnerId(winnerId);
+                orderRepository.save(order);
+                emailService.orderWinner(supplierOffer.getSupplier().getUser().getEmail());
+                supplierOffers.remove(SupplierOfferMapper.mapSupplierOfferToSupplierOfferDto(supplierOffer));
+                for (SupplierOfferDto offer : supplierOffers) {
+                    if (supplierOffers != null)
+                        emailService.orderNonWinner(offer.getSupplierEmail());
+                }
+                MedicinePharmacy medicinePharmacy = medicinePharmacyService.getByPharmacyAndMedicine(order.getPharmacyAdmin().getPharmacy().getName(), order.getMedicine().getName());
+                if (medicinePharmacy == null) {
+                    MedicinePharmacy medicinePharmacy1 = new MedicinePharmacy();
+                    medicinePharmacy1.setPharmacy(order.getPharmacyAdmin().getPharmacy());
+                    medicinePharmacy1.setMedicine(order.getMedicine());
+                    medicinePharmacy1.setQuantity(order.getQuantity());
+                    medicinePharmacy1.setPrice(order.getPrice());
+                    medicinePharmacyService.save(medicinePharmacy1);
+                } else {
+                    medicinePharmacy.setQuantity(medicinePharmacy.getQuantity() + order.getQuantity());
+                    medicinePharmacyService.save(medicinePharmacy);
+                }
             }
-            MedicinePharmacy medicinePharmacy = medicinePharmacyService.getByPharmacyAndMedicine(order.getPharmacyAdmin().getPharmacy().getName(),order.getMedicine().getName());
-            if(medicinePharmacy == null){
-                MedicinePharmacy medicinePharmacy1 = new MedicinePharmacy();
-                medicinePharmacy1.setPharmacy(order.getPharmacyAdmin().getPharmacy());
-                medicinePharmacy1.setMedicine(order.getMedicine());
-                medicinePharmacy1.setQuantity(order.getQuantity());
-                medicinePharmacy1.setPrice(order.getPrice());
-                medicinePharmacyService.save(medicinePharmacy1);
-            }else{
-                medicinePharmacy.setQuantity(medicinePharmacy.getQuantity() + order.getQuantity());
-                medicinePharmacyService.save(medicinePharmacy);
+            else{
+                throw new InvalidActionException("You can't set winner before expiration date");
             }
-        }else{
-            throw new InvalidActionException("You can't set winner before expiration date");
         }
+        else
+            throw new InvalidActionException("You can't set winner because you didn't create order");
     }
 
     public List<Order> getAllByAdmin(String adminEmail){
@@ -109,10 +116,26 @@ public class OrderService implements IOrderService {
         PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
         List<Order> deleteList = new ArrayList<>();
         for(Order o:orders){
-            if(!o.getPharmacyAdmin().getPharmacy().equals(pharmacyAdmin.getPharmacy()))
+            if(!o.getPharmacyAdmin().getPharmacy().equals(pharmacyAdmin.getPharmacy()) || o.getOrderState().equals(OrderState.PROCESSED))
                 deleteList.add(o);
         }
         orders.removeAll(deleteList);
+
+        if(orders.isEmpty())
+            throw new NotFoundException("There is no any order.");
+        return orders;
+    }
+
+    public List<Order> getAllFinishedByAdmin(String adminEmail){
+        List<Order> orders= orderRepository.findAll();
+        PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
+        List<Order> deleteList = new ArrayList<>();
+        for(Order o:orders){
+            if(!o.getPharmacyAdmin().getPharmacy().equals(pharmacyAdmin.getPharmacy()) || o.getOrderState().equals(OrderState.WAITING_FOR_OFFERS))
+                deleteList.add(o);
+        }
+        orders.removeAll(deleteList);
+
         if(orders.isEmpty())
             throw new NotFoundException("There is no any order.");
         return orders;

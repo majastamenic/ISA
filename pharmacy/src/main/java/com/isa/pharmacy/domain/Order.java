@@ -1,6 +1,7 @@
 package com.isa.pharmacy.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.isa.pharmacy.domain.enums.OrderState;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 
 
@@ -31,6 +32,8 @@ public class Order implements Serializable {
     private Long winnerId;
     @ManyToOne
     private PharmacyAdmin pharmacyAdmin;
+    @Column
+    private OrderState orderState;
 
     public Order() {
     }
@@ -43,6 +46,7 @@ public class Order implements Serializable {
         this.quantity = quantity;
         this.price = price;
         this.winnerId = winnerId;
+        this.orderState = OrderState.WAITING_FOR_OFFERS;
     }
 
     public static long getSerialVersionUID() {
@@ -103,5 +107,13 @@ public class Order implements Serializable {
 
     public void setWinnerId(Long winnerId) {
         this.winnerId = winnerId;
+    }
+
+    public OrderState getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(OrderState orderState) {
+        this.orderState = orderState;
     }
 }

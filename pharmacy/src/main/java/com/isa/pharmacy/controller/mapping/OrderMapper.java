@@ -4,6 +4,7 @@ import com.isa.pharmacy.controller.dto.OrderDto;
 import com.isa.pharmacy.controller.dto.ViewOrderOfferDto;
 import com.isa.pharmacy.domain.Medicine;
 import com.isa.pharmacy.domain.Order;
+import com.isa.pharmacy.domain.enums.OrderState;
 import com.isa.pharmacy.users.domain.PharmacyAdmin;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class OrderMapper {
         order.setMedicine(medicine);
         order.setPrice(orderDto.getPrice());
         order.setQuantity(orderDto.getQuantity());
+        order.setOrderState(OrderState.WAITING_FOR_OFFERS);
         return order;
     }
 
