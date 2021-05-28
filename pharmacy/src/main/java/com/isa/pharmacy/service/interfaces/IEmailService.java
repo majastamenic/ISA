@@ -46,4 +46,8 @@ public interface IEmailService {
      void confirmedVacation(String email, String message) throws MailException;
      @Async
      void declinedVacation(String email, String message) throws MailException;
+     @Async
+     void orderWinner(String email) throws MailException;
+     @Async
+     void orderNonWinner(String email) throws MailException;
 }

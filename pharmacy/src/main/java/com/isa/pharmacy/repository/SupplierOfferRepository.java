@@ -19,4 +19,6 @@ public interface SupplierOfferRepository extends JpaRepository<SupplierOffer, Lo
     List<SupplierOffer> findSupplierOfferBySupplier(Supplier supplier);
 
     List<SupplierOffer> findSupplierOfferBySupplierAndType(Supplier supplier, OrderOfferType type);
+
+    SupplierOffer getSupplierOfferById(Long id);
 }

@@ -73,6 +73,7 @@ public class DermatologistService implements IDermatologistService {
         if(dermatologist == null)
             throw new NotFoundException("Dermatologist doesn't exists.");
         dermatologist.setUser(d.getUser());
+        dermatologist.setVacationSchedules(d.getVacationSchedules());
         dermatologistRepository.save(dermatologist);
         return dermatologist;
     }

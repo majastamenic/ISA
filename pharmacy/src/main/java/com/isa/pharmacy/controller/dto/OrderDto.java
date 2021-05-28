@@ -18,15 +18,17 @@ public class OrderDto {
     private String medicineName;
     private Integer quantity;
     private double price;
+    private Long id;
 
     public OrderDto(){}
 
-    public OrderDto(String medicineName,Integer quantity,double price, Date endDate, String pharmacyAdminEmail) {
+    public OrderDto(String medicineName,Integer quantity,double price, Date endDate, String pharmacyAdminEmail, Long id) {
         this.endDate = endDate;
         this.pharmacyAdminEmail = pharmacyAdminEmail;
         this.medicineName = medicineName;
         this.quantity = quantity;
         this.price = price;
+        this.id = id;
     }
 
     public Date getEndDate() {
@@ -67,5 +69,13 @@ public class OrderDto {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

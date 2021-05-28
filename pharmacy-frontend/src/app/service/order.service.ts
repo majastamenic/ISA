@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OFFER_PATH, ORDER_PATH } from '../util/paths';
+import { OFFERS_PATH, OFFER_PATH, ORDERS_PATH, ORDER_PATH, UPDATE_WINNER_PATH } from '../util/paths';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,10 @@ export class OrderService {
 
   getAll(): Observable<any>{
     return this.httpClient.get(ORDER_PATH);
+  }
+
+  getOrders(email: string): any{
+    return this.httpClient.get(ORDERS_PATH + "/" + email);
   }
 
   create(newOrder: any): any{
@@ -29,6 +33,15 @@ export class OrderService {
   getSupplierOffers(email: string): any{
     return this.httpClient.get(OFFER_PATH + "/" + email);
   }
+
+  getOrderOffers(id:any): any{
+    return this.httpClient.get(OFFERS_PATH + "/" + id);
+  }
+
+  updateWinner(newOffer: any): any{
+    return this.httpClient.post(UPDATE_WINNER_PATH + "/" + newOffer, null);
+  }
+
 
   filter(email: string, type: any): any{
     let params = new HttpParams();

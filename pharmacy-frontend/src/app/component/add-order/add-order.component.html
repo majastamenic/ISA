@@ -1,18 +1,22 @@
 <div>
-    <div *ngIf="!showCreateorder">
+    <div *ngIf="!showCreateorder && !showOffers" >
         <button class="btn btn-info" (click)="addOrder()">Create order</button>
         <div *ngFor="let order of listOrders; index as i;">
             <div class="form">
                 <form class="ngform">
-                    <h3>Order</h3>
+                    <h3>Order {{order.id}}</h3>
                     <label>End date: {{order.endDate}}</label>
                     <br/>
+                    <label>Medicine name: {{order.medicineName}}</label>
+                    <br/>
+                    <label>Quantity: {{order.quantity}}</label>
                     <div *ngFor="let necessary of order.orderOffers">
                         <label>Medicine name: {{necessary.medicineName}}</label>
                         <br/>
                         <label>Quantity: {{necessary.quantity}}</label>
                         <br/>
                     </div>
+                    <button class="btn btn-info" (click)="show(order.id, i)">Show offers</button>
                     <button class="btn btn-outline-dark" (click)="delete(i)">Delete</button>
                 </form>
             </div>
@@ -33,6 +37,24 @@
                 </form>
             </div>
         </div>        
+    </div>
+
+    <div *ngIf="showOffers">
+        <div *ngFor="let order of listOffers; index as i;">
+            <div class="form">
+                <form class="ngform">
+                    <h3>Offer</h3>
+                    <label>Delivery date: {{order.deliveryDate}}</label>
+                    <br/>
+                    <label>Supplier email: {{order.supplierEmail}}</label>
+                    <br/>
+                    <label>Total price: {{order.totalPrice}}</label>
+                    
+                    <button class="btn btn-info" (click)="set(order.id, i)">Set as winner</button>
+
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 

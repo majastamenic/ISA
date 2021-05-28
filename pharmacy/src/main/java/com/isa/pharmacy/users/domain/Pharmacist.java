@@ -23,7 +23,7 @@ public class Pharmacist implements Serializable{
     private Pharmacy pharmacy;
     @ManyToMany
     private List<WorkSchedule> workSchedule;
-    @ManyToMany
+    @OneToMany
     private List<VacationSchedule> vacationSchedules;
 
     public Pharmacist(){}

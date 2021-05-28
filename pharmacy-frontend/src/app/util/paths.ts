@@ -101,11 +101,17 @@ export const COMPLAINT_PATH = BACKEND_PATH + '/complaint';
 
 export const ORDER_PATH = BACKEND_PATH + '/order';
 export const OFFER_PATH = BACKEND_PATH + '/supplier-offer';
+export const OFFERS_PATH = OFFER_PATH + '/offers';
+export const ORDERS_PATH = ORDER_PATH + '/orders';
+export const UPDATE_WINNER_PATH = ORDER_PATH + '/winner';
 
 export const VACATION_PATH = BACKEND_PATH + '/vacation';
 export const VACATIONS_DERMATOLOGIST_PATH = VACATION_PATH + '/dermatologist';
 export const VACATION_PHARMACIST_PATH = VACATION_PATH + '/pharmacist';
-
+export const VACATIONS_PHARMACISTS_PATH = VACATION_PATH + '/pharmacyAdmin';
+export const VACATIONS_DERMATOLOGISTS_PATH = VACATION_PATH + '/admin';
+export const VACATIONS_CONFIRMATION_PHARMACISTS_PATH = VACATION_PATH + '/confirmationPh';
+export const VACATIONS_CONFIRMATION_DERMATOLOGISTS_PATH = VACATION_PATH + '/confirmation';
 
 export const SUBSCRIBE_PATH = PHARMACY_PATH + '/subscribe';
 export const UNSUBSCRIBE_PATH = PHARMACY_PATH + '/unsubscribe';

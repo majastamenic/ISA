@@ -131,7 +131,7 @@ public class EmailService implements IEmailService {
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(email);
         simpleMailMessage.setSubject("Confirmed vacation");
-        simpleMailMessage.setText(GREETING +
+        simpleMailMessage.setText(
                 "Your vacation request is confirmed" + "\n\n" + CLOSE_PHASE);
 
         javaMailSender.send(simpleMailMessage);
@@ -142,9 +142,39 @@ public class EmailService implements IEmailService {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(mailSender);
         simpleMailMessage.setTo(email);
-        simpleMailMessage.setSubject("Unconfirmed vacation");
-        simpleMailMessage.setText(GREETING +
+        simpleMailMessage.setSubject("Declined vacation");
+        String message1 = "Admin did not specify the reason";
+        if(message.equals("")){
+            simpleMailMessage.setText(
+                    "Your vacation request is declined because of:" + message1 + "\n\n" + CLOSE_PHASE);
+        }
+        else
+            simpleMailMessage.setText(
                 "Your vacation request is declined because of:" + message + "\n\n" + CLOSE_PHASE);
+
+        javaMailSender.send(simpleMailMessage);
+    }
+
+    @Override
+    public void orderWinner(String email) throws MailException {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSender);
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject("Offer winner");
+        simpleMailMessage.setText(
+                "Your offer won on our order tender."+"\n"+"Please contact us for departure of medications." + "\n\n" + CLOSE_PHASE);
+
+        javaMailSender.send(simpleMailMessage);
+    }
+
+    @Override
+    public void orderNonWinner(String email) throws MailException {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSender);
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject("Offer winner");
+        simpleMailMessage.setText(
+                "Unfortunately, your offer is not the best offer for our order." +"\n"+"We are still exited for our future collaboration." + "\n\n" + CLOSE_PHASE);
 
         javaMailSender.send(simpleMailMessage);
     }

@@ -72,8 +72,8 @@ insert into app_user (name, surname, email, password, address, city, country, ph
     insert into dermatologist(user_id) values(14);
     insert into dermatologist(user_id) values(15);
 -- User: Supplier
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Luka', 'Djurdjevic', 'luka@gmail.com', 'luka', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 4, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Simona', 'Prokic', 'simona@gmail.com', 'simona', 'Fruskogorska 12', 'Novi Sad', 'Srbija', '067/114885', 4, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Luka', 'Djurdjevic', 'luka@mailinator.com', 'luka', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 4, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Simona', 'Prokic', 'simona@mailinator.com', 'simona', 'Fruskogorska 12', 'Novi Sad', 'Srbija', '067/114885', 4, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mitar', 'Miric', 'mitar@gmail.com', 'mitar', 'Futoski put 105', 'Novi Sad', 'Srbija', '067/335658', 4, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Ana', 'Nikolic', 'ana@gmail.com', 'ana', 'Bulevar Cara Dusana 18', 'Novi Sad', 'Srbija', '064/127865', 4, true);
     --Supplier
@@ -85,7 +85,7 @@ insert into app_user (name, surname, email, password, address, city, country, ph
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mikica', 'Djurdjevic', 'mikica@mailinator.com', 'mikica', 'Futoska 101', 'Novi Sad', 'Srbija', '067/823789', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marko', 'Markovic', 'mare@mailinator.com', 'mare', 'Fruskogorska 15', 'Novi Sad', 'Srbija', '067/114885', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Milos', 'Djuric', 'milos@gmail.com', 'milos', 'Dunavska 89', 'Novi Sad', 'Srbija', '067/114885', 5, true);
-insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Vucevic', 'marija@gmail.com', 'marija', 'Narodnog Fronta 78', 'Novi Sad', 'Srbija', '063/659898', 5, true);
+insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Marija', 'Vucevic', 'marija@mailinator.com', 'marija', 'Narodnog Fronta 78', 'Novi Sad', 'Srbija', '063/659898', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Mirjana', 'Radojcic', 'mima@gmail.com', 'mima', 'Zeleznicka 18', 'Novi Sad', 'Srbija', '061/1112565', 5, true);
 insert into app_user (name, surname, email, password, address, city, country, phone, role, active) values ('Ivana', 'Ivanovic', 'ivana@gmail.com', 'ivana', 'Vojvodjanskih Brigada 2', 'Novi Sad', 'Srbija', '069/3355668', 5, true);
     -- PharmacyAdmin
@@ -396,6 +396,9 @@ insert into app_order( end_date, pharmacy_admin_id, quantity, price, medicine_id
 insert into app_order(end_date, pharmacy_admin_id, quantity, price, medicine_id) values ('2021-03-07', 1,100,100,3);
 insert into app_order( end_date, pharmacy_admin_id, quantity, price, medicine_id) values ('2021-05-07',  2,50,50,2);
 insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id) values ('2021-03-04', 2, 20,20,1);
+insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id) values ('2021-04-04', 4, 20,20,1);
+insert into app_order(end_date,  pharmacy_admin_id, quantity, price, medicine_id) values ('2021-05-04', 4, 20,20,1);
+
 
 -- OrdersOffers
 insert into order_offer(price, quantity, medicine_id)VALUES (10.0, 200, 1);
@@ -407,9 +410,11 @@ insert into order_offer(price, quantity, medicine_id)VALUES (12.0, 5, 8);
 
 --SupplierOffers
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-01-01', 200, 2, 1, 1);
+insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-01-01', 200, 2, 1, 2);
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-02-02', 500, 1, 2, 1);
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-03-04', 430, 0, 3, 1);
 insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-04-04', 500, 1, 4, 1);
+insert into supplier_offer(delivery_date, total_price, type, order_id, supplier_id)values ('2021-04-04', 500, 1, 5, 1);
 
 -- VacationSchedule
     -- Dermatologist
@@ -426,6 +431,7 @@ insert into vacation_schedule(start_date, end_date, approved) values ('2021-04-1
 insert into vacation_schedule(start_date, end_date, approved) values ('2021-03-01', '2021-03-10', false);
 insert into vacation_schedule(start_date, end_date, approved) values ('2021-03-29', '2021-03-31', false);
 insert into vacation_schedule(start_date, end_date, approved) values ('2021-05-09', '2021-05-20', false);
+insert into vacation_schedule(start_date, end_date, approved) values ('2021-06-09', '2021-06-20', false);
     -- Dermatologist_VacationSchedule
 insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (1, 1);
 insert into dermatologist_vacation_schedules(dermatologist_id, vacation_schedules_id) values (2, 2);
@@ -440,6 +446,7 @@ insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) 
 insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (1, 10);
 insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (4, 11);
 insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (2, 12);
+insert into pharmacist_vacation_schedules(pharmacist_id, vacation_schedules_id) values (1, 13);
 -- EPrescription
 insert into eprescription(code, date_of_issue, file_text, patient_id) values(1, '2021-01-01', 'Maja Stamenic Panadol,', 1);
 insert into eprescription(code, date_of_issue, file_text, patient_id) values(2, '2021-02-01', 'Aca Lukas Panadol,', 5);

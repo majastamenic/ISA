@@ -27,19 +27,22 @@ public class Order implements Serializable {
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+01:00")
     private Date endDate;
+    @Column
+    private Long winnerId;
     @ManyToOne
     private PharmacyAdmin pharmacyAdmin;
 
     public Order() {
     }
 
-    public Order(Long id,Medicine medicine,Integer quantity,double price, Date endDate, PharmacyAdmin pharmacyAdmin) {
+    public Order(Long id,Medicine medicine,Integer quantity,double price, Date endDate, PharmacyAdmin pharmacyAdmin,Long winnerId) {
         this.id = id;
         this.endDate = endDate;
         this.pharmacyAdmin = pharmacyAdmin;
         this.medicine = medicine;
         this.quantity = quantity;
         this.price = price;
+        this.winnerId = winnerId;
     }
 
     public static long getSerialVersionUID() {
@@ -92,5 +95,13 @@ public class Order implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Long getWinnerId() {
+        return winnerId;
+    }
+
+    public void setWinnerId(Long winnerId) {
+        this.winnerId = winnerId;
     }
 }

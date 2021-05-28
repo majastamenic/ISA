@@ -32,8 +32,6 @@ public class OrderController {
     private IPharmacyAdminService pharmacyAdminService;
     @Autowired
     private IMedicineService medicineService;
-    @Autowired
-    private IOrderOfferService orderOfferService;
 
     @GetMapping
     public List<OrderDto> getAll(){
@@ -55,4 +53,13 @@ public class OrderController {
     public void deleteOrder(@PathVariable Long id){
         orderService.deleteOrder(id);
    }
+
+   @PostMapping("/winner/{id}")
+    public void updateWinner(@PathVariable Long id){ orderService.updateWinner(id);}
+
+    @GetMapping("/orders/{adminEmail}")
+    public List<OrderDto> getAllByAdmin(@PathVariable String adminEmail){
+        List<Order> orders = orderService.getAllByAdmin(adminEmail);
+        return OrderMapper.mapOrdersToOrdersDto(orders);
+    }
 }

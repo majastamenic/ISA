@@ -5,6 +5,7 @@ import com.isa.pharmacy.domain.enums.OrderOfferType;
 import java.util.Date;
 
 public class SupplierOfferDto {
+    private Long id;
     private Long orderId;
     private OrderOfferType type;
     private String supplierEmail;
@@ -13,12 +14,21 @@ public class SupplierOfferDto {
 
     public SupplierOfferDto(){}
 
-    public SupplierOfferDto(Long orderId, OrderOfferType type, String supplierEmail, double totalPrice, Date deliveryDate) {
+    public SupplierOfferDto(Long id,Long orderId, OrderOfferType type, String supplierEmail, double totalPrice, Date deliveryDate) {
         this.orderId = orderId;
         this.type = type;
         this.supplierEmail = supplierEmail;
         this.totalPrice = totalPrice;
         this.deliveryDate = deliveryDate;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getOrderId() {

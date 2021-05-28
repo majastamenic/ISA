@@ -70,6 +70,8 @@ import { EPrescriptionsComponent } from './component/patient/e-prescriptions/e-p
 import { MedicineReservationComponent } from './component/patient/medicine-reservation/medicine-reservation.component';
 import { ReservationsComponent } from './component/patient/reservations/reservations.component';
 import { DermatologistFreeTermsComponent } from './component/pharmacy-admin/dermatologist-free-terms/dermatologist-free-terms.component';
+import { VacationsComponent } from './component/pharmacy-admin/vacations/vacations.component';
+import { VacationsDermatologistsComponent } from './component/system-admin/vacations-dermatologists/vacations-dermatologists.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -135,6 +137,8 @@ FullCalendarModule.registerPlugins([
     MedicineReservationComponent,
     ReservationsComponent,
     DermatologistFreeTermsComponent,
+    VacationsComponent,
+    VacationsDermatologistsComponent,
   ],
   imports: [
     BrowserModule,

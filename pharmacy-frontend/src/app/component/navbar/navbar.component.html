@@ -54,6 +54,9 @@
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/dermatologistWorkSchedule'" routerLinkActive="active">Dermatologist</a>
             </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isPharmacyAdmin()" class="nav-link" [routerLink]="'/vacation/pharmacists'" routerLinkActive="active">Vacations</a>
+            </li>
             <!--Dermatologist-->
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isDermatologist()" class="nav-link" [routerLink]="'/allexaminations'" routerLinkActive="active">Examinations</a>
@@ -79,6 +82,9 @@
             </li>
             <li class="nav-item">
                 <a *ngIf="userService.isUserLogin() && userService.isAdmin()" class="nav-link" [routerLink]="'/complaints'" routerLinkActive="active">Complaints</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.isUserLogin() && userService.isAdmin()" class="nav-link" [routerLink]="'/vacation/dermatologists'" routerLinkActive="active">Vacations</a>
             </li>
             <!--Supplier-->
             <li class="nav-item">

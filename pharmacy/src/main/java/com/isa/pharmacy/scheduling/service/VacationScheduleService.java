@@ -84,12 +84,15 @@ public class VacationScheduleService implements IVacationService {
             if(dermatologist.getVacationSchedules().contains(vacationSchedule1)){
                 if(vacationSchedule.getConfirmed().equals("Confirmed")) {
                     vacationSchedule1.setApproved(true);
-                    //emailService.confirmedVacation(dermatologist.getUser().getEmail(), vacationSchedule.getMessage());
+                    emailService.confirmedVacation(dermatologist.getUser().getEmail(), vacationSchedule.getMessage());
                     update(vacationSchedule1);
                 }else {
                     vacationSchedule1.setApproved(false);
-                    //emailService.declinedVacation(dermatologist.getUser().getEmail(), vacationSchedule.getMessage());
+                    emailService.declinedVacation(dermatologist.getUser().getEmail(), vacationSchedule.getMessage());
                     update(vacationSchedule1);
+                    List<VacationSchedule> vacationScheduleList = dermatologist.getVacationSchedules();
+                    vacationScheduleList.remove(vacationSchedule1);
+                    dermatologistService.update(dermatologist);
                 }
             }
         }
@@ -98,16 +101,19 @@ public class VacationScheduleService implements IVacationService {
     public void confirmationPharmacist(VacationConfirmationDto vacationSchedule){
         VacationSchedule vacationSchedule1 = vacationScheduleRepository.getVacationScheduleById(vacationSchedule.getVacationScheduleId());
         List<Pharmacist> dermatologistList = pharmacistService.getAll();
-        for(Pharmacist dermatologist : dermatologistList){
-            if(dermatologist.getVacationSchedules().contains(vacationSchedule1)){
+        for(Pharmacist pharmacist : dermatologistList){
+            if(pharmacist.getVacationSchedules().contains(vacationSchedule1)){
                 if(vacationSchedule.getConfirmed().equals("Confirmed")) {
                     vacationSchedule1.setApproved(true);
-                    //emailService.confirmedVacation(dermatologist.getUser().getEmail(), vacationSchedule.getMessage());
+                    emailService.confirmedVacation(pharmacist.getUser().getEmail(), vacationSchedule.getMessage());
                     update(vacationSchedule1);
                 }else {
                     vacationSchedule1.setApproved(false);
-                    //emailService.declinedVacation(dermatologist.getUser().getEmail(), vacationSchedule.getMessage());
+                    emailService.declinedVacation(pharmacist.getUser().getEmail(), vacationSchedule.getMessage());
                     update(vacationSchedule1);
+                    List<VacationSchedule> vacationScheduleList = pharmacist.getVacationSchedules();
+                    vacationScheduleList.remove(vacationSchedule1);
+                    pharmacistService.update(pharmacist);
                 }
             }
         }

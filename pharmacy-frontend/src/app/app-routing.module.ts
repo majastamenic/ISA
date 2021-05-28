@@ -50,6 +50,8 @@ import { CounselingSearchComponent } from './component/patient/counseling-search
 import { CounselingScheduleComponent } from './component/patient/counseling-schedule/counseling-schedule.component';
 import { ActionsBenefitsComponent } from './component/pharmacy-admin/actions-benefits/actions-benefits.component';
 import { DermatologistFreeTermsComponent } from './component/pharmacy-admin/dermatologist-free-terms/dermatologist-free-terms.component';
+import { VacationsComponent } from './component/pharmacy-admin/vacations/vacations.component';
+import { VacationsDermatologistsComponent } from './component/system-admin/vacations-dermatologists/vacations-dermatologists.component';
 
 
 const routes: Routes = [
@@ -87,6 +89,7 @@ const routes: Routes = [
   },
   { path: 'add-medicines', component: AddMedicinesComponent },
   { path: 'add-pharmacy', component: AddPharmacyComponent },
+  { path: 'vacation/dermatologists', component: VacationsDermatologistsComponent},
   { path: 'loyalty', component: LoyalityComponent },
   { path: 'complaints', component: ComplaintsComponent},
 
@@ -113,7 +116,7 @@ const routes: Routes = [
   { path: 'pharmacist/init', component: PharmacistInitComponent},
   { path: 'price/init', component: PriceInitComponent},
   { path: 'dermatologistWorkSchedule', component: DermatologistFreeTermsComponent},
-  
+  { path: 'vacation/pharmacists', component: VacationsComponent},
   { path: 'order/init', component: OrderInitComponent},
   { path: 'medicine/reserved', component: PublishingReservedMedicineComponent},
   { path: 'pharmacy/:pharmacyName', component: PharmacyProfileComponent},

@@ -17,4 +17,8 @@ public interface IOrderService {
      List<Order> getByOffers(List<SupplierOffer> supplierOffers);
 
      List<Order> findOrderWithoutSupplierOffer(String email);
+
+     void updateWinner(Long winnerId);
+
+     List<Order> getAllByAdmin(String adminEmail);
 }

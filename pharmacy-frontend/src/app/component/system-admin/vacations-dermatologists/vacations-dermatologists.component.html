@@ -1,0 +1,22 @@
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Start date</th>
+        <th scope="col">End date</th>
+        <th scope="col">Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vacation of vacations; let i = index;">
+          <td>{{i}}</td>
+          <td>{{vacation.startDate}}</td>
+          <td>{{vacation.endDate}}</td>
+          <td><input type="text" [(ngModel)]="message" placeholder="Enter message" name="message"></td>
+          <td><button class="btn btn-primary" (click)="confirm(vacation.id, i)">Confirm</button></td>
+          <td><button class="btn btn-primary" (click)="decline(vacation.id, i)">Decline</button></td>
+      </tr>
+    </tbody>
+  </table>
+

@@ -14,6 +14,7 @@ import com.isa.pharmacy.users.service.interfaces.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,5 +53,10 @@ public class SupplierOfferController {
         SupplierOffer supplierOffer = SupplierOfferMapper.mapSupplierOfferDtoToSupplierOffer(supplierOfferDto, order, supplier);
 
         supplierOfferService.createOffer(supplierOffer);
+    }
+
+    @GetMapping("/offers/{id}")
+    public List<SupplierOfferDto> getOffers(@PathVariable Long id){
+        return supplierOfferService.offersByOrderId(id);
     }
 }

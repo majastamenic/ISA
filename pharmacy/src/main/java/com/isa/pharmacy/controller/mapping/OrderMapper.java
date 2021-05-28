@@ -26,6 +26,7 @@ public class OrderMapper {
         OrderDto orderDto = new OrderDto();
         orderDto.setEndDate(order.getEndDate());
         orderDto.setMedicineName(order.getMedicine().getName());
+        orderDto.setId(order.getId());
         orderDto.setPrice(order.getPrice());
         orderDto.setQuantity(order.getQuantity());
         orderDto.setPharmacyAdminEmail(order.getPharmacyAdmin().getUser().getEmail());

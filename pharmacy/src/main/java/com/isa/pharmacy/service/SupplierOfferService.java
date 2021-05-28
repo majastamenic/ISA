@@ -1,7 +1,9 @@
 package com.isa.pharmacy.service;
 
+import com.isa.pharmacy.controller.dto.SupplierOfferDto;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.exception.UnauthorizeException;
+import com.isa.pharmacy.controller.mapping.SupplierOfferMapper;
 import com.isa.pharmacy.domain.Order;
 import com.isa.pharmacy.domain.SupplierOffer;
 import com.isa.pharmacy.domain.enums.OrderOfferType;
@@ -13,6 +15,7 @@ import com.isa.pharmacy.users.service.interfaces.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -74,4 +77,20 @@ public class SupplierOfferService implements ISupplierOfferService {
         }
         throw new NotFoundException("Suppler dosen't have offer for order "+orderId);
     }
+
+    public List<SupplierOfferDto> offersByOrderId(Long id){
+        List<SupplierOffer> offers = supplierOfferRepository.findAll();
+        List<SupplierOfferDto> offersByOrder = new ArrayList<>();
+        for(SupplierOffer offer:offers){
+            if(offer.getOrder().getId() == id){
+                offersByOrder.add(SupplierOfferMapper.mapSupplierOfferToSupplierOfferDto(offer));
+            }
+        }
+        return offersByOrder;
+    }
+
+    public SupplierOffer getById(Long id){
+        return supplierOfferRepository.getSupplierOfferById(id);
+    }
+
 }

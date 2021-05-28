@@ -15,6 +15,7 @@ public class SupplierOfferMapper {
     public static SupplierOffer mapSupplierOfferDtoToSupplierOffer(SupplierOfferDto supplierOfferDto, Order order, Supplier supplier){
         SupplierOffer supplierOffer = new SupplierOffer();
         supplierOffer.setOrder(order);
+        supplierOffer.setId(supplierOfferDto.getId());
         supplierOffer.setSupplier(supplier);
         supplierOffer.setType(OrderOfferType.WAITING_FOR_ANSWER);
         supplierOffer.setTotalPrice(supplierOfferDto.getTotalPrice());
@@ -26,6 +27,7 @@ public class SupplierOfferMapper {
         SupplierOfferDto supplierOfferDto = new SupplierOfferDto();
         supplierOfferDto.setDeliveryDate(supplierOffer.getDeliveryDate());
         supplierOfferDto.setOrderId(supplierOffer.getOrder().getId());
+        supplierOfferDto.setId(supplierOffer.getId());
         supplierOfferDto.setSupplierEmail(supplierOffer.getSupplier().getUser().getEmail());
         supplierOfferDto.setTotalPrice(supplierOffer.getTotalPrice());
         supplierOfferDto.setType(supplierOffer.getType());

@@ -22,7 +22,7 @@ public class Dermatologist implements Serializable {
     private List<Pharmacy> pharmacy;
     @ManyToMany
     private List<WorkSchedule> workSchedule;
-    @ManyToMany
+    @OneToMany
     private List<VacationSchedule> vacationSchedules;
 
     public Dermatologist(){}

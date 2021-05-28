@@ -16,8 +16,6 @@
                 <h2>Order {{order.id}}</h2>
                 <label>End date: {{order.endDate}}</label>
                 <br/>
-                <label>End time: {{order.endTime}}</label>
-                <br/>
                 <div *ngFor="let offer of order.orderOffers">
                     <label>Medicine name: {{offer.medicineName}}</label>
                     <br/>

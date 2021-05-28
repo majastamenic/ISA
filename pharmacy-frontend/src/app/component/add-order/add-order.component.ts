@@ -16,6 +16,8 @@ export class AddOrderComponent implements OnInit {
   showCreateorder: boolean = false;
   listOrders: any;
   phAdmin:any;
+  listOffers:any;
+  showOffers: boolean= false;
   constructor(private orderService: OrderService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
@@ -24,7 +26,7 @@ export class AddOrderComponent implements OnInit {
       this.phAdmin = userEmail;
     }
     this.newOrder.pharmacyAdminEmail = this.phAdmin;
-    this.orderService.getAll().subscribe(orders => {
+    this.orderService.getOrders(this.phAdmin).subscribe((orders: any) => {
       this.listOrders = orders;
     });
   }
@@ -44,6 +46,22 @@ export class AddOrderComponent implements OnInit {
   delete(i: any){
     this.orderService.delete(this.listOrders[i].id).subscribe((response: any)=>{
       this.toastrService.success("Order is deleted")
+    },(err: any)=>{
+      this.toastrService.error("Error "+ err.error.message)
+    });
+  }
+  show(orderId:any,i:number){
+    this.change();
+    this.orderService.getOrderOffers(orderId).subscribe((orders: any) => {
+      this.listOffers = orders;
+    });
+  }
+  change(){
+    this.showOffers = true;
+  }
+  set(offerId:any, i:number){
+    this.orderService.updateWinner(offerId).subscribe((response: any)=>{
+      this.toastrService.success("Winner is here!")
     },(err: any)=>{
       this.toastrService.error("Error "+ err.error.message)
     });

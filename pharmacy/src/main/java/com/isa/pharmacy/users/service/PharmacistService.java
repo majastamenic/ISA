@@ -92,6 +92,7 @@ public class PharmacistService implements IPharmacistService {
     public Pharmacist update(Pharmacist p) {
         Pharmacist pharmacist = pharmacistRepository.findPharmacistById(p.getId());
         pharmacist.setUser(p.getUser());
+        pharmacist.setVacationSchedules(p.getVacationSchedules());
         pharmacistRepository.save(pharmacist);
         return pharmacist;
     }
