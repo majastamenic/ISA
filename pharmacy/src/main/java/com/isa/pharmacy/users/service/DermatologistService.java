@@ -17,6 +17,7 @@ import com.isa.pharmacy.scheduling.service.interfaces.IVacationService;
 import com.isa.pharmacy.scheduling.service.interfaces.IWorkScheduleService;
 import com.isa.pharmacy.service.interfaces.IExaminationService;
 import com.isa.pharmacy.service.interfaces.IPharmacyService;
+import com.isa.pharmacy.users.controller.dto.AddDermatologistDto;
 import com.isa.pharmacy.users.controller.dto.DermatologistExaminationDto;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Pharmacist;
@@ -163,6 +164,46 @@ public class DermatologistService implements IDermatologistService {
         pharmacyList.remove(pharmacy);
         dermatologist.setPharmacy(pharmacyList);
         update(dermatologist);
+    }
+
+    public void addDermatologistToPharmacy(AddDermatologistDto addDermatologistDto){
+        Dermatologist dermatologist = findUserByEmail(addDermatologistDto.getEmail());
+        PharmacyAdmin admin = pharmacyAdminService.findPharmacyAdminByEmail(addDermatologistDto.getAdminEmail());
+        List<WorkSchedule> workScheduleList = dermatologist.getWorkSchedule();
+        for(WorkSchedule ws:workScheduleList){
+            if(!addDermatologistDto.getStartDate().equals(ws.getSchedule().getStartDate())&& !addDermatologistDto.getEndDate().equals(ws.getSchedule().getEndDate())){
+                continue;
+            }
+
+            else {
+                throw new InvalidActionException("This dermatologist already has this work schedule");
+            }
+
+        }
+        Schedule schedule = new Schedule();
+        schedule.setStartDate(addDermatologistDto.getStartDate());
+        schedule.setEndDate(addDermatologistDto.getEndDate());
+        schedule.setEndTime(addDermatologistDto.getEndTime());
+        schedule.setStartTime(addDermatologistDto.getStartTime());
+        scheduleService.save(schedule);
+        WorkSchedule workSchedule = new WorkSchedule();
+        workSchedule.setSchedule(schedule);
+        workSchedule.setAdmin(admin);
+        workScheduleService.save(workSchedule);
+        dermatologist.getWorkSchedule().add(workSchedule);
+        if(!dermatologist.getPharmacy().contains(admin.getPharmacy()))
+            dermatologist.getPharmacy().add(admin.getPharmacy());
+        save(dermatologist);
+
+    }
+
+    public Boolean dermatologistHasWorkSchedule(WorkSchedule workSchedule, Long id){
+        Dermatologist dermatologist = dermatologistRepository.findDermatologistById(id);
+        List<WorkSchedule> workScheduleList = dermatologist.getWorkSchedule();
+        if(workScheduleList.contains(workSchedule))
+            return true;
+        else
+            return false;
     }
 
     public boolean checkVacationTerm(VacationScheduleDto vacationScheduleDto, String email){

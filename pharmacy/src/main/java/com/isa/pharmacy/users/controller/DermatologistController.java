@@ -4,7 +4,9 @@ import com.isa.pharmacy.controller.dto.DermatologistDto;
 import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.BadRequestException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
+import com.isa.pharmacy.controller.mapping.DermatologistMapper;
 import com.isa.pharmacy.service.interfaces.IEmailService;
+import com.isa.pharmacy.users.controller.dto.AddDermatologistDto;
 import com.isa.pharmacy.users.controller.dto.DermatologistExaminationDto;
 import com.isa.pharmacy.users.controller.dto.RegistrationDto;
 import com.isa.pharmacy.users.controller.mapping.UserMapper;
@@ -38,7 +40,19 @@ public class DermatologistController {
     }
 
     @GetMapping
-    public List<Dermatologist> getAll() { return dermatologistService.getAll(); }
+    public List<DermatologistDto> getAll() {
+        List<Dermatologist> dermatologistList =dermatologistService.getAll();
+        List<DermatologistDto> dermatologistDtos = new ArrayList<>();
+        for(Dermatologist d: dermatologistList){
+            dermatologistDtos.add(DermatologistMapper.mapDermatologistToDermatologistDto(d));
+        }
+        return dermatologistDtos;
+    }
+
+    @PostMapping("/addDermatologist")
+    public void addDermatologist(@RequestBody AddDermatologistDto addDermatologistDto){
+        dermatologistService.addDermatologistToPharmacy(addDermatologistDto);
+    }
 
     @GetMapping("/findByPharmacy/{adminEmail}")
     public List<DermatologistDto> dermatologistsByAdmin(@PathVariable("adminEmail") String adminEmail){

@@ -1,8 +1,10 @@
 <div class="page">
-    <div class="form">
+    <div *ngIf="!showAddDerm" class="form" >
+        <button class="btn btn-info" (click)="addDermatologist()">Add dermatologist to pharmacy</button>
         <form class="ngform">
+            
             <h3>Define dermatologist examinations</h3>
-
+            <br/>
             <div> 
                 <ng-select [items]="listDermatologists"
                         placeholder="Select dermatologist"
@@ -21,6 +23,34 @@
             <input type="number" [(ngModel)]="price" placeholder="Enter price" name="price" required>
             <button class="btn btn-primary" (click)="define()">Confirm</button>
             
+        </form>
+    </div>
+
+    <div *ngIf="showAddDerm">
+        <form class="ngform">
+            
+            <h3>Add dermatologist and week work schedules</h3>
+            <br/>
+            <div> 
+                <ng-select [items]="allDermatologists"
+                        placeholder="Select dermatologist"
+                        appendTo="body"
+                        bindLabel="user.name"
+                        [multiple]="false"
+                        [(ngModel)]="selectedDermatologist1"
+                        name="dermatologistSelect1">
+                </ng-select>
+            </div>
+
+            <div class="form-group">
+                <input type="date" [(ngModel)]="startDate1" placeholder="Enter start date" name='dateFrom1' id='dateFrom1'>
+            </div>
+            <div class="form-group">
+                <input type="date" [(ngModel)]="endDate1" placeholder="Enter end date" name='dateTo1' id='dateTo1'>
+            </div>
+            <ngb-timepicker [minuteStep]="minuteStep1" [(ngModel)]="start1" name="timepicker1" class="d-flex justify-content-center"></ngb-timepicker>
+            <ngb-timepicker [minuteStep]="minuteStep" [(ngModel)]="end" name="timepicker" class="d-flex justify-content-center"></ngb-timepicker>
+            <button class="btn btn-primary" (click)="define1()">Confirm</button>
         </form>
     </div>
 </div>

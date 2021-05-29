@@ -2,6 +2,7 @@ package com.isa.pharmacy.users.service.interfaces;
 
 import com.isa.pharmacy.controller.dto.DermatologistDto;
 import com.isa.pharmacy.controller.dto.VacationScheduleDto;
+import com.isa.pharmacy.users.controller.dto.AddDermatologistDto;
 import com.isa.pharmacy.users.controller.dto.DermatologistExaminationDto;
 import com.isa.pharmacy.users.domain.Dermatologist;
 
@@ -13,6 +14,8 @@ public interface IDermatologistService {
      Dermatologist save(Dermatologist dermatologist);
 
      List<Dermatologist> getAll();
+
+     void addDermatologistToPharmacy(AddDermatologistDto addDermatologistDto);
 
      Dermatologist update(Dermatologist d);
 
