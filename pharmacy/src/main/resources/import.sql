@@ -109,11 +109,11 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-02
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-01', '2021-03-07', '08:00:00', '14:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-01', '2021-03-07', '14:00:00', '20:00:00');
 -- Schedule: Examination
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '14:00:00', '14:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-06-15', '2021-06-15', '14:00:00', '14:30:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '14:30:00', '15:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '15:00:00', '15:30:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '15:30:00', '16:00:00');
-insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '16:00:00', '16:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-06-15', '2021-06-15', '16:00:00', '16:30:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '16:30:00', '17:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '17:00:00', '17:30:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-02-15', '2021-02-15', '17:30:00', '18:00:00');
@@ -128,7 +128,8 @@ insert into schedule(start_date, end_date, start_time, end_time) values('2021-03
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-03', '2021-03-03', '19:30:00', '20:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-04', '2021-03-04', '18:30:00', '19:00:00');
 insert into schedule(start_date, end_date, start_time, end_time) values('2021-03-05', '2021-03-05', '18:00:00', '18:30:00');
-
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-06-05', '2021-06-05', '18:00:00', '18:30:00');
+insert into schedule(start_date, end_date, start_time, end_time) values('2021-06-08', '2021-06-08', '19:30:00', '20:00:00');
 -- WorkSchedule //////////////////////////////////////////////////////////
     // Jankovic
 insert into work_schedule(schedule_id, admin_id) values(1, 1);
@@ -232,6 +233,7 @@ insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyal
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 21, 1, 2, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 22, 1, 2, 1);
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 23, 3, 2, 1);
+insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id) values(25, 30, 1, 1, 1);
 
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 24, 2, 1, 1, 1, true );
 insert into examination(price, schedule_id, dermatologist_id, pharmacy_id, loyalty_group_id, patient_id, patient_came) values(10, 25, 2, 1, 1, 2, true );
@@ -244,6 +246,7 @@ insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id)
 
 insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id) values (13, 1, 2, 1);
 insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id) values (16, 3, 2, 1);
+insert into counseling(schedule_id, pharmacist_id, patient_id, loyalty_group_id) values (29, 1, 2, 1);
 
 
 -- Medicines
@@ -558,4 +561,5 @@ insert into pharmacy_rating(pharmacy_id, patient_id, rate) values (3, 4, 2);
     insert into work_schedule_dermatologists(work_schedule_id, dermatologists_id) values(1,1);
     insert into work_schedule_dermatologists(work_schedule_id, dermatologists_id) values(3,1);
 
+    insert into medicine_reservation(amount, due_date, is_taken,medicine_pharmacy_id,patient_id) values(10, '2021-06-06', false, 1, 1)
 

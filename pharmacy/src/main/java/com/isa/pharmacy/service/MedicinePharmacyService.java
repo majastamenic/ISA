@@ -5,11 +5,9 @@ import com.isa.pharmacy.controller.dto.MedicinePharmacyDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicinePharmacyMapper;
-import com.isa.pharmacy.domain.Counseling;
-import com.isa.pharmacy.domain.Medicine;
-import com.isa.pharmacy.domain.MedicinePharmacy;
-import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.pharmacy.domain.*;
 import com.isa.pharmacy.repository.MedicinePharmacyRepository;
+import com.isa.pharmacy.repository.MedicineReservationRepository;
 import com.isa.pharmacy.service.interfaces.ICounselingService;
 import com.isa.pharmacy.service.interfaces.IMedicinePharmacyService;
 import com.isa.pharmacy.service.interfaces.IMedicineService;
@@ -44,6 +42,8 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
     private IPharmacyAdminService pharmacyAdminService;
     @Autowired
     private IMedicineService medicineService;
+    @Autowired
+    private MedicineReservationRepository medicineReservationRepository;
 
 
     public MedicinePharmacy save(MedicinePharmacy medicinePharmacy){return medicinePharmacyRepository.save(medicinePharmacy);}
@@ -74,7 +74,12 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
         Medicine medicine = medicineService.findByName(medicineName);
         PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
         Pharmacy pharmacy = pharmacyService.getPharmacyByName(pharmacyAdmin.getPharmacy().getName());
+        List<MedicineReservation> medicineReservations = medicineReservationRepository.findAll();
         MedicinePharmacy medicinePharmacy = getById(id);
+        for(MedicineReservation mr:medicineReservations){
+            if(mr.getMedicinePharmacy().equals(medicinePharmacy) && mr.getTaken()==false)
+                throw new InvalidActionException("You can't delete this medicine because of reservation");
+        }
         if(medicinePharmacy.getPharmacy().getId() != pharmacyAdmin.getPharmacy().getId()){
             throw new InvalidActionException("You are not allowed to delete this medicine");
         }

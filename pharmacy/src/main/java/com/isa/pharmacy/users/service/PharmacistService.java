@@ -7,6 +7,7 @@ import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
 import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.CounselingMapper;
+import com.isa.pharmacy.domain.Counseling;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.domain.enums.Role;
 import com.isa.pharmacy.scheduling.DateManipulation;
@@ -103,6 +104,12 @@ public class PharmacistService implements IPharmacistService {
 
     public void deletePharmacistByUser_email(String email, String adminEmail){
         Pharmacist pharmacist = pharmacistRepository.findPharmacistByUser_email(email);
+        List<Counseling> counseling = counselingService.getCounselingByPharmacist(pharmacist);
+        for(Counseling c:counseling){
+            if(c.getSchedule().getStartDate().after(new Date())){
+                throw new InvalidActionException("You can't delete this pharmacist because he has counselings scheduled");
+            }
+        }
         PharmacyAdmin pharmacyAdmin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
         if(!(pharmacyAdmin.getPharmacy().getId() == pharmacist.getPharmacy().getId()))
             throw new InvalidActionException("You are not allowed to delete this pharmacist");

@@ -1,6 +1,7 @@
 package com.isa.pharmacy.users.service;
 
 import com.isa.pharmacy.controller.dto.DermatologistDto;
+import com.isa.pharmacy.controller.dto.ExamDermatologistDto;
 import com.isa.pharmacy.controller.dto.VacationScheduleDto;
 import com.isa.pharmacy.controller.exception.AlreadyExistsException;
 import com.isa.pharmacy.controller.exception.InvalidActionException;
@@ -157,6 +158,11 @@ public class DermatologistService implements IDermatologistService {
         PharmacyAdmin admin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
         Pharmacy pharmacy = pharmacyService.getById(admin.getPharmacy().getId());
         Dermatologist dermatologist = dermatologistRepository.findDermatologistByUser_email(email);
+        List<ExamDermatologistDto> examinations = examinationService.getAllByDermatologist(dermatologist);
+        for(ExamDermatologistDto e :examinations){
+            if(e.getSchedule().getStartDate().after(new Date()))
+                throw new InvalidActionException("You can't delete this dermatologist because he has examination scheduled");
+        }
         List<Pharmacy> pharmacyList =dermatologist.getPharmacy();
         if(!pharmacyList.contains(pharmacy)){
             throw new InvalidActionException("You are not allowed to delete this dermatologist");
