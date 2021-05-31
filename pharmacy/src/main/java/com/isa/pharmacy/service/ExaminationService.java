@@ -21,11 +21,15 @@ import com.isa.pharmacy.users.controller.dto.PatientDto;
 import com.isa.pharmacy.users.controller.mapping.PatientMapper;
 import com.isa.pharmacy.users.domain.Dermatologist;
 import com.isa.pharmacy.users.domain.Patient;
+import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.service.interfaces.IDermatologistService;
 import com.isa.pharmacy.users.service.interfaces.IPatientService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -56,6 +60,8 @@ public class ExaminationService implements IExaminationService {
     private IWorkScheduleService workScheduleService;
     @Autowired
     private IScheduleService scheduleService;
+    @Autowired
+    private IPharmacyAdminService pharmacyAdminService;
 
 
     public Examination save(Examination examination){
@@ -94,6 +100,36 @@ public class ExaminationService implements IExaminationService {
         }catch (Exception e){
             throw new BadRequestException("Email feature not available on heroku");
         }
+    }
+
+    public List<Integer> numberOfExaminations(String adminEmail){
+        PharmacyAdmin admin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
+        List<Integer> list = new ArrayList<>();
+        Integer month = 0;
+        Integer quartal = 0;
+        Integer year = 0;
+        Date currentDate = new Date();
+        Date thirtyDaysFromCurrentDate = new Date(currentDate.getTime() - Duration.ofDays(30).toMillis());
+        Date threeMonthsFromCurrentDate = new Date(currentDate.getTime() - Duration.ofDays(90).toMillis());
+        Date oneYearFromCurrentDate = new Date(currentDate.getTime() - Duration.ofDays(365).toMillis());
+        List<Examination> examinations = examinationRepository.findAll();
+        for(Examination examination:examinations){
+            if(examination.getPharmacy().equals(admin.getPharmacy())){
+                if(examination.getPatient()!= null && examination.getPatientCame().equals(true)) {
+                    if (examination.getSchedule().getStartDate().before(new Date()) && examination.getSchedule().getStartDate().after(thirtyDaysFromCurrentDate))
+                        month = month + 1;
+                    if (examination.getSchedule().getStartDate().before(new Date()) && examination.getSchedule().getStartDate().after(threeMonthsFromCurrentDate))
+                        quartal = quartal + 1;
+                    if (examination.getSchedule().getStartDate().before(new Date()) && examination.getSchedule().getStartDate().after(oneYearFromCurrentDate))
+                        year = year + 1;
+                }
+
+            }
+        }
+        list.add(month);
+        list.add(quartal);
+        list.add(year);
+        return list;
     }
 
     public void cancelExamination(Long examinationId){

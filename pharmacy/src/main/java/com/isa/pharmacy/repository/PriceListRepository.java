@@ -12,4 +12,6 @@ public interface PriceListRepository extends JpaRepository<PriceList, Long> {
     PriceList save(PriceList priceList);
 
     List<PriceList> findAll();
+
+    List<PriceList> getPriceListByMedicinePharmacy_Id (Long id);
 }

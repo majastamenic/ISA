@@ -22,4 +22,5 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long> 
     Examination save(Examination examination);
 
     List<Examination> findExaminationByPatient_User_Email(String email);
+    List<Examination> findExaminationByPharmacy_Id(Long id);
 }

@@ -29,6 +29,8 @@ public interface IMedicinePharmacyService {
 
      List<MedicinePharmacy> getByMedicine(String medicineName);
 
+     List<Integer> numberOfMedications(String adminEmail);
+
      MedicinePharmacy getById(Long id);
      void deleteFromPharmacy(String medicineName,String adminEmail, Long id);
 }

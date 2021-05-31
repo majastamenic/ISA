@@ -16,4 +16,6 @@ public interface MedicineReservationRepository extends JpaRepository<MedicineRes
     List<MedicineReservation> findAll();
 
     MedicineReservation findMedicineReservationByCode(Long code);
+
+    List<MedicineReservation> findMedicineReservationByMedicinePharmacy_Id(Long id);
 }

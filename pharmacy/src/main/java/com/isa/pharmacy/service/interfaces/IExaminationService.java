@@ -26,6 +26,8 @@ public interface IExaminationService {
 
      List<ExamDermatologistDto> getAllByDermatologist(Dermatologist dermatologist);
 
+     List<Integer> numberOfExaminations(String adminEmail);
+
      ExamDermatologistDto getById(long id);
 
      List<String> getDermatologistNameByPatient(Patient patient);

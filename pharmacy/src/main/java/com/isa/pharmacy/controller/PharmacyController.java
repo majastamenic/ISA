@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,11 @@ public class PharmacyController {
     @PostMapping
     public Pharmacy save(@RequestBody PharmacyDto pharmacyDto) {
         return pharmacyService.save(PharmacyMapper.mapPharmacyDtoToPharmacy(pharmacyDto));
+    }
+
+    @GetMapping("/profit")
+    public Integer getProfit(@RequestBody ProfitDto profitDto){
+        return pharmacyService.pharmacyProfit(profitDto.getStartDate(),profitDto.getEndDate(),profitDto.getAdminEmail());
     }
 
     @GetMapping("/{name}")

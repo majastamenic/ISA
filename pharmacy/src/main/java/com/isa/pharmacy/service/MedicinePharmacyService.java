@@ -22,7 +22,9 @@ import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -68,6 +70,33 @@ public class MedicinePharmacyService implements IMedicinePharmacyService {
             medicineDtoList.add(MedicinePharmacyMapper.mapMedicinePharmacyToGetAllMedicinePharmacyDto(medicine));
         }
         return medicineDtoList;
+    }
+
+    public List<Integer> numberOfMedications(String adminEmail){
+        PharmacyAdmin admin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
+        List<Integer> list = new ArrayList<>();
+        Integer month = 0;
+        Integer quartal = 0;
+        Integer year = 0;
+        Date currentDate = new Date();
+        Date thirtyDaysFromCurrentDate = new Date(currentDate.getTime() - Duration.ofDays(30).toMillis());
+        Date threeMonthsFromCurrentDate = new Date(currentDate.getTime() - Duration.ofDays(90).toMillis());
+        Date oneYearFromCurrentDate = new Date(currentDate.getTime() - Duration.ofDays(365).toMillis());
+        List<MedicineReservation> reservations = medicineReservationRepository.findAll();
+        for(MedicineReservation mr:reservations){
+            if(mr.getMedicinePharmacy().getPharmacy().equals(admin.getPharmacy())&& mr.getTaken().equals(true)){
+               if(mr.getDueDate().before(new Date()) && mr.getDueDate().after(thirtyDaysFromCurrentDate))
+                   month = month + mr.getAmount();
+                if(mr.getDueDate().before(new Date()) && mr.getDueDate().after(threeMonthsFromCurrentDate))
+                    quartal = quartal+mr.getAmount();
+                if(mr.getDueDate().before(new Date()) && mr.getDueDate().after(oneYearFromCurrentDate))
+                    year = year +mr.getAmount() ;
+            }
+        }
+        list.add(month);
+        list.add(quartal);
+        list.add(year);
+        return list;
     }
 
     public void deleteFromPharmacy(String medicineName,String adminEmail, Long id){

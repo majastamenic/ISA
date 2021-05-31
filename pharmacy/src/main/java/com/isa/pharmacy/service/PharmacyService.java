@@ -6,11 +6,12 @@ import com.isa.pharmacy.controller.exception.NotFoundException;
 import com.isa.pharmacy.controller.mapping.MedicineMapper;
 import com.isa.pharmacy.controller.mapping.PharmacyMapper;
 import com.isa.pharmacy.domain.*;
-import com.isa.pharmacy.repository.PharmacyRepository;
-import com.isa.pharmacy.service.interfaces.IMedicineReservationService;
-import com.isa.pharmacy.service.interfaces.IPharmacyService;
+import com.isa.pharmacy.repository.*;
+import com.isa.pharmacy.service.interfaces.*;
 import com.isa.pharmacy.users.domain.Pharmacist;
+import com.isa.pharmacy.users.domain.PharmacyAdmin;
 import com.isa.pharmacy.users.service.interfaces.IPharmacistService;
+import com.isa.pharmacy.users.service.interfaces.IPharmacyAdminService;
 import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +33,16 @@ public class PharmacyService implements IPharmacyService {
     private IPharmacistService pharmacistService;
     @Autowired
     private IMedicineReservationService medicineReservationService;
+    @Autowired
+    private IPharmacyAdminService pharmacyAdminService;
+    @Autowired
+    private MedicinePharmacyRepository medicinePharmacyRepository;
+    @Autowired
+    private PriceListRepository priceListRepository;
+    @Autowired
+    private ExaminationRepository examinationRepository;
+    @Autowired
+    private MedicineReservationRepository medicineReservationRepository;
     @Value("${apiKey}")
     private String apiKey;
 
@@ -76,6 +88,33 @@ public class PharmacyService implements IPharmacyService {
                 return medicinePharmacy.getMedicine();
         }
         return null;
+    }
+
+    public Integer pharmacyProfit(Date startDate, Date endDate, String adminEmail){
+        Integer profit= 0;
+        PharmacyAdmin admin = pharmacyAdminService.findPharmacyAdminByEmail(adminEmail);
+        List<MedicinePharmacy> medicinePharmacies = medicinePharmacyRepository.findMedicinePharmacyByPharmacy_id(admin.getPharmacy().getId());
+        List<Examination> examinations = examinationRepository.findExaminationByPharmacy_Id(admin.getPharmacy().getId());
+        for(Examination e:examinations){
+            if(e.getPharmacy().equals(admin.getPharmacy()) && e.getPatient()!=null && e.getPatientCame().equals(true) && e.getSchedule().getStartDate().before(endDate) && e.getSchedule().getStartDate().after(startDate))
+                profit = profit + e.getPrice();
+
+        }
+        for(MedicinePharmacy medicinePharmacy:medicinePharmacies){
+            List<MedicineReservation> medicineReservations = medicineReservationRepository.findMedicineReservationByMedicinePharmacy_Id(medicinePharmacy.getId());
+            List<PriceList> priceLists = priceListRepository.getPriceListByMedicinePharmacy_Id(medicinePharmacy.getId());
+            for(PriceList pl:priceLists){
+                if(pl.getDateFrom().before(startDate)&&pl.getDateTo().after(endDate)&&pl.getDateFrom().before(endDate)&&pl.getDateTo().after(startDate)){
+                    for(MedicineReservation medicineReservation:medicineReservations){
+                        if(medicineReservation.getTaken().equals(true))
+                            profit =profit+ pl.getPrice()*medicineReservation.getAmount();
+                    }
+
+                }
+            }
+        }
+
+        return profit;
     }
 
     public List<MedicineDto> checkAvailabilities(List<String> medicinesName, String pharmacyName) {

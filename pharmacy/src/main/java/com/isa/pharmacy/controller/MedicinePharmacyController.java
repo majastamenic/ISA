@@ -66,6 +66,12 @@ public class MedicinePharmacyController {
         return medicineDtoList;
     }
 
+    @GetMapping("/number/{email}")
+    public List<Integer> getNumberOfMedicine(@PathVariable("email")String email){
+        return medicinePharmacyService.numberOfMedications(email);
+
+    }
+
     @GetMapping("/all/{pharmacyName}/{email}")
     public List<MedicinePharmacyDto> getMedicinesByPharmacy(@PathVariable("pharmacyName")String pharmacyName, @PathVariable("email")String email) {
         return medicinePharmacyService.getMedicinesByPharmacy(pharmacyName, email);

@@ -45,6 +45,10 @@ public class ExaminationController {
         Dermatologist dermatologist = dermatologistService.findUserByEmail(email);
         return examinationService.getAllByDermatologist(dermatologist);
     }
+    @GetMapping("/number/{email}")
+    public List<Integer> getNumber(@PathVariable("email") String email){
+        return examinationService.numberOfExaminations(email);
+    }
 
     @GetMapping("/scheduled/{email}")
     public List<ExaminationUpcomingDto> getExaminationByPatient(@PathVariable String email){

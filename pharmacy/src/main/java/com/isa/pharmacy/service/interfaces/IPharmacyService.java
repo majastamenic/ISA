@@ -2,6 +2,8 @@ package com.isa.pharmacy.service.interfaces;
 
 import com.isa.pharmacy.controller.dto.*;
 import com.isa.pharmacy.domain.*;
+
+import java.util.Date;
 import java.util.List;
 
 public interface IPharmacyService {
@@ -10,6 +12,8 @@ public interface IPharmacyService {
      Pharmacy getById(Long id);
 
      List<GetAllPharmaciesDto> getAll();
+
+     Integer pharmacyProfit(Date startDate, Date endDate, String adminEmail);
 
      List<Medicine> getMedicinesFromPharmacy(String pharmacyName);
 
