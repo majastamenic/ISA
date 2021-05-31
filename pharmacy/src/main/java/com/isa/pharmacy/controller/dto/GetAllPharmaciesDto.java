@@ -11,15 +11,19 @@ public class GetAllPharmaciesDto {
     private String address;
     private List<Pharmacist> pharmacists;
     private List<GetAllPharmaciesPharmacyAdminDto> admins;
+    private Double latitude;
+    private Double longitude;
 
     public GetAllPharmaciesDto() { }
 
-    public GetAllPharmaciesDto(Long id, String name, String address, List<Pharmacist> pharmacists, List<GetAllPharmaciesPharmacyAdminDto> admins) {
+    public GetAllPharmaciesDto(Long id, String name,Double latitude, Double longitude, String address, List<Pharmacist> pharmacists, List<GetAllPharmaciesPharmacyAdminDto> admins) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.pharmacists = pharmacists;
         this.admins = admins;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Long getId() {
@@ -60,5 +64,21 @@ public class GetAllPharmaciesDto {
 
     public void setAdmins(List<GetAllPharmaciesPharmacyAdminDto> admins) {
         this.admins = admins;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }

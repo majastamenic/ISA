@@ -6,7 +6,12 @@
             <hr/>
             <p>Address: {{pharmacy.address}}</p>
             <p>Rating: <ngb-rating [(rate)]="pharmacy.rate" [max]="5" [readonly]="true"></ngb-rating></p>
-            </form>
+            <div class="container">
+                <ya-map [center]="[pharmacy.latitude, pharmacy.longitude]">
+                    <ya-placemark [geometry]="[pharmacy.latitude, pharmacy.longitude]"></ya-placemark>
+                  </ya-map>
+            </div>
+        </form>
         </div>
     </div>
 </div>

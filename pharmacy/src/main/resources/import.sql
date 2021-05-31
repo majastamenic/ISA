@@ -1,10 +1,10 @@
 -- Pharmacies
-insert into pharmacy (address, name, counseling_price) values('Rumenacka 15, Novi Sad', 'Jankovic', 10);
-insert into pharmacy (address, name, counseling_price) values('Hajduk Veljkova 8, Novi Sad', 'Benu', 5);
-insert into pharmacy (address, name, counseling_price) values('Bulevar Cara Lazara 76, Novi Sad', 'Zelena Apoteka', 0);
-insert into pharmacy (address, name, counseling_price) values('Bulevar Cara Lazara 88, Novi Sad', 'Galen pharm', 7);
-insert into pharmacy (address, name, counseling_price) values('Rumenacka 13, Novi Sad', 'Irisfarm', 8);
-insert into pharmacy (address, name, counseling_price) values('Futoski Put 85A, Novi Sad', 'Tilia', 3);
+insert into pharmacy (address, name, counseling_price, latitude, longitude) values('Visnjiceva 15, Beograd', 'Jankovic', 10,44.822200,20.460370);
+insert into pharmacy (address, name, counseling_price, latitude, longitude) values('Hajduk Veljkova 8, Novi Sad', 'Benu', 5,45.250090,19.824650);
+insert into pharmacy (address, name, counseling_price, latitude, longitude) values('Bulevar Cara Lazara 76, Novi Sad', 'Zelena Apoteka', 0,45.241619,19.831230);
+insert into pharmacy (address, name, counseling_price, latitude, longitude) values('Bulevar Cara Lazara 88, Novi Sad', 'Galen pharm', 7,45.241619,19.831230);
+insert into pharmacy (address, name, counseling_price, latitude, longitude) values('Rumenacka 13, Novi Sad', 'Irisfarm', 8,45.260510,19.820788);
+insert into pharmacy (address, name, counseling_price, latitude, longitude) values('Futoski Put 85A, Novi Sad', 'Tilia', 3,45.246370,19.801300);
 
 --Subscribes
     --Jankovic

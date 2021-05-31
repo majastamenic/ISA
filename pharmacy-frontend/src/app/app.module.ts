@@ -11,6 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AgmCoreModule } from '@agm/core'; 
+import { AngularYandexMapsModule, IConfig, YA_MAP_CONFIG } from 'angular8-yandex-maps';
+
 
 import { LoginComponent } from './component/user/login/login.component';
 import { RegistrationComponent } from './component/user/registration/registration.component';
@@ -80,6 +83,10 @@ FullCalendarModule.registerPlugins([
   interactionPlugin
 ])
 
+const mapConfig: IConfig = {
+  apikey: '858a2dab-02e9-4ad6-befe-6774e97308d0',
+  lang: 'en_US',
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -150,13 +157,23 @@ FullCalendarModule.registerPlugins([
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDarNaX5D7IEAMbuLmmhSNf--CZbSEnO6w'
+    }),
+    AngularYandexMapsModule.forRoot(mapConfig),
     NgSelectModule,
     DpDatePickerModule,
     NgbModule,
     FullCalendarModule,
     NgxPaginationModule,
   ],
-  providers: [],
+  providers: [
+    {provide: YA_MAP_CONFIG,
+    useValue: {
+      apikey: '858a2dab-02e9-4ad6-befe-6774e97308d0',
+      lang: 'en_US',
+    },
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

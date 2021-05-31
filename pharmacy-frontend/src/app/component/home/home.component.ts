@@ -11,10 +11,20 @@ import { RatingService } from 'src/app/service/rating.service';
 export class HomeComponent implements OnInit {
 
   pharmacies: any = [];
+  lat:any;
+  lng:any;
 
   constructor(private pharmacyService: PharmacyService,
               private toastrService: ToastrService
               ,public ratingService: RatingService ) {
+                
+    if (navigator)
+    {
+    navigator.geolocation.getCurrentPosition( pos => {
+        this.lng = +pos.coords.longitude;
+        this.lat = +pos.coords.latitude;
+      });
+    }
   }
 
   ngOnInit(): void {

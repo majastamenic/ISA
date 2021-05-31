@@ -23,16 +23,22 @@ public class Pharmacy implements Serializable {
     private List<MedicinePharmacy> medicinePharmacy;
     @ElementCollection
     private List<String> subscribedEmails;
+    @Column
+    private Double latitude;
+    @Column
+    private Double longitude;
 
     public Pharmacy() { }
 
-    public Pharmacy(Long id, String name, String address, Integer counselingPrice, List<MedicinePharmacy> medicinePharmacy, List<String> subscribedEmails) {
+    public Pharmacy(Long id, String name, String address, Double latitude, Double longitude,Integer counselingPrice, List<MedicinePharmacy> medicinePharmacy, List<String> subscribedEmails) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.counselingPrice = counselingPrice;
         this.medicinePharmacy = medicinePharmacy;
         this.subscribedEmails = subscribedEmails;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Long getId() {
@@ -91,5 +97,21 @@ public class Pharmacy implements Serializable {
     @Override
     public String toString() {
         return name;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }
