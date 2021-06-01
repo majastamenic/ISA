@@ -106,7 +106,7 @@ public class PharmacyService implements IPharmacyService {
             for(PriceList pl:priceLists){
                 if(pl.getDateFrom().before(startDate)&&pl.getDateTo().after(endDate)&&pl.getDateFrom().before(endDate)&&pl.getDateTo().after(startDate)){
                     for(MedicineReservation medicineReservation:medicineReservations){
-                        if(medicineReservation.getTaken().equals(true))
+                        if(medicineReservation.getTaken().equals(true) && medicineReservation.getDueDate().after(startDate) && medicineReservation.getDueDate().before(endDate))
                             profit =profit+ pl.getPrice()*medicineReservation.getAmount();
                     }
 

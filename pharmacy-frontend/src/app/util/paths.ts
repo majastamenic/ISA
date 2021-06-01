@@ -12,6 +12,7 @@ export const INFO_PATH = USER_PATH + '/info';
 export const UPDATE_USER_PATH = USER_PATH + '/update';
 
 export const PHARMACY_PATH = BACKEND_PATH + '/pharmacy';
+export const PHARMACY_PROFIT = PHARMACY_PATH + '/profit';
 export const PHARMACY_FROM_PHARMACY_NAME = PHARMACY_PATH + '/ph';
 export const AVAILABLE_PHARMACIES = PHARMACY_PATH + '/availablePharmacies';  // Gets pharmacies with available pharmacists
 export const HOSPITAL_PATH = BACKEND_PATH + '/hospital';
@@ -72,6 +73,7 @@ export const COUNSELING_FIND_PATIENT = COUNSELING_PATH + '/find';
 
 export const MEDICINEPHARMACY_PATH = BACKEND_PATH + '/medicinepharmacy';
 export const GET_MEDICINEPHARMACY_PATH = MEDICINEPHARMACY_PATH + '/getMedicines';
+export const GET_MEDICINEPHARMACY_NUMBER_PATH = MEDICINEPHARMACY_PATH + '/number';
 
 export const GET_MEDICINEPHARMACYBYADMIN_PATH = MEDICINEPHARMACY_PATH + '/getMedicinesByAdminPharmacy';
 export const ORDER_INIT_PATH = BACKEND_PATH + '/order/define';
@@ -80,6 +82,7 @@ export const MEDICINES_PHARMACIST_PATH = MEDICINES_PHARMACY_PATH + '/pharmacist'
 export const MEDICINEPH_BY_MEDICINE_PATH = MEDICINEPHARMACY_PATH + '/medicine';
 
 export const EXAMINATION_PATH = BACKEND_PATH + '/examination';
+export const EXAMINATION_NUMBER_PATH = EXAMINATION_PATH + '/number';
 export const FREE_EXAM_TERMS_PATH = EXAMINATION_PATH + '/freeTerms';
 export const SCHEDULE_EXAM_PATH = EXAMINATION_PATH + '/schedule';
 export const CANCEL_EXAMINATION = EXAMINATION_PATH + '/cancel';

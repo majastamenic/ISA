@@ -52,6 +52,7 @@ import { ActionsBenefitsComponent } from './component/pharmacy-admin/actions-ben
 import { DermatologistFreeTermsComponent } from './component/pharmacy-admin/dermatologist-free-terms/dermatologist-free-terms.component';
 import { VacationsComponent } from './component/pharmacy-admin/vacations/vacations.component';
 import { VacationsDermatologistsComponent } from './component/system-admin/vacations-dermatologists/vacations-dermatologists.component';
+import { GraphsComponent } from './component/pharmacy-admin/graphs/graphs.component';
 
 
 const routes: Routes = [
@@ -123,6 +124,7 @@ const routes: Routes = [
   { path: 'pharmacists/:pharmacyName', component: AllPharmacistsComponent},
   { path: 'dermatologists/:pharmacyName', component: AllDermatologistsComponent},
   { path: 'medications/:pharmacyName', component: AllMedicationsComponent},
+  { path: 'graphs', component: GraphsComponent},
   
   
   //Supplier

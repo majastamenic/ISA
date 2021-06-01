@@ -13,6 +13,7 @@ import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AgmCoreModule } from '@agm/core'; 
 import { AngularYandexMapsModule, IConfig, YA_MAP_CONFIG } from 'angular8-yandex-maps';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 
 
 import { LoginComponent } from './component/user/login/login.component';
@@ -75,6 +76,7 @@ import { ReservationsComponent } from './component/patient/reservations/reservat
 import { DermatologistFreeTermsComponent } from './component/pharmacy-admin/dermatologist-free-terms/dermatologist-free-terms.component';
 import { VacationsComponent } from './component/pharmacy-admin/vacations/vacations.component';
 import { VacationsDermatologistsComponent } from './component/system-admin/vacations-dermatologists/vacations-dermatologists.component';
+import { GraphsComponent } from './component/pharmacy-admin/graphs/graphs.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -146,6 +148,7 @@ const mapConfig: IConfig = {
     DermatologistFreeTermsComponent,
     VacationsComponent,
     VacationsDermatologistsComponent,
+    GraphsComponent,
   ],
   imports: [
     BrowserModule,
@@ -154,6 +157,7 @@ const mapConfig: IConfig = {
     FormsModule,
     NgSelectModule,
     BrowserAnimationsModule,
+    NgxChartsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),

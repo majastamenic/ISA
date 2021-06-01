@@ -37,7 +37,7 @@ public class PharmacyController {
         return pharmacyService.save(PharmacyMapper.mapPharmacyDtoToPharmacy(pharmacyDto));
     }
 
-    @GetMapping("/profit")
+    @PostMapping("/profit")
     public Integer getProfit(@RequestBody ProfitDto profitDto){
         return pharmacyService.pharmacyProfit(profitDto.getStartDate(),profitDto.getEndDate(),profitDto.getAdminEmail());
     }
