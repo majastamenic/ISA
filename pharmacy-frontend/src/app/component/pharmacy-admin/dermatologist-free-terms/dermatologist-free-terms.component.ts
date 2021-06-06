@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DermatologistService } from 'src/app/service/dermatologist.service';
 
@@ -29,13 +30,21 @@ export class DermatologistFreeTermsComponent implements OnInit {
   showAddDerm: boolean= false;
   allDermatologists: any=[];
 
-  constructor(private toastrService: ToastrService, private dermatologistService: DermatologistService) { }
+  constructor(private toastrService: ToastrService,private router: Router, private dermatologistService: DermatologistService) { }
 
   ngOnInit(): void {
     this.loggedUser = sessionStorage.getItem("user");
+    if(this.loggedUser){
     this.dermatologistService.getDermatologistsByAdmin(this.loggedUser).subscribe((response: any) =>{
       this.listDermatologists = response;
+    },(err: any)=>{
+      this.toastrService.error("Error "+ err.error.message)
     });
+  }
+  else{
+    this.router.navigate(['login']);
+    this.toastrService.info('Please log in first.');
+  }
   }
 
   define(){
@@ -52,6 +61,8 @@ export class DermatologistFreeTermsComponent implements OnInit {
     this.showAddDerm = true;
     this.dermatologistService.getAll().subscribe((_ret: any) =>{
       this.allDermatologists = _ret;
+    },(err: any)=>{
+      this.toastrService.error("Error "+ err.error.message)
     }) 
   }
   define1(){

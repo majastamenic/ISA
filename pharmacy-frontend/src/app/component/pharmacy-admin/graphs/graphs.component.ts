@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ExaminationService } from 'src/app/service/examination.service';
 import { MedicinePharmacyService } from 'src/app/service/medicine-pharmacy.service';
 import { PharmacyService } from 'src/app/service/pharmacy.service';
@@ -20,9 +22,10 @@ export class GraphsComponent implements OnInit {
   saleData :any;
   dateFrom: any;
   dateTo:any;
-  constructor(private exam:ExaminationService, private medicinePharmacy:MedicinePharmacyService, private pharmacyService:PharmacyService) { }
+  constructor(private exam:ExaminationService, private toastrService: ToastrService,private medicinePharmacy:MedicinePharmacyService, private router: Router, private pharmacyService:PharmacyService) { }
 
   ngOnInit(): void {
+    if(this.userEmail){
     this.exam.getNumber(this.userEmail).subscribe((examinations: any) => {
       this.examinationNumbers = examinations;
       console.log(this.examinationNumbers);
@@ -31,7 +34,14 @@ export class GraphsComponent implements OnInit {
         { name: "Quartal", value: this.examinationNumbers[1] },
         { name: "Year", value: this.examinationNumbers[2] },
       ];
+    },(err: any)=>{
+      this.toastrService.error("Error "+ err.error.message)
     });
+  }
+  else{
+    this.router.navigate(['login']);
+    this.toastrService.info('Please log in first.');
+  }
   }
   showExams(){
     this.showExaminations = true;
@@ -46,6 +56,8 @@ export class GraphsComponent implements OnInit {
         { name: "Quartal", value: this.medicineNumber[1] },
         { name: "Year", value: this.medicineNumber[2] },
       ];
+    },(err: any)=>{
+      this.toastrService.error("Error "+ err.error.message)
     });
   }
   showProf(){
@@ -60,6 +72,8 @@ export class GraphsComponent implements OnInit {
       this.saleData = [
         { name: "Profit", value: this.profitNumber }
       ];
+    },(err: any)=>{
+      this.toastrService.error("Error "+ err.error.message)
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { OrderDto, OrderOfferDto } from 'src/app/model/order';
@@ -19,17 +20,23 @@ export class AddOrderComponent implements OnInit {
   listOffers:any;
   showOffers: boolean= false;
   orderType: any;
-  constructor(private orderService: OrderService, private toastrService: ToastrService) { }
+  constructor(private orderService: OrderService, private router: Router, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     let userEmail = sessionStorage.getItem('user');
     if(userEmail){
       this.phAdmin = userEmail;
     }
+    if(userEmail){
     this.newOrder.pharmacyAdminEmail = this.phAdmin;
     this.orderService.getOrders(this.phAdmin).subscribe((orders: any) => {
       this.listOrders = orders;
     });
+  }
+  else{
+    this.router.navigate(['login']);
+      this.toastrService.info('Please log in first.');
+  }
   }
 
   create(){

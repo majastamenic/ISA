@@ -1,6 +1,6 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Pharmacy } from 'src/app/model/pharmacy-model';
 import { PharmacistService } from 'src/app/service/pharmacist.service';
@@ -23,13 +23,13 @@ export class AllPharmacistsComponent implements OnInit {
   loggedUser: any = sessionStorage.getItem('user');
   name:any;
   surname:any;
-  constructor(private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService,public ratingService: RatingService ,private pharmacistSevice: PharmacistService, private pharmacyService: PharmacyService) { }
+  constructor(private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService,private router: Router,public ratingService: RatingService ,private pharmacistSevice: PharmacistService, private pharmacyService: PharmacyService) { }
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => { 
       this.pharmacyName = params.get('pharmacyName');
     });
-
+    if(this.loggedUser){
     this.pharmacistSevice.getPharmacistsByPharmacyId(this.pharmacyName).subscribe((data: Pharmacist[]) => {
       this.pharmacists = data;
       for(let ph of this.pharmacists){
@@ -40,7 +40,11 @@ export class AllPharmacistsComponent implements OnInit {
       
     },(err: any)=>{
       this.toastrService.error("Error "+ err.error.message)
-    });
+    })}
+    else{
+      this.router.navigate(['login']);
+      this.toastrService.info('Please log in first.');
+    }
 
   }
 

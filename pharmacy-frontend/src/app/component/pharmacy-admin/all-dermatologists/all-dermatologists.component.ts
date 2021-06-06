@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Dermatologist } from 'src/app/model/dermatologist';
 import { DermatologistService } from 'src/app/service/dermatologist.service';
@@ -17,14 +17,15 @@ export class AllDermatologistsComponent implements OnInit {
   loggedUser: any = sessionStorage.getItem('user');
   name:any;
   surname:any;
-  constructor(private _ActivatedRoute: ActivatedRoute, private toastrService: ToastrService,public ratingService: RatingService , private dermatologistService: DermatologistService) { }
+  constructor(private _ActivatedRoute: ActivatedRoute, private router: Router, private toastrService: ToastrService,public ratingService: RatingService , private dermatologistService: DermatologistService) { }
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => { 
       this.pharmacyName = params.get('pharmacyName');
     });
 
-    this.dermatologistService.getDermatologistsByPharmacyName(this.pharmacyName).subscribe((data: Dermatologist[]) => {
+    if(this.loggedUser){
+        this.dermatologistService.getDermatologistsByPharmacyName(this.pharmacyName).subscribe((data: Dermatologist[]) => {
       this.dermatologists = data;
       for(let ph of this.dermatologists){
         this.ratingService.getAverageRateDermatologist(ph.user.email).subscribe(ocena => {
@@ -34,6 +35,10 @@ export class AllDermatologistsComponent implements OnInit {
     },(err: any)=>{
       this.toastrService.error("Error "+ err.error.message)
     });
+    }else{
+      this.router.navigate(['login']);
+      this.toastrService.info('Please log in first.');
+    }
   }
   define(dermatologistEmail: "" , i:number){
     this.dermatologistService.deleteDermatologist(dermatologistEmail,this.loggedUser).subscribe((data: any) => {

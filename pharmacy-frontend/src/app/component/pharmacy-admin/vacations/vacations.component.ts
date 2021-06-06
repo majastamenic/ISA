@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VacationScheduleService } from 'src/app/service/vacation-schedule.service';
 
@@ -13,12 +14,17 @@ export class VacationsComponent implements OnInit {
   loggedUser: any = sessionStorage.getItem('user');
   message: any;
 
-  constructor(private vacationService:VacationScheduleService, private toastrService:ToastrService) { }
+  constructor(private vacationService:VacationScheduleService,private router: Router, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
+    if(this.loggedUser){
     this.vacationService.getVacationsRequestsPharmacists(this.loggedUser).subscribe((response: any) =>{
       this.vacations = response;
-    });
+    });}
+    else{
+      this.router.navigate(['login']);
+      this.toastrService.info('Please log in first.');
+    }
   }
   confirm(vacationSc:0, i:number){
     let vacationDto: any = {confirmed:"Confirmed", message:"", vacationScheduleId: vacationSc};
